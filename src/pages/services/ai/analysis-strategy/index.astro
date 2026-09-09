@@ -2,18 +2,17 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Header from '../../../../components/Layout/Header.astro';
 import Footer from '../../../../components/Layout/Footer.astro';
-import Button from '../../../../components/ui/button/Button.astro';
 import Card from '../../../../components/ui/card/Card.astro';
 import CardContent from '../../../../components/ui/card/CardContent.astro';
 import CardHeader from '../../../../components/ui/card/CardHeader.astro';
 import CardTitle from '../../../../components/ui/card/CardTitle.astro';
 import Badge from '../../../../components/ui/badge/Badge.astro';
-import Picture from '../../../../components/ui/Picture.astro';
 import Icon from '../../../../components/ui/Icon.astro';
-import Accordion from '../../../../components/ui/Accordion.astro';
-import AccordionContent from '../../../../components/ui/AccordionContent.astro';
-import AccordionItem from '../../../../components/ui/AccordionItem.astro';
-import AccordionTrigger from '../../../../components/ui/AccordionTrigger.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
 
 const structuredData = {
     '@context': 'https://schema.org',
@@ -78,28 +77,11 @@ const faqs = [
     }
 ];
 
-const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    'mainEntity': faqs.map(f => ({
-        '@type': 'Question',
-        'name': f.q,
-        'acceptedAnswer': {
-            '@type': 'Answer',
-            'text': f.a
-        }
-    }))
-};
-
-const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    'itemListElement': [
-        { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
-        { '@type': 'ListItem', 'position': 2, 'name': 'خدمات هوش مصنوعی', 'item': 'https://asreseo.com/services/ai/' },
-        { '@type': 'ListItem', 'position': 3, 'name': 'تحلیل و استراتژی هوشمند', 'item': 'https://asreseo.com/services/ai/analysis-strategy/' }
-    ]
-};
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات هوش مصنوعی', item: 'https://asreseo.com/services/ai/' },
+    { position: 3, name: 'تحلیل و استراتژی هوشمند', item: 'https://asreseo.com/services/ai/analysis-strategy/' }
+];
 
 
 
@@ -196,75 +178,26 @@ const breadcrumbSchema = {
 >
 <div class="min-h-screen bg-white">
             <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
-            <script id="faq-data" type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
-            <script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+            <BreadcrumbStructuredData items={breadcrumbs} />
 
             <Header />
 
             <main>
                 <!-- Hero Section -->
-                <section class="section-padding bg-linear-to-br from-indigo-50 to-cyan-50 overflow-hidden relative">
-                    <div class="absolute top-0 right-0 w-1/3 h-full bg-indigo-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob"></div>
-                    <div class="absolute bottom-0 left-0 w-1/3 h-full bg-cyan-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
-
-                    <div class="container-custom relative z-10">
-                        <div class="grid lg:grid-cols-2 gap-12 items-center">
-                            <div class="text-right animate-fade-in order-2 lg:order-1">
-                                <Badge class="bg-indigo-100 text-indigo-700 mb-4 px-4 py-1 text-sm border-indigo-200">
-                                    هوش تجاری و استراتژی داده‌محور
-                                </Badge>
-                                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                                    تحلیل و استراتژی <span class="gradient-text">هوشمند</span>
-                                </h1>
-                                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                                    با قدرت داده‌ها و هوش مصنوعی، مسیر رشد کسب‌وکار خود را هموار کنید. از سئو و بهینه‌سازی نرخ تبدیل تا تحلیل رفتار کاربران و مانیتورینگ برند.
-                                </p>
-                                <div class="flex flex-col sm:flex-row gap-4 justify-start">
-                                    <Button size="lg" class="gradient-bg text-white px-8 hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300">
-                                        دریافت تحلیل رایگان
-                                    </Button>
-                                    <Button variant="outline" size="lg" class="border-indigo-200 text-indigo-700 hover:bg-indigo-50">
-                                        مشاوره استراتژیک
-                                    </Button>
-                                </div>
-                            </div>
-
-                            <div class="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
-                                <div class="absolute inset-0 bg-linear-to-tr from-indigo-600/10 to-transparent z-10" />
-                                <Picture
-                                    src="/images/analysis-strategy-hero.webp"
-                                    alt="تحلیل و استراتژی هوشمند"
-                                   
-                                   
-                                    class="object-cover group-hover:scale-105 transition-transform duration-700"
-                                    eager
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <ServiceHero
+                    badge="هوش تجاری و استراتژی داده‌محور"
+                    title="تحلیل و استراتژی"
+                    titleGradient="هوشمند"
+                    description="با قدرت داده‌ها و هوش مصنوعی، مسیر رشد کسب‌وکار خود را هموار کنید. از سئو و بهینه‌سازی نرخ تبدیل تا تحلیل رفتار کاربران و مانیتورینگ برند."
+                    primaryCta={{ text: "دریافت تحلیل رایگان", href: "#" }}
+                    secondaryCta={{ text: "مشاوره استراتژیک", href: "#" }}
+                    imageSrc="/images/analysis-strategy-hero.webp"
+                    imageAlt="تحلیل و استراتژی هوشمند"
+                    theme="indigo"
+                />
 
                 <!-- Stats Section -->
-                <section class="section-padding bg-linear-to-r from-cyan-50 to-indigo-50">
-                    <div class="container-custom">
-                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {stats.map((stat, index) => (
-                                <Card class="text-center border-0 bg-white/80 backdrop-blur-sm">
-                                    <CardContent class="p-6">
-                                        <div class={`text-4xl font-bold ${stat.color} mb-2`}>
-                                            {stat.metric}
-                                        </div>
-                                        <p class="text-gray-900 font-medium">
-                                            {stat.label}
-                                        </p>
-                                        <Icon name="zap" class="h-6 w-6 text-gray-400 mx-auto mt-2" />
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                <ServiceStats stats={stats} theme="indigo" />
 
                 <!-- SEO & CRO Section -->
                 <section class="section-padding">
@@ -423,51 +356,21 @@ const breadcrumbSchema = {
                 </section>
 
                 <!-- FAQ Section -->
-                <section class="section-padding bg-white border-t border-gray-100">
-                    <div class="container-custom max-w-4xl">
-                        <div class="text-center mb-12">
-                            <h2 class="text-3xl font-bold text-gray-900 mb-4">
-                                سوالات متداول تحلیل، استراتژی و سئو هوشمند
-                            </h2>
-                            <p class="text-gray-600 text-base">
-                                پاسخ به سوالات رایج درباره ابزارهای AI SEO، تحلیل رقبا و بازدهی کمپین‌ها
-                            </p>
-                        </div>
-
-                        <Accordion type="single" collapsible class="w-full" dir="rtl">
-                            {faqs.map((faq, index) => (
-                                <AccordionItem value={`item-${index}`} class="bg-slate-50 mb-3 rounded-xl border border-gray-200 px-4">
-                                    <AccordionTrigger class="text-right text-lg font-medium text-gray-900 hover:text-indigo-600">
-                                        {faq.q}
-                                    </AccordionTrigger>
-                                    <AccordionContent class="text-right text-gray-600 text-base leading-relaxed pt-2 pb-4">
-                                        {faq.a}
-                                    </AccordionContent>
-                                </AccordionItem>
-                            ))}
-                        </Accordion>
-                    </div>
-                </section>
+                <ServiceFAQ
+                    faqs={faqs}
+                    title="سوالات متداول تحلیل، استراتژی و سئو هوشمند"
+                    description="پاسخ به سوالات رایج درباره ابزارهای AI SEO، تحلیل رقبا و بازدهی کمپین‌ها"
+                    theme="indigo"
+                />
 
                 <!-- CTA Section -->
-                <section class="section-padding bg-linear-to-br from-slate-900 to-slate-800 text-white">
-                    <div class="container-custom text-center">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                            آینده کسب‌وکار خود را با داده‌ها بسازید!
-                        </h2>
-                        <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
-                            با تحلیل‌های دقیق و استراتژی‌های هوشمند، ریسک‌ها را کاهش دهید و فرصت‌های رشد را شکار کنید. ما در این مسیر همراه شما هستیم.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button size="lg" class="bg-indigo-600 hover:bg-indigo-700 text-white">
-                                شروع تحلیل هوشمند
-                            </Button>
-                            <Button variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-slate-900">
-                                دریافت مشاوره
-                            </Button>
-                        </div>
-                    </div>
-                </section>
+                <ServiceCTA
+                    title="آینده کسب‌وکار خود را با داده‌ها بسازید!"
+                    description="با تحلیل‌های دقیق و استراتژی‌های هوشمند، ریسک‌ها را کاهش دهید و فرصت‌های رشد را شکار کنید. ما در این مسیر همراه شما هستیم."
+                    primaryCta={{ text: "شروع تحلیل هوشمند", href: "#" }}
+                    secondaryCta={{ text: "دریافت مشاوره", href: "#" }}
+                    theme="indigo"
+                />
             </main>
 
             <Footer />
