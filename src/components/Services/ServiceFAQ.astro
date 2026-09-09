@@ -14,7 +14,10 @@ export interface FAQItem {
 export interface Props {
   title?: string;
   highlightWord?: string;
+  titleGradient?: string;
   subtitle?: string;
+  description?: string;
+  theme?: string;
   faqs: FAQItem[];
   includeSchema?: boolean;
 }
@@ -22,10 +25,15 @@ export interface Props {
 const {
   title = 'سوالات متداول',
   highlightWord = 'متداول',
-  subtitle = 'پاسخ به پرسش‌های رایج مشتریان',
+  titleGradient,
+  subtitle,
+  description,
+  theme,
   faqs = [],
   includeSchema = true,
 } = Astro.props;
+
+const effSubtitle = description || subtitle || 'پاسخ به پرسش‌های رایج مشتریان';
 
 const normalizedFaqs = faqs.map((f) => ({
   question: f.question || f.q || '',
@@ -45,15 +53,22 @@ const faqSchema = includeSchema && normalizedFaqs.length > 0 ? {
   })),
 } : null;
 
+const highlight = titleGradient || highlightWord;
 let beforeHighlight = title;
 let afterHighlight = '';
 let hasHighlight = false;
 
-if (highlightWord && title.includes(highlightWord)) {
-  const parts = title.split(highlightWord);
-  beforeHighlight = parts[0];
-  afterHighlight = parts.slice(1).join(highlightWord);
-  hasHighlight = true;
+if (highlight) {
+  if (title.includes(highlight)) {
+    const parts = title.split(highlight);
+    beforeHighlight = parts[0];
+    afterHighlight = parts.slice(1).join(highlight);
+    hasHighlight = true;
+  } else {
+    beforeHighlight = `${title} `;
+    afterHighlight = '';
+    hasHighlight = true;
+  }
 }
 ---
 
@@ -67,15 +82,15 @@ if (highlightWord && title.includes(highlightWord)) {
       <h2 class="text-3xl font-bold text-gray-900 mb-6">
         {hasHighlight ? (
           <>
-            {beforeHighlight}<span class="gradient-text">{highlightWord}</span>{afterHighlight}
+            {beforeHighlight}<span class="gradient-text">{highlight}</span>{afterHighlight}
           </>
         ) : (
           title
         )}
       </h2>
-      {subtitle && (
+      {effSubtitle && (
         <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-          {subtitle}
+          {effSubtitle}
         </p>
       )}
     </div>

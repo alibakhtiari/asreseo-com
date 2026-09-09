@@ -3,20 +3,23 @@ import Badge from '../ui/badge/Badge.astro';
 import Button from '../ui/button/Button.astro';
 import Picture from '../ui/Picture.astro';
 
-export type ThemeColor = 'indigo' | 'purple' | 'pink' | 'blue' | 'green' | 'cyan' | 'amber' | 'emerald';
+export type ThemeColor = 'indigo' | 'purple' | 'pink' | 'blue' | 'green' | 'cyan' | 'amber' | 'emerald' | 'orange' | 'teal';
 
 export interface Props {
   badge?: string;
   badgeClass?: string;
   title: string;
   titleHighlight?: string;
+  titleGradient?: string;
   description: string;
   primaryCtaText?: string;
   primaryCtaHref?: string;
   primaryCtaClass?: string;
+  primaryCta?: { text?: string; href?: string; class?: string };
   secondaryCtaText?: string;
   secondaryCtaHref?: string;
   secondaryCtaClass?: string;
+  secondaryCta?: { text?: string; href?: string; class?: string };
   imageSrc: string;
   imageAlt: string;
   theme?: ThemeColor;
@@ -27,13 +30,16 @@ const {
   badgeClass,
   title,
   titleHighlight,
+  titleGradient,
   description,
-  primaryCtaText = 'مشاوره رایگان',
-  primaryCtaHref = '/contact/',
-  primaryCtaClass = 'gradient-bg text-white px-8 hover:shadow-lg transition-all duration-300',
+  primaryCtaText,
+  primaryCtaHref,
+  primaryCtaClass,
+  primaryCta,
   secondaryCtaText,
-  secondaryCtaHref = '/services/',
+  secondaryCtaHref,
   secondaryCtaClass,
+  secondaryCta,
   imageSrc,
   imageAlt,
   theme = 'indigo',
@@ -111,19 +117,50 @@ const THEME_STYLES: Record<ThemeColor, {
     imgOverlay: 'from-amber-600/10',
     defaultSecondary: 'border-amber-200 text-amber-700 hover:bg-amber-50',
   },
+  orange: {
+    sectionBg: 'from-orange-50 to-red-50',
+    blob1: 'bg-orange-100/50',
+    blob2: 'bg-red-100/50',
+    defaultBadge: 'bg-orange-100 text-orange-700 border-orange-200',
+    imgOverlay: 'from-orange-600/10',
+    defaultSecondary: 'border-orange-200 text-orange-700 hover:bg-orange-50',
+  },
+  teal: {
+    sectionBg: 'from-green-50 to-teal-50',
+    blob1: 'bg-green-100/50',
+    blob2: 'bg-teal-100/50',
+    defaultBadge: 'bg-teal-100 text-teal-700 border-teal-200',
+    imgOverlay: 'from-teal-600/10',
+    defaultSecondary: 'border-teal-200 text-teal-700 hover:bg-teal-50',
+  },
 };
 
 const currentTheme = THEME_STYLES[theme] ?? THEME_STYLES.indigo;
 
+const effPrimaryText = primaryCta?.text || primaryCtaText || 'مشاوره رایگان';
+const effPrimaryHref = primaryCta?.href || primaryCtaHref || '/contact/';
+const effPrimaryClass = primaryCta?.class || primaryCtaClass || 'gradient-bg text-white px-8 hover:shadow-lg transition-all duration-300';
+
+const effSecondaryText = secondaryCta?.text || secondaryCtaText;
+const effSecondaryHref = secondaryCta?.href || secondaryCtaHref || '/services/';
+const effSecondaryClass = secondaryCta?.class || secondaryCtaClass;
+
+const highlight = titleGradient || titleHighlight;
 let beforeHighlight = title;
 let afterHighlight = '';
 let hasHighlight = false;
 
-if (titleHighlight && title.includes(titleHighlight)) {
-  const parts = title.split(titleHighlight);
-  beforeHighlight = parts[0];
-  afterHighlight = parts.slice(1).join(titleHighlight);
-  hasHighlight = true;
+if (highlight) {
+  if (title.includes(highlight)) {
+    const parts = title.split(highlight);
+    beforeHighlight = parts[0];
+    afterHighlight = parts.slice(1).join(highlight);
+    hasHighlight = true;
+  } else {
+    beforeHighlight = `${title} `;
+    afterHighlight = '';
+    hasHighlight = true;
+  }
 }
 ---
 
@@ -142,7 +179,7 @@ if (titleHighlight && title.includes(titleHighlight)) {
         <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
           {hasHighlight ? (
             <>
-              {beforeHighlight}<span class="gradient-text">{titleHighlight}</span>{afterHighlight}
+              {beforeHighlight}<span class="gradient-text">{highlight}</span>{afterHighlight}
             </>
           ) : (
             title
@@ -152,15 +189,15 @@ if (titleHighlight && title.includes(titleHighlight)) {
           {description}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-start">
-          <a href={primaryCtaHref}>
-            <Button size="lg" class={primaryCtaClass}>
-              {primaryCtaText}
+          <a href={effPrimaryHref}>
+            <Button size="lg" class={effPrimaryClass}>
+              {effPrimaryText}
             </Button>
           </a>
-          {secondaryCtaText && (
-            <a href={secondaryCtaHref}>
-              <Button variant="outline" size="lg" class={secondaryCtaClass || currentTheme.defaultSecondary}>
-                {secondaryCtaText}
+          {effSecondaryText && (
+            <a href={effSecondaryHref}>
+              <Button variant="outline" size="lg" class={effSecondaryClass || currentTheme.defaultSecondary}>
+                {effSecondaryText}
               </Button>
             </a>
           )}

@@ -1,7 +1,8 @@
 ---
 export interface BreadcrumbItem {
   name: string;
-  item: string;
+  item?: string;
+  url?: string;
 }
 
 export interface Props {
@@ -26,7 +27,7 @@ const data = {
     '@type': 'ListItem',
     position: idx + 1,
     name: item.name,
-    item: item.item,
+    item: item.item || (item.url?.startsWith('http') ? item.url : `https://asreseo.com${item.url || ''}`),
   })),
 };
 ---
