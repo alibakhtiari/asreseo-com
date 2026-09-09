@@ -12,19 +12,23 @@ const posts: any[] = getAllBlogPosts();
   title='وبلاگ عصر سئو | آموزش دیجیتال مارکتینگ | مطالب آموزشی تخصصی'
   description='وبلاگ آموزشی عصر سئو شامل مقالات تخصصی digital marketing، سئو، بهینه‌سازی وب‌سایت، تبلیغات گوگل، هوش مصنوعی و بازاریابی محتوایی.'
   keywords='وبلاگ دیجیتال مارکتینگ, مقالات سئو, آموزش Marketing, مطالب آموزشی, عصر سئو'
-  canonical='https://asreseo.com/blog'
-  ogUrl='https://asreseo.com/blog'
+  canonical='https://asreseo.com/blog/'
+  ogUrl='https://asreseo.com/blog/'
 
   ogTitle='وبلاگ آموزشی عصر سئو'
 
   ogDescription='مقالات تخصصی دیجیتال مارکتینگ و سئو.'
 
-  ogImages={[{ url: 'https://asreseo.com/blog' }, { url: '/og-blog.jpg', width: 1200, height: 630, alt: 'وبلاگ عصر سئو' }]}
+  ogImages={[{ url: '/images/blog-hero.webp', width: 1200, height: 630, alt: 'وبلاگ عصر سئو' }]}
 >
   <Header />
   <main>
     <BlogHero />
-    <BlogGrid posts={posts} />
+    <div class="section-padding">
+      <div class="container-custom">
+        <BlogGrid posts={posts} />
+      </div>
+    </div>
   </main>
   <Footer />
 </BaseLayout>

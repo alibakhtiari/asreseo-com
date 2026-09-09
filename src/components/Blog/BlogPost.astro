@@ -9,6 +9,7 @@ import AccordionTrigger from '../ui/AccordionTrigger.astro';
 import Badge from '../ui/badge/Badge.astro';
 import Button from '../ui/button/Button.astro';
 import Icon from '../ui/Icon.astro';
+import Picture from '../ui/Picture.astro';
 
 const { post, Content }: any = Astro.props;
 
@@ -40,15 +41,17 @@ const jsonLdFAQ = {
       "name": "عصر سئو",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://asreseo.com/logo.png"
+        "url": "https://asreseo.com/Logo-spaced.png"
       }
     },
     "image": post.image,
-    "keywords": post.tags.join(", ")
+    "keywords": post.tags?.join(", ") ?? ""
   };
-
-  
 ---
+<script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdArticle)} />
+{post.faqs && post.faqs.length > 0 && (
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdFAQ)} />
+)}
 <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
         <header class="mb-8">
@@ -92,7 +95,7 @@ const jsonLdFAQ = {
             </div>
           </div>
           
-          <img 
+          <Picture 
             src={post.image} 
             alt={post.title}
             class="w-full h-64 md:h-96 object-cover rounded-lg mb-8"

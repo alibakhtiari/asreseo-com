@@ -5,6 +5,7 @@ import CardHeader from '../ui/card/CardHeader.astro';
 import Badge from '../ui/badge/Badge.astro';
 import Button from '../ui/button/Button.astro';
 import Icon from '../ui/Icon.astro';
+import Picture from '../ui/Picture.astro';
 const { posts }: any = Astro.props;
 ---
 <div class="space-y-8">
@@ -23,7 +24,7 @@ const { posts }: any = Astro.props;
           <Card class={`overflow-hidden hover:shadow-xl transition-all duration-300 animate-fade-in ${post.featured ? 'border-2 border-primary/20' : ''}`}>
             <div class="md:flex">
               <div class="md:w-1/3">
-                <img 
+                <Picture 
                   src={post.image} 
                   alt={post.title}
                   class="w-full h-48 md:h-full object-cover"
@@ -41,7 +42,7 @@ const { posts }: any = Astro.props;
                       </Badge>
                     )}
                   </div>
-                  <a href={`/blog/${post.slug}`}>
+                  <a href={`/blog/${post.slug}/`}>
                     <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-primary transition-colors">
                       {post.title}
                     </h3>
@@ -63,7 +64,7 @@ const { posts }: any = Astro.props;
                       </div>
                       <span>{new Date(post.date).toLocaleDateString('fa-IR')}</span>
                     </div>
-                    <a href={`/blog/${post.slug}`}>
+                    <a href={`/blog/${post.slug}/`}>
                       <Button variant="ghost" class="text-primary hover:text-primary/80">
                         ادامه مطلب
                         <Icon name="arrow-left" class="h-4 w-4 mr-2" />

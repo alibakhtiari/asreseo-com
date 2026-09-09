@@ -52,19 +52,36 @@ const post = {
   tableOfContents,
 };
 
-const seoTitle = `${post.title} | \u0639\u0635\u0631 \u0633\u0626\u0648`;
+const seoTitle = `${post.title} | عصر سئو`;
 ---
 <BaseLayout
   title={seoTitle}
   description={post.description}
-  canonical={`https://asreseo.com/blog/${post.slug}`}
+  canonical={`https://asreseo.com/blog/${post.slug}/`}
   ogType="article"
   ogImages={[{ url: post.image, width: 1200, height: 630, alt: post.title }]}
-  ogUrl={`https://asreseo.com/blog/${post.slug}`}
+  ogUrl={`https://asreseo.com/blog/${post.slug}/`}
 >
   <Header />
-  <main>
-    <BlogPost post={post} Content={Content} />
+  <main class="section-padding pt-32">
+    <div class="container-custom">
+      <nav class="mb-8 max-w-4xl mx-auto" aria-label="مسیر">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+          <li>
+            <a href="/" class="hover:text-primary transition-colors">صفحه اصلی</a>
+          </li>
+          <li>/</li>
+          <li>
+            <a href="/blog/" class="hover:text-primary transition-colors">وبلاگ</a>
+          </li>
+          <li>/</li>
+          <li class="text-gray-900 font-medium truncate">{post.title}</li>
+        </ol>
+      </nav>
+      <div class="max-w-4xl mx-auto">
+        <BlogPost post={post} Content={Content} />
+      </div>
+    </div>
   </main>
   <Footer />
 </BaseLayout>
