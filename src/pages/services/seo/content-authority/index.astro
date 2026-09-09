@@ -2,14 +2,17 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Header from '../../../../components/Layout/Header.astro';
 import Footer from '../../../../components/Layout/Footer.astro';
-import Button from '../../../../components/ui/button/Button.astro';
 import Card from '../../../../components/ui/card/Card.astro';
 import CardContent from '../../../../components/ui/card/CardContent.astro';
 import CardHeader from '../../../../components/ui/card/CardHeader.astro';
 import CardTitle from '../../../../components/ui/card/CardTitle.astro';
 import Badge from '../../../../components/ui/badge/Badge.astro';
-import Picture from '../../../../components/ui/Picture.astro';
 import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
 
 
 
@@ -177,28 +180,11 @@ const structuredData = {
         }
     ];
 
-const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    'mainEntity': faqs.map(f => ({
-        '@type': 'Question',
-        'name': f.question,
-        'acceptedAnswer': {
-            '@type': 'Answer',
-            'text': f.answer
-        }
-    }))
-};
-
-const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    'itemListElement': [
-        { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
-        { '@type': 'ListItem', 'position': 2, 'name': 'خدمات سئو', 'item': 'https://asreseo.com/services/seo/' },
-        { '@type': 'ListItem', 'position': 3, 'name': 'اعتبار صفحه و سئو محتوا', 'item': 'https://asreseo.com/services/seo/content-authority/' }
-    ]
-};
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات سئو', item: 'https://asreseo.com/services/seo/' },
+    { position: 3, name: 'اعتبار صفحه و سئو محتوا', item: 'https://asreseo.com/services/seo/content-authority/' }
+];
 ---
 <BaseLayout
   title='افزایش اعتبار صفحه و دامنه | سئو محتوا و استراتژی تاپیکال آتوریتی | عصر سئو'
@@ -212,54 +198,23 @@ const breadcrumbSchema = {
 >
 <div class="min-h-screen bg-white">
             <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
-            <script id="faq-data" type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
-            <script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+            <BreadcrumbStructuredData items={breadcrumbs} />
 
             <Header />
 
             <main>
                 <!-- Hero Section -->
-                <section class="section-padding bg-linear-to-br from-amber-50 to-purple-50 overflow-hidden relative">
-                    <div class="absolute top-0 right-0 w-1/3 h-full bg-amber-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob"></div>
-                    <div class="absolute bottom-0 left-0 w-1/3 h-full bg-purple-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
-
-                    <div class="container-custom relative z-10">
-                        <div class="grid lg:grid-cols-2 gap-12 items-center">
-                            <div class="text-right animate-fade-in order-2 lg:order-1">
-                                <Badge class="bg-amber-100 text-amber-700 mb-4 px-4 py-1 text-sm border-amber-200">
-                                    قدرت محتوا + اعتبار لینک
-                                </Badge>
-                                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                                    سئو <span class="gradient-text">محتوا و لینک‌سازی</span>
-                                </h1>
-                                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                                    ترکیبی برنده برای تسخیر نتایج جستجو. محتوای ارزشمند که کاربران عاشق آن هستند و لینک‌های قدرتمند که گوگل به آن‌ها اعتماد دارد.
-                                </p>
-                                <div class="flex flex-col sm:flex-row gap-4 justify-start">
-                                    <Button size="lg" class="gradient-bg text-white px-8 hover:shadow-lg hover:shadow-amber-500/30 transition-all duration-300">
-                                        شروع استراتژی محتوایی
-                                    </Button>
-                                    <Button variant="outline" size="lg" class="border-amber-200 text-amber-700 hover:bg-amber-50">
-                                        مشاوره لینک‌سازی
-                                    </Button>
-                                </div>
-                            </div>
-
-                            <div class="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
-                                <div class="absolute inset-0 bg-linear-to-tr from-amber-600/10 to-transparent z-10" />
-                                <Picture
-                                    src="/images/content-authority-hero.webp"
-                                    alt="سئو محتوا و لینک‌سازی"
-                                   
-                                   
-                                    class="object-cover group-hover:scale-105 transition-transform duration-700"
-                                    eager
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <ServiceHero
+                    badge="قدرت محتوا + اعتبار لینک"
+                    title="سئو"
+                    titleGradient="محتوا و لینک‌سازی"
+                    description="ترکیبی برنده برای تسخیر نتایج جستجو. محتوای ارزشمند که کاربران عاشق آن هستند و لینک‌های قدرتمند که گوگل به آن‌ها اعتماد دارد."
+                    primaryCta={{ text: "شروع استراتژی محتوایی", href: "#" }}
+                    secondaryCta={{ text: "مشاوره لینک‌سازی", href: "#" }}
+                    imageSrc="/images/content-authority-hero.webp"
+                    imageAlt="سئو محتوا و لینک‌سازی"
+                    theme="amber"
+                />
 
                 <!-- AEO Direct Answer Section -->
                 <section class="py-10 bg-amber-50/60 border-y border-amber-100">
@@ -274,25 +229,7 @@ const breadcrumbSchema = {
                 </section>
 
                 <!-- Stats Section -->
-                <section class="section-padding bg-linear-to-r from-purple-50 to-amber-50">
-                    <div class="container-custom">
-                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {stats.map((stat, index) => (
-                                <Card class="text-center border-0 bg-white/80 backdrop-blur-sm">
-                                    <CardContent class="p-6">
-                                        <Icon name={stat.icon} class="h-8 w-8 text-amber-600 mx-auto mb-3" />
-                                        <div class="text-3xl font-bold text-amber-700 mb-2">
-                                            {stat.metric}
-                                        </div>
-                                        <p class="text-gray-900 font-medium">
-                                            {stat.label}
-                                        </p>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                <ServiceStats stats={stats} theme="amber" />
 
                 <!-- Content Services Section -->
                 <section class="section-padding">
@@ -419,55 +356,21 @@ const breadcrumbSchema = {
                 </section>
 
                 <!-- FAQ Section -->
-                <section class="section-padding">
-                    <div class="container-custom">
-                        <div class="text-center mb-12">
-                            <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                                سوالات <span class="gradient-text">متداول</span>
-                            </h2>
-                            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                                پاسخ به سوالات شما درباره محتوا و لینک‌سازی
-                            </p>
-                        </div>
-
-                        <div class="max-w-4xl mx-auto space-y-4">
-                            {faqs.map((faq, index) => (
-                                <Card class="hover:shadow-md transition-shadow">
-                                    <CardHeader>
-                                        <CardTitle class="text-lg text-right flex items-center gap-2">
-                                            <span>{faq.question}</span>
-                                        </CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <p class="text-gray-600 text-right leading-relaxed">
-                                            {faq.answer}
-                                        </p>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                <ServiceFAQ
+                    faqs={faqs}
+                    title="سوالات متداول"
+                    description="پاسخ به سوالات شما درباره محتوا و لینک‌سازی"
+                    theme="amber"
+                />
 
                 <!-- CTA Section -->
-                <section class="section-padding bg-linear-to-br from-slate-900 to-slate-800 text-white">
-                    <div class="container-custom text-center">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                            صدای برند خود را به گوش همه برسانید!
-                        </h2>
-                        <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
-                            با محتوای قدرتمند و اعتبار دامنه بالا، جایگاه خود را در صدر نتایج گوگل تثبیت کنید. ما استراتژی، تولید و توزیع را برای شما انجام می‌دهیم.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button size="lg" class="bg-amber-600 hover:bg-amber-700 text-white">
-                                شروع کمپین محتوایی
-                            </Button>
-                            <Button variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-slate-900">
-                                مشاوره رایگان
-                            </Button>
-                        </div>
-                    </div>
-                </section>
+                <ServiceCTA
+                    title="صدای برند خود را به گوش همه برسانید!"
+                    description="با محتوای قدرتمند و اعتبار دامنه بالا، جایگاه خود را در صدر نتایج گوگل تثبیت کنید. ما استراتژی، تولید و توزیع را برای شما انجام می‌دهیم."
+                    primaryCta={{ text: "شروع کمپین محتوایی", href: "#" }}
+                    secondaryCta={{ text: "مشاوره رایگان", href: "#" }}
+                    theme="amber"
+                />
             </main>
 
             <Footer />

@@ -390,55 +390,21 @@ const structuredData = {
         </section>
 
         <!-- FAQ Section -->
-        <section class="section-padding">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                سوالات <span class="gradient-text">متداول</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                پاسخ به رایج‌ترین سوالات درباره تولید محتوای متنی
-              </p>
-            </div>
-
-            <div class="max-w-4xl mx-auto space-y-4">
-              {faqs.map((faq, index) => (
-                <Card class="hover:shadow-md transition-shadow">
-                  <CardHeader>
-                    <CardTitle class="text-lg text-right flex items-center gap-2">
-                      <span>{faq.question}</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p class="text-gray-600 text-right leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServiceFAQ
+          title="سوالات"
+          titleGradient="متداول"
+          subtitle="پاسخ به رایج‌ترین سوالات درباره تولید محتوای متنی"
+          faqs={faqs}
+        />
 
         <!-- CTA Section -->
-        <section class="section-padding bg-linear-to-br from-slate-900 to-slate-800 text-white">
-          <div class="container-custom text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">
-              محتوای خود را حرفه‌ای کنید!
-            </h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
-              با تولید محتوای متنی حرفه‌ای و بهینه‌سازی شده، رتبه گوگل خود را بهبود دهید و ترافیک ارگانیک بیشتری کسب کنید. محتوای خوب، پایه هر بازاریابی موفقی است.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" class="bg-green-600 hover:bg-green-700 text-white">
-                شروع تولید محتوا
-              </Button>
-              <Button variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-slate-900">
-                مشاوره رایگان
-              </Button>
-            </div>
-          </div>
-        </section>
+        <ServiceCTA
+          title="محتوای خود را حرفه‌ای کنید!"
+          description="با تولید محتوای متنی حرفه‌ای و بهینه‌سازی شده، رتبه گوگل خود را بهبود دهید و ترافیک ارگانیک بیشتری کسب کنید. محتوای خوب، پایه هر بازاریابی موفقی است."
+          primaryCta={{ text: "شروع تولید محتوا" }}
+          secondaryCta={{ text: "مشاوره رایگان" }}
+          primaryClass="bg-green-600 hover:bg-green-700 text-white"
+        />
       </main>
 
       <Footer />
