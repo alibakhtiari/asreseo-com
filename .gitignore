@@ -26,3 +26,6 @@ dist-ssr
 /out
 .astro
 *.csv
+__pycache__/
+*.pyc
+
