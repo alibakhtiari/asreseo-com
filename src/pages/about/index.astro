@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Picture from '../../components/ui/Picture.astro';
 import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
 const aboutSchema = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
@@ -22,14 +23,10 @@ const aboutSchema = {
   }
 };
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  'itemListElement': [
-    { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
-    { '@type': 'ListItem', 'position': 2, 'name': 'درباره ما', 'item': 'https://asreseo.com/about/' }
-  ]
-};
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'درباره ما', item: 'https://asreseo.com/about/' },
+  ];
 ---
 <BaseLayout
   title='درباره ما | آژانس دیجیتال مارکتینگ و سئو عصر سئو'
@@ -42,7 +39,7 @@ const breadcrumbSchema = {
   twitterCard='summary_large_image'
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(aboutSchema)} />
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
 
   <div class="min-h-screen bg-white">
       <Header />

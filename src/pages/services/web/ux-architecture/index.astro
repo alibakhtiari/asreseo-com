@@ -11,6 +11,7 @@ import Icon from '../../../../components/ui/Icon.astro';
 import ServiceHero from '../../../../components/Services/ServiceHero.astro';
 import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
 import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
 
 
 
@@ -224,15 +225,11 @@ const structuredData = {
   ];
 
   
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  'itemListElement': [
-    { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
-    { '@type': 'ListItem', 'position': 2, 'name': 'خدمات وب', 'item': 'https://asreseo.com/services/web/' },
-    { '@type': 'ListItem', 'position': 3, 'name': 'معماری تجربه کاربری UX', 'item': 'https://asreseo.com/services/web/ux-architecture/' }
-  ]
-};
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات وب', item: 'https://asreseo.com/services/web/' },
+    { position: 3, name: 'معماری تجربه کاربری UX', item: 'https://asreseo.com/services/web/ux-architecture/' },
+  ];
 
 ---
 <BaseLayout title='طراحی تجربه کاربری UX | معماری اطلاعات | افزایش نرخ تبدیل ۲۵۰% | عصر سئو' description='طراحی UX پیشرفته و معماری اطلاعات بهینه برای وب‌سایت با افزایش نرخ تبدیل تا ۲۵۰% و بهبود تجربه کاربری.' keywords='تجربه کاربری UX, معماری اطلاعات, Information Architecture, UI/UX Design, نرخ تبدیل' canonical='https://asreseo.com/services/web/ux-architecture/' ogType='website' ogUrl='https://asreseo.com/services/web/ux-architecture/' ogImages={[{ url: "/images/ux-architecture-hero.webp", width: 1200, height: 630, alt: "معماری تجربه کاربری UX | عصر سئو" }]} twitterCard='summary_large_image'
@@ -244,7 +241,7 @@ const breadcrumbSchema = {
       <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
 
       <Header />
-      <script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+      <BreadcrumbStructuredData items={breadcrumbs} />
 
       <main>
         <ServiceHero

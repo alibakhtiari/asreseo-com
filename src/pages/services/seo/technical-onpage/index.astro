@@ -10,6 +10,7 @@ import Icon from '../../../../components/ui/Icon.astro';
 import ServiceHero from '../../../../components/Services/ServiceHero.astro';
 import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
 import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
 
 
 
@@ -194,15 +195,11 @@ const structuredData = {
 
 
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  'itemListElement': [
-    { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
-    { '@type': 'ListItem', 'position': 2, 'name': 'خدمات سئو', 'item': 'https://asreseo.com/services/seo/' },
-    { '@type': 'ListItem', 'position': 3, 'name': 'سئو تکنیکال و داخلی', 'item': 'https://asreseo.com/services/seo/technical-onpage/' }
-  ]
-};
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات سئو', item: 'https://asreseo.com/services/seo/' },
+    { position: 3, name: 'سئو تکنیکال و داخلی', item: 'https://asreseo.com/services/seo/technical-onpage/' },
+  ];
 
 ---
 <BaseLayout title='سئو تکنیکال و داخلی | بهینه‌سازی فنی و محتوایی سایت | عصر سئو' description='خدمات جامع سئو تکنیکال و داخلی (On-Page). افزایش سرعت سایت، رفع خطاهای فنی، تحقیق کلمات کلیدی و بهینه‌سازی ساختار برای رتبه اول گوگل.' keywords='سئو تکنیکال, سئو داخلی, On-Page SEO, Technical SEO, افزایش سرعت سایت, تحقیق کلمات کلیدی, Core Web Vitals' canonical='https://asreseo.com/services/seo/technical-onpage/' ogType='website' ogUrl='https://asreseo.com/services/seo/technical-onpage/' ogImages={[{ url: "/images/technical-onpage-hero.webp", width: 1200, height: 630, alt: "سئو تکنیکال و داخلی | عصر سئو" }]} twitterCard='summary_large_image'
@@ -216,7 +213,7 @@ const breadcrumbSchema = {
             />
 
             <Header />
-            <script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+            <BreadcrumbStructuredData items={breadcrumbs} />
 
             <main>
                 <ServiceHero
