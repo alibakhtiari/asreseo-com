@@ -2,28 +2,34 @@
 # /home -> / (redirect old React Router routes)
 /home / 301!
 
+# Sitemap backward-compatibility redirect (Next.js -> Astro)
+/sitemap.xml /sitemap-index.xml 301
+
+# Legacy service worker cleanup redirect
+/sw.js/ /sw.js 301
+
 # Blog post redirects for old React Router structure
-/blog/post/:slug /blog/:slug 301!
+/blog/post/:slug /blog/:slug/ 301!
 
 # API redirects (if any)
 # /api/old-endpoint /api/new-endpoint 301!
 
 # AI Services Redirects (Merged Pages)
-/services/ai/auto-content-generation /services/ai/content-creation 301
-/services/ai/ai-video-generation /services/ai/content-creation 301
-/services/ai/marketing-automation /services/ai/marketing-engagement 301
-/services/ai/persian-chatbot /services/ai/marketing-engagement 301
-/services/ai/content-personalization /services/ai/marketing-engagement 301
-/services/ai/smart-seo /services/ai/analysis-strategy 301
-/services/ai/conversion-optimization /services/ai/analysis-strategy 301
-/services/ai/user-behavior-analysis /services/ai/analysis-strategy 301
-/services/ai/brand-monitoring /services/ai/analysis-strategy 301
-/services/ai/ai-consulting /services/ai/analysis-strategy 301
+/services/ai/auto-content-generation /services/ai/content-creation/ 301
+/services/ai/ai-video-generation /services/ai/content-creation/ 301
+/services/ai/marketing-automation /services/ai/marketing-engagement/ 301
+/services/ai/persian-chatbot /services/ai/marketing-engagement/ 301
+/services/ai/content-personalization /services/ai/marketing-engagement/ 301
+/services/ai/smart-seo /services/ai/analysis-strategy/ 301
+/services/ai/conversion-optimization /services/ai/analysis-strategy/ 301
+/services/ai/user-behavior-analysis /services/ai/analysis-strategy/ 301
+/services/ai/brand-monitoring /services/ai/analysis-strategy/ 301
+/services/ai/ai-consulting /services/ai/analysis-strategy/ 301
 
 # SEO Services Redirects (Merged Pages)
-/services/seo/website-seo /services/seo/technical-onpage 301
-/services/seo/technical-seo /services/seo/technical-onpage 301
-/services/seo/content-seo /services/seo/content-authority 301
-/services/seo/link-building /services/seo/content-authority 301
-/services/seo/analysis /services/seo/technical-onpage 301
-/services/seo/training /services/seo 301
+/services/seo/website-seo /services/seo/technical-onpage/ 301
+/services/seo/technical-seo /services/seo/technical-onpage/ 301
+/services/seo/content-seo /services/seo/content-authority/ 301
+/services/seo/link-building /services/seo/content-authority/ 301
+/services/seo/analysis /services/seo/technical-onpage/ 301
+/services/seo/training /services/seo/ 301

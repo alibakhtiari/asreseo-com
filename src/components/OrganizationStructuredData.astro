@@ -3,8 +3,8 @@ const data = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'عصر سئو',
-    url: 'https://asreseo.com',
-    logo: 'https://asreseo.com/logo.png',
+    url: 'https://asreseo.com/',
+    logo: 'https://asreseo.com/Logo-spaced.png',
     description: 'شرکت پیشرو در خدمات دیجیتال مارکتینگ، سئو و هوش مصنوعی در ایران',
     foundingDate: '2020',
     address: {
@@ -15,7 +15,7 @@ const data = {
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+98-xxx-xxx-xxxx',
+      telephone: '+989125811880',
       contactType: 'customer service',
       availableLanguage: ['Persian', 'English']
     },
@@ -26,4 +26,5 @@ const data = {
     ]
   };
 ---
-<script type="application/ld+json" set:html={JSON.stringify(data)}></script>
+<script type="application/ld+json" is:inline set:html={JSON.stringify(data)}></script>
+

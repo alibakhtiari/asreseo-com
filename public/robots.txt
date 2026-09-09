@@ -5,3 +5,4 @@ Allow: /
 # See https://asreseo.com/llms.txt
 
 Sitemap: https://asreseo.com/sitemap-index.xml
+Sitemap: https://asreseo.com/sitemap.xml

@@ -1,41 +1,50 @@
 ---
 import Icon from './ui/Icon.astro';
-import Button from './ui/button/Button.astro';
-
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-
-  
 ---
 <!-- Back to Top Button -->
-      <div data-backtotop hidden>
-<div class="fixed bottom-6 left-6 z-50 animate-fade-in">
-          <Button
-            data-scrolltop
-            size="icon"
-            class="h-12 w-12 rounded-full bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-            aria-label="بازگشت به بالا"
-          >
-            <Icon name="arrow-up" class="h-5 w-5" />
-          </Button>
-        </div>
+<div data-backtotop hidden>
+  <div class="fixed bottom-6 left-6 z-50 animate-fade-in">
+    <button
+      data-scrolltop
+      class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-900/85 hover:bg-gray-900 text-white backdrop-blur-sm shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 ring-2 ring-white/80 cursor-pointer group relative"
+      aria-label="بازگشت به بالا"
+    >
+      <Icon name="arrow-up" class="w-5 h-5 text-white" />
+      <span class="absolute left-full ml-3 px-2.5 py-1 rounded-md bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-md hidden sm:block">
+        بازگشت به بالا
+      </span>
+    </button>
+  </div>
 </div>
 
-      <!-- Contact Actions -->
-      <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-        <!-- WhatsApp Button -->
-        <a href="https://wa.me/989125811880?text=سلام، برای مشاوره رایگان تماس گرفتم" target="_blank" rel="noopener" class="h-12 w-12 rounded-full bg-green-500 hover:bg-green-600 shadow-lg hover:shadow-xl transition-all duration-300 animate-float" aria-label="تماس با واتساپ">
-<Icon name="message-circle" class="h-5 w-5" />
-</a>
+<!-- Contact Actions (Floating Bottom-Right) -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3" dir="ltr">
+  <!-- WhatsApp Button -->
+  <a
+    href="https://wa.me/989125811880?text=سلام، برای مشاوره رایگان تماس گرفتم"
+    target="_blank"
+    rel="noopener"
+    class="flex items-center justify-center w-13 h-13 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 ring-2 ring-white/80 group relative cursor-pointer"
+    aria-label="گفتگو در واتساپ"
+  >
+    <Icon name="message-circle" class="w-6 h-6 text-white" />
+    <span class="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-md hidden sm:block" dir="rtl">
+      مشاوره در واتساپ
+    </span>
+  </a>
 
-        <!-- Call Button -->
-        <a href="tel:+989125811880" class="h-12 w-12 rounded-full bg-blue-500 hover:bg-blue-600 shadow-lg hover:shadow-xl transition-all duration-300 animate-float" aria-label="تماس تلفنی">
-<Icon name="phone" class="h-5 w-5" />
-</a>
-      </div>
+  <!-- Call Button -->
+  <a
+    href="tel:+989125811880"
+    class="flex items-center justify-center w-13 h-13 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 ring-2 ring-white/80 group relative cursor-pointer"
+    aria-label="تماس تلفنی با عصر سئو"
+  >
+    <Icon name="phone" class="w-5 h-5 text-white" />
+    <span class="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-md hidden sm:block" dir="rtl">
+      تماس تلفنی مستقیم
+    </span>
+  </a>
+</div>
 
 <script>
   const btt = document.querySelector('[data-backtotop]');

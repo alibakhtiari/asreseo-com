@@ -1,124 +1,114 @@
 ---
 import Button from '../ui/button/Button.astro';
 import Icon from '../ui/Icon.astro';
-import MegaMenu from './MegaMenu.astro'
+import MegaMenu from './MegaMenu.astro';
 import Logo from '../Logo.astro';
-import { cn } from '../../lib/utils.ts';
 
-
-  const menuItems = [
+  const navLinks = [
     { title: 'صفحه اصلی', href: '/' },
+    { title: 'خدمات', href: '/services/', isMegaMenu: true },
     { title: 'نمونه کارها', href: '/portfolio/' },
     { title: 'درباره ما', href: '/about/' },
     { title: 'وبلاگ', href: '/blog/' },
     { title: 'تماس با ما', href: '/contact/' }
   ];
-
-  
 ---
 <header
-      class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out bg-transparent border-b border-transparent py-4" data-header
-    >
-      <div class="px-6 sm:px-8" data-header-inner>
-        <div class="flex items-center justify-between h-14">
-          <!-- Enhanced Logo -->
-          <a href="/" class="flex items-center gap-2 group">
-            <Logo class="w-10 h-10 text-primary-600 group-hover:text-primary-700 transition-colors duration-200" />
-            <div>
-              <h1 class="text-xl font-bold text-text-900 group-hover:text-primary-600 transition-colors duration-200">عصر سئو</h1>
-              <p class="text-xs text-text-500">AsreSEO Digital Marketing</p>
-            </div>
-          </a>
+  class="fixed top-3 sm:top-4 left-0 right-0 z-50 transition-all duration-300 ease-in-out mx-3 sm:mx-6 md:mx-auto max-w-7xl rounded-2xl bg-white/95 backdrop-blur-md shadow-md border border-gray-100/90 py-1.5"
+  data-header
+>
+  <div class="px-4 sm:px-6" data-header-inner>
+    <div class="flex items-center justify-between h-14">
+      <!-- Enhanced Logo -->
+      <a href="/" class="flex items-center gap-2 group">
+        <Logo class="w-10 h-10 text-primary-600 group-hover:text-primary-700 transition-colors duration-200" />
+        <div>
+          <span class="block text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors duration-200">عصر سئو</span>
+          <p class="text-xs text-gray-500">AsreSEO Digital Marketing</p>
+        </div>
+      </a>
 
-          <!-- Desktop Navigation -->
-          <nav class="hidden lg:flex items-center gap-8">
-            {menuItems.map((item, index) =>
-              index === 0 ? (
-                <a
-                 
-                  href={item.href}
-                  class="text-text-700 hover:text-primary-600 transition-colors duration-200 font-medium"
-                >
-                  {item.title}
-                </a>
-              ) : index === 1 ? (
-                <MegaMenu />
-              ) : (
-                <a
-                 
-                  href={item.href}
-                  class="text-text-700 hover:text-primary-600 transition-colors duration-200 font-medium"
-                >
-                  {item.title}
-                </a>
-              )
-            )}
-          </nav>
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
+        {navLinks.map((item) =>
+          item.isMegaMenu ? (
+            <MegaMenu />
+          ) : (
+            <a
+              href={item.href}
+              class="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium text-sm xl:text-base"
+            >
+              {item.title}
+            </a>
+          )
+        )}
+      </nav>
 
-          <!-- Enhanced CTA Button -->
-          <div class="hidden lg:flex items-center gap-4">
-            <a href="/contact/">
-              <Button class="bg-linear-to-r from-primary-500 to-secondary-500 text-white hover:opacity-90 transition-opacity duration-200 px-6 py-2 font-semibold shadow-md hover:shadow-lg">
+      <!-- Enhanced CTA Button -->
+      <div class="hidden lg:flex items-center gap-4">
+        <a href="/contact/">
+          <Button class="bg-linear-to-r from-primary-500 to-secondary-500 text-white hover:opacity-90 transition-opacity duration-200 px-5 xl:px-6 py-2 font-semibold shadow-md hover:shadow-lg rounded-xl">
+            مشاوره رایگان
+          </Button>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="lg:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-700 transition-colors duration-200 cursor-pointer"
+        data-menu-btn
+        aria-label="منوی موبایل"
+      >
+        <span data-icon-open class="hidden"><Icon name="x" class="h-6 w-6 text-gray-700" /></span><span data-icon-closed><Icon name="menu" class="h-6 w-6 text-gray-700" /></span>
+      </button>
+    </div>
+
+    <!-- Enhanced Mobile Menu -->
+    <div data-menu-panel hidden>
+      <div class="lg:hidden border-t border-gray-100 py-4 animate-fade-in mt-2">
+        <nav class="flex flex-col space-y-2">
+          {navLinks.map((item) => (
+            <a
+              href={item.href}
+              class="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors duration-200 py-2.5 px-4 rounded-lg font-medium text-sm"
+              data-menu-close
+            >
+              {item.title}
+            </a>
+          ))}
+          <div class="pt-3">
+            <a href="/contact/" data-menu-close>
+              <Button class="bg-linear-to-r from-primary-500 to-secondary-500 text-white w-full font-semibold py-2.5 rounded-xl">
                 مشاوره رایگان
               </Button>
             </a>
           </div>
-
-          <!-- Mobile Menu Button -->
-          <button
-            class="lg:hidden p-2 rounded-md hover:bg-primary-50 transition-colors duration-200"
-            data-menu-btn
-            aria-label="منوی موبایل"
-          >
-            <span data-icon-open class="hidden"><Icon name="x" class="h-6 w-6 text-text-700" /></span><span data-icon-closed><Icon name="menu" class="h-6 w-6 text-text-700" /></span>
-          </button>
-        </div>
-
-        <!-- Enhanced Mobile Menu -->
-        <div data-menu-panel hidden>
-<div class="lg:hidden border-t border-primary-100 py-4 animate-fade-in mt-2">
-            <nav class="flex flex-col space-y-4">
-              {menuItems.map((item, index) => (
-                <a
-                 
-                  href={item.href}
-                  class="block text-text-700 hover:text-primary-600 transition-colors duration-200 py-2 px-4 rounded-md hover:bg-primary-50"
-                  data-menu-close
-                >
-                  {item.title}
-                </a>
-              ))}
-              <div class="pt-2">
-                <a href="/contact/" data-menu-close>
-                  <Button class="bg-linear-to-r from-primary-500 to-secondary-500 text-white w-full font-semibold">
-                    مشاوره رایگان
-                  </Button>
-                </a>
-              </div>
-            </nav>
-          </div>
-</div>
+        </nav>
       </div>
-    
+    </div>
+  </div>
+
 <script>
   const header = document.querySelector('[data-header]');
-  const headerInner = document.querySelector('[data-header-inner]');
-  const HEADER_BASE = "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out";
-  const HEADER_SCROLLED = "top-4 mx-4 md:mx-auto max-w-7xl bg-white/80 backdrop-blur-md shadow-lg rounded-2xl border border-white/20";
-  const HEADER_PLAIN = "bg-transparent border-b border-transparent py-4";
-  const INNER_BASE = "px-6 sm:px-8";
-  const INNER_SCROLLED = "py-2";
   const onScroll = () => {
     const sc = window.scrollY > 20;
-    if (header) header.className = `${HEADER_BASE} ${sc ? HEADER_SCROLLED : HEADER_PLAIN}`.trim();
-    if (headerInner) headerInner.className = `${INNER_BASE} ${sc ? INNER_SCROLLED : ''}`.trim();
+    if (header) {
+      if (sc) {
+        header.classList.add('bg-white/90', 'shadow-xl', 'border-gray-200/80');
+        header.classList.remove('bg-white/95', 'shadow-md', 'border-gray-100/90');
+      } else {
+        header.classList.add('bg-white/95', 'shadow-md', 'border-gray-100/90');
+        header.classList.remove('bg-white/90', 'shadow-xl', 'border-gray-200/80');
+      }
+    }
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
   const panel = document.querySelector('[data-menu-panel]');
   const iconOpen = document.querySelector('[data-icon-open]');
   const iconClosed = document.querySelector('[data-icon-closed]');
-  const setMenu = (open: any) => {
+  const setMenu = (open: boolean) => {
     panel?.toggleAttribute('hidden', !open);
     iconOpen?.classList.toggle('hidden', !open);
     iconClosed?.classList.toggle('hidden', open);

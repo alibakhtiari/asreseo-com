@@ -4,10 +4,10 @@ const data = {
     '@type': 'LocalBusiness',
     name: 'عصر سئو',
     description: 'شرکت پیشرو در ارائه خدمات دیجیتال مارکتینگ، سئو، هوش مصنوعی و تبلیغات گوگل',
-    url: 'https://asreseo.com',
-    logo: 'https://asreseo.com/logo.png',
-    image: 'https://asreseo.com/og-image.jpg',
-    telephone: '+98-xxx-xxx-xxxx',
+    url: 'https://asreseo.com/',
+    logo: 'https://asreseo.com/Logo-spaced.png',
+    image: 'https://asreseo.com/Logo-spaced.png',
+    telephone: '+989125811880',
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'IR',
@@ -88,5 +88,19 @@ const data = {
       ]
     }
   };
+
+  const websiteData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    'name': 'عصر سئو',
+    'alternateName': 'Asre SEO',
+    'url': 'https://asreseo.com/',
+    'potentialAction': {
+      '@type': 'SearchAction',
+      'target': 'https://asreseo.com/blog/?q={search_term_string}',
+      'query-input': 'required name=search_term_string'
+    }
+  };
 ---
-<script type="application/ld+json" set:html={JSON.stringify(data)}></script>
+<script type="application/ld+json" is:inline set:html={JSON.stringify(data)}></script>
+<script type="application/ld+json" is:inline set:html={JSON.stringify(websiteData)}></script>

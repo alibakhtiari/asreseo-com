@@ -38,11 +38,41 @@ const {
 }: any = Astro.props;
 
 const canonicalUrl = (() => {
-  const u = new URL(canonical ?? Astro.url.pathname, SITE).href;
-  return u === SITE + '/' ? SITE : u;
+  const raw = canonical ?? Astro.url.pathname;
+  const path = raw.startsWith('http') ? new URL(raw).pathname : raw;
+  const normalized = path.endsWith('/') ? path : `${path}/`;
+  return new URL(normalized, SITE).href;
 })();
+
+const normalizedOgUrl = (() => {
+  const raw = ogUrl ?? canonicalUrl;
+  const path = raw.startsWith('http') ? new URL(raw).pathname : raw;
+  const normalized = path.endsWith('/') ? path : `${path}/`;
+  return new URL(normalized, SITE).href;
+})();
+
 const ogTitle = Astro.props.ogTitle ?? title;
 const ogDescription = Astro.props.ogDescription ?? description;
+
+const DEFAULT_OG_IMAGE: OgImage = {
+  url: '/Logo-spaced.png',
+  width: 512,
+  height: 512,
+  alt: 'عصر سئو - آژانس دیجیتال مارکتینگ و سئو',
+};
+
+const validOgImages: OgImage[] = (() => {
+  const isImageFile = (u: string) =>
+    /\.(png|jpe?g|webp|avif|svg)(\?.*)?$/i.test(u);
+  const filtered = ogImages.filter((img: OgImage) => {
+    if (!img?.url) return false;
+    // Discard any entry whose URL looks like a web page path (e.g. https://asreseo.com/about)
+    return isImageFile(img.url);
+  });
+  return filtered.length > 0 ? filtered : [DEFAULT_OG_IMAGE];
+})();
+
+const primaryTwitterImage = new URL(validOgImages[0].url, SITE).href;
 
 import FloatingActions from '../components/FloatingActions.astro';
 import '../styles/globals.css';
@@ -67,8 +97,8 @@ import '../styles/globals.css';
     <meta property="og:site_name" content="عصر سئو" />
     <meta property="og:title" content={ogTitle} />
     {ogDescription && <meta property="og:description" content={ogDescription} />}
-    <meta property="og:url" content={new URL(ogUrl ?? canonicalUrl, SITE).href} />
-    {ogImages.map((img: OgImage) => (
+    <meta property="og:url" content={normalizedOgUrl} />
+    {validOgImages.map((img: OgImage) => (
       <>
         <meta property="og:image" content={new URL(img.url, SITE).href} />
         {img.width && <meta property="og:image:width" content={String(img.width)} />}
@@ -79,10 +109,23 @@ import '../styles/globals.css';
     <meta name="twitter:card" content={twitterCard} />
     <meta name="twitter:title" content={ogTitle} />
     {ogDescription && <meta name="twitter:description" content={ogDescription} />}
+    <meta name="twitter:image" content={primaryTwitterImage} />
+    <meta name="twitter:site" content="@asreseo" />
+    <meta name="twitter:creator" content="@asreseo" />
     <slot name="head" />
   </head>
   <body class="font-vazir antialiased">
     <slot />
     <FloatingActions />
+    <!-- Clean up any legacy or orphaned Service Workers -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+          for (var i = 0; i < registrations.length; i++) {
+            registrations[i].unregister();
+          }
+        });
+      }
+    </script>
   </body>
 </html>

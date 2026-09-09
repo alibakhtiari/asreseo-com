@@ -2,45 +2,107 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
+import { getCollection } from 'astro:content';
 
+const posts = await getCollection('blog');
 
-
-
-
-
-
-    const links = [
-        { title: 'صفحه اصلی', href: '/' },
-        { title: 'خدمات سئو', href: '/services/seo/' },
-        { title: 'خدمات بازاریابی', href: '/services/marketing/' },
-        { title: 'خدمات وب', href: '/services/web/' },
-        { title: 'خدمات هوش مصنوعی', href: '/services/ai/' },
-        { title: 'وبلاگ', href: '/blog/' },
-        { title: 'نمونه کارها', href: '/portfolio/' },
-        { title: 'درباره ما', href: '/about/' },
-        { title: 'تماس با ما', href: '/contact/' },
-        { title: 'سوالات متداول', href: '/faq/' },
-        { title: 'حریم خصوصی', href: '/privacy/' },
-        { title: 'قوانین و مقررات', href: '/terms/' }
+const sections = [
+  {
+    title: 'صفحات اصلی',
+    links: [
+      { title: 'صفحه اصلی', href: '/' },
+      { title: 'درباره ما', href: '/about/' },
+      { title: 'تماس با ما', href: '/contact/' },
+      { title: 'وبلاگ', href: '/blog/' },
+      { title: 'نمونه کارها', href: '/portfolio/' },
+      { title: 'سوالات متداول', href: '/faq/' },
+      { title: 'حریم خصوصی', href: '/privacy/' },
+      { title: 'قوانین و مقررات', href: '/terms/' },
     ]
-
-    
+  },
+  {
+    title: 'خدمات سئو (SEO)',
+    links: [
+      { title: 'همه خدمات سئو', href: '/services/seo/' },
+      { title: 'سئو تکنیکال', href: '/services/seo/technical/' },
+      { title: 'سئو داخلی (On-Page)', href: '/services/seo/on-page/' },
+      { title: 'سئو خارجی (Off-Page)', href: '/services/seo/off-page/' },
+      { title: 'سئو محلی (Local SEO)', href: '/services/seo/local/' },
+      { title: 'سئو فروشگاهی (ووکامرس)', href: '/services/seo/woocommerce/' },
+      { title: 'سئو بین‌المللی', href: '/services/seo/international/' },
+      { title: 'سئو اپلیکیشن‌های تک‌صفحه‌ای (SPA)', href: '/services/seo/spa/' },
+      { title: 'سئو مهاجرت سایت', href: '/services/seo/migration/' },
+      { title: 'رفع جریمه و پنالتی گوگل', href: '/services/seo/penalty/' },
+      { title: 'بهینه‌سازی بودجه خزش', href: '/services/seo/crawl-budget/' },
+      { title: 'سئو پیشرفته جاوااسکریپت', href: '/services/seo/javascript/' },
+      { title: 'سئو موبایل', href: '/services/seo/mobile/' },
+    ]
+  },
+  {
+    title: 'دیجیتال مارکتینگ',
+    links: [
+      { title: 'همه خدمات بازاریابی دیجیتال', href: '/services/marketing/' },
+      { title: 'بهینه‌سازی نرخ تبدیل (CRO)', href: '/services/marketing/conversion-rate/' },
+      { title: 'تبلیغات گوگل (Google Ads)', href: '/services/marketing/google-ads/' },
+      { title: 'بازاریابی شبکه‌های اجتماعی', href: '/services/marketing/social-media/' },
+    ]
+  },
+  {
+    title: 'طراحی و توسعه وب',
+    links: [
+      { title: 'همه خدمات وب', href: '/services/web/' },
+      { title: 'طراحی وب‌سایت سئو محور', href: '/services/web/seo-web-design/' },
+      { title: 'طراحی لندینگ پیج اختصاصی', href: '/services/web/landing-pages/' },
+      { title: 'معماری و تجربه کاربری (UX)', href: '/services/web/ux-architecture/' },
+      { title: 'بهینه‌سازی سرعت سایت', href: '/services/web/website-speed/' },
+    ]
+  },
+  {
+    title: 'محتوا و هوش مصنوعی',
+    links: [
+      { title: 'خدمات بازاریابی و تولید محتوا', href: '/services/content/' },
+      { title: 'خدمات هوش مصنوعی عصر سئو', href: '/services/ai/' },
+      { title: 'سئو مبتنی بر هوش مصنوعی', href: '/services/ai/ai-seo/' },
+      { title: 'اتوماسیون محتوا با هوش مصنوعی', href: '/services/ai/content-automation/' },
+      { title: 'ابزارهای هوش مصنوعی اختصاصی', href: '/services/ai/custom-tools/' },
+    ]
+  },
+  {
+    title: 'مقالات وبلاگ',
+    links: posts.map((post: any) => ({
+      title: post.data.title,
+      href: `/blog/${post.id}/`,
+    }))
+  }
+];
 ---
-<BaseLayout title='نقشه سایت | عصر سئو' description='لیست تمامی صفحات وب‌سایت عصر سئو برای دسترسی آسان‌تر کاربران.' canonical='https://asreseo.com/sitemap/' ogType='website' twitterCard='summary_large_image'>
+<BaseLayout title='نقشه سایت | عصر سئو' description='لیست تمامی صفحات و خدمات وب‌سایت عصر سئو برای دسترسی آسان‌تر کاربران و موتورهای جستجو.' canonical='https://asreseo.com/sitemap/' ogType='website' twitterCard='summary_large_image'>
 <div class="min-h-screen bg-white">
-            <Header />
-            <main class="section-padding pt-32">
-                <div class="container-custom max-w-4xl">
-                    <h1 class="text-4xl font-bold mb-12 text-right">نقشه سایت</h1>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-right" dir="rtl">
-                        {links.map((link, index) => (
-                            <a href={link.href} class="p-4 rounded-xl border border-gray-100 hover:border-blue-500 hover:text-blue-600 transition-all">
-                                {link.title}
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            </main>
-            <Footer />
-        </div>
+  <Header />
+  <main class="section-padding pt-32">
+    <div class="container-custom max-w-5xl" dir="rtl">
+      <h1 class="text-4xl font-bold mb-4 text-right text-gray-900">نقشه سایت</h1>
+      <p class="text-gray-600 mb-12 text-right">راهنمای کامل دسترسی به بخش‌ها، خدمات و مقالات عصر سئو</p>
+
+      <div class="space-y-12">
+        {sections.map((sec) => (
+          <section class="bg-gray-50/70 rounded-2xl p-6 sm:p-8 border border-gray-100">
+            <h2 class="text-xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">{sec.title}</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {sec.links.map((link: { title: string; href: string }) => (
+                <a
+                  href={link.href}
+                  class="p-3.5 rounded-xl bg-white border border-gray-200/80 hover:border-primary-500 hover:text-primary-600 hover:shadow-xs transition-all text-sm font-medium text-gray-700"
+                >
+                  {link.title}
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer />
+</div>
 </BaseLayout>

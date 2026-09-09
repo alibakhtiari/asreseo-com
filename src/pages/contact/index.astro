@@ -54,17 +54,21 @@ const structuredData = {
   
 ---
 <BaseLayout
-  description='عصر سئو - شرکت پیشرو در ارائه خدمات دیجیتال مارکتینگ، سئو، هوش مصنوعی، تبلیغات گوگل و طراحی وب‌سایت. با تیم متخصص ما رشد ۳۰۰٪ کسب‌وکار خود را تضمین کنید.'
-  keywords='سئو, دیجیتال مارکتینگ, تبلیغات گوگل, طراحی وب‌سایت, بهینه‌سازی سایت, AsreSEO, چت‌بات فارسی, هوش مصنوعی, AI, اتوماسیون بازاریابی, تولید محتوا با AI'
-  ogTitle='عصر سئو | بهترین خدمات دیجیتال مارکتینگ در ایران'
-  ogDescription='با خدمات حرفه‌ای سئو، طراحی وب‌سایت و هوش مصنوعی، رشد ۳۰۰٪ کسب‌وکار خود را تضمین کنید'
-  ogImages={[{ url: 'https://asreseo.com/' }, { url: 'https://asreseo.com/og-image.jpg', width: 1200, height: 630, alt: 'عصر سئو - خدمات دیجیتال مارکتینگ' }]}
+  title='تماس با ما | مشاوره رایگان دیجیتال مارکتینگ و سئو | عصر سئو'
+  description='ارتباط با تیم متخصص عصر سئو. برای مشاوره رایگان سئو، تبلیغات گوگل و طراحی سایت با شماره ۰۹۱۲۵۸۱۱۸۸۰ تماس بگیرید.'
+  keywords='تماس با عصر سئو, مشاوره سئو, مشاوره دیجیتال مارکتینگ, شماره تماس سئو'
+  canonical='https://asreseo.com/contact/'
+  ogUrl='https://asreseo.com/contact/'
+  ogTitle='تماس با ما | عصر سئو'
+  ogDescription='ارتباط با تیم متخصص عصر سئو برای دریافت مشاوره رایگان دیجیتال مارکتینگ.'
+  ogImages={[{ url: '/images/contact-hero.webp', width: 1200, height: 630, alt: 'تماس با ما - عصر سئو' }]}
+  twitterCard='summary_large_image'
 >
-<div class="min-h-screen bg-linear-to-br from-background-50 to-background-100">
+<div class="min-h-screen bg-white">
       <Header />
-      <main class="section-padding">
+      <main>
         <!-- Hero Section -->
-        <section class="relative py-24 md:py-32 overflow-hidden bg-gray-900 mb-16 rounded-3xl mx-4 md:mx-0">
+        <section class="relative py-24 md:py-32 overflow-hidden bg-gray-900 mb-16">
           <div class="absolute inset-0 z-0">
             <Picture
               src="/images/contact-hero.webp"
@@ -74,11 +78,10 @@ const structuredData = {
               class="object-cover opacity-30 blur-xs"
               eager
             />
-            <div class="absolute inset-0 bg-linear-to-b from-gray-900/40 via-gray-900/80 to-background-50/10" />
-            <div class="absolute inset-0 bg-linear-to-t from-background-100 to-transparent" />
+            <div class="absolute inset-0 bg-linear-to-b from-gray-900/60 via-gray-900/80 to-white" />
           </div>
-          <div class="container-custom relative z-10">
-            <div class="text-center animate-fade-in">
+          <div class="container-custom relative z-10 pt-16 md:pt-20">
+            <div class="text-center animate-fade-in mb-8">
               <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
                 تماس با <span class="text-primary-400">ما</span>
               </h1>
@@ -297,6 +300,7 @@ const structuredData = {
       <Footer />
       <script
         type="application/ld+json"
+        is:inline
         set:html={JSON.stringify(structuredData)}
       />
     </div>

@@ -1,15 +1,33 @@
 ---
+export interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
+export interface Props {
+  items?: BreadcrumbItem[];
+}
+
+const { items = [] } = Astro.props;
+
+const defaultList: BreadcrumbItem[] = [
+  {
+    name: 'خانه',
+    item: 'https://asreseo.com/',
+  },
+];
+
+const elements = items.length > 0 ? items : defaultList;
+
 const data = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'خانه',
-        item: 'https://asreseo.com/'
-      }
-    ]
-  };
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: elements.map((item, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    name: item.name,
+    item: item.item,
+  })),
+};
 ---
-<script type="application/ld+json" set:html={JSON.stringify(data)}></script>
+<script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(data)}></script>

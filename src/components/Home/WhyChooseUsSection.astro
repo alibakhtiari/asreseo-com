@@ -117,19 +117,19 @@ import Icon from '../ui/Icon.astro';
             </p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-            <!-- Timeline line -->
-            <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-linear-to-r from-blue-500 to-purple-500 -z-10"></div>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative" dir="rtl">
+            <!-- Timeline line accurately connecting the center of circles -->
+            <div class="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-1 bg-linear-to-l from-blue-500 via-indigo-500 to-purple-600 z-0"></div>
             
             {[
-              { step: '۱', title: 'مشاوره رایگان', desc: 'بررسی نیازها و اهداف' },
-              { step: '۲', title: 'طراحی استراتژی', desc: 'تدوین نقشه راه مناسب' },
-              { step: '۳', title: 'اجرای پروژه', desc: 'پیاده‌سازی حرفه‌ای' },
-              { step: '۴', title: 'گزارش و بهینه‌سازی', desc: 'تحلیل نتایج و بهبود' }
+              { step: '۱', title: 'مشاوره رایگان', desc: 'بررسی نیازها و اهداف', color: 'from-blue-500 to-blue-600' },
+              { step: '۲', title: 'طراحی استراتژی', desc: 'تدوین نقشه راه مناسب', color: 'from-blue-600 to-indigo-600' },
+              { step: '۳', title: 'اجرای پروژه', desc: 'پیاده‌سازی حرفه‌ای', color: 'from-indigo-600 to-purple-600' },
+              { step: '۴', title: 'گزارش و بهینه‌سازی', desc: 'تحلیل نتایج و بهبود', color: 'from-purple-600 to-pink-600' }
             ].map((item, index) => (
-              <div class="text-center animate-zoom-in" style={{animationDelay: `${index * 0.2}s`}}>
+              <div class="text-center animate-zoom-in relative z-10" style={{animationDelay: `${index * 0.2}s`}}>
                 <div class="relative mb-4">
-                  <div class="w-16 h-16 mx-auto bg-linear-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                  <div class={`w-16 h-16 mx-auto bg-linear-to-br ${item.color} rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg ring-8 ring-white relative z-10`}>
                     {item.step}
                   </div>
                 </div>

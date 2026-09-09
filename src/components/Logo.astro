@@ -1,15 +1,9 @@
 ---
-
-const { class: className = "w-10 h-10" }: any = Astro.props;
-
-
-interface LogoProps {
-    className?: string;
+interface Props {
+  class?: string;
 }
 
-
-
-    
+const { class: className = "w-10 h-10" } = Astro.props;
 ---
 <svg
             xmlns="http://www.w3.org/2000/svg"

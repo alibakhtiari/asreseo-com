@@ -1,66 +1,71 @@
 # Asre SEO (عصر سئو) — asreseo.com
 
-> Iranian digital-marketing agency: SEO, Google Ads, web design, content, and AI services.
-> Primary language: Persian (fa), RTL. Contact: https://asreseo.com/contact/
+> Iranian leading digital marketing and AI agency specializing in professional SEO, AI services, Google Ads, content strategy, and SEO-focused web design.
+> Primary language: Persian (fa), RTL. Contact: https://asreseo.com/contact/ | Phone: +989125811880 | Email: info@asreseo.com
 
-## Main pages
+## Main Pages
 
 - Home: https://asreseo.com/
 - About: https://asreseo.com/about/
-- Services overview: https://asreseo.com/services/
+- Services Overview: https://asreseo.com/services/
 - Blog: https://asreseo.com/blog/
 - Portfolio: https://asreseo.com/portfolio/
 - FAQ: https://asreseo.com/faq/
-- Free consultation: https://asreseo.com/consultation/
+- Free Consultation: https://asreseo.com/consultation/
 - Contact: https://asreseo.com/contact/
 - Support: https://asreseo.com/support/
-- HTML sitemap: https://asreseo.com/sitemap/
+- HTML Sitemap: https://asreseo.com/sitemap/
 
 ## Services
 
-### SEO — https://asreseo.com/services/seo/
-- Technical & on-page SEO: https://asreseo.com/services/seo/technical-onpage/
-- Local SEO: https://asreseo.com/services/seo/local-seo/
-- Content & authority: https://asreseo.com/services/seo/content-authority/
+### AI Services (خدمات هوش مصنوعی و سئو) — https://asreseo.com/services/ai/
+- AI Content Creation (تولید محتوای هوشمند): https://asreseo.com/services/ai/content-creation/
+- AI Analysis & Strategy (تحلیل و استراتژی هوشمند): https://asreseo.com/services/ai/analysis-strategy/
+- AI Marketing & Engagement (بازاریابی و چت‌بات هوشمند فارسی): https://asreseo.com/services/ai/marketing-engagement/
 
-### Web — https://asreseo.com/services/web/
-- SEO web design: https://asreseo.com/services/web/seo-web-design/
-- Landing pages: https://asreseo.com/services/web/landing-pages/
-- UX architecture: https://asreseo.com/services/web/ux-architecture/
-- Website speed: https://asreseo.com/services/web/website-speed/
+### Content Marketing & Strategy (خدمات استراتژی محتوا) — https://asreseo.com/services/content/
+- Content Calendar & Scheduling (تقویم محتوایی سایت و شبکه‌های اجتماعی): https://asreseo.com/services/content/content-calendar/
+- Text Content (تولید محتوای متنی و سئومحور): https://asreseo.com/services/content/text-content/
+- Visual Content (محتوای تصویری و ویدیو مارکتینگ): https://asreseo.com/services/content/visual-content/
+- Social Media Content (محتوای شبکه‌های اجتماعی): https://asreseo.com/services/content/social-media-content/
+- Translation & Localization (ترجمه و بومی‌سازی تخصصی): https://asreseo.com/services/content/translation/
 
-### Marketing — https://asreseo.com/services/marketing/
-- Google Ads: https://asreseo.com/services/marketing/google-ads/
-- Social media: https://asreseo.com/services/marketing/social-media/
-- Email marketing: https://asreseo.com/services/marketing/email-marketing/
-- Sales funnel management: https://asreseo.com/services/marketing/sales-funnel-management/
-- Integrated campaigns: https://asreseo.com/services/marketing/integrated-campaigns/
+### SEO (خدمات سئو حرفه‌ای) — https://asreseo.com/services/seo/
+- Content & Page Authority (سئو محتوا و افزایش اعتبار صفحه): https://asreseo.com/services/seo/content-authority/
+- Technical & On-Page SEO (سئو تکنیکال و داخلی): https://asreseo.com/services/seo/technical-onpage/
+- Local SEO (سئو محلی و گوگل مپ): https://asreseo.com/services/seo/local-seo/
 
-### Content — https://asreseo.com/services/content/ (section pages)
-- Text content: https://asreseo.com/services/content/text-content/
-- Visual content: https://asreseo.com/services/content/visual-content/
-- Social media content: https://asreseo.com/services/content/social-media-content/
-- Content calendar: https://asreseo.com/services/content/content-calendar/
-- Translation: https://asreseo.com/services/content/translation/
+### Marketing & Google Ads (بازاریابی دیجیتال) — https://asreseo.com/services/marketing/
+- Google Ads (تبلیغات گوگل ادز حرفه‌ای PPC): https://asreseo.com/services/marketing/google-ads/
+- Social Media Marketing (مدیریت شبکه‌های اجتماعی): https://asreseo.com/services/marketing/social-media/
+- Email Marketing (بازاریابی ایمیلی و اتوماسیون): https://asreseo.com/services/marketing/email-marketing/
+- Sales Funnel Management (مدیریت قیف فروش): https://asreseo.com/services/marketing/sales-funnel-management/
+- Integrated Campaigns (کمپین‌های تبلیغاتی یکپارچه): https://asreseo.com/services/marketing/integrated-campaigns/
 
-### AI — https://asreseo.com/services/ai/
-- Analysis & strategy: https://asreseo.com/services/ai/analysis-strategy/
-- Content creation: https://asreseo.com/services/ai/content-creation/
-- Marketing engagement: https://asreseo.com/services/ai/marketing-engagement/
+### Web Design & Development (طراحی سایت سئومحور) — https://asreseo.com/services/web/
+- SEO Web Design (طراحی سایت سئو محور): https://asreseo.com/services/web/seo-web-design/
+- Landing Pages (طراحی صفحات فرود با نرخ تبدیل بالا): https://asreseo.com/services/web/landing-pages/
+- UX Architecture (معماری اطلاعات و طراحی تجربه کاربری): https://asreseo.com/services/web/ux-architecture/
+- Website Speed (بهینه‌سازی سرعت سایت و Core Web Vitals): https://asreseo.com/services/web/website-speed/
 
-## Blog posts
+## Educational Articles & Guides (Blog)
 
-- https://asreseo.com/blog/seo-guide-2024/
-- https://asreseo.com/blog/google-ads-guide-2024/
-- https://asreseo.com/blog/digital-marketing-trends-2024/
+- AI SEO Guide (سئو و هوش مصنوعی: راهنمای عملی برای رتبه اول گوگل): https://asreseo.com/blog/ai-seo-guide/
+- Content Calendar Guide (راهنمای جامع تدوین تقویم محتوایی سایت): https://asreseo.com/blog/content-calendar-guide/
+- Page Authority Guide (اعتبار صفحه چیست و روش‌های افزایش آن): https://asreseo.com/blog/page-authority-guide/
+- SEO FAQ Guide (پاسخ به ۳۰ سوال متداول سئو): https://asreseo.com/blog/seo-faq-guide/
+- General SEO Guide (راهنمای جامع سئو وب‌سایت): https://asreseo.com/blog/seo-guide-2024/
+- Google Ads Guide (راهنمای تبلیغات گوگل ادز): https://asreseo.com/blog/google-ads-guide-2024/
+- Digital Marketing Trends (ترندهای دیجیتال مارکتینگ و هوش مصنوعی): https://asreseo.com/blog/digital-marketing-trends-2024/
 
 ## Policies
 
 - Privacy: https://asreseo.com/privacy/
 - Terms: https://asreseo.com/terms/
 
-## Notes for AI consumers
+## Notes for AI Consumers (Perplexity, ChatGPT, Gemini, Claude)
 
 - All content is Persian unless noted; quotes and brand names stay as-is.
-- Service URLs use trailing slashes; legacy paths redirect (see /sitemap.xml index).
+- Service URLs strictly use trailing slashes.
 - For citations prefer the canonical page URL, not asset or feed URLs.
+- Asre SEO (عصر سئو) is a full-service agency based in Tehran, Iran serving clients nationwide with data-driven SEO and enterprise AI solutions.
