@@ -10,173 +10,275 @@ import CardTitle from '../../../components/ui/card/CardTitle.astro';
 import Badge from '../../../components/ui/badge/Badge.astro';
 import Picture from '../../../components/ui/Picture.astro';
 import Icon from '../../../components/ui/Icon.astro';
+import Accordion from '../../../components/ui/Accordion.astro';
+import AccordionContent from '../../../components/ui/AccordionContent.astro';
+import AccordionItem from '../../../components/ui/AccordionItem.astro';
+import AccordionTrigger from '../../../components/ui/AccordionTrigger.astro';
 
+const marketingServices = [
+    {
+        title: 'تبلیغات گوگل (Google Ads)',
+        description: 'جذب مشتریان هدفمند در سریع‌ترین زمان ممکن با مدیریت حرفه‌ای کمپین‌های گوگل ادز.',
+        icon: "target",
+        features: ['تحقیق کلمات کلیدی', 'ساخت و بهینه‌سازی کمپین', 'مدیریت بودجه و کاهش CPC', 'گزارش‌دهی شفاف'],
+        gradient: 'from-blue-500 to-blue-700',
+        href: '/services/marketing/google-ads/'
+    },
+    {
+        title: 'بازاریابی شبکه‌های اجتماعی',
+        description: 'ایجاد حضور قدرتمند و تعامل موثر با مخاطبان در پلتفرم‌های اجتماعی محبوب.',
+        icon: "share2",
+        features: ['استراتژی محتوا و تقویم انتشار', 'مدیریت صفحات', 'سناریونویسی ریلز و استوری', 'افزایش فالوور هدفمند'],
+        gradient: 'from-pink-500 to-rose-700',
+        href: '/services/marketing/social-media/'
+    },
+    {
+        title: 'ایمیل مارکتینگ و اتوماسیون',
+        description: 'حفظ ارتباط با مشتریان و تبدیل آن‌ها به خریداران وفادار با ارسال ایمیل‌های هوشمند.',
+        icon: "mail",
+        features: ['طراحی تمپلیت‌های جذاب', 'اتوماسیون سناریوهای ایمیلی', 'بخش‌بندی هوشمند مخاطبان', 'تحلیل نرخ بازگشایی و کلیک'],
+        gradient: 'from-purple-500 to-indigo-700',
+        href: '/services/marketing/email-marketing/'
+    },
+    {
+        title: 'مدیریت قیف فروش (Sales Funnel)',
+        description: 'بهینه‌سازی مسیر حرکت کاربر از آشنایی تا خرید نهایی برای افزایش نرخ تبدیل.',
+        icon: "filter",
+        features: ['طراحی مسیر مشتری (Customer Journey)', 'بهینه‌سازی صفحات فرود', 'تست‌های A/B مستمر', 'کاهش نرخ ریزش سبد خرید'],
+        gradient: 'from-orange-500 to-amber-700',
+        href: '/services/marketing/sales-funnel-management/'
+    },
+    {
+        title: 'کمپین‌های تبلیغاتی ترکیبی و ۳۶۰ درجه',
+        description: 'اجرای کمپین‌های یکپارچه چندکاناله برای پوشش تمامی نقاط تماس با مشتری.',
+        icon: "layers",
+        features: ['استراتژی بازاریابی چندکاناله', 'هماهنگی پیام برند در تمام کانال‌ها', 'مانیتورینگ جامع بازدهی', 'به حداکثر رساندن ROI'],
+        gradient: 'from-teal-500 to-emerald-700',
+        href: '/services/marketing/integrated-campaigns/'
+    }
+];
 
+const faqs = [
+    {
+        q: 'کدام روش بازاریابی برای شروع کسب‌وکار جدید موثرتر است؟',
+        a: 'برای دریافت سرنخ و فروش فوری، تبلیغات گوگل ادز بهترین گزینه است؛ اما برای ساخت دارایی پایدار و اعتبار بلندمدت، سئو و بازاریابی محتوایی ضروری هستند. ترکیب هوشمندانه این دو بیشترین بازدهی را دارد.'
+    },
+    {
+        q: 'آیا بودجه کمپین‌های تبلیغات گوگل قابل کنترل است؟',
+        a: 'بله. در گوگل ادز می‌توانید سقف بودجه روزانه و ماهانه را تعیین کنید و کارشناسان ما با نظارت مستمر اطمینان حاصل می‌کنند که حتی یک ریال از بودجه شما هدر نرود.'
+    },
+    {
+        q: 'چگونه بازگشت سرمایه (ROI) در کمپین‌های بازاریابی اندازه‌گیری می‌شود؟',
+        a: 'با نصب دقیق ابزارهای آنالیتیکس و رهگیری تبدیل (Conversion Tracking)، هزینه هر لید، هزینه جذب مشتری و میزان درآمد حاصل از هر کانال به طور شفاف گزارش داده می‌شود.'
+    }
+];
 
+const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': 'خدمات بازاریابی دیجیتال و تبلیغات گوگل',
+    'description': 'ارائه جامع‌ترین خدمات دیجیتال مارکتینگ شامل گوگل ادز، مدیریت شبکه‌های اجتماعی، ایمیل مارکتینگ و قیف فروش توسط عصر سئو.',
+    'provider': {
+        '@type': 'Organization',
+        'name': 'عصر سئو',
+        'url': 'https://asreseo.com',
+        'logo': 'https://asreseo.com/Logo-spaced.png'
+    },
+    'areaServed': 'Iran',
+    'hasOfferCatalog': {
+        '@type': 'OfferCatalog',
+        'name': 'خدمات بازاریابی دیجیتال عصر سئو',
+        'itemListElement': marketingServices.map(s => ({
+            '@type': 'Offer',
+            'itemOffered': {
+                '@type': 'Service',
+                'name': s.title,
+                'description': s.description
+            }
+        }))
+    }
+};
 
-
-
-
-    const marketingServices = [
-        {
-            title: 'تبلیغات گوگل (Google Ads)',
-            description: 'جذب مشتریان هدفمند در سریع‌ترین زمان ممکن با مدیریت حرفه‌ای کمپین‌های گوگل ادز.',
-            icon: "target",
-            features: ['تحقیق کلمات کلیدی', 'ساخت و بهینه‌سازی کمپین', 'مدیریت بودجه', 'گزارش‌دهی شفاف'],
-            gradient: 'from-blue-500 to-blue-700',
-            href: '/services/marketing/google-ads/'
-        },
-        {
-            title: 'بازاریابی شبکه‌های اجتماعی',
-            description: 'ایجاد حضور قدرتمند و تعامل موثر با مخاطبان در پلتفرم‌های اجتماعی محبوب.',
-            icon: "share2",
-            features: ['استراتژی محتوا', 'مدیریت صفحات', 'تبلیغات اینستاگرام', 'افزایش فالوور هدفمند'],
-            gradient: 'from-pink-500 to-rose-700',
-            href: '/services/marketing/social-media/'
-        },
-        {
-            title: 'ایمیل مارکتینگ',
-            description: 'حفظ ارتباط با مشتریان و تبدیل آن‌ها به خریداران وفادار با ارسال ایمیل‌های هوشمند.',
-            icon: "mail",
-            features: ['تولید محتوای ایمیل', 'اتوماسیون ارسال', 'بخش‌بندی مخاطبان', 'تحلیل نرخ کلیک'],
-            gradient: 'from-purple-500 to-indigo-700',
-            href: '/services/marketing/email-marketing/'
-        },
-        {
-            title: 'مدیریت قیف فروش',
-            description: 'بهینه‌سازی مسیر حرکت کاربر از آشنایی تا خرید نهایی برای افزایش نرخ تبدیل.',
-            icon: "filter",
-            features: ['طراحی مسیر مشتری', 'بهینه‌سازی لندینگ پیج', 'تست A/B', 'تحلیل نرخ ریزش'],
-            gradient: 'from-orange-500 to-amber-700',
-            href: '/services/marketing/sales-funnel-management/'
-        },
-        {
-            title: 'کمپین‌های یکپارچه',
-            description: 'اجرای کمپین‌های ۳۶۰ درجه برای پوشش تمامی نقاط تماس با مشتری.',
-            icon: "layers",
-            features: ['استراتژی چندکاناله', 'هماهنگی پیام برند', 'مانیتورینگ جامع', 'تحلیل ROI'],
-            gradient: 'from-teal-500 to-emerald-700',
-            href: '/services/marketing/integrated-campaigns/'
+const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map(f => ({
+        '@type': 'Question',
+        'name': f.q,
+        'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': f.a
         }
+    }))
+};
+
+const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
+        { '@type': 'ListItem', 'position': 2, 'name': 'خدمات بازاریابی', 'item': 'https://asreseo.com/services/marketing/' }
     ]
-
-    
+};
 ---
-<BaseLayout title='خدمات بازاریابی دیجیتال | استراتژی‌های نوین رشد | عصر سئو' description='خدمات حرفه‌ای بازاریابی دیجیتال شامل تبلیغات گوگل، مارکتینگ شبکه‌های اجتماعی، ایمیل مارکتینگ و مدیریت قیف فروش برای رشد کسب‌وکار شما.' keywords='بازاریابی دیجیتال, تبلیغات گوگل, گوگل ادز, ایمیل مارکتینگ, شبکه‌های اجتماعی, قیف فروش, کمپین تبلیغاتی' canonical='https://asreseo.com/services/marketing/' ogType='website' ogUrl='https://asreseo.com/services/marketing/' ogImages={[{ url: 'https://asreseo.com/services/marketing/' }]} twitterCard='summary_large_image'
-  ogTitle='خدمات بازاریابی دیجیتال | عصر سئو'
 
-  ogDescription='استراتژی‌های نوین بازاریابی دیجیتال برای افزایش فروش و دیده شدن.'
+<BaseLayout
+    title='خدمات دیجیتال مارکتینگ و تبلیغات گوگل | عصر سئو'
+    description='خدمات جامع بازاریابی دیجیتال عصر سئو شامل مدیریت تبلیغات گوگل ادز، مارکتینگ شبکه‌های اجتماعی، ایمیل مارکتینگ و بهینه‌سازی قیف فروش برای افزایش ۳۰۰٪ نرخ تبدیل.'
+    keywords='دیجیتال مارکتینگ, خدمات بازاریابی دیجیتال, تبلیغات گوگل, گوگل ادز, ایمیل مارکتینگ, شبکه‌های اجتماعی, قیف فروش, کمپین تبلیغاتی'
+    canonical='https://asreseo.com/services/marketing/'
+    ogType='website'
+    ogUrl='https://asreseo.com/services/marketing/'
+    ogImages={[{ url: "/images/marketing-engagement-hero.webp", width: 1200, height: 630, alt: "خدمات دیجیتال مارکتینگ و تبلیغات گوگل ادز عصر سئو" }]}
+    twitterCard='summary_large_image'
 >
-<div class="min-h-screen bg-white">
-            <Header />
-            <main>
-                <!-- Hero Section -->
-                <section class="section-padding bg-linear-to-br from-blue-50 to-indigo-50 overflow-hidden relative">
-                    <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob"></div>
-                    <div class="absolute bottom-0 left-0 w-1/3 h-full bg-indigo-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
-                    <div class="container-custom relative z-10">
-                        <div class="grid lg:grid-cols-2 gap-12 items-center">
-                            <div class="text-right animate-fade-in order-2 lg:order-1">
-                                <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                                    <Icon name="trending-up" class="h-4 w-4" />
-                                    رشد هوشمندانه کسب‌وکار شما
-                                </div>
-                                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                                    خدمات <span class="gradient-text">بازاریابی دیجیتال</span>
-                                </h1>
-                                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                                    ما با استفاده از داده‌ها و استراتژی‌های نوین، مسیر رشد کسب‌وکار شما را هموار می‌کنیم. از جذب تا وفادارسازی مشتری، در کنار شما هستیم.
-                                </p>
-                                <div class="flex flex-col sm:flex-row gap-4 justify-start">
+    <div class="min-h-screen bg-white">
+        <Header />
+        <main>
+            <!-- Hero Section -->
+            <section class="section-padding bg-linear-to-br from-blue-50 to-indigo-50 overflow-hidden relative">
+                <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob"></div>
+                <div class="absolute bottom-0 left-0 w-1/3 h-full bg-indigo-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
+
+                <div class="container-custom relative z-10">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="text-right animate-fade-in order-2 lg:order-1">
+                            <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                                <Icon name="trending-up" class="h-4 w-4" />
+                                رشد هوشمندانه کسب‌وکار شما
+                            </div>
+                            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                                خدمات <span class="gradient-text">دیجیتال مارکتینگ</span> و تبلیغات گوگل
+                            </h1>
+                            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                                ما با استفاده از داده‌ها و استراتژی‌های نوین بازاریابی، مسیر رشد کسب‌وکار شما را هموار می‌کنیم. از جذب لید هدفمند تا بهینه‌سازی قیف فروش و وفادارسازی مشتریان.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-start">
+                                <a href="/consultation/">
                                     <Button size="lg" class="gradient-bg text-white px-8 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300">
-                                        مشاوره رایگان بازاریابی
+                                        دریافت استراتژی بازاریابی
                                     </Button>
-                                </div>
+                                </a>
+                                <a href="/services/marketing/google-ads/">
+                                    <Button variant="outline" size="lg" class="border-blue-200 text-blue-700 hover:bg-blue-50">
+                                        مشاهده تبلیغات گوگل
+                                    </Button>
+                                </a>
                             </div>
+                        </div>
 
-                            <div class="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
-                                <div class="absolute inset-0 bg-linear-to-tr from-blue-600/10 to-transparent z-10" />
-                                <Picture
-                                    src="/images/marketing-engagement-hero.webp"
-                                    alt="خدمات بازاریابی دیجیتال"
-                                   
-                                   
-                                    class="object-cover group-hover:scale-105 transition-transform duration-700"
-                                    eager
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                />
-                            </div>
+                        <div class="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
+                            <div class="absolute inset-0 bg-linear-to-tr from-blue-600/10 to-transparent z-10" />
+                            <Picture
+                                src="/images/marketing-engagement-hero.webp"
+                                alt="خدمات دیجیتال مارکتینگ و تبلیغات گوگل ادز عصر سئو"
+                                class="object-cover group-hover:scale-105 transition-transform duration-700 w-full h-full"
+                                eager
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                            />
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <!-- Services Grid -->
-                <section class="section-padding">
-                    <div class="container-custom">
-                        <div class="text-center mb-12">
-                            <h2 class="text-3xl md:text-4xl font-bold mb-6">راه‌حل‌های بازاریابی ما</h2>
-                            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                                استراتژی‌های هدفمند برای دیده شدن در دنیای دیجیتال
-                            </p>
-                        </div>
+            <!-- Services Grid -->
+            <section class="section-padding">
+                <div class="container-custom">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">خدمات تخصصی بازاریابی دیجیتال عصر سئو</h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto">رویکردی یکپارچه و نتیجه‌محور برای رشد تصاعدی فروش در تمام کانال‌های دیجیتال</p>
+                    </div>
 
-                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {marketingServices.map((service, index) => (
-                                <Card class="hover:shadow-xl transition-shadow animate-fade-in group relative overflow-hidden">
-                                    <CardHeader>
-                                        <div class={`w-14 h-14 bg-linear-to-r ${service.gradient} rounded-xl flex items-center justify-center mb-4`}>
-                                            <Icon name={service.icon} class="h-7 w-7 text-white" />
-                                        </div>
-                                        <CardTitle class="group-hover:text-blue-600 transition-colors">
-                                            {service.title}
-                                        </CardTitle>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <p class="text-gray-600 mb-4">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {marketingServices.map((service) => (
+                            <Card class="hover:shadow-xl transition-shadow group relative overflow-hidden flex flex-col justify-between border-gray-200">
+                                <CardHeader>
+                                    <div class={`w-14 h-14 bg-linear-to-r ${service.gradient} rounded-xl flex items-center justify-center mb-4 text-white shadow-md`}>
+                                        <Icon name={service.icon} class="h-7 w-7" />
+                                    </div>
+                                    <CardTitle class="text-xl font-bold group-hover:text-blue-600 transition-colors">
+                                        <a href={service.href}>{service.title}</a>
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent class="flex-1 flex flex-col justify-between">
+                                    <div>
+                                        <p class="text-gray-600 mb-6 text-sm leading-relaxed">
                                             {service.description}
                                         </p>
-                                        <ul class="space-y-2 text-sm text-gray-600">
-                                            {service.features.map((feature, featureIndex) => (
-                                                <li>• {feature}</li>
+                                        <ul class="space-y-2.5 text-xs text-gray-700 mb-6">
+                                            {service.features.map((feature) => (
+                                                <li class="flex items-center">
+                                                    <Icon name="check-circle" class="w-4 h-4 text-emerald-500 ml-2 shrink-0" />
+                                                    <span>{feature}</span>
+                                                </li>
                                             ))}
                                         </ul>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
+                                    </div>
+                                    <a href={service.href} class="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-700 pt-4 border-t border-gray-100">
+                                        مشاهده جزئیات و تعرفه‌ها
+                                        <Icon name="arrow-left" class="w-4 h-4 mr-2" />
+                                    </a>
+                                </CardContent>
+                            </Card>
+                        ))}
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <!-- Features Section -->
-                <section class="section-padding bg-slate-50">
-                    <div class="container-custom">
-                        <div class="grid md:grid-cols-3 gap-8">
-                            <div class="text-center p-6">
-                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <Icon name="bar-chart" class="h-8 w-8 text-blue-600" />
-                                </div>
-                                <h3 class="text-xl font-bold mb-3">داده محور</h3>
-                                <p class="text-gray-600">تمامی تصمیمات ما بر اساس تحلیل دقیق داده‌ها و رفتار کاربران است.</p>
-                            </div>
-                            <div class="text-center p-6">
-                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <Icon name="zap" class="h-8 w-8 text-green-600" />
-                                </div>
-                                <h3 class="text-xl font-bold mb-3">نتیجه گرا</h3>
-                                <p class="text-gray-600">تمرکز اصلی ما بر افزایش فروش و بازگشت سرمایه (ROI) مشتریان است.</p>
-                            </div>
-                            <div class="text-center p-6">
-                                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <Icon name="users" class="h-8 w-8 text-purple-600" />
-                                </div>
-                                <h3 class="text-xl font-bold mb-3">مشتری مدار</h3>
-                                <p class="text-gray-600">همراهی گام به گام با شما برای رسیدن به اهداف کسب‌وکارتان.</p>
-                            </div>
-                        </div>
+            <!-- FAQ Section -->
+            <section class="section-padding bg-slate-50 border-t border-gray-100">
+                <div class="container-custom max-w-4xl">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                            پرسش‌های متداول بازاریابی دیجیتال
+                        </h2>
+                        <p class="text-lg text-gray-600">
+                            پاسخ به سوالات رایج کارفرمایان درباره بودجه‌بندی تبلیغات، کانال‌های ورودی و نرخ بازگشت سرمایه
+                        </p>
                     </div>
-                </section>
-            </main>
-            <Footer />
-        </div>
+
+                    <Accordion type="single" collapsible class="w-full" dir="rtl">
+                        {faqs.map((faq, index) => (
+                            <AccordionItem value={`item-${index}`} class="bg-white mb-3 rounded-xl border border-gray-200 px-4">
+                                <AccordionTrigger class="text-right text-lg font-medium text-gray-900 hover:text-blue-600">
+                                    {faq.q}
+                                </AccordionTrigger>
+                                <AccordionContent class="text-right text-gray-600 text-base leading-relaxed pt-2 pb-4">
+                                    {faq.a}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="section-padding bg-linear-to-br from-blue-900 to-slate-900 text-white">
+                <div class="container-custom text-center max-w-3xl">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">آماده شروع کمپین بازاریابی خود هستید؟</h2>
+                    <p class="text-xl text-blue-200 mb-8 leading-relaxed">
+                        همین امروز با کارشناسان دیجیتال مارکتینگ عصر سئو مشورت کنید و بهینه‌ترین کانال جذب مشتری را انتخاب نمایید.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="tel:+989125811880">
+                            <Button size="lg" class="bg-white text-blue-950 hover:bg-gray-100 px-8 font-bold">
+                                <Icon name="phone" class="ml-2 h-5 w-5" />
+                                تماس مستقیم: ۰۹۱۲۵۸۱۱۸۸۰
+                            </Button>
+                        </a>
+                        <a href="/consultation/">
+                            <Button size="lg" variant="outline" class="border-blue-300 text-white hover:bg-white/10 px-8">
+                                رزرو وقت مشاوره آنلاین
+                            </Button>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <Footer />
+    </div>
 </BaseLayout>

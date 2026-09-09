@@ -10,18 +10,17 @@ import CardTitle from '../../../../components/ui/card/CardTitle.astro';
 import Badge from '../../../../components/ui/badge/Badge.astro';
 import Picture from '../../../../components/ui/Picture.astro';
 import Icon from '../../../../components/ui/Icon.astro';
-
-
-
-
-
+import Accordion from '../../../../components/ui/Accordion.astro';
+import AccordionContent from '../../../../components/ui/AccordionContent.astro';
+import AccordionItem from '../../../../components/ui/AccordionItem.astro';
+import AccordionTrigger from '../../../../components/ui/AccordionTrigger.astro';
 
 const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    'name': 'تحلیل و استراتژی هوشمند',
-    'description': 'خدمات جامع تحلیل داده و استراتژی کسب‌وکار با استفاده از هوش مصنوعی',
-    'serviceType': 'AI Business Intelligence',
+    'name': 'تحلیل و استراتژی هوشمند و سئو با AI',
+    'description': 'خدمات جامع تحلیل داده، سئو هوشمند و بهینه‌سازی نرخ تبدیل (CRO) با الگوریتم‌های هوش مصنوعی توسط عصر سئو.',
+    'serviceType': 'AI Business Intelligence & SEO Analysis',
     'provider': {
         '@type': 'Organization',
         'name': 'عصر سئو',
@@ -36,29 +35,71 @@ const structuredData = {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'سئو هوشمند',
-                    'description': 'بهینه‌سازی موتور جستجو با AI'
+                    'name': 'سئو هوشمند با AI',
+                    'description': 'بهینه‌سازی عمیق موتورهای جستجو با الگوریتم‌های هوش مصنوعی'
                 }
             },
             {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'بهینه‌سازی نرخ تبدیل',
-                    'description': 'افزایش فروش با تحلیل رفتار کاربر'
+                    'name': 'بهینه‌سازی نرخ تبدیل (CRO)',
+                    'description': 'افزایش فروش با تحلیل رفتار کاربر و Heatmap'
                 }
             },
             {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'مانیتورینگ برند',
-                    'description': 'نظارت بر شهرت برند در فضای آنلاین'
+                    'name': 'مانیتورینگ و تحلیل رقبا',
+                    'description': 'نظارت هوشمند بر بازار و رصد تحرکات رقبا'
                 }
             }
         ]
     }
-}
+};
+
+const faqs = [
+    {
+        q: 'خدمات سئو هوش مصنوعی (AI SEO) دقیقاً شامل چه اقداماتی است؟',
+        a: 'این خدمات شامل تحلیل هوشمند حجم انبوه کوئری‌های سرچ کنسول، شناسایی کلمات کلیدی با پتانسیل بالای رشد سریع، بهینه‌سازی ساختار لینک‌سازی داخلی و پیش‌بینی روندهای جستجو قبل از رقبا است.'
+    },
+    {
+        q: 'چگونه هوش مصنوعی به بهبود نرخ تبدیل (CRO) کمک می‌کند؟',
+        a: 'با تحلیل الگوهای رفتاری کاربران، نقشه‌های حرارتی (Heatmaps) و نقاط ریزش در صفحات فرود، هوش مصنوعی مسیر خرید را کوتاه‌تر کرده و المان‌های اثرگذار بر ترغیب خریدار را بهینه‌سازی می‌کند.'
+    },
+    {
+        q: 'پایش و مانیتورینگ رقبا با هوش مصنوعی به چه صورت انجام می‌شود؟',
+        a: 'سیستم‌های هوشمند تغییرات رتبه‌بندی، بک‌لینک‌های جدید، استراتژی‌های محتوایی و کمپین‌های تبلیغاتی رقبا را به شکل بلادرنگ رصد کرده و هشدارهای تحلیلی ارائه می‌دهند.'
+    },
+    {
+        q: 'آیا برای اجرای استراتژی هوش مصنوعی نیاز به تغییر پلتفرم سایت است؟',
+        a: 'خیر. ابزارها و مدل‌های تحلیلی عصر سئو به سادگی بر روی انواع سایت‌های وردپرسی، اختصاصی و فروشگاهی بدون نیاز به تغییر پلتفرم قابل پیاده‌سازی هستند.'
+    }
+];
+
+const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map(f => ({
+        '@type': 'Question',
+        'name': f.q,
+        'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': f.a
+        }
+    }))
+};
+
+const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
+        { '@type': 'ListItem', 'position': 2, 'name': 'خدمات هوش مصنوعی', 'item': 'https://asreseo.com/services/ai/' },
+        { '@type': 'ListItem', 'position': 3, 'name': 'تحلیل و استراتژی هوشمند', 'item': 'https://asreseo.com/services/ai/analysis-strategy/' }
+    ]
+};
 
 
 
@@ -143,17 +184,20 @@ const structuredData = {
 
     
 ---
-<BaseLayout title='تحلیل و استراتژی هوشمند | AI Analysis & Strategy' description='خدمات جامع تحلیل و استراتژی با هوش مصنوعی. سئو هوشمند، بهینه‌سازی نرخ تبدیل (CRO)، تحلیل رفتار کاربران و مانیتورینگ برند.' keywords='سئو هوشمند, تحلیل رفتار کاربر, مانیتورینگ برند, AI SEO, CRO, استراتژی هوش مصنوعی, تحلیل داده' canonical='https://asreseo.com/services/ai/analysis-strategy' ogType='website' ogUrl='https://asreseo.com/services/ai/analysis-strategy' ogImages={[{ url: 'https://asreseo.com/services/ai/analysis-strategy' }, { url: '/og-analysis-strategy.jpg', width: 1200, height: 630, alt: 'تحلیل و استراتژی هوشمند با هوش مصنوعی' }]} twitterCard='summary_large_image'
-  ogTitle='تحلیل و استراتژی هوشمند | عصر سئو'
-
-  ogDescription='رشد کسب‌وکار با داده‌های دقیق. ترکیب سئو، CRO و تحلیل رفتار کاربران با قدرت هوش مصنوعی.'
+<BaseLayout
+  title='تحلیل و استراتژی هوشمند | سئو با هوش مصنوعی و بهینه‌سازی CRO | عصر سئو'
+  description='خدمات جامع تحلیل، استراتژی و سئو با هوش مصنوعی در عصر سئو. تحلیل داده‌محور رفتار کاربران، بهینه‌سازی نرخ تبدیل (CRO) و پایش رقبا برای تسخیر رتبه ۱ گوگل.'
+  keywords='سئو با هوش مصنوعی, خدمات سئو هوش مصنوعی, سئو هوشمند, تحلیل رفتار کاربر, CRO, استراتژی هوش مصنوعی, بهینه‌سازی نرخ تبدیل'
+  canonical='https://asreseo.com/services/ai/analysis-strategy/'
+  ogType='website'
+  ogUrl='https://asreseo.com/services/ai/analysis-strategy/'
+  ogImages={[{ url: "/images/analysis-strategy-hero.webp", width: 1200, height: 630, alt: "تحلیل و استراتژی سئو با هوش مصنوعی عصر سئو" }]}
+  twitterCard='summary_large_image'
 >
 <div class="min-h-screen bg-white">
-            <script
-                id="structured-data"
-                type="application/ld+json"
-                set:html={JSON.stringify(structuredData)}
-            />
+            <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+            <script id="faq-data" type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+            <script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
             <Header />
 
@@ -185,7 +229,7 @@ const structuredData = {
                                 </div>
                             </div>
 
-                            <div class="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
+                            <div class="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
                                 <div class="absolute inset-0 bg-linear-to-tr from-indigo-600/10 to-transparent z-10" />
                                 <Picture
                                     src="/images/analysis-strategy-hero.webp"
@@ -375,6 +419,33 @@ const structuredData = {
                                 </div>
                             ))}
                         </div>
+                    </div>
+                </section>
+
+                <!-- FAQ Section -->
+                <section class="section-padding bg-white border-t border-gray-100">
+                    <div class="container-custom max-w-4xl">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+                                سوالات متداول تحلیل، استراتژی و سئو هوشمند
+                            </h2>
+                            <p class="text-gray-600 text-base">
+                                پاسخ به سوالات رایج درباره ابزارهای AI SEO، تحلیل رقبا و بازدهی کمپین‌ها
+                            </p>
+                        </div>
+
+                        <Accordion type="single" collapsible class="w-full" dir="rtl">
+                            {faqs.map((faq, index) => (
+                                <AccordionItem value={`item-${index}`} class="bg-slate-50 mb-3 rounded-xl border border-gray-200 px-4">
+                                    <AccordionTrigger class="text-right text-lg font-medium text-gray-900 hover:text-indigo-600">
+                                        {faq.q}
+                                    </AccordionTrigger>
+                                    <AccordionContent class="text-right text-gray-600 text-base leading-relaxed pt-2 pb-4">
+                                        {faq.a}
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
+                        </Accordion>
                     </div>
                 </section>
 

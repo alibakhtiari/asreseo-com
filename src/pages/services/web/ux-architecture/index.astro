@@ -10,6 +10,10 @@ import CardTitle from '../../../../components/ui/card/CardTitle.astro';
 import Badge from '../../../../components/ui/badge/Badge.astro';
 import Picture from '../../../../components/ui/Picture.astro';
 import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 
 
 
@@ -155,29 +159,6 @@ const structuredData = {
     'A/B Testing Results - نتایج تست A/B'
   ];
 
-  const clientTypes = [
-    {
-      type: 'شروع کسب‌وکار جدید',
-      challenge: 'نداشتن تجربه کاربری موجود',
-      solution: 'طراحی از پایه با تمرکز بر بهترین روش‌ها'
-    },
-    {
-      type: 'بازسازی وب‌سایت موجود',
-      challenge: 'رفع مشکلات تجربه کاربری',
-      solution: 'تحلیل نقاط ضعف و بهینه‌سازی کامل'
-    },
-    {
-      type: 'راه‌اندازی محصول دیجیتال',
-      challenge: 'تبدیل ایده به محصول کاربردی',
-      solution: 'MVP Design و تست سریع بازار'
-    },
-    {
-      type: 'بهینه‌سازی نرخ تبدیل',
-      challenge: 'کم بودن نرخ تبدیل فروش',
-      solution: 'Conversion Rate Optimization'
-    }
-  ];
-
   const workflowSteps = [
     {
       step: 'تحقیق و تحلیل',
@@ -246,61 +227,40 @@ const structuredData = {
   ];
 
   
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
+    { '@type': 'ListItem', 'position': 2, 'name': 'خدمات وب', 'item': 'https://asreseo.com/services/web/' },
+    { '@type': 'ListItem', 'position': 3, 'name': 'معماری تجربه کاربری UX', 'item': 'https://asreseo.com/services/web/ux-architecture/' }
+  ]
+};
+
 ---
-<BaseLayout title='طراحی تجربه کاربری UX | معماری اطلاعات | افزایش نرخ تبدیل ۲۵۰% | عصر سئو' description='طراحی UX پیشرفته و معماری اطلاعات بهینه برای وب‌سایت با افزایش نرخ تبدیل تا ۲۵۰% و بهبود تجربه کاربری.' keywords='تجربه کاربری UX, معماری اطلاعات, Information Architecture, UI/UX Design, نرخ تبدیل' canonical='https://asreseo.com/services/web/ux-architecture' ogType='website' ogUrl='https://asreseo.com/services/web/ux-architecture' ogImages={[{ url: 'https://asreseo.com/services/web/ux-architecture' }, { url: '/og-ux-architecture.jpg', width: 1200, height: 630, alt: 'طراحی تجربه کاربری حرفه‌ای' }]} twitterCard='summary_large_image'
+<BaseLayout title='طراحی تجربه کاربری UX | معماری اطلاعات | افزایش نرخ تبدیل ۲۵۰% | عصر سئو' description='طراحی UX پیشرفته و معماری اطلاعات بهینه برای وب‌سایت با افزایش نرخ تبدیل تا ۲۵۰% و بهبود تجربه کاربری.' keywords='تجربه کاربری UX, معماری اطلاعات, Information Architecture, UI/UX Design, نرخ تبدیل' canonical='https://asreseo.com/services/web/ux-architecture/' ogType='website' ogUrl='https://asreseo.com/services/web/ux-architecture/' ogImages={[{ url: "/images/ux-architecture-hero.webp", width: 1200, height: 630, alt: "معماری تجربه کاربری UX | عصر سئو" }]} twitterCard='summary_large_image'
   ogTitle='طراحی تجربه کاربری و معماری اطلاعات | عصر سئو'
 
   ogDescription='طراحی UX پیشرفته برای وب‌سایت شما.'
 >
 <div class="min-h-screen bg-white">
-      <script
-        id="structured-data" type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
 
       <Header />
+      <script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
       <main>
-        <!-- Hero Section -->
-        <section class="section-padding bg-linear-to-br from-indigo-50 to-purple-50 overflow-hidden relative">
-          <div class="absolute top-0 right-0 w-1/3 h-full bg-indigo-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob"></div>
-          <div class="absolute bottom-0 left-0 w-1/3 h-full bg-purple-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
-
-          <div class="container-custom relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-              <div class="text-right animate-fade-in order-2 lg:order-1">
-                <Badge class="bg-indigo-100 text-indigo-700 mb-4 px-4 py-1 text-sm border-indigo-200">
-                  طراحی تجربه کاربری پیشرفته
-                </Badge>
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  معماری اطلاعات و <span class="gradient-text">تجربه کاربری UX</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                  راز ماندگاری کاربران و موفقیت دیجیتال! طراحی UX علمی با روانشناسی کاربران و معماری اطلاعات هوشمند برای نرخ تبدیل ۲۵۰% افزایش در عصر سئو.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-start">
-                  <Button size="lg" class="gradient-bg text-white px-8 hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300">
-                    شروع طراحی UX
-                  </Button>
-                  <Button variant="outline" size="lg" class="border-indigo-200 text-indigo-700 hover:bg-indigo-50">
-                    مشاهده نمونه کارها
-                  </Button>
-                </div>
-              </div>
-
-              <div class="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
-                <div class="absolute inset-0 bg-linear-to-tr from-indigo-600/10 to-transparent z-10" />
-                <Picture
-                  src="/images/ux-architecture-hero.webp"
-                  alt="طراحی تجربه کاربری و معماری اطلاعات"
-                 
-                 
-                  class="object-cover group-hover:scale-105 transition-transform duration-700"
-                  eager
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <ServiceHero
+          badge="طراحی تجربه کاربری پیشرفته"
+          title="معماری اطلاعات و تجربه کاربری UX"
+          titleHighlight="تجربه کاربری UX"
+          description="راز ماندگاری کاربران و موفقیت دیجیتال! طراحی UX علمی با روانشناسی کاربران و معماری اطلاعات هوشمند برای نرخ تبدیل ۲۵۰% افزایش در عصر سئو."
+          primaryCtaText="شروع طراحی UX"
+          secondaryCtaText="مشاهده نمونه کارها"
+          imageSrc="/images/ux-architecture-hero.webp"
+          imageAlt="طراحی تجربه کاربری و معماری اطلاعات"
+          theme="indigo"
+        />
 
         <!-- Stats Section -->
         <section class="section-padding bg-linear-to-r from-purple-50 to-indigo-50">
@@ -422,7 +382,7 @@ const structuredData = {
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
-              {uxTechniques.map((technique, index) => (
+              {uxTechniques.map((technique: any) => (
                 <Card class="hover:shadow-lg transition-all duration-300">
                   <CardContent class="p-6">
                     <div class="flex items-start gap-4">
@@ -448,7 +408,6 @@ const structuredData = {
           </div>
         </section>
 
-        <!-- User Research Methods -->
         <section class="section-padding bg-slate-50">
           <div class="container-custom">
             <div class="text-center mb-12">
@@ -565,56 +524,19 @@ const structuredData = {
           </div>
         </section>
 
-        <!-- FAQ Section -->
-        <section class="section-padding">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                سوالات <span class="gradient-text">متداول</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                پاسخ به پرسش‌های مشتریان درباره طراحی UX و تجربه کاربری
-              </p>
-            </div>
+        <ServiceFAQ
+          title="سوالات متداول"
+          highlightWord="متداول"
+          subtitle="پاسخ به پرسش‌های مشتریان درباره طراحی UX و تجربه کاربری"
+          faqs={faqs}
+        />
 
-            <div class="max-w-4xl mx-auto space-y-4">
-              {faqs.map((faq, index) => (
-                <Card class="hover:shadow-md transition-shadow">
-                  <CardHeader>
-                    <CardTitle class="text-lg text-right flex items-center gap-2">
-                      <span>{faq.question}</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p class="text-gray-600 text-right leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="section-padding bg-linear-to-br from-slate-900 to-slate-800 text-white">
-          <div class="container-custom text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">
-              تجربه کاربری برتر، فروش بی‌رقیب!
-            </h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
-              با طراحی UX علمی عصر سئو، تبدیل کاربران به مشتریان وفادار. تجربه‌ای که فراموش‌نشدنی است و فروش شما را چندین برابر می‌کند. پروژه UX خود را همین امروز شروع کنید!
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" class="bg-indigo-600 hover:bg-indigo-700 text-white">
-                مشاوره طراحی UX رایگان
-              </Button>
-              <Button variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-slate-900">
-                مشاهده نمونه کارهای UX
-              </Button>
-            </div>
-          </div>
-        </section>
+        <ServiceCTA
+          title="تجربه کاربری برتر، فروش بی‌رقیب!"
+          description="با طراحی UX علمی عصر سئو، تبدیل کاربران به مشتریان وفادار. تجربه‌ای که فراموش‌نشدنی است و فروش شما را چندین برابر می‌کند. پروژه UX خود را همین امروز شروع کنید!"
+          primaryText="مشاوره طراحی UX رایگان"
+          secondaryText="مشاهده نمونه کارهای UX"
+        />
       </main>
 
       <Footer />

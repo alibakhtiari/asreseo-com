@@ -3,21 +3,9 @@ import Header from '../Layout/Header.astro';
 import Footer from '../Layout/Footer.astro';
 import Button from '../ui/button/Button.astro';
 import Icon from '../ui/Icon.astro';
-const { title, description, keywords, canonicalUrl, heroTitle, heroDescription, children }: any = Astro.props;
+const { description, canonicalUrl, heroTitle, heroDescription, children }: any = Astro.props;
 
-
-
-interface ServicePageTemplateProps {
-  title: string;
-  description: string;
-  keywords: string;
-  canonicalUrl: string;
-  heroTitle: string;
-  heroDescription: string;
-  children?: any;
-}
-
-
+  const normalizedCanonical = canonicalUrl ? (canonicalUrl.endsWith('/') ? canonicalUrl : `${canonicalUrl}/`) : 'https://asreseo.com/services/';
 
   // Enhanced structured data for better SEO
   const structuredData = {
@@ -29,10 +17,10 @@ interface ServicePageTemplateProps {
       "@type": "Organization",
       "name": "عصر سئو",
       "url": "https://asreseo.com",
-      "logo": "https://asreseo.com/logo.png",
+      "logo": "https://asreseo.com/Logo-spaced.png",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+98-21-12345678",
+        "telephone": "+989125811880",
         "contactType": "customer service"
       }
     },
@@ -58,26 +46,26 @@ interface ServicePageTemplateProps {
         "@type": "ListItem",
         "position": 1,
         "name": "خانه",
-        "item": "https://asreseo.com"
+        "item": "https://asreseo.com/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "خدمات",
-        "item": "https://asreseo.com/services"
+        "item": "https://asreseo.com/services/"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": heroTitle,
-        "item": canonicalUrl
+        "item": normalizedCanonical
       }
     ]
   };
-
-  
 ---
 <div class="min-h-screen bg-white">
+        <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+        <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbStructuredData)} />
         <Header />
         <main>
           <!-- Minimal Hero Section -->
@@ -90,7 +78,7 @@ interface ServicePageTemplateProps {
                   </li>
                   <li class="text-slate-400">/</li>
                   <li>
-                    <a href="/services" class="hover:text-slate-900 transition-colors">
+                    <a href="/services/" class="hover:text-slate-900 transition-colors">
                       خدمات
                     </a>
                   </li>
@@ -167,13 +155,13 @@ interface ServicePageTemplateProps {
                     برای اطلاعات بیشتر و مشاوره رایگان با ما تماس بگیرید.
                   </p>
                   <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="/contact">
+                    <a href="/contact/">
                       <Button class="bg-blue-600 hover:bg-blue-700 text-white px-8">
                         تماس با ما
                         <Icon name="arrow-left" class="ml-2 h-5 w-5" />
                       </Button>
                     </a>
-                    <a href="/services">
+                    <a href="/services/">
                       <Button variant="outline" class="border-slate-300 text-slate-700 hover:bg-slate-50 px-8">
                         مشاهده سایر خدمات
                       </Button>
@@ -195,14 +183,18 @@ interface ServicePageTemplateProps {
                   همین الان با تیم متخصص عصر سئو تماس بگیرید
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" class="bg-white text-slate-900 hover:bg-slate-100 px-8">
-                    <Icon name="phone" class="ml-2 h-5 w-5" />
-                    ۰۲۱-۱۲۳۴۵۶۷۸
-                  </Button>
-                  <Button size="lg" variant="outline" class="border-slate-600 text-white hover:bg-slate-800 px-8">
-                    <Icon name="mail" class="ml-2 h-5 w-5" />
-                    info@asreseo.com
-                  </Button>
+                  <a href="tel:+989125811880">
+                    <Button size="lg" class="bg-white text-slate-900 hover:bg-slate-100 px-8">
+                      <Icon name="phone" class="ml-2 h-5 w-5" />
+                      ۰۹۱۲۵۸۱۱۸۸۰
+                    </Button>
+                  </a>
+                  <a href="mailto:info@asreseo.com">
+                    <Button size="lg" variant="outline" class="border-slate-600 text-white hover:bg-slate-800 px-8">
+                      <Icon name="mail" class="ml-2 h-5 w-5" />
+                      info@asreseo.com
+                    </Button>
+                  </a>
                 </div>
               </div>
             </div>

@@ -10,6 +10,12 @@ import CardTitle from '../../../../components/ui/card/CardTitle.astro';
 import Badge from '../../../../components/ui/badge/Badge.astro';
 import Picture from '../../../../components/ui/Picture.astro';
 import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceWorkflow from '../../../../components/Services/ServiceWorkflow.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 
 
 
@@ -49,29 +55,8 @@ const structuredData = {
         }
       }
     ]
-  },
-  'faqSection': {
-    '@type': 'FAQPage',
-    'mainEntity': [
-      {
-        '@type': 'Question',
-        'name': 'چه شبکه‌های اجتماعی را پوشش می‌دهیم؟',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': 'اینستاگرام، تلگرام، لینکدین، توییتر و متاورس را پوشش می‌دهیم.'
-        }
-      },
-      {
-        '@type': 'Question',
-        'name': 'آیا گرافیک هم تولید می‌شود؟',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': 'بله، بسته به نیاز، گرافیک‌های جذاب را خواهید داشت.'
-        }
-      }
-    ]
   }
-}
+};
 
 
 
@@ -234,85 +219,49 @@ const structuredData = {
   ];
 
   
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
+    { '@type': 'ListItem', 'position': 2, 'name': 'خدمات محتوا', 'item': 'https://asreseo.com/services/content/' },
+    { '@type': 'ListItem', 'position': 3, 'name': 'محتوای شبکه‌های اجتماعی', 'item': 'https://asreseo.com/services/content/social-media-content/' }
+  ]
+};
+
 ---
-<BaseLayout title='محتوای شبکه‌های اجتماعی | سوشال مدیا کانتنت حرفه‌ای | عصر سئو' description='خدمات کامل تولید محتوای شبکه اجتماعی شامل ایده‌پردازی خلاقانه، کپشن جذاب، گرافیک زیبا، تقویم انتشار و استراتژی تعامل‌سازی برای ۵ پلتفرم اصلی.' keywords='محتوای شبکه‌های اجتماعی, سوشال مدیا کانتنت, اینستاگرام, تلگرام, لینکدین, توییتر, ایده‌پردازی خلاقانه' canonical='https://asreseo.com/services/content/social-media-content' ogType='website' ogUrl='https://asreseo.com/services/content/social-media-content' ogImages={[{ url: 'https://asreseo.com/services/content/social-media-content' }, { url: '/og-social-media-content.jpg', width: 1200, height: 630, alt: 'محتوای شبکه‌های اجتماعی حرفه‌ای' }]} twitterCard='summary_large_image'
+<BaseLayout title='محتوای شبکه‌های اجتماعی | سوشال مدیا کانتنت حرفه‌ای | عصر سئو' description='خدمات کامل تولید محتوای شبکه اجتماعی شامل ایده‌پردازی خلاقانه، کپشن جذاب، گرافیک زیبا، تقویم انتشار و استراتژی تعامل‌سازی برای ۵ پلتفرم اصلی.' keywords='محتوای شبکه‌های اجتماعی, سوشال مدیا کانتنت, اینستاگرام, تلگرام, لینکدین, توییتر, ایده‌پردازی خلاقانه' canonical='https://asreseo.com/services/content/social-media-content/' ogType='website' ogUrl='https://asreseo.com/services/content/social-media-content/' ogImages={[{ url: "/images/social-media-content-hero.webp", width: 1200, height: 630, alt: "محتوای شبکه‌های اجتماعی | عصر سئو" }]} twitterCard='summary_large_image'
   ogTitle='محتوای شبکه‌های اجتماعی | تولید محتوا حرفه‌ای | عصر سئو'
 
   ogDescription='ایده‌پردازی، تولید و مدیریت محتوای شبکه‌های اجتماعی برای رشد برند شما.'
 >
 <div class="min-h-screen bg-white">
-      <script
-        id="structured-data"
-        type="application/ld+json"
+      <script id="structured-data" type="application/ld+json" is:inline
         set:html={JSON.stringify(structuredData)}
       />
 
       <Header />
+      <script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
       <main>
-        <!-- Hero Section -->
-        <section class="section-padding bg-linear-to-br from-pink-50 to-purple-50 overflow-hidden relative">
-          <div class="absolute top-0 right-0 w-1/3 h-full bg-pink-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob"></div>
-          <div class="absolute bottom-0 left-0 w-1/3 h-full bg-purple-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
+        <ServiceHero
+          badge="محتوای شبکه‌های اجتماعی حرفه‌ای"
+          title="محتوای شبکه‌های اجتماعی"
+          titleHighlight="شبکه‌های اجتماعی"
+          description="قدرت ایده‌پردازی خلاقانه، کپشن جذاب و استراتژی تعامل‌سازی برای رشد ۵۰۰% پیج شما در شبکه‌های اجتماعی. از اینستاگرام تا لینکدین، حضور قدرتمند برقرار کنید."
+          primaryCtaText="شروع استراتژی محتوایی"
+          secondaryCtaText="مشاوره رایگان سوشال مدیا"
+          imageSrc="/images/social-media-content-hero.webp"
+          imageAlt="محتوای شبکه‌های اجتماعی حرفه‌ای"
+          theme="pink"
+        />
 
-          <div class="container-custom relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-              <div class="text-right animate-fade-in order-2 lg:order-1">
-                <Badge class="bg-pink-100 text-pink-700 mb-4 px-4 py-1 text-sm border-pink-200">
-                  محتوای شبکه‌های اجتماعی حرفه‌ای
-                </Badge>
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  محتوای <span class="gradient-text">شبکه‌های اجتماعی</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                  قدرت ایده‌پردازی خلاقانه، کپشن جذاب و استراتژی تعامل‌سازی برای رشد ۵۰۰% پیج شما در شبکه‌های اجتماعی. از اینستاگرام تا لینکدین، حضور قدرتمند برقرار کنید.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-start">
-                  <Button size="lg" class="gradient-bg text-white px-8 hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300">
-                    شروع استراتژی محتوایی
-                  </Button>
-                  <Button variant="outline" size="lg" class="border-pink-200 text-pink-700 hover:bg-pink-50">
-                    مشاوره رایگان سوشال مدیا
-                  </Button>
-                </div>
-              </div>
-
-              <div class="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
-                <div class="absolute inset-0 bg-linear-to-tr from-pink-600/10 to-transparent z-10" />
-                <Picture
-                  src="/images/social-media-content-hero.webp"
-                  alt="محتوای شبکه‌های اجتماعی حرفه‌ای"
-                 
-                 
-                  class="object-cover group-hover:scale-105 transition-transform duration-700"
-                  eager
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="section-padding bg-linear-to-r from-purple-50 to-pink-50">
-          <div class="container-custom">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
-                <Card class="text-center border-0 bg-white/80 backdrop-blur-sm">
-                  <CardContent class="p-6">
-                    <Icon name={stat.icon} class="h-8 w-8 text-pink-600 mx-auto mb-3" />
-                    <div class="text-3xl font-bold text-purple-700 mb-2">
-                      {stat.metric}
-                    </div>
-                    <p class="text-gray-900 font-medium">
-                      {stat.label}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServiceStats
+          stats={stats}
+          gradientClass="bg-linear-to-r from-purple-50 to-pink-50"
+          metricColorClass="text-purple-700"
+          iconColorClass="text-pink-600"
+        />
 
         <!-- Platforms Section -->
         <section class="section-padding">
@@ -436,115 +385,37 @@ const structuredData = {
           </div>
         </section>
 
-        <!-- Benefits Section -->
-        <section class="section-padding bg-slate-50">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                مزایای محتوای <span class="gradient-text">شبکه اجتماعی حرفه‌ای</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                سوشال مدیا قدرتمند، کلید موفقیت مارکتینگ دیجیتال مدرن است
-              </p>
-            </div>
+        <ServiceBenefits
+          title="مزایای محتوای شبکه اجتماعی حرفه‌ای"
+          titleHighlight="شبکه اجتماعی حرفه‌ای"
+          subtitle="سوشال مدیا قدرتمند، کلید موفقیت مارکتینگ دیجیتال مدرن است"
+          benefits={benefits}
+          iconColorClass="text-pink-600"
+          iconBgClass="bg-pink-100"
+        />
 
-            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {benefits.map((benefit, index) => (
-                <div class="flex items-start gap-4 p-6 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-                  <div class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center shrink-0">
-                    <Icon name="award" class="h-5 w-5 text-pink-600" />
-                  </div>
-                  <span class="text-gray-900 font-medium leading-relaxed">
-                    {benefit}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServiceWorkflow
+          title="فرآیند سوشال مدیا عصر سئو"
+          titleHighlight="سوشال مدیا عصر سئو"
+          subtitle="رویکرد علمی ۴ مرحله‌ای برای محتوایی که واقعاً نتیجه می‌دهد"
+          steps={workflowSteps}
+          themeColor="pink"
+        />
 
-        <!-- Workflow Section -->
-        <section class="section-padding bg-linear-to-br from-purple-50 to-pink-50">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                فرآیند <span class="gradient-text">سوشال مدیا عصر سئو</span>
-              </h2>
-              <p class="text-xl text-gray-600">
-                رویکرد علمی ۴ مرحله‌ای برای محتوایی که واقعاً نتیجه می‌دهد
-              </p>
-            </div>
+        <ServiceFAQ
+          title="سوالات متداول"
+          highlightWord="متداول"
+          subtitle="پاسخ به پرسش‌های رایج مشتریان درباره محتوای شبکه اجتماعی"
+          faqs={faqs}
+        />
 
-            <div class="space-y-8">
-              {workflowSteps.map((step, index) => (
-                <div class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs">
-                  <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center text-2xl font-bold text-pink-700">
-                    {step.step}
-                  </div>
-                  <div class="flex-1">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                      {step.title}
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                      {step.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="section-padding">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                سوالات <span class="gradient-text">متداول</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                پاسخ به پرسش‌های رایج مشتریان درباره محتوای شبکه اجتماعی
-              </p>
-            </div>
-
-            <div class="max-w-4xl mx-auto space-y-4">
-              {faqs.map((faq, index) => (
-                <Card class="hover:shadow-md transition-shadow">
-                  <CardHeader>
-                    <CardTitle class="text-lg text-right flex items-center gap-2">
-                      <span>{faq.question}</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p class="text-gray-600 text-right leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="section-padding bg-linear-to-br from-slate-900 to-slate-800 text-white">
-          <div class="container-custom text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">
-              پیج شما همین امروز پر از ایده خلاقانه شود!
-            </h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
-              با خدمات محتوای شبکه‌های اجتماعی عصر سئو، از ایده‌پردازی خلاقانه تا استراتژی انتشار هوشمند، پیج شما را به ستاره رسانه‌های اجتماعی تبدیل خواهیم کرد.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" class="bg-pink-600 hover:bg-pink-700 text-white">
-                شروع محتوای سوشال مدیا
-              </Button>
-              <Button variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-slate-900">
-                نمونه محتواهای ما را ببینید
-              </Button>
-            </div>
-          </div>
-        </section>
+        <ServiceCTA
+          title="پیج شما همین امروز پر از ایده خلاقانه شود!"
+          description="با خدمات محتوای شبکه‌های اجتماعی عصر سئو، از ایده‌پردازی خلاقانه تا استراتژی انتشار هوشمند، پیج شما را به ستاره رسانه‌های اجتماعی تبدیل خواهیم کرد."
+          primaryText="شروع محتوای سوشال مدیا"
+          secondaryText="نمونه محتواهای ما را ببینید"
+          primaryClass="bg-pink-600 hover:bg-pink-700 text-white"
+        />
       </main>
 
       <Footer />

@@ -178,24 +178,6 @@ const structuredData = {
     }
   ];
 
-  const pricingTypes = [
-    {
-      type: 'فرآیند جذب',
-      description: 'هرچه مشتری کمتر فکر کند، بهتر!',
-      elements: ['جابجایی قیمت، تعداد گزینه کم', 'عناصر فوریت (محدودیت زمانی)', 'تضمین‌ها و گارانتی‌ها']
-    },
-    {
-      type: 'جذب منطقی',
-      description: 'مبنای تصمیم‌گیری ویژگی‌های محصول',
-      elements: ['جداول مقایسه، feature lists', 'testimonials و case studies', 'آمار و ارقام اعتمادآور']
-    },
-    {
-      type: 'محور اجتماعی',
-      description: 'نظرات دیگران برای تصمیم‌گیری',
-      elements: ['آمار اجتماعی، گروه‌های بزرگ', 'گواهی افراد مشهور معتبر', 'نمادهای امنیتی و اعتماد']
-    }
-  ];
-
   const workflowSteps = [
     {
       step: 'تحقیق و استراتژی',
@@ -272,17 +254,41 @@ const structuredData = {
   ];
 
   
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': faqs.map(f => ({
+    '@type': 'Question',
+    'name': f.question || f.q,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': f.answer || f.a
+    }
+  }))
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
+    { '@type': 'ListItem', 'position': 2, 'name': 'خدمات وب', 'item': 'https://asreseo.com/services/web/' },
+    { '@type': 'ListItem', 'position': 3, 'name': 'طراحی صفحات فرود', 'item': 'https://asreseo.com/services/web/landing-pages/' }
+  ]
+};
+
 ---
-<BaseLayout title='طراحی صفحات فرود | Landing Page اختصاصی | نرخ تبدیل بالا | عصر سئو' description='طراحی صفحات فرود اختصاصی با نرخ تبدیل بالا، بهینه برای تبلیغات و کمپین‌های بازاریابی دیجیتال با فناوری‌های پیشرفته.' keywords='صفحه فرود, Landing Page, طراحی لندینگ, نرخ تبدیل, Conversion Rate Optimization' canonical='https://asreseo.com/services/web/landing-pages' ogType='website' ogUrl='https://asreseo.com/services/web/landing-pages' ogImages={[{ url: 'https://asreseo.com/services/web/landing-pages' }, { url: '/og-landing-pages.jpg', width: 1200, height: 630, alt: 'طراحی صفحات فرود حرفه‌ای' }]} twitterCard='summary_large_image'
+<BaseLayout title='طراحی صفحات فرود | Landing Page اختصاصی | نرخ تبدیل بالا | عصر سئو' description='طراحی صفحات فرود اختصاصی با نرخ تبدیل بالا، بهینه برای تبلیغات و کمپین‌های بازاریابی دیجیتال با فناوری‌های پیشرفته.' keywords='صفحه فرود, Landing Page, طراحی لندینگ, نرخ تبدیل, Conversion Rate Optimization' canonical='https://asreseo.com/services/web/landing-pages/' ogType='website' ogUrl='https://asreseo.com/services/web/landing-pages/' ogImages={[{ url: "/images/landing-page-hero.webp", width: 1200, height: 630, alt: "طراحی صفحات فرود | عصر سئو" }]} twitterCard='summary_large_image'
   ogTitle='طراحی صفحات فرود اختصاصی | عصر سئو'
 
   ogDescription='طراحی Landing Page با نرخ تبدیل بالا برای تبلیغات و بازاریابی.'
 >
 <div class="min-h-screen bg-white">
-      <script
-        id="structured-data" type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
 
       <Header />
+      <script id="faq-data" type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+      <script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
       <main>
         <!-- Hero Section -->
@@ -312,7 +318,7 @@ const structuredData = {
                 </div>
               </div>
 
-              <div class="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
+              <div class="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
                 <div class="absolute inset-0 bg-linear-to-tr from-purple-600/10 to-transparent z-10" />
                 <Picture
                   src="/images/landing-page-hero.webp"

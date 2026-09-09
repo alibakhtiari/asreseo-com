@@ -19,9 +19,9 @@ import Icon from '../../../../components/ui/Icon.astro';
 const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    'name': 'سئو محتوا و لینک‌سازی',
-    'description': 'خدمات جامع استراتژی محتوا و لینک‌سازی خارجی برای افزایش اعتبار دامنه و رتبه سایت',
-    'serviceType': 'SEO Services',
+    'name': 'افزایش اعتبار صفحه و دامنه و سئو محتوا',
+    'description': 'خدمات تخصصی افزایش اعتبار صفحه (Page Authority) و اعتبار دامنه با استراتژی تاپیکال آتوریتی و لینک‌سازی اصولی.',
+    'serviceType': 'SEO Content & Page Authority Optimization',
     'provider': {
         '@type': 'Organization',
         'name': 'عصر سئو',
@@ -36,42 +36,29 @@ const structuredData = {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'تولید محتوای سئو شده',
-                    'description': 'تولید مقالات و محتوای یونیک با رعایت اصول SEO'
+                    'name': 'افزایش اعتبار صفحه (Page Authority)',
+                    'description': 'استراتژی ارتقای پیج آتوریتی با تولید محتوای ارزشمند و لینک‌سازی ساختارمند'
                 }
             },
             {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'لینک‌سازی خارجی',
-                    'description': 'اجرای کمپین‌های لینک‌سازی و رپورتاژ آگهی'
-                }
-            }
-        ]
-    },
-    'faqSection': {
-        '@type': 'FAQPage',
-        'mainEntity': [
-            {
-                '@type': 'Question',
-                'name': 'چرا محتوا و لینک‌سازی باید با هم انجام شوند؟',
-                'acceptedAnswer': {
-                    '@type': 'Answer',
-                    'text': 'محتوای عالی بدون لینک دیده نمی‌شود و لینک بدون محتوا بی‌ارزش است. ترکیب این دو (Content + Authority) فرمول اصلی موفقیت در گوگل است.'
+                    'name': 'استراتژی تاپیکال آتوریتی (Topical Authority)',
+                    'description': 'پوشش کامل خوشه‌های موضوعی محتوا برای کسب برتری بر رقبا'
                 }
             },
             {
-                '@type': 'Question',
-                'name': 'آیا لینک‌سازی خطرناک است؟',
-                'acceptedAnswer': {
-                    '@type': 'Answer',
-                    'text': 'لینک‌سازی غیراصولی بله، اما استراتژی ما کاملاً کلاه سفید و طبیعی است و بر اساس روابط عمومی و محتوای ارزشمند بنا شده است.'
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'لینک‌سازی خارجی و رپورتاژ آگهی',
+                    'description': 'ایجاد بک‌لینک‌های باکیفیت کلاه سفید از رسانه‌های معتبر'
                 }
             }
         ]
     }
-}
+};
 
 
 
@@ -190,19 +177,43 @@ const structuredData = {
         }
     ];
 
-    
----
-<BaseLayout title='سئو محتوا و لینک‌سازی | استراتژی محتوا و افزایش اعتبار سایت | عصر سئو' description='خدمات جامع سئو محتوا و لینک‌سازی (Off-Page). تولید محتوای ارزشمند، استراتژی Topical Authority و لینک‌سازی حرفه‌ای برای تسخیر نتایج گوگل.' keywords='سئو محتوا, لینک‌سازی, Content SEO, Link Building, تولید محتوا, رپورتاژ آگهی, Topical Authority' canonical='https://asreseo.com/services/seo/content-authority' ogType='website' ogUrl='https://asreseo.com/services/seo/content-authority' ogImages={[{ url: 'https://asreseo.com/services/seo/content-authority' }, { url: '/og-content-authority.jpg', width: 1200, height: 630, alt: 'سئو محتوا و لینک‌سازی' }]} twitterCard='summary_large_image'
-  ogTitle='سئو محتوا و لینک‌سازی | افزایش اعتبار و ترافیک | عصر سئو'
+const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map(f => ({
+        '@type': 'Question',
+        'name': f.question,
+        'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': f.answer
+        }
+    }))
+};
 
-  ogDescription='ترکیب قدرتمند محتوای عالی و لینک‌های معتبر برای رسیدن به رتبه ۱ گوگل.'
+const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
+        { '@type': 'ListItem', 'position': 2, 'name': 'خدمات سئو', 'item': 'https://asreseo.com/services/seo/' },
+        { '@type': 'ListItem', 'position': 3, 'name': 'اعتبار صفحه و سئو محتوا', 'item': 'https://asreseo.com/services/seo/content-authority/' }
+    ]
+};
+---
+<BaseLayout
+  title='افزایش اعتبار صفحه و دامنه | سئو محتوا و استراتژی تاپیکال آتوریتی | عصر سئو'
+  description='خدمات افزایش اعتبار صفحه (Page Authority) و دامنه با استراتژی سئو محتوا، تاپیکال آتوریتی و لینک‌سازی معتبر برای تسخیر رتبه‌های اول گوگل توسط عصر سئو.'
+  keywords='اعتبار صفحه, افزایش اعتبار صفحه, Page Authority, سئو محتوا, تاپیکال آتوریتی, لینک‌سازی, رپورتاژ آگهی'
+  canonical='https://asreseo.com/services/seo/content-authority/'
+  ogType='website'
+  ogUrl='https://asreseo.com/services/seo/content-authority/'
+  ogImages={[{ url: "/images/content-authority-hero.webp", width: 1200, height: 630, alt: "خدمات افزایش اعتبار صفحه و سئو محتوا عصر سئو" }]}
+  twitterCard='summary_large_image'
 >
 <div class="min-h-screen bg-white">
-            <script
-                id="structured-data"
-                type="application/ld+json"
-                set:html={JSON.stringify(structuredData)}
-            />
+            <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+            <script id="faq-data" type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+            <script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
             <Header />
 
@@ -234,7 +245,7 @@ const structuredData = {
                                 </div>
                             </div>
 
-                            <div class="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
+                            <div class="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
                                 <div class="absolute inset-0 bg-linear-to-tr from-amber-600/10 to-transparent z-10" />
                                 <Picture
                                     src="/images/content-authority-hero.webp"
@@ -247,6 +258,18 @@ const structuredData = {
                                 />
                             </div>
                         </div>
+                    </div>
+                </section>
+
+                <!-- AEO Direct Answer Section -->
+                <section class="py-10 bg-amber-50/60 border-y border-amber-100">
+                    <div class="container-custom max-w-4xl text-right">
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                            اعتبار صفحه (Page Authority) چیست و چه تفاوتی با اعتبار دامنه دارد؟
+                        </h2>
+                        <p class="text-base md:text-lg text-gray-700 leading-relaxed bg-white p-6 rounded-2xl shadow-xs border border-amber-100">
+                            <strong>اعتبار صفحه (Page Authority یا PA)</strong> شاخصی عددی است که توانایی یک صفحه مشخص از وب‌سایت را برای کسب رتبه در نتایج موتور جستجو ارزیابی می‌کند. در حالی که اعتبار دامنه (Domain Authority) قدرت کل وب‌سایت را می‌سنجد، اعتبار صفحه بر کیفیت محتوای همان صفحه، لینک‌های داخلی هدایت‌شده به آن و بک‌لینک‌های معتبر خارجی ورودی به همان URL متمرکز است. در عصر سئو با پیاده‌سازی معماری تاپیکال آتوریتی و لینک‌سازی هدفمند، اعتبار صفحات کلیدی لندینگ و مقالات شما ارتقا یافته و رتبه ۱ گوگل تثبیت می‌شود.
+                        </p>
                     </div>
                 </section>
 

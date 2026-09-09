@@ -2,14 +2,17 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Header from '../../../../components/Layout/Header.astro';
 import Footer from '../../../../components/Layout/Footer.astro';
-import Button from '../../../../components/ui/button/Button.astro';
 import Card from '../../../../components/ui/card/Card.astro';
 import CardContent from '../../../../components/ui/card/CardContent.astro';
 import CardHeader from '../../../../components/ui/card/CardHeader.astro';
 import CardTitle from '../../../../components/ui/card/CardTitle.astro';
 import Badge from '../../../../components/ui/badge/Badge.astro';
-import Picture from '../../../../components/ui/Picture.astro';
 import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
 
 
 
@@ -30,7 +33,7 @@ const structuredData = {
   'areaServed': 'Iran',
   'hasOfferCatalog': {
     '@type': 'OfferCatalog',
-    'name': 'خدمات qفروشيمق فروش',
+    'name': 'خدمات قیف فروش',
     'itemListElement': [
       {
         '@type': 'Offer',
@@ -49,29 +52,8 @@ const structuredData = {
         }
       }
     ]
-  },
-  'faqSection': {
-    '@type': 'FAQPage',
-    'mainEntity': [
-      {
-        '@type': 'Question',
-        'name': 'قیف فروش چیست؟',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': 'قیف فروش راهبری علمی مشتریان از آگاهی تا خرید نهایی است.'
-        }
-      },
-      {
-        '@type': 'Question',
-        'name': 'چقدر نرخ تبدیل بهبود می‌یابد؟',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': 'متوسط ۲۵۰-۴۰۰% بهبود نرخ تبدیل با بهینه‌سازی علمی.'
-        }
-      }
-    ]
   }
-}
+};
 
 
 
@@ -245,7 +227,7 @@ const structuredData = {
       answer: 'معمولاً در عرض ۱-۲ هفته اول تغییرات اساسی اعمال می‌شود و نتایج اولیه قابل مشاهده است. اما بهینه‌سازی کامل و پایدار معمولاً ۴-۸ هفته زمان نیاز دارد. در این مدت نرخ تبدیل به صورت مداوم بهبود می‌یابد.'
     },
     {
-      question: 'آیا qفروشيمق فروش برای همه نوع کسب‌وکار مناسب است؟',
+      question: 'آیا قیف فروش برای همه نوع کسب‌وکار مناسب است؟',
       answer: 'بله! هم برای فروشگاه‌های آنلاین، هم خدمات دیجیتال، هم B2B و هم کسب‌وکارهای سنتی. استراتژی هر کدام متفاوت است اما هدف مشترک بهینه‌سازی نرخ تبدیل است. از استارتاپ‌های کوچک تا شرکت‌های بزرگ از این سرویس بهره‌مند می‌شوند.'
     },
     {
@@ -253,91 +235,47 @@ const structuredData = {
       answer: 'بسته به شرایط فعلی شما متفاوت است. اگر ابزارهای آنالیز و اتوماسیون ندارید، نیاز به راه‌اندازی دارند. اگر دارید، استراتژی را بر موجودیت فعلی پیاده‌سازی می‌کنیم. هیچ اختلالی در عملکرد عادی وب‌سایت ایجاد نخواهد شد.'
     },
     {
-      question: 'هزینه خدمات مدیریت qفروشيمق فروش چقدر است؟',
+      question: 'هزینه خدمات مدیریت قیف فروش چقدر است؟',
       answer: 'قیمت‌گذاری بر اساس پیچیدگی قیف فعلی، ابزارهای مورد نیاز و مدت زمان قرارداد تعیین می‌شود. بسته‌های اقتصادی از ۲ میلیون تومان شروع می‌شود و بسته‌های VIP تا ۱۵ میلیون تومان برای پروژه‌های جامع. هزینه سرمایه‌گذاری عالی برای بازگشت ۵ برابری است!'
     }
   ];
 
-  
 ---
-<BaseLayout title='مدیریت قیف فروش | Sales Funnel Management | افزایش نرخ تبدیل ۳۰۰% | عصر سئو' description='طراحی و مدیریت علمی قیف فروش با تحلیل comport رفتار مشتری، اتوماسیون بازاریابی، A/B Testing و افزایش نرخ تبدیل تا ۳۰۰%.' keywords='قیف فروش, Sales Funnel, نرخ تبدیل, Customer Journey, اتوماسیون فروش, بازاریابی دیجیتال' canonical='https://asreseo.com/services/marketing/sales-funnel-management' ogType='website' ogUrl='https://asreseo.com/services/marketing/sales-funnel-management' ogImages={[{ url: 'https://asreseo.com/services/marketing/sales-funnel-management' }, { url: '/og-sales-funnel.jpg', width: 1200, height: 630, alt: 'مدیریت قیف فروش حرفه‌ای' }]} twitterCard='summary_large_image'
+<BaseLayout title='مدیریت قیف فروش | Sales Funnel Management | افزایش نرخ تبدیل ۳۰۰% | عصر سئو' description='طراحی و مدیریت علمی قیف فروش با تحلیل comport رفتار مشتری، اتوماسیون بازاریابی، A/B Testing و افزایش نرخ تبدیل تا ۳۰۰%.' keywords='قیف فروش, Sales Funnel, نرخ تبدیل, Customer Journey, اتوماسیون فروش, بازاریابی دیجیتال' canonical='https://asreseo.com/services/marketing/sales-funnel-management/' ogType='website' ogUrl='https://asreseo.com/services/marketing/sales-funnel-management/' ogImages={[{ url: "/images/sales-funnel-hero.webp", width: 1200, height: 630, alt: "مدیریت قیف فروش | عصر سئو" }]} twitterCard='summary_large_image'
   ogTitle='مدیریت قیف فروش | عصر سئو'
 
   ogDescription='طراحی و بهینه‌سازی قیف فروش برای افزایش نرخ تبدیل.'
 >
 <div class="min-h-screen bg-white">
-      <script
-        id="structured-data"
-        type="application/ld+json"
+      <script id="structured-data" type="application/ld+json" is:inline
         set:html={JSON.stringify(structuredData)}
       />
 
       <Header />
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'خانه', url: '/' },
+          { name: 'خدمات بازاریابی', url: '/services/marketing/' },
+          { name: 'مدیریت قیف فروش', url: '/services/marketing/sales-funnel-management/' }
+        ]}
+      />
 
       <main>
         <!-- Hero Section -->
-        <section class="section-padding bg-linear-to-br from-orange-50 to-red-50 overflow-hidden relative">
-          <div class="absolute top-0 right-0 w-1/3 h-full bg-orange-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob"></div>
-          <div class="absolute bottom-0 left-0 w-1/3 h-full bg-red-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
-
-          <div class="container-custom relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-              <div class="text-right animate-fade-in order-2 lg:order-1">
-                <Badge class="bg-orange-100 text-orange-700 mb-4 px-4 py-1 text-sm border-orange-200">
-                  مدیریت قیف فروش حرفه‌ای
-                </Badge>
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  مدیریت <span class="gradient-text">قیف فروش</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                  افزایش نرخ تبدیل ۳۰۰% با طراحی علمی قیف فروش، اتوماسیون بازاریابی هوشمند و بهینه‌سازی رفتار مشتری در عصر سئو.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-start">
-                  <Button size="lg" class="gradient-bg text-white px-8 hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300">
-                    بهینه‌سازی قیف فروش
-                  </Button>
-                  <Button variant="outline" size="lg" class="border-orange-200 text-orange-700 hover:bg-orange-50">
-                    تحلیل رایگان قیف فروش فعلی
-                  </Button>
-                </div>
-              </div>
-
-              <div class="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
-                <div class="absolute inset-0 bg-linear-to-tr from-orange-600/10 to-transparent z-10" />
-                <Picture
-                  src="/images/sales-funnel-hero.webp"
-                  alt="مدیریت قیف فروش حرفه‌ای"
-                 
-                 
-                  class="object-cover group-hover:scale-105 transition-transform duration-700"
-                  eager
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <ServiceHero
+          badge="مدیریت قیف فروش حرفه‌ای"
+          title="مدیریت"
+          titleGradient="قیف فروش"
+          description="افزایش نرخ تبدیل ۳۰۰% با طراحی علمی قیف فروش، اتوماسیون بازاریابی هوشمند و بهینه‌سازی رفتار مشتری در عصر سئو."
+          primaryCta={{ text: "بهینه‌سازی قیف فروش" }}
+          secondaryCta={{ text: "تحلیل رایگان قیف فروش فعلی" }}
+          imageSrc="/images/sales-funnel-hero.webp"
+          imageAlt="مدیریت قیف فروش حرفه‌ای"
+          theme="orange"
+        />
 
         <!-- Stats Section -->
-        <section class="section-padding bg-linear-to-r from-red-50 to-orange-50">
-          <div class="container-custom">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
-                <Card class="text-center border-0 bg-white/80 backdrop-blur-sm">
-                  <CardContent class="p-6">
-                    <Icon name={stat.icon} class="h-8 w-8 text-orange-600 mx-auto mb-3" />
-                    <div class="text-3xl font-bold text-red-700 mb-2">
-                      {stat.metric}
-                    </div>
-                    <p class="text-gray-900 font-medium">
-                      {stat.label}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServiceStats stats={stats} theme="orange" />
 
         <!-- Funnel Stages Section -->
         <section class="section-padding">
@@ -525,55 +463,21 @@ const structuredData = {
         </section>
 
         <!-- FAQ Section -->
-        <section class="section-padding">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                سوالات <span class="gradient-text">متداول</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                پاسخ به پرسش‌های رایج مشتریان درباره qفروشيمق فروش
-              </p>
-            </div>
-
-            <div class="max-w-4xl mx-auto space-y-4">
-              {faqs.map((faq, index) => (
-                <Card class="hover:shadow-md transition-shadow">
-                  <CardHeader>
-                    <CardTitle class="text-lg text-right flex items-center gap-2">
-                      <span>{faq.question}</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p class="text-gray-600 text-right leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServiceFAQ
+          title="سوالات"
+          titleGradient="متداول"
+          subtitle="پاسخ به پرسش‌های رایج مشتریان درباره قیف فروش"
+          faqs={faqs}
+        />
 
         <!-- CTA Section -->
-        <section class="section-padding bg-linear-to-br from-slate-900 to-slate-800 text-white">
-          <div class="container-custom text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">
-              چرا بسیاری از مشتریان بالقوه را از دست می‌دهید؟
-            </h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
-              احتماق خیلی بالا است که قیف فروش شما بهینه نباشد و مشتریان شما در مسیر خرید رها شوند. عصر سئو با تحلیل علمی و پیاده‌سازی اتوماسیون پیشرفته، نرخ تبدیل شما را تا ۵ برابر افزایش می‌دهد. اجازه ندهید مشتریان شما به رقبا بروند!
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" class="bg-orange-600 hover:bg-orange-700 text-white">
-                شروع بهینه‌سازی qفروشيمق فروش
-              </Button>
-              <Button variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-slate-900">
-                تحلیل رایگان qفروشيمق فروش فعلی
-              </Button>
-            </div>
-          </div>
-        </section>
+        <ServiceCTA
+          title="چرا بسیاری از مشتریان بالقوه را از دست می‌دهید؟"
+          description="احتمال خیلی بالا است که قیف فروش شما بهینه نباشد و مشتریان شما در مسیر خرید رها شوند. عصر سئو با تحلیل علمی و پیاده‌سازی اتوماسیون پیشرفته، نرخ تبدیل شما را تا ۵ برابر افزایش می‌دهد. اجازه ندهید مشتریان شما به رقبا بروند!"
+          primaryCta={{ text: "شروع بهینه‌سازی قیف فروش" }}
+          secondaryCta={{ text: "تحلیل رایگان قیف فروش فعلی" }}
+          primaryClass="bg-orange-600 hover:bg-orange-700 text-white"
+        />
       </main>
 
       <Footer />

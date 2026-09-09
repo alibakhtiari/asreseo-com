@@ -10,6 +10,11 @@ import CardTitle from '../../../../components/ui/card/CardTitle.astro';
 import Badge from '../../../../components/ui/badge/Badge.astro';
 import Picture from '../../../../components/ui/Picture.astro';
 import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 
 
 
@@ -49,29 +54,8 @@ const structuredData = {
         }
       }
     ]
-  },
-  'faqSection': {
-    '@type': 'FAQPage',
-    'mainEntity': [
-      {
-        '@type': 'Question',
-        'name': 'چقدر زمان برای طراحی یک وب‌سایت نیاز است؟',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': '۲ تا ۶ هفته بسته به پیچیدگی پروژه'
-        }
-      },
-      {
-        '@type': 'Question',
-        'name': 'پس از طراحی چه حمایتی دریافت می‌کنیم؟',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': 'پشتیبانی فنی، آموزشی و آپدیت رایگان به مدت ۶ ماه'
-        }
-      }
-    ]
   }
-}
+};
 
 
 
@@ -230,30 +214,6 @@ const structuredData = {
     }
   ];
 
-  const pricingPackages = [
-    {
-      package: 'استارت‌آپ',
-      price: '۴,۹۰۰,۰۰۰ تومان',
-      pages: '۵ صفحه',
-      features: ['طراحی رسپانسیو', 'سئو پایه', 'پشتیبانی ۳ ماه'],
-      audience: 'کسب‌وکارهای نوپا'
-    },
-    {
-      package: 'حرفه‌ای',
-      price: '۱۲,۵۰۰,۰۰۰ تومان',
-      pages: '۱۵ صفحه',
-      features: ['سئو پیشرفته', 'ecommerce', 'پشتیبانی ۶ ماه'],
-      audience: 'کسب‌وکارهای در حال رشد'
-    },
-    {
-      package: 'سازمانی',
-      price: '۲۵,۰۰۰,۰۰۰ تومان',
-      pages: 'صفحات نامحدود',
-      features: ['سئو کامل', 'APIهای پیشرفته', 'پشتیبانی ۱۲ ماه'],
-      audience: 'شرکت‌های بزرگ'
-    }
-  ];
-
   const stats = [
     { metric: '۲ ثانیه', label: 'زمان بارگذاری', icon: "zap" },
     { metric: '۴۵۰%', label: 'افزایش نرخ تبدیل', icon: "trending-up" },
@@ -296,82 +256,47 @@ const structuredData = {
   ];
 
   
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
+    { '@type': 'ListItem', 'position': 2, 'name': 'خدمات وب', 'item': 'https://asreseo.com/services/web/' },
+    { '@type': 'ListItem', 'position': 3, 'name': 'طراحی سایت سئو محور', 'item': 'https://asreseo.com/services/web/seo-web-design/' }
+  ]
+};
+
 ---
-<BaseLayout title='طراحی سایت سئو محور | SEO Web Design | افزایش رتبه گوگل ۵۰۰% | عصر سئو' description='طراحی وب‌سایت سئو محور با سرعت بالا، تجربه کاربری عالی و رتبه‌بندی بهتر گوگل. افزایش نرخ تبدیل تا ۳۵۰% با طراحی UX/UI حرفه‌ای.' keywords='طراحی سایت سئو محور, طراحی وب‌سایت, بهینه‌سازی سئو, UX/UI, طراحی رسپانسیو' canonical='https://asreseo.com/services/web/seo-web-design' ogType='website' ogUrl='https://asreseo.com/services/web/seo-web-design' ogImages={[{ url: 'https://asreseo.com/services/web/seo-web-design' }, { url: '/og-seo-web-design.jpg', width: 1200, height: 630, alt: 'طراحی سایت سئو محور حرفه‌ای' }]} twitterCard='summary_large_image'
+<BaseLayout title='طراحی سایت سئو محور | SEO Web Design | افزایش رتبه گوگل ۵۰۰% | عصر سئو' description='طراحی وب‌سایت سئو محور با سرعت بالا، تجربه کاربری عالی و رتبه‌بندی بهتر گوگل. افزایش نرخ تبدیل تا ۳۵۰% با طراحی UX/UI حرفه‌ای.' keywords='طراحی سایت سئو محور, طراحی وب‌سایت, بهینه‌سازی سئو, UX/UI, طراحی رسپانسیو' canonical='https://asreseo.com/services/web/seo-web-design/' ogType='website' ogUrl='https://asreseo.com/services/web/seo-web-design/' ogImages={[{ url: "/images/web-design-hero.webp", width: 1200, height: 630, alt: "طراحی سایت سئو محور | عصر سئو" }]} twitterCard='summary_large_image'
   ogTitle='طراحی سایت سئو محور | عصر سئو'
 
   ogDescription='طراحی وب‌سایت سئو محور با بهترین استانداردها.'
 >
 <div class="min-h-screen bg-white">
-      <script
-        id="structured-data" type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
 
       <Header />
+      <script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
       <main>
-        <!-- Hero Section -->
-        <section class="section-padding bg-linear-to-br from-indigo-50 to-purple-50 overflow-hidden relative">
-          <div class="absolute top-0 right-0 w-1/3 h-full bg-indigo-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob"></div>
-          <div class="absolute bottom-0 left-0 w-1/3 h-full bg-purple-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
+        <ServiceHero
+          badge="طراحی وب‌سایت حرفه‌ای"
+          title="طراحی سایت سئو محور"
+          titleHighlight="سایت سئو محور"
+          description="وب‌سایت شما از روز اول برای رتبه‌بندی گوگل، تجربه عالی کاربر و نرخ تبدیل بالا طراحی می‌شود. عصر سئو با تکنولوژی‌های پیشرفته وب‌سایت‌هایی می‌سازد که در صفحه اول گوگل می‌درخشند!"
+          primaryCtaText="مشاوره رایگان طراحی"
+          secondaryCtaText="نمونه کارها را ببینید"
+          imageSrc="/images/web-design-hero.webp"
+          imageAlt="طراحی وب‌سایت سئو محور"
+          theme="indigo"
+        />
 
-          <div class="container-custom relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-              <div class="text-right animate-fade-in order-2 lg:order-1">
-                <Badge class="bg-indigo-100 text-indigo-700 mb-4 px-4 py-1 text-sm border-indigo-200">
-                  طراحی وب‌سایت حرفه‌ای
-                </Badge>
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  طراحی <span class="gradient-text">سایت سئو محور</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                  وب‌سایت شما از روز اول برای رتبه‌بندی گوگل، تجربه عالی کاربر و نرخ تبدیل بالا طراحی می‌شود. عصر سئو با تکنولوژی‌های پیشرفته وب‌سایت‌هایی می‌سازد که در صفحه اول گوگل می‌درخشند!
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-start">
-                  <Button size="lg" class="gradient-bg text-white px-8 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300">
-                    مشاوره رایگان طراحی
-                  </Button>
-                  <Button variant="outline" size="lg" class="border-indigo-200 text-indigo-700 hover:bg-indigo-50">
-                    نمونه کارها را ببینید
-                  </Button>
-                </div>
-              </div>
-
-              <div class="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
-                <div class="absolute inset-0 bg-linear-to-tr from-indigo-600/10 to-transparent z-10" />
-                <Picture
-                  src="/images/web-design-hero.webp"
-                  alt="طراحی وب‌سایت سئو محور"
-                 
-                 
-                  class="object-cover group-hover:scale-105 transition-transform duration-700"
-                  eager
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="section-padding bg-linear-to-r from-indigo-50 to-blue-50">
-          <div class="container-custom">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
-                <Card class="text-center border-0 bg-white/80 backdrop-blur-sm">
-                  <CardContent class="p-6">
-                    <Icon name={stat.icon} class="h-8 w-8 text-blue-600 mx-auto mb-3" />
-                    <div class="text-3xl font-bold text-indigo-700 mb-2">
-                      {stat.metric}
-                    </div>
-                    <p class="text-gray-900 font-medium">
-                      {stat.label}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServiceStats
+          stats={stats}
+          gradientClass="bg-linear-to-r from-indigo-50 to-blue-50"
+          metricColorClass="text-indigo-700"
+          iconColorClass="text-blue-600"
+        />
 
         <!-- Design Principles Section -->
         <section class="section-padding">
@@ -585,83 +510,29 @@ const structuredData = {
           </div>
         </section>
 
-        <!-- Benefits Section -->
-        <section class="section-padding">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                مزایای طراحی <span class="gradient-text">سئو محور عصر سئو</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                آمارهای واقعی از هزاران پروژه موفق طراحی سایت
-              </p>
-            </div>
+        <ServiceBenefits
+          title="مزایای طراحی سئو محور عصر سئو"
+          titleHighlight="سئو محور"
+          subtitle="آمارهای واقعی از هزاران پروژه موفق طراحی سایت"
+          benefits={benefits}
+          iconColorClass="text-blue-600"
+          iconBgClass="bg-blue-100"
+        />
 
-            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {benefits.map((benefit, index) => (
-                <div class="flex items-start gap-4 p-6 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-                  <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
-                    <Icon name="award" class="h-5 w-5 text-blue-600" />
-                  </div>
-                  <span class="text-gray-900 font-medium leading-relaxed">
-                    {benefit}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServiceFAQ
+          title="سوالات متداول"
+          highlightWord="متداول"
+          subtitle="پاسخ به پرسش‌های رایج مشتریان درباره طراحی سایت سئو محور"
+          faqs={faqs}
+        />
 
-        <!-- FAQ Section -->
-        <section class="section-padding">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                سوالات <span class="gradient-text">متداول</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                پاسخ به پرسش‌های رایج مشتریان درباره طراحی سایت سئو محور
-              </p>
-            </div>
-
-            <div class="max-w-4xl mx-auto space-y-4">
-              {faqs.map((faq, index) => (
-                <Card class="hover:shadow-md transition-shadow">
-                  <CardHeader>
-                    <CardTitle class="text-lg text-right flex items-center gap-2">
-                      <span>{faq.question}</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p class="text-gray-600 text-right leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="section-padding bg-linear-to-br from-slate-900 to-slate-800 text-white">
-          <div class="container-custom text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">
-              وب‌سایت شما از صفحه اول گوگل شروع می‌شود!
-            </h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
-              عصر سئو با تجربه طراحی بیش از ۱۵۰ وب‌سایت موفق، وب‌سایتی برای شما می‌سازد که نه تنها زیبا باشد، بلکه ماشین فروش آنلاین شما خواهد بود. طراحی سئو محور به معنای این است که از همان لحظه راه‌اندازی، رقابت را شروع کرده‌اید!
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" class="bg-blue-600 hover:bg-blue-700 text-white">
-                شروع طراحی سئو محور
-              </Button>
-              <Button variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-slate-900">
-                مشاوره رایگان پروژه
-              </Button>
-            </div>
-          </div>
-        </section>
+        <ServiceCTA
+          title="وب‌سایت شما از صفحه اول گوگل شروع می‌شود!"
+          description="عصر سئو با تجربه طراحی بیش از ۱۵۰ وب‌سایت موفق، وب‌سایتی برای شما می‌سازد که نه تنها زیبا باشد، بلکه ماشین فروش آنلاین شما خواهد بود. طراحی سئو محور به معنای این است که از همان لحظه راه‌اندازی، رقابت را شروع کرده‌اید!"
+          primaryText="شروع طراحی سئو محور"
+          secondaryText="مشاوره رایگان پروژه"
+          primaryClass="bg-blue-600 hover:bg-blue-700 text-white"
+        />
       </main>
 
       <Footer />

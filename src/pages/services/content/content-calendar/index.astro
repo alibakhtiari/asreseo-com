@@ -19,9 +19,9 @@ import Icon from '../../../../components/ui/Icon.astro';
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  'name': 'تقویم محتوایی',
-  'description': 'خدمات طراحی و مدیریت تقویم محتوایی برای انتشار منظم و استراتژیک',
-  'serviceType': 'Content Calendar Management',
+  'name': 'طراحی تقویم محتوایی و برنامه‌ریزی انتشار',
+  'description': 'خدمات تخصصی تدوین تقویم محتوایی سایت و شبکه‌های اجتماعی با برنامه‌ریزی استراتژیک و اتوماسیون انتشار منظم محتوا.',
+  'serviceType': 'Content Calendar & Editorial Planning',
   'provider': {
     '@type': 'Organization',
     'name': 'عصر سئو',
@@ -36,34 +36,21 @@ const structuredData = {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
-          'name': 'برنامه‌ریزی هوشمند',
-          'description': 'زمان‌بندی استراتژیک انتشار محتوا'
+          'name': 'برنامه‌ریزی هوشمند انتشار محتوا',
+          'description': 'زمان‌بندی استراتژیک انتشار محتوا برای وب‌سایت و سوشال مدیا'
         }
       },
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
-          'name': 'هماهنگی کمپین‌ها',
-          'description': 'تطابق محتوا با رویدادهای بازاریابی'
-        }
-      }
-    ]
-  },
-  'faqSection': {
-    '@type': 'FAQPage',
-    'mainEntity': [
-      {
-        '@type': 'Question',
-        'name': 'تقویم محتوایی برای چه پلتفرم‌هایی کاربرد دارد؟',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': 'برای تمام پلتفرم‌ها شامل وب‌سایت، وبلاگ، شبکه‌های اجتماعی و ایمیل مارکتینگ.'
+          'name': 'اتوماسیون چرخه محتوا',
+          'description': 'یکپارچگی با ابزارهای زمان‌بندی و انتشار خودکار محتوا'
         }
       }
     ]
   }
-}
+};
 
 
 
@@ -237,19 +224,43 @@ const structuredData = {
     }
   ];
 
-  
----
-<BaseLayout title='تقویم محتوایی | برنامه‌ریزی محتوا حرفه‌ای | سازماندهی استراتژیک محتوا | عصر سئو' description='طراحی تقویم محتوایی استراتژیک برای انتشار منظم، افزایش ۳۰۰% تعامل مخاطبان و سازماندهی هوشمند تیم تولید محتوا با ابزارهای پیشرفته عصر سئو.' keywords='تقویم محتوایی, برنامه‌ریزی محتوا, Content Calendar, استراتژی محتوا, سازماندهی محتوا' canonical='https://asreseo.com/services/content/content-calendar' ogType='website' ogUrl='https://asreseo.com/services/content/content-calendar' ogImages={[{ url: 'https://asreseo.com/services/content/content-calendar' }, { url: '/og-content-calendar.jpg', width: 1200, height: 630, alt: 'تقویم محتوایی حرفه‌ای' }]} twitterCard='summary_large_image'
-  ogTitle='تقویم محتوایی | سازماندهی استراتژیک محتوا | عصر سئو'
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': faqs.map(f => ({
+    '@type': 'Question',
+    'name': f.question,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': f.answer
+    }
+  }))
+};
 
-  ogDescription='برنامه‌ریزی هوشمند محتوا برای انتشار منظم و افزایش تعامل.'
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
+    { '@type': 'ListItem', 'position': 2, 'name': 'خدمات محتوا', 'item': 'https://asreseo.com/services/content/' },
+    { '@type': 'ListItem', 'position': 3, 'name': 'تقویم محتوایی', 'item': 'https://asreseo.com/services/content/content-calendar/' }
+  ]
+};
+---
+<BaseLayout
+  title='تقویم محتوایی سایت و شبکه‌های اجتماعی | برنامه‌ریزی هوشمند محتوا | عصر سئو'
+  description='طراحی تقویم محتوایی سایت و شبکه‌های اجتماعی با اتوماسیون انتشار منظم. افزایش ۳۰۰٪ تعامل مخاطبان و سازماندهی تیم تولید محتوا با متدولوژی عصر سئو.'
+  keywords='تقویم محتوا, تقویم محتوایی سایت, تقویم محتوایی, اتوماسیون انتشار محتوا, برنامه‌ریزی محتوا, Content Calendar'
+  canonical='https://asreseo.com/services/content/content-calendar/'
+  ogType='website'
+  ogUrl='https://asreseo.com/services/content/content-calendar/'
+  ogImages={[{ url: "/images/content-calendar-hero.webp", width: 1200, height: 630, alt: "طراحی تقویم محتوایی سایت و شبکه‌های اجتماعی عصر سئو" }]}
+  twitterCard='summary_large_image'
 >
 <div class="min-h-screen bg-white">
-      <script
-        id="structured-data"
-        type="application/ld+json"
-        set:html={JSON.stringify(structuredData)}
-      />
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+      <script id="faq-data" type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+      <script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
       <Header />
 
@@ -281,7 +292,7 @@ const structuredData = {
                 </div>
               </div>
 
-              <div class="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
+              <div class="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
                 <div class="absolute inset-0 bg-linear-to-tr from-blue-600/10 to-transparent z-10" />
                 <Picture
                   src="/images/content-calendar-hero.webp"
@@ -294,6 +305,18 @@ const structuredData = {
                 />
               </div>
             </div>
+          </div>
+        </section>
+
+        <!-- AEO Direct Answer Section -->
+        <section class="py-10 bg-blue-50/60 border-y border-blue-100">
+          <div class="container-custom max-w-4xl text-right">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+              تقویم محتوایی سایت چیست و چگونه انتشار محتوا را منظم می‌کند؟
+            </h2>
+            <p class="text-base md:text-lg text-gray-700 leading-relaxed bg-white p-6 rounded-2xl shadow-xs border border-blue-100">
+              <strong>تقویم محتوایی سایت (Content Calendar)</strong> یک نقشه راه زمان‌بندی‌شده است که مشخص می‌کند چه موضوعاتی، در چه تاریخی، توسط چه نویسنده‌ای و با چه هدف سئو یا تبلیغاتی در وب‌سایت و شبکه‌های اجتماعی منتشر شوند. تدوین تقویم محتوا با ایجاد نظم انتشار منظم و اتصال به ابزارهای اتوماسیون، خطای انسانی و اتلاف وقت را تا ۶۰٪ کاهش داده و تضمین می‌کند تمام کلمات کلیدی خوشه‌های موضوعی سرچ کنسول گوگل به طور سیستماتیک پوشش داده شوند.
+            </p>
           </div>
         </section>
 

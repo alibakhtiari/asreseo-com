@@ -10,6 +10,10 @@ import CardTitle from '../../../../components/ui/card/CardTitle.astro';
 import Badge from '../../../../components/ui/badge/Badge.astro';
 import Picture from '../../../../components/ui/Picture.astro';
 import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 
 
 
@@ -240,82 +244,47 @@ const structuredData = {
   ];
 
   
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    { '@type': 'ListItem', 'position': 1, 'name': 'خانه', 'item': 'https://asreseo.com/' },
+    { '@type': 'ListItem', 'position': 2, 'name': 'خدمات وب', 'item': 'https://asreseo.com/services/web/' },
+    { '@type': 'ListItem', 'position': 3, 'name': 'بهینه‌سازی سرعت سایت', 'item': 'https://asreseo.com/services/web/website-speed/' }
+  ]
+};
+
 ---
-<BaseLayout title='بهینه‌سازی سرعت وب‌سایت | افزایش سرعت بارگذاری | Core Web Vitals | عصر سئو' description='بهینه‌سازی تخصصی سرعت وب‌سایت با زمان بارگذاری کمتر از ۲ ثانیه، بهبود Core Web Vitals و افزایش نرخ تبدیل Google PageSpeed Insights.' keywords='بهینه‌سازی سرعت سایت, افزایش سرعت وب‌سایت, Core Web Vitals, Page Speed, Lighthouse' canonical='https://asreseo.com/services/web/website-speed' ogType='website' ogUrl='https://asreseo.com/services/web/website-speed' ogImages={[{ url: 'https://asreseo.com/services/web/website-speed' }, { url: '/og-website-speed.jpg', width: 1200, height: 630, alt: 'بهینه‌سازی سرعت وب‌سایت حرفه‌ای' }]} twitterCard='summary_large_image'
+<BaseLayout title='بهینه‌سازی سرعت وب‌سایت | افزایش سرعت بارگذاری | Core Web Vitals | عصر سئو' description='بهینه‌سازی تخصصی سرعت وب‌سایت با زمان بارگذاری کمتر از ۲ ثانیه، بهبود Core Web Vitals و افزایش نرخ تبدیل Google PageSpeed Insights.' keywords='بهینه‌سازی سرعت سایت, افزایش سرعت وب‌سایت, Core Web Vitals, Page Speed, Lighthouse' canonical='https://asreseo.com/services/web/website-speed/' ogType='website' ogUrl='https://asreseo.com/services/web/website-speed/' ogImages={[{ url: "/images/website-speed-hero.webp", width: 1200, height: 630, alt: "بهینه‌سازی سرعت سایت | عصر سئو" }]} twitterCard='summary_large_image'
   ogTitle='بهینه‌سازی سرعت وب‌سایت | عصر سئو'
 
   ogDescription='افزایش سرعت بارگذاری وب‌سایت با استانداردهای گوگل.'
 >
 <div class="min-h-screen bg-white">
-      <script
-        id="structured-data" type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
 
       <Header />
+      <script id="breadcrumb-data" type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
       <main>
-        <!-- Hero Section -->
-        <section class="section-padding bg-linear-to-br from-green-50 to-emerald-50 overflow-hidden relative">
-          <div class="absolute top-0 right-0 w-1/3 h-full bg-green-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob"></div>
-          <div class="absolute bottom-0 left-0 w-1/3 h-full bg-emerald-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
+        <ServiceHero
+          badge="بهینه‌سازی سرعت حرفه‌ای"
+          title="بهینه‌سازی سرعت وب‌سایت"
+          titleHighlight="سرعت وب‌سایت"
+          description="سرعت بارگذاری کمتر از ۲ ثانیه با استانداردها گوگل PageSpeed Insights. بهبود Core Web Vitals و افزایش نرخ تبدیل بازدیدکنندگان در عصر سئو!"
+          primaryCtaText="تحلیل سریع سرعت سایت"
+          secondaryCtaText="ابزار تست سرعت رایگان"
+          imageSrc="/images/website-speed-hero.webp"
+          imageAlt="بهینه‌سازی سرعت وب‌سایت"
+          theme="green"
+        />
 
-          <div class="container-custom relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-              <div class="text-right animate-fade-in order-2 lg:order-1">
-                <Badge class="bg-green-100 text-green-700 mb-4 px-4 py-1 text-sm border-green-200">
-                  بهینه‌سازی سرعت حرفه‌ای
-                </Badge>
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  بهینه‌سازی <span class="gradient-text">سرعت وب‌سایت</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                  سرعت بارگذاری کمتر از ۲ ثانیه با استانداردها گوگل PageSpeed Insights. بهبود Core Web Vitals و افزایش نرخ تبدیل بازدیدکنندگان در عصر سئو!
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-start">
-                  <Button size="lg" class="gradient-bg text-white px-8 hover:shadow-lg hover:shadow-green-500/30 transition-all duration-300">
-                    تحلیل سریع سرعت سایت
-                  </Button>
-                  <Button variant="outline" size="lg" class="border-green-200 text-green-700 hover:bg-green-50">
-                    ابزار تست سرعت رایگان
-                  </Button>
-                </div>
-              </div>
-
-              <div class="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
-                <div class="absolute inset-0 bg-linear-to-tr from-green-600/10 to-transparent z-10" />
-                <Picture
-                  src="/images/website-speed-hero.webp"
-                  alt="بهینه‌سازی سرعت وب‌سایت"
-                 
-                 
-                  class="object-cover group-hover:scale-105 transition-transform duration-700"
-                  eager
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="section-padding bg-linear-to-r from-emerald-50 to-green-50">
-          <div class="container-custom">
-            <div class="grid md:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
-                <Card class="text-center border-0 bg-white/80 backdrop-blur-sm">
-                  <CardContent class="p-6">
-                    <Icon name={stat.icon} class="h-8 w-8 text-green-600 mx-auto mb-3" />
-                    <div class="text-3xl font-bold text-emerald-700 mb-2">
-                      {stat.metric}
-                    </div>
-                    <p class="text-gray-900 font-medium">
-                      {stat.label}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServiceStats
+          stats={stats}
+          gradientClass="bg-linear-to-r from-emerald-50 to-green-50"
+          metricColorClass="text-emerald-700"
+          iconColorClass="text-green-600"
+        />
 
         <!-- Speed Features Section -->
         <section class="section-padding">
@@ -566,56 +535,20 @@ const structuredData = {
           </div>
         </section>
 
-        <!-- FAQ Section -->
-        <section class="section-padding">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                سوالات <span class="gradient-text">متداول</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                پاسخ به پرسش‌های مشتریان درباره بهینه‌سازی سرعت
-              </p>
-            </div>
+        <ServiceFAQ
+          title="سوالات متداول"
+          highlightWord="متداول"
+          subtitle="پاسخ به پرسش‌های مشتریان درباره بهینه‌سازی سرعت"
+          faqs={faqs}
+        />
 
-            <div class="max-w-4xl mx-auto space-y-4">
-              {faqs.map((faq, index) => (
-                <Card class="hover:shadow-md transition-shadow">
-                  <CardHeader>
-                    <CardTitle class="text-lg text-right flex items-center gap-2">
-                      <span>{faq.question}</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p class="text-gray-600 text-right leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="section-padding bg-linear-to-br from-slate-900 to-slate-800 text-white">
-          <div class="container-custom text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">
-              سرعت سایت شما را همین الان ۲ برابر کنیم!
-            </h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
-              با بهینه‌سازی سرعت عصر سئو، مشتریان شما دیگر صبر نمی‌کنند. امتیاز ۱۰۰ PageSpeed، رتبه گوگل بالاتر و نرخ تبدیل بیشتر را همین امروز شروع کنید. مشاوره رایگان سرعت سایت دریافت کنید!
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" class="bg-green-600 hover:bg-green-700 text-white">
-                تحلیل رایگان سرعت
-              </Button>
-              <Button variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-slate-900">
-                شروع بهینه‌سازی سرعت
-              </Button>
-            </div>
-          </div>
-        </section>
+        <ServiceCTA
+          title="سرعت سایت شما را همین الان ۲ برابر کنیم!"
+          description="با بهینه‌سازی سرعت عصر سئو، مشتریان شما دیگر صبر نمی‌کنند. امتیاز ۱۰۰ PageSpeed، رتبه گوگل بالاتر و نرخ تبدیل بیشتر را همین امروز شروع کنید. مشاوره رایگان سرعت سایت دریافت کنید!"
+          primaryText="تحلیل رایگان سرعت"
+          secondaryText="شروع بهینه‌سازی سرعت"
+          primaryClass="bg-green-600 hover:bg-green-700 text-white"
+        />
       </main>
 
       <Footer />

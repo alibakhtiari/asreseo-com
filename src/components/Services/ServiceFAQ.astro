@@ -1,0 +1,100 @@
+---
+import Card from '../ui/card/Card.astro';
+import CardHeader from '../ui/card/CardHeader.astro';
+import CardTitle from '../ui/card/CardTitle.astro';
+import CardContent from '../ui/card/CardContent.astro';
+
+export interface FAQItem {
+  question?: string;
+  q?: string;
+  answer?: string;
+  a?: string;
+}
+
+export interface Props {
+  title?: string;
+  highlightWord?: string;
+  subtitle?: string;
+  faqs: FAQItem[];
+  includeSchema?: boolean;
+}
+
+const {
+  title = 'سوالات متداول',
+  highlightWord = 'متداول',
+  subtitle = 'پاسخ به پرسش‌های رایج مشتریان',
+  faqs = [],
+  includeSchema = true,
+} = Astro.props;
+
+const normalizedFaqs = faqs.map((f) => ({
+  question: f.question || f.q || '',
+  answer: f.answer || f.a || '',
+}));
+
+const faqSchema = includeSchema && normalizedFaqs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': normalizedFaqs.map((f) => ({
+    '@type': 'Question',
+    'name': f.question,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': f.answer,
+    },
+  })),
+} : null;
+
+let beforeHighlight = title;
+let afterHighlight = '';
+let hasHighlight = false;
+
+if (highlightWord && title.includes(highlightWord)) {
+  const parts = title.split(highlightWord);
+  beforeHighlight = parts[0];
+  afterHighlight = parts.slice(1).join(highlightWord);
+  hasHighlight = true;
+}
+---
+
+{faqSchema && (
+  <script id="faq-data" type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+)}
+
+<section class="section-padding">
+  <div class="container-custom">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6">
+        {hasHighlight ? (
+          <>
+            {beforeHighlight}<span class="gradient-text">{highlightWord}</span>{afterHighlight}
+          </>
+        ) : (
+          title
+        )}
+      </h2>
+      {subtitle && (
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          {subtitle}
+        </p>
+      )}
+    </div>
+
+    <div class="max-w-4xl mx-auto space-y-4">
+      {normalizedFaqs.map((faq) => (
+        <Card class="hover:shadow-md transition-shadow">
+          <CardHeader>
+            <CardTitle class="text-lg text-right flex items-center gap-2">
+              <span>{faq.question}</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p class="text-gray-600 text-right leading-relaxed">
+              {faq.answer}
+            </p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

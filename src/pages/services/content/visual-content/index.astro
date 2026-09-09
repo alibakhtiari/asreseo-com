@@ -2,14 +2,17 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Header from '../../../../components/Layout/Header.astro';
 import Footer from '../../../../components/Layout/Footer.astro';
-import Button from '../../../../components/ui/button/Button.astro';
 import Card from '../../../../components/ui/card/Card.astro';
 import CardContent from '../../../../components/ui/card/CardContent.astro';
 import CardHeader from '../../../../components/ui/card/CardHeader.astro';
 import CardTitle from '../../../../components/ui/card/CardTitle.astro';
 import Badge from '../../../../components/ui/badge/Badge.astro';
-import Picture from '../../../../components/ui/Picture.astro';
 import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
 
 
 
@@ -49,29 +52,8 @@ const structuredData = {
         }
       }
     ]
-  },
-  'faqSection': {
-    '@type': 'FAQPage',
-    'mainEntity': [
-      {
-        '@type': 'Question',
-        'name': 'چقدر زمان برای تولید هر پروژه نیاز است؟',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': 'بسته به پیچیدگی پروژه، گرافیک‌ها ۲-۵ روز و ویدیوهای پیشرفته ۱۰-۱۴ روز.'
-        }
-      },
-      {
-        '@type': 'Question',
-        'name': 'فرمت فایل‌های تحویلی چیست؟',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': 'تمام فرمت‌های سوشال مدیا، وب و پرینت با بالاترین کیفیت.'
-        }
-      }
-    ]
   }
-}
+};
 
 
 
@@ -320,83 +302,40 @@ const structuredData = {
     }
   ];
 
-  
 ---
-<BaseLayout title='محتوای تصویری و ویدیویی | طراحی گرافیک حرفه‌ای | افزایش نرخ تبدیل ۴۰۰% | عصر سئو' description='طراحی گرافیک و تولید محتوای بصری با ویدیو مارکتینگ، اینفوگرافیک انیمیشنی و عکاسی حرفه‌ای. افزایش نرخ تبدیل تا ۴۰۰% با محتوای جذاب و ویروسی.' keywords='محتوای تصویری, ویدیو مارکتینگ, طراحی گرافیک, اینفوگرافیک, موشن گرافیک, تولید محتوا' canonical='https://asreseo.com/services/content/visual-content' ogType='website' ogUrl='https://asreseo.com/services/content/visual-content' ogImages={[{ url: 'https://asreseo.com/services/content/visual-content' }, { url: '/og-visual-content.jpg', width: 1200, height: 630, alt: 'محتوای تصویری و ویدیویی حرفه‌ای' }]} twitterCard='summary_large_image'
+<BaseLayout title='محتوای تصویری و ویدیویی | طراحی گرافیک حرفه‌ای | افزایش نرخ تبدیل ۴۰۰% | عصر سئو' description='طراحی گرافیک و تولید محتوای بصری با ویدیو مارکتینگ، اینفوگرافیک انیمیشنی و عکاسی حرفه‌ای. افزایش نرخ تبدیل تا ۴۰۰% با محتوای جذاب و ویروسی.' keywords='محتوای تصویری, ویدیو مارکتینگ, طراحی گرافیک, اینفوگرافیک, موشن گرافیک, تولید محتوا' canonical='https://asreseo.com/services/content/visual-content/' ogType='website' ogUrl='https://asreseo.com/services/content/visual-content/' ogImages={[{ url: "/images/visual-content-hero.webp", width: 1200, height: 630, alt: "محتوای تصویری و ویدیویی | عصر سئو" }]} twitterCard='summary_large_image'
   ogTitle='محتوای تصویری و ویدیویی | عصر سئو'
 
   ogDescription='طراحی گرافیک و تولید ویدیو حرفه‌ای برای برند شما.'
 >
 <div class="min-h-screen bg-white">
-      <script
-        id="structured-data" type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
 
       <Header />
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'خانه', url: '/' },
+          { name: 'خدمات محتوا', url: '/services/content/' },
+          { name: 'محتوای تصویری و ویدیویی', url: '/services/content/visual-content/' }
+        ]}
+      />
 
       <main>
         <!-- Hero Section -->
-        <section class="section-padding bg-linear-to-br from-purple-50 to-pink-50 overflow-hidden relative">
-          <div class="absolute top-0 right-0 w-1/3 h-full bg-purple-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob"></div>
-          <div class="absolute bottom-0 left-0 w-1/3 h-full bg-pink-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
-
-          <div class="container-custom relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-              <div class="text-right animate-fade-in order-2 lg:order-1">
-                <Badge class="bg-purple-100 text-purple-700 mb-4 px-4 py-1 text-sm border-purple-200">
-                  تولید محتوای بصری حرفه‌ای
-                </Badge>
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  محتوای <span class="gradient-text">تصویری و ویدیویی</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                  قدرت دیداری برای برند شما! ویدیو مارکتینگ حرفه‌ای با افزایش نرخ تبدیل تا ۴۰۰% و محتوای گرافیکی که میلیون‌ها بار دیده می‌شود در عصر سئو.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-start">
-                  <Button size="lg" class="gradient-bg text-white px-8 hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300">
-                    سفارش محتوای بصری
-                  </Button>
-                  <Button variant="outline" size="lg" class="border-purple-200 text-purple-700 hover:bg-purple-50">
-                    مشاهده نمونه کارها
-                  </Button>
-                </div>
-              </div>
-
-              <div class="relative h-[350px] md:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
-                <div class="absolute inset-0 bg-linear-to-tr from-purple-600/10 to-transparent z-10" />
-                <Picture
-                  src="/images/visual-content-hero.webp"
-                  alt="محتوای تصویری و ویدیویی"
-                 
-                 
-                  class="object-cover group-hover:scale-105 transition-transform duration-700"
-                  eager
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <ServiceHero
+          badge="تولید محتوای بصری حرفه‌ای"
+          title="محتوای"
+          titleGradient="تصویری و ویدیویی"
+          description="قدرت دیداری برای برند شما! ویدیو مارکتینگ حرفه‌ای با افزایش نرخ تبدیل تا ۴۰۰% و محتوای گرافیکی که میلیون‌ها بار دیده می‌شود در عصر سئو."
+          primaryCta={{ text: "سفارش محتوای بصری" }}
+          secondaryCta={{ text: "مشاهده نمونه کارها" }}
+          imageSrc="/images/visual-content-hero.webp"
+          imageAlt="محتوای تصویری و ویدیویی"
+          theme="purple"
+        />
 
         <!-- Stats Section -->
-        <section class="section-padding bg-linear-to-r from-pink-50 to-purple-50">
-          <div class="container-custom">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
-                <Card class="text-center border-0 bg-white/80 backdrop-blur-sm">
-                  <CardContent class="p-6">
-                    <Icon name={stat.icon} class="h-8 w-8 text-purple-600 mx-auto mb-3" />
-                    <div class="text-3xl font-bold text-pink-700 mb-2">
-                      {stat.metric}
-                    </div>
-                    <p class="text-gray-900 font-medium">
-                      {stat.label}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServiceStats stats={stats} theme="purple" />
 
         <!-- Content Types Section -->
         <section class="section-padding">
@@ -627,55 +566,21 @@ const structuredData = {
         </section>
 
         <!-- FAQ Section -->
-        <section class="section-padding">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                سوالات <span class="gradient-text">متداول</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                پاسخ به پرسش‌های رایج مشتریان درباره محتوای بصری
-              </p>
-            </div>
-
-            <div class="max-w-4xl mx-auto space-y-4">
-              {faqs.map((faq, index) => (
-                <Card class="hover:shadow-md transition-shadow">
-                  <CardHeader>
-                    <CardTitle class="text-lg text-right flex items-center gap-2">
-                      <span>{faq.question}</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p class="text-gray-600 text-right leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServiceFAQ
+          title="سوالات"
+          titleGradient="متداول"
+          subtitle="پاسخ به پرسش‌های رایج مشتریان درباره محتوای بصری"
+          faqs={faqs}
+        />
 
         <!-- CTA Section -->
-        <section class="section-padding bg-linear-to-br from-slate-900 to-slate-800 text-white">
-          <div class="container-custom text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">
-              محتوای بصری برند شما را حرفه‌ای و جذاب کنیم!
-            </h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
-              عصر سئو با تجهیزات حرفه‌ای، تکنیک‌های روز دنیا و تیم تخصصی آماده ارائه خدمات گرافیک و تولید ویدیو به برند شماست. اولین پروژه خود را همین امروز شروع کنید و تفاوت را ببینید.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" class="bg-pink-600 hover:bg-pink-700 text-white">
-                سفارش محتوای بصری
-              </Button>
-              <Button variant="outline" size="lg" class="border-white text-white hover:bg-white hover:text-slate-900">
-                مشاوره رایگان طراحی
-              </Button>
-            </div>
-          </div>
-        </section>
+        <ServiceCTA
+          title="محتوای بصری برند شما را حرفه‌ای و جذاب کنیم!"
+          description="عصر سئو با تجهیزات حرفه‌ای، تکنیک‌های روز دنیا و تیم تخصصی آماده ارائه خدمات گرافیک و تولید ویدیو به برند شماست. اولین پروژه خود را همین امروز شروع کنید و تفاوت را ببینید."
+          primaryCta={{ text: "سفارش محتوای بصری" }}
+          secondaryCta={{ text: "مشاوره رایگان طراحی" }}
+          primaryClass="bg-pink-600 hover:bg-pink-700 text-white"
+        />
       </main>
 
       <Footer />
