@@ -12,6 +12,7 @@ export interface Props {
   loading?: 'eager' | 'lazy';
   decoding?: 'async' | 'sync' | 'auto';
   formats?: ('avif' | 'webp' | 'png' | 'jpeg')[];
+  aspectRatio?: string;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   loading,
   decoding = 'async',
   formats = ['avif', 'webp'],
+  aspectRatio,
 } = Astro.props as Props;
 
 // Eagerly glob all images in src/assets/images
@@ -55,6 +57,7 @@ if (typeof src === 'string') {
     class={className}
     loading={eager ? 'eager' : (loading ?? 'lazy')}
     decoding={decoding}
+    style={aspectRatio ? `aspect-ratio: ${aspectRatio}` : undefined}
   />
 ) : (
   <img
@@ -63,5 +66,6 @@ if (typeof src === 'string') {
     class={className}
     loading={eager ? 'eager' : (loading ?? 'lazy')}
     decoding={decoding}
+    style={aspectRatio ? `aspect-ratio: ${aspectRatio}` : undefined}
   />
 )}
