@@ -13,6 +13,7 @@ import ServiceStats from '../../../../components/Services/ServiceStats.astro';
 import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
 import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
 
 const structuredData = {
     '@context': 'https://schema.org',
@@ -328,32 +329,7 @@ const breadcrumbs = [
                     </div>
                 </section>
 
-                <!-- Benefits Section -->
-                <section class="section-padding bg-linear-to-br from-indigo-50 to-cyan-50">
-                    <div class="container-custom">
-                        <div class="text-center mb-12">
-                            <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                                چرا به تحلیل و استراتژی <span class="gradient-text">هوشمند</span> نیاز دارید؟
-                            </h2>
-                            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                                مزایای تصمیم‌گیری داده‌محور برای رشد پایدار
-                            </p>
-                        </div>
-
-                        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                            {benefits.map((benefit, index) => (
-                                <div class="flex items-start gap-4 p-6 bg-white/80 backdrop-blur-sm rounded-xl border border-white/50 hover:shadow-md transition-shadow">
-                                    <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center shrink-0">
-                                        <Icon name="check-circle" class="h-5 w-5 text-indigo-600" />
-                                    </div>
-                                    <span class="text-gray-900 font-medium leading-relaxed">
-                                        {benefit}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                      <ServiceBenefits title="چرا به تحلیل و استراتژی نیاز دارید؟" titleHighlight="هوشمند" subtitle="مزایای تصمیم‌گیری داده‌محور برای رشد پایدار" benefits={benefits} />
 
                 <!-- FAQ Section -->
                 <ServiceFAQ

@@ -13,6 +13,7 @@ import ServiceStats from '../../../../components/Services/ServiceStats.astro';
 import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
 import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
 
 const structuredData = {
     '@context': 'https://schema.org',
@@ -328,32 +329,7 @@ const breadcrumbs = [
                     </div>
                 </section>
 
-                <!-- Benefits Section -->
-                <section class="section-padding bg-linear-to-br from-indigo-50 to-purple-50">
-                    <div class="container-custom">
-                        <div class="text-center mb-12">
-                            <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                                مزایای یکپارچه‌سازی <span class="gradient-text">بازاریابی هوشمند</span>
-                            </h2>
-                            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                                چرا باید تمام ابزارهای بازاریابی خود را هوشمند و یکپارچه کنید؟
-                            </p>
-                        </div>
-
-                        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                            {benefits.map((benefit, index) => (
-                                <div class="flex items-start gap-4 p-6 bg-white/80 backdrop-blur-sm rounded-xl border border-white/50 hover:shadow-md transition-shadow">
-                                    <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center shrink-0">
-                                        <Icon name="check-circle" class="h-5 w-5 text-indigo-600" />
-                                    </div>
-                                    <span class="text-gray-900 font-medium leading-relaxed">
-                                        {benefit}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                      <ServiceBenefits title="مزایای یکپارچه‌سازی" titleHighlight="بازاریابی هوشمند" subtitle="چرا باید تمام ابزارهای بازاریابی خود را هوشمند و یکپارچه کنید؟" benefits={benefits} />
 
                 <!-- FAQ Section -->
                 <ServiceFAQ
