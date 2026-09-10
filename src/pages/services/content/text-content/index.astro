@@ -13,6 +13,8 @@ import ServiceStats from '../../../../components/Services/ServiceStats.astro';
 import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
 import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+import ServiceWorkflow from '../../../../components/Services/ServiceWorkflow.astro';
 
 
 
@@ -124,27 +126,27 @@ const structuredData = {
     {
       step: '1',
       title: 'بررسی نیاز و استراتژی',
-      description: 'تحلیل کلمات کلیدی، مخاطب هدف و اهداف محتوایی'
+      desc: 'تحلیل کلمات کلیدی، مخاطب هدف و اهداف محتوایی'
     },
     {
       step: '2',
       title: 'برنامه‌ریزی محتوا',
-      description: 'طراحی ساختار و نقشه محتوا برای هر صفحه'
+      desc: 'طراحی ساختار و نقشه محتوا برای هر صفحه'
     },
     {
       step: '3',
       title: 'تحقیق و نگارش',
-      description: 'جمع‌آوری اطلاعات و تولید محتوای اولیه'
+      desc: 'جمع‌آوری اطلاعات و تولید محتوای اولیه'
     },
     {
       step: '4',
       title: 'بهینه‌سازی و ویرایش',
-      description: 'بهینه‌سازی سئو، ویرایش محتوا و کنترل کیفیت'
+      desc: 'بهینه‌سازی سئو، ویرایش محتوا و کنترل کیفیت'
     },
     {
       step: '5',
       title: 'تحویل و پشتیبانی',
-      description: 'ارسال فایل نهایی و ارائه پشتیبانی پس از تولید'
+      desc: 'ارسال فایل نهایی و ارائه پشتیبانی پس از تولید'
     }
   ];
 
@@ -330,64 +332,9 @@ const structuredData = {
           </div>
         </section>
 
-        <!-- Benefits Section -->
-        <section class="section-padding bg-slate-50">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                مزایای تولید محتوا با <span class="gradient-text">عصر سئو</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                نتایج ملموس محتوای حرفه‌ای در رشد کسب‌وکار شما
-              </p>
-            </div>
+              <ServiceBenefits title="مزایای تولید محتوا با" titleHighlight="عصر سئو" subtitle="نتایج ملموس محتوای حرفه‌ای در رشد کسب‌وکار شما" benefits={benefits} />
 
-            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {benefits.map((benefit, index) => (
-                <div class="flex items-start gap-4 p-6 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-                  <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
-                    <Icon name="badge-check" class="h-5 w-5 text-green-600" />
-                  </div>
-                  <span class="text-gray-900 font-medium leading-relaxed">
-                    {benefit}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <!-- Process Section -->
-        <section class="section-padding bg-linear-to-br from-emerald-50 to-green-50">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                فرآیند <span class="gradient-text">تولید محتوا</span>
-              </h2>
-              <p class="text-xl text-gray-600">
-                رویکرد گام به گام برای تولید محتوای حرفه‌ای و نتیجه‌بخش
-              </p>
-            </div>
-
-            <div class="space-y-8">
-              {process.map((step, index) => (
-                <div class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs">
-                  <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-2xl font-bold text-green-700">
-                    {step.step}
-                  </div>
-                  <div class="flex-1">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                      {step.title}
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              <ServiceWorkflow title="فرآیند" titleHighlight="تولید محتوا" subtitle="رویکرد گام به گام برای تولید محتوای حرفه‌ای و نتیجه‌بخش" steps={process} bgGradient="section-padding bg-linear-to-br from-emerald-50 to-green-50" />
 
         <!-- FAQ Section -->
         <ServiceFAQ

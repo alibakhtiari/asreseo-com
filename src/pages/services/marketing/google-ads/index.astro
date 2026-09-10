@@ -14,6 +14,9 @@ import ServiceHero from '../../../../components/Services/ServiceHero.astro';
 import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
 import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+import ServiceWorkflow from '../../../../components/Services/ServiceWorkflow.astro';
 
 
 
@@ -228,26 +231,7 @@ const breadcrumbs = [
           theme="amber"
         />
 
-        <!-- Results Section -->
-        <section class="section-padding bg-linear-to-r from-orange-50 to-red-50">
-          <div class="container-custom">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {results.map((result, index) => (
-                <Card class="text-center border-0 bg-white/80 backdrop-blur-sm">
-                  <CardContent class="p-6">
-                    <Icon name={result.icon} class="h-8 w-8 text-orange-600 mx-auto mb-3" />
-                    <div class="text-3xl font-bold text-orange-700 mb-2">
-                      {result.metric}
-                    </div>
-                    <p class="text-gray-900 font-medium">
-                      {result.label}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServiceStats stats={results} gradientClass="section-padding bg-linear-to-r from-orange-50 to-red-50" metricColorClass="text-orange-700 mb-2" iconColorClass="h-8 w-8 text-orange-600 mx-auto mb-3" />
 
         <!-- Campaign Types Section -->
         <section class="section-padding">
@@ -358,64 +342,9 @@ const breadcrumbs = [
           </div>
         </section>
 
-        <!-- Benefits Section -->
-        <section class="section-padding bg-slate-50">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                مزایای تبلیغات گوگل ادز با <span class="gradient-text">عصر سئو</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                نتایج ملموس تبلیغات گوگل ادز در رشد سریع کسب‌وکار شما
-              </p>
-            </div>
+              <ServiceBenefits title="مزایای تبلیغات گوگل ادز با" titleHighlight="عصر سئو" subtitle="نتایج ملموس تبلیغات گوگل ادز در رشد سریع کسب‌وکار شما" benefits={benefits} />
 
-            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {benefits.map((benefit, index) => (
-                <div class="flex items-start gap-4 p-6 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-                  <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center shrink-0">
-                    <Icon name="trophy" class="h-5 w-5 text-red-600" />
-                  </div>
-                  <span class="text-gray-900 font-medium leading-relaxed">
-                    {benefit}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <!-- Process Section -->
-        <section class="section-padding bg-linear-to-br from-orange-50 to-red-50">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                فرآیند راه‌اندازی <span class="gradient-text">کمپین گوگل ادز</span>
-              </h2>
-              <p class="text-xl text-gray-600">
-                رویکرد علمی ۵ مرحله‌ای راه‌اندازی کمپین‌های تبلیغاتی موفق
-              </p>
-            </div>
-
-            <div class="space-y-8">
-              {processSteps.map((step, index) => (
-                <div class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs">
-                  <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center text-2xl font-bold text-red-700">
-                    {step.step}
-                  </div>
-                  <div class="flex-1">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                      {step.title}
-                    </h3>
-                    <p class="text-gray-600 leading-relaxed">
-                      {step.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              <ServiceWorkflow title="فرآیند راه‌اندازی" titleHighlight="کمپین گوگل ادز" subtitle="رویکرد علمی ۵ مرحله‌ای راه‌اندازی کمپین‌های تبلیغاتی موفق" steps={processSteps} bgGradient="section-padding bg-linear-to-br from-orange-50 to-red-50" />
 
         <ServiceFAQ
           title="سوالات متداول"
