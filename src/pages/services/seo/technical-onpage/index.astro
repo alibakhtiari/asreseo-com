@@ -11,6 +11,7 @@ import ServiceHero from '../../../../components/Services/ServiceHero.astro';
 import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
 import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
 
 
 
@@ -229,25 +230,7 @@ const breadcrumbs = [
                 />
 
                 <!-- Stats Section -->
-                <section class="section-padding bg-linear-to-r from-blue-50 to-cyan-50">
-                    <div class="container-custom">
-                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {stats.map((stat, index) => (
-                                <Card class="text-center border-0 bg-white/80 backdrop-blur-sm">
-                                    <CardContent class="p-6">
-                                        <Icon name={stat.icon} class="h-8 w-8 text-cyan-600 mx-auto mb-3" />
-                                        <div class="text-3xl font-bold text-cyan-700 mb-2">
-                                            {stat.metric}
-                                        </div>
-                                        <p class="text-gray-900 font-medium">
-                                            {stat.label}
-                                        </p>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                <ServiceStats stats={stats} gradientClass="section-padding bg-linear-to-r from-blue-50 to-cyan-50" metricColorClass="text-cyan-700 mb-2" iconColorClass="h-8 w-8 text-cyan-600 mx-auto mb-3" />
 
                 <!-- Technical Services Section -->
                 <section class="section-padding">

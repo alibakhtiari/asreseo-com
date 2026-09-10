@@ -12,6 +12,8 @@ import ServiceHero from '../../../../components/Services/ServiceHero.astro';
 import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
 import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
 
 
 
@@ -231,6 +233,12 @@ const breadcrumbs = [
     { position: 3, name: 'معماری تجربه کاربری UX', item: 'https://asreseo.com/services/web/ux-architecture/' },
   ];
 
+  const stats = [
+    { metric: '۲۵۰%', label: 'افزایش نرخ تبدیل' },
+    { metric: '۷۰%', label: 'کاهش نرخ خروج' },
+    { metric: '۶۰%', label: 'سرعت یافت اطلاعات' },
+    { metric: '۱۸۰%', label: 'افزایش رضایت' },
+  ];
 ---
 <BaseLayout title='طراحی تجربه کاربری UX | معماری اطلاعات | افزایش نرخ تبدیل ۲۵۰% | عصر سئو' description='طراحی UX پیشرفته و معماری اطلاعات بهینه برای وب‌سایت با افزایش نرخ تبدیل تا ۲۵۰% و بهبود تجربه کاربری.' keywords='تجربه کاربری UX, معماری اطلاعات, Information Architecture, UI/UX Design, نرخ تبدیل' canonical='https://asreseo.com/services/web/ux-architecture/' ogType='website' ogUrl='https://asreseo.com/services/web/ux-architecture/' ogImages={[{ url: "/images/ux-architecture-hero.webp", width: 1200, height: 630, alt: "معماری تجربه کاربری UX | عصر سئو" }]} twitterCard='summary_large_image'
   ogTitle='طراحی تجربه کاربری و معماری اطلاعات | عصر سئو'
@@ -256,29 +264,7 @@ const breadcrumbs = [
           theme="indigo"
         />
 
-        <!-- Stats Section -->
-        <section class="section-padding bg-linear-to-r from-purple-50 to-indigo-50">
-          <div class="container-custom">
-            <div class="grid md:grid-cols-4 gap-8">
-              <div class="text-center">
-                <div class="text-3xl font-bold text-indigo-600 mb-2">۲۵۰%</div>
-                <p class="text-gray-900">افزایش نرخ تبدیل</p>
-              </div>
-              <div class="text-center">
-                <div class="text-3xl font-bold text-purple-600 mb-2">۷۰%</div>
-                <p class="text-gray-900">کاهش نرخ خروج</p>
-              </div>
-              <div class="text-center">
-                <div class="text-3xl font-bold text-blue-600 mb-2">۶۰%</div>
-                <p class="text-gray-900">سرعت یافت اطلاعات</p>
-              </div>
-              <div class="text-center">
-                <div class="text-3xl font-bold text-pink-600 mb-2">۱۸۰%</div>
-                <p class="text-gray-900">افزایش رضایت</p>
-              </div>
-            </div>
-          </div>
-        </section>
+                <ServiceStats stats={stats} gradientClass="section-padding bg-linear-to-r from-purple-50 to-indigo-50" metricColorClass="text-indigo-600 mb-2" />
 
         <!-- Core Principles Section -->
         <section class="section-padding">
@@ -456,32 +442,7 @@ const breadcrumbs = [
           </div>
         </section>
 
-        <!-- Benefits Section -->
-        <section class="section-padding bg-linear-to-br from-purple-50 to-indigo-50">
-          <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                مزایای طراحی <span class="gradient-text">UX حرفه‌ای</span> عصر سئو
-              </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                آمارهای واقعی از بهبود پروژه‌های UX طراحی شده
-              </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {benefits.map((benefit, index) => (
-                <div class="flex items-start gap-4 p-6 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-                  <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center shrink-0">
-                    <Icon name="award" class="h-5 w-5 text-indigo-600" />
-                  </div>
-                  <span class="text-gray-900 font-medium leading-relaxed">
-                    {benefit}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              <ServiceBenefits title="مزایای طراحی عصر سئو" titleHighlight="UX حرفه‌ای" subtitle="آمارهای واقعی از بهبود پروژه‌های UX طراحی شده" benefits={benefits} />
 
         <!-- Workflow Section -->
         <section class="section-padding">
