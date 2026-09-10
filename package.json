@@ -3,11 +3,13 @@
   "private": true,
   "version": "1.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "npm run copy:images && astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "type-check": "astro check",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "copy:images": "node scripts/copy-images.mjs",
+    "prebuild": "npm run copy:images"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.0",
