@@ -10,11 +10,8 @@ import CardTitle from '../../../components/ui/card/CardTitle.astro';
 import Badge from '../../../components/ui/badge/Badge.astro';
 import Picture from '../../../components/ui/Picture.astro';
 import Icon from '../../../components/ui/Icon.astro';
-import Accordion from '../../../components/ui/Accordion.astro';
-import AccordionContent from '../../../components/ui/AccordionContent.astro';
-import AccordionItem from '../../../components/ui/AccordionItem.astro';
-import AccordionTrigger from '../../../components/ui/AccordionTrigger.astro';
 import BreadcrumbStructuredData from '../../../components/BreadcrumbStructuredData.astro';
+import ServiceFAQ from '../../../components/Services/ServiceFAQ.astro';
 
 const marketingServices = [
     {
@@ -100,18 +97,7 @@ const serviceSchema = {
     }
 };
 
-const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    'mainEntity': faqs.map(f => ({
-        '@type': 'Question',
-        'name': f.q,
-        'acceptedAnswer': {
-            '@type': 'Answer',
-            'text': f.a
-        }
-    }))
-};
+
 
 const breadcrumbs = [
     { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
@@ -130,7 +116,7 @@ const breadcrumbs = [
     twitterCard='summary_large_image'
 >
     <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)} />
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+    
     <BreadcrumbStructuredData items={breadcrumbs} />
 
     <div class="min-h-screen bg-white">
@@ -226,32 +212,7 @@ const breadcrumbs = [
                 </div>
             </section>
 
-            <!-- FAQ Section -->
-            <section class="section-padding bg-slate-50 border-t border-gray-100">
-                <div class="container-custom max-w-4xl">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            پرسش‌های متداول بازاریابی دیجیتال
-                        </h2>
-                        <p class="text-lg text-gray-600">
-                            پاسخ به سوالات رایج کارفرمایان درباره بودجه‌بندی تبلیغات، کانال‌های ورودی و نرخ بازگشت سرمایه
-                        </p>
-                    </div>
-
-                    <Accordion type="single" collapsible class="w-full" dir="rtl">
-                        {faqs.map((faq, index) => (
-                            <AccordionItem value={`item-${index}`} class="bg-white mb-3 rounded-xl border border-gray-200 px-4">
-                                <AccordionTrigger class="text-right text-lg font-medium text-gray-900 hover:text-blue-600">
-                                    {faq.q}
-                                </AccordionTrigger>
-                                <AccordionContent class="text-right text-gray-600 text-base leading-relaxed pt-2 pb-4">
-                                    {faq.a}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
-                    </Accordion>
-                </div>
-            </section>
+                  <ServiceFAQ title="پرسش‌های متداول بازاریابی دیجیتال" subtitle="پاسخ به سوالات رایج کارفرمایان درباره بودجه‌بندی تبلیغات، کانال‌های ورودی و نرخ بازگشت سرمایه" faqs={faqs} />
 
             <!-- CTA Section -->
             <section class="section-padding bg-linear-to-br from-blue-900 to-slate-900 text-white">
