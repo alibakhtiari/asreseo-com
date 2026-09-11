@@ -20,7 +20,7 @@ export const blogPosts = {
         excerpt: "آموزش گام به گام طراحی تقویم محتوا، انتخاب موضوعات پول‌ساز، زمان‌بندی انتشار و اتوماسیون انتشار محتوا برای رشد پایدار ترافیک و فروش.",
         description: "آموزش گام‌به‌گام تدوین تقویم محتوا با قالب آماده و مثال چهار هفته‌ای؛ زمان‌بندی انتشار، ابزار اتوماسیون و پاسخ سوالات متداول تقویم محتوایی.",
         author: "تیم محتوای عصر سئو",
-        date: "2024-11-22",
+        date: "2026-10-11",
         updated: "2026-10-11",
         readTime: "۱۲ دقیقه خواندن",
         tags: ["تقویم محتوا", "تقویم محتوایی سایت", "اتوماسیون انتشار محتوا", "استراتژی محتوا", "تولید محتوا"],
@@ -112,5 +112,6 @@ export function getBlogPost(slug: string) {
 }
 
 export function getAllBlogPosts() {
-    return Object.values(blogPosts)
+    return Object.values(blogPosts).sort((a: any, b: any) =>
+      String(b.date || '').localeCompare(String(a.date || '')))
 }
