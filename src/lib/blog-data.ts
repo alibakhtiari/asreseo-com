@@ -112,6 +112,6 @@ export function getBlogPost(slug: string) {
 }
 
 export function getAllBlogPosts() {
-    return Object.values(blogPosts).sort((a: any, b: any) =>
-      String(b.date || '').localeCompare(String(a.date || '')))
+    return Object.values(blogPosts).sort((a, b) =>
+      String((b as { date?: string }).date || '').localeCompare(String((a as { date?: string }).date || '')))
 }
