@@ -3,7 +3,7 @@
 // (required / pattern) plus Iranian mobile shape, then POSTs FormData.
 (function () {
   function statusEl(form) {
-    var el = form.querySelector('[data-form-status]');
+    let el = form.querySelector('[data-form-status]');
     if (!el) {
       el = document.createElement('p');
       el.setAttribute('data-form-status', '');
@@ -18,20 +18,20 @@
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
       if (!form.reportValidity()) return;
-      var phone = form.querySelector('input[name="phone"]');
-      var status = statusEl(form);
+      const phone = form.querySelector('input[name="phone"]');
+      const status = statusEl(form);
       if (phone && !/^09\d{9}$/.test(phone.value.replace(/[\s-]/g, ''))) {
         status.textContent = 'شماره موبایل معتبر نیست (مثال: 09123456789).';
         status.hidden = false;
         phone.focus();
         return;
       }
-      var btn = form.querySelector('[data-submit-btn]') || form.querySelector('button[type="submit"], button:not([type])');
-      var label = btn ? btn.innerHTML : '';
+      const btn = form.querySelector('[data-submit-btn]') || form.querySelector('button[type="submit"], button:not([type])');
+      const label = btn ? btn.innerHTML : '';
       if (btn) { btn.setAttribute('disabled', ''); btn.innerHTML = 'در حال ارسال…'; }
       status.hidden = true;
       try {
-        var res = await fetch(form.getAttribute('action') || '/api/send-email', {
+        const res = await fetch(form.getAttribute('action') || '/api/send-email', {
           method: 'post',
           body: new FormData(form),
         });
@@ -39,7 +39,7 @@
         status.textContent = 'درخواست شما با موفقیت ثبت شد. به‌زودی تماس می‌گیریم.';
         status.hidden = false;
         form.reset();
-      } catch (err) {
+      } catch {
         status.textContent = 'خطایی رخ داد. لطفاً دوباره تلاش کنید یا تماس بگیرید.';
         status.hidden = false;
       } finally {
