@@ -64,6 +64,7 @@
 ### 4.2. Content Calendar & Editorial Strategy Guide (راهنمای تدوین تقویم محتوایی)
 - **URL**: https://asreseo.com/blog/content-calendar-guide/
 - **Key Concepts**: طراحی گام به گام تقویم محتوا برای سایت و شبکه‌های اجتماعی، ماتریس زمان‌بندی انتشار، بازنشر محتوا در کانال‌های گوناگون و ابزارهای خودکارسازی انتشار (Content Automation).
+- **Updated**: 2026-10-11 — تعریف پاسخ‌اول تقویم محتوا، قالب آماده چهار هفته‌ای، ۶ پرسش متداول اسکیمادار، لینک خدمات [تقویم محتوایی سایت](https://asreseo.com/services/content/content-calendar/).
 
 ### 4.3. Page Authority & Link Equity Guide (راهنمای اعتبار صفحه و پیج اتوریتی)
 - **URL**: https://asreseo.com/blog/page-authority-guide/

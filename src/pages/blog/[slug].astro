@@ -42,6 +42,7 @@ const post = {
   category: meta.category ?? entry.data.category ?? '',
   author: meta.author ?? entry.data.author ?? '',
   date: meta.date ?? entry.data.date ?? '',
+  updated: meta.updated ?? entry.data.updated ?? '',
   readTime: meta.readTime ?? entry.data.readTime ?? '',
   image: meta.image ?? entry.data.image ?? '',
   featured: meta.featured ?? entry.data.featured ?? false,
@@ -61,6 +62,7 @@ const articleSchema = {
   description: post.description || post.excerpt,
   image: post.image ? [post.image] : undefined,
   datePublished: post.date || undefined,
+  dateModified: post.updated || post.date || undefined,
   author: post.author
     ? { '@type': 'Person', name: post.author }
     : { '@type': 'Organization', name: 'عصر سئو' },

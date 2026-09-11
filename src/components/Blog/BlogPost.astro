@@ -36,6 +36,7 @@ const jsonLdFAQ = {
       "name": post.author
     },
     "datePublished": post.date,
+    "dateModified": post.updated || post.date,
     "publisher": {
       "@type": "Organization",
       "name": "عصر سئو",
@@ -80,7 +81,9 @@ const jsonLdFAQ = {
                 <Icon name="clock" class="h-4 w-4" />
                 {post.readTime}
               </div>
-              <span>{new Date(post.date).toLocaleDateString('fa-IR')}</span>
+              <span>{new Date(post.date).toLocaleDateString('fa-IR')}</span>{post.updated && (
+                <span>به‌روزرسانی: {new Date(post.updated).toLocaleDateString('fa-IR')}</span>
+              )}
             </div>
             
             <div class="flex gap-2">
