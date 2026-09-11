@@ -17,42 +17,33 @@
 
 ## 2. Inventory baseline (what is already good — do not regress)
 
-- `src/layouts/BaseLayout.astro`: dynamic title/description/canonical/OG/Twitter present. `public/robots.txt` + sitemap-index + `llms.txt`/`llms-full.txt` present (GEO-ready). All 27 hero images in `public/images/*.webp`.
+- `src/layouts/BaseLayout.astro`: dynamic title/description/canonical/OG/Twitter present + font preload. `public/robots.txt` (incl. AI-crawler rules) + sitemap-index + `llms.txt`/`llms-full.txt` present (GEO-ready). Hero images single-sourced in `src/assets/images/`, generated to `public/images/` at prebuild.
 - Schemas on 30/39 pages. `ogImage` on 32/39. FAQPage present on money pages. Blog `[slug].astro` uses dynamic `seoTitle`/description/canonical/article OG (earlier "missing title" scanner hit was a false positive — it uses `title={seoTitle}`).
 - 7 blogs map 1:1 to GSC demand (`content-calendar-guide`, `page-authority-guide`, `seo-faq-guide`, `ai-seo-guide`).
 
 ## 3. P0 — this week (traffic + cannibalization + mobile)
 
 1. **Diagnose June→Sept collapse.** GSC: Performance chart, Pages delta, Indexing → Pages, Manual Actions, Security, robots diff, deploy log for title rewrites. Do not ship mass title changes until cause is known.
-2. **Break `/services/ai/` cannibalization.** It ranks for تقویم/اعتبار/سوالات/اتوماسیون terms it should not own. On `src/pages/services/ai/index.astro`: narrow copy to AI-service intent (چت‌بات فارسی، اتوماسیون سازمانی، تولید محتوای AI). Move تقویم/اعتبار/سوالات paragraphs into teaser + exact-anchor internal links to `…/content/content-calendar/`, `…/seo/content-authority/`, `/faq/`, `…/ai/content-creation/`.
-3. **Mobile gap.** Test top-5 URLs on mobile PageSpeed/CrUX; fix LCP image (`ai-service-hero.webp` preload + dimensions), Persian webfont `bold/regular.woff2` display=swap + subset, lazy below-fold images, tap targets in `Header/MegaMenu`.
-4. **Canonical duplication.** One canonical (trailing slash) for content-calendar; verify `sitemap-index.xml` lists canonical only; keep both sitemap lines in robots or drop `sitemap.xml` if redundant.
+2. **Mobile gap (partially done: font preload + Picture `aspectRatio` prop shipped).** Remaining: test top-5 URLs on mobile PageSpeed/CrUX; LCP image dimensions, `display=swap` + subset check, tap targets in `Header/MegaMenu`.
+3. **Canonical duplication.** One canonical (trailing slash) for content-calendar; verify `sitemap-index.xml` lists canonical only; keep both sitemap lines in robots or drop `sitemap.xml` if redundant.
 
-## 4. SEO titles (16 over 60 chars — shorten, front-load fa keyword, deduplicate)
-
-Scanner: 16/39 titles >60 chars. Persian SERP truncates ~55–60. Rewrite pattern: `{primary keyword} | {differentiator} | عصر سئو`.
-- `services/ai/index.astro` now `خدمات هوش مصنوعی و سئو | شرکت خدمات هوش مصنوعی | عصر سئو` (stuffed, 3× تکرار). → `خدمات هوش مصنوعی | اتوماسیون و سئو با AI | عصر سئو`.
-- `services/content/content-calendar/`, `services/seo/content-authority/`, `services/seo/local-seo/`, `services/seo/technical-onpage/`, `services/web/*` (4), `services/marketing/*` (4), `services/content/social-media-content/`, `services/content/visual-content/`, `services/index.astro` — apply same pattern; keep each unique; verify pixel width after rewrite.
+## 4. SEO titles (done — 0 over 60 chars; H1 check remains)
 - Homepage H1 lives in `src/components/Home/HeroSection.astro` (1× H1, good). Ensure H1 = primary keyword once; page files `index.astro`/`services/index.astro`/`blog/index.astro` rely on component H1 — audit rendered HTML for exactly one H1 per URL.
 
-## 5. Meta descriptions (6 thin, 0 bloated — good)
-
-- Thin (<100 chars): `consultation/` 72 · `portfolio/` 66 · `privacy/` 52 · `sitemap/` 86 · `support/` 87 · `terms/` 47. Expand transactional/support ones to 130–155 with CTA in Persian (`مشاوره رایگان`، `نمونه‌کارها`); legal pages to 120+ factual. `404` intentionally undescribed; `blog/[slug]` dynamic — no action.
+## 5. Meta descriptions (done — 0 thin; CTR tuning later)
 - Homepage + money pages are within length — only adjust for CTR after position improves (add عدد/مزیت/CTA, one keyword, no stuffing).
 
-## 6. Schemas (9 gaps)
-
-- Missing entirely: `blog/[slug]` + `blog/index` (add `BlogPosting` + author `Person` + `datePublished/dateModified` + `BreadcrumbList`; index gets `Blog`/`ItemList`), `consultation/` (`Service` + `FAQPage` 4 Qs: هزینه، مدت، قرارداد، فارسی), `portfolio/` (`ItemList` + `Review` if legit), `support/sitemap` (`WebPage` + breadcrumb), legal/404 low priority.
-- Existing FAQPage on service pages detected as single `Question` node count by scanner — verify rendered JSON-LD holds **6–8 Qs** per money page; add PAA-driven Qs from §8. `content-calendar` gets `HowTo` (steps + tools + time), `content-authority` gets `Table` + checklist in `Article` body, homepage keeps `Organization`/`WebSite` (+ `sameAs`, `inLanguage: fa-IR`).
+## 6. Schemas (page gaps filled; content-level schema remains)
+- Done: `BlogPosting` + `Speakable` on `blog/[slug]`, `Blog`/`ItemList` on `blog/index`, `Service` + `FAQPage` on `consultation/`, `ItemList` on `portfolio/`, `WebPage` + breadcrumbs on `support/`/`sitemap/`.
+- Open: verify rendered JSON-LD holds **6–8 Qs** per money page; add PAA-driven Qs from §8. `content-calendar` gets `HowTo` (steps + tools + time), `content-authority` gets `Table` + checklist in `Article` body, homepage keeps `Organization`/`WebSite` (+ `sameAs`, `inLanguage: fa-IR`).
 
 ## 7. Content / internal linking per GSC page
 
 - `…/content-calendar/` (110 impr, pos 63.7, 27KB but invisible): add 50-word answer-first definition at top, نمونه جدول تقویم (downloadable), steps 1–6, mistakes table, link **from** `/services/ai/` + `content-creation` + blog guide with anchor `تقویم محتوایی سایت`.
 - `…/content-authority/` (80 impr, pos 51.2): add PA vs DA vs DR comparison table, 15-step checklist, tools (Moz/Ahrefs/Semrush) with caveats, case snippet, FAQ 6 Qs (`اعتبار صفحه` exact), image `content-authority-hero.webp` + new checklist infographic with alt.
-- `/faq/` (25 impr, pos 40.2, nearest to page 4): expand to 24–30 Qs clustered (سئو عمومی، تکنیکال، محتوا، هزینه/مدت)، each answer 40–60 words + deep link to service/blog; keep single FAQPage; link from every service page footer block.
-- `/about/` pos 3.94 + `/` pos 4.37: impression-starved — add E-E-A-T (team, clients, numbers, نمونه‌کار), `AboutPage` + `Organization` sameAs (LinkedIn/Instagram), internal links to money pages.
+- `/faq/` (25 impr, pos 40.2 — expanded to 26 Qs, done). Remaining: deep links to service/blog per answer + links from every service page footer block.
+- `/about/` pos 3.94 + `/` pos 4.37: impression-starved — «شرکت خدمات هوش مصنوعی» positioning added to about hero (done). Remaining: E-E-A-T (team, clients, numbers, نمونه‌کار), `AboutPage` schema, internal links to money pages.
 - `…/seo/` pos 7.0 + `technical-onpage` pos 3.0: build hub (seo/index links to 3 children with descriptive anchors); technical page needs code/CLS/image examples to hold pos 3.
-- `/sitemap/` HTML page draws 9 impr — keep for users, de-emphasize in nav, `noindex` NOT recommended (it ranks pos 5.9); instead add crawl-path links.
 
 ## 8. Zero-click query → new FAQ/image/section map (AEO-first)
 
@@ -60,10 +51,10 @@ Each gets: 1 FAQ cluster (4–6 Qs, 40–60-word answers) + 1 image/infographic 
 - `خدمات استراتژی محتوا` 41/40.5 → owner `services/content/index.astro`: section "استراتژی محتوا شامل چه مواردی است؟" + process diagram image + FAQ.
 - `تقویم محتوا / تقویم محتوایی سایت` 35+20 → owner content-calendar: template table image (`content-calendar-template.webp`) + HowTo + FAQ.
 - `اعتبار صفحه` 18/63.7 → owner content-authority: PA-factor bar image + FAQ.
-- `سوالات متداول سئو` 17/57.2 → owner `/faq/` + `blog/seo-faq-guide.mdx`: 30-Q hub + jump links.
+- `سوالات متداول سئو` 17/57.2 → `/faq/` expanded to 26 Qs (done; `blog/seo-faq-guide.mdx` kept as companion, jump links still open).
 - `اتوماسیون انتشار محتوا` 16/59 + `اتوماسیون چرخه محتوا` 9/70.3 → **no dedicated page (gap)**: new section in `…/ai/content-creation/` (workflow: تولید→بازبینی→انتشار→توزیع) + workflow diagram + FAQ; becomes blog post #4 next month.
 - `خدمات سئو هوش مصنوعی` 10/65.2 → owner `/services/ai/` vs `/services/seo/` differentiator table (AI-assisted vs classic) + FAQ to stop intent blur.
-- `خدمات سوشال مدیا` pos 11 (nearest win) → 3 internal links with exact anchor to social-media-content page + FAQ on owner.
+- `خدمات سوشال مدیا` pos 11 (nearest win) → title rewritten with exact anchor (done). Remaining: 2 more internal links + FAQ on owner.
 
 ## 9. GEO / AEO pass (after user already did schemas/content)
 
