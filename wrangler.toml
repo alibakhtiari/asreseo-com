@@ -5,9 +5,11 @@ compatibility_flags = ["nodejs_compat"]
 
 [vars]
 # No secrets required: form mail uses the native send_email binding below.
-# Dashboard → Compute → Email Service → onboard asreseo.com, then attach
-# the EMAIL binding to this Pages project (Settings → Functions → Bindings).
 
+# NOTE: for Pages projects, bindings attach in the dashboard
+# (Settings → Functions → Bindings, per environment) — `wrangler pages
+# deploy` exposes no binding flags, so this stanza documents the binding
+# the code expects but does NOT attach it. Do not delete.
 send_email = [
   { name = "EMAIL" }
 ]
