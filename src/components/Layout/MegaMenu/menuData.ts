@@ -4,7 +4,7 @@ import type { MenuCategory } from './types';
 export const menuCategories: MenuCategory[] = [
   {
     title: 'خدمات سئو',
-    icon: '🔍',
+    icon: 'search',
     color: 'text-blue-600',
     items: [
       { title: 'سئو تکنیکال و داخلی', href: '/services/seo/technical-onpage/' },
@@ -14,7 +14,7 @@ export const menuCategories: MenuCategory[] = [
   },
   {
     title: 'طراحی و توسعه',
-    icon: '💻',
+    icon: 'code',
     color: 'text-purple-600',
     items: [
       { title: 'طراحی سایت سئو محور', href: '/services/web/seo-web-design/' },
@@ -25,7 +25,7 @@ export const menuCategories: MenuCategory[] = [
   },
   {
     title: 'بازاریابی دیجیتال',
-    icon: '📈',
+    icon: 'trending-up',
     color: 'text-green-600',
     items: [
       { title: 'تبلیغات گوگل', href: '/services/marketing/google-ads/' },
@@ -37,7 +37,7 @@ export const menuCategories: MenuCategory[] = [
   },
   {
     title: 'خدمات هوش مصنوعی',
-    icon: '🤖',
+    icon: 'bot',
     color: 'text-violet-600',
     items: [
       { title: 'تولید محتوای هوشمند', href: '/services/ai/content-creation/' },
