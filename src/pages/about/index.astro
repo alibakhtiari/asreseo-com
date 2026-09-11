@@ -4,6 +4,7 @@ import Picture from '../../components/ui/Picture.astro';
 import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
 import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+import PageHero from '../../components/ui/PageHero.astro';
 const aboutSchema = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
@@ -45,29 +46,12 @@ const breadcrumbs = [
       <Header />
       <main>
         <!-- Hero Section -->
-        <section class="relative py-16 md:py-20 overflow-hidden bg-gray-900">
-          <div class="absolute inset-0 z-0">
-            <Picture
-              src="/images/about-hero.webp"
-              alt="تیم عصر سئو"
-             
-             
-              class="object-cover opacity-40 blur-xs"
-              eager
-            />
-            <div class="absolute inset-0 bg-linear-to-b from-gray-900/60 via-gray-900/80 to-white" />
-          </div>
-          <div class="container-custom relative z-10 pt-12 md:pt-14">
-            <div class="text-center animate-fade-in mb-8">
-              <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
-                درباره <span class="text-primary-400">عصر سئو</span>
-              </h1>
-              <p class="text-xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-                ما تیمی از متخصصان باتجربه در حوزه دیجیتال مارکتینگ هستیم که با بهره‌گیری از جدیدترین تکنولوژی‌ها و هوش مصنوعی، کسب‌وکارها را به موفقیت می‌رسانیم. عصر سئو به‌عنوان شرکت خدمات هوش مصنوعی، اتوماسیون و سئو هوشمند را در کنار هم ارائه می‌دهد.
-              </p>
-            </div>
-          </div>
-        </section>
+<PageHero
+  title='درباره'
+  titleHighlight='عصر سئو'
+  description='ما تیمی از متخصصان باتجربه در حوزه دیجیتال مارکتینگ هستیم که با بهره‌گیری از جدیدترین تکنولوژی‌ها و هوش مصنوعی، کسب‌وکارها را به موفقیت می‌رسانیم. عصر سئو به‌عنوان شرکت خدمات هوش مصنوعی، اتوماسیون و سئو هوشمند را در کنار هم ارائه می‌دهد.'
+  theme='indigo'
+/>
 
         <div class="section-padding pt-0">
           <div class="container-custom">

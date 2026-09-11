@@ -1,19 +1,13 @@
 ---
 import Icon from '../ui/Icon.astro';
-import Picture from '../ui/Picture.astro';
 import Input from '../ui/input/Input.astro';
 ---
-<section class="section-padding bg-gray-900 relative overflow-hidden">
-      <div class="absolute inset-0 z-0">
-        <Picture
-          src="/images/blog-hero.webp"
-          alt="وبلاگ عصر سئو"
-         
-         
-          class="object-cover opacity-30 blur-xs"
-          eager
-        />
-        <div class="absolute inset-0 bg-linear-to-b from-gray-900/40 via-gray-900/80 to-background-50" />
+<section class="relative overflow-hidden bg-linear-to-b from-[#071a17] via-[#0b3b32] to-[#071a17]">
+      <div class="absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full blur-3xl bg-emerald-500/30"></div>
+        <div class="absolute -bottom-32 -left-24 h-[28rem] w-[28rem] rounded-full blur-3xl bg-teal-300/20"></div>
+        <div class="absolute inset-0 opacity-60" style="background-image: radial-gradient(rgba(255,255,255,0.13) 1px, transparent 1px); background-size: 22px 22px;"></div>
+        <div class="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black/40 to-transparent"></div>
       </div>
 
       <div class="container-custom relative z-10 pt-16 md:pt-20">
@@ -29,7 +23,7 @@ import Input from '../ui/input/Input.astro';
             <div class="relative">
               <Input
                 type="text"
-                placeholder="جستجو در مقالات..."
+                id="blog-search" role="searchbox" aria-label="جستجو در مقالات" placeholder="جستجو در مقالات..."
                 class="pl-12 pr-4 py-4 text-lg rounded-xl border-2 border-white/20 bg-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:border-primary-400 focus:bg-white/20 transition-all duration-300"
               />
               <Icon name="search" class="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
