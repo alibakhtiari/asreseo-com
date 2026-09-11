@@ -132,6 +132,7 @@ const isFresh = (p: any) => p.updated && p.updated !== p.date;
   const bar = document.querySelector('[data-category-filter]');
   const cards = Array.from(document.querySelectorAll('article[data-category]'));
   const empty = document.querySelector('[data-no-results]');
+  const search = document.getElementById('blog-search') as HTMLInputElement | null;
   const ACTIVE = ['bg-primary', 'text-white', 'border-primary'];
   const IDLE = ['border-gray-200', 'text-gray-600'];
   function paint(btn: Element) {
@@ -139,20 +140,33 @@ const isFresh = (p: any) => p.updated && p.updated !== p.date;
     btn.classList.remove(...(on ? IDLE : ACTIVE));
     btn.classList.add(...(on ? ACTIVE : IDLE));
   }
+  function activeFilter() {
+    return bar?.querySelector('[aria-pressed="true"]')?.getAttribute('data-filter') ?? 'all';
+  }
+  function norm(s: string | null | undefined) {
+    return (s ?? '').replace(/[\u200c\s]+/g, ' ').trim();
+  }
+  function apply() {
+    const f = activeFilter();
+    const q = norm(search?.value);
+    let visible = 0;
+    cards.forEach((c) => {
+      const el = c as HTMLElement;
+      const catOk = f === 'all' || c.getAttribute('data-category') === f;
+      const title = norm(c.querySelector('h3')?.textContent);
+      const qOk = !q || title.includes(q);
+      el.hidden = !(catOk && qOk);
+      if (catOk && qOk) visible += 1;
+    });
+    if (empty) (empty as HTMLElement).hidden = visible > 0;
+  }
   bar?.querySelectorAll('[data-filter]').forEach((btn) => {
     btn.addEventListener('click', () => {
       bar.querySelectorAll('[data-filter]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
       btn.setAttribute('aria-pressed', 'true');
       bar.querySelectorAll('[data-filter]').forEach(paint);
-      const f = btn.getAttribute('data-filter');
-      let visible = 0;
-      cards.forEach((c) => {
-        const el = c as HTMLElement;
-        const show = f === 'all' || c.getAttribute('data-category') === f;
-        el.hidden = !show;
-        if (show) visible += 1;
-      });
-      if (empty) (empty as HTMLElement).hidden = visible > 0;
+      apply();
     });
   });
+  search?.addEventListener('input', apply);
 </script>
