@@ -15,6 +15,15 @@ export interface ParsedSections {
   faqs: Faq[];
 }
 
+export function stripMd(s: string): string {
+  return s
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/(\*\*|__)(.*?)\1/g, '$2')
+    .replace(/^\s*[-*+>]\s+/gm, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 export function parseSections(raw: string): ParsedSections {
   let content = raw;
   const kt = content.match(/## نکات کلیدی\s*\n\n([\s\S]*?)\n\n##(?!#)/);
@@ -22,7 +31,7 @@ export function parseSections(raw: string): ParsedSections {
     ? kt[1]
         .split("\n")
         .filter((line) => line.startsWith("- "))
-        .map((line) => line.substring(2).trim())
+        .map((line) => stripMd(line.substring(2)))
     : [];
   if (kt) {
     content = content.replace(/## نکات کلیدی\s*\n\n[\s\S]*?\n\n##(?!#)/, "##");
@@ -40,11 +49,12 @@ export function parseSections(raw: string): ParsedSections {
         const question = trimmed.slice(3, firstNewline).trim();
         const answer = trimmed.slice(firstNewline + 1).trim();
         if (question && answer) {
-          faqs.push({ question, answer });
+          faqs.push({ question: stripMd(question), answer: stripMd(answer) });
         }
       }
     }
     content = content.replace(/## \u0633\u0648\u0627\u0644\u0627\u062a \u0645\u062a\u062f\u0627\u0648\u0644\s*\n\n[\s\S]*$/, "");
   }
+  content = content.replace(/## فهرست مطالب\s*\n\n[\s\S]*?\n\n##(?!#)/, '##');
   return { content, keyTakeaways, faqs };
 }

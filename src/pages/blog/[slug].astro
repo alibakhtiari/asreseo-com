@@ -28,8 +28,15 @@ const rawFile = readFileSync(
 );
 const rawBody = rawFile.replace(/^---[\s\S]*?---\n/, '');
 const { content, keyTakeaways, faqs } = parseSections(rawBody);
+const TOC_SKIP = ['فهرست مطالب', 'نکات کلیدی'];
+const faqAt = headings.findIndex((h: any) => h.text === 'سوالات متداول');
 const tableOfContents = headings
-  .filter((h: any) => h.depth === 2 || h.depth === 3)
+  .filter((h: any, i: number) => {
+    if (h.depth !== 2 && h.depth !== 3) return false;
+    if (TOC_SKIP.includes(h.text)) return false;
+    if (faqAt !== -1 && i > faqAt && h.depth === 3) return false;
+    return true;
+  })
   .map((h: any) => ({ id: h.slug, title: h.text, level: h.depth }));
 
 const slug = entry.id.replace(/\.mdx?$/, '');

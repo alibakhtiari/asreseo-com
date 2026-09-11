@@ -1,0 +1,109 @@
+---
+import Button from '../ui/button/Button.astro';
+
+export interface Props {
+  slug?: string;
+}
+
+interface Cta {
+  title: string;
+  desc: string;
+  primary: { text: string; href: string };
+  secondary?: { text: string; href: string };
+  theme: string;
+}
+
+const CTAS: Cta[] = [
+  {
+    title: 'مشاوره رایگان سئو می‌خواهید؟',
+    desc: 'وضعیت سایت شما را رایگان تحلیل می‌کنیم و نقشه راه رشد را در یک جلسه نیم‌ساعته ارائه می‌دهیم.',
+    primary: { text: 'رزرو مشاوره رایگان', href: '/consultation/' },
+    secondary: { text: 'مشاهده خدمات', href: '/services/' },
+    theme: 'from-indigo-600 to-purple-600',
+  },
+  {
+    title: 'کسب‌وکار شما به هوش مصنوعی نیاز دارد',
+    desc: 'چت‌بات فارسی، اتوماسیون سازمانی و تولید محتوای هوشمند؛ خدمات AI عصر سئو را ببینید.',
+    primary: { text: 'خدمات هوش مصنوعی', href: '/services/ai/' },
+    secondary: { text: 'مشاوره رایگان', href: '/consultation/' },
+    theme: 'from-purple-600 to-pink-600',
+  },
+  {
+    title: 'تقویم محتوایی حرفه‌ای می‌خواهید؟',
+    desc: 'تدوین تقویم یک‌ماهه سایت و شبکه‌های اجتماعی با موضوعات پول‌ساز و زمان‌بندی دقیق انتشار.',
+    primary: { text: 'سفارش تقویم محتوا', href: '/services/content/content-calendar/' },
+    secondary: { text: 'مشاوره رایگان', href: '/consultation/' },
+    theme: 'from-emerald-600 to-teal-600',
+  },
+  {
+    title: 'تولید محتوای سئومحور بدون دغدغه',
+    desc: 'مقاله، محتوای شبکه‌های اجتماعی و محتوای تصویری؛ همه با استراتژی و تقویم مشخص.',
+    primary: { text: 'خدمات تولید محتوا', href: '/services/content/' },
+    secondary: { text: 'مشاوره رایگان', href: '/consultation/' },
+    theme: 'from-teal-600 to-cyan-600',
+  },
+  {
+    title: 'کمپین گوگل ادز با بازگشت سرمایه بالا',
+    desc: 'مدیریت تخصصی تبلیغات گوگل با گزارش شفاف هفتگی و بهینه‌سازی مستمر هزینه هر کلیک.',
+    primary: { text: 'تبلیغات گوگل ادز', href: '/services/marketing/google-ads/' },
+    secondary: { text: 'مشاوره رایگان', href: '/consultation/' },
+    theme: 'from-amber-600 to-orange-600',
+  },
+  {
+    title: 'مشکل فنی سایت، رتبه شما را می‌خورد',
+    desc: 'ممیزی کامل سئو تکنیکال: سرعت، ایندکس، اسکیما و خطاهای خزش؛ با گزارش اولویت‌بندی‌شده.',
+    primary: { text: 'سئو تکنیکال', href: '/services/seo/technical-onpage/' },
+    secondary: { text: 'مشاوره رایگان', href: '/consultation/' },
+    theme: 'from-blue-600 to-indigo-600',
+  },
+  {
+    title: 'سایت سریع و سئومحور می‌خواهید؟',
+    desc: 'طراحی وب‌سایت فروشگاهی و شرکتی با معماری سئو از روز اول، نه وصله بعدی.',
+    primary: { text: 'طراحی سایت', href: '/services/web/' },
+    secondary: { text: 'مشاوره رایگان', href: '/consultation/' },
+    theme: 'from-cyan-600 to-blue-600',
+  },
+  {
+    title: 'پیج اینستاگرام فروشی بسازید',
+    desc: 'مدیریت شبکه‌های اجتماعی با تقویم محتوایی، طراحی پست و کمپین رشد فالوور واقعی.',
+    primary: { text: 'سوشال مدیا', href: '/services/marketing/social-media/' },
+    secondary: { text: 'مشاوره رایگان', href: '/consultation/' },
+    theme: 'from-pink-600 to-rose-600',
+  },
+  {
+    title: 'اعتبار صفحه شما چقدر است؟',
+    desc: 'ممیزی اعتبار دامنه و صفحه، تحلیل بک‌لینک‌ها و نقشه راه ۱۵ اقدام عملی برای افزایش PA.',
+    primary: { text: 'افزایش اعتبار صفحه', href: '/services/seo/content-authority/' },
+    secondary: { text: 'مشاوره رایگان', href: '/consultation/' },
+    theme: 'from-slate-700 to-slate-900',
+  },
+  {
+    title: 'ایمیل مارکتینگ با نرخ بازشدن بالا',
+    desc: 'کمپین‌های ایمیلی هدفمند، اتوماسیون خوش‌آمد و سبد رها شده برای فروش بیشتر.',
+    primary: { text: 'ایمیل مارکتینگ', href: '/services/marketing/email-marketing/' },
+    secondary: { text: 'مشاوره رایگان', href: '/consultation/' },
+    theme: 'from-orange-600 to-red-600',
+  },
+];
+
+const { slug = '' }: Props = Astro.props;
+let hash = 0;
+for (const ch of slug) hash = (hash * 31 + ch.charCodeAt(0)) % 1013;
+const cta = CTAS[hash % CTAS.length];
+---
+<aside class={`rounded-2xl bg-linear-to-l ${cta.theme} p-[1px] mb-12`}>
+  <div class="rounded-2xl bg-white/95 dark:bg-gray-900 px-6 py-8 sm:px-10 text-center">
+    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3">{cta.title}</h3>
+    <p class="text-gray-600 leading-relaxed mb-6 max-w-2xl mx-auto">{cta.desc}</p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href={cta.primary.href}>
+        <Button>{cta.primary.text}</Button>
+      </a>
+      {cta.secondary && (
+        <a href={cta.secondary.href}>
+          <Button variant="outline">{cta.secondary.text}</Button>
+        </a>
+      )}
+    </div>
+  </div>
+</aside>

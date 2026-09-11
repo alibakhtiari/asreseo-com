@@ -15,7 +15,12 @@ const { class: className, dir }: any = Astro.props;
 </div>
 <script>
   document.querySelectorAll('[data-accordion]').forEach((root) => {
-    const items = root.querySelectorAll('[data-acc-item]');
+    const items = root.querySelectorAll('[data-acc-item]')
+    items.forEach((item) => {
+      if (item.getAttribute('data-open') === 'true') {
+        item.querySelector('[data-acc-content]')?.removeAttribute('hidden');
+      }
+    });;
     items.forEach((item) => {
       const btn = item.querySelector('[data-acc-trigger]');
       const panel = item.querySelector('[data-acc-content]');
