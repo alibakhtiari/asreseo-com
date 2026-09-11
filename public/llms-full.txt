@@ -74,3 +74,7 @@
 - **URL**: https://asreseo.com/blog/seo-faq-guide/
 - **Key Concepts**: پاسخ‌های تخصصی به رایج‌ترین پرسش‌های مدیران پیرامون سئو تکنیکال، Core Web Vitals، بودجه‌بندی سئو، مدت‌زمان رتبه‌گیری، و سئو کلاه‌سفید در برابر ادعاهای دروغین سئو تضمینی.
 
+### 9. Portfolio — Real AI & Automation Case Studies (نمونه‌کارهای واقعی)
+- **URL**: https://asreseo.com/portfolio/
+- **Cases**: Persian RAG chatbot over Iranian statutes (qavanin/dotic/ara sources); AI call-center with VoIP transcription + smart forwarding; automated SEO monitoring with alerts; content pipeline automation; ads reporting automation.
+- **Key Concepts**: هر نمونه‌کار شامل چالش‌ها، اقدامات، فناوری‌ها و نتایج به‌همراه لینک خدمات مرتبط و اسکیمای ItemList.
