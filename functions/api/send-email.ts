@@ -1,6 +1,26 @@
-import { Resend } from 'resend';
+// Contact/consultation form endpoint (Cloudflare Pages Function).
+// Sends via the native Cloudflare Email Sending binding (no third party).
+// Required setup (dashboard, once):
+//   1. Compute → Email Service → onboard asreseo.com (applies SPF/DKIM/DMARC).
+//   2. Pages project → Settings → Functions → Bindings → send_email named EMAIL.
+//   3. wrangler.toml already declares: send_email = [{ name = "EMAIL" }].
 
-interface EmailEnv { RESEND_API_KEY: string }
+interface EmailBinding {
+  send(message: {
+    from: string;
+    to: string;
+    subject: string;
+    replyTo?: string;
+    text?: string;
+    html?: string;
+  }): Promise<unknown>;
+}
+
+interface EmailEnv { EMAIL: EmailBinding }
+
+const INBOX = 'info@asreseo.com';
+const FROM = 'website@asreseo.com';
+
 export const onRequestPost = async (context: { request: Request; env: EmailEnv }) => {
     const { request, env } = context;
 
@@ -19,11 +39,16 @@ export const onRequestPost = async (context: { request: Request; env: EmailEnv }
             });
         }
 
-        const resend = new Resend(env.RESEND_API_KEY);
+        if (!env.EMAIL) {
+            return new Response(JSON.stringify({ error: 'سرویس ایمیل پیکربندی نشده است.' }), {
+                status: 500,
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
 
-        const data = await resend.emails.send({
-            from: 'Asre SEO Contact Form <onboarding@resend.dev>',
-            to: ['info@asreseo.com'],
+        await env.EMAIL.send({
+            from: FROM,
+            to: INBOX,
             subject: `New Contact Form Submission from ${name}`,
             replyTo: email,
             text: `
@@ -44,20 +69,13 @@ export const onRequestPost = async (context: { request: Request; env: EmailEnv }
   `
         });
 
-        if (data.error) {
-            return new Response(JSON.stringify({ error: data.error.message }), {
-                status: 400,
-                headers: { 'Content-Type': 'application/json' }
-            });
-        }
-
         return new Response(JSON.stringify({ success: true }), {
             status: 200,
             headers: { 'Content-Type': 'application/json' }
         });
 
     } catch (error) {
-        return new Response(JSON.stringify({ error: (error instanceof Error ? error.message : String(error)) || 'Something went wrong' }), {
+        return new Response(JSON.stringify({ error: (error instanceof Error) ? error.message : 'خطای ناشناخته' }), {
             status: 500,
             headers: { 'Content-Type': 'application/json' }
         });

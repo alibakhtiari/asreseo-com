@@ -4,5 +4,10 @@ compatibility_date = "2025-12-18"
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
-# Environment variables will be managed in Cloudflare Dashboard, but defining here for reference
-# RESEND_API_KEY = ""
+# No secrets required: form mail uses the native send_email binding below.
+# Dashboard → Compute → Email Service → onboard asreseo.com, then attach
+# the EMAIL binding to this Pages project (Settings → Functions → Bindings).
+
+send_email = [
+  { name = "EMAIL" }
+]
