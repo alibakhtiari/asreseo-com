@@ -4,10 +4,25 @@ import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
 import Button from '../../components/ui/button/Button.astro';
 import Icon from '../../components/ui/Icon.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'پشتیبانی عصر سئو',
+  url: 'https://asreseo.com/support/',
+  inLanguage: 'fa-IR',
+};
+const breadcrumbs = [
+  { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+  { position: 2, name: 'پشتیبانی عصر سئو', item: 'https://asreseo.com/support/' },
+];
 ---
 <BaseLayout title='پشتیبانی | عصر سئو' description='پشتیبانی عصر سئو؛ پاسخگویی سریع از طریق تلگرام، ایمیل و تماس تلفنی شنبه تا چهارشنبه. مشکل خود را مطرح کنید.' canonical='https://asreseo.com/support/' ogType='website' twitterCard='summary_large_image'>
 <div class="min-h-screen bg-white">
             <Header />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
             <main class="section-padding pt-32">
                 <div class="container-custom">
                     <div class="text-center mb-16">

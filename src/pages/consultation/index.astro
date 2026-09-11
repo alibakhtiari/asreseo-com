@@ -4,10 +4,36 @@ import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
 import Button from '../../components/ui/button/Button.astro';
 import Icon from '../../components/ui/Icon.astro';
+
+const consultFaqs = [
+  { q: 'آیا جلسه مشاوره واقعاً رایگان است؟', a: 'بله؛ جلسه اول مشاوره عصر سئو کاملاً رایگان است و هیچ تعهدی برای ادامه همکاری ایجاد نمی‌کند.' },
+  { q: 'جلسه مشاوره چقدر طول می‌کشد؟', a: 'حدود نیم ساعت؛ در همین زمان وضعیت فعلی کسب‌وکار شما تحلیل و نقشه راه رشد ارائه می‌شود.' },
+  { q: 'در جلسه مشاوره چه چیزی دریافت می‌کنم؟', a: 'تحلیل وضعیت سایت و کانال‌های بازاریابی شما به‌همراه اولویت‌بندی اقدامات بعدی برای رشد.' },
+  { q: 'چگونه جلسه را رزرو کنم؟', a: 'فرم همین صفحه را تکمیل کنید تا برای هماهنگی زمان جلسه با شما تماس بگیریم.' },
+];
+const consultSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'مشاوره رایگان سئو و دیجیتال مارکتینگ',
+  provider: { '@type': 'Organization', name: 'عصر سئو', url: 'https://asreseo.com/' },
+  areaServed: 'IR',
+  inLanguage: 'fa-IR',
+};
+const consultFaqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: consultFaqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 <BaseLayout title='دریافت مشاوره رایگان | عصر سئو' description='رزرو مشاوره رایگان سئو و دیجیتال مارکتینگ؛ تحلیل وضعیت سایت شما و ارائه نقشه راه رشد در یک جلسه تخصصی. همین حالا درخواست خود را ثبت کنید.' canonical='https://asreseo.com/consultation/' ogType='website' twitterCard='summary_large_image'>
 <div class="min-h-screen bg-white">
             <Header />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(consultSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(consultFaqSchema)} />
             <main class="section-padding pt-32">
                 <div class="container-custom">
                     <div class="grid lg:grid-cols-2 gap-12 items-center">

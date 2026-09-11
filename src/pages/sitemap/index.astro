@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
 import { getCollection } from 'astro:content';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
 
 const posts = await getCollection('blog');
 
@@ -63,10 +64,24 @@ const sections = [
     }))
   }
 ];
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'نقشه سایت عصر سئو',
+  url: 'https://asreseo.com/sitemap/',
+  inLanguage: 'fa-IR',
+};
+const breadcrumbs = [
+  { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+  { position: 2, name: 'نقشه سایت عصر سئو', item: 'https://asreseo.com/sitemap/' },
+];
 ---
 <BaseLayout title='نقشه سایت | عصر سئو' description='نقشه کامل وب‌سایت عصر سئو؛ دسترسی سریع به تمام خدمات سئو، هوش مصنوعی، بازاریابی، طراحی وب و مقالات آموزشی.' canonical='https://asreseo.com/sitemap/' ogType='website' twitterCard='summary_large_image'>
 <div class="min-h-screen bg-white">
   <Header />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
   <main class="section-padding pt-32">
     <div class="container-custom max-w-5xl" dir="rtl">
       <h1 class="text-4xl font-bold mb-4 text-right text-gray-900">نقشه سایت</h1>

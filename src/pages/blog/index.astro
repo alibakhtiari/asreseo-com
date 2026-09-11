@@ -7,6 +7,20 @@ import BlogGrid from '../../components/Blog/BlogGrid.astro';
 import BlogHero from '../../components/Blog/BlogHero.astro';
 
 const posts: any[] = getAllBlogPosts();
+
+const blogListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'وبلاگ عصر سئو',
+  url: 'https://asreseo.com/blog/',
+  inLanguage: 'fa-IR',
+  blogPost: posts.map((p: any, i: number) => ({
+    '@type': 'BlogPosting',
+    position: i + 1,
+    headline: p.title,
+    url: `https://asreseo.com/blog/${p.slug}/`,
+  })),
+};
 ---
 <BaseLayout
   title='وبلاگ عصر سئو | آموزش دیجیتال مارکتینگ | مطالب آموزشی تخصصی'
@@ -22,6 +36,7 @@ const posts: any[] = getAllBlogPosts();
   ogImages={[{ url: '/images/blog-hero.webp', width: 1200, height: 630, alt: 'وبلاگ عصر سئو' }]}
 >
   <Header />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(blogListSchema)} />
   <main>
     <BlogHero />
     <div class="section-padding">

@@ -23,10 +23,24 @@ import Badge from '../../components/ui/badge/Badge.astro';
     ]
 
     
+
+const portfolioSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'نمونه‌کارهای عصر سئو',
+  inLanguage: 'fa-IR',
+  itemListElement: projects.map((p: any, i: number) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: p.title,
+    url: 'https://asreseo.com/portfolio/',
+  })),
+};
 ---
 <BaseLayout title='نمونه کارها | عصر سئو' description='نمونه‌کارهای عصر سئو در سئو، طراحی سایت و کمپین‌های تبلیغاتی را ببینید؛ پروژه‌هایی با رشد واقعی رتبه گوگل و افزایش فروش.' canonical='https://asreseo.com/portfolio/' ogType='website' twitterCard='summary_large_image'>
 <div class="min-h-screen bg-white">
             <Header />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(portfolioSchema)} />
             <main class="section-padding pt-32">
                 <div class="container-custom">
                     <div class="text-center mb-16">

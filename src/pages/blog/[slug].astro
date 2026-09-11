@@ -53,6 +53,26 @@ const post = {
 };
 
 const seoTitle = `${post.title} | عصر سئو`;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.description || post.excerpt,
+  image: post.image ? [post.image] : undefined,
+  datePublished: post.date || undefined,
+  author: post.author
+    ? { '@type': 'Person', name: post.author }
+    : { '@type': 'Organization', name: 'عصر سئو' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'عصر سئو',
+    logo: { '@type': 'ImageObject', url: 'https://asreseo.com/Logo-spaced.png' },
+  },
+  mainEntityOfPage: `https://asreseo.com/blog/${post.slug}/`,
+  inLanguage: 'fa-IR',
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.speakable-summary'] },
+};
 ---
 <BaseLayout
   title={seoTitle}
@@ -61,8 +81,10 @@ const seoTitle = `${post.title} | عصر سئو`;
   ogType="article"
   ogImages={[{ url: post.image, width: 1200, height: 630, alt: post.title }]}
   ogUrl={`https://asreseo.com/blog/${post.slug}/`}
+
 >
   <Header />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
   <main class="section-padding pt-32">
     <div class="container-custom">
       <nav class="mb-8 max-w-4xl mx-auto" aria-label="مسیر">
