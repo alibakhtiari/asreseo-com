@@ -15,6 +15,18 @@ import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
 import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
 
+// Tailwind scans source text, so a class built at runtime (`bg-${c}-100`) is
+// invisible to it — those colours only worked because some *other* file happened
+// to use them literally. Map them out explicitly. -800 (not -700) keeps the
+// label at 6.4:1 on the -100 background, comfortably past WCAG 1.4.3.
+const stageBadge: Record<string, string> = {
+  blue: 'bg-blue-100 text-blue-800',
+  green: 'bg-green-100 text-green-800',
+  yellow: 'bg-yellow-100 text-yellow-800',
+  orange: 'bg-orange-100 text-orange-800',
+  purple: 'bg-purple-100 text-purple-800',
+};
+
 
 
 
@@ -185,7 +197,7 @@ const structuredData = {
   ];
 
   const stats = [
-    { metric: '۲۵۰%', label: 'افزایش نرخ تبدیل', color: 'text-green-700', icon: "trending-up" },
+    { metric: '۲۵۰%', label: 'افزایش نرخ تبدیل', color: 'text-green-800', icon: "trending-up" },
     { metric: '۵۰%', label: 'کاهش cost acquisition', color: 'text-blue-600', icon: "dollar-sign" },
     { metric: '۱۰۰%', label: 'گزارش شفافیت', color: 'text-purple-600', icon: "bar-chart3" },
     { metric: '۲۴/۷', label: 'اتوماسیون کامل', color: 'text-orange-600', icon: "zap" }
@@ -303,7 +315,7 @@ const structuredData = {
                       <div class="flex-1">
                         <div class="flex items-center justify-between mb-2">
                           <h3 class="text-xl font-semibold text-gray-900">{stage.stage}</h3>
-                          <Badge class={`bg-${stage.color}-100 text-${stage.color}-700`}>{stage.percentage}</Badge>
+                          <Badge class={stageBadge[stage.color] ?? 'bg-gray-100 text-gray-800'}>{stage.percentage}</Badge>
                         </div>
                         <p class="text-gray-600 mb-3">{stage.description}</p>
                         <div class="flex flex-wrap gap-2">
@@ -386,7 +398,7 @@ const structuredData = {
                       </div>
                       <CardTitle class="text-xl font-semibold">{strategy.title}</CardTitle>
                     </div>
-                    <Badge class="mb-3 bg-green-100 text-green-700">{strategy.impact}</Badge>
+                    <Badge class="mb-3 bg-green-100 text-green-800">{strategy.impact}</Badge>
                   </CardHeader>
                   <CardContent>
                     <div class="space-y-1">

@@ -62,7 +62,7 @@ const jsonLdFAQ = {
               {post.category}
             </Badge>
             {post.featured && (
-              <Badge class="bg-green-100 text-green-700">
+              <Badge class="bg-green-100 text-green-800">
                 ویژه
               </Badge>
             )}
@@ -145,14 +145,18 @@ const jsonLdFAQ = {
         <!-- Key Takeaways -->
         {post.keyTakeaways && post.keyTakeaways.length > 0 && (
           <aside class="speakable-summary mb-8 rounded-xl border border-gray-200 bg-gray-50/70 px-5 py-5 sm:px-6">
-            <h3 class="font-bold text-base text-gray-900 mb-4 flex items-center gap-2">
-              <Icon name="check" class="h-5 w-5 text-green-700" />
+            <!-- h2, not h3: this aside sits directly under the article h1, and the
+                 MDX body's top-level sections are h2. Marking it h3 skipped a
+                 level and broke the document outline (affects screen-reader
+                 navigation). text-base keeps the visual size unchanged. -->
+            <h2 class="font-bold text-base text-gray-900 mb-4 flex items-center gap-2">
+              <Icon name="check" class="h-5 w-5 text-green-800" />
               نکات کلیدی
-            </h3>
+            </h2>
             <ul class="space-y-2.5">
               {post.keyTakeaways.map((takeaway: any) => (
                 <li class="flex items-start gap-2.5 text-sm leading-relaxed text-gray-700">
-                  <Icon name="check" class="h-4 w-4 text-green-700 shrink-0 mt-0.5" />
+                  <Icon name="check" class="h-4 w-4 text-green-800 shrink-0 mt-0.5" />
                   <span>{takeaway}</span>
                 </li>
               ))}

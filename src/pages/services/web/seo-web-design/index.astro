@@ -384,13 +384,13 @@ const breadcrumbs = [
                 <Card class="hover:shadow-lg transition-all duration-300">
                   <CardHeader>
                     <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                      <Icon name="trending-up" class="h-8 w-8 text-green-700" />
+                      <Icon name="trending-up" class="h-8 w-8 text-green-800" />
                     </div>
                     <CardTitle class="text-lg">{element.element}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p class="text-gray-600 mb-3">{element.description}</p>
-                    <Badge class="bg-green-100 text-green-700">{element.impact}</Badge>
+                    <Badge class="bg-green-100 text-green-800">{element.impact}</Badge>
                   </CardContent>
                 </Card>
               ))}
@@ -456,7 +456,7 @@ const breadcrumbs = [
                   {comparisonFeatures.map((comp, index) => (
                     <tr class="border-t border-gray-200">
                       <td class="px-6 py-4 font-medium">{comp.feature}</td>
-                      <td class="px-6 py-4 text-center bg-green-50 text-green-700 font-semibold">
+                      <td class="px-6 py-4 text-center bg-green-50 text-green-800 font-semibold">
                         {comp.seoDesign}
                       </td>
                       <td class="px-6 py-4 text-center bg-red-50 text-red-700">

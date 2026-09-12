@@ -40,7 +40,12 @@ export interface Testimonial {
   name: string;
   company: string;
   text: string;
-  /** Rendered as stars. Only shown when `verified` is true — see note above. */
+  /**
+   * Rendered as stars whenever present. NOT gated on `verified` today, so all
+   * six entries currently show 5 stars — see the note above. To withhold
+   * ratings until the data is confirmed, gate rendering on `verified` in both
+   * TestimonialsSection components (Home + Services).
+   */
   rating?: number;
   avatar: string;
   verified?: boolean;

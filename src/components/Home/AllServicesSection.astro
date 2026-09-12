@@ -124,10 +124,15 @@ import Icon from '../ui/Icon.astro';
                         <p class="text-sm text-gray-500 mb-4 leading-relaxed line-clamp-3">
                           {service.description}
                         </p>
+                        <!-- The whole card above is the <a>, so this must not be a
+                             <button> — nested interactive content is invalid and
+                             breaks keyboard/screen-reader navigation (WCAG 4.1.2).
+                             as="span" keeps the button look with no interactivity. -->
                         <Button
+                          as="span"
                           variant="ghost"
                           size="sm"
-                          class="w-full mt-auto text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 transition-colors duration-300"
+                          class="w-full mt-auto text-blue-600 bg-blue-50 group-hover:bg-blue-100 group-hover:text-blue-700 transition-colors duration-300"
                         >
                           مشاهده جزئیات
                         </Button>

@@ -1,30 +1,12 @@
 ---
+// Testimonials come from the single auditable source in src/lib/site-claims.ts.
+// This section previously declared its own three names («احمد محمدی»,
+// «فاطمه احمدی», «علی رضایی»), which meant the site named nine clients in total
+// while the audit only ever counted six — and those three bypassed the
+// `verified` flag entirely. See the header of site-claims.ts before editing.
+import { TESTIMONIALS, faNum } from '../../lib/site-claims';
 
-
-
-
-  const testimonials = [
-    {
-      name: 'احمد محمدی',
-      company: 'فروشگاه آنلاین رویا',
-      text: 'همکاری با عصر سئو نقطه عطفی در کسب‌وکار ما بود. ترافیک سایت ما ۴۰۰٪ افزایش یافت و فروش آنلاین‌مان به طور چشمگیری رشد کرد.',
-      avatar: '👨‍💼'
-    },
-    {
-      name: 'فاطمه احمدی',
-      company: 'کلینیک زیبایی نور',
-      text: 'تیم عصر سئو با حرفه‌ای‌ترین شیوه ممکن کلینیک ما را در گوگل به رتبه‌های اول رساند. اکنون مشتریان زیادی از طریق اینترنت پیدا می‌کنیم.',
-      avatar: '👩‍⚕️'
-    },
-    {
-      name: 'علی رضایی',
-      company: 'شرکت ساختمانی پارس',
-      text: 'مشاوره‌های عصر سئو بسیار ارزشمند بود. آن‌ها به ما کمک کردند تا استراتژی درستی برای حضور آنلاین‌مان تعریف کنیم.',
-      avatar: '👷‍♂️'
-    }
-  ];
-
-  
+const testimonials = TESTIMONIALS.slice(0, 3);
 ---
 <section class="section-padding">
       <div class="container-custom">
@@ -40,25 +22,35 @@
         <div class="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div class="bg-white p-8 rounded-xl shadow-xs border hover:shadow-md transition-shadow animate-fade-in">
-              <div class="flex items-center mb-6">
-                <div class="text-4xl ml-4">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="text-4xl" aria-hidden="true">
                   {testimonial.avatar}
                 </div>
                 <div>
-                  <h4 class="font-bold text-gray-900">{testimonial.name}</h4>
+                  <h3 class="font-bold text-gray-900">{testimonial.name}</h3>
                   <p class="text-sm text-gray-600">{testimonial.company}</p>
                 </div>
               </div>
-              
+
               <blockquote class="text-gray-700 leading-relaxed italic">
                 "{testimonial.text}"
               </blockquote>
-              
-              <div class="flex text-amber-600 mt-4">
-                {[...Array(5)].map((_, i) => (
-                  <span>⭐</span>
-                ))}
-              </div>
+
+              <!-- Rating. The stars are decorative: without role/aria-label a
+                   screen reader announces five separate "star" glyphs, so the
+                   wrapper exposes the value once, in Persian.
+                   NOTE: this renders whenever `rating` is set, NOT only when
+                   `verified` is true. All six entries are currently unverified
+                   and all carry rating 5 — see site-claims.ts. If you decide
+                   the ratings are placeholder data, gate this on
+                   `testimonial.verified` and they disappear site-wide. -->
+              {testimonial.rating && (
+                <div class="flex text-amber-600 mt-4" role="img" aria-label={`امتیاز ${faNum(testimonial.rating)} از ۵`}>
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <span aria-hidden="true">⭐</span>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

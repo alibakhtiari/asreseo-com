@@ -14,6 +14,16 @@ import ServiceHero from '../../../../components/Services/ServiceHero.astro';
 import ServiceStats from '../../../../components/Services/ServiceStats.astro';
 import ServiceWorkflow from '../../../../components/Services/ServiceWorkflow.astro';
 import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+// Tailwind only sees class names that literally appear in source, so a runtime
+// `bg-${color}-100` is invisible to it. Map them explicitly instead.
+const channelTile: Record<string, string> = {
+  blue: 'bg-blue-100', green: 'bg-green-100', purple: 'bg-purple-100', cyan: 'bg-cyan-100',
+};
+const channelTileHover: Record<string, string> = {
+  blue: 'group-hover:bg-blue-200', green: 'group-hover:bg-green-200',
+  purple: 'group-hover:bg-purple-200', cyan: 'group-hover:bg-cyan-200',
+};
 import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
 import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
@@ -103,7 +113,7 @@ const structuredData = {
   ];
 
   const stats = [
-    { metric: '۴۰۰%', label: 'افزایش آگاهی برند', color: 'text-green-700', icon: "target" },
+    { metric: '۴۰۰%', label: 'افزایش آگاهی برند', color: 'text-green-800', icon: "target" },
     { metric: '۶۰%', label: 'کاهش هزینه بازاریابی', color: 'text-blue-600', icon: "dollar-sign" },
     { metric: '۸+', label: 'کانال تبلیغاتی', color: 'text-purple-600', icon: "layers" },
     { metric: '۱۰۰%', label: 'گزارش دقیق عملکرد', color: 'text-orange-600', icon: "bar-chart3" }
@@ -277,7 +287,7 @@ const breadcrumbs = [
                 <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg">
                   <CardHeader class="pb-4">
                     <div class="flex items-center gap-3 mb-3">
-                      <div class={`w-12 h-12 bg-${channel.color}-100 rounded-lg flex items-center justify-center group-hover:bg-${channel.color}-200 transition-colors`}>
+                      <div class={`w-12 h-12 ${channelTile[channel.color] ?? 'bg-gray-100'} rounded-lg flex items-center justify-center ${channelTileHover[channel.color] ?? 'group-hover:bg-gray-200'} transition-colors`}>
                         <Icon name={channel.icon} class="h-6 w-6 text-gray-600" />
                       </div>
                       <CardTitle class="text-xl font-semibold">{channel.name}</CardTitle>

@@ -33,11 +33,16 @@ const buttonVariants = cva(
 // middle-click, crawler-followable) instead of invalid <a><button></a> nesting.
 // `type` defaults to "button" so a stray button can never submit a form by
 // accident; form submit buttons must pass type="submit" explicitly.
-const { class: className, variant, size, href, type, ...rest }: any = Astro.props;
+// `as="span"` renders the same visuals with no interactive element at all —
+// use it when the whole surrounding card is already the link, so you don't
+// ship invalid <a><button></a> nesting (WCAG 4.1.2).
+const { class: className, variant, size, href, type, as, ...rest }: any = Astro.props;
 const cls = cn(buttonVariants({ variant, size, className }));
 ---
 {href ? (
   <a href={href} class={cls} {...rest}><slot /></a>
+) : as === 'span' ? (
+  <span class={cls} {...rest}><slot /></span>
 ) : (
   <button type={type ?? 'button'} class={cls} {...rest}><slot /></button>
 )}

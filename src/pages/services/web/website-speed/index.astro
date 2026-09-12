@@ -279,7 +279,7 @@ const breadcrumbs = [
           stats={stats}
           gradientClass="bg-linear-to-r from-emerald-50 to-green-50"
           metricColorClass="text-emerald-700"
-          iconColorClass="text-green-700"
+          iconColorClass="text-green-800"
         />
 
         <!-- Speed Features Section -->
@@ -300,7 +300,7 @@ const breadcrumbs = [
                   <CardHeader class="pb-4">
                     <div class="flex items-center gap-3 mb-3">
                       <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
-                        <Icon name={feature.icon} class="h-6 w-6 text-green-700" />
+                        <Icon name={feature.icon} class="h-6 w-6 text-green-800" />
                       </div>
                       <CardTitle class="text-xl font-semibold">{feature.title}</CardTitle>
                     </div>
@@ -358,7 +358,7 @@ const breadcrumbs = [
                           </div>
                           <div class="flex justify-between items-center text-sm">
                             <span class="text-gray-500">هدف:</span>
-                            <Badge class="bg-green-100 text-green-700">{vital.target}</Badge>
+                            <Badge class="bg-green-100 text-green-800">{vital.target}</Badge>
                           </div>
                         </div>
                       </div>
@@ -428,10 +428,10 @@ const breadcrumbs = [
                         <div class="text-red-600 font-bold">قبل: {metric.before}</div>
                       </div>
                       <div class="text-center">
-                        <div class="text-green-700 font-bold">بعد: {metric.after}</div>
+                        <div class="text-green-800 font-bold">بعد: {metric.after}</div>
                       </div>
                     </div>
-                    <Badge class="bg-green-100 text-green-700 w-fit mx-auto">
+                    <Badge class="bg-green-100 text-green-800 w-fit mx-auto">
                       {metric.improvement}
                     </Badge>
                   </CardContent>
@@ -486,7 +486,7 @@ const breadcrumbs = [
             <div class="space-y-8">
               {workflowSteps.map((step, index) => (
                 <div class="flex items-center gap-8 p-6 bg-white rounded-xl shadow-xs">
-                  <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-2xl font-bold text-green-700">
+                  <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-2xl font-bold text-green-800">
                     {index + 1}
                   </div>
                   <div class="flex-1">

@@ -14,6 +14,23 @@ import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
 import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
 
+// Tailwind only sees class names that literally appear in source, so a runtime
+// `bg-${color}-100` is invisible to it. Map them explicitly instead. Icons use
+// -700 rather than -600 so they clear the 3:1 WCAG 1.4.11 floor on a -100 tile.
+const platformTile: Record<string, string> = {
+  pink: 'bg-pink-100', blue: 'bg-blue-100', cyan: 'bg-cyan-100',
+  red: 'bg-red-100', purple: 'bg-purple-100',
+};
+const platformTileHover: Record<string, string> = {
+  pink: 'group-hover:bg-pink-200', blue: 'group-hover:bg-blue-200',
+  cyan: 'group-hover:bg-cyan-200', red: 'group-hover:bg-red-200',
+  purple: 'group-hover:bg-purple-200',
+};
+const platformIcon: Record<string, string> = {
+  pink: 'text-pink-700', blue: 'text-blue-700', cyan: 'text-cyan-700',
+  red: 'text-red-700', purple: 'text-purple-700',
+};
+
 
 
 
@@ -266,8 +283,8 @@ const structuredData = {
                 <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg">
                   <CardHeader class="pb-4">
                     <div class="flex items-center gap-3 mb-3">
-                      <div class={`w-12 h-12 bg-${platform.color}-100 rounded-lg flex items-center justify-center group-hover:bg-${platform.color}-200 transition-colors`}>
-                        <Icon name={platform.icon} class={`h-6 w-6 text-${platform.color}-600`} />
+                      <div class={`w-12 h-12 ${platformTile[platform.color] ?? 'bg-gray-100'} rounded-lg flex items-center justify-center ${platformTileHover[platform.color] ?? 'group-hover:bg-gray-200'} transition-colors`}>
+                        <Icon name={platform.icon} class={`h-6 w-6 ${platformIcon[platform.color] ?? 'text-gray-600'}`} />
                       </div>
                       <CardTitle class="text-xl font-semibold">{platform.name}</CardTitle>
                     </div>
