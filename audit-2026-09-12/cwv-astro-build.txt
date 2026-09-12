@@ -1,0 +1,50 @@
+mobile 390x844 | 4x CPU | ~1.6 Mbps | cache disabled
+
+page                                    FCP     LCP     TBT    CLS     weight
+------------------------------------------------------------------------------------
+/                                       708    708      0  0.003    121 KB
+/about                                  848    956      0  0.000    121 KB
+/blog                                   864   1228      0  0.006    264 KB
+/blog/ai-seo-guide                      840   1624      0  0.001    177 KB
+/blog/content-calendar-guide            852   1368      0  0.001    153 KB
+/blog/digital-marketing-trends          848   1880      0  0.003    204 KB
+/blog/google-ads-guide                  856   1536      0  0.032    166 KB
+/blog/page-authority-guide              836   1152      0  0.044    143 KB
+/blog/seo-faq-guide                     844   1344      0  0.002    153 KB
+/blog/seo-guide                         848   1300      0  0.001    153 KB
+/consultation                           860    860      0  0.000    122 KB
+/contact                                856    972      0  0.000    121 KB
+/faq                                    848    848      0  0.001    121 KB
+/portfolio                              860   1528      0  0.002    177 KB
+/privacy                                856    856      0  0.000    137 KB
+/services                               872   1872      0  0.003    204 KB
+/services/ai                            868   1572      0  0.001    177 KB
+/services/ai/analysis-strategy          852   1588      0  0.003    177 KB
+/services/ai/content-creation           860   1512      0  0.003    166 KB
+/services/ai/marketing-engagement       872   1800      0  0.003    204 KB
+/services/content                       856   1476      0  0.038    166 KB
+/services/content/content-calendar      852   1540      0  0.001    166 KB
+/services/content/social-media-content  852   1832      0  0.003    204 KB
+/services/content/text-content          864   1488      0  0.003    166 KB
+/services/content/translation           856   1508      0  0.002    166 KB
+/services/content/visual-content        860   1304      0  0.001    156 KB
+/services/marketing                     872   1736      0  0.002    204 KB
+/services/marketing/email-marketing     868   1488      0  0.021    166 KB
+/services/marketing/google-ads          868   1500      0  0.002    166 KB
+/services/marketing/integrated-campaigns  868   1468      0  0.003    166 KB
+/services/marketing/sales-funnel-management  852   1496      0  0.002    166 KB
+/services/marketing/social-media        872   1856      0  0.003    204 KB
+/services/seo                          1500   1576      0  0.000    153 KB
+/services/seo/content-authority         860   1492      0  0.021    166 KB
+/services/seo/local-seo                 860   1416      0  0.002    168 KB
+/services/seo/technical-onpage          868   1256      0  0.002    153 KB
+/services/web                           868   1288      0  0.002    156 KB
+/services/web/landing-pages             864   1328      0  0.001    156 KB
+/services/web/seo-web-design            864   1324      0  0.019    156 KB
+/services/web/ux-architecture           868   1316      0  0.005    156 KB
+/services/web/website-speed             872   1320      0  0.002    156 KB
+/sitemap                                844    844      0  0.000    121 KB
+/support                                852    852      0  0.000    121 KB
+/terms                                  840    840      0  0.002    137 KB
+
+Thresholds (field, mobile): FCP good <1800ms | LCP good <2500ms | TBT good <200ms | CLS good <0.1
