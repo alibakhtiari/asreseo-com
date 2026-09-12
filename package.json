@@ -9,7 +9,8 @@
     "type-check": "astro check",
     "lint": "eslint .",
     "copy:images": "node scripts/copy-images.mjs",
-    "prebuild": "npm run copy:images"
+    "prebuild": "npm run copy:images",
+    "verify:deploy": "node scripts/verify-deploy.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.0",

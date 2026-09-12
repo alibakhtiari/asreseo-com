@@ -14,13 +14,34 @@ const { class: className, dir }: any = Astro.props;
   <slot />
 </div>
 <script>
+  // Page-level counter so generated ids stay unique across multiple accordions.
+  let uid = 0;
   document.querySelectorAll('[data-accordion]').forEach((root) => {
-    const items = root.querySelectorAll('[data-acc-item]')
+    const items = root.querySelectorAll('[data-acc-item]');
+
+    // Wire up the ARIA relationship: button <-> panel.
+    items.forEach((item) => {
+      const btn = item.querySelector('[data-acc-trigger]');
+      const panel = item.querySelector('[data-acc-content]');
+      if (!btn || !panel) return;
+      const n = ++uid;
+      if (!panel.id) panel.id = `acc-panel-${n}`;
+      if (!btn.id) btn.id = `acc-trigger-${n}`;
+      btn.setAttribute('aria-controls', panel.id);
+      panel.setAttribute('role', 'region');
+      panel.setAttribute('aria-labelledby', btn.id);
+      btn.setAttribute(
+        'aria-expanded',
+        item.getAttribute('data-open') === 'true' ? 'true' : 'false',
+      );
+    });
+
     items.forEach((item) => {
       if (item.getAttribute('data-open') === 'true') {
         item.querySelector('[data-acc-content]')?.removeAttribute('hidden');
       }
-    });;
+    });
+
     items.forEach((item) => {
       const btn = item.querySelector('[data-acc-trigger]');
       const panel = item.querySelector('[data-acc-content]');
@@ -29,10 +50,12 @@ const { class: className, dir }: any = Astro.props;
         items.forEach((o) => {
           o.setAttribute('data-open', 'false');
           o.querySelector('[data-acc-content]')?.setAttribute('hidden', '');
+          o.querySelector('[data-acc-trigger]')?.setAttribute('aria-expanded', 'false');
         });
         if (!isOpen) {
           item.setAttribute('data-open', 'true');
           panel?.removeAttribute('hidden');
+          btn.setAttribute('aria-expanded', 'true');
         }
       });
     });

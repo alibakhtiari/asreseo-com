@@ -184,7 +184,7 @@ const structuredData = {
       desc: 'تعریف ستون‌های محتوایی، توزیع پلتفرم‌ها و استراتژی زمانی'
     },
     {
-      step: 'ابعادگیری تقویم',
+      step: 'زمان‌بندی تقویم',
       desc: 'پردازش ماهانه، هفتگی و روزانه با تعیین مسئولین هر محتوا'
     },
     {
@@ -233,6 +233,26 @@ const breadcrumbs = [
   { position: 2, name: 'خدمات محتوا', item: 'https://asreseo.com/services/content/' },
   { position: 3, name: 'تقویم محتوایی', item: 'https://asreseo.com/services/content/content-calendar/' }
 ];
+
+// HowTo is generated from the SAME `workflowSteps` array that renders the
+// visible numbered section below, so the markup and the schema can never drift.
+// Step URLs point at real on-page anchors (#step-1 … #step-6).
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'فرآیند طراحی و اجرای تقویم محتوایی',
+  description:
+    'رویکرد ۶ مرحله‌ای عصر سئو برای تدوین، اجرا و بهینه‌سازی تقویم محتوایی سایت و شبکه‌های اجتماعی',
+  inLanguage: 'fa-IR',
+  totalTime: 'P30D',
+  step: workflowSteps.map((s, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: s.step,
+    text: s.desc,
+    url: `https://asreseo.com/services/content/content-calendar/#step-${i + 1}`,
+  })),
+};
 ---
 <BaseLayout
   title='تقویم محتوایی سایت و شبکه‌های اجتماعی | عصر سئو'
@@ -247,6 +267,7 @@ const breadcrumbs = [
 <div class="min-h-screen bg-white">
       <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
       <BreadcrumbStructuredData items={breadcrumbs} />
+      <script id="howto-structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(howToSchema)} />
 
       <Header />
 
@@ -257,8 +278,8 @@ const breadcrumbs = [
           title="تقویم"
           titleGradient="محتوایی"
           description="برنامه‌ریزی علمی انتشار محتوا برای رشد ۴۰۰% تعامل مخاطبان. سازماندهی هوشمند تیم محتوایی با ابزارهای پیشرفته عصر سئو و استراتژی‌های اثبات‌شده."
-          primaryCta={{ text: "طراحی تقویم محتوایی", href: "#" }}
-          secondaryCta={{ text: "نمونه تقویم‌ها را ببینید", href: "#" }}
+          primaryCta={{ text: "طراحی تقویم محتوایی", href: "/consultation/" }}
+          secondaryCta={{ text: "نمونه تقویم‌ها را ببینید", href: "/portfolio/" }}
           imageSrc="/images/content-calendar-hero.webp"
           imageAlt="تقویم محتوایی حرفه‌ای"
           theme="blue"
@@ -459,7 +480,7 @@ const breadcrumbs = [
 
             <div class="space-y-8">
               {workflowSteps.map((step, index) => (
-                <div class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs">
+                <div id={`step-${index + 1}`} class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs scroll-mt-24">
                   <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-2xl font-bold text-blue-700">
                     {index + 1}
                   </div>
@@ -489,8 +510,8 @@ const breadcrumbs = [
         <ServiceCTA
           title="تقویم محتوایی شما را همین امروز ساختارمند کنیم!"
           description="با تقویم محتوایی عصر سئو، پایان دهید به انتشارهای بی‌نظم و شتابزده. استراتژی علمی، ابزارهای پیشرفته و تیم متخصص در کنار شما برای تبدیل محتوا به دارایی استراتژیک کسب‌وکارتان."
-          primaryCta={{ text: "شروع طراحی تقویم محتوایی", href: "#" }}
-          secondaryCta={{ text: "مشاوره رایگان استراتژی محتوا", href: "#" }}
+          primaryCta={{ text: "شروع طراحی تقویم محتوایی", href: "/consultation/" }}
+          secondaryCta={{ text: "مشاوره رایگان استراتژی محتوا", href: "/consultation/" }}
           theme="blue"
         />
       </main>

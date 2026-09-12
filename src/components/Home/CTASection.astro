@@ -30,25 +30,18 @@ import Icon from '../ui/Icon.astro';
               </p>
 
               <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <a href="/contact/">
-                  <Button
-                    size="lg"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 text-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg w-full sm:w-auto"
-                  >
-                    <Icon name="calendar" class="h-5 w-5 mr-2" />
-                    رزرو جلسه مشاوره
-                  </Button>
-                </a>
-                <a href="tel:+989125811880" class="w-full sm:w-auto">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    class="border-2 border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-4 text-lg transition-all duration-200 font-semibold w-full"
-                  >
+                <Button
+                  href="/consultation/"
+                  size="lg"
+                  class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 text-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg w-full sm:w-auto"
+                >
+                  <Icon name="calendar" class="h-5 w-5 mr-2" />
+                  رزرو جلسه مشاوره
+                </Button>
+                <Button variant="outline" size="lg" class="border-2 border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-4 text-lg transition-all duration-200 font-semibold w-full w-full sm:w-auto" href="tel:+989125811880">
                     <Icon name="phone" class="h-5 w-5 mr-2" />
                     تماس فوری: ۰۹۱۲۵۸۱۱۸۸۰
                   </Button>
-                </a>
               </div>
 
               <!-- Quick contact options -->

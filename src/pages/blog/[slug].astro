@@ -4,10 +4,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
 import BlogPost from '../../components/Blog/BlogPost.astro';
-import { parseSections } from '../../lib/blog';
-import { getBlogPost } from '../../lib/blog-data';
-import { readFileSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -19,42 +15,43 @@ export async function getStaticPaths() {
 
 const { entry }: any = Astro.props;
 const { Content, headings } = await render(entry);
-const rawFile = readFileSync(
-  (() => {
-    const base = join(process.cwd(), 'src', 'content', 'blog', entry.id.replace(/\.mdx?$/, ''));
-    return existsSync(base + '.mdx') ? base + '.mdx' : base + '.md';
-  })(),
-  'utf8',
-);
-const rawBody = rawFile.replace(/^---[\s\S]*?---\n/, '');
-const { content, keyTakeaways, faqs } = parseSections(rawBody);
+// Key takeaways and FAQs live in frontmatter (see src/content.config.ts), so
+// BlogPost.astro is the only thing that renders them — no duplication.
+const keyTakeaways: string[] = entry.data.keyTakeaways ?? [];
+const faqs: { question: string; answer: string }[] = entry.data.faqs ?? [];
 const TOC_SKIP = ['فهرست مطالب', 'نکات کلیدی'];
-const faqAt = headings.findIndex((h: any) => h.text === 'سوالات متداول');
+// Exclude FAQ questions from the auto TOC by text (they're shown in the FAQ
+// accordion instead), rather than by position.
+const faqQuestions = new Set(
+  faqs.map((f: any) => String(f.question ?? '').trim()).filter(Boolean),
+);
 const tableOfContents = headings
-  .filter((h: any, i: number) => {
+  .filter((h: any) => {
     if (h.depth !== 2 && h.depth !== 3) return false;
     if (TOC_SKIP.includes(h.text)) return false;
-    if (faqAt !== -1 && i > faqAt && h.depth === 3) return false;
+    if (faqQuestions.has(String(h.text).trim())) return false;
     return true;
   })
   .map((h: any) => ({ id: h.slug, title: h.text, level: h.depth }));
 
+// MDX frontmatter is the single source of truth for post metadata.
+// (A legacy `lib/blog-data.ts` override table used to shadow these fields and
+// had drifted out of sync — different authors and dates. Removed.)
 const slug = entry.id.replace(/\.mdx?$/, '');
-const meta: any = getBlogPost(slug) ?? {};
+const d: any = entry.data;
 const post = {
   slug,
-  title: meta.title ?? entry.data.title,
-  excerpt: meta.excerpt ?? entry.data.excerpt ?? '',
-  description: meta.description ?? entry.data.description ?? entry.data.excerpt ?? '',
-  category: meta.category ?? entry.data.category ?? '',
-  author: meta.author ?? entry.data.author ?? '',
-  date: meta.date ?? entry.data.date ?? '',
-  updated: meta.updated ?? entry.data.updated ?? '',
-  readTime: meta.readTime ?? entry.data.readTime ?? '',
-  image: meta.image ?? entry.data.image ?? '',
-  featured: meta.featured ?? entry.data.featured ?? false,
-  tags: meta.tags ?? entry.data.tags ?? [],
-  content,
+  title: d.title,
+  excerpt: d.excerpt ?? '',
+  description: d.description ?? d.excerpt ?? '',
+  category: d.category ?? '',
+  author: d.author ?? '',
+  date: d.date ?? '',
+  updated: d.updated ?? '',
+  readTime: d.readTime ?? '',
+  image: d.image ?? '',
+  featured: d.featured ?? false,
+  tags: d.tags ?? [],
   keyTakeaways,
   faqs,
   tableOfContents,

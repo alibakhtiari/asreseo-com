@@ -1,6 +1,10 @@
 # Cloudflare Pages configuration for redirects
+# NOTE: the "!" forced-redirect suffix (301!) is NOT honoured on this
+# deployment — verified in production: /home and /blog/post/:slug returned 404
+# while every plain "301" rule resolved correctly. Plain 301 is safe here
+# because no static file exists at these paths.
 # /home -> / (redirect old React Router routes)
-/home / 301!
+/home / 301
 
 # Sitemap backward-compatibility redirect (Next.js -> Astro)
 /sitemap.xml /sitemap-index.xml 301
@@ -9,10 +13,21 @@
 /sw.js/ /sw.js 301
 
 # Blog post redirects for old React Router structure
-/blog/post/:slug /blog/:slug/ 301!
+/blog/post/:slug /blog/:slug/ 301
+
+# Evergreen blog slugs: the "-2024" suffix aged badly in the SERP now that the
+# content is genuinely current (1405 refresh). These three URLs are already
+# live and indexed, so they MUST keep resolving. Both slash variants are listed
+# because the legacy Next.js build served them with a trailing slash.
+/blog/seo-guide-2024 /blog/seo-guide/ 301
+/blog/seo-guide-2024/ /blog/seo-guide/ 301
+/blog/google-ads-guide-2024 /blog/google-ads-guide/ 301
+/blog/google-ads-guide-2024/ /blog/google-ads-guide/ 301
+/blog/digital-marketing-trends-2024 /blog/digital-marketing-trends/ 301
+/blog/digital-marketing-trends-2024/ /blog/digital-marketing-trends/ 301
 
 # API redirects (if any)
-# /api/old-endpoint /api/new-endpoint 301!
+# /api/old-endpoint /api/new-endpoint 301
 
 # AI Services Redirects (Merged Pages)
 /services/ai/auto-content-generation /services/ai/content-creation/ 301

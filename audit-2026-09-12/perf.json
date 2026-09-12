@@ -1,0 +1,449 @@
+[
+ {
+  "name": "local-home",
+  "url": "http://localhost:4321/",
+  "view": "desktop",
+  "ttfb": 55,
+  "domContentLoaded": 846,
+  "loadEvent": 846,
+  "fcp": 260,
+  "transferKB": 1986,
+  "decodedKB": 1978,
+  "htmlKB": 307,
+  "requests": 27,
+  "byType": {
+   "link": {
+    "n": 2,
+    "transfer": 51719,
+    "decoded": 51119
+   },
+   "script": {
+    "n": 22,
+    "transfer": 1899300,
+    "decoded": 1892700
+   },
+   "css": {
+    "n": 1,
+    "transfer": 51320,
+    "decoded": 51020
+   },
+   "other": {
+    "n": 2,
+    "transfer": 31537,
+    "decoded": 30937
+   }
+  },
+  "docHeight": 8694,
+  "imgCount": 0,
+  "imgNoAlt": 0,
+  "imgNoDims": 0,
+  "lazyImgs": 0,
+  "h1": 1,
+  "h2": 5,
+  "links": 73,
+  "buttons": 35,
+  "deadButtons": 7,
+  "inputs": 0,
+  "unlabeledInputs": 0,
+  "smallTapTargets": 3,
+  "fontCount": 2,
+  "scriptTags": 11,
+  "inlineScripts": 5,
+  "title": "آژانس دیجیتال مارکتینگ، خدمات سئو و هوش مصنوعی | عصر سئو",
+  "lang": "fa",
+  "dir": "rtl"
+ },
+ {
+  "name": "local-home-mobile",
+  "url": "http://localhost:4321/",
+  "view": "mobile",
+  "ttfb": 22,
+  "domContentLoaded": 1891,
+  "loadEvent": 1892,
+  "fcp": 1036,
+  "transferKB": 4,
+  "decodedKB": 1964,
+  "htmlKB": 307,
+  "requests": 26,
+  "byType": {
+   "link": {
+    "n": 2,
+    "transfer": 600,
+    "decoded": 51119
+   },
+   "script": {
+    "n": 22,
+    "transfer": 2400,
+    "decoded": 1892700
+   },
+   "css": {
+    "n": 1,
+    "transfer": 300,
+    "decoded": 51020
+   },
+   "other": {
+    "n": 1,
+    "transfer": 300,
+    "decoded": 15851
+   }
+  },
+  "docHeight": 16697,
+  "imgCount": 0,
+  "imgNoAlt": 0,
+  "imgNoDims": 0,
+  "lazyImgs": 0,
+  "h1": 1,
+  "h2": 5,
+  "links": 73,
+  "buttons": 35,
+  "deadButtons": 7,
+  "inputs": 0,
+  "unlabeledInputs": 0,
+  "smallTapTargets": 3,
+  "fontCount": 2,
+  "scriptTags": 11,
+  "inlineScripts": 5,
+  "title": "آژانس دیجیتال مارکتینگ، خدمات سئو و هوش مصنوعی | عصر سئو",
+  "lang": "fa",
+  "dir": "rtl"
+ },
+ {
+  "name": "live-home",
+  "url": "https://asreseo.com/",
+  "view": "desktop",
+  "ttfb": 610,
+  "domContentLoaded": 852,
+  "loadEvent": 1244,
+  "fcp": 928,
+  "transferKB": 365,
+  "decodedKB": 1043,
+  "htmlKB": 44,
+  "requests": 40,
+  "byType": {
+   "other": {
+    "n": 3,
+    "transfer": 7772,
+    "decoded": 31088
+   },
+   "link": {
+    "n": 3,
+    "transfer": 107800,
+    "decoded": 116166
+   },
+   "script": {
+    "n": 14,
+    "transfer": 199576,
+    "decoded": 643356
+   },
+   "fetch": {
+    "n": 20,
+    "transfer": 58360,
+    "decoded": 276967
+   }
+  },
+  "docHeight": 8694,
+  "imgCount": 0,
+  "imgNoAlt": 0,
+  "imgNoDims": 0,
+  "lazyImgs": 0,
+  "h1": 2,
+  "h2": 5,
+  "links": 48,
+  "buttons": 35,
+  "deadButtons": 8,
+  "inputs": 0,
+  "unlabeledInputs": 0,
+  "smallTapTargets": 3,
+  "fontCount": 2,
+  "scriptTags": 64,
+  "inlineScripts": 48,
+  "title": "عصر سئو | بهترین خدمات دیجیتال مارکتینگ، سئو و هوش مصنوعی در ایران",
+  "lang": "fa",
+  "dir": "rtl"
+ },
+ {
+  "name": "live-home-mobile",
+  "url": "https://asreseo.com/",
+  "view": "mobile",
+  "ttfb": 199,
+  "domContentLoaded": 516,
+  "loadEvent": 517,
+  "fcp": 388,
+  "transferKB": 2,
+  "decodedKB": 835,
+  "htmlKB": 44,
+  "requests": 20,
+  "byType": {
+   "other": {
+    "n": 2,
+    "transfer": 451,
+    "decoded": 16002
+   },
+   "link": {
+    "n": 3,
+    "transfer": 0,
+    "decoded": 116166
+   },
+   "script": {
+    "n": 10,
+    "transfer": 0,
+    "decoded": 510430
+   },
+   "fetch": {
+    "n": 5,
+    "transfer": 1500,
+    "decoded": 212460
+   }
+  },
+  "docHeight": 16697,
+  "imgCount": 0,
+  "imgNoAlt": 0,
+  "imgNoDims": 0,
+  "lazyImgs": 0,
+  "h1": 2,
+  "h2": 5,
+  "links": 48,
+  "buttons": 35,
+  "deadButtons": 8,
+  "inputs": 0,
+  "unlabeledInputs": 0,
+  "smallTapTargets": 3,
+  "fontCount": 2,
+  "scriptTags": 60,
+  "inlineScripts": 48,
+  "title": "عصر سئو | بهترین خدمات دیجیتال مارکتینگ، سئو و هوش مصنوعی در ایران",
+  "lang": "fa",
+  "dir": "rtl"
+ },
+ {
+  "name": "local-services-ai",
+  "url": "http://localhost:4321/services/ai/",
+  "view": "desktop",
+  "ttfb": 31,
+  "domContentLoaded": 281,
+  "loadEvent": 673,
+  "fcp": 212,
+  "transferKB": 38,
+  "decodedKB": 1998,
+  "htmlKB": 228,
+  "requests": 27,
+  "byType": {
+   "link": {
+    "n": 2,
+    "transfer": 600,
+    "decoded": 51119
+   },
+   "script": {
+    "n": 22,
+    "transfer": 2400,
+    "decoded": 1892700
+   },
+   "css": {
+    "n": 1,
+    "transfer": 300,
+    "decoded": 51020
+   },
+   "img": {
+    "n": 1,
+    "transfer": 35729,
+    "decoded": 35429
+   },
+   "other": {
+    "n": 1,
+    "transfer": 300,
+    "decoded": 15851
+   }
+  },
+  "docHeight": 5069,
+  "imgCount": 1,
+  "imgNoAlt": 0,
+  "imgNoDims": 0,
+  "lazyImgs": 0,
+  "h1": 1,
+  "h2": 6,
+  "links": 57,
+  "buttons": 9,
+  "deadButtons": 3,
+  "inputs": 0,
+  "unlabeledInputs": 0,
+  "smallTapTargets": 3,
+  "fontCount": 2,
+  "scriptTags": 11,
+  "inlineScripts": 5,
+  "title": "خدمات هوش مصنوعی | اتوماسیون و سئو با AI | عصر سئو",
+  "lang": "fa",
+  "dir": "rtl"
+ },
+ {
+  "name": "live-services-ai",
+  "url": "https://asreseo.com/services/ai/",
+  "view": "desktop",
+  "ttfb": 1897,
+  "domContentLoaded": 1927,
+  "loadEvent": 3569,
+  "fcp": 1952,
+  "transferKB": 75,
+  "decodedKB": 880,
+  "htmlKB": 33,
+  "requests": 30,
+  "byType": {
+   "other": {
+    "n": 2,
+    "transfer": 451,
+    "decoded": 16002
+   },
+   "link": {
+    "n": 3,
+    "transfer": 0,
+    "decoded": 116166
+   },
+   "script": {
+    "n": 12,
+    "transfer": 0,
+    "decoded": 596725
+   },
+   "img": {
+    "n": 1,
+    "transfer": 53584,
+    "decoded": 53284
+   },
+   "fetch": {
+    "n": 12,
+    "transfer": 22800,
+    "decoded": 119372
+   }
+  },
+  "docHeight": 2833,
+  "imgCount": 1,
+  "imgNoAlt": 0,
+  "imgNoDims": 1,
+  "lazyImgs": 0,
+  "h1": 2,
+  "h2": 3,
+  "links": 22,
+  "buttons": 9,
+  "deadButtons": 8,
+  "inputs": 0,
+  "unlabeledInputs": 0,
+  "smallTapTargets": 3,
+  "fontCount": 2,
+  "scriptTags": 36,
+  "inlineScripts": 22,
+  "title": "خدمات هوش مصنوعی | راه‌حل‌های AI برای کسب‌وکار شما",
+  "lang": "fa",
+  "dir": "rtl"
+ },
+ {
+  "name": "local-blog",
+  "url": "http://localhost:4321/blog/",
+  "view": "desktop",
+  "ttfb": 17,
+  "domContentLoaded": 318,
+  "loadEvent": 1197,
+  "fcp": 192,
+  "transferKB": 314,
+  "decodedKB": 2271,
+  "htmlKB": 239,
+  "requests": 34,
+  "byType": {
+   "link": {
+    "n": 2,
+    "transfer": 600,
+    "decoded": 51119
+   },
+   "script": {
+    "n": 23,
+    "transfer": 8279,
+    "decoded": 1898279
+   },
+   "css": {
+    "n": 1,
+    "transfer": 300,
+    "decoded": 51020
+   },
+   "img": {
+    "n": 7,
+    "transfer": 311756,
+    "decoded": 309656
+   },
+   "other": {
+    "n": 1,
+    "transfer": 300,
+    "decoded": 15851
+   }
+  },
+  "docHeight": 2221,
+  "imgCount": 7,
+  "imgNoAlt": 0,
+  "imgNoDims": 0,
+  "lazyImgs": 6,
+  "h1": 1,
+  "h2": 1,
+  "links": 68,
+  "buttons": 12,
+  "deadButtons": 9,
+  "inputs": 1,
+  "unlabeledInputs": 0,
+  "smallTapTargets": 10,
+  "fontCount": 2,
+  "scriptTags": 10,
+  "inlineScripts": 3,
+  "title": "وبلاگ عصر سئو | آموزش دیجیتال مارکتینگ | مطالب آموزشی تخصصی",
+  "lang": "fa",
+  "dir": "rtl"
+ },
+ {
+  "name": "local-about-mobile",
+  "url": "http://localhost:4321/about/",
+  "view": "mobile",
+  "ttfb": 75,
+  "domContentLoaded": 1334,
+  "loadEvent": 1334,
+  "fcp": 1000,
+  "transferKB": 4,
+  "decodedKB": 1964,
+  "htmlKB": 197,
+  "requests": 26,
+  "byType": {
+   "link": {
+    "n": 2,
+    "transfer": 600,
+    "decoded": 51119
+   },
+   "script": {
+    "n": 22,
+    "transfer": 2400,
+    "decoded": 1892700
+   },
+   "css": {
+    "n": 1,
+    "transfer": 300,
+    "decoded": 51020
+   },
+   "other": {
+    "n": 1,
+    "transfer": 300,
+    "decoded": 15851
+   }
+  },
+  "docHeight": 4482,
+  "imgCount": 0,
+  "imgNoAlt": 0,
+  "imgNoDims": 0,
+  "lazyImgs": 0,
+  "h1": 1,
+  "h2": 5,
+  "links": 49,
+  "buttons": 5,
+  "deadButtons": 3,
+  "inputs": 0,
+  "unlabeledInputs": 0,
+  "smallTapTargets": 3,
+  "fontCount": 2,
+  "scriptTags": 10,
+  "inlineScripts": 4,
+  "title": "درباره ما | آژانس دیجیتال مارکتینگ و سئو عصر سئو",
+  "lang": "fa",
+  "dir": "rtl"
+ }
+]

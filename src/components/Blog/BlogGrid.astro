@@ -63,12 +63,14 @@ const isFresh = (p: any) => p.updated && p.updated !== p.date;
                 </span>
                 <span>{new Date(featured.updated || featured.date).toLocaleDateString('fa-IR')}</span>
               </div>
-              <a href={`/blog/${featured.slug}/`}>
-                <Button variant="ghost" class="text-primary p-0 h-auto">
-                  ادامه مطلب
-                  <Icon name="arrow-left" class="h-4 w-4" />
-                </Button>
-              </a>
+              <!-- Button renders an anchor when given an href, so wrapping it
+                   in another anchor produced nested interactive content, which
+                   is invalid (WCAG 4.1.2). min-h-[24px] keeps the tap target
+                   at the WCAG 2.5.8 minimum. Do not re-add an anchor wrapper. -->
+              <Button href={`/blog/${featured.slug}/`} variant="ghost" class="text-primary p-0 h-auto min-h-[24px]">
+                ادامه مطلب
+                <Icon name="arrow-left" class="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </div>

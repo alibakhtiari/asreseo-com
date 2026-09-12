@@ -426,3 +426,29 @@
 /* Blog article typography (replaces ReactMarkdown h2/h3 component overrides) */
 .blog-body h2 { font-size: 1.5rem; line-height: 2rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; color: #111827; }
 .blog-body h3 { font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #111827; }
+
+/* Offset in-page anchors so headings are not hidden behind the fixed header. */
+html {
+  scroll-padding-top: 6rem;
+}
+
+/* Keyboard focus visibility (WCAG 2.4.7). Zero-specificity :where() so
+   component-level focus utilities can still override it. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Respect the OS "reduce motion" setting (WCAG 2.3.3). The site ships 11
+   keyframe animations (float, pulse-glow, glow, zoom-in, slide-in-up,
+   gradient, bounce) with no guard, which can trigger vestibular symptoms. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -115,7 +115,7 @@ import Button from '../ui/button/Button.astro';
                   ))}
                 </ul>
 
-                <Button class={`w-full ${plan.isPopular ? 'gradient-bg text-white' : 'bg-gray-900 text-white hover:bg-gray-800'} transition-all`}>
+                <Button href="/consultation/" class={`w-full ${plan.isPopular ? 'gradient-bg text-white' : 'bg-gray-900 text-white hover:bg-gray-800'} transition-all`}>
                   {plan.buttonText}
                 </Button>
               </CardContent>
@@ -127,7 +127,7 @@ import Button from '../ui/button/Button.astro';
           <p class="text-gray-600 mb-4">
             نیاز به پکیج سفارشی دارید؟
           </p>
-          <Button variant="outline" class="border-blue-500 text-blue-600 hover:bg-blue-50">
+          <Button href="/contact/" variant="outline" class="border-blue-500 text-blue-600 hover:bg-blue-50">
             درخواست پکیج سفارشی
           </Button>
         </div>

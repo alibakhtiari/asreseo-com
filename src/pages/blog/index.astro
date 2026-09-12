@@ -1,12 +1,15 @@
 ---
-import { getAllBlogPosts } from '../../lib/blog-data';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
 import BlogGrid from '../../components/Blog/BlogGrid.astro';
 import BlogHero from '../../components/Blog/BlogHero.astro';
 
-const posts: any[] = getAllBlogPosts();
+// MDX frontmatter is the single source of truth (see src/content/blog/*.mdx).
+const posts: any[] = (await getCollection('blog'))
+  .map((e: any) => ({ ...e.data, slug: e.id.replace(/\.mdx?$/, '') }))
+  .sort((a: any, b: any) => String(b.date ?? '').localeCompare(String(a.date ?? '')));
 
 const blogListSchema = {
   '@context': 'https://schema.org',
@@ -14,12 +17,24 @@ const blogListSchema = {
   name: 'وبلاگ عصر سئو',
   url: 'https://asreseo.com/blog/',
   inLanguage: 'fa-IR',
-  blogPost: posts.map((p: any, i: number) => ({
-    '@type': 'BlogPosting',
-    position: i + 1,
-    headline: p.title,
-    url: `https://asreseo.com/blog/${p.slug}/`,
-  })),
+  // datePublished / author / image are required by Google's BlogPosting
+  // guidelines — they were dropped when this page moved off the legacy
+  // blog-data.ts override table, so they are read straight from frontmatter.
+  blogPost: posts.map((p: any, i: number) => {
+    const node: Record<string, unknown> = {
+      '@type': 'BlogPosting',
+      position: i + 1,
+      headline: p.title,
+      description: p.description ?? p.excerpt,
+      url: `https://asreseo.com/blog/${p.slug}/`,
+      inLanguage: 'fa-IR',
+    };
+    if (p.date) node.datePublished = p.date;
+    if (p.updated ?? p.date) node.dateModified = p.updated ?? p.date;
+    if (p.author) node.author = { '@type': 'Person', name: p.author };
+    if (p.image) node.image = new URL(p.image, 'https://asreseo.com').href;
+    return node;
+  }),
 };
 ---
 <BaseLayout

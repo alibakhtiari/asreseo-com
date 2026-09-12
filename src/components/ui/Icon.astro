@@ -35,10 +35,19 @@ try {
 } catch {
   svg = '';
 }
-// Normalize: keep paths, move presentation to the host class list.
-svg = svg
-  .replace('<svg', `<svg class="${className}" aria-hidden="true"`)
-  .replace(/width="[^"]*"/, '')
-  .replace(/height="[^"]*"/, '');
+// Normalize the root <svg>: merge our sizing classes INTO the icon's existing
+// class attribute instead of emitting a second `class="..."`. Lucide icons
+// ship `class="lucide lucide-<name>"`, so the old approach produced
+// `<svg class="h-5 w-5" aria-hidden="true" class="lucide lucide-play" ...>` —
+// invalid HTML where browsers silently drop the lucide classes.
+svg = svg.replace(/<svg\b[^>]*>/, (tag) => {
+  let t = tag
+    .replace(/\s+class="([^"]*)"/, (_m, existing) => ` class="${className} ${existing}"`)
+    .replace(/\s+aria-hidden="[^"]*"/, '')
+    .replace(/\s+width="[^"]*"/, '')
+    .replace(/\s+height="[^"]*"/, '');
+  if (!/\sclass="/.test(t)) t = t.replace('<svg', `<svg class="${className}"`);
+  return t.replace('<svg', '<svg aria-hidden="true"');
+});
 ---
 <Fragment set:html={svg} />

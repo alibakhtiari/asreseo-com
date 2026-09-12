@@ -2,55 +2,15 @@
 import Card from '../ui/card/Card.astro';
 import CardContent from '../ui/card/CardContent.astro';
 import Icon from '../ui/Icon.astro';
+import { TESTIMONIALS, HEADLINE_STATS, faNum } from '../../lib/site-claims';
 
-
-
-  const testimonials = [
-    {
-      name: 'علی محمدی',
-      company: 'شرکت تجارت آنلاین پارس',
-      text: 'با خدمات عصر سئو، رتبه سایت ما در گوگل بطور چشمگیری بهبود یافت. فروش آنلاین ما ۳۰۰٪ افزایش پیدا کرد.',
-      rating: 5,
-      avatar: '👨‍💼'
-    },
-    {
-      name: 'مریم احمدی',
-      company: 'فروشگاه مد زنانه شیک',
-      text: 'طراحی سایت جدید ما فوق‌العاده شد. سرعت سایت بالا رفت و تجربه کاربری بهتر شد. مشتریان راضی‌تر هستند.',
-      rating: 5,
-      avatar: '👩‍💼'
-    },
-    {
-      name: 'رضا کریمی',
-      company: 'شرکت ساختمانی کوثر',
-      text: 'کمپین تبلیغات گوگل آنها عالی بود. سرنخ‌های کیفی زیادی دریافت کردیم و پروژه‌های جدید زیادی گرفتیم.',
-      rating: 5,
-      avatar: '👨‍🏗️'
-    },
-    {
-      name: 'فاطمه رضایی',
-      company: 'کلینیک زیبایی نور',
-      text: 'چت‌بات فارسی که برایمان طراحی کردند، خیلی کمکمان کرده. الان ۲۴ ساعته پاسخگوی مشتریان هستیم.',
-      rating: 5,
-      avatar: '👩‍⚕️'
-    },
-    {
-      name: 'محمد حسینی',
-      company: 'رستوران‌های زنجیره‌ای طعم',
-      text: 'مدیریت شبکه‌های اجتماعی‌مان رو کاملاً دگرگون کردن. فالوور و مشتری‌هامون خیلی زیاد شدن.',
-      rating: 5,
-      avatar: '👨‍🍳'
-    },
-    {
-      name: 'زهرا موسوی',
-      company: 'آموزشگاه زبان برایت',
-      text: 'محتواهای تولیدی با هوش مصنوعی کیفیت بالایی داشت. وقت زیادی برامون صرفه‌جویی شد.',
-      rating: 5,
-      avatar: '👩‍🏫'
-    }
-  ];
-
-  
+// Quotes and headline numbers now come from src/lib/site-claims.ts so every
+// claim the site makes about itself lives in one auditable place.
+//
+// NOTE: no Review / AggregateRating JSON-LD is emitted here on purpose — see the
+// long comment at the top of src/lib/site-claims.ts. Rating markup requires
+// genuine, verifiable reviews; adding it to unverified testimonials would be a
+// structured-data violation.
 ---
 <section class="section-padding bg-linear-to-br from-blue-50 to-purple-50 relative overflow-hidden">
       <!-- Background decoration -->
@@ -72,9 +32,8 @@ import Icon from '../ui/Icon.astro';
 
         <!-- Testimonials Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {TESTIMONIALS.map((testimonial, index) => (
             <Card
-             
               class="floating-card hover-lift p-6 animate-slide-in-up relative overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
@@ -84,49 +43,45 @@ import Icon from '../ui/Icon.astro';
               </div>
 
               <CardContent class="p-0">
-                <!-- Rating -->
-                <div class="flex items-center gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Icon name="star" class="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
+                <!-- Rating. Stars are decorative; the real value is announced
+                     to screen readers via the visually-hidden label. -->
+                {testimonial.rating && (
+                  <div class="flex items-center gap-1 mb-4" role="img" aria-label={`امتیاز ${faNum(testimonial.rating)} از ۵`}>
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Icon name="star" class="h-5 w-5 fill-yellow-400 text-yellow-400" aria-hidden="true" />
+                    ))}
+                  </div>
+                )}
 
                 <!-- Testimonial Text -->
-                <p class="text-gray-700 leading-relaxed mb-6 text-right">
-                  "{testimonial.text}"
-                </p>
+                <blockquote class="text-gray-700 leading-relaxed mb-6 text-right">
+                  <p>"{testimonial.text}"</p>
+                </blockquote>
 
                 <!-- Author Info -->
-                <div class="flex items-center gap-4">
-                  <div class="text-3xl">{testimonial.avatar}</div>
+                <footer class="flex items-center gap-4">
+                  <div class="text-3xl" aria-hidden="true">{testimonial.avatar}</div>
                   <div class="text-right">
-                    <h3 class="font-bold text-gray-900">{testimonial.name}</h3>
+                    <cite class="font-bold text-gray-900 not-italic">{testimonial.name}</cite>
                     <p class="text-sm text-gray-600">{testimonial.company}</p>
                   </div>
-                </div>
+                </footer>
               </CardContent>
             </Card>
           ))}
         </div>
 
         <!-- Statistics -->
-        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div class="text-center animate-zoom-in" style="animation-delay:0.2s">
-            <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">۵۰۰+</div>
-            <div class="text-gray-600">مشتری راضی</div>
-          </div>
-          <div class="text-center animate-zoom-in" style="animation-delay:0.4s">
-            <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">۹۸%</div>
-            <div class="text-gray-600">میزان رضایت</div>
-          </div>
-          <div class="text-center animate-zoom-in" style="animation-delay:0.6s">
-            <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">۵۰۰%</div>
-            <div class="text-gray-600">متوسط رشد فروش</div>
-          </div>
-          <div class="text-center animate-zoom-in" style="animation-delay:0.8s">
-            <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">۲۴/۷</div>
-            <div class="text-gray-600">پشتیبانی</div>
-          </div>
-        </div>
+        <!-- Semantically a description list: label (dt) + value (dd).
+             flex-col-reverse keeps the big number on top while preserving
+             correct dt-then-dd source order. -->
+        <dl class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+          {HEADLINE_STATS.map((stat, i) => (
+            <div class="text-center animate-zoom-in flex flex-col-reverse" style={`animation-delay:${(i + 1) * 0.2}s`}>
+              <dt class="text-gray-600 text-sm">{stat.label}</dt>
+              <dd class="text-4xl md:text-5xl font-bold gradient-text mb-2">{stat.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>

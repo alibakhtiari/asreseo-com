@@ -2,8 +2,23 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'سیاست حریم خصوصی عصر سئو',
+  url: 'https://asreseo.com/privacy/',
+  inLanguage: 'fa-IR',
+};
+const breadcrumbs = [
+  { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+  { position: 2, name: 'سیاست حریم خصوصی', item: 'https://asreseo.com/privacy/' },
+];
 ---
 <BaseLayout title='حریم خصوصی | عصر سئو' description='سیاست حفظ حریم خصوصی عصر سئو: نحوه جمع‌آوری، استفاده و محافظت از اطلاعات کاربران وب‌سایت و فرم‌های تماس.' canonical='https://asreseo.com/privacy/' ogType='website' twitterCard='summary_large_image'>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
 <div class="min-h-screen bg-white">
             <Header />
             <main class="section-padding pt-32">

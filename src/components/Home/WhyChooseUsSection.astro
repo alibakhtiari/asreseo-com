@@ -4,14 +4,13 @@ import CardContent from '../ui/card/CardContent.astro';
 import CardHeader from '../ui/card/CardHeader.astro';
 import CardTitle from '../ui/card/CardTitle.astro';
 import Icon from '../ui/Icon.astro';
-
-
+import { PROSE_STATS } from '../../lib/site-claims';
 
   const reasons = [
     {
       icon: "award",
-      title: 'تجربه ۵+ ساله',
-      description: 'با بیش از ۵ سال تجربه در حوزه دیجیتال مارکتینگ، تیم ما آماده ارائه بهترین خدمات است.',
+      title: `تجربه ${PROSE_STATS.yearsExperience}+ ساله`,
+      description: `با بیش از ${PROSE_STATS.yearsExperience} سال تجربه در حوزه دیجیتال مارکتینگ، تیم ما آماده ارائه بهترین خدمات است.`,
       color: 'from-blue-500 to-blue-600'
     },
     {
@@ -29,7 +28,7 @@ import Icon from '../ui/Icon.astro';
     {
       icon: "trending-up",
       title: 'نتایج اثبات شده',
-      description: 'بیش از ۵۰۰ پروژه موفق و رشد متوسط ۳۰۰٪ در فروش مشتریان ما.',
+      description: `بیش از ${PROSE_STATS.projectsCompleted} پروژه موفق و رشد متوسط ${PROSE_STATS.averageGrowth}٪ در فروش مشتریان ما.`,
       color: 'from-orange-500 to-orange-600'
     },
     {

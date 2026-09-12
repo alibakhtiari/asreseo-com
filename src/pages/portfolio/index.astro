@@ -181,16 +181,40 @@ const breadcrumbs = [
 
 const portfolioSchema = {
   '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: 'نمونه‌کارهای هوش مصنوعی و اتوماسیون عصر سئو',
-  inLanguage: 'fa-IR',
-  itemListElement: cases.map((c, i) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    name: c.title,
-    description: c.summary,
-    url: `https://asreseo.com/portfolio/#${c.slug}`,
-  })),
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': 'https://asreseo.com/portfolio/#collection',
+      url: 'https://asreseo.com/portfolio/',
+      name: 'نمونه‌کارهای هوش مصنوعی و اتوماسیون عصر سئو',
+      description: 'پروژه‌های واقعی اجراشده با شرح چالش، اقدامات، فناوری‌ها و نتایج.',
+      inLanguage: 'fa-IR',
+      // Self-contained on purpose: an @id-only stub would be a dangling
+      // reference, because /portfolio is the only page that mentions
+      // #website and nothing else on the site ever defines that entity.
+      isPartOf: {
+        '@type': 'WebSite',
+        '@id': 'https://asreseo.com/#website',
+        name: 'عصر سئو',
+        url: 'https://asreseo.com/',
+        inLanguage: 'fa-IR',
+      },
+      mainEntity: { '@id': 'https://asreseo.com/portfolio/#cases' },
+    },
+    {
+      '@type': 'ItemList',
+      '@id': 'https://asreseo.com/portfolio/#cases',
+      name: 'نمونه‌کارهای هوش مصنوعی و اتوماسیون عصر سئو',
+      inLanguage: 'fa-IR',
+      itemListElement: cases.map((c, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: c.title,
+        description: c.summary,
+        url: `https://asreseo.com/portfolio/#${c.slug}`,
+      })),
+    },
+  ],
 };
 ---
 <BaseLayout

@@ -52,11 +52,10 @@ const data = {
       'تولید محتوا با AI',
       'چت‌بات هوشمند'
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '127'
-    },
+    // NOTE: no `aggregateRating` here on purpose. Google requires rating data to
+    // be sourced from real, on-page, user-visible reviews. Emitting an
+    // unsourced rating is a structured-data violation and can trigger a
+    // Manual Action. Re-add it ONLY alongside a real reviews section.
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'خدمات دیجیتال مارکتینگ',

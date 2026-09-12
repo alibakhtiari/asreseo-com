@@ -4,6 +4,10 @@ export interface Props {
 }
 const { class: className }: any = Astro.props;
 ---
-<button type="button" data-acc-trigger class={className}>
+{/* `aria-expanded` starts false, which is accurate: every panel is rendered
+    hidden unless `defaultOpen` is set, and the Accordion script below corrects
+    it on init. `aria-controls` / the panel's `aria-labelledby` are wired up by
+    that script, which also guarantees ids are unique per page. */}
+<button type="button" data-acc-trigger aria-expanded="false" class={className}>
   <slot />
 </button>

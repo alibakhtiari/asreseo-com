@@ -1,9 +1,18 @@
-# Security headers for all pages
+# Security headers + default HTML cache for all pages
+# The `/*.html` rule used here did not match Cloudflare Pages extensionless
+# directory URLs (e.g. `/about/`); instead `/*` is used and the per-asset
+# rules below override Cache-Control for static assets.
+# Per Cloudflare Pages docs, when multiple matching rules define the same
+# header, the LATER one wins, so asset rules after this still apply.
+# HTML pages get max-age=3600, CDN-friendly; assets stay immutable.
+# Bump `max-age` here or set a longer `s-maxage` if you'd like longer
+# edge caching (e.g. public, max-age=0, s-maxage=86400 for stale-while-revalidate).
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Cache-Control: public, max-age=3600
 
 # Cache static assets aggressively
 /_astro/*
@@ -42,10 +51,6 @@
 # API routes (if any)
 #/api/*
 #  Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800
-
-# Default cache for HTML
-/*.html
-  Cache-Control: public, max-age=3600
 
 # Sitemap and robots
 /sitemap.xml

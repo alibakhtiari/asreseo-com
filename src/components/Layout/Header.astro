@@ -46,11 +46,12 @@ import Logo from '../Logo.astro';
 
       <!-- Enhanced CTA Button -->
       <div class="hidden lg:flex items-center gap-4">
-        <a href="/contact/">
-          <Button class="bg-linear-to-r from-primary-500 to-secondary-500 text-white hover:opacity-90 transition-opacity duration-200 px-5 xl:px-6 py-2 font-semibold shadow-md hover:shadow-lg rounded-xl">
-            مشاوره رایگان
-          </Button>
-        </a>
+        <Button
+          href="/consultation/"
+          class="bg-linear-to-r from-primary-500 to-secondary-500 text-white hover:opacity-90 transition-opacity duration-200 px-5 xl:px-6 py-2 font-semibold shadow-md hover:shadow-lg rounded-xl"
+        >
+          مشاوره رایگان
+        </Button>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -58,13 +59,15 @@ import Logo from '../Logo.astro';
         class="lg:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-700 transition-colors duration-200 cursor-pointer"
         data-menu-btn
         aria-label="منوی موبایل"
+        aria-controls="mobile-menu-panel"
+        aria-expanded="false"
       >
         <span data-icon-open class="hidden"><Icon name="x" class="h-6 w-6 text-gray-700" /></span><span data-icon-closed><Icon name="menu" class="h-6 w-6 text-gray-700" /></span>
       </button>
     </div>
 
     <!-- Enhanced Mobile Menu -->
-    <div data-menu-panel hidden>
+    <div data-menu-panel id="mobile-menu-panel" hidden>
       <div class="lg:hidden border-t border-gray-100 py-4 animate-fade-in mt-2">
         <nav class="flex flex-col space-y-2">
           {navLinks.map((item) => (
@@ -77,11 +80,13 @@ import Logo from '../Logo.astro';
             </a>
           ))}
           <div class="pt-3">
-            <a href="/contact/" data-menu-close>
-              <Button class="bg-linear-to-r from-primary-500 to-secondary-500 text-white w-full font-semibold py-2.5 rounded-xl">
-                مشاوره رایگان
-              </Button>
-            </a>
+            <Button
+              href="/consultation/"
+              data-menu-close
+              class="bg-linear-to-r from-primary-500 to-secondary-500 text-white w-full font-semibold py-2.5 rounded-xl"
+            >
+              مشاوره رایگان
+            </Button>
           </div>
         </nav>
       </div>
@@ -108,22 +113,89 @@ import Logo from '../Logo.astro';
   const panel = document.querySelector('[data-menu-panel]');
   const iconOpen = document.querySelector('[data-icon-open]');
   const iconClosed = document.querySelector('[data-icon-closed]');
-  const setMenu = (open: boolean) => {
+  const isOpen = () => panel ? !panel.hasAttribute('hidden') : false;
+  // Element that had focus before the menu opened, so we can hand it back.
+  let lastFocused: HTMLElement | null = null;
+
+  const focusables = () =>
+    panel
+      ? Array.from(
+          panel.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
+          ),
+        ).filter((el) => el.offsetParent !== null)
+      : [];
+
+  const setMenu = (open: boolean, trigger?: HTMLElement, restoreFocus = true) => {
     panel?.toggleAttribute('hidden', !open);
     iconOpen?.classList.toggle('hidden', !open);
     iconClosed?.classList.toggle('hidden', open);
     document.querySelectorAll('[data-menu-btn]').forEach((b) =>
       b.setAttribute('aria-expanded', String(open)),
     );
+    if (open) {
+      // Remember where focus must go back to. `document.activeElement` alone is
+      // not reliable: a tap on iOS never focuses the button, and a programmatic
+      // `.click()` doesn't either — both would strand focus on <body>.
+      lastFocused =
+        trigger ??
+        (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+      focusables()[0]?.focus();
+    } else {
+      if (restoreFocus) {
+        const target =
+          lastFocused && lastFocused.isConnected && lastFocused !== document.body
+            ? lastFocused
+            : document.querySelector<HTMLElement>('[data-menu-btn]');
+        // Not restored when the menu is dismissed by following a link: focus()
+        // would scroll the page right before navigation.
+        target?.focus();
+      }
+      lastFocused = null;
+    }
   };
+
   document.querySelectorAll('[data-menu-btn]').forEach((b) =>
-    b.addEventListener('click', () =>
-      setMenu(panel?.hasAttribute('hidden') ?? false),
-    ),
+    b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setMenu(!isOpen(), b as HTMLElement);
+    }),
   );
   document.querySelectorAll('[data-menu-close]').forEach((b) =>
-    b.addEventListener('click', () => setMenu(false)),
+    b.addEventListener('click', () => setMenu(false, undefined, false)),
   );
+
+  // Tapping anywhere outside the header dismisses the menu. The trigger calls
+  // stopPropagation(), so its own clicks never reach this handler.
+  document.addEventListener('click', (e: MouseEvent) => {
+    if (!isOpen()) return;
+    const target = e.target as Node | null;
+    if (header && target && header.contains(target)) return;
+    setMenu(false, undefined, false);
+  });
+
+  // Escape closes the menu and returns focus to the trigger.
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (!isOpen()) return;
+    if (e.key === 'Escape') {
+      setMenu(false);
+      return;
+    }
+    // Keep Tab focus inside the open panel.
+    if (e.key === 'Tab') {
+      const items = focusables();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      } else if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    }
+  });
 </script>
 
 </header>

@@ -5,6 +5,7 @@ import Footer from '../components/Layout/Footer.astro';
 import HeroSection from '../components/Home/HeroSection.astro';
 import ServicesSection from '../components/Home/ServicesSection.astro';
 import AllServicesSection from '../components/Home/AllServicesSection.astro';
+import PortfolioPreview from '../components/Home/PortfolioPreview.astro';
 import WhyChooseUsSection from '../components/Home/WhyChooseUsSection.astro';
 import TestimonialsSection from '../components/Home/TestimonialsSection.astro';
 import CTASection from '../components/Home/CTASection.astro';
@@ -18,7 +19,7 @@ import OrganizationStructuredData from '../components/OrganizationStructuredData
   canonical='/'
   ogTitle='عصر سئو | بهترین خدمات دیجیتال مارکتینگ و سئو در ایران'
   ogDescription='با خدمات حرفه‌ای سئو، طراحی وب‌سایت و هوش مصنوعی، رشد ۳۰۰٪ کسب‌وکار خود را تضمین کنید'
-  ogImages={[{ url: '/Logo-spaced.png', width: 512, height: 512, alt: 'آژانس دیجیتال مارکتینگ و سئو عصر سئو' }]}
+  ogImages={[{ url: '/og-default.png', width: 1200, height: 630, alt: 'آژانس دیجیتال مارکتینگ و سئو عصر سئو' }]}
   twitterCard='summary_large_image'
 >
 <div class="min-h-screen bg-white">
@@ -29,6 +30,7 @@ import OrganizationStructuredData from '../components/OrganizationStructuredData
         <HeroSection />
         <ServicesSection />
         <AllServicesSection />
+        <PortfolioPreview />
         <WhyChooseUsSection />
         <TestimonialsSection />
         <CTASection />

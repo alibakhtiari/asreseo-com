@@ -29,10 +29,15 @@ const buttonVariants = cva(
     },
   }
 )
-const { class: className, variant, size, ...rest }: any = Astro.props;
+// Renders an <a> when `href` is supplied — real link semantics (right-click,
+// middle-click, crawler-followable) instead of invalid <a><button></a> nesting.
+// `type` defaults to "button" so a stray button can never submit a form by
+// accident; form submit buttons must pass type="submit" explicitly.
+const { class: className, variant, size, href, type, ...rest }: any = Astro.props;
+const cls = cn(buttonVariants({ variant, size, className }));
 ---
-<button
-        class={cn(buttonVariants({ variant, size, className }))}
-       
-        {...rest}
-      ><slot /></button>
+{href ? (
+  <a href={href} class={cls} {...rest}><slot /></a>
+) : (
+  <button type={type ?? 'button'} class={cls} {...rest}><slot /></button>
+)}

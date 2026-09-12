@@ -30,21 +30,33 @@
       const label = btn ? btn.innerHTML : '';
       if (btn) { btn.setAttribute('disabled', ''); btn.innerHTML = 'در حال ارسال…'; }
       status.hidden = true;
+      let ok = false;
+      let serverMessage = '';
       try {
         const res = await fetch(form.getAttribute('action') || '/api/send-email', {
           method: 'post',
           body: new FormData(form),
         });
-        if (!res.ok) throw new Error('bad-status');
+        // The endpoint answers with { error } in Persian on validation failures.
+        // Surface it, otherwise the user only ever sees the generic message and
+        // cannot tell what to fix (e.g. a rejected mobile number).
+        const result = await res.json().catch(() => ({}));
+        ok = res.ok && !result.error;
+        serverMessage = result.error || '';
+      } catch {
+        ok = false;
+      }
+      if (ok) {
         status.textContent = 'درخواست شما با موفقیت ثبت شد. به‌زودی تماس می‌گیریم.';
         status.hidden = false;
         form.reset();
-      } catch {
-        status.textContent = 'خطایی رخ داد. لطفاً دوباره تلاش کنید یا تماس بگیرید.';
+      } else {
+        status.textContent =
+          serverMessage || 'خطایی رخ داد. لطفاً دوباره تلاش کنید یا تماس بگیرید.';
         status.hidden = false;
-      } finally {
-        if (btn) { btn.removeAttribute('disabled'); btn.innerHTML = label; }
       }
+      // Always re-enable the button, success or failure.
+      if (btn) { btn.removeAttribute('disabled'); btn.innerHTML = label; }
     });
   }
   document.querySelectorAll('form[data-ajax-form]').forEach(bind);

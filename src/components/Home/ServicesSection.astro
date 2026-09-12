@@ -80,14 +80,9 @@ import Icon from '../ui/Icon.astro';
                     </li>
                   ))}
                 </ul>
-                <a href={service.href} class="w-full">
-                  <Button
-                    variant="outline"
-                    class="w-full border-2 hover:bg-linear-to-r hover:from-blue-500 hover:to-green-500 hover:text-white hover:border-transparent transition-all duration-300"
-                  >
+                <Button variant="outline" class="w-full border-2 hover:bg-linear-to-r hover:from-blue-500 hover:to-green-500 hover:text-white hover:border-transparent transition-all duration-300 w-full" href={service.href}>
                     اطلاعات بیشتر درباره {service.title}
                   </Button>
-                </a>
               </CardContent>
             </Card>
           ))}
@@ -102,14 +97,13 @@ import Icon from '../ui/Icon.astro';
             <p class="text-lg mb-6 opacity-90">
               مشاوره رایگان دریافت کنید و ببینید چگونه می‌توانیم کسب‌وکار شما را متحول کنیم
             </p>
-            <a href="/contact/">
-              <Button
-                size="lg"
-                class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold transition-all duration-200 transform hover:scale-105"
-              >
-                درخواست مشاوره رایگان
-              </Button>
-            </a>
+            <Button
+              href="/consultation/"
+              size="lg"
+              class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold transition-all duration-200 transform hover:scale-105"
+            >
+              درخواست مشاوره رایگان
+            </Button>
           </div>
         </div>
       </div>

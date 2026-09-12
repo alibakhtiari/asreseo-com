@@ -54,11 +54,15 @@ const normalizedOgUrl = (() => {
 const ogTitle = Astro.props.ogTitle ?? title;
 const ogDescription = Astro.props.ogDescription ?? description;
 
+// Default social-share image. 1200×630 matches X/Twitter/LinkedIn/Telegram's
+// `summary_large_image` spec — the prior 512×512 logo was either cropped
+// (square feed layouts) or declared with wrong dimensions on /faq/ and /services/.
+// Regenerate from /tmp/ogcard/index.html if branding changes.
 const DEFAULT_OG_IMAGE: OgImage = {
-  url: '/Logo-spaced.png',
-  width: 512,
-  height: 512,
-  alt: 'عصر سئو - آژانس دیجیتال مارکتینگ و سئو',
+  url: '/og-default.png',
+  width: 1200,
+  height: 630,
+  alt: 'عصر سئو - آژانس سئو، هوش مصنوعی و دیجیتال مارکتینگ',
 };
 
 const validOgImages: OgImage[] = (() => {
@@ -88,6 +92,8 @@ import '../styles/globals.css';
     <meta name="theme-color" content="#3b82f6" />
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="fa-IR" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
