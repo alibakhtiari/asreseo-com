@@ -37,7 +37,7 @@ const isFresh = (p: any) => p.updated && p.updated !== p.date;
           </div>
           <div class="md:w-1/2 p-6 sm:p-8 flex flex-col">
             <div class="flex flex-wrap items-center gap-2 mb-3">
-              <Badge class="bg-primary/10 text-primary">{featured.category}</Badge>
+              <Badge class="bg-primary/10 text-blue-700">{featured.category}</Badge>
               <Badge class="bg-green-100 text-green-800">ویژه</Badge>
               {isFresh(featured) && (
                 <Badge class="bg-amber-100 text-amber-800">به‌روزرسانی</Badge>
@@ -92,7 +92,7 @@ const isFresh = (p: any) => p.updated && p.updated !== p.date;
           </a>
           <div class="p-5 sm:p-6 flex flex-col flex-1">
             <div class="flex flex-wrap items-center gap-2 mb-3">
-              <Badge class="bg-primary/10 text-primary">{post.category}</Badge>
+              <Badge class="bg-primary/10 text-blue-700">{post.category}</Badge>
               {post.featured && (
                 <Badge class="bg-green-100 text-green-800">ویژه</Badge>
               )}
