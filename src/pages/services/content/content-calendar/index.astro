@@ -498,6 +498,32 @@ const howToSchema = {
           </div>
         </section>
 
+        <!-- Template preview. The audit asked for a template-table image on this
+             page (query «تقویم محتوایی سایت»). The asset already existed — it was
+             only used by the blog post — so it is reused here rather than
+             generating a near-duplicate. Native width/height set to avoid CLS. -->
+        <section class="section-padding bg-white border-t border-gray-200/60">
+          <div class="container-custom max-w-4xl">
+            <div class="text-center mb-8">
+              <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                نمونه جدول تقویم محتوایی که تحویل می‌دهیم
+              </h2>
+              <p class="text-gray-600">
+                ساختار استانداردی که برای هر خوشه موضوعی پر می‌شود: عنوان، هدف، کلمه کلیدی، قالب و تاریخ انتشار
+              </p>
+            </div>
+            <img
+              src="/images/content-calendar-post-template.webp"
+              alt="نمونه جدول تقویم محتوایی با ستون‌های عنوان، هدف، کلمه کلیدی، قالب محتوا و تاریخ انتشار"
+              width="1672"
+              height="941"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto rounded-2xl shadow-xs border border-gray-200"
+            />
+          </div>
+        </section>
+
         <!-- FAQ Section -->
         <ServiceFAQ
           faqs={faqs}
