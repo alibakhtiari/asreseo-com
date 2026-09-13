@@ -27,7 +27,11 @@ const DEFAULT_TITLE = 'عصر سئو | بهترین خدمات دیجیتال م
 
 const {
   title = DEFAULT_TITLE,
-  description = 'عصر سئو - شرکت پیشرو در ارائه خدمات دیجیتال مارکتینگ، سئو، هوش مصنوعی، تبلیغات گوگل و طراحی وب‌سایت. با تیم متخصص ما رشد ۳۰۰٪ کسب‌وکار خود را تضمین کنید.',
+  // Was «رشد ۳۰۰٪ کسب‌وکار خود را تضمین کنید». Two unverifiable claims in one
+  // sentence: a specific growth figure with no source, and a guarantee of it —
+  // which the site's own FAQ calls «یک ادعای غیرواقعی و گمراه‌کننده». This is
+  // the fallback description, so it is what ships on any page that omits one.
+  description = 'عصر سئو - ارائه خدمات دیجیتال مارکتینگ، سئو، هوش مصنوعی، تبلیغات گوگل و طراحی وب‌سایت. مشاوره رایگان پیش از عقد قرارداد و گزارش‌دهی شفاف در تمام مراحل.',
   keywords = '',
   canonical,
   ogType = 'website',
