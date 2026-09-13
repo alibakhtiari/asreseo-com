@@ -6,7 +6,18 @@ import Logo from '../Logo.astro';
 
 
 
-  const currentYear = new Date().getFullYear();
+  // The footer date is generated at build time and frozen into the static
+  // output (this is an SSG site). Use the Persian (Jalali) calendar so the
+  // copyright reads the way Persian users expect. ICU 67+ (Node 22, all modern
+  // browsers) ships Persian calendar support for `fa-IR`, so no third-party
+  // library is needed. The day + month + year form makes the Shamsi calendar
+  // visible at a glance instead of looking like a Gregorian year that happens
+  // to be in Persian digits. After March 20/21 the year rolls over naturally.
+  const currentDate = new Date().toLocaleDateString('fa-IR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
   const footerLinks = {
     services: [
@@ -113,9 +124,14 @@ import Logo from '../Logo.astro';
         <div class="border-t border-gray-700 py-6">
           <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p class="text-gray-400 text-sm">
-              © {currentYear} عصر سئو. تمامی حقوق محفوظ است.
+              © {currentDate} عصر سئو. تمامی حقوق محفوظ است.
             </p>
-            <div class="flex items-center space-x-6 space-x-reverse text-sm text-gray-400">
+            <!-- `space-x-6 space-x-reverse` had inconsistent spacing in RTL
+                 across browsers. `gap-x-8` is direction-agnostic and renders
+                 the same 2 rem gap between every link on either side; bumped
+                 from `gap-x-6` (1.5 rem) because the privacy/terms/sitemap
+                 trio read as one run-on at the smaller size in RTL. -->
+            <div class="flex items-center gap-x-8 text-sm text-gray-400">
               <a href="/privacy/" class="hover:text-white transition-colors">
                 حریم خصوصی
               </a>
