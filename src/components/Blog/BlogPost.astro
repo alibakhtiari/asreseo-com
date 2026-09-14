@@ -26,31 +26,7 @@ const jsonLdFAQ = {
       }
     })) || []
   };
-
-  const jsonLdArticle = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": post.title,
-    "description": post.excerpt,
-    "author": {
-      "@type": "Person",
-      "name": post.author
-    },
-    "datePublished": post.date,
-    "dateModified": post.updated || post.date,
-    "publisher": {
-      "@type": "Organization",
-      "name": "عصر سئو",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://asreseo.com/Logo-spaced.png"
-      }
-    },
-    "image": post.image,
-    "keywords": post.tags?.join(", ") ?? ""
-  };
 ---
-<script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdArticle)} />
 {post.faqs && post.faqs.length > 0 && (
   <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdFAQ)} />
 )}

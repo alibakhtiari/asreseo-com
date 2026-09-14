@@ -1,5 +1,6 @@
 ---
 export interface BreadcrumbItem {
+  position?: number;
   name: string;
   item?: string;
   url?: string;
@@ -13,6 +14,7 @@ const { items = [] } = Astro.props;
 
 const defaultList: BreadcrumbItem[] = [
   {
+    position: 1,
     name: 'خانه',
     item: 'https://asreseo.com/',
   },
@@ -25,7 +27,7 @@ const data = {
   '@type': 'BreadcrumbList',
   itemListElement: elements.map((item, idx) => ({
     '@type': 'ListItem',
-    position: idx + 1,
+    position: item.position ?? idx + 1,
     name: item.name,
     item: item.item || (item.url?.startsWith('http') ? item.url : `https://asreseo.com${item.url || ''}`),
   })),

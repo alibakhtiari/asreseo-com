@@ -62,9 +62,16 @@ const seoTitle = `${post.title} | عصر سئو`;
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
+  '@id': `https://asreseo.com/blog/${post.slug}/#article`,
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': 'https://asreseo.com/#website',
+    name: 'عصر سئو',
+    url: 'https://asreseo.com/',
+  },
   headline: post.title,
   description: post.description || post.excerpt,
-  image: post.image ? [post.image] : undefined,
+  image: post.image ? [new URL(post.image, 'https://asreseo.com').href] : undefined,
   datePublished: post.date || undefined,
   dateModified: post.updated || post.date || undefined,
   author: post.author

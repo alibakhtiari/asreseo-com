@@ -1,105 +1,46 @@
 ---
 const data = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'عصر سئو',
-    description: 'شرکت پیشرو در ارائه خدمات دیجیتال مارکتینگ، سئو، هوش مصنوعی و تبلیغات گوگل',
-    url: 'https://asreseo.com/',
-    logo: 'https://asreseo.com/Logo-spaced.png',
-    image: 'https://asreseo.com/Logo-spaced.png',
-    telephone: '+989125811880',
-    address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'IR',
-      addressRegion: 'Tehran',
-      addressLocality: 'Tehran'
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 35.6892,
-      longitude: 51.3890
-    },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: [
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday',
-          'Saturday'
-        ],
-        opens: '09:00',
-        closes: '18:00'
-      }
-    ],
-    serviceArea: {
-      '@type': 'GeoCircle',
-      geoMidpoint: {
-        '@type': 'GeoCoordinates',
-        latitude: 35.6892,
-        longitude: 51.3890
+  '@context': 'https://schema.org',
+  '@type': 'OfferCatalog',
+  name: 'خدمات دیجیتال مارکتینگ',
+  provider: {
+    '@id': 'https://asreseo.com/#organization',
+  },
+  itemListElement: [
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'خدمات سئو حرفه‌ای',
+        description: 'بهینه‌سازی موتور جستجو و افزایش رتبه سایت',
+        provider: {
+          '@id': 'https://asreseo.com/#organization',
+        },
       },
-      geoRadius: '50000'
     },
-    services: [
-      'خدمات سئو',
-      'دیجیتال مارکتینگ',
-      'تبلیغات گوگل',
-      'طراحی وب‌سایت',
-      'هوش مصنوعی',
-      'اتوماسیون بازاریابی',
-      'تولید محتوا با AI',
-      'چت‌بات هوشمند'
-    ],
-    // NOTE: no `aggregateRating` here on purpose. Google requires rating data to
-    // be sourced from real, on-page, user-visible reviews. Emitting an
-    // unsourced rating is a structured-data violation and can trigger a
-    // Manual Action. Re-add it ONLY alongside a real reviews section.
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'خدمات دیجیتال مارکتینگ',
-      itemListElement: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'خدمات سئو حرفه‌ای',
-            description: 'بهینه‌سازی موتور جستجو و افزایش رتبه سایت'
-          }
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'تبلیغات گوگل ادز',
+        description: 'مدیریت و بهینه‌سازی کمپین‌های تبلیغاتی',
+        provider: {
+          '@id': 'https://asreseo.com/#organization',
         },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'تبلیغات گوگل ادز',
-            description: 'مدیریت و بهینه‌سازی کمپین‌های تبلیغاتی'
-          }
+      },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'خدمات هوش مصنوعی',
+        description: 'راهکارهای نوین AI برای رشد کسب‌وکار و اتوماسیون',
+        provider: {
+          '@id': 'https://asreseo.com/#organization',
         },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'خدمات هوش مصنوعی',
-            description: 'راهکارهای نوین AI برای رشد کسب‌وکار و اتوماسیون'
-          }
-        }
-      ]
-    }
-  };
-
-  const websiteData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    'name': 'عصر سئو',
-    'alternateName': 'Asre SEO',
-    'url': 'https://asreseo.com/',
-    'potentialAction': {
-      '@type': 'SearchAction',
-      'target': 'https://asreseo.com/blog/?q={search_term_string}',
-      'query-input': 'required name=search_term_string'
-    }
-  };
+      },
+    },
+  ],
+};
 ---
 <script type="application/ld+json" is:inline set:html={JSON.stringify(data)}></script>
-<script type="application/ld+json" is:inline set:html={JSON.stringify(websiteData)}></script>

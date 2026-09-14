@@ -20,10 +20,9 @@ const blogListSchema = {
   // datePublished / author / image are required by Google's BlogPosting
   // guidelines — they were dropped when this page moved off the legacy
   // blog-data.ts override table, so they are read straight from frontmatter.
-  blogPost: posts.map((p: any, i: number) => {
+  blogPost: posts.map((p: any) => {
     const node: Record<string, unknown> = {
       '@type': 'BlogPosting',
-      position: i + 1,
       headline: p.title,
       description: p.description ?? p.excerpt,
       url: `https://asreseo.com/blog/${p.slug}/`,

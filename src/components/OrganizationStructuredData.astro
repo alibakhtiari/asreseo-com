@@ -1,30 +1,43 @@
 ---
 const data = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'عصر سئو',
-    url: 'https://asreseo.com/',
-    logo: 'https://asreseo.com/Logo-spaced.png',
-    description: 'شرکت پیشرو در خدمات دیجیتال مارکتینگ، سئو و هوش مصنوعی در ایران',
-    foundingDate: '2020',
-    address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'IR',
-      addressRegion: 'Tehran',
-      addressLocality: 'Tehran'
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['Organization', 'ProfessionalService'],
+      '@id': 'https://asreseo.com/#organization',
+      name: 'عصر سئو',
+      url: 'https://asreseo.com/',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://asreseo.com/Logo-spaced.png',
+        width: 512,
+        height: 128,
+      },
+      telephone: '+98-912-581-1880',
+      foundingDate: '2019',
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: 'IR',
+        addressRegion: 'تهران',
+        addressLocality: 'تهران',
+      },
+      sameAs: [
+        'https://instagram.com/asreseo',
+        'https://t.me/asreseo',
+        'https://linkedin.com/company/asreseo',
+      ],
     },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+989125811880',
-      contactType: 'customer service',
-      availableLanguage: ['Persian', 'English']
+    {
+      '@type': 'WebSite',
+      '@id': 'https://asreseo.com/#website',
+      url: 'https://asreseo.com/',
+      name: 'عصر سئو',
+      publisher: {
+        '@id': 'https://asreseo.com/#organization',
+      },
     },
-    sameAs: [
-      'https://instagram.com/asreseo',
-      'https://t.me/asreseo',
-      'https://linkedin.com/company/asreseo'
-    ]
-  };
+  ],
+};
 ---
 <script type="application/ld+json" is:inline set:html={JSON.stringify(data)}></script>
 
