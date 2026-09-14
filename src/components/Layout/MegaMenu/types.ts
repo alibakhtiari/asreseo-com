@@ -10,6 +10,7 @@ export interface MenuItem {
 export interface MenuCategory {
   title: string;
   icon: string;
+  href?: string;
   items: MenuItem[];
   color: string;
 }

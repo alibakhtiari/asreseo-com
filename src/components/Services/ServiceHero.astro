@@ -170,7 +170,7 @@ if (highlight) {
 
   <div class="container-custom relative z-10">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div class="text-right animate-fade-in order-2 lg:order-1">
+      <div class="text-right animate-fade-in order-1">
         {badge && (
           <Badge class={`${badgeClass || currentTheme.defaultBadge} mb-4 px-4 py-1 text-sm`}>
             {badge}
@@ -200,7 +200,7 @@ if (highlight) {
         </div>
       </div>
 
-      <div class="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50 group">
+      <div class="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-2 ring-1 ring-gray-200/50 group">
         <div class={`absolute inset-0 bg-linear-to-tr ${currentTheme.imgOverlay} to-transparent z-10`} />
         <Picture
           src={imageSrc}

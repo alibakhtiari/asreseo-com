@@ -5,6 +5,7 @@ export const menuCategories: MenuCategory[] = [
   {
     title: 'خدمات سئو',
     icon: 'search',
+    href: '/services/seo/',
     color: 'text-blue-600',
     items: [
       { title: 'سئو تکنیکال و داخلی', href: '/services/seo/technical-onpage/' },
@@ -15,6 +16,7 @@ export const menuCategories: MenuCategory[] = [
   {
     title: 'طراحی و توسعه',
     icon: 'code',
+    href: '/services/web/',
     color: 'text-purple-600',
     items: [
       { title: 'طراحی سایت سئو محور', href: '/services/web/seo-web-design/' },
@@ -26,6 +28,7 @@ export const menuCategories: MenuCategory[] = [
   {
     title: 'بازاریابی دیجیتال',
     icon: 'trending-up',
+    href: '/services/marketing/',
     color: 'text-green-600',
     items: [
       { title: 'تبلیغات گوگل', href: '/services/marketing/google-ads/' },
@@ -36,8 +39,22 @@ export const menuCategories: MenuCategory[] = [
     ]
   },
   {
+    title: 'استراتژی و تولید محتوا',
+    icon: 'file-text',
+    href: '/services/content/',
+    color: 'text-amber-600',
+    items: [
+      { title: 'خدمات استراتژی محتوا', href: '/services/content/' },
+      { title: 'تقویم محتوایی سایت', href: '/services/content/content-calendar/' },
+      { title: 'تولید محتوای متنی', href: '/services/content/text-content/' },
+      { title: 'محتوای شبکه‌های اجتماعی', href: '/services/content/social-media-content/' },
+      { title: 'ترجمه تخصصی', href: '/services/content/translation/' }
+    ]
+  },
+  {
     title: 'خدمات هوش مصنوعی',
     icon: 'bot',
+    href: '/services/ai/',
     color: 'text-violet-600',
     items: [
       { title: 'تولید محتوای هوشمند', href: '/services/ai/content-creation/' },

@@ -12,6 +12,7 @@ import Icon from '../ui/Icon.astro';
   const serviceCategories: Array<{ title: string; description?: string; href?: string; icon?: string; color?: string; isNew?: boolean; isPopular?: boolean; services?: Array<{ title: string; href: string; icon?: string; description?: string; isNew?: boolean; isPopular?: boolean }> }> = [
     {
       title: 'خدمات سئو',
+      href: '/services/seo/',
       icon: "search",
       color: 'from-blue-500 to-blue-700',
       services: [
@@ -22,6 +23,7 @@ import Icon from '../ui/Icon.astro';
     },
     {
       title: 'طراحی و توسعه',
+      href: '/services/web/',
       icon: "palette",
       color: 'from-purple-500 to-purple-700',
       services: [
@@ -33,6 +35,7 @@ import Icon from '../ui/Icon.astro';
     },
     {
       title: 'بازاریابی دیجیتال',
+      href: '/services/marketing/',
       icon: "trending-up",
       color: 'from-green-500 to-green-700',
       services: [
@@ -45,6 +48,7 @@ import Icon from '../ui/Icon.astro';
     },
     {
       title: 'محتوا و ترجمه',
+      href: '/services/content/',
       icon: "file-text",
       color: 'from-orange-500 to-orange-700',
       services: [
@@ -57,6 +61,7 @@ import Icon from '../ui/Icon.astro';
     },
     {
       title: 'خدمات هوش مصنوعی',
+      href: '/services/ai/',
       icon: "bot",
       color: 'from-violet-500 to-violet-700',
       services: [
@@ -69,7 +74,7 @@ import Icon from '../ui/Icon.astro';
 
   
 ---
-<section class="py-16 lg:py-24 bg-linear-to-br from-gray-50 to-white relative overflow-hidden" aria-label="تمام خدمات">
+<section class="py-16 lg:py-24 bg-linear-to-br from-gray-50 to-white relative overflow-hidden" aria-label="تمام خدمات" data-services-section>
       <!-- Background decoration -->
       <div class="absolute inset-0 opacity-30 pointer-events-none">
         <div class="absolute top-20 right-20 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
@@ -78,7 +83,7 @@ import Icon from '../ui/Icon.astro';
 
       <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <!-- Section Header -->
-        <div class="text-center mb-16 animate-fade-in">
+        <div class="text-center mb-10 animate-fade-in">
           <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             تمام <span class="gradient-text">خدمات</span> ما
           </h2>
@@ -87,16 +92,44 @@ import Icon from '../ui/Icon.astro';
           </p>
         </div>
 
+        <!-- Category Filter Tabs -->
+        <div class="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-12" role="tablist" aria-label="دسته‌بندی خدمات">
+          <button
+            type="button"
+            data-tab="all"
+            class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-primary text-white shadow-md cursor-pointer"
+            role="tab"
+            aria-selected="true"
+          >
+            همه خدمات ({serviceCategories.reduce((acc, c) => acc + (c.services?.length || 0), 0)})
+          </button>
+          {serviceCategories.map((c, idx) => (
+            <button
+              type="button"
+              data-tab={String(idx)}
+              class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer"
+              role="tab"
+              aria-selected="false"
+            >
+              {c.title} ({c.services?.length || 0})
+            </button>
+          ))}
+        </div>
+
         <!-- Services Categories -->
-        <div class="space-y-16">
+        <div class="space-y-16" data-services-container>
           {serviceCategories.map((category, categoryIndex) => (
-            <div class="animate-slide-in-up" style={{ animationDelay: `${categoryIndex * 0.2}s` }}>
+            <div class="animate-slide-in-up" data-cat-idx={String(categoryIndex)} style={{ animationDelay: `${categoryIndex * 0.15}s` }}>
               <!-- Category Header -->
               <div class="flex items-center justify-center mb-8">
-                <div class={`inline-flex items-center gap-3 px-6 py-3 rounded-full bg-linear-to-r ${category.color} text-white shadow-lg`}>
+                <a
+                  href={category.href}
+                  class={`inline-flex items-center gap-3 px-6 py-3 rounded-full bg-linear-to-r ${category.color} text-white shadow-lg hover:opacity-95 hover:scale-105 transition-all duration-200 group`}
+                >
                   <Icon name={category.icon ?? ''} class="h-6 w-6" aria-hidden="true" />
                   <h3 class="text-xl font-bold">{category.title}</h3>
-                </div>
+                  <Icon name="arrow-left" class="h-4 w-4 group-hover:-translate-x-1 transition-transform" aria-hidden="true" />
+                </a>
               </div>
 
               <!-- Services Grid -->
@@ -175,3 +208,33 @@ import Icon from '../ui/Icon.astro';
         </div>
       </div>
     </section>
+
+    <script>
+      const section = document.querySelector('[data-services-section]');
+      const tabBtns = section?.querySelectorAll<HTMLButtonElement>('[data-tab]');
+      const categories = section?.querySelectorAll<HTMLElement>('[data-cat-idx]');
+
+      tabBtns?.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-tab');
+          tabBtns.forEach((b) => {
+            b.classList.remove('bg-primary', 'text-white', 'shadow-md');
+            b.classList.add('bg-gray-100', 'text-gray-700');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.remove('bg-gray-100', 'text-gray-700');
+          btn.classList.add('bg-primary', 'text-white', 'shadow-md');
+          btn.setAttribute('aria-selected', 'true');
+
+          categories?.forEach((cat) => {
+            const idx = cat.getAttribute('data-cat-idx');
+            if (target === 'all' || target === idx) {
+              cat.style.display = '';
+              cat.classList.add('animate-fade-in');
+            } else {
+              cat.style.display = 'none';
+            }
+          });
+        });
+      });
+    </script>

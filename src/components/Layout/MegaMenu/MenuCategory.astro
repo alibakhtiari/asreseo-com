@@ -18,9 +18,15 @@ interface MenuCategoryProps {
       <!-- Category Header -->
       <div class="flex items-center space-x-2 space-x-reverse mb-3">
         <span class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0"><Icon name={category.icon} class="h-4 w-4 text-primary" /></span>
-        <h4 class={`font-semibold text-sm ${category.color}`}>
-          {category.title}
-        </h4>
+        {category.href ? (
+          <a href={category.href} class={`font-semibold text-sm ${category.color} hover:underline`}>
+            {category.title}
+          </a>
+        ) : (
+          <h4 class={`font-semibold text-sm ${category.color}`}>
+            {category.title}
+          </h4>
+        )}
       </div>
 
       <!-- Category Items -->

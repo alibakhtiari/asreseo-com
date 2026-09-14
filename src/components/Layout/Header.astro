@@ -3,6 +3,7 @@ import Button from '../ui/button/Button.astro';
 import Icon from '../ui/Icon.astro';
 import MegaMenu from './MegaMenu.astro';
 import Logo from '../Logo.astro';
+import { menuCategories } from './MegaMenu/menuData';
 
   const navLinks = [
     { title: 'صفحه اصلی', href: '/' },
@@ -70,15 +71,45 @@ import Logo from '../Logo.astro';
     <div data-menu-panel id="mobile-menu-panel" hidden>
       <div class="lg:hidden border-t border-gray-100 py-4 animate-fade-in mt-2">
         <nav class="flex flex-col space-y-2">
-          {navLinks.map((item) => (
-            <a
-              href={item.href}
-              class="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors duration-200 py-2.5 px-4 rounded-lg font-medium text-sm"
-              data-menu-close
-            >
-              {item.title}
-            </a>
-          ))}
+          {navLinks.map((item) =>
+            item.isMegaMenu ? (
+              <details class="group rounded-lg hover:bg-gray-50 transition-colors">
+                <summary class="flex items-center justify-between cursor-pointer py-2.5 px-4 font-medium text-sm text-gray-700 list-none">
+                  <span>{item.title}</span>
+                  <Icon name="chevron-down" class="h-4 w-4 text-gray-400 group-open:rotate-180 transition-transform duration-200" />
+                </summary>
+                <div class="pe-2 ps-6 pb-2 space-y-3 border-r-2 border-primary-200 mr-4 mt-1 bg-gray-50/50 rounded-lg p-2">
+                  <a href="/services/" class="block text-xs font-bold text-primary-600 hover:underline py-1" data-menu-close>
+                    مشاهده همه خدمات ←
+                  </a>
+                  {menuCategories.map((cat) => (
+                    <div class="pt-1">
+                      <a href={cat.href || '/services/'} class={`block text-xs font-semibold ${cat.color} mb-1`} data-menu-close>
+                        {cat.title}
+                      </a>
+                      <ul class="space-y-1">
+                        {cat.items.map((subItem) => (
+                          <li>
+                            <a href={subItem.href} class="block text-xs text-gray-600 hover:text-primary-600 py-0.5" data-menu-close>
+                              {subItem.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </details>
+            ) : (
+              <a
+                href={item.href}
+                class="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors duration-200 py-2.5 px-4 rounded-lg font-medium text-sm"
+                data-menu-close
+              >
+                {item.title}
+              </a>
+            )
+          )}
           <div class="pt-3">
             <Button
               href="/consultation/"

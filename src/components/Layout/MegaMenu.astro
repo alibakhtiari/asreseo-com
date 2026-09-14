@@ -22,13 +22,13 @@ import { menuCategories } from './MegaMenu/menuData';
 
       <div data-mm-panel hidden>
 <div
-          class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[800px] max-w-[90vw] bg-white rounded-2xl shadow-xl border border-gray-100 z-50 overflow-hidden animate-fade-in"
+          class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[980px] max-w-[95vw] bg-white rounded-2xl shadow-xl border border-gray-100 z-50 overflow-hidden animate-fade-in"
           data-mm-enter
           data-mm-leave
         >
-          <!-- Menu Grid - 4 Columns -->
+          <!-- Menu Grid - 5 Columns -->
           <div class="p-6 bg-linear-to-b from-white to-gray-50/50">
-            <div class="grid grid-cols-4 gap-6" dir="rtl">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5" dir="rtl">
               {menuCategories.map((category, index) => (
                 <MenuCategory
                  

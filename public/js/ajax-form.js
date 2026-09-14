@@ -14,13 +14,27 @@
     }
     return el;
   }
+  function toEnglishDigits(str) {
+    if (!str) return '';
+    return str
+      .replace(/[۰-۹]/g, function (d) { return String(d.charCodeAt(0) - 1776); })
+      .replace(/[٠-٩]/g, function (d) { return String(d.charCodeAt(0) - 1632); });
+  }
   function bind(form) {
+    form.querySelectorAll('input[type="tel"], input[name="phone"]').forEach(function (input) {
+      input.addEventListener('input', function () {
+        this.value = toEnglishDigits(this.value);
+      });
+    });
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      if (!form.reportValidity()) return;
       const phone = form.querySelector('input[name="phone"]');
+      if (phone) {
+        phone.value = toEnglishDigits(phone.value).replace(/[\s-]/g, '');
+      }
+      if (!form.reportValidity()) return;
       const status = statusEl(form);
-      if (phone && !/^09\d{9}$/.test(phone.value.replace(/[\s-]/g, ''))) {
+      if (phone && !/^09\d{9}$/.test(phone.value)) {
         status.textContent = 'شماره موبایل معتبر نیست (مثال: 09123456789).';
         status.hidden = false;
         phone.focus();
@@ -30,7 +44,7 @@
       const label = btn ? btn.innerHTML : '';
       if (btn) { btn.setAttribute('disabled', ''); btn.innerHTML = 'در حال ارسال…'; }
       status.hidden = true;
-      let ok = false;
+      let ok;
       let serverMessage = '';
       try {
         const res = await fetch(form.getAttribute('action') || '/api/send-email', {
