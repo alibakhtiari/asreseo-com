@@ -43,9 +43,9 @@ import { TESTIMONIALS, HEADLINE_STATS, faNum } from '../../lib/site-claims';
               </div>
 
               <CardContent class="p-0">
-                <!-- Rating. Stars are decorative; the real value is announced
-                     to screen readers via the visually-hidden label. -->
-                {testimonial.rating && (
+                <!-- Rating. Only rendered when verified to avoid misleading placeholder star ratings.
+                     Unverified client quotes render elegantly as quote cards without fake star badges. -->
+                {testimonial.verified && testimonial.rating && (
                   <div class="flex items-center gap-1 mb-4" role="img" aria-label={`امتیاز ${faNum(testimonial.rating)} از ۵`}>
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Icon name="star" class="h-5 w-5 fill-amber-600 text-amber-600" aria-hidden="true" />

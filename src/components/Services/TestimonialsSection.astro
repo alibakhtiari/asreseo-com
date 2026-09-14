@@ -36,15 +36,9 @@ const testimonials = TESTIMONIALS.slice(0, 3);
                 "{testimonial.text}"
               </blockquote>
 
-              <!-- Rating. The stars are decorative: without role/aria-label a
-                   screen reader announces five separate "star" glyphs, so the
-                   wrapper exposes the value once, in Persian.
-                   NOTE: this renders whenever `rating` is set, NOT only when
-                   `verified` is true. All six entries are currently unverified
-                   and all carry rating 5 — see site-claims.ts. If you decide
-                   the ratings are placeholder data, gate this on
-                   `testimonial.verified` and they disappear site-wide. -->
-              {testimonial.rating && (
+              <!-- Rating. Rendered only when verified to avoid misleading placeholder ratings.
+                   Unverified client quotes render cleanly as quote cards without fake star badges. -->
+              {testimonial.verified && testimonial.rating && (
                 <div class="flex text-amber-600 mt-4" role="img" aria-label={`امتیاز ${faNum(testimonial.rating)} از ۵`}>
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <span aria-hidden="true">⭐</span>

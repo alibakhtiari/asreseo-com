@@ -10,51 +10,62 @@ const posts = await getCollection('blog');
 const sections = [
   {
     title: 'صفحات اصلی',
-    links: [      { title: 'صفحه اصلی', href: '/' },
+    links: [
+      { title: 'صفحه اصلی', href: '/' },
       { title: 'درباره ما', href: '/about/' },
       { title: 'تماس با ما', href: '/contact/' },
+      { title: 'مرکز پشتیبانی', href: '/support/' },
       { title: 'وبلاگ', href: '/blog/' },
       { title: 'نمونه کارها', href: '/portfolio/' },
       { title: 'سوالات متداول', href: '/faq/' },
       { title: 'حریم خصوصی', href: '/privacy/' },
-      { title: 'قوانین و مقررات', href: '/terms/' }]
+      { title: 'قوانین و مقررات', href: '/terms/' }
+    ]
   },
   {
     title: 'خدمات سئو (SEO)',
-    links: [      { title: 'همه خدمات سئو', href: '/services/seo/' },
+    links: [
+      { title: 'همه خدمات سئو', href: '/services/seo/' },
       { title: 'افزایش اعتبار صفحه و دامنه', href: '/services/seo/content-authority/' },
-      { title: '/services/seo/local-seo/', href: '/services/seo/local-seo/' },
-      { title: '/services/seo/technical-onpage/', href: '/services/seo/technical-onpage/' }]
+      { title: 'سئو محلی (Local SEO)', href: '/services/seo/local-seo/' },
+      { title: 'سئو تکنیکال و داخلی', href: '/services/seo/technical-onpage/' }
+    ]
   },
   {
     title: 'دیجیتال مارکتینگ',
-    links: [      { title: 'همه خدمات بازاریابی دیجیتال', href: '/services/marketing/' },
+    links: [
+      { title: 'همه خدمات بازاریابی دیجیتال', href: '/services/marketing/' },
       { title: 'تبلیغات گوگل (Google Ads)', href: '/services/marketing/google-ads/' },
       { title: 'بازاریابی شبکه‌های اجتماعی', href: '/services/marketing/social-media/' },
-      { title: '/services/marketing/email-marketing/', href: '/services/marketing/email-marketing/' },
-      { title: '/services/marketing/integrated-campaigns/', href: '/services/marketing/integrated-campaigns/' },
-      { title: '/services/marketing/sales-funnel-management/', href: '/services/marketing/sales-funnel-management/' }]
+      { title: 'بازاریابی ایمیلی (Email Marketing)', href: '/services/marketing/email-marketing/' },
+      { title: 'کمپین‌های تبلیغاتی یکپارچه', href: '/services/marketing/integrated-campaigns/' },
+      { title: 'مدیریت قیف فروش (Sales Funnel)', href: '/services/marketing/sales-funnel-management/' }
+    ]
   },
   {
     title: 'طراحی و توسعه وب',
-    links: [      { title: 'همه خدمات وب', href: '/services/web/' },
+    links: [
+      { title: 'همه خدمات وب', href: '/services/web/' },
       { title: 'طراحی وب‌سایت سئو محور', href: '/services/web/seo-web-design/' },
       { title: 'طراحی لندینگ پیج اختصاصی', href: '/services/web/landing-pages/' },
       { title: 'معماری و تجربه کاربری (UX)', href: '/services/web/ux-architecture/' },
-      { title: 'بهینه‌سازی سرعت سایت', href: '/services/web/website-speed/' }]
+      { title: 'بهینه‌سازی سرعت سایت', href: '/services/web/website-speed/' }
+    ]
   },
   {
     title: 'محتوا و هوش مصنوعی',
-    links: [      { title: 'خدمات بازاریابی و تولید محتوا', href: '/services/content/' },
+    links: [
+      { title: 'خدمات بازاریابی و تولید محتوا', href: '/services/content/' },
       { title: 'خدمات هوش مصنوعی عصر سئو', href: '/services/ai/' },
       { title: 'تحلیل و استراتژی هوشمند', href: '/services/ai/analysis-strategy/' },
       { title: 'تولید محتوای هوشمند با هوش مصنوعی (متن و ویدیو)', href: '/services/ai/content-creation/' },
       { title: 'بازاریابی هوشمند، اتوماسیون و چت‌بات فارسی', href: '/services/ai/marketing-engagement/' },
       { title: 'تقویم محتوایی سایت و شبکه‌های اجتماعی', href: '/services/content/content-calendar/' },
-      { title: '/services/content/social-media-content/', href: '/services/content/social-media-content/' },
-      { title: '/services/content/text-content/', href: '/services/content/text-content/' },
-      { title: '/services/content/translation/', href: '/services/content/translation/' },
-      { title: '/services/content/visual-content/', href: '/services/content/visual-content/' }]
+      { title: 'تولید محتوای شبکه‌های اجتماعی', href: '/services/content/social-media-content/' },
+      { title: 'تولید محتوای متنی و سئومحور', href: '/services/content/text-content/' },
+      { title: 'ترجمه و بومی‌سازی تخصصی', href: '/services/content/translation/' },
+      { title: 'تولید محتوای تصویری و ویدیویی', href: '/services/content/visual-content/' }
+    ]
   },
   {
     title: 'مقالات وبلاگ',
