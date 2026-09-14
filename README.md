@@ -115,7 +115,7 @@ npm run build
 
 1. **مستندات استقرار را مطالعه فرمایید:** مراحل دقیق در [`audit/DEPLOYMENT.md`](./audit/DEPLOYMENT.md) ثبت شده است.
 2. **اتصال بایندینگ ایمیل (Cloudflare Dashboard):**
-   - در داشبورد کلودفلر، برای پروژه Pages خود در مسیر **Settings → Functions → Bindings**، متغیر بایندینگ Send Email را با نام **`EMAIL`** اضافه فرمایید تا فرم‌های تماس و مشاوره فعال شوند.
+   - در داشبورد کلودفلر، برای پروژه Pages خود در مسیر **Settings → Functions → Bindings**، متغیر بایندینگ Send Email را با نام **`asreseo`** (یا **`EMAIL`**) اضافه فرمایید تا فرم‌های تماس و مشاوره فعال شوند. (کد هر دو نام را پشتیبانی می‌کند).
 3. **غیرفعال‌سازی Content Signals Policy:**
    - در داشبورد کلودفلر، گزینه Content Signals Policy را غیرفعال کنید تا فایل `robots.txt` پروژه توسط کلودفلر بازنویسی نشود.
 4. **تغییر برنچ به `astro-migration` یا مرج در `main`:**

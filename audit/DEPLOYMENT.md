@@ -36,9 +36,9 @@ git add -A
 git commit -m "Astro rebuild: 43 audit fixes (SEO/AEO/GEO, a11y, schema, email)"
 ```
 
-## 2. Attach the `EMAIL` binding — DASHBOARD, cannot be done from code
+## 2. Attach the `asreseo` (or `EMAIL`) binding — DASHBOARD, cannot be done from code
 
-`wrangler.toml` declares `send_email = [{ name = "EMAIL" }]`, but that stanza
+`wrangler.toml` declares `send_email = [{ name = "asreseo" }, { name = "EMAIL" }]`, but that stanza
 is **documentation only**. `wrangler pages deploy` exposes no binding flags,
 so the binding must be attached by hand or the contact form returns `503`.
 
@@ -46,7 +46,7 @@ so the binding must be attached by hand or the contact form returns `503`.
    (this applies SPF / DKIM / DMARC — do this first, DNS takes time).
 2. Verify the sender address **`website@asreseo.com`**.
 3. Pages project → **Settings → Functions → Bindings** → add
-   **Send Email**, variable name **`EMAIL`**.
+   **Send Email**, variable name **`asreseo`** (or **`EMAIL`**). The code supports both names.
 
 > Apply to **both** Production and Preview environments. Preview deployments
 > are where this usually gets missed, and the failure looks like a code bug.

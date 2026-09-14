@@ -142,12 +142,12 @@ try {
     bad('endpoint deployed', '404 — Pages Functions are not running');
   } else if (status === 503) {
     bad(
-      'EMAIL binding attached',
-      '503 — function runs but the send_email binding is missing (see DEPLOYMENT.md step 2)',
+      'asreseo / EMAIL binding attached',
+      '503 — function runs but the send_email binding (asreseo or EMAIL) is missing (see DEPLOYMENT.md step 2)',
     );
   } else if (status === 400) {
     ok('endpoint deployed and validating', `status ${status}`);
-    ok('EMAIL binding attached', 'reached validation, not 503');
+    ok('asreseo / EMAIL binding attached', 'reached validation, not 503');
   } else {
     ok('endpoint reachable', `status ${status} — verify manually`);
   }

@@ -22,7 +22,10 @@ interface EmailBinding {
   }): Promise<unknown>;
 }
 
-interface EmailEnv { EMAIL?: EmailBinding }
+interface EmailEnv {
+  asreseo?: EmailBinding;
+  EMAIL?: EmailBinding;
+}
 
 const INBOX = 'info@asreseo.com';
 const FROM = 'website@asreseo.com';
@@ -87,16 +90,18 @@ export const onRequestPost = async (context: { request: Request; env: EmailEnv }
       return json({ error: 'لطفاً توضیح کوتاهی (حداقل ۱۰ حرف) بنویسید.' }, 400);
     }
 
-    if (!env?.EMAIL) {
+    const emailBinding = env?.asreseo || env?.EMAIL;
+
+    if (!emailBinding) {
       // Binding is missing — see the setup comment at the top of this file.
-      console.error('[send-email] EMAIL binding is not attached to this Pages project.');
+      console.error('[send-email] Neither "asreseo" nor "EMAIL" binding is attached to this Pages project.');
       return json({ error: 'سرویس ایمیل پیکربندی نشده است.' }, 503);
     }
 
     const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
     const ua = request.headers.get('User-Agent') || 'unknown';
 
-    await env.EMAIL.send({
+    await emailBinding.send({
       from: FROM,
       to: INBOX,
       subject: `درخواست جدید از ${name} (${service || 'بدون موضوع'})`,

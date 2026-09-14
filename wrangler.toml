@@ -11,5 +11,6 @@ compatibility_flags = ["nodejs_compat"]
 # deploy` exposes no binding flags, so this stanza documents the binding
 # the code expects but does NOT attach it. Do not delete.
 send_email = [
+  { name = "asreseo" },
   { name = "EMAIL" }
 ]
