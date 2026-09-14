@@ -51,21 +51,20 @@ so the binding must be attached by hand or the contact form returns `503`.
 > Apply to **both** Production and Preview environments. Preview deployments
 > are where this usually gets missed, and the failure looks like a code bug.
 
-## 3. Deploy
+## 3. Deploy (Cloudflare Worker with Assets)
 
-**Option A — Git integration (recommended).**
-Pages project → Settings → Builds & deployments → set production branch to
-`astro-migration`. Build command `npm run build`, output directory `dist`.
-Then push.
+The project is configured as a Cloudflare Worker with Static Assets:
+- `main = "worker.ts"` handles API routes like `/api/send-email` and proxies other requests to assets.
+- `[assets] directory = "./dist"` serves the static site files (HTML, CSS, JS, images, etc.).
 
-**Option B — direct upload.**
+**Git CI / Dashboard Deploy:**
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy` (or left default)
 
+**Direct CLI deploy:**
 ```bash
-npx wrangler pages deploy dist --project-name asre-seo-website
+npm run build && npx wrangler deploy
 ```
-
-Option B uploads only `dist/`; it does **not** attach bindings. Step 2 still
-applies, and `_headers` / `_redirects` are honoured either way.
 
 ## 4. Disable the Content Signals Policy — DASHBOARD, silently overrides robots.txt
 

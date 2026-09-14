@@ -111,15 +111,19 @@ npm run build
 
 ## راهنمای استقرار نهایی (Production Deployment)
 
-این پروژه برای میزبانی در **Cloudflare Pages** پیکربندی شده است. برای اجرای بدون نقص استقرار:
+این پروژه با جدیدترین معماری **Cloudflare Workers with Static Assets** پیکربندی شده است:
 
 1. **مستندات استقرار را مطالعه فرمایید:** مراحل دقیق در [`audit/DEPLOYMENT.md`](./audit/DEPLOYMENT.md) ثبت شده است.
-2. **اتصال بایندینگ ایمیل (Cloudflare Dashboard):**
-   - در داشبورد کلودفلر، برای پروژه Pages خود در مسیر **Settings → Functions → Bindings**، متغیر بایندینگ Send Email را با نام **`asreseo`** (یا **`EMAIL`**) اضافه فرمایید تا فرم‌های تماس و مشاوره فعال شوند. (کد هر دو نام را پشتیبانی می‌کند).
-3. **غیرفعال‌سازی Content Signals Policy:**
-   - در داشبورد کلودفلر، گزینه Content Signals Policy را غیرفعال کنید تا فایل `robots.txt` پروژه توسط کلودفلر بازنویسی نشود.
-4. **تغییر برنچ به `astro-migration` یا مرج در `main`:**
-   - برنچ بیلد پروژه در تنظیمات Cloudflare Pages را روی `astro-migration` تنظیم کرده یا تغییرات را در `main` مرج فرمایید.
+2. **تنظیمات بیلد و دیپلوی در داشبورد کلودفلر:**
+   - دستور بیلد: `npm run build`
+   - دستور دیپلوی: `npx wrangler deploy`
+   - دایرکتوری خروجی: `dist`
+3. **اتصال بایندینگ ایمیل (Cloudflare Dashboard):**
+   - در مسیر **Settings → Bindings** پروژه در کلودفلر، متغیر Send Email را با نام **`asreseo`** (یا **`EMAIL`**) اضافه فرمایید تا فرم‌های تماس و مشاوره فعال شوند. (کد هر دو نام را پشتیبانی می‌کند).
+4. **غیرفعال‌سازی Content Signals Policy:**
+   - در داشبورد کلودفلر گزینه Content Signals Policy را غیرفعال کنید تا فایل `robots.txt` پروژه توسط کلودفلر بازنویسی نشود.
+5. **تغییر برنچ به `astro-migration` یا مرج در `main`:**
+   - برنچ بیلد پروژه را روی `astro-migration` تنظیم کرده یا تغییرات را در `main` مرج فرمایید.
 5. **تست و اعتبارسنجی پس از استقرار:**
    ```bash
    npm run verify:deploy

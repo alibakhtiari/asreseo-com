@@ -1,16 +1,13 @@
 name = "asre-seo-website"
-pages_build_output_dir = "dist"
+main = "worker.ts"
 compatibility_date = "2025-12-18"
 compatibility_flags = ["nodejs_compat"]
 
-[vars]
-# No secrets required: form mail uses the native send_email binding below.
-
-# NOTE: for Pages projects, bindings attach in the dashboard
-# (Settings → Functions → Bindings, per environment) — `wrangler pages
-# deploy` exposes no binding flags, so this stanza documents the binding
-# the code expects but does NOT attach it. Do not delete.
 send_email = [
   { name = "asreseo" },
   { name = "EMAIL" }
 ]
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
