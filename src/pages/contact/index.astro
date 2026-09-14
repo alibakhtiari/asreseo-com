@@ -52,6 +52,14 @@ const structuredData = {
 
 
   
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { '@type': 'ListItem', position: 2, name: 'تماس با ما', item: 'https://asreseo.com/contact/' },
+  ],
+};
 ---
 <BaseLayout
   title='تماس با ما | مشاوره رایگان دیجیتال مارکتینگ و سئو | عصر سئو'
@@ -64,6 +72,7 @@ const structuredData = {
   ogImages={[{ url: '/images/contact-hero.webp', width: 1200, height: 630, alt: 'تماس با ما - عصر سئو' }]}
   twitterCard='summary_large_image'
 >
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 <div class="min-h-screen bg-white">
       <Header />
       <main>
@@ -198,7 +207,7 @@ const structuredData = {
                         <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                         </svg>
-                        <span data-submit-idle>'ارسال پیام'</span><span data-submit-busy hidden>'در حال ارسال...'</span>
+                        <span data-submit-idle>ارسال پیام</span><span data-submit-busy hidden>در حال ارسال...</span>
                       </Button>
                     </div>
                   </form>

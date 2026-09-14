@@ -112,7 +112,6 @@ const serviceSchema = {
     'name': 'Iran'
   },
   'serviceType': 'AI Solutions & AI SEO Services',
-  'speakable': { '@type': 'SpeakableSpecification', 'cssSelector': ['.speakable-answer'] },
   'hasOfferCatalog': {
     '@type': 'OfferCatalog',
     'name': 'خدمات هوش مصنوعی عصر سئو',
@@ -127,7 +126,14 @@ const serviceSchema = {
   }
 };
 
-
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  'name': 'خدمات هوش مصنوعی و سئو سازمانی | عصر سئو',
+  'url': 'https://asreseo.com/services/ai/',
+  'inLanguage': 'fa-IR',
+  'speakable': { '@type': 'SpeakableSpecification', 'cssSelector': ['.speakable-answer'] }
+};
 
 const breadcrumbs = [
     { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
@@ -147,6 +153,7 @@ const breadcrumbs = [
   twitterCard='summary_large_image'
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(webPageSchema)} />
   
   <BreadcrumbStructuredData items={breadcrumbs} />
 
@@ -356,7 +363,7 @@ const breadcrumbs = [
         <div class="container-custom max-w-5xl">
           <div class="text-center mb-10">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              تفاوت سئو کلاسیک با سئو مبتنی بر هوش مصنوعی
+              خدمات سئو هوش مصنوعی: تفاوت سئو کلاسیک با هوش مصنوعی
             </h2>
             <p class="text-lg text-gray-600">
               این دو رویکرد جایگزین یکدیگر نیستند؛ انتخاب درست به اندازه سایت و شیوه تولید محتوای شما بستگی دارد.

@@ -60,7 +60,7 @@ const structuredData = {
         {
             icon: "zap",
             title: 'بهینه‌سازی سرعت و Core Web Vitals',
-            description: 'افزایش سرعت لود صفحات به زیر ۳ ثانیه و بهبود امتیازهای حیاتی گوگل (LCP, FID, CLS).',
+            description: 'افزایش سرعت لود صفحات به زیر ۳ ثانیه و بهبود امتیازهای حیاتی گوگل (LCP, INP, CLS).',
             benefits: ['تجربه کاربری عالی', 'رتبه بهتر موبایل', 'کاهش نرخ پرش']
         },
         {
@@ -132,10 +132,10 @@ const structuredData = {
             color: 'text-blue-600'
         },
         {
-            metric: 'FID',
-            title: 'First Input Delay',
-            description: 'تأخیر اولین تعامل کاربر با صفحه',
-            target: '< ۱۰۰ میلی‌ثانیه',
+            metric: 'INP',
+            title: 'Interaction to Next Paint',
+            description: 'پاسخ‌دهی تعاملی و سرعت واکنش صفحه به کلیک و لمس',
+            target: '< ۲۰۰ میلی‌ثانیه',
             icon: "activity",
             color: 'text-green-800'
         },
@@ -155,7 +155,7 @@ const structuredData = {
         'اشکال در Sitemap XML و ساختار ناوبری',
         'مشکل URLهای تکراری یا نبود canonical مناسب',
         'لینک‌های شکسته و خطاهای ۴۰۴ و ۵xx',
-        'خطاهای Core Web Vitals (LCP، FID، CLS)',
+        'خطاهای Core Web Vitals (LCP، INP، CLS)',
         'مشکلات ساختار URL و پارامترهای غیرضروری',
         'اختلالات طراحی واکنش‌گرا و موبایل',
         'مشکلات تصاویر غیربهینه و حجم بالا',

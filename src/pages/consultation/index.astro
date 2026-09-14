@@ -4,16 +4,18 @@ import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
 import Button from '../../components/ui/button/Button.astro';
 import Icon from '../../components/ui/Icon.astro';
+import ServiceFAQ from '../../components/Services/ServiceFAQ.astro';
 
 const consultFaqs = [
-  { q: 'آیا جلسه مشاوره واقعاً رایگان است؟', a: 'بله؛ جلسه اول مشاوره عصر سئو کاملاً رایگان است و هیچ تعهدی برای ادامه همکاری ایجاد نمی‌کند.' },
-  { q: 'جلسه مشاوره چقدر طول می‌کشد؟', a: 'حدود نیم ساعت؛ در همین زمان وضعیت فعلی کسب‌وکار شما تحلیل و نقشه راه رشد ارائه می‌شود.' },
-  { q: 'در جلسه مشاوره چه چیزی دریافت می‌کنم؟', a: 'تحلیل وضعیت سایت و کانال‌های بازاریابی شما به‌همراه اولویت‌بندی اقدامات بعدی برای رشد.' },
-  { q: 'چگونه جلسه را رزرو کنم؟', a: 'فرم همین صفحه را تکمیل کنید تا برای هماهنگی زمان جلسه با شما تماس بگیریم.' },
+  { question: 'آیا جلسه مشاوره واقعاً رایگان است؟', answer: 'بله؛ جلسه اول مشاوره عصر سئو کاملاً رایگان است و هیچ تعهدی برای ادامه همکاری ایجاد نمی‌کند.' },
+  { question: 'جلسه مشاوره چقدر طول می‌کشد؟', answer: 'حدود نیم ساعت؛ در همین زمان وضعیت فعلی کسب‌وکار شما تحلیل و نقشه راه رشد ارائه می‌شود.' },
+  { question: 'در جلسه مشاوره چه چیزی دریافت می‌کنم؟', answer: 'تحلیل وضعیت سایت و کانال‌های بازاریابی شما به‌همراه اولویت‌بندی اقدامات بعدی برای رشد.' },
+  { question: 'چگونه جلسه را رزرو کنم؟', answer: 'فرم همین صفحه را تکمیل کنید تا برای هماهنگی زمان جلسه با شما تماس بگیریم.' },
 ];
 const consultSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
+  serviceType: 'SEO & Marketing Consultation',
   name: 'مشاوره رایگان سئو و دیجیتال مارکتینگ',
   provider: { '@type': 'Organization', name: 'عصر سئو', url: 'https://asreseo.com/' },
   areaServed: 'IR',
@@ -24,9 +26,17 @@ const consultFaqSchema = {
   '@type': 'FAQPage',
   mainEntity: consultFaqs.map((f) => ({
     '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
   })),
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { '@type': 'ListItem', position: 2, name: 'مشاوره رایگان', item: 'https://asreseo.com/consultation/' },
+  ],
 };
 ---
 <BaseLayout title='دریافت مشاوره رایگان | عصر سئو' description='رزرو مشاوره رایگان سئو و دیجیتال مارکتینگ؛ تحلیل وضعیت سایت شما و ارائه نقشه راه رشد در یک جلسه تخصصی. همین حالا درخواست خود را ثبت کنید.' canonical='https://asreseo.com/consultation/' ogType='website' twitterCard='summary_large_image'>
@@ -34,6 +44,7 @@ const consultFaqSchema = {
             <Header />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(consultSchema)} />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(consultFaqSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
             <main class="section-padding pt-32">
                 <div class="container-custom">
                     <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -90,6 +101,15 @@ const consultFaqSchema = {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="mt-16">
+                        <ServiceFAQ
+                            title="سوالات متداول مشاوره"
+                            highlightWord="مشاوره"
+                            subtitle="پاسخ به سوالات پرتکرار درباره نحوه برگزاری و خروجی جلسات مشاوره رایگان"
+                            faqs={consultFaqs}
+                            includeSchema={false}
+                        />
                     </div>
                 </div>
             </main>
