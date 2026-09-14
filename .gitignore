@@ -28,5 +28,7 @@ dist-ssr
 *.csv
 __pycache__/
 *.pyc
-
 /public/images/*.webp
+.workbuddy-ai
+.chrome-profile
+.gemini
