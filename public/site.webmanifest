@@ -1,6 +1,11 @@
 {
-  "name": "AsreSeo",
-  "short_name": "AsreSeo",
+  "name": "عصر سئو",
+  "short_name": "عصر سئو",
+  "description": "خدمات دیجیتال مارکتینگ، سئو و هوش مصنوعی",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -14,8 +19,5 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  ]
 }

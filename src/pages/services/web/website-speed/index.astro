@@ -97,10 +97,10 @@ const structuredData = {
       target: '< 2.5s'
     },
     {
-      metric: 'First Input Delay (FID)',
-      description: 'زمان پاسخگویی برای اولین تعامل کاربر - باید زیر ۱۰۰ میلی‌ثانیه باشد',
-      importance: 'تجربه تعاملی کاربر',
-      target: '< 100ms'
+      metric: 'Interaction to Next Paint (INP)',
+      description: 'زمان پاسخگویی تعاملی صفحه به تمام کلیک‌ها و لمس‌ها - باید زیر ۲۰۰ میلی‌ثانیه باشد',
+      importance: 'استاندارد نوین گوگل برای سنجش پاسخگویی تعاملی کاربر',
+      target: '< 200ms'
     },
     {
       metric: 'Cumulative Layout Shift (CLS)',
@@ -206,7 +206,7 @@ const structuredData = {
     },
     {
       step: 'بهبود Core Web Vitals',
-      desc: 'حل مشکلات LCP، FID و CLS با تکنیک‌های تخصصی',
+      desc: 'حل مشکلات LCP، INP و CLS با تکنیک‌های تخصصی',
       duration: '۳-۵ روز'
     },
     {
