@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import {
   SITE,
   MAIN_PAGES,
@@ -23,8 +23,10 @@ export const GET: APIRoute = async () => {
   // Fail the build rather than publish a URL that doesn't exist.
   assertPathsExist(routes, [...mainPaths, ...policyPaths, ...servicePaths]);
 
-  const posts = (await getCollection('blog')).sort((a: any, b: any) =>
-    String(b.data.date ?? '').localeCompare(String(a.data.date ?? '')),
+  const rawPosts = await getCollection('blog');
+  const posts: CollectionEntry<'blog'>[] = [...rawPosts].sort(
+    (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
+      String(b.data.date ?? '').localeCompare(String(a.data.date ?? '')),
   );
 
   const L: string[] = [];
@@ -39,23 +41,24 @@ export const GET: APIRoute = async () => {
   L.push('');
   L.push('## Main Pages');
   L.push('');
-  for (const p of MAIN_PAGES) L.push(`- ${p.label}: ${SITE}${p.path}`);
+  for (const p of MAIN_PAGES) L.push(`- [${p.label}](${SITE}${p.path})`);
   L.push('');
   L.push('## Services');
   L.push('');
   for (const g of SERVICE_GROUPS) {
-    L.push(`### ${g.en} (${g.fa}) — ${SITE}${g.path}`);
+    L.push(`### [${g.en} (${g.fa})](${SITE}${g.path})`);
     for (const i of g.items) {
-      L.push(`- ${i.label} (${i.fa}): ${SITE}${i.path}`);
+      L.push(`- [${i.label} (${i.fa})](${SITE}${i.path})`);
     }
     L.push('');
   }
   L.push('## Educational Articles & Guides (Blog)');
   L.push('');
-  for (const post of posts as any[]) {
+  for (const post of posts) {
     const slug: string = post.id.replace(/\.mdx?$/, '');
     const title: string = post.data.title ?? slug;
-    L.push(`- ${title}: ${SITE}/blog/${slug}/`);
+    const desc: string = post.data.excerpt ?? post.data.description ?? '';
+    L.push(`- [${title}](${SITE}/blog/${slug}/)${desc ? `: ${desc}` : ''}`);
   }
   L.push('');
   L.push('## Policies');

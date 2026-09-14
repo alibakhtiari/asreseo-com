@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import {
   SITE,
   SERVICE_GROUPS,
@@ -18,8 +18,10 @@ export const GET: APIRoute = async () => {
     PORTFOLIO.path,
   ]);
 
-  const posts = (await getCollection('blog')).sort((a: any, b: any) =>
-    String(b.data.date ?? '').localeCompare(String(a.data.date ?? '')),
+  const rawPosts = await getCollection('blog');
+  const posts: CollectionEntry<'blog'>[] = [...rawPosts].sort(
+    (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
+      String(b.data.date ?? '').localeCompare(String(a.data.date ?? '')),
   );
 
   const L: string[] = [];
@@ -47,11 +49,11 @@ export const GET: APIRoute = async () => {
   L.push('## 2. Core Service Offerings');
   L.push('');
   SERVICE_GROUPS.forEach((g, gi) => {
-    L.push(`### 2.${gi + 1}. ${g.en} (${g.fa}) — ${SITE}${g.path}`);
+    L.push(`### 2.${gi + 1}. [${g.en} (${g.fa})](${SITE}${g.path})`);
     for (const i of g.items) {
       // Always emit the canonical URL — AI consumers cite the link, and the
       // description alone gave them nothing to point at.
-      L.push(`- **${i.fa} (${i.label})** — ${SITE}${i.path}`);
+      L.push(`- **[${i.fa} (${i.label})](${SITE}${i.path})**`);
       if (i.blurb) L.push(`  ${i.blurb}`);
     }
     L.push('');
@@ -66,8 +68,8 @@ export const GET: APIRoute = async () => {
   }
   // Every blog FAQ is a ready-made citation unit: question + verbatim answer.
   const seen = new Set<string>(COMPANY_FAQS.map((f) => f.q.trim()));
-  for (const post of posts as any[]) {
-    const faqs: { question: string; answer: string }[] = post.data.faqs ?? [];
+  for (const post of posts) {
+    const faqs = (post.data.faqs ?? []) as Array<{ question: string; answer: string }>;
     for (const f of faqs) {
       const q = String(f.question ?? '').trim();
       if (!q || seen.has(q)) continue;
@@ -81,11 +83,11 @@ export const GET: APIRoute = async () => {
   L.push('');
   L.push('## 4. Key Cornerstone Educational Guides');
   L.push('');
-  (posts as any[]).forEach((post, i) => {
+  posts.forEach((post, i) => {
     const slug: string = post.id.replace(/\.mdx?$/, '');
     const title: string = post.data.title ?? slug;
     const summary: string = post.data.description ?? post.data.excerpt ?? '';
-    L.push(`### 4.${i + 1}. ${title} — ${SITE}/blog/${slug}/`);
+    L.push(`### 4.${i + 1}. [${title}](${SITE}/blog/${slug}/)`);
     if (summary) L.push(`${summary.replace(/\s+/g, ' ').trim()}`);
     if (post.data.updated) L.push(`Last updated: ${post.data.updated}`);
     const takeaways: string[] = post.data.keyTakeaways ?? [];
