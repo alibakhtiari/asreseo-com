@@ -3,6 +3,23 @@
 # deployment — verified in production: /home and /blog/post/:slug returned 404
 # while every plain "301" rule resolved correctly. Plain 301 is safe here
 # because no static file exists at these paths.
+#
+# NOTE (trailing-slash normalization, audit §1 T3): `/about` -> `/about/` is a
+# 307 issued by Cloudflare's BUILT-IN asset serving (assets.html_handling,
+# default "auto-trailing-slash"), not by these rules. The 307 status is NOT
+# configurable — the html_handling docs' tables show 307 in every mode
+# (auto/force/drop), the setting only picks which URL is canonical, and
+# "none" would fall through to a 404 instead — and worker.ts never sees
+# directory paths because the asset match short-circuits the Worker
+# (run_worker_first = false). Exact-path 308 rules listed HERE would win (docs:
+# "Redirects are always followed, regardless of whether or not an asset
+# matches the incoming request"), but a generic "path lacks trailing slash"
+# rule is not expressible (no negative/conditional matching in _redirects), so
+# every slash-less variant of every page — including blog slugs the content
+# team adds later — must be enumerated by hand, and none of it could be
+# verified before deploy. Outcome: documented as host behaviour; the 307 still
+# lands on the canonical trailing-slash URL, and absolute canonicals already
+# normalize for search engines.
 # /home -> / (redirect old React Router routes)
 /home / 301
 
@@ -11,6 +28,18 @@
 
 # Legacy service worker cleanup redirect
 /sw.js/ /sw.js 301
+
+# Single-hop for the renamed "-2024" posts: without these, the generic
+# /blog/post/:slug placeholder below rewrites to /blog/<slug>-2024/, which then
+# needs a SECOND 301 to the evergreen URL (2-hop chain, audit §1 T5). Static
+# rules sit above the dynamic placeholder because the top-most matching rule
+# wins and static rules are evaluated before dynamic ones.
+/blog/post/seo-guide-2024 /blog/seo-guide/ 301
+/blog/post/seo-guide-2024/ /blog/seo-guide/ 301
+/blog/post/google-ads-guide-2024 /blog/google-ads-guide/ 301
+/blog/post/google-ads-guide-2024/ /blog/google-ads-guide/ 301
+/blog/post/digital-marketing-trends-2024 /blog/digital-marketing-trends/ 301
+/blog/post/digital-marketing-trends-2024/ /blog/digital-marketing-trends/ 301
 
 # Blog post redirects for old React Router structure
 /blog/post/:slug /blog/:slug/ 301

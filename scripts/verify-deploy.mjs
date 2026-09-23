@@ -7,6 +7,8 @@
  * Exits non-zero if any check fails. Every check here caught a real problem
  * during the audit, or guards a failure mode that is invisible in the repo:
  *   - _headers not applied        -> HTML served uncached
+ *   - Cache-Control duplicated    -> TTL silently truncated to first value
+ *   - HSTS / CSP absent           -> transport + baseline CSP missing
  *   - Content Signals Policy on   -> our robots.txt silently replaced
  *   - EMAIL binding not attached  -> contact form returns 503
  *   - -2024 301s missing          -> renamed blog URLs 404
@@ -44,6 +46,12 @@ console.log('robots.txt');
 try {
   const { res, body } = await get('/robots.txt');
   check(res.status === 200, 'serves 200', `status ${res.status}`);
+  const rcc = res.headers.get('cache-control') || '';
+  check(
+    rcc === 'public, max-age=86400',
+    'serves exactly one Cache-Control (public, max-age=86400)',
+    rcc || 'no header',
+  );
   check(body.includes('sitemap-index.xml'), 'declares canonical sitemap');
   check(body.includes('GPTBot'), 'allows GPTBot');
   check(body.includes('PerplexityBot'), 'allows PerplexityBot');
@@ -97,10 +105,35 @@ try {
   const { res } = await get('/');
   const cc = res.headers.get('cache-control') || '';
   check(res.status === 200, 'homepage serves 200', `status ${res.status}`);
-  check(/max-age=3600/.test(cc), 'HTML is cached (max-age=3600)', cc || 'no header');
+  check(
+    cc === 'public, max-age=3600',
+    'HTML cached with exactly one Cache-Control (max-age=3600)',
+    cc || 'no header',
+  );
   check(
     (res.headers.get('x-content-type-options') || '') === 'nosniff',
     'security headers applied',
+  );
+  const hsts = res.headers.get('strict-transport-security') || '';
+  check(
+    hsts === 'max-age=31536000; includeSubDomains; preload',
+    'HSTS present',
+    hsts || '(missing)',
+  );
+  const csp = res.headers.get('content-security-policy') || '';
+  check(
+    csp.includes("default-src 'self'") && csp.includes("frame-ancestors 'none'"),
+    'CSP present with baseline directives',
+    csp ? 'applied' : '(missing)',
+  );
+  // Asset rules in public/_headers detach + re-set Cache-Control ("! Cache-Control").
+  // A joined value here means the detach stopped working and TTLs truncate again.
+  const { res: fav } = await get('/favicon.ico');
+  const fcc = fav.headers.get('cache-control') || '';
+  check(
+    fcc === 'public, max-age=31536000, immutable',
+    'asset cached with exactly one Cache-Control (immutable 1y)',
+    fcc || 'no header',
   );
 } catch (e) {
   bad('homepage fetch', e.message);
@@ -112,6 +145,14 @@ const renames = [
   ['/blog/seo-guide-2024/', '/blog/seo-guide/'],
   ['/blog/google-ads-guide-2024/', '/blog/google-ads-guide/'],
   ['/blog/digital-marketing-trends-2024/', '/blog/digital-marketing-trends/'],
+  // Single-hop: /blog/post/<slug>-2024 must land on the evergreen URL in ONE
+  // 301 (a Location of /blog/<slug>-2024/ means the 2-hop chain is back).
+  ['/blog/post/seo-guide-2024', '/blog/seo-guide/'],
+  ['/blog/post/seo-guide-2024/', '/blog/seo-guide/'],
+  ['/blog/post/google-ads-guide-2024', '/blog/google-ads-guide/'],
+  ['/blog/post/google-ads-guide-2024/', '/blog/google-ads-guide/'],
+  ['/blog/post/digital-marketing-trends-2024', '/blog/digital-marketing-trends/'],
+  ['/blog/post/digital-marketing-trends-2024/', '/blog/digital-marketing-trends/'],
 ];
 for (const [from, to] of renames) {
   try {
