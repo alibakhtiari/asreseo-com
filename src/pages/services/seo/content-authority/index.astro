@@ -150,11 +150,81 @@ const structuredData = {
         }
     ];
 
+    // Qualitative process facts, not performance percentages — no invented
+    // traffic/CVR figures (see src/lib/site-claims.ts authenticity policy).
     const stats = [
-        { metric: '+۴۰۰%', label: 'رشد ترافیک ارگانیک', color: 'text-amber-600', icon: "trending-up" },
-        { metric: '۵۰+', label: 'دامنه اعتبار بالا', color: 'text-purple-600', icon: "globe" },
-        { metric: '۵x', label: 'نرخ تبدیل بالاتر', color: 'text-green-800', icon: "target" },
-        { metric: '۱۰۰%', label: 'لینک‌های طبیعی', color: 'text-blue-600', icon: "check-circle" }
+        { metric: '۵ مرحله', label: 'فرآیند اجرایی مستند', color: 'text-amber-600', icon: "list-todo" },
+        { metric: '۳ لایه', label: 'محتوا، لینک داخلی، بک‌لینک', color: 'text-purple-600', icon: "layers" },
+        { metric: 'ماهانه', label: 'گزارش پیشرفت قابل راستی‌آزمایی', color: 'text-green-800', icon: "bar-chart3" },
+        { metric: 'کلاه سفید', label: 'روش لینک‌سازی و رپورتاژ', color: 'text-blue-600', icon: "check-circle" }
+    ];
+
+    // Commercial half of the /services/seo/content-authority ↔ /blog/page-authority-guide
+    // split: this page answers how the engagement runs, what is delivered and how
+    // progress is reported. Deliberately qualitative — no invented percentages,
+    // DA/PA figures or client numbers (see src/lib/site-claims.ts).
+    const processSteps = [
+        {
+            step: 'ممیزی صفحات هدف',
+            desc: 'تعیین اینکه کدام صفحات — لندینگ‌ها و مقالات کلیدی — باید اعتبار بگیرند و بررسی وضعیت فعلی لینک داخلی، محتوا و بک‌لینک هرکدام.'
+        },
+        {
+            step: 'معماری لینک داخلی',
+            desc: 'تعیین مسیر لینک از صفحات قوی سایت به صفحات هدف، اصلاح انکرها و افزودن بخش‌های مرتبطی که اکنون بدون لینک مانده‌اند.'
+        },
+        {
+            step: 'تقویت محتوای صفحه',
+            desc: 'بازنویسی و تکمیل صفحه بر اساس پرسش‌های واقعی جستجو: ساختار سرفصل‌ها، پوشش زیرموضوع‌ها و داده ساختاریافته.'
+        },
+        {
+            step: 'لینک‌سازی خارجی هدفمند',
+            desc: 'رپورتاژ و همکاری محتوایی فقط با رسانه‌های مرتبط و معتبر حوزه شما، همراه با پایش لینک‌های ورودی و کنار گذاشتن موارد بی‌کیفیت.'
+        },
+        {
+            step: 'پایش و گزارش ماهانه',
+            desc: 'رصد جایگاه صفحات هدف، پرسش‌هایی که برای آن‌ها نمایش می‌گیرید و لینک‌های تازه ورودی، سپس ارائه گزارش و تعیین اولویت ماه بعد.'
+        }
+    ];
+
+    const deliverables = [
+        {
+            icon: 'list-todo',
+            title: 'فهرست صفحات هدف با اولویت‌بندی',
+            description: 'مشخص می‌شود کدام صفحه، چرا و در چه ترتیبی کار می‌شود و هر صفحه اکنون چه وضعیتی دارد.'
+        },
+        {
+            icon: 'link',
+            title: 'مستند معماری لینک داخلی',
+            description: 'فهرست لینک‌های مبدأ، مقصد و انکرهای پیشنهادی؛ چیزی که تیم شما می‌تواند خودش هم ادامه‌اش دهد.'
+        },
+        {
+            icon: 'file-text',
+            title: 'محتوای بازنویسی‌شده و منتشرشده',
+            description: 'نسخه نهایی هر صفحه هدف به‌همراه ساختار سرفصل‌ها و داده ساختاریافته، آماده انتشار روی سایت.'
+        },
+        {
+            icon: 'shield',
+            title: 'گزارش رپورتاژها و بک‌لینک‌های ورودی',
+            description: 'فهرست رسانه‌هایی که در آن‌ها منتشر شده و لینک‌های تازه‌ای که به صفحات هدف رسیده است.'
+        },
+        {
+            icon: 'bar-chart3',
+            title: 'گزارش ماهانه پیشرفت',
+            description: 'وضعیت صفحات هدف در نتایج جستجو، پرسش‌های در حال رشد و کارهای انجام‌شده در ماه، همراه با اولویت ماه بعد.'
+        },
+        {
+            icon: 'file-text',
+            title: 'راهنمای اجرای داخلی تیم',
+            description: 'سندی که تیم شما با آن می‌تواند لینک‌سازی داخلی و به‌روزرسانی محتوا را بدون ما هم ادامه دهد.'
+        }
+    ];
+
+    const reportSignals = [
+        'جایگاه صفحات هدف در نتایج جستجو و روند جابه‌جایی آن در سرچ کنسول گوگل',
+        'پرسش‌هایی که صفحه برای آن‌ها نمایش می‌گیرد و پرسش‌های تازه‌ای که اضافه شده‌اند',
+        'لینک‌های داخلی و بک‌لینک‌های ورودی جدید، و اینکه از کدام صفحه و کدام دامنه آمده‌اند',
+        'وضعیت فنی صفحه: ایندکس شدن، خطاهای خزنده و سرعت بارگذاری',
+        'پیشرفت پوشش خوشه موضوعی و زیرموضوع‌هایی که هنوز باید تکمیل شوند'
     ];
 
     const faqs = [
@@ -177,6 +247,14 @@ const structuredData = {
         {
             question: 'تأثیر رپورتاژ آگهی چقدر است؟',
             answer: 'رپورتاژ آگهی اگر در رسانه درست و با متن مناسب منتشر شود، یکی از قوی‌ترین سیگنال‌های سئو است که هم اعتبار دامنه را بالا می‌برد و هم ترافیک مستقیم می‌آورد.'
+        },
+        {
+            question: 'پروژه افزایش اعتبار صفحه از کجا شروع می‌شود؟',
+            answer: 'با یک جلسه کوتاه و ممیزی صفحات هدف. فهرست صفحاتی که باید اعتبار بگیرند، اولویت هرکدام و وضعیت فعلی لینک و محتوایشان مشخص و با شما تأیید می‌شود؛ بعد از آن معماری لینک داخلی و تقویت محتوا آغاز می‌شود و لینک‌سازی خارجی در ادامه همان برنامه پیش می‌رود.'
+        },
+        {
+            question: 'کدام صفحات برای این پروژه اولویت دارند؟',
+            answer: 'معمولاً صفحاتی که به درآمد نزدیک‌ترند — صفحات خدمات و لندینگ — و مقالاتی که در سرچ کنسول نمایش دارند اما جایگاهشان پایین است و با تقویت محتوا و لینک داخلی قابل جابه‌جایی‌اند. انتخاب این فهرست با خود شماست و در ابتدای پروژه تأیید می‌شود.'
         }
     ];
 
@@ -188,7 +266,7 @@ const breadcrumbs = [
 ---
 <BaseLayout
   title='افزایش اعتبار صفحه و دامنه | عصر سئو'
-  description='خدمات افزایش اعتبار صفحه (Page Authority) و دامنه با استراتژی سئو محتوا، تاپیکال آتوریتی و لینک‌سازی معتبر برای تسخیر رتبه‌های اول گوگل توسط عصر سئو.'
+  description='خدمات افزایش اعتبار صفحه (Page Authority) با ممیزی صفحات هدف، معماری لینک داخلی و لینک‌سازی معتبر؛ فرآیند اجرایی و گزارش پیشرفت ماهانه عصر سئو.'
   keywords='اعتبار صفحه, افزایش اعتبار صفحه, Page Authority, سئو محتوا, تاپیکال آتوریتی, لینک‌سازی, رپورتاژ آگهی'
   canonical='https://asreseo.com/services/seo/content-authority/'
   ogType='website'
@@ -216,6 +294,23 @@ const breadcrumbs = [
                     theme="amber"
                 />
 
+                <!-- Answer-first block for «اعتبار صفحه» (29 impr). Self-contained
+                     and quotable, sitting directly under the H1; the intent split
+                     with /blog/page-authority-guide/ is stated right below it. -->
+                <section class="py-8 md:py-10 bg-white border-b border-amber-100">
+                    <div class="container-custom max-w-4xl text-right">
+                        <span class="inline-block bg-amber-100 text-amber-800 text-xs md:text-sm font-medium px-3 py-1 rounded-full mb-4">
+                            اعتبار صفحه چیست و چگونه افزایش یابد؟
+                        </span>
+                        <p class="text-base md:text-lg text-gray-700 leading-loose bg-amber-50/50 p-6 rounded-2xl border border-amber-100">
+                            <strong>اعتبار صفحه (Page Authority)</strong> توانایی یک صفحه مشخص سایت شما برای کسب رتبه در نتایج جستجو است؛ یعنی آن URL منفرد تا چه حد برای موتورهای جستجو معتبر و قابل اعتماد محسوب می‌شود. اعتبار صفحه از کیفیت و عمق محتوای همان صفحه، لینک‌های داخلی که به آن اشاره می‌کنند، بک‌لینک‌های معتبر ورودی و تجربه استفاده از صفحه شکل می‌گیرد و برخلاف اعتبار دامنه، به قدرت کل دامنه کاری ندارد. برای افزایش اعتبار صفحه سه لایه کار لازم است: تقویت محتوای صفحه هدف، معماری لینک داخلی که ارزش صفحات قوی‌تر را به آن منتقل کند، و کسب بک‌لینک مرتبط از رسانه‌های معتبر. در عصر سئو این سه لایه در قالب یک برنامه اجرایی ماهانه با گزارش پیشرفت انجام می‌شود؛ چون اعتبار صفحه با شتاب ساخته نمی‌شود و روند تقویت تدریجی و پیوسته آن باید برای شما قابل رصد باشد.
+                        </p>
+                        <div class="mt-5 border-r-4 border-amber-300 pr-4 text-sm md:text-base text-gray-600 leading-relaxed">
+                            این صفحه فرآیند اجرای پروژه را توضیح می‌دهد: مراحل کار، خروجی‌های قابل تحویل و شیوه گزارش پیشرفت. برای تعریف اعتبار صفحه، عوامل مؤثر بر آن و چک‌لیست کامل بررسی، راهنمای ما را بخوانید: <a href="/blog/page-authority-guide/" class="text-amber-700 font-semibold underline hover:no-underline">اعتبار صفحه چیست و چگونه افزایش می‌یابد؟ — راهنمای جامع عصر سئو</a>. این دو مطلب مکمل هم هستند؛ یکی تعریف و عوامل را پوشش می‌دهد و دیگری اجرای پروژه و گزارش‌دهی را.
+                        </div>
+                    </div>
+                </section>
+
                 <!-- AEO Direct Answer Section -->
                 <section class="py-10 bg-amber-50/60 border-y border-amber-100">
                     <div class="container-custom max-w-4xl text-right">
@@ -223,7 +318,7 @@ const breadcrumbs = [
                             اعتبار صفحه (Page Authority) چیست و چه تفاوتی با اعتبار دامنه دارد؟
                         </h2>
                         <p class="text-base md:text-lg text-gray-700 leading-relaxed bg-white p-6 rounded-2xl shadow-xs border border-amber-100">
-                            <strong>اعتبار صفحه (Page Authority یا PA)</strong> شاخصی عددی است که توانایی یک صفحه مشخص از وب‌سایت را برای کسب رتبه در نتایج موتور جستجو ارزیابی می‌کند. در حالی که اعتبار دامنه (Domain Authority) قدرت کل وب‌سایت را می‌سنجد، اعتبار صفحه بر کیفیت محتوای همان صفحه، لینک‌های داخلی هدایت‌شده به آن و بک‌لینک‌های معتبر خارجی ورودی به همان URL متمرکز است. در عصر سئو با پیاده‌سازی معماری تاپیکال آتوریتی و لینک‌سازی هدفمند، اعتبار صفحات کلیدی لندینگ و مقالات شما ارتقا یافته و رتبه ۱ گوگل تثبیت می‌شود.
+                            <strong>اعتبار صفحه (Page Authority یا PA)</strong> شاخصی عددی است که توانایی یک صفحه مشخص از وب‌سایت را برای کسب رتبه در نتایج موتور جستجو ارزیابی می‌کند. در حالی که اعتبار دامنه (Domain Authority) قدرت کل وب‌سایت را می‌سنجد، اعتبار صفحه بر کیفیت محتوای همان صفحه، لینک‌های داخلی هدایت‌شده به آن و بک‌لینک‌های معتبر خارجی ورودی به همان URL متمرکز است. در عصر سئو با پیاده‌سازی معماری تاپیکال آتوریتی و لینک‌سازی هدفمند، اعتبار صفحات کلیدی لندینگ و مقالات شما ارتقا یافته و جایگاه این صفحات در نتایج جستجو بهبود می‌یابد.
                         </p>
                     </div>
                 </section>
@@ -378,6 +473,103 @@ const breadcrumbs = [
                             decoding="async"
                             class="w-full h-auto rounded-2xl shadow-xs border border-gray-200"
                         />
+                    </div>
+                </section>
+
+                <!-- Commercial half of the page: process, deliverables and reporting.
+                     The definitional half (factors, checklist) lives in
+                     /blog/page-authority-guide/ and is linked above. -->
+                <section class="section-padding bg-white border-t border-gray-200/60">
+                    <div class="container-custom max-w-5xl">
+                        <div class="text-center mb-10">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                                فرآیند <span class="gradient-text">افزایش اعتبار صفحه</span> در عصر سئو
+                            </h2>
+                            <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                                افزایش اعتبار صفحه کار یک‌باره نیست؛ برنامه‌ای ماهانه است که اول صفحات هدف را مشخص می‌کند، سپس سه لایه کار (محتوا، لینک داخلی، بک‌لینک) را روی همان صفحات اجرا می‌کند و در پایان ماه با شما مرور می‌شود. پنج مرحله دارد:
+                            </p>
+                        </div>
+
+                        <div class="space-y-5">
+                            {processSteps.map((item, index) => (
+                                <div class="flex items-start gap-5 p-5 bg-white rounded-xl shadow-xs border border-amber-100">
+                                    <span class="w-10 h-10 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center text-base font-bold shrink-0">
+                                        {index + 1}
+                                    </span>
+                                    <div class="flex-1">
+                                        <h3 class="text-lg font-semibold text-gray-900 mb-1">
+                                            {item.step}
+                                        </h3>
+                                        <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                                            {item.desc}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-padding bg-slate-50 border-t border-gray-200/60">
+                    <div class="container-custom max-w-5xl">
+                        <div class="text-center mb-10">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                                خروجی‌های قابل تحویل <span class="gradient-text">پروژه اعتبار صفحه</span>
+                            </h2>
+                            <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                                در پایان هر مرحله و هر ماه، چیز مشخصی به دست شما می‌رسد — سند، فهرست یا گزارشی که می‌توانید باز کنید و بررسی کنید، نه صرفاً گزارش «در حال انجام».
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            {deliverables.map((item) => (
+                                <Card class="hover:shadow-md transition-shadow border-0 shadow-sm bg-white">
+                                    <CardContent class="p-6">
+                                        <div class="flex items-start gap-4">
+                                            <div class="w-11 h-11 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
+                                                <Icon name={item.icon} class="h-5 w-5 text-amber-700" />
+                                            </div>
+                                            <div>
+                                                <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                                                    {item.title}
+                                                </h3>
+                                                <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                                                    {item.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-padding bg-white border-t border-gray-200/60">
+                    <div class="container-custom max-w-4xl">
+                        <div class="text-center mb-8">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                                پیشرفت <span class="gradient-text">افزایش اعتبار صفحه</span> را چگونه گزارش می‌دهیم؟
+                            </h2>
+                            <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                                پیشرفت را با ادعای درصدی نشان نمی‌دهیم؛ هر گزارش بر اساس داده‌هایی تنظیم می‌شود که خودتان هم می‌توانید در همان ابزارها ببینید. ماهانه پنج دسته اطلاعات روی میز است:
+                            </p>
+                        </div>
+
+                        <div class="max-w-3xl mx-auto space-y-3">
+                            {reportSignals.map((signal) => (
+                                <div class="flex items-start gap-3 bg-amber-50/60 border border-amber-100 rounded-xl p-4">
+                                    <Icon name="check-circle" class="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                                    <span class="text-gray-700 leading-relaxed text-sm md:text-base">
+                                        {signal}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+
+                        <p class="max-w-3xl mx-auto mt-7 text-center text-gray-600 leading-relaxed">
+                            گزارش ماهانه در جلسه کوتاهی مرور می‌شود و اولویت‌های ماه بعد در همان جلسه تعیین می‌گردد؛ هر عددی هم در گزارش باشد، منبع آن کنارش نوشته می‌شود تا خودتان بتوانید راستی‌آزمایی کنید.
+                        </p>
                     </div>
                 </section>
 
