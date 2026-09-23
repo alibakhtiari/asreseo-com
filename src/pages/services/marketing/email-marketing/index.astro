@@ -102,41 +102,41 @@ const structuredData = {
       type: 'کمپین‌های خوش‌آمدگویی',
       description: 'خوش‌آمدگویی جدید مشتریان و ارائه پیشنهادات ویژه',
       target: 'مشتریان جدید',
-      goal: '+۲۵۰% نرخ بازگشایی'
+      goal: 'بهبود نرخ بازگشایی'
     },
     {
       type: 'کمپین‌های وفاداری',
       description: 'یادآوری سرویس‌ها، محصولات تکمیلی و پیشنهادات ویژه',
       target: 'مشتریان فعلی',
-      goal: '+۱۸۰% نرخ کلیک'
+      goal: 'بهبود نرخ کلیک'
     },
     {
       type: 'کمپین‌های فروش ویژه',
       description: 'معرفی تخفیف‌های زمان‌دار و فروش‌های فصلی',
       target: 'تمام مخاطبان',
-      goal: '+۴۰۰% نرخ تبدیل'
+      goal: 'رشد نرخ تبدیل'
     },
     {
       type: 'کمپین‌های آموزشی',
       description: 'ارائه دانش تخصصی و راهنمای استفاده از محصولات',
       target: 'مشتریان علاقه‌مند',
-      goal: '+۳۲۰% نرخ ماندگاری'
+      goal: 'افزایش ماندگاری مخاطب'
     }
   ];
 
   const benefits = [
     'نرخ بازگشایی بالا با خطوط موضوع جذاب و شخصی‌سازی شده',
-    '۶۰% افزایش نرخ کلیک با CTAهای استراتژیک و طراحی‌های جذاب',
-    '３۵% کاهش bounce rate با تقسیم‌بندی دقیق مخاطبان',
-    '۲۸% بهبود نرخ تبدیل با اتوماسیون workflows هوشمند',
+    'افزایش نرخ کلیک با CTAهای استراتژیک و طراحی‌های جذاب',
+    'کاهش bounce rate با تقسیم‌بندی دقیق مخاطبان',
+    'بهبود نرخ تبدیل با اتوماسیون workflows هوشمند',
     '۲۴/۷ ارتباط مداوم با مشتریان از طریق کمپین‌های drip marketing'
   ];
 
   const stats = [
-    { metric: '۴۲%', label: 'نرخ باز شدن', color: 'text-green-800', icon: "eye" },
-    { metric: '۸.۶%', label: 'نرخ کلیک', color: 'text-blue-600', icon: "target" },
-    { metric: '۴.۲%', label: 'نرخ تبدیل', color: 'text-purple-600', icon: "trending-up" },
-    { metric: '۵۰۰%', label: 'ROI بالاتر', color: 'text-red-600', icon: "award" }
+    { metric: 'پایش لحظه‌ای', label: 'نرخ باز شدن', color: 'text-green-800', icon: "eye" },
+    { metric: 'اندازه‌گیری دقیق', label: 'نرخ کلیک', color: 'text-blue-600', icon: "target" },
+    { metric: 'گزارش کامل', label: 'نرخ تبدیل', color: 'text-purple-600', icon: "trending-up" },
+    { metric: 'بازگشت سرمایه', label: 'ROI قابل پیگیری', color: 'text-red-600', icon: "award" }
   ];
 
   const workflowSteps = [
@@ -165,7 +165,7 @@ const structuredData = {
   const faqs = [
     {
       question: 'آیا ایمیل‌ها وارد inbox می‌شوند یا اسپم؟',
-      answer: '۱۰۰% اطمینان داریم که ایمیل‌ها وارد inbox می‌شوند. از اطلاعات ارسال‌کننده معتبر و IPهای سفید استفاده می‌کنیم و تمامی پروتکل‌های ضد هرزنامه را رعایت می‌کنیم. نرخ ورود به اسپم کمتر از ۰.۱% است.'
+      answer: 'با اطلاعات ارسال‌کننده معتبر و IPهای سفید و رعایت تمامی پروتکل‌های ضد هرزنامه، ایمیل‌ها را به inbox می‌رسانیم و نرخ ورود به اسپم را در داشبورد گزارش‌دهی پایش می‌کنیم.'
     },
     {
       question: 'چطور نرخ تبدیل ایمیل مارکتینگ را اندازه‌گیری می‌کنم؟',
@@ -181,7 +181,7 @@ const structuredData = {
     },
     {
       question: 'آیا پشتیبانی فنی و استراتژیک دارید؟',
-      answer: '۲۴/۷ پشتیبانی فنی برای ارسال و پشتیبانی استراتژیک برای بهبود کمپین‌ها ارائه می‌دهیم. متخصصین با تجربه ۵+ سال در کنار شما هستند.'
+      answer: '۲۴/۷ پشتیبانی فنی برای ارسال و پشتیبانی استراتژیک برای بهبود کمپین‌ها ارائه می‌دهیم. متخصصان باتجربه در کنار شما هستند.'
     },
     {
       question: 'چطور هزینه ایمیل مارکتینگ را محاسبه می‌کنید؟',
@@ -190,7 +190,7 @@ const structuredData = {
   ];
 
 ---
-<BaseLayout title='بازاریابی ایمیلی حرفه‌ای | عصر سئو' description='کمپین‌های حرفه‌ای ایمیل مارکتینگ با اتوماسیون، شخصی‌سازی، A/B Testing و افزایش نرخ تبدیل تا ۵۰۰%. تحلیل لحظه‌ای و گزارش کامل عملکرد.' keywords='بازاریابی ایمیلی, ایمیل مارکتینگ, Email Marketing, Newsletter, اتوماسیون ایمیل, شخصی‌سازی' canonical='https://asreseo.com/services/marketing/email-marketing/' ogType='website' ogUrl='https://asreseo.com/services/marketing/email-marketing/' ogImages={[{ url: "/images/email-marketing-hero.webp", width: 1200, height: 630, alt: "ایمیل مارکتینگ | عصر سئو" }]} twitterCard='summary_large_image'
+<BaseLayout title='بازاریابی ایمیلی حرفه‌ای | عصر سئو' description='کمپین‌های حرفه‌ای ایمیل مارکتینگ با اتوماسیون، شخصی‌سازی، A/B Testing و افزایش قابل اندازه‌گیری نرخ تبدیل. تحلیل لحظه‌ای و گزارش کامل عملکرد.' keywords='بازاریابی ایمیلی, ایمیل مارکتینگ, Email Marketing, Newsletter, اتوماسیون ایمیل, شخصی‌سازی' canonical='https://asreseo.com/services/marketing/email-marketing/' ogType='website' ogUrl='https://asreseo.com/services/marketing/email-marketing/' ogImages={[{ url: "/images/email-marketing-hero.webp", width: 1200, height: 630, alt: "ایمیل مارکتینگ | عصر سئو" }]} twitterCard='summary_large_image'
   ogTitle='بازاریابی ایمیلی حرفه‌ای | عصر سئو'
 
   ogDescription='کمپین‌های ایمیل مارکتینگ هدفمند و اتوماسیون برای افزایش فروش.'
@@ -215,7 +215,7 @@ const structuredData = {
           badge="بازاریابی ایمیلی پیشرفته"
           title="بازاریابی"
           titleGradient="ایمیلی حرفه‌ای"
-          description="کمپین‌های ایمیل مارکتینگ هوشمند با اتوماسیون، شخصی‌سازی و افزایش ۵۰۰% نرخ فروش. عصر سئو با تکنولوژی روز دنیا مخاطبان شما را به مشتریان وفادار تبدیل می‌کند."
+          description="کمپین‌های ایمیل مارکتینگ هوشمند با اتوماسیون، شخصی‌سازی و افزایش نرخ فروش. عصر سئو با تکنولوژی روز دنیا مخاطبان شما را به مشتریان وفادار تبدیل می‌کند."
           primaryCta={{ text: "شروع کمپین ایمیلی" }}
           secondaryCta={{ text: "تحلیل لیست ایمیلی رایگان" }}
           imageSrc="/images/email-marketing-hero.webp"
@@ -234,7 +234,7 @@ const structuredData = {
                 انواع <span class="gradient-text">کمپین‌های ایمیلی استراتژیک</span>
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                کمپین‌های مختلف برای اهداف بازاریابی متفاوت با نتایج ثابت شده
+                کمپین‌های مختلف برای اهداف بازاریابی متفاوت با نتایج قابل اندازه‌گیری
               </p>
             </div>
 

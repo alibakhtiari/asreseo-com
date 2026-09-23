@@ -8,13 +8,21 @@
 // other copies. Everything now lives here with an explicit `verified` flag.
 //
 // ⚠️  AUTHENTICITY — READ BEFORE EDITING
-// Every entry below is currently `verified: false` because none of it can be
-// substantiated from this repository:
+// Every testimonial below, and every headline number except the ۲۴/۷ support
+// promise, is `verified: false` because none of it can be substantiated from
+// this repository:
 //   • The six testimonials name real-looking people at real-looking companies
 //     with specific outcome claims («فروش آنلاین ما ۳۰۰٪ افزایش پیدا کرد»).
 //   • The headline numbers (۵۰۰+ / ۹۸٪ / ۵۰۰٪ / ۵+ سال) have no source.
 //   • All six testimonials carry `rating: 5`. Six out of six perfect scores is
 //     itself the strongest signal that the data is placeholder content.
+//
+// `verified` is ENFORCED at render time by every consumer — nothing below
+// reaches the page while its flag is `false`:
+//   • Stars: gated in both TestimonialsSection components (Home + Services).
+//   • `HEADLINE_STATS`: the homepage strip filters on `verified` and hides
+//     itself entirely if no entry survives.
+//   • `PROSE_STATS`: WhyChooseUsSection swaps in non-numeric fallback copy.
 //
 // WHY NO `Review` / `AggregateRating` SCHEMA IS EMITTED
 // Google requires rating markup to reflect genuine, on-page, user-visible
@@ -41,10 +49,12 @@ export interface Testimonial {
   company: string;
   text: string;
   /**
-   * Rendered as stars whenever present. NOT gated on `verified` today, so all
-   * six entries currently show 5 stars — see the note above. To withhold
-   * ratings until the data is confirmed, gate rendering on `verified` in both
-   * TestimonialsSection components (Home + Services).
+   * Rendered as stars ONLY when `verified` is true — both TestimonialsSection
+   * components (Home + Services) gate on it. All six entries are currently
+   * `verified: false`, so no stars render anywhere on the site. The same rule
+   * is now enforced for `HEADLINE_STATS` (the homepage strip filters on
+   * `verified` and hides itself when nothing survives) and `PROSE_STATS`
+   * (WhyChooseUsSection falls back to non-numeric copy) — see the header.
    */
   rating?: number;
   avatar: string;
@@ -108,7 +118,10 @@ export const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-/** Shown in the homepage testimonials section and reused by WhyChooseUs. */
+/**
+ * Shown in the homepage testimonials statistics strip. Rendered only when
+ * `verified` — unverified entries are filtered out before they reach the page.
+ */
 export const HEADLINE_STATS: Stat[] = [
   { value: '۵۰۰+', label: 'مشتری راضی', verified: false },
   { value: '۹۸%', label: 'میزان رضایت', verified: false },
@@ -119,7 +132,9 @@ export const HEADLINE_STATS: Stat[] = [
 
 /**
  * Figures reused in prose across the homepage. Centralised so there is exactly
- * one place to correct them once real numbers exist.
+ * one place to correct them once real numbers exist. While `verified` is
+ * false, consumers must render non-numeric fallback copy instead (see
+ * WhyChooseUsSection).
  */
 export const PROSE_STATS = {
   yearsExperience: '۵',

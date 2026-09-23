@@ -1,6 +1,24 @@
 ---
 import Button from '../ui/button/Button.astro';
 import Icon from '../ui/Icon.astro';
+import { PROSE_STATS, HEADLINE_STATS } from '../../lib/site-claims';
+
+// P0.4: claims asreseo makes about itself must not show their digits while
+// `verified` is false in site-claims.ts. Each value below falls back to a
+// qualitative Persian word, so the 4-card grid keeps its shape and classes;
+// when the backing entry is verified, its figure renders straight from the
+// single source of truth. ۲۴/۷ is the one verified promise, so it is untouched.
+const projectsValue = PROSE_STATS.verified
+  ? `${PROSE_STATS.projectsCompleted}+`
+  : 'متعدد';
+
+const satisfactionStat = HEADLINE_STATS.find((stat) => stat.label === 'میزان رضایت');
+const satisfactionValue = satisfactionStat?.verified ? satisfactionStat.value : 'بالا';
+
+const experienceValue = PROSE_STATS.verified
+  ? `${PROSE_STATS.yearsExperience}+`
+  : 'سال‌ها';
+const experienceLabel = PROSE_STATS.verified ? 'سال تجربه' : 'تجربه';
 ---
 <section class="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-28 pb-16 sm:pt-32">
       <!-- Enhanced Background Gradient -->
@@ -46,16 +64,16 @@ import Icon from '../ui/Icon.astro';
           <!-- Enhanced Statistics with icons -->
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-5xl mx-auto">
             <div class="text-center animate-zoom-in hover-lift p-4 rounded-lg bg-white/50 backdrop-blur-xs" style="animation-delay:0.2s">
-              <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">۵۰۰+</div>
+              <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">{projectsValue}</div>
               <div class="text-gray-600 font-medium">پروژه موفق</div>
             </div>
             <div class="text-center animate-zoom-in hover-lift p-4 rounded-lg bg-white/50 backdrop-blur-xs" style="animation-delay:0.4s">
-              <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">۹۸%</div>
+              <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">{satisfactionValue}</div>
               <div class="text-gray-600 font-medium">رضایت مشتریان</div>
             </div>
             <div class="text-center animate-zoom-in hover-lift p-4 rounded-lg bg-white/50 backdrop-blur-xs" style="animation-delay:0.6s">
-              <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">۵+</div>
-              <div class="text-gray-600 font-medium">سال تجربه</div>
+              <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">{experienceValue}</div>
+              <div class="text-gray-600 font-medium">{experienceLabel}</div>
             </div>
             <div class="text-center animate-zoom-in hover-lift p-4 rounded-lg bg-white/50 backdrop-blur-xs" style="animation-delay:0.8s">
               <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">۲۴/۷</div>

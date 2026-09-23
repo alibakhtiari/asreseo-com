@@ -164,17 +164,19 @@ const structuredData = {
         'مشکلات دسترسی‌پذیری و استاندارهای WCAG'
     ];
 
+    // Qualitative process/measurement facts, not performance percentages —
+    // see src/lib/site-claims.ts authenticity policy.
     const stats = [
-        { metric: '۳۰۰%', label: 'افزایش سرعت سایت', color: 'text-blue-600', icon: "zap" },
-        { metric: '۹۵+', label: 'امتیاز PageSpeed', color: 'text-green-800', icon: "gauge" },
-        { metric: '۴۰۰%', label: 'رشد ترافیک ارگانیک', color: 'text-purple-600', icon: "trending-up" },
-        { metric: '۱۰۰%', label: 'رفع خطاهای فنی', color: 'text-orange-600', icon: "check-circle" }
+        { metric: 'Core Web Vitals', label: 'بهینه‌سازی سرعت سایت', color: 'text-blue-600', icon: "zap" },
+        { metric: 'PageSpeed', label: 'پایش و بهبود امتیاز', color: 'text-green-800', icon: "gauge" },
+        { metric: 'سرچ کنسول', label: 'پایش ترافیک ارگانیک', color: 'text-purple-600', icon: "trending-up" },
+        { metric: 'ممیزی فنی', label: 'رفع خطاهای فنی', color: 'text-orange-600', icon: "check-circle" }
     ];
 
     const faqs = [
         {
             question: 'سئو تکنیکال چه تأثیری در رتبه سایت دارد؟',
-            answer: 'سئو تکنیکال زیربنای سایت شماست. بدون زیرساخت فنی سالم (سرعت، امنیت، قابلیت خزش)، حتی بهترین محتوا هم رتبه نمی‌گیرد. تأثیر آن تا ۴۰٪ در رتبه‌بندی برآورد می‌شود.'
+            answer: 'سئو تکنیکال زیربنای سایت شماست. بدون زیرساخت فنی سالم (سرعت، امنیت، قابلیت خزش)، حتی بهترین محتوا هم رتبه نمی‌گیرد. تأثیر آن بر رتبه‌بندی پس از اجرا با داده‌های سرچ کنسول اندازه‌گیری می‌شود.'
         },
         {
             question: 'تحقیق کلمات کلیدی چقدر زمان می‌برد؟',

@@ -6,11 +6,31 @@ import CardTitle from '../ui/card/CardTitle.astro';
 import Icon from '../ui/Icon.astro';
 import { PROSE_STATS } from '../../lib/site-claims';
 
+  // P0.4: while PROSE_STATS.verified is false its digits must never reach the
+  // page. Each fallback below drops the number and keeps the qualitative
+  // claim, so the cards still read as complete, grammatical Persian sentences.
+  const proseVerified = PROSE_STATS.verified;
+
+  // «تجربه ۵+ ساله» → «تجربه عملی»
+  const experienceTitle = proseVerified
+    ? `تجربه ${PROSE_STATS.yearsExperience}+ ساله`
+    : 'تجربه عملی';
+
+  // «با بیش از ۵ سال تجربه …» → «با سال‌ها تجربه …»
+  const experienceDescription = proseVerified
+    ? `با بیش از ${PROSE_STATS.yearsExperience} سال تجربه در حوزه دیجیتال مارکتینگ، تیم ما آماده ارائه بهترین خدمات است.`
+    : 'با سال‌ها تجربه در حوزه دیجیتال مارکتینگ، تیم ما آماده ارائه بهترین خدمات است.';
+
+  // «بیش از ۵۰۰ پروژه موفق و رشد متوسط ۳۰۰٪ …» → qualitative equivalent
+  const resultsDescription = proseVerified
+    ? `بیش از ${PROSE_STATS.projectsCompleted} پروژه موفق و رشد متوسط ${PROSE_STATS.averageGrowth}٪ در فروش مشتریان ما.`
+    : 'پروژه‌های موفق متعدد و رشد قابل توجه در فروش مشتریان ما.';
+
   const reasons = [
     {
       icon: "award",
-      title: `تجربه ${PROSE_STATS.yearsExperience}+ ساله`,
-      description: `با بیش از ${PROSE_STATS.yearsExperience} سال تجربه در حوزه دیجیتال مارکتینگ، تیم ما آماده ارائه بهترین خدمات است.`,
+      title: experienceTitle,
+      description: experienceDescription,
       color: 'from-blue-500 to-blue-600'
     },
     {
@@ -28,7 +48,7 @@ import { PROSE_STATS } from '../../lib/site-claims';
     {
       icon: "trending-up",
       title: 'نتایج اثبات شده',
-      description: `بیش از ${PROSE_STATS.projectsCompleted} پروژه موفق و رشد متوسط ${PROSE_STATS.averageGrowth}٪ در فروش مشتریان ما.`,
+      description: resultsDescription,
       color: 'from-orange-500 to-orange-600'
     },
     {

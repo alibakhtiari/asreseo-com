@@ -114,7 +114,7 @@ const structuredData = {
       icon: "shield",
       title: 'تضمین کیفیت و کنترل دو مرحله‌ای',
       description: 'مرور اولیه توسط مترجم تخصصی، سپس کنترل کیفیت توسط متخصص زبان‌شناسی برای اطمینان از کیفیت عالی.',
-      benefits: ['کیفیت تضمینی', 'دقت دوگانه', 'رضایت ۱۰۰%']
+      benefits: ['کیفیت تضمینی', 'دقت دوگانه', 'رضایت مشتری']
     }
   ];
 
@@ -150,11 +150,13 @@ const structuredData = {
     }
   ];
 
+  // Qualitative process facts, not performance percentages — quality and
+  // satisfaction scores are unverifiable (see src/lib/site-claims.ts).
   const stats = [
-    { metric: '۹۵%', label: 'کیفیت ترجمه', color: 'text-green-800', icon: "award" },
-    { metric: '۲۰+', label: 'زبان پشتیبان', color: 'text-blue-600', icon: "globe" },
+    { metric: 'دو مرحله', label: 'کنترل کیفیت و بازبینی', color: 'text-green-800', icon: "award" },
+    { metric: 'چندزبانه', label: 'زبان‌های اصلی دنیا', color: 'text-blue-600', icon: "globe" },
     { metric: '۳-۷ روز', label: 'زمان تحویل', color: 'text-purple-600', icon: "clock" },
-    { metric: '۱۰۰%', label: 'رضایت مشتریان', color: 'text-orange-600', icon: "users" }
+    { metric: 'گارانتی', label: 'کیفیت هفت روز پس از تحویل', color: 'text-orange-600', icon: "shield" }
   ];
 
   const workflowSteps = [

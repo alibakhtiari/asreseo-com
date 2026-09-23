@@ -7,6 +7,21 @@ import { TESTIMONIALS, HEADLINE_STATS, faNum } from '../../lib/site-claims';
 // Quotes and headline numbers now come from src/lib/site-claims.ts so every
 // claim the site makes about itself lives in one auditable place.
 //
+// P0.4: unverified numbers must never render as visible copy. The strip below
+// filters HEADLINE_STATS on `verified` exactly like the star gating, and hides
+// the whole <dl> when nothing survives. Grid columns follow the surviving
+// count so the one verified stat today (۲۴/۷ پشتیبانی) stays centred instead
+// of sitting alone in an empty 4-column row.
+const visibleStats = HEADLINE_STATS.filter((stat) => stat.verified);
+
+const STATS_GRID_CLASS: Record<number, string> = {
+  1: 'grid-cols-1 max-w-xs mx-auto',
+  2: 'grid-cols-2',
+  3: 'grid-cols-2 md:grid-cols-3',
+};
+const statsGridClass =
+  STATS_GRID_CLASS[visibleStats.length] ?? 'grid-cols-2 md:grid-cols-4';
+//
 // NOTE: no Review / AggregateRating JSON-LD is emitted here on purpose — see the
 // long comment at the top of src/lib/site-claims.ts. Rating markup requires
 // genuine, verifiable reviews; adding it to unverified testimonials would be a
@@ -74,14 +89,19 @@ import { TESTIMONIALS, HEADLINE_STATS, faNum } from '../../lib/site-claims';
         <!-- Statistics -->
         <!-- Semantically a description list: label (dt) + value (dd).
              flex-col-reverse keeps the big number on top while preserving
-             correct dt-then-dd source order. -->
-        <dl class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {HEADLINE_STATS.map((stat, i) => (
-            <div class="text-center animate-zoom-in flex flex-col-reverse" style={`animation-delay:${(i + 1) * 0.2}s`}>
-              <dt class="text-gray-600 text-sm">{stat.label}</dt>
-              <dd class="text-4xl md:text-5xl font-bold gradient-text mb-2">{stat.value}</dd>
-            </div>
-          ))}
-        </dl>
+             correct dt-then-dd source order.
+             Rendered only when at least one stat is verified, and the grid
+             re-flows to the number of survivors so the strip never renders
+             orphaned or empty cells. -->
+        {visibleStats.length > 0 && (
+          <dl class={`mt-16 grid gap-8 ${statsGridClass}`}>
+            {visibleStats.map((stat, i) => (
+              <div class="text-center animate-zoom-in flex flex-col-reverse" style={`animation-delay:${(i + 1) * 0.2}s`}>
+                <dt class="text-gray-600 text-sm">{stat.label}</dt>
+                <dd class="text-4xl md:text-5xl font-bold gradient-text mb-2">{stat.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
       </div>
     </section>

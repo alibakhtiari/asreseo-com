@@ -149,22 +149,22 @@ const structuredData = {
     {
       name: 'ویسوال هیراکی',
       description: 'مرتب‌سازی عناصر بصری برای راهنمایی چشم مخاطب',
-      impact: '+۳۲۰% نرخ پیگیری'
+      impact: 'پایش نرخ پیگیری در گزارش'
     },
     {
       name: 'رنگ درمانی (Color Psychology)',
       description: 'استفاده از رنگ‌های هدفمند برای تأثیرگذاری عاطفی',
-      impact: '+۲۵۰% نرخ احساسات مثبت'
+      impact: 'سنجش احساس مثبت در گزارش'
     },
     {
       name: 'عناصر روانشناختی',
       description: 'کاربرد تکنیک‌های F-Pattern و Z-Pattern برای تأثیرگزاری',
-      impact: '+۱۸۰% نرخ نگاه'
+      impact: 'پایش مسیر نگاه در داشبورد'
     },
     {
       name: 'استوری‌تلینگ بصری',
       description: 'روایت داستان برند از طریق تصاویر مرتبط و پشت‌هم',
-      impact: '+۴۰۰% نرخ ماندگاری'
+      impact: 'اندازه‌گیری زمان ماندگاری ماهانه'
     }
   ];
 
@@ -173,25 +173,25 @@ const structuredData = {
       type: 'محتوای آموزشی بصری',
       audience: 'دریافت‌آموزان',
       goal: 'آموزش مهارت‌ها',
-      impact: '+۲۵۰% نرخ یادگیری'
+      impact: 'نرخ یادگیری در داشبورد گزارش‌دهی'
     },
     {
       type: 'محتوای سرگرم‌کننده',
       audience: 'جوانان',
       goal: 'تعامل و برندینگ',
-      impact: '+۵۰۰% نرخ وایرال'
+      impact: 'پایش دسترسی و بازنشر ماهانه'
     },
     {
       type: 'محتوای انگیزشی',
       audience: 'کمیونیتی برند',
       goal: 'وفاداری مشتری',
-      impact: '+۳۵۰% تعامل اجتماعی'
+      impact: 'تعامل اجتماعی در گزارش عملکرد'
     },
     {
       type: 'محتوای تبلیغاتی مستقیم',
       audience: 'مشتریان بالقوه',
       goal: 'افزایش فروش',
-      impact: '+۴۰۰% نرخ تبدیل'
+      impact: 'نرخ تبدیل در داشبورد گزارش‌دهی'
     }
   ];
 
@@ -235,11 +235,11 @@ const structuredData = {
   ];
 
   const benefits = [
-    '۴۰۰% افزایش نرخ تعامل و زمان ماندگاری مخاطب با محتوای جذاب‌تر',
-    '۶۰۰% بهبود احتمال وایرال شدن پست‌ها در شبکه‌های اجتماعی',
-    '۲۸۰% افزایش نرخ کلیک و نرخ تبدیل با طراحی‌های استراتژیک‌تر',
-    '۵۰% کاهش هزینه بازاریابی به دلیل بازدهی بالاتر محتوای بصری',
-    'روشی اثبات‌شده با آمار عالی برای کسب‌وکارهای بزرگ دنیا'
+    'اندازه‌گیری نرخ تعامل و زمان ماندگاری مخاطب در داشبورد گزارش‌دهی',
+    'پایش ماهانه بازنشر پست‌ها در شبکه‌های اجتماعی و گزارش آن در جلسه ماهانه',
+    'ثبت نرخ کلیک و نرخ تبدیل هر طراحی با منبع داده کنارش برای راستی‌آزمایی',
+    'مقایسه هزینه بازاریابی با بازدهی محتوای بصری در گزارش عملکرد',
+    'روشی اثبات‌شده در پروژه‌های برندهای بزرگ دنیا'
   ];
 
   const workflowSteps = [
@@ -269,11 +269,13 @@ const structuredData = {
     }
   ];
 
+  // Qualitative process facts, not performance percentages — client-result
+  // percentages are unverifiable (see src/lib/site-claims.ts authenticity policy).
   const stats = [
-    { metric: '۴۰۰%', label: 'افزایش تعامل', color: 'text-blue-600', icon: "trending-up" },
-    { metric: '۶۰۰%', label: 'نرخ وایرال', color: 'text-green-800', icon: "sparkles" },
-    { metric: '۲۵۰%', label: 'نرخ یادگیری', color: 'text-orange-600', icon: "eye" },
-    { metric: '۵۰۰%', label: 'بلندترنویسی', color: 'text-red-600', icon: "target" }
+    { metric: '۶ مرحله', label: 'فرآیند تولید مستند', color: 'text-blue-600', icon: "trending-up" },
+    { metric: 'ماهانه', label: 'گزارش عملکرد و بازبینی', color: 'text-green-800', icon: "sparkles" },
+    { metric: 'داشبورد', label: 'اندازه‌گیری نرخ تعامل', color: 'text-orange-600', icon: "eye" },
+    { metric: 'کلاه سفید', label: 'توزیع و انتشار ارگانیک', color: 'text-red-600', icon: "target" }
   ];
 
   const faqs = [
@@ -304,7 +306,7 @@ const structuredData = {
   ];
 
 ---
-<BaseLayout title='تولید محتوای تصویری و ویدیویی | عصر سئو' description='طراحی گرافیک و تولید محتوای بصری با ویدیو مارکتینگ، اینفوگرافیک انیمیشنی و عکاسی حرفه‌ای. افزایش نرخ تبدیل تا ۴۰۰% با محتوای جذاب و ویروسی.' keywords='محتوای تصویری, ویدیو مارکتینگ, طراحی گرافیک, اینفوگرافیک, موشن گرافیک, تولید محتوا' canonical='https://asreseo.com/services/content/visual-content/' ogType='website' ogUrl='https://asreseo.com/services/content/visual-content/' ogImages={[{ url: "/images/visual-content-hero.webp", width: 1200, height: 630, alt: "محتوای تصویری و ویدیویی | عصر سئو" }]} twitterCard='summary_large_image'
+<BaseLayout title='تولید محتوای تصویری و ویدیویی | عصر سئو' description='طراحی گرافیک و تولید محتوای بصری با ویدیو مارکتینگ، اینفوگرافیک انیمیشنی و عکاسی حرفه‌ای. نرخ تبدیل و تعامل محتوا در داشبورد گزارش‌دهی عصر سئو قابل پیگیری است.' keywords='محتوای تصویری, ویدیو مارکتینگ, طراحی گرافیک, اینفوگرافیک, موشن گرافیک, تولید محتوا' canonical='https://asreseo.com/services/content/visual-content/' ogType='website' ogUrl='https://asreseo.com/services/content/visual-content/' ogImages={[{ url: "/images/visual-content-hero.webp", width: 1200, height: 630, alt: "محتوای تصویری و ویدیویی | عصر سئو" }]} twitterCard='summary_large_image'
   ogTitle='محتوای تصویری و ویدیویی | عصر سئو'
 
   ogDescription='طراحی گرافیک و تولید ویدیو حرفه‌ای برای برند شما.'
@@ -327,7 +329,7 @@ const structuredData = {
           badge="تولید محتوای بصری حرفه‌ای"
           title="محتوای"
           titleGradient="تصویری و ویدیویی"
-          description="قدرت دیداری برای برند شما! ویدیو مارکتینگ حرفه‌ای با افزایش نرخ تبدیل تا ۴۰۰% و محتوای گرافیکی که میلیون‌ها بار دیده می‌شود در عصر سئو."
+          description="قدرت دیداری برای برند شما! ویدیو مارکتینگ حرفه‌ای که نرخ تبدیل آن در داشبورد گزارش‌دهی پیگیری می‌شود، و محتوای گرافیکی که میلیون‌ها بار دیده می‌شود در عصر سئو."
           primaryCta={{ text: "سفارش محتوای بصری" }}
           secondaryCta={{ text: "مشاهده نمونه کارها" }}
           imageSrc="/images/visual-content-hero.webp"
@@ -507,7 +509,7 @@ const structuredData = {
           </div>
         </section>
 
-              <ServiceBenefits title="مزایای استراتژیک" titleHighlight="محتوای بصری عصر سئو" subtitle="آمارهای واقعی از برندهایی که از محتوای بصری حرفه‌ای استفاده کرده‌اند" benefits={benefits} />
+              <ServiceBenefits title="مزایای استراتژیک" titleHighlight="محتوای بصری عصر سئو" subtitle="آنچه محتوای بصری حرفه‌ای برای برند شما ایجاد می‌کند و در گزارش عملکرد پایش می‌شود" benefits={benefits} />
 
         <!-- Workflow Section -->
         <section class="section-padding bg-linear-to-br from-indigo-50 to-pink-50">

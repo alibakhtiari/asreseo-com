@@ -7,42 +7,14 @@ import AccordionItem from '../../components/ui/AccordionItem.astro';
 import AccordionTrigger from '../../components/ui/AccordionTrigger.astro';
 import AccordionContent from '../../components/ui/AccordionContent.astro';
 
+// The canonical Organization (#organization) is declared once in
+// OrganizationStructuredData.astro (rendered on the homepage). The contact
+// points, postal address and opening hours that used to live here were merged
+// into that node — this page only references the entity.
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  'name': 'عصر سئو',
-  'url': 'https://asreseo.com',
-  'contactPoint': [
-    {
-      '@type': 'ContactPoint',
-      'telephone': '+98-912-581-1880',
-      'contactType': 'customer service',
-      'areaServed': 'IR',
-      'availableLanguage': ['Persian', 'English']
-    },
-    {
-      '@type': 'ContactPoint',
-      'telephone': '+98-912-581-1880',
-      'contactType': 'customer support',
-      'areaServed': 'IR'
-    },
-    {
-      '@type': 'ContactPoint',
-      'telephone': '+98-912-581-1880',
-      'contactType': 'emergency',
-      'areaServed': 'IR',
-      'hoursAvailable': 'Mo-Su 00:00-23:59'
-    }
-  ],
-  'address': {
-    '@type': 'PostalAddress',
-    'addressLocality': 'تهران',
-    'addressRegion': 'تهران',
-    'addressCountry': 'IR'
-  },
-  'openingHours': [
-    'Sa-Th 09:00-18:00'
-  ]
+  '@id': 'https://asreseo.com/#organization'
 };
 
 const breadcrumbSchema = {
