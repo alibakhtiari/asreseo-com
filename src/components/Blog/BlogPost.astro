@@ -14,6 +14,34 @@ import BlogCTA from './BlogCTA.astro';
 
 const { post, Content }: any = Astro.props;
 
+// P1.8: derived values for optional frontmatter fields.
+// Persian read-time label. All 9 posts supply values like "۱۴ دقیقه"; a bare
+// number (`readTime: 14`) is treated as minutes, ASCII digits are converted to
+// Persian, and "مطالعه" is appended so the line reads naturally next to the
+// clock icon ("۱۴ دقیقه مطالعه"). Missing/empty renders nothing at all.
+const toPersianDigits = (s: string) => s.replace(/[0-9]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[Number(d)]);
+const readTimeLabel = (value: unknown): string => {
+    if (value === undefined || value === null) return '';
+    const raw = String(value).trim();
+    if (!raw) return '';
+    if (/^[0-9]+$/.test(raw)) return `${toPersianDigits(raw)} دقیقه مطالعه`;
+    const s = toPersianDigits(raw);
+    if (s.includes('مطالعه')) return s;
+    if (s.includes('دقیقه')) return `${s} مطالعه`;
+    return s;
+};
+const readTime = readTimeLabel(post.readTime);
+
+// Tag chips: trimmed non-empty strings only. When the list is empty the whole
+// block below renders nothing — no empty container, no heading.
+const tags: string[] = (Array.isArray(post.tags) ? post.tags : [])
+    .map((tag: unknown) => String(tag ?? '').trim())
+    .filter(Boolean);
+
+// Only a real boolean `true` shows the ویژه badge; false/undefined/"false"
+// emit no markup (the schema normalises featured to a boolean anyway).
+const featured = post.featured === true;
+
 const jsonLdFAQ = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -37,7 +65,7 @@ const jsonLdFAQ = {
             <Badge class="bg-primary/10 text-blue-700">
               {post.category}
             </Badge>
-            {post.featured && (
+            {featured && (
               <Badge class="bg-green-100 text-green-800">
                 ویژه
               </Badge>
@@ -54,10 +82,12 @@ const jsonLdFAQ = {
                 <Icon name="user" class="h-4 w-4" />
                 {post.author}
               </div>
-              <div class="flex items-center gap-1">
-                <Icon name="clock" class="h-4 w-4" />
-                {post.readTime}
-              </div>
+              {readTime && (
+                <div class="flex items-center gap-1">
+                  <Icon name="clock" class="h-4 w-4" />
+                  {readTime}
+                </div>
+              )}
               <span>{new Date(post.date).toLocaleDateString('fa-IR')}</span>{post.updated && (
                 <span>به‌روزرسانی: {new Date(post.updated).toLocaleDateString('fa-IR')}</span>
               )}
@@ -166,14 +196,15 @@ const jsonLdFAQ = {
             </section>
           )}
 
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-2 mb-8">
-            {post.tags.map((tag: any, index: number) => (
-              <Badge variant="outline">
-                {tag}
-              </Badge>
-            ))}
-          </div>
+          {tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mb-8">
+              {tags.map((tag) => (
+                <Badge variant="outline">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          )}
 
           <BlogCTA slug={post.slug} />
         </div>

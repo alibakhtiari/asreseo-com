@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
 import BlogPost from '../../components/Blog/BlogPost.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -59,6 +60,14 @@ const post = {
 
 const seoTitle = `${post.title} | عصر سئو`;
 
+// Mirrors the visual <ol> rendered directly under the header:
+// صفحه اصلی / وبلاگ / {post.title}
+const breadcrumbs = [
+  { position: 1, name: 'صفحه اصلی', item: 'https://asreseo.com/' },
+  { position: 2, name: 'وبلاگ', item: 'https://asreseo.com/blog/' },
+  { position: 3, name: post.title, item: `https://asreseo.com/blog/${post.slug}/` },
+];
+
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -98,6 +107,7 @@ const articleSchema = {
 >
   <Header />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
   <main class="section-padding pt-32">
     <div class="container-custom">
       <nav class="mb-8 max-w-4xl mx-auto" aria-label="مسیر">

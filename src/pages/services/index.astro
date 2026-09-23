@@ -9,73 +9,28 @@ import PricingSection from '../../components/Services/PricingSection.astro';
 import ProcessSection from '../../components/Services/ProcessSection.astro';
 import TestimonialsSection from '../../components/Services/TestimonialsSection.astro';
 import ContactCTA from '../../components/Services/ContactCTA.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
 
 
 
 
 
+// The canonical Organization (#organization) is declared once in
+// OrganizationStructuredData.astro (rendered on the homepage). alternateName,
+// description, hasOfferCatalog and sameAs were merged into that node — this
+// page only references the entity.
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "عصر سئو",
-  "alternateName": "AsreSEO",
-  "url": "https://asreseo.com",
-  "logo": "https://asreseo.com/Logo-spaced.png",
-  "description": "ارائه‌دهنده خدمات حرفه‌ای سئو، تبلیغات گوگل، دیجیتال مارکتینگ و طراحی وب‌سایت در ایران",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "IR"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+989125811880",
-    "contactType": "customer service",
-    "availableLanguage": ["Persian", "English"]
-  },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "خدمات دیجیتال مارکتینگ عصر سئو",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "خدمات سئو",
-          "description": "بهینه‌سازی وب‌سایت برای موتورهای جستجو"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "تبلیغات گوگل ادز",
-          "description": "مدیریت کمپین‌های تبلیغاتی در گوگل"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "طراحی وب‌سایت",
-          "description": "طراحی وب‌سایت‌های سئو محور و واکنش‌گرا"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "خدمات هوش مصنوعی",
-          "description": "پیاده‌سازی راهکارهای هوش مصنوعی برای بازاریابی"
-        }
-      }
-    ]
-  },
-  "sameAs": [
-    "https://instagram.com/asreseo",
-    "https://linkedin.com/company/asreseo",
-    "https://twitter.com/asreseo"
-  ]
+  "@id": "https://asreseo.com/#organization"
 }
+
+// No visible breadcrumb UI on this template; the trail mirrors the site
+// header nav (صفحه اصلی > خدمات) for breadcrumb entity completeness.
+const breadcrumbs = [
+  { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+  { position: 2, name: 'خدمات', item: 'https://asreseo.com/services/' },
+]
 
 
 
@@ -88,6 +43,7 @@ const structuredData = {
 >
 <div class="min-h-screen bg-white">
       <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+      <BreadcrumbStructuredData items={breadcrumbs} />
 
       <Header />
       <main>

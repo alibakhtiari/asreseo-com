@@ -22,6 +22,42 @@ const blog = defineCollection({
     faqs: z
       .array(z.object({ question: z.string(), answer: z.string() }))
       .optional(),
+    // --- P1.8: fields that existed in the MDX frontmatter but were missing
+    // from this schema, so Zod silently stripped them at parse time and
+    // BlogPost.astro rendered `tags: []`, no ویژه badge, and empty read time.
+    // All optional: posts that omit them still parse.
+    // Tags are written as a YAML array; tolerate a comma-separated string too
+    // (`tags: سئو, تولید محتوا`) so a differently-shaped post can't fail the
+    // build or hand `.map()` a string.
+    tags: z
+      .union([z.array(z.string()), z.string()])
+      .optional()
+      .transform((v) => {
+        if (v === undefined) return undefined;
+        const list = Array.isArray(v) ? v : v.split(',');
+        return list.map((t) => t.trim()).filter(Boolean);
+      }),
+    // YAML `true`/`false` parse to booleans; quoted "true"/"false" arrive as
+    // strings. Normalise to a real boolean so consumers can test truthiness
+    // without a stray `"false"` reading as true.
+    featured: z
+      .union([z.boolean(), z.enum(['true', 'false'])])
+      .optional()
+      .transform((v) => {
+        if (v === undefined) return undefined;
+        return v === true || v === 'true';
+      }),
+    // Rendered as a Persian read-time label; may be "۱۴ دقیقه" or a bare
+    // number of minutes (`readTime: 14`), so accept both and store a string.
+    readTime: z
+      .union([z.string(), z.number()])
+      .optional()
+      .transform((v) => (v === undefined ? undefined : String(v).trim())),
+    // `slug` is deliberately NOT declared here. Routes are built from
+    // `entry.id` (src/pages/blog/[slug].astro), and both blog/index.astro and
+    // [slug].astro derive `post.slug` from entry.id — frontmatter slug never
+    // affects routing. Omitting it keeps it inert (Zod strips unknown keys)
+    // instead of introducing a second, competing source of truth for URLs.
   }),
 });
 
