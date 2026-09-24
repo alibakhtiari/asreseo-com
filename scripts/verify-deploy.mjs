@@ -196,6 +196,99 @@ try {
   bad('endpoint fetch', e.message);
 }
 
+// ---------------------------------------------------------------- og:image
+// Two defects this guards, both of which were live on this site:
+//   - a `.webp` served as og:image      -> X/LinkedIn/Telegram parse it
+//     inconsistently and the card silently disappears
+//   - `1200x630` declared over a 1024x1024 file -> every platform crops or
+//     letterboxes against metadata that was never true
+// Dimensions are read from the image bytes, never trusted from the meta tag.
+console.log('\nog:image');
+
+const imageDims = (buf) => {
+  // PNG: IHDR width/height sit at fixed offsets.
+  if (buf.length > 24 && buf[0] === 0x89 && buf[1] === 0x50) {
+    return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20), type: 'png' };
+  }
+  // JPEG: walk the segments to the SOF marker that carries frame dimensions.
+  if (buf[0] === 0xff && buf[1] === 0xd8) {
+    let i = 2;
+    while (i + 9 < buf.length) {
+      if (buf[i] !== 0xff) {
+        i += 1;
+        continue;
+      }
+      const marker = buf[i + 1];
+      // SOF0-SOF15 minus DHT(c4), JPG(c8) and DAC(cc), which carry no frame.
+      if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+        return { w: buf.readUInt16BE(i + 7), h: buf.readUInt16BE(i + 5), type: 'jpeg' };
+      }
+      if (marker === 0xd8 || (marker >= 0xd0 && marker <= 0xd9)) {
+        i += 2;
+        continue;
+      }
+      const len = buf.readUInt16BE(i + 2);
+      if (len < 2) break;
+      i += 2 + len;
+    }
+  }
+  return null;
+};
+
+// One probe per card class: the brand default, a 2x2 category montage, a
+// cover-cropped wide hero, the blog hub, and a service detail page.
+const ogProbe = [
+  ['/', '/og-default.png'],
+  ['/services/web/', '/og/services-web.jpg'],
+  ['/services/seo/', '/og/seo-service-hero.jpg'],
+  ['/blog/', '/og/blog-hero.jpg'],
+  ['/services/content/content-calendar/', '/og/content-calendar-hero.jpg'],
+];
+
+for (const [page, expected] of ogProbe) {
+  try {
+    const { res, body } = await get(page);
+    if (res.status !== 200) {
+      bad(`${page} og probe`, `status ${res.status}`);
+      continue;
+    }
+    const og = body.match(/<meta property="og:image" content="([^"]+)"/);
+    if (!og) {
+      bad(`${page} og:image present`);
+      continue;
+    }
+    check(og[1].endsWith(expected), `${page} og:image target`, og[1].replace(base, ''));
+
+    const dw = body.match(/<meta property="og:image:width" content="(\d+)"/);
+    const dh = body.match(/<meta property="og:image:height" content="(\d+)"/);
+
+    const imgRes = await fetch(og[1], {
+      headers: { 'User-Agent': 'asreseo-deploy-verify/1.0' },
+    });
+    check(imgRes.status === 200, `${page} og:image fetchable`, `status ${imgRes.status}`);
+    if (imgRes.status !== 200) continue;
+
+    const dims = imageDims(Buffer.from(await imgRes.arrayBuffer()));
+    if (!dims) {
+      bad(`${page} og:image decodable`, 'not a PNG or JPEG');
+      continue;
+    }
+    check(dims.w === 1200 && dims.h === 630, `${page} true og dimensions`, `${dims.w}x${dims.h}`);
+    check(dims.type !== 'webp', `${page} og format is not webp`, dims.type);
+    if (dw && dh) {
+      check(
+        Number(dw[1]) === dims.w && Number(dh[1]) === dims.h,
+        `${page} declared og dimensions match the file`,
+        `${dw[1]}x${dh[1]} declared vs ${dims.w}x${dims.h} real`,
+      );
+    } else {
+      bad(`${page} declared og dimensions`, 'og:image:width/height missing');
+    }
+  } catch (e) {
+    bad(`${page} og probe`, e.message);
+  }
+}
+
 console.log(`\n${fail === 0 ? 'ALL CHECKS PASSED' : 'FAILURES PRESENT'}`);
 console.log(`  ${pass} passed, ${fail} failed\n`);
 
