@@ -47,7 +47,12 @@ Work order: [`claim-inventory-2026-09-23.md`](./claim-inventory-2026-09-23.md). 
 
 **P2.1–P2.7 completed and gate-verified** (see the P2 row status below). **2.8** is documented as non-configurable host behaviour (the 307 is emitted by Cloudflare, not by this repo).
 
-**Not started:** 2.3 (already covered by 1.3 — tier-A re-aims shipped), and the remainder of the P2 technical / accessibility blocks (2.9–2.19).
+**Verified open — code (re-checked 2026-09-24 against `dist/`):** only **2.13** and **2.18**.
+
+- **2.13 / D3** — `Service` schema: **0 of 6** nodes carry `url`/`image`/`inLanguage`/`@id`; `areaServed` is inconsistent (`'IR'`, `'Iran'`, `'Worldwide'`, and a `Country` object). `geoRadius` no longer appears anywhere, so that half is moot.
+- **2.18** — **0** `fetchpriority="high"` in the build; LCP heroes still need it plus explicit `aspectRatio`/`width`/`height`.
+
+Everything else in 2.9–2.19 is **already done and verified**: 2.10 Cache-Control de-duplicated (gate asserts exactly one), 2.11 gate asserts HSTS/CSP/`max-age`, 2.12 orphan `manifest.json` gone (linked `site.webmanifest` kept, no `SearchAction`), 2.14 `prefers-reduced-motion` present, 2.15 global `:focus-visible` present, 2.16 `label for=` present on consultation (5) and contact (7), 2.17 `Icon.astro` merges into one `class` (remaining grep hits are comments *describing* the old bug), 2.19 `sw.js` absent and unreferenced (`ajax-form.js` still used by 1 page — keep). **2.3** is covered by 1.3.
 
 ---
 
