@@ -43,6 +43,8 @@ const d: any = entry.data;
 const post = {
   slug,
   title: d.title,
+  // Short form for the <title> tag only (see content.config.ts).
+  seoTitle: d.seoTitle,
   excerpt: d.excerpt ?? '',
   description: d.description ?? d.excerpt ?? '',
   category: d.category ?? '',
@@ -58,7 +60,10 @@ const post = {
   tableOfContents,
 };
 
-const seoTitle = `${post.title} | عصر سئو`;
+// Persian renders wide enough that a title TAG past ~60 chars is truncated in
+// the SERP, while the on-page H1 can carry the full headline. `seoTitle` is the
+// short form for the tag only; `post.title` stays the H1 / headline / crumb.
+const seoTitle = `${post.seoTitle ?? post.title} | عصر سئو`;
 
 // Mirrors the visual <ol> rendered directly under the header:
 // صفحه اصلی / وبلاگ / {post.title}
@@ -101,7 +106,7 @@ const articleSchema = {
   description={post.description}
   canonical={`https://asreseo.com/blog/${post.slug}/`}
   ogType="article"
-  ogImages={[{ url: post.image, width: 1200, height: 630, alt: post.title }]}
+  ogImages={[{ url: post.image.replace('/images/', '/og/').replace(/\.webp$/, '.jpg'), width: 1200, height: 630, alt: post.title }]}
   ogUrl={`https://asreseo.com/blog/${post.slug}/`}
 
 >

@@ -8,6 +8,13 @@ const blog = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
+    // Optional short form for the <title> tag only. `post.title` is also the
+    // on-page H1, the JSON-LD headline and the breadcrumb label, so lengthening
+    // it is a content decision — but a title TAG past ~60 chars is truncated in
+    // the SERP. Persian renders wide, so 55-60 is the practical ceiling: when
+    // `title` overshoots it, `seoTitle` carries the tag while the H1 keeps the
+    // full headline. Absent a value the tag falls back to `title`.
+    seoTitle: z.string().optional(),
     excerpt: z.string().optional(),
     description: z.string().optional(),
     category: z.string().optional(),
