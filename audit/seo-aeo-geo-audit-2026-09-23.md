@@ -25,7 +25,7 @@ The score **dropped despite the technical work landing**, because the two audits
 |---|---:|---:|---|
 | **Technical SEO** (20%) | 86/100 | +4 | Strong. Astro live, robots/sitemap/redirects verified working in prod. Residual header + redirect-type gaps. |
 | **Content / E-E-A-T** (20%) | 62/100 | −6 | **Weakest category.** 65% of pages invisible, all 9 blog posts at 0 impressions, unverified headline stats still rendered. |
-| **On-Page SEO** (15%) | 80/100 | +6 | 1 `<h1>`/page, canonicals perfect, hreflang correct, titles/descriptions all in range — verified live. |
+| **On-Page SEO** (15%) | 80/100 | +6 | 1 `<h1>`/page, canonicals perfect, hreflang correct. ~~titles/descriptions all in range — verified live~~ **Corrected 2026-09-23:** the full build was out of band (8 blog titles 61–82 chars, 9 descriptions >155, 10 titles <40). Now 40–60 / 104–154 site-wide. |
 | **Schema / Structured Data** (10%) | 74/100 | +9 | Duplicate-article + relative-image + breadcrumb-prop bugs **all confirmed fixed**. Entity fragmentation remains. |
 | **Performance / CWV** (10%) | 78/100 | −2 | Static + 0 bundles is excellent, but **still no field data**; HSTS/CSP absent; mobile pos gap unfixed. |
 | **Search demand capture (GSC)** (15%) | **48/100** | new | **New category.** 99.4% click concentration, 99% click collapse, 65% invisible pages. |
@@ -118,8 +118,8 @@ The predecessor audit's High/Critical items were re-checked against current code
 | `/faq/` | `سوالات متداول سئو و دیجیتال مارکتینگ \| عصر سئو` (46) | 139 | `سوالات متداول سئو و دیجیتال مارکتینگ` | `…/faq/` | 2 |
 | `/about/` | `درباره ما \| آژانس دیجیتال مارکتینگ و سئو عصر سئو` (48) | 126 | `درباره عصر سئو؛ آژانس تخصصی رشد ارگانیک و سئو مدرن` | `…/about/` | 3 |
 
-- **Titles:** all 46–59 chars, none >60, **all carry the target keyword**, none duplicated. Persian renders wide — 55–60 is the practical ceiling and is respected.
-- **Descriptions:** all 126–150 chars, none thin or truncated, no duplicates.
+- **Titles:** ~~all 46–59 chars, none >60~~ — **corrected 2026-09-23**: that reading came from a 5-page sample. The full 50-page build had 8 blog titles at 61–82 chars and 10 indexed titles under 40. All now land in a **40–60** band site-wide (`seoTitle` frontmatter shortens the blog `<title>` only; H1/headline/breadcrumb keep the full title).
+- **Descriptions:** ~~all 126–150~~ — **corrected 2026-09-23**: a full scan found 9 over 155 (max 173) and some under 100. All now **104–154** across the 49 indexed pages.
 - **H1:** exactly 1 per page site-wide; homepage H1 now carries `خدمات هوش مصنوعی و سئو` (the 09-14 "generic H1" and 09-12 "welcome H1" complaints are **fixed**).
 - **`/services/` H1** sharpened from `خدمات حرفه‌ای ما` → keyword-bearing (commit `3e14ee0`).
 
@@ -128,12 +128,16 @@ The predecessor audit's High/Critical items were re-checked against current code
 | # | Severity | Issue | Fix |
 |---|---|---|---|
 | O1 | **High** | **`/blog/` H1 is `وبلاگ عصر سئو`** — a brand label, not a query match. The blog is the single biggest underperforming asset (§5). | Reword to intent: `آموزش سئو و دیجیتال مارکتینگ` / `مقالات تخصصی سئو، محتوا و هوش مصنوعی`. Pair with a one-line answer block for AEO. |
-| O2 | Medium | **Thin indexable utility pages** still `index, follow`: `support/` (~80w), `privacy/`, `terms/`, `sitemap/`. `/sitemap/` actively draws **11 impressions at position 5.82** — it competes with content pages. | Expand `support`/`privacy`/`terms` to ≥300w of genuinely useful policy text; **`noindex` `/sitemap/`** (standard for HTML sitemaps) — `BaseLayout` already supports `noindex` (`BaseLayout.astro:22,41`), only `404.astro` uses it today. |
-| O3 | Medium | **4 duplicate `og:image` assignments** remain (09-14 §2.1): `web/`↔`seo-web-design`, `marketing/`↔`ai/marketing-engagement`, `content/`↔`content/text-content`. | Assign distinct OG per URL. |
-| O4 | Medium | **OG images are `.webp` declared as 1200×630.** X/Telegram/LinkedIn WebP support is inconsistent; declared dims may not match true dims. | Serve PNG/JPEG OG variants at true 1200×630 (`public/og-default.png` already correct as fallback). |
-| O5 | Low | Short titles/descriptions on utility pages (`support` 18, `privacy` 20, `terms` 25, `sitemap` 19 chars). | Lengthen to 40–55 / 120–155 when expanding in O2. |
-| O6 | Low | `/sitemap/` has 7 raw-URL anchor texts (09-14 item — **partially fixed** by `3e14ee0`; re-verify any remainder). | Persian descriptive labels. |
-| O7 | Low | `website-speed` page still cites **FID** targets (superseded by **INP** since 2024). Sibling `technical-onpage` already uses INP. | Replace FID → INP (≤200ms). |
+| O2 ✅ | Medium | **Thin indexable utility pages** still `index, follow`: `support/` (~80w), `privacy/`, `terms/`, `sitemap/`. `/sitemap/` actively draws **11 impressions at position 5.82** — it competes with content pages. | Expand `support`/`privacy`/`terms` to ≥300w of genuinely useful policy text; **`noindex` `/sitemap/`** (standard for HTML sitemaps) — `BaseLayout` already supports `noindex` (`BaseLayout.astro:22,41`), only `404.astro` uses it today. |
+| O3 ✅ | Medium | **4 duplicate `og:image` assignments** remain (09-14 §2.1): `web/`↔`seo-web-design`, `marketing/`↔`ai/marketing-engagement`, `content/`↔`content/text-content`. | Assign distinct OG per URL. |
+| O4 ✅ | Medium | **OG images are `.webp` declared as 1200×630.** X/Telegram/LinkedIn WebP support is inconsistent; declared dims may not match true dims. | Serve PNG/JPEG OG variants at true 1200×630 (`public/og-default.png` already correct as fallback). |
+| O5 ✅ | Low | Short titles/descriptions on utility pages (`support` 18, `privacy` 20, `terms` 25, `sitemap` 19 chars). | Lengthen to 40–55 / 120–155 when expanding in O2. |
+| O6 ✅ | Low | `/sitemap/` has 7 raw-URL anchor texts (09-14 item — **partially fixed** by `3e14ee0`; re-verify any remainder). | Persian descriptive labels. |
+| O7 ✅ | Low | `website-speed` page still cites **FID** targets (superseded by **INP** since 2024). Sibling `technical-onpage` already uses INP. | Replace FID → INP (≤200ms). |
+
+> **✅ = resolved 2026-09-23.** O1 shipped earlier as P2.1 (`/blog/` H1 reworded + answer block). O2/O5 shipped as P2.2/P2.5 (privacy 729w, terms 760w, support 931w; `/sitemap/` now `noindex, follow` and dropped from the XML sitemap; all four utility titles 40–55, descriptions 120–155). O3/O4 shipped as P2.4 — 35 true **1200×630 JPEG**s in `public/og/`, 3 new 2×2 montage cards for the named duplicate pairs, zero `og:image` still pointing at `.webp`. O6 re-verified clean (0 raw-URL anchors). O7 shipped as P2.6 (`faq/` FID→INP; only remaining "FID" is the `seo-guide` explainer describing the replacement).
+>
+> **Deliberately not "fixed":** `/`, `/faq/`, `/services/` and the utility pages share `og-default.png`, and 6 blog posts reuse their subject service page's hero. Distinct branded art for these would be decoration, not an SEO or sharing fix — documented rather than changed.
 
 ---
 
@@ -234,7 +238,7 @@ Confirmed in build output: no `ویژه` badge, no `N دقیقه` read-time text
 | D3 | Medium | **`Service` nodes unlinkable** — no top-level `url` / `image` / `inLanguage` / `@id`; `areaServed` is a bare `"Iran"`/`"IR"` string on some, `Country` object on `ai/`+`content/` hubs; `provider` lacks `@id`/logo on leaves. | Add `url`, absolute `image`, `inLanguage: "fa-IR"`, `@id`; normalize `areaServed` to `Country`; point `provider` at `#organization`. **Directly improves AEO entity resolution.** |
 | D4 | Medium | **Missing `BreadcrumbList` where visual crumbs exist:** `blog/[slug]` (renders a visual `<ol>` but no schema), `services/` hub, `blog/` index. | Add `BreadcrumbStructuredData` to those 3. |
 | D5 | Info | `FAQPage` (~25 pages) + `HowTo` (1 page) are **valid but give zero Google SERP benefit** — FAQ rich results retired for all sites (May 2026), HowTo retired Sept 2023. | **Keep** for LLM/AEO entity understanding (genuinely useful for AI answers). Never add `HowTo` elsewhere. `HowTo.totalTime: P30D` is arbitrary — set a defensible value. |
-| D6 | Info | `Blog` index `blogPost[].position` is not a valid `BlogPosting` property. | Wrap in `ItemList<ListItem>` or drop `position`. |
+| D6 ✅ | Info | `Blog` index `blogPost[].position` is not a valid `BlogPosting` property. | Wrap in `ItemList<ListItem>` or drop `position`. **Resolved 2026-09-23:** the built output has 73 valid JSON-LD blocks and **zero** `BlogPosting` nodes containing `position`. |
 | D7 | Low | Publisher logo `ImageObject{url}` without `width`/`height`; file `Logo-spaced.png` is case-sensitive-fragile. | Add dimensions. |
 | D8 | Low | `services/index.astro` uses double-quoted keys — harmless but stylistically inconsistent with the rest. | Normalize. |
 

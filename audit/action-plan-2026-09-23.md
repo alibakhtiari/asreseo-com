@@ -26,6 +26,11 @@
 | **1.10** | Stale comment + false word counts | `site-claims.ts:43-48`, `fixes-2026-09-12.md:257-258` |
 | **2.1** | `/blog/` H1 reworded | `وبلاگ عصر سئو` → `مقالات تخصصی سئو، محتوا و هوش مصنوعی`; answer block moved directly under it |
 | **2.3** | Tier-A blog re-aims executed | see 1.3 |
+| **2.2** | Utility pages expanded + `/sitemap/` noindexed | privacy **729w**, terms **760w**, support **931w** (all ≥300w); `/sitemap/` = `noindex, follow` (404 keeps `noindex, nofollow`); `/sitemap/` removed from `sitemap-0.xml` — **48 URLs, all with `lastmod`** |
+| **2.4** | True 1200×630 JPEG OGs | 35 files in `public/og/` (4.99 MB), all byte-verified 1200×630; all 30 `ogImages` rewired off `.webp`; 3 new 2×2 montage cards break the 3 named duplicate pairs |
+| **2.5** | Short titles/descriptions lengthened | utility titles 40–55 / descriptions 120–155 — **extended site-wide**: every indexed title now 40–60, every description 104–154 (was 8 blog titles 61–82 and 9 descriptions >155) |
+| **2.6** | FID → INP | `faq/index.astro`; only remaining "FID" in `dist/` is the `seo-guide` explainer describing the replacement |
+| **2.7** | Invalid `blogPost[].position` | **Already satisfied** — 73 JSON-LD blocks parse, **0** `BlogPosting` nodes carry `position` |
 | **2.9** | Single-hop `-2024` redirects | `_redirects` + `REDIRECT_MAP` |
 
 **Beyond plan — full unverified-claim sweep (this was P0.4, expanded):**
@@ -40,7 +45,9 @@ Work order: [`claim-inventory-2026-09-23.md`](./claim-inventory-2026-09-23.md). 
 
 **Blocked — needs credentials the assistant does not hold:** 0.1 (Manual Actions), 0.2 (collapse diagnosis), 0.3 (CTR vs server logs), 0.6 (09-14 outage), 1.7 (PSI/CrUX — 403/404), 1.9 (backlinks).
 
-**Not started:** 2.2, 2.4, 2.5, 2.6, 2.7. **2.8** is documented as non-configurable host behaviour (the 307 is emitted by Cloudflare, not by this repo).
+**P2.1–P2.7 completed and gate-verified** (see the P2 row status below). **2.8** is documented as non-configurable host behaviour (the 307 is emitted by Cloudflare, not by this repo).
+
+**Not started:** 2.3 (already covered by 1.3 — tier-A re-aims shipped), and the remainder of the P2 technical / accessibility blocks (2.9–2.19).
 
 ---
 
