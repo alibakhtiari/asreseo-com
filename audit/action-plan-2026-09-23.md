@@ -8,7 +8,7 @@
 
 ---
 
-## Execution status — updated 2026-09-23
+## Execution status — updated 2026-09-24
 
 **Completed and gate-verified:**
 
@@ -30,8 +30,10 @@
 | **2.4** | True 1200×630 JPEG OGs | 35 files in `public/og/` (4.99 MB), all byte-verified 1200×630; all 30 `ogImages` rewired off `.webp`; 3 new 2×2 montage cards break the 3 named duplicate pairs |
 | **2.5** | Short titles/descriptions lengthened | utility titles 40–55 / descriptions 120–155 — **extended site-wide**: every indexed title now 40–60, every description 104–154 (was 8 blog titles 61–82 and 9 descriptions >155) |
 | **2.6** | FID → INP | `faq/index.astro`; only remaining "FID" in `dist/` is the `seo-guide` explainer describing the replacement |
-| **2.7** | Invalid `blogPost[].position` | **Already satisfied** — 73 JSON-LD blocks parse, **0** `BlogPosting` nodes carry `position` |
+| **2.7** | Invalid `blogPost[].position` | **Already satisfied** — **141** JSON-LD blocks parse, **0** `BlogPosting` nodes carry `position`. *(The first measurement read 73 blocks: an attribute-ordered regex missed the 68 blocks that put `id=` before `type=`. Re-measured on all 141 and the assertion now lives in `verify-deploy.mjs`.)* |
 | **2.9** | Single-hop `-2024` redirects | `_redirects` + `REDIRECT_MAP` |
+| **2.13** | `Service` schema completed + `areaServed` normalized | `src/lib/service-schema.ts` wraps all 28 emit sites. **92/92** nodes now carry `url`/`image`/`inLanguage`/`@id` (was 0/92); `areaServed` is **89 `Country` + 3 `Place`**, down from five spellings (`'IR'`, `'Iran'`, `{Country}`, `'Worldwide'`, absent); **92 unique `@id`s, 0 duplicates**. Surfaced and fixed a real collision: `/` renders both structured-data components, and both were minting `#service`/`#service-2`/`#service-3` — same entity, different properties. `geoRadius` no longer appears anywhere, so that half was moot. |
+| **2.18** | `fetchpriority="high"` on LCP heroes | `Picture.astro` defaults it to `high` when `eager`, so all 10 eager call sites pick it up and lazy images cannot. **40 eager → 40 `fetchpriority="high"`, 0 on the 23 lazy images**, and all 40 declare `width`+`height`. The audit's `aspectRatio` sub-item was **not** done deliberately — Astro already emits `width`/`height` and Tailwind preflight sets `max-width:100%; height:auto`, so the box is reserved from the intrinsic ratio; injecting `aspect-ratio` into fixed-height containers would risk a visual regression for no gain. |
 
 **Beyond plan — full unverified-claim sweep (this was P0.4, expanded):**
 
@@ -47,12 +49,13 @@ Work order: [`claim-inventory-2026-09-23.md`](./claim-inventory-2026-09-23.md). 
 
 **P2.1–P2.7 completed and gate-verified** (see the P2 row status below). **2.8** is documented as non-configurable host behaviour (the 307 is emitted by Cloudflare, not by this repo).
 
-**Verified open — code (re-checked 2026-09-24 against `dist/`):** only **2.13** and **2.18**.
+**No code items remain open.** Re-checked row by row against `dist/` rather than trusting the labels:
 
-- **2.13 / D3** — `Service` schema: **0 of 6** nodes carry `url`/`image`/`inLanguage`/`@id`; `areaServed` is inconsistent (`'IR'`, `'Iran'`, `'Worldwide'`, and a `Country` object). `geoRadius` no longer appears anywhere, so that half is moot.
-- **2.18** — **0** `fetchpriority="high"` in the build; LCP heroes still need it plus explicit `aspectRatio`/`width`/`height`.
+- **2.13 / D3** and **2.18** were the last two genuine gaps; both are **closed and gate-verified** (see the completed table — 92/92 `Service` nodes, 40/40 `fetchpriority`).
+- **Already done but previously mislabelled "not started":** 2.10 Cache-Control de-duplicated (gate asserts exactly one), 2.11 gate asserts HSTS/CSP/`max-age`, 2.12 orphan `manifest.json` gone (linked `site.webmanifest` kept, no `SearchAction`), 2.14 `prefers-reduced-motion` present, 2.15 global `:focus-visible` present, 2.16 `label for=` present on consultation (5) and contact (7), 2.17 `Icon.astro` merges into one `class` (the remaining grep hits are comments *describing* the old bug), 2.19 `sw.js` absent and unreferenced (`ajax-form.js` still used by 1 page — keep).
+- **2.3** is covered by 1.3; **2.8** is documented as non-configurable host behaviour (the 307 is emitted by Cloudflare, not by this repo).
 
-Everything else in 2.9–2.19 is **already done and verified**: 2.10 Cache-Control de-duplicated (gate asserts exactly one), 2.11 gate asserts HSTS/CSP/`max-age`, 2.12 orphan `manifest.json` gone (linked `site.webmanifest` kept, no `SearchAction`), 2.14 `prefers-reduced-motion` present, 2.15 global `:focus-visible` present, 2.16 `label for=` present on consultation (5) and contact (7), 2.17 `Icon.astro` merges into one `class` (remaining grep hits are comments *describing* the old bug), 2.19 `sw.js` absent and unreferenced (`ajax-form.js` still used by 1 page — keep). **2.3** is covered by 1.3.
+**What is left is entirely blocked on credentials, not code:** 0.1 (Manual Actions), 0.2 (collapse diagnosis), 0.3 (CTR vs server logs), 0.6 (09-14 outage), 1.7 (PSI/CrUX), 1.9 (backlinks). See the "Blocked" line above.
 
 ---
 

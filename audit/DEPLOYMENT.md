@@ -79,9 +79,10 @@ the normal path. Use it.
 npm run build && npx wrangler deploy
 ```
 
-**Post-deploy gate:** `node scripts/verify-deploy.mjs` (55 checks — robots,
+**Post-deploy gate:** `node scripts/verify-deploy.mjs` (101 checks — robots,
 cache/security headers, sitemap, `llms.txt`, legacy 301s, contact endpoint,
-and true byte-parsed `og:image` dimensions).
+byte-parsed `og:image` dimensions, JSON-LD integrity across **all** script
+forms, and LCP image priority).
 
 ## 4. Disable the Content Signals Policy — DASHBOARD, silently overrides robots.txt
 
