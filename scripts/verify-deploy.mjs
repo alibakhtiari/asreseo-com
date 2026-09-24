@@ -289,6 +289,159 @@ for (const [page, expected] of ogProbe) {
   }
 }
 
+// ------------------------------------------------------- JSON-LD integrity
+// Three defects this guards, all live on this site during the audit:
+//   - Service nodes with no url/image/inLanguage/@id -> entity unresolvable;
+//     `@id` is what ties a Service to its provider during entity resolution
+//   - `areaServed` written four ways ('IR', 'Iran', {Country}, 'Worldwide')
+//     -> one fact aggregated as four
+//   - two components emitting Services on one page minting identical `@id`s
+//     -> the same entity described twice with different properties
+// P2.7 is re-asserted here on every block: an earlier ad-hoc check matched
+// only 73 of the 141 blocks because 68 put `id=` before `type=`.
+console.log('\nJSON-LD integrity');
+
+const jsonLdBlocks = (html) => {
+  const out = [];
+  const re = /<script([^>]*)>([\s\S]*?)<\/script>/g;
+  let m;
+  while ((m = re.exec(html))) {
+    if (!m[1].includes('ld+json')) continue;
+    try {
+      out.push({ data: JSON.parse(m[2]) });
+    } catch (e) {
+      out.push({ error: e.message });
+    }
+  }
+  return out;
+};
+
+const walkLd = (node, fn) => {
+  if (Array.isArray(node)) {
+    for (const child of node) walkLd(child, fn);
+  } else if (node && typeof node === 'object') {
+    fn(node);
+    for (const value of Object.values(node)) walkLd(value, fn);
+  }
+};
+
+const AREA_TYPES = ['Country', 'Place', 'City', 'AdministrativeArea', 'GeoCoordinates'];
+const SERVICE_FIELDS = ['url', 'image', 'inLanguage', '@id'];
+
+const jsonLdProbe = [
+  '/', // two components emit Services here — the @id collision case
+  '/services/seo/',
+  '/services/ai/', // money page
+  '/consultation/', // this page's areaServed was the string 'IR'
+  '/services/content/translation/', // the only 'Worldwide' node
+  '/blog/geo-ai-citations/',
+];
+
+for (const page of jsonLdProbe) {
+  try {
+    const { res, body } = await get(page);
+    if (res.status !== 200) {
+      bad(`${page} JSON-LD probe`, `status ${res.status}`);
+      continue;
+    }
+    const blocks = jsonLdBlocks(body);
+    check(blocks.length > 0, `${page} emits JSON-LD`, `${blocks.length} blocks`);
+
+    const unparsed = blocks.filter((b) => b.error);
+    check(
+      unparsed.length === 0,
+      `${page} every JSON-LD block parses`,
+      unparsed[0]?.error || `${blocks.length} parsed`,
+    );
+
+    const services = [];
+    const ids = new Map();
+    let badArea = 0;
+    let incomplete = 0;
+    let blogWithPosition = 0;
+    for (const b of blocks) {
+      if (!b.data) continue;
+      walkLd(b.data, (n) => {
+        if (n['@type'] === 'Service') {
+          services.push(n);
+          if (!SERVICE_FIELDS.every((k) => typeof n[k] === 'string' && n[k].length > 0)) incomplete += 1;
+          const a = n['areaServed'];
+          if (!a || typeof a !== 'object' || !AREA_TYPES.includes(a['@type'])) badArea += 1;
+          if (typeof n['@id'] === 'string') ids.set(n['@id'], (ids.get(n['@id']) || 0) + 1);
+        }
+        if (n['@type'] === 'BlogPosting' && Object.prototype.hasOwnProperty.call(n, 'position')) {
+          blogWithPosition += 1;
+        }
+      });
+    }
+
+    if (services.length > 0) {
+      check(
+        incomplete === 0,
+        `${page} Service nodes carry url/image/inLanguage/@id`,
+        `${services.length} nodes, ${incomplete} incomplete`,
+      );
+      check(
+        badArea === 0,
+        `${page} Service areaServed is a typed node`,
+        badArea ? `${badArea} raw string or absent` : `${services.length} Country/Place`,
+      );
+      const dups = [...ids].filter(([, count]) => count > 1);
+      check(
+        dups.length === 0,
+        `${page} Service @ids unique on the page`,
+        dups.length ? JSON.stringify(dups) : `${ids.size} unique`,
+      );
+    }
+    if (page.startsWith('/blog/')) {
+      check(blogWithPosition === 0, `${page} no BlogPosting+position (P2.7)`, `${blogWithPosition} found`);
+    }
+  } catch (e) {
+    bad(`${page} JSON-LD probe`, e.message);
+  }
+}
+
+// ---------------------------------------------------- LCP image priority
+// Audit item 2.18: zero `fetchpriority` attributes in the whole build, while
+// each page's single eager image is its LCP candidate by construction.
+console.log('\nimage priority');
+
+const imgProbe = ['/', '/services/seo/', '/services/ai/', '/services/', '/blog/geo-ai-citations/', '/about/'];
+
+for (const page of imgProbe) {
+  try {
+    const { res, body } = await get(page);
+    if (res.status !== 200) {
+      bad(`${page} image probe`, `status ${res.status}`);
+      continue;
+    }
+    const imgs = body.match(/<img[^>]*>/g) || [];
+    const eager = imgs.filter((i) => i.includes('loading="eager"'));
+    const lazy = imgs.filter((i) => i.includes('loading="lazy"'));
+    const high = imgs.filter((i) => i.includes('fetchpriority="high"'));
+    const highOnLazy = high.filter((i) => i.includes('loading="lazy"'));
+    const eagerNoDims = eager.filter((i) => !(i.includes('width=') && i.includes('height=')));
+
+    check(
+      high.length === eager.length,
+      `${page} every eager image is fetchpriority=high`,
+      `eager ${eager.length}, high ${high.length}`,
+    );
+    check(
+      highOnLazy.length === 0,
+      `${page} no lazy image is fetchpriority=high`,
+      highOnLazy.length ? `${highOnLazy.length} wrong` : `0 of ${lazy.length} lazy`,
+    );
+    check(
+      eagerNoDims.length === 0,
+      `${page} eager images declare width+height`,
+      eagerNoDims.length ? `${eagerNoDims.length} unsized` : `${eager.length} sized`,
+    );
+  } catch (e) {
+    bad(`${page} image probe`, e.message);
+  }
+}
+
 console.log(`\n${fail === 0 ? 'ALL CHECKS PASSED' : 'FAILURES PRESENT'}`);
 console.log(`  ${pass} passed, ${fail} failed\n`);
 
