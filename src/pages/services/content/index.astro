@@ -1,4 +1,5 @@
 ---
+import { withServiceMeta } from '../../../lib/service-schema';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Header from '../../../components/Layout/Header.astro';
 import Footer from '../../../components/Layout/Footer.astro';
@@ -118,7 +119,7 @@ const breadcrumbs = [
   ogImages={[{ url: '/og/services-content.jpg', width: 1200, height: 630, alt: 'خدمات استراتژی محتوا و بازاریابی محتوایی عصر سئو' }]}
   twitterCard='summary_large_image'
 >
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(serviceSchema, { url: 'https://asreseo.com/services/content/', image: '/og/services-content.jpg' }))} />
   
   <BreadcrumbStructuredData items={breadcrumbs} />
 

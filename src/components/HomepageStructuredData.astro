@@ -1,4 +1,5 @@
 ---
+import { withServiceMeta } from '../lib/service-schema';
 const data = {
   '@context': 'https://schema.org',
   '@type': 'OfferCatalog',
@@ -43,4 +44,4 @@ const data = {
   ],
 };
 ---
-<script type="application/ld+json" is:inline set:html={JSON.stringify(data)}></script>
+<script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(data, { url: 'https://asreseo.com/', image: '/og-default.png', idNamespace: 'home-service' }))}></script>

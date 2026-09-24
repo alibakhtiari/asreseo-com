@@ -1,4 +1,5 @@
 ---
+import { withServiceMeta } from '../../../../lib/service-schema';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Header from '../../../../components/Layout/Header.astro';
 import Footer from '../../../../components/Layout/Footer.astro';
@@ -237,7 +238,7 @@ const structuredData = {
 >
 <div class="min-h-screen bg-white">
       <script id="structured-data" type="application/ld+json" is:inline
-        set:html={JSON.stringify(structuredData)}
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/marketing/social-media/', image: '/og/social-media-hero.jpg' }))}
       />
 
       <Header />

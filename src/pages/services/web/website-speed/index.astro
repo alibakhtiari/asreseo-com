@@ -1,4 +1,5 @@
 ---
+import { withServiceMeta } from '../../../../lib/service-schema';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Header from '../../../../components/Layout/Header.astro';
 import Footer from '../../../../components/Layout/Footer.astro';
@@ -257,7 +258,7 @@ const breadcrumbs = [
   ogDescription='افزایش سرعت بارگذاری وب‌سایت با استانداردهای گوگل.'
 >
 <div class="min-h-screen bg-white">
-      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/web/website-speed/', image: '/og/website-speed-hero.jpg' }))} />
 
       <Header />
       <BreadcrumbStructuredData items={breadcrumbs} />

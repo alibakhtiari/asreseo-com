@@ -1,4 +1,5 @@
 ---
+import { withServiceMeta } from '../lib/service-schema';
 // Canonical entity for the whole site. This is the ONLY full declaration of
 // `#organization`; every other page links to it with a lightweight
 // `{"@type":"Organization","@id":"…/#organization"}` reference instead of
@@ -144,4 +145,4 @@ const data = {
   ],
 };
 ---
-<script type="application/ld+json" is:inline set:html={JSON.stringify(data)}></script>
+<script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(data, { url: 'https://asreseo.com/', image: '/og-default.png', idNamespace: 'organization-service' }))}></script>
