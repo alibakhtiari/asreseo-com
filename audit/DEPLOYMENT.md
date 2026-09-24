@@ -57,14 +57,31 @@ The project is configured as a Cloudflare Worker with Static Assets:
 - `main = "worker.ts"` handles API routes like `/api/send-email` and proxies other requests to assets.
 - `[assets] directory = "./dist"` serves the static site files (HTML, CSS, JS, images, etc.).
 
+**Deploy path (verified 2026-09-24):** pushing to `astro-migration` triggers a
+**Git-integrated Cloudflare build** — that is what actually ships, and it is
+the normal path. Use it.
+
+> ⚠️ **The live worker is named `asreseocom`**, on account
+> `ac07c7450925ccb475ebfc9ab75103e1` (the account holding the `asreseo.com`
+> zone). `wrangler.toml` used to declare `name = "asre-seo-website"`, which
+> **does not exist** — so a manual `npx wrangler deploy` would have created
+> an orphan worker and reported success while production stayed stale. On a
+> machine with several authorized Cloudflare accounts it first fails with
+> "More than one account available". Both `name` and `account_id` are now
+> pinned in `wrangler.toml`, so the manual path targets the real worker.
+
 **Git CI / Dashboard Deploy:**
 - Build command: `npm run build`
-- Deploy command: `npx wrangler deploy` (or left default)
+- Deploy command: `npx wrangler deploy`
 
-**Direct CLI deploy:**
+**Manual CLI deploy:**
 ```bash
 npm run build && npx wrangler deploy
 ```
+
+**Post-deploy gate:** `node scripts/verify-deploy.mjs` (55 checks — robots,
+cache/security headers, sitemap, `llms.txt`, legacy 301s, contact endpoint,
+and true byte-parsed `og:image` dimensions).
 
 ## 4. Disable the Content Signals Policy — DASHBOARD, silently overrides robots.txt
 

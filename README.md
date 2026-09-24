@@ -118,6 +118,7 @@ npm run build
    - دستور بیلد: `npm run build`
    - دستور دیپلوی: `npx wrangler deploy`
    - دایرکتوری خروجی: `dist`
+   - ⚠️ **مسیر واقعی استقرار:** push به شاخه `astro-migration` به‌صورت خودکار با build یکپارچه Cloudflare مستقر می‌شود (این همان مسیری است که در عمل کار می‌کند). نام ورکر زنده **`asreseocom`** روی حساب `ac07c7450925ccb475ebfc9ab75103e1` است؛ `wrangler.toml` قبلاً نام `asre-seo-website` را داشت که **وجود ندارد** و دیپلوی دستی یک ورکر بی‌استفاده می‌ساخت. هر دو فیلد اکنون در `wrangler.toml` ثابت شده‌اند. پس از هر استقرار: `node scripts/verify-deploy.mjs`.
 3. **اتصال بایندینگ ایمیل (Cloudflare Dashboard):**
    - در مسیر **Settings → Bindings** پروژه در کلودفلر، متغیر Send Email را با نام **`asreseo`** (یا **`EMAIL`**) اضافه فرمایید تا فرم‌های تماس و مشاوره فعال شوند. (کد هر دو نام را پشتیبانی می‌کند).
 4. **غیرفعال‌سازی Content Signals Policy:**
