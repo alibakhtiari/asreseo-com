@@ -20,6 +20,7 @@ export interface Props {
   ogImages?: OgImage[];
   twitterCard?: string;
   noindex?: boolean;
+  nofollow?: boolean;
 }
 
 const SITE = 'https://asreseo.com';
@@ -39,7 +40,14 @@ const {
   ogImages = [],
   twitterCard = 'summary_large_image',
   noindex = false,
+  nofollow = false,
 }: any = Astro.props;
+
+// `noindex` and `nofollow` are independent directives. An HTML sitemap is
+// `noindex, follow` — it must stay out of the index while still passing link
+// equity to every internal page it lists; `noindex, nofollow` there would
+// cut equity flow to the whole site. The 404 page sets both.
+const robots = [noindex ? 'noindex' : 'index', nofollow ? 'nofollow' : 'follow'].join(', ');
 
 const canonicalUrl = (() => {
   const raw = canonical ?? Astro.url.pathname;
@@ -94,7 +102,7 @@ import '../styles/globals.css';
     {description && <meta name="description" content={description} />}
     {keywords && <meta name="keywords" content={keywords} />}
     <meta name="theme-color" content="#3b82f6" />
-    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="robots" content={robots} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="fa-IR" href={canonicalUrl} />
     <link rel="alternate" hreflang="x-default" href={canonicalUrl} />

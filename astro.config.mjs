@@ -143,7 +143,11 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/404'),
+      // Never advertise a `noindex` URL in the XML sitemap: the HTML
+      // sitemap at /sitemap/ is deliberately `noindex` (it draws impressions
+      // against real content in GSC), so it must be dropped here too.
+      // `page` is a full URL (e.g. https://asreseo.com/sitemap/).
+      filter: (page) => !page.includes('/404') && new URL(page).pathname !== '/sitemap/',
       serialize: (item) => {
         try {
           const path = new URL(item.url).pathname;

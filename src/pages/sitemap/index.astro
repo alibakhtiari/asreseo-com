@@ -88,7 +88,9 @@ const breadcrumbs = [
   { position: 2, name: 'نقشه سایت عصر سئو', item: 'https://asreseo.com/sitemap/' },
 ];
 ---
-<BaseLayout title='نقشه سایت | عصر سئو' description='نقشه کامل وب‌سایت عصر سئو؛ دسترسی سریع به تمام خدمات سئو، هوش مصنوعی، بازاریابی، طراحی وب و مقالات آموزشی.' canonical='https://asreseo.com/sitemap/' ogType='website' twitterCard='summary_large_image'>
+<!-- noindex only: this HTML sitemap must keep `follow` so link equity still flows
+     to every internal page it lists. Excluded from the XML sitemap in astro.config.mjs. -->
+<BaseLayout title='نقشه کامل سایت و راهنمای دسترسی به صفحات | عصر سئو' description='نقشه کامل وب‌سایت عصر سئو؛ دسترسی سریع و دسته‌بندی‌شده به صفحات اصلی، خدمات سئو، هوش مصنوعی، بازاریابی دیجیتال، طراحی وب و مقالات آموزشی وبلاگ.' canonical='https://asreseo.com/sitemap/' ogType='website' twitterCard='summary_large_image' noindex>
 <div class="min-h-screen bg-white">
   <Header />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
