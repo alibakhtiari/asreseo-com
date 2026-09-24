@@ -13,6 +13,16 @@ export interface Props {
   decoding?: 'async' | 'sync' | 'auto';
   formats?: ('avif' | 'webp' | 'png' | 'jpeg')[];
   aspectRatio?: string;
+  /**
+   * Hint to the preload scanner. Defaults to `high` when `eager` is set —
+   * every page carries exactly one eager image, so that image is the LCP
+   * candidate by construction. Audit 2026-09-23 (T6 / item 2.18) found
+   * **zero** `fetchpriority` attributes in the whole build.
+   */
+  fetchpriority?: 'high' | 'low' | 'auto';
+  /** Intrinsic size for the raw-`<img>` fallback, which gets no metadata. */
+  width?: number;
+  height?: number;
 }
 
 const {
@@ -26,6 +36,9 @@ const {
   decoding = 'async',
   formats = ['avif', 'webp'],
   aspectRatio,
+  fetchpriority = eager ? 'high' : undefined,
+  width,
+  height,
 } = Astro.props as Props;
 
 // Eagerly glob all images in src/assets/images
@@ -57,6 +70,7 @@ if (typeof src === 'string') {
     class={className}
     loading={eager ? 'eager' : (loading ?? 'lazy')}
     decoding={decoding}
+    fetchpriority={fetchpriority}
     style={aspectRatio ? `aspect-ratio: ${aspectRatio}` : undefined}
   />
 ) : (
@@ -66,6 +80,9 @@ if (typeof src === 'string') {
     class={className}
     loading={eager ? 'eager' : (loading ?? 'lazy')}
     decoding={decoding}
+    fetchpriority={fetchpriority}
+    width={width}
+    height={height}
     style={aspectRatio ? `aspect-ratio: ${aspectRatio}` : undefined}
   />
 )}
