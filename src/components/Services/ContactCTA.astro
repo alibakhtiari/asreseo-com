@@ -1,0 +1,59 @@
+---
+import Button from '../ui/button/Button.astro';
+import Card from '../ui/card/Card.astro';
+import CardContent from '../ui/card/CardContent.astro';
+import Icon from '../ui/Icon.astro';
+---
+<!-- Gradient darkened from `blue-600 -> green-600`. White text on green-600 is
+     only 3.22:1, and the `bg-white/10` card overlay lightens it further to
+     2.88:1 — both well under the 4.5:1 that WCAG 1.4.3 requires. At
+     `blue-700 -> green-800` the worst case (green end, under the overlay) is
+     5.64:1. Measured, not guessed. -->
+<section class="section-padding bg-linear-to-br from-blue-700 to-green-800">
+      <div class="container-custom">
+        <Card class="bg-white/10 backdrop-blur-md border-white/20 text-white">
+          <CardContent class="text-center p-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">
+              آماده شروع همکاری هستید؟
+            </h2>
+            <p class="text-xl mb-8 text-white/90 max-w-2xl mx-auto animate-fade-in">
+              همین الان با ما تماس بگیرید و مشاوره رایگان دریافت کنید.
+              تیم متخصص ما آماده پاسخگویی به سوالات شماست.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+              <div class="flex flex-col items-center p-6 bg-white/10 rounded-xl backdrop-blur-xs">
+                <Icon name="phone" class="h-8 w-8 mb-3" />
+                <h3 class="font-semibold mb-2">تماس تلفنی</h3>
+                <!-- Was «۰۲۱-۱۲۳۴۵۶۷۸» — a placeholder that shipped to
+                     production. Every other surface on the site uses
+                     ۰۹۱۲۵۸۱۱۸۸۰, so the CTA was advertising a number that
+                     does not exist. -->
+                <p class="text-white/90" dir="ltr">0912-581-1880</p>
+              </div>
+
+              <div class="flex flex-col items-center p-6 bg-white/10 rounded-xl backdrop-blur-xs">
+                <Icon name="mail" class="h-8 w-8 mb-3" />
+                <h3 class="font-semibold mb-2">ایمیل</h3>
+                <p class="text-white/90">info@asreseo.com</p>
+              </div>
+
+              <div class="flex flex-col items-center p-6 bg-white/10 rounded-xl backdrop-blur-xs">
+                <Icon name="message-circle" class="h-8 w-8 mb-3" />
+                <h3 class="font-semibold mb-2">پشتیبانی آنلاین</h3>
+                <p class="text-white/90">۲۴ ساعته</p>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
+              <Button href="/consultation/" size="lg" class="bg-white text-blue-600 hover:bg-white/90 px-8">
+                مشاوره رایگان
+              </Button>
+              <Button href="/portfolio/" size="lg" variant="outline" class="bg-transparent border-white text-white hover:bg-white/10 px-8">
+                مشاهده نمونه کارها
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </section>

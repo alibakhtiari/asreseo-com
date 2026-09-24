@@ -1,0 +1,423 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Button from '../../../../components/ui/button/Button.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Picture from '../../../../components/ui/Picture.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceWorkflow from '../../../../components/Services/ServiceWorkflow.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'محتوای شبکه‌های اجتماعی',
+  'description': 'خدمات تولید محتوای شبکه اجتماعی شامل ایده‌پردازی، کپشن، گرافیک و استراتژی انتشار',
+  'serviceType': 'Social Media Content',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'عصر سئو',
+    'url': 'https://asreseo.com'
+  },
+  'areaServed': 'Iran',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'خدمات محتوای شبکه‌های اجتماعی',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'ایده‌پردازی خلاقانه',
+          'description': 'ایجاد ایده‌های خلاق و جذاب برای شبکه‌های اجتماعی'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'کپشن حرفه‌ای',
+          'description': 'نوشتن کپشن‌های جذاب و مؤثر با هشتگ استراتژیک'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const platforms = [
+    {
+      name: 'اینستاگرام',
+      description: 'پست‌های ویژوال، استوری، ریلز و تبلیغات هدفمند',
+      followers: 'پایش ماهانه',
+      engagement: 'گزارش هفتگی',
+      icon: "image-icon",
+      color: 'pink'
+    },
+    {
+      name: 'لینکدین',
+      description: 'محتوای حرفه‌ای، مقالات تخصصی و شبکه‌سازی کسب‌وکاری',
+      followers: 'پایش ماهانه',
+      engagement: 'گزارش هفتگی',
+      icon: "users",
+      color: 'blue'
+    },
+    {
+      name: 'تلگرام',
+      description: 'پیام‌رسانی فوری، اخبار و تعامل مستقیم با مخاطبان',
+      followers: 'پایش ماهانه',
+      engagement: 'گزارش هفتگی',
+      icon: "message-square",
+      color: 'blue'
+    },
+    {
+      name: 'توییتر (اکس)',
+      description: 'جنجال‌های رسانه‌ای، اخبار سریع و روندسازی',
+      followers: 'پایش ماهانه',
+      engagement: 'گزارش هفتگی',
+      icon: "sparkles",
+      color: 'gray'
+    },
+    {
+      name: 'تیک‌تاک',
+      description: 'ویدیوهای کوتاه و وایرال برای جذب جوانان',
+      followers: 'پایش ماهانه',
+      engagement: 'گزارش هفتگی',
+      icon: "trending-up",
+      color: 'black'
+    }
+  ];
+
+  const features = [
+    {
+      icon: "share2",
+      title: 'ایده‌پردازی خلاقانه',
+      description: 'ایده‌های مبتکر و هدفمند متناسب با هویت برند شما در هر پلتفرم',
+      benefits: ['خلاقیت بی‌اندازه', 'تفاوت رقابتی', 'جذابیت بالا']
+    },
+    {
+      icon: "message-square",
+      title: 'کپشن حرفه‌ای',
+      description: 'نوشتن متن‌های تأثیرگذار با هشتگ استراتژیک و فراخوان به اقدام قدرتمند',
+      benefits: ['بازدهی بالاتر', 'هویت برند', 'پیام‌رسانی مؤثر']
+    },
+    {
+      icon: "sparkles",
+      title: 'افزایش تعامل',
+      description: 'استراتژی‌هایی برای بالا بردن کامنت، لایک و اشتراک‌گذاری پست‌ها',
+      benefits: ['رشد ارگانیک', 'فالوور واقعی', 'مشترک وفادار']
+    },
+    {
+      icon: "calendar",
+      title: 'تقویم انتشار هوشمند',
+      description: 'برنامه‌ریزی زمان‌بندی انتشار بر اساس آنالیز بهترین ساعت‌های مخاطب',
+      benefits: ['ویژگی بیشتر پست‌ها', 'تعامل مداوم', 'رشد پایدار پیج']
+    }
+  ];
+
+  const contentStrategies = [
+    {
+      type: 'ترندها و اخبار',
+      description: 'پوشش اخبار روز و موضوعات داغ برای بالا نگه داشتن توجه',
+      examples: ['اخبار صنعت', 'سالگردها', 'رویدادهای جهانی']
+    },
+    {
+      type: 'محتوای آموزشی',
+      description: 'دانستنی‌هایی از حوزه کاری شما برای ایجاد ارزش افزوده',
+      examples: ['راهنماها', 'نکات کاربردی', 'آموزش‌های کوتاه']
+    },
+    {
+      type: 'محتوای سرگرم‌کننده',
+      description: 'پست‌های شاد و جذاب برای بالا بردن تعامل',
+      examples: ['میم‌ها', 'چالش‌ها', 'محتوای کاربرمحور']
+    },
+    {
+      type: 'بک‌اند کامپین',
+      description: 'داستان موفقیت مشتریان و پشت صحنه کسب‌وکار',
+      examples: ['مصاحبه‌ها', 'پروژه‌های موفق', 'فرآیند کار']
+    }
+  ];
+
+  const benefits = [
+    'پایش رشد پیج در گزارش عملکرد ماهانه با استراتژی درست',
+    'ایجاد تعامل واقعی و فالوورهای ارزشمند و هدفمند',
+    'پرهون اقتصادی نسبت به تیم‌های تبلیغاتی مستقل',
+    'یکپارچه‌سازی پیام برند در تمام پلتفرم‌ها',
+    'افزایش اعتبار برند و جذب مشتریان بالقوه'
+  ];
+
+  // Qualitative process facts, not performance percentages — client-result
+  // percentages are unverifiable (see src/lib/site-claims.ts authenticity policy).
+  const stats = [
+    { metric: 'ماهانه', label: 'گزارش فالوورها', color: 'text-pink-600', icon: "users" },
+    { metric: 'هفتگی', label: 'گزارش تعامل مخاطب', color: 'text-green-800', icon: "heart" },
+    { metric: 'دوره‌ای', label: 'گزارش بازدهی', color: 'text-blue-600', icon: "trending-up" },
+    { metric: '۲۴/۷', label: 'پشتیبانی سریع', color: 'text-purple-600', icon: "message-square" }
+  ];
+
+  const workflowSteps = [
+    {
+      step: '۱',
+      title: 'بررسی برند و مخاطب',
+      desc: 'تحلیل شخصیت برند، مخاطب هدف و فضای رقابتی هر پلتفرم'
+    },
+    {
+      step: '۲',
+      title: 'استراتژی محتوایی',
+      desc: 'تعریف ستون‌های محتوایی، تقویم انتشار و اهداف کلیدی'
+    },
+    {
+      step: '۳',
+      title: 'تولید محتوا',
+      desc: 'ایده‌پردازی، کپشن‌نویسی و تولید محتوای برند برای هر پست'
+    },
+    {
+      step: '۴',
+      title: 'عکس‌العمل و اندازه‌گیری',
+      desc: 'پایش تعامل، رسپانس کامنت‌ها و بهینه‌سازی بی‌وقفه'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'چه شبکه‌های اجتماعی را پوشش می‌دهیم؟',
+      answer: 'اینستاگرام، تلگرام، لینکدین، توییتر (اکس)، تیک‌تاک، آپارات و حتی متاورس را پوشش می‌دهیم. بسته به اهداف کسب‌وکار شما، استراتژی اختصاصی برای هر پلتفرم طراحی می‌کنیم.'
+    },
+    {
+      question: 'آیا گرافیک و طراحی هم در پکیج‌ها هست؟',
+      answer: 'بله، بسته به سفارش شما می‌تواند شامل باشد. گرافیک‌های جذاب برای پست‌ها، بوردر جالب برای اینستاگرام و حتی تولید ویدیوهای کوتاه برای تقویت حضور شما در شبکه‌های اجتماعی.'
+    },
+    {
+      question: 'چطور رسپانس کامنت‌ها را مدیریت می‌کنید؟',
+      answer: 'تیم ما به سرعت به کامنت‌ها پاسخ می‌دهد، کامنت‌های اسپمر را پاک کرده و تعامل کلاینت‌ها را با شما گزارش هفتگی می‌کند تا فضای شبکه اجتماعی شما همیشه مثبت و فعال باشد.'
+    },
+    {
+      question: 'محتوا شامل تبلیغات هم می‌شود؟',
+      answer: 'در صورت نیاز، استراتژی تبلیغات اجتماعی را نیز پیاده‌سازی می‌کنیم. از بوست پست‌های پربازدید گرفته تا تبلیغات هدفی که مستقیماً به فروش شما کمک کند.'
+    },
+    {
+      question: 'تعداد پست‌ها در هر پکیج چقدر است؟',
+      answer: 'بسته به نیاز شما متفاوت است. برای شروع معمولاً ۸-۱۲ پست در ماه برای هر پلتفرم پیشنهاد می‌کنیم تا بتوانیم رشد پایدار و مطمئنی ایجاد کنیم.'
+    },
+    {
+      question: 'آیا می‌توانم محتوای خودم را هم استفاده کنم؟',
+      answer: 'البته، می‌توانید محتوای آماده خود را بدهید تا تیم ما فقط کپشن و بهینه‌سازی را انجام دهد. اما پیشنهاد می‌کنیم از ایده‌پردازی حرفه‌ای ما نیز استفاده کنید تا نتایج بهتری بگیرید.'
+    }
+  ];
+
+  
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات محتوا', item: 'https://asreseo.com/services/content/' },
+    { position: 3, name: 'محتوای شبکه‌های اجتماعی', item: 'https://asreseo.com/services/content/social-media-content/' },
+  ];
+
+---
+<BaseLayout title='تولید محتوای شبکه‌های اجتماعی و سوشال مدیا | عصر سئو' description='خدمات کامل تولید محتوای شبکه اجتماعی شامل ایده‌پردازی خلاقانه، کپشن جذاب، گرافیک زیبا، تقویم انتشار و استراتژی تعامل‌سازی برای ۵ پلتفرم اصلی.' keywords='محتوای شبکه‌های اجتماعی, سوشال مدیا کانتنت, اینستاگرام, تلگرام, لینکدین, توییتر, ایده‌پردازی خلاقانه' canonical='https://asreseo.com/services/content/social-media-content/' ogType='website' ogUrl='https://asreseo.com/services/content/social-media-content/' ogImages={[{ url: "/og/social-media-content-hero.jpg", width: 1200, height: 630, alt: "محتوای شبکه‌های اجتماعی | عصر سئو" }]} twitterCard='summary_large_image'
+  ogTitle='محتوای شبکه‌های اجتماعی | تولید محتوا حرفه‌ای | عصر سئو'
+
+  ogDescription='ایده‌پردازی، تولید و مدیریت محتوای شبکه‌های اجتماعی برای رشد برند شما.'
+>
+<div class="min-h-screen bg-white">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/content/social-media-content/', image: '/og/social-media-content-hero.jpg' }))}
+      />
+
+      <Header />
+      <BreadcrumbStructuredData items={breadcrumbs} />
+
+      <main>
+        <ServiceHero
+          badge="محتوای شبکه‌های اجتماعی حرفه‌ای"
+          title="محتوای شبکه‌های اجتماعی"
+          titleHighlight="شبکه‌های اجتماعی"
+          description="قدرت ایده‌پردازی خلاقانه، کپشن جذاب و استراتژی تعامل‌سازی برای رشد پایدار پیج شما در شبکه‌های اجتماعی. از اینستاگرام تا لینکدین، حضور قدرتمند برقرار کنید."
+          primaryCtaText="شروع استراتژی محتوایی"
+          secondaryCtaText="مشاوره رایگان سوشال مدیا"
+          imageSrc="/images/social-media-content-hero.webp"
+          imageAlt="محتوای شبکه‌های اجتماعی حرفه‌ای"
+          theme="pink"
+        />
+
+        <ServiceStats
+          stats={stats}
+          gradientClass="bg-linear-to-r from-purple-50 to-pink-50"
+          metricColorClass="text-purple-700"
+          iconColorClass="text-pink-600"
+        />
+
+        <!-- Platforms Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                پوشش <span class="gradient-text">۵ پلتفرم اصلی</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                استراتژی اختصاصی برای هر پلتفرم با بهترین بازدهی و ROI ممکن
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {platforms.map((platform, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                        <Icon name={platform.icon} class="h-6 w-6 text-purple-600" />
+                      </div>
+                      <div>
+                        <CardTitle class="text-xl font-semibold">{platform.name}</CardTitle>
+                        <div class="flex gap-4 mt-2 text-sm">
+                          <span class="text-green-800 font-medium">{platform.followers} فالوور</span>
+                          <span class="text-blue-600 font-medium">{platform.engagement} تعامل</span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 leading-relaxed">
+                      {platform.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Content Strategies Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                استراتژی‌های <span class="gradient-text">محتوایی اثربخش</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                ترکیبی از استراتژی‌های مدرن برای حداکثر تعامل و رشد پیج شما
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {contentStrategies.map((strategy, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
+                        <Icon name="target" class="h-6 w-6 text-indigo-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{strategy.type}</CardTitle>
+                    </div>
+                    <p class="text-gray-600 mb-4">{strategy.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-1">
+                      {strategy.examples.map((example, exampleIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="badge-check" class="h-4 w-4 text-green-500 shrink-0" />
+                          {example}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                خدمات <span class="gradient-text">سوشال مدیا خلاقانه</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                از ایده‌پردازی تا انتشار، پوشش کامل تمام جوانب محتوای شبکه اجتماعی
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {features.map((feature, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-200 transition-colors">
+                        <Icon name={feature.icon} class="h-6 w-6 text-pink-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="badge-check" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <ServiceBenefits
+          title="مزایای محتوای شبکه اجتماعی حرفه‌ای"
+          titleHighlight="شبکه اجتماعی حرفه‌ای"
+          subtitle="سوشال مدیا قدرتمند، کلید موفقیت مارکتینگ دیجیتال مدرن است"
+          benefits={benefits}
+          iconColorClass="text-pink-600"
+          iconBgClass="bg-pink-100"
+        />
+
+        <ServiceWorkflow
+          title="فرآیند سوشال مدیا عصر سئو"
+          titleHighlight="سوشال مدیا عصر سئو"
+          subtitle="رویکرد علمی ۴ مرحله‌ای برای محتوایی که واقعاً نتیجه می‌دهد"
+          steps={workflowSteps}
+          themeColor="pink"
+        />
+
+        <ServiceFAQ
+          title="سوالات متداول"
+          highlightWord="متداول"
+          subtitle="پاسخ به پرسش‌های رایج مشتریان درباره محتوای شبکه اجتماعی"
+          faqs={faqs}
+        />
+
+        <ServiceCTA
+          title="پیج شما همین امروز پر از ایده خلاقانه شود!"
+          description="با خدمات محتوای شبکه‌های اجتماعی عصر سئو، از ایده‌پردازی خلاقانه تا استراتژی انتشار هوشمند، پیج شما را به ستاره رسانه‌های اجتماعی تبدیل خواهیم کرد."
+          primaryText="شروع محتوای سوشال مدیا"
+          secondaryText="نمونه محتواهای ما را ببینید"
+          primaryClass="bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg shadow-pink-600/30"
+        />
+      </main>
+
+      <Footer />
+    </div>
+</BaseLayout>

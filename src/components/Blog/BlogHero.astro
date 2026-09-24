@@ -1,0 +1,36 @@
+---
+import Icon from '../ui/Icon.astro';
+import Input from '../ui/input/Input.astro';
+---
+<section class="relative overflow-hidden bg-linear-to-b from-[#071a17] via-[#0b3b32] to-[#071a17]">
+      <div class="absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full blur-3xl bg-emerald-500/30"></div>
+        <div class="absolute -bottom-32 -left-24 h-[28rem] w-[28rem] rounded-full blur-3xl bg-teal-300/20"></div>
+        <div class="absolute inset-0 opacity-60" style="background-image: radial-gradient(rgba(255,255,255,0.13) 1px, transparent 1px); background-size: 22px 22px;"></div>
+        <div class="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black/40 to-transparent"></div>
+      </div>
+
+      <div class="container-custom relative z-10 pt-16 md:pt-20">
+        <div class="text-center max-w-4xl mx-auto animate-fade-in">
+          <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
+            مقالات تخصصی <span class="bg-linear-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent animate-pulse">سئو، محتوا و هوش مصنوعی</span>
+          </h1>
+          <!-- Answer-first block: the one-sentence unit engines quote. Lives here,
+               directly under the H1, rather than below the grid. -->
+          <p class="text-xl text-gray-200 mb-8 leading-relaxed drop-shadow-md">
+            وبلاگ عصر سئو مقالات تخصصی و راهنمای گام‌به‌گام سئو، تولید محتوا، تبلیغات گوگل و هوش مصنوعی را با مثال‌های ایرانی منتشر می‌کند تا کسب‌وکارها رتبه بهتری در گوگل بگیرند.
+          </p>
+
+          <div class="max-w-2xl mx-auto">
+            <div class="relative">
+              <Input
+                type="text"
+                id="blog-search" role="searchbox" aria-label="جستجو در مقالات" placeholder="جستجو در مقالات..."
+                class="pl-12 pr-4 py-4 text-lg rounded-xl border-2 border-white/20 bg-white/10 backdrop-blur-md text-white placeholder:text-gray-400 focus:border-primary-400 focus:bg-white/20 transition-all duration-300"
+              />
+              <Icon name="search" class="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

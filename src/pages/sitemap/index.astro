@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import { getCollection } from 'astro:content';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+
+const posts = await getCollection('blog');
+
+const sections = [
+  {
+    title: 'صفحات اصلی',
+    links: [
+      { title: 'صفحه اصلی', href: '/' },
+      { title: 'درباره ما', href: '/about/' },
+      { title: 'تماس با ما', href: '/contact/' },
+      { title: 'مرکز پشتیبانی', href: '/support/' },
+      { title: 'وبلاگ', href: '/blog/' },
+      { title: 'نمونه کارها', href: '/portfolio/' },
+      { title: 'سوالات متداول', href: '/faq/' },
+      { title: 'حریم خصوصی', href: '/privacy/' },
+      { title: 'قوانین و مقررات', href: '/terms/' }
+    ]
+  },
+  {
+    title: 'خدمات سئو (SEO)',
+    links: [
+      { title: 'همه خدمات سئو', href: '/services/seo/' },
+      { title: 'افزایش اعتبار صفحه و دامنه', href: '/services/seo/content-authority/' },
+      { title: 'سئو محلی (Local SEO)', href: '/services/seo/local-seo/' },
+      { title: 'سئو تکنیکال و داخلی', href: '/services/seo/technical-onpage/' }
+    ]
+  },
+  {
+    title: 'دیجیتال مارکتینگ',
+    links: [
+      { title: 'همه خدمات بازاریابی دیجیتال', href: '/services/marketing/' },
+      { title: 'تبلیغات گوگل (Google Ads)', href: '/services/marketing/google-ads/' },
+      { title: 'بازاریابی شبکه‌های اجتماعی', href: '/services/marketing/social-media/' },
+      { title: 'بازاریابی ایمیلی (Email Marketing)', href: '/services/marketing/email-marketing/' },
+      { title: 'کمپین‌های تبلیغاتی یکپارچه', href: '/services/marketing/integrated-campaigns/' },
+      { title: 'مدیریت قیف فروش (Sales Funnel)', href: '/services/marketing/sales-funnel-management/' }
+    ]
+  },
+  {
+    title: 'طراحی و توسعه وب',
+    links: [
+      { title: 'همه خدمات وب', href: '/services/web/' },
+      { title: 'طراحی وب‌سایت سئو محور', href: '/services/web/seo-web-design/' },
+      { title: 'طراحی لندینگ پیج اختصاصی', href: '/services/web/landing-pages/' },
+      { title: 'معماری و تجربه کاربری (UX)', href: '/services/web/ux-architecture/' },
+      { title: 'بهینه‌سازی سرعت سایت', href: '/services/web/website-speed/' }
+    ]
+  },
+  {
+    title: 'محتوا و هوش مصنوعی',
+    links: [
+      { title: 'خدمات بازاریابی و تولید محتوا', href: '/services/content/' },
+      { title: 'خدمات هوش مصنوعی عصر سئو', href: '/services/ai/' },
+      { title: 'تحلیل و استراتژی هوشمند', href: '/services/ai/analysis-strategy/' },
+      { title: 'تولید محتوای هوشمند با هوش مصنوعی (متن و ویدیو)', href: '/services/ai/content-creation/' },
+      { title: 'بازاریابی هوشمند، اتوماسیون و چت‌بات فارسی', href: '/services/ai/marketing-engagement/' },
+      { title: 'تقویم محتوایی سایت و شبکه‌های اجتماعی', href: '/services/content/content-calendar/' },
+      { title: 'تولید محتوای شبکه‌های اجتماعی', href: '/services/content/social-media-content/' },
+      { title: 'تولید محتوای متنی و سئومحور', href: '/services/content/text-content/' },
+      { title: 'ترجمه و بومی‌سازی تخصصی', href: '/services/content/translation/' },
+      { title: 'تولید محتوای تصویری و ویدیویی', href: '/services/content/visual-content/' }
+    ]
+  },
+  {
+    title: 'مقالات وبلاگ',
+    links: posts.map((post: any) => ({
+      title: post.data.title,
+      href: `/blog/${post.id}/`,
+    }))
+  }
+];
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'نقشه سایت عصر سئو',
+  url: 'https://asreseo.com/sitemap/',
+  inLanguage: 'fa-IR',
+};
+const breadcrumbs = [
+  { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+  { position: 2, name: 'نقشه سایت عصر سئو', item: 'https://asreseo.com/sitemap/' },
+];
+---
+<!-- noindex only: this HTML sitemap must keep `follow` so link equity still flows
+     to every internal page it lists. Excluded from the XML sitemap in astro.config.mjs. -->
+<BaseLayout title='نقشه کامل سایت و راهنمای دسترسی به صفحات | عصر سئو' description='نقشه کامل وب‌سایت عصر سئو؛ دسترسی سریع و دسته‌بندی‌شده به صفحات اصلی، خدمات سئو، هوش مصنوعی، بازاریابی دیجیتال، طراحی وب و مقالات آموزشی وبلاگ.' canonical='https://asreseo.com/sitemap/' ogType='website' twitterCard='summary_large_image' noindex>
+<div class="min-h-screen bg-white">
+  <Header />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
+  <main class="section-padding pt-32">
+    <div class="container-custom max-w-5xl" dir="rtl">
+      <h1 class="text-4xl font-bold mb-4 text-right text-gray-900">نقشه سایت</h1>
+      <p class="text-gray-600 mb-12 text-right">راهنمای کامل دسترسی به بخش‌ها، خدمات و مقالات عصر سئو</p>
+
+      <div class="space-y-12">
+        {sections.map((sec) => (
+          <section class="bg-gray-50/70 rounded-2xl p-6 sm:p-8 border border-gray-100">
+            <h2 class="text-xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">{sec.title}</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {sec.links.map((link: { title: string; href: string }) => (
+                <a
+                  href={link.href}
+                  class="p-3.5 rounded-xl bg-white border border-gray-200/80 hover:border-primary-500 hover:text-primary-600 hover:shadow-xs transition-all text-sm font-medium text-gray-700"
+                >
+                  {link.title}
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer />
+</div>
+</BaseLayout>

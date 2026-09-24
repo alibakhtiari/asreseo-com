@@ -1,0 +1,32 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Machine-readable site summary for AI consumers
+# See https://asreseo.com/llms.txt
+
+# Only the canonical sitemap index is declared. Legacy /sitemap.xml still
+# resolves via the 301 in _redirects for anything that has it registered.
+Sitemap: https://asreseo.com/sitemap-index.xml
+
+# Explicitly welcome leading generative-AI search crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /

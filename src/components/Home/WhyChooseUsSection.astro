@@ -1,0 +1,162 @@
+---
+import Card from '../ui/card/Card.astro';
+import CardContent from '../ui/card/CardContent.astro';
+import CardHeader from '../ui/card/CardHeader.astro';
+import CardTitle from '../ui/card/CardTitle.astro';
+import Icon from '../ui/Icon.astro';
+import { PROSE_STATS } from '../../lib/site-claims';
+
+  // P0.4: while PROSE_STATS.verified is false its digits must never reach the
+  // page. Each fallback below drops the number and keeps the qualitative
+  // claim, so the cards still read as complete, grammatical Persian sentences.
+  const proseVerified = PROSE_STATS.verified;
+
+  // «تجربه ۵+ ساله» → «تجربه عملی»
+  const experienceTitle = proseVerified
+    ? `تجربه ${PROSE_STATS.yearsExperience}+ ساله`
+    : 'تجربه عملی';
+
+  // «با بیش از ۵ سال تجربه …» → «با سال‌ها تجربه …»
+  const experienceDescription = proseVerified
+    ? `با بیش از ${PROSE_STATS.yearsExperience} سال تجربه در حوزه دیجیتال مارکتینگ، تیم ما آماده ارائه بهترین خدمات است.`
+    : 'با سال‌ها تجربه در حوزه دیجیتال مارکتینگ، تیم ما آماده ارائه بهترین خدمات است.';
+
+  // «بیش از ۵۰۰ پروژه موفق و رشد متوسط ۳۰۰٪ …» → qualitative equivalent
+  const resultsDescription = proseVerified
+    ? `بیش از ${PROSE_STATS.projectsCompleted} پروژه موفق و رشد متوسط ${PROSE_STATS.averageGrowth}٪ در فروش مشتریان ما.`
+    : 'پروژه‌های موفق متعدد و رشد قابل توجه در فروش مشتریان ما.';
+
+  const reasons = [
+    {
+      icon: "award",
+      title: experienceTitle,
+      description: experienceDescription,
+      color: 'from-blue-500 to-blue-600'
+    },
+    {
+      icon: "clock",
+      title: 'تحویل به موقع',
+      description: 'تمام پروژه‌ها در زمان تعیین شده و با کیفیت بالا تحویل داده می‌شوند.',
+      color: 'from-green-500 to-green-600'
+    },
+    {
+      icon: "users",
+      title: 'تیم متخصص',
+      description: 'تیم ما شامل بهترین متخصصان سئو، طراحی وب و دیجیتال مارکتینگ کشور است.',
+      color: 'from-purple-500 to-purple-600'
+    },
+    {
+      icon: "trending-up",
+      title: 'نتایج اثبات شده',
+      description: resultsDescription,
+      color: 'from-orange-500 to-orange-600'
+    },
+    {
+      icon: "shield",
+      title: 'ضمانت کیفیت',
+      description: 'تمام خدمات ما با ضمانت کیفیت و پشتیبانی مادام‌العمر ارائه می‌شود.',
+      color: 'from-red-500 to-red-600'
+    },
+    {
+      icon: "lightbulb",
+      title: 'راه‌حل‌های نوآورانه',
+      description: 'استفاده از جدیدترین تکنولوژی‌ها و روش‌های نوین بازاریابی.',
+      color: 'from-indigo-500 to-indigo-600'
+    },
+    {
+      icon: "target",
+      title: 'استراتژی هدفمند',
+      description: 'تمام استراتژی‌ها بر اساس اهداف کسب‌وکار شما طراحی می‌شوند.',
+      color: 'from-teal-500 to-teal-600'
+    },
+    {
+      icon: "headphones",
+      title: 'پشتیبانی ۲۴/۷',
+      description: 'تیم پشتیبانی ما همیشه آماده پاسخگویی به سوالات شما است.',
+      color: 'from-pink-500 to-pink-600'
+    }
+  ];
+
+  
+---
+<section class="section-padding bg-white relative overflow-hidden">
+      <!-- Background decoration -->
+      <div class="absolute inset-0 opacity-30">
+        <div class="absolute top-0 right-0 w-72 h-72 bg-linear-to-br from-purple-200 to-pink-200 rounded-full mix-blend-multiply filter blur-xl"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 bg-linear-to-br from-blue-200 to-indigo-200 rounded-full mix-blend-multiply filter blur-xl"></div>
+      </div>
+
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16 animate-fade-in">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            چرا <span class="gradient-text">عصر سئو</span>؟
+          </h2>
+          <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            دلایل انتخاب ما به عنوان شریک دیجیتال مارکتینگ شما
+          </p>
+        </div>
+
+        <!-- Reasons Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {reasons.map((reason, index) => (
+            <Card 
+             
+              class="group hover-lift h-full border-0 shadow-lg relative overflow-hidden animate-slide-in-up"
+              style={{animationDelay: `${index * 0.1}s`}}
+            >
+              <!-- Gradient overlay on hover -->
+              <div class={`absolute inset-0 bg-linear-to-br ${reason.color} opacity-0 group-hover:opacity-10 transition-all duration-300`}></div>
+              
+              <CardHeader class="text-center pb-4 relative z-10">
+                <div class={`inline-flex p-4 rounded-full bg-linear-to-r ${reason.color} mb-4 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <Icon name={reason.icon} class="h-6 w-6 text-white" />
+                </div>
+                <CardTitle class="text-lg font-bold text-gray-900 mb-2 group-hover:gradient-text transition-all duration-300">
+                  {reason.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent class="text-center relative z-10">
+                <p class="text-gray-600 leading-relaxed">
+                  {reason.description}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <!-- Process Timeline -->
+        <div class="mt-20">
+          <div class="text-center mb-12">
+            <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              روند <span class="gradient-text">همکاری</span> ما
+            </h3>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              از ابتدای همکاری تا دستیابی به نتایج، این مسیر را با هم می‌پیماییم
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative" dir="rtl">
+            <!-- Timeline line accurately connecting the center of circles -->
+            <div class="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-1 bg-linear-to-l from-blue-500 via-indigo-500 to-purple-600 z-0"></div>
+            
+            {[
+              { step: '۱', title: 'مشاوره رایگان', desc: 'بررسی نیازها و اهداف', color: 'from-blue-500 to-blue-600' },
+              { step: '۲', title: 'طراحی استراتژی', desc: 'تدوین نقشه راه مناسب', color: 'from-blue-600 to-indigo-600' },
+              { step: '۳', title: 'اجرای پروژه', desc: 'پیاده‌سازی حرفه‌ای', color: 'from-indigo-600 to-purple-600' },
+              { step: '۴', title: 'گزارش و بهینه‌سازی', desc: 'تحلیل نتایج و بهبود', color: 'from-purple-600 to-pink-600' }
+            ].map((item, index) => (
+              <div class="text-center animate-zoom-in relative z-10" style={{animationDelay: `${index * 0.2}s`}}>
+                <div class="relative mb-4">
+                  <div class={`w-16 h-16 mx-auto bg-linear-to-br ${item.color} rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg ring-8 ring-white relative z-10`}>
+                    {item.step}
+                  </div>
+                </div>
+                <h4 class="font-bold text-gray-900 mb-2">{item.title}</h4>
+                <p class="text-gray-600 text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>

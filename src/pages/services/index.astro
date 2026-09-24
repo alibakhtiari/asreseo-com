@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import ServicesHero from '../../components/Services/ServicesHero.astro';
+import ServicesList from '../../components/Services/ServicesList.astro';
+import WhyChooseUs from '../../components/Services/WhyChooseUs.astro';
+import PricingSection from '../../components/Services/PricingSection.astro';
+import ProcessSection from '../../components/Services/ProcessSection.astro';
+import TestimonialsSection from '../../components/Services/TestimonialsSection.astro';
+import ContactCTA from '../../components/Services/ContactCTA.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+
+
+
+
+
+// The canonical Organization (#organization) is declared once in
+// OrganizationStructuredData.astro (rendered on the homepage). alternateName,
+// description, hasOfferCatalog and sameAs were merged into that node — this
+// page only references the entity.
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://asreseo.com/#organization"
+}
+
+// No visible breadcrumb UI on this template; the trail mirrors the site
+// header nav (صفحه اصلی > خدمات) for breadcrumb entity completeness.
+const breadcrumbs = [
+  { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+  { position: 2, name: 'خدمات', item: 'https://asreseo.com/services/' },
+]
+
+
+
+  
+---
+<BaseLayout title='خدمات سئو، دیجیتال مارکتینگ و هوش مصنوعی | عصر سئو' description='تمام خدمات دیجیتال مارکتینگ شامل سئو، تبلیغات گوگل ادز، طراحی وب‌سایت، هوش مصنوعی، چت‌بات فارسی و اتوماسیون بازاریابی توسط تیم متخصص عصر سئو.' keywords='خدمات دیجیتال مارکتینگ, سئو, تبلیغات گوگل, طراحی وب‌سایت, هوش مصنوعی, چت‌بات فارسی' canonical='https://asreseo.com/services/' ogType='website' ogUrl='https://asreseo.com/services/' ogImages={[{ url: "/og-default.png", width: 1200, height: 630, alt: "خدمات دیجیتال مارکتینگ و سئو عصر سئو" }]} twitterCard='summary_large_image'
+  ogTitle='خدمات دیجیتال مارکتینگ | عصر سئو'
+
+  ogDescription='تمام خدمات دیجیتال مارکتینگ از سئو تا هوش مصنوعی.'
+>
+<div class="min-h-screen bg-white">
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+      <BreadcrumbStructuredData items={breadcrumbs} />
+
+      <Header />
+      <main>
+        <ServicesHero />
+        <ServicesList />
+        <WhyChooseUs />
+        <ProcessSection />
+        <PricingSection />
+        <TestimonialsSection />
+        <ContactCTA />
+      </main>
+      <Footer />
+    </div>
+</BaseLayout>

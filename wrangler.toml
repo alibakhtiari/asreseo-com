@@ -1,8 +1,14 @@
-name = "asre-seo-website"
-pages_build_output_dir = "out"
+name = "asreseocom"
+account_id = "ac07c7450925ccb475ebfc9ab75103e1"
+main = "worker.ts"
 compatibility_date = "2025-12-18"
 compatibility_flags = ["nodejs_compat"]
 
-[vars]
-# Environment variables will be managed in Cloudflare Dashboard, but defining here for reference
-# RESEND_API_KEY = ""
+send_email = [
+  { name = "asreseo" },
+  { name = "EMAIL" }
+]
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"

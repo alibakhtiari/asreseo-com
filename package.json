@@ -3,42 +3,36 @@
   "private": true,
   "version": "1.0.1",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "type-check": "tsc --noEmit",
-    "postbuild": "next-sitemap"
+    "dev": "npm run copy:images && astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "type-check": "astro check",
+    "lint": "eslint .",
+    "copy:images": "node scripts/copy-images.mjs",
+    "prebuild": "npm run copy:images",
+    "verify:deploy": "node scripts/verify-deploy.mjs"
   },
   "dependencies": {
+    "@astrojs/mdx": "^8.0.0",
+    "@astrojs/sitemap": "^3.7.4",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.575.0",
-    "next": "^16.1.6",
-    "next-sitemap": "^4.2.3",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1",
-    "resend": "^6.9.2",
-    "tailwind-merge": "^3.5.0"
+    "lucide-static": "^1.43.0",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260304.0",
-    "@eslint/js": "^9.39.2",
-    "@tailwindcss/postcss": "^4.2.1",
-    "@types/node": "^25.0.3",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "eslint": "^9.39.2",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.26",
-    "glob": "^13.0.0",
-    "globals": "^16.5.0",
-    "postcss": "^8.5.6",
-    "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.1",
+    "@astrojs/check": "^0.9.10",
+    "@cloudflare/workers-types": "^5.20260908.1",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.5.0",
+    "eslint": "^10.10.0",
+    "globals": "^17.12.0",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.50.0"
-  }
+    "typescript-eslint": "^8.70.0"
+  },
+  "type": "module"
 }

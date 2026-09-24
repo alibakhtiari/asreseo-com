@@ -1,0 +1,378 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import Button from '../../components/ui/button/Button.astro';
+import Icon from '../../components/ui/Icon.astro';
+import Accordion from '../../components/ui/Accordion.astro';
+import AccordionContent from '../../components/ui/AccordionContent.astro';
+import AccordionItem from '../../components/ui/AccordionItem.astro';
+import AccordionTrigger from '../../components/ui/AccordionTrigger.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'مرکز پشتیبانی و خدمات مشتریان عصر سئو',
+  url: 'https://asreseo.com/support/',
+  description: 'مرکز پشتیبانی عصر سئو؛ راهنمای ارتباط با کارشناسان، تعهدات سطح خدمات (SLA)، ساعات کاری و پاسخ به سوالات متداول درخواست‌های پشتیبانی سئو و دیجیتال مارکتینگ.',
+  inLanguage: 'fa-IR',
+};
+
+const supportFaqs = [
+  {
+    q: 'امن‌ترین روش برای ارسال دسترسی‌های هاست، وردپرس و گوگل سرچ کنسول چیست؟',
+    a: 'جهت حفظ بالاترین استانداردهای امنیتی، توصیه می‌کنیم دسترسی ابزارهای گوگل (سرچ کنسول، آنالیتیکس و تگ منیجر) را از طریق قابلیت Delegation و با نقش Full یا User به ایمیل سازمانی عصر سئو اعطا فرمایید. برای دسترسی وردپرس و هاستینگ نیز پیشنهاد می‌شود یک حساب کاربری اختصاصی با ایمیل info@asreseo.com تعریف کرده و مشخصات اولیه را در چت رسمی یا ایمیل ارسال نمایید تا نیازی به افشای کلمه عبور اصلی شما نباشد.'
+  },
+  {
+    q: 'در روزهای تعطیل یا خارج از ساعات کاری، در صورت بروز مشکل وب‌سایت چه اقدامی باید انجام داد؟',
+    a: 'برای کلیه پروژه‌های تحت قرارداد مدیریت فنی و سئو، سیستم مانیتورینگ خودکار پایداری سرور (Uptime Monitoring) به صورت ۲۴ ساعته فعال است. در شرایط بروز قطعی کامل هاست، خطای سرور ۵۰۰ یا مشکلات حاد امنیتی، کارفرمایان گرامی می‌توانند در پیام‌رسان تلگرام با پیش‌وند «[فوری - قطعی سایت]» پیام ارسال کنند تا تیم کشیک فنی در کوتاه‌ترین زمان ممکن مداخله نماید.'
+  },
+  {
+    q: 'تعهد زمانی پاسخگویی (SLA) در موارد مختلف چگونه تعیین می‌شود؟',
+    a: 'تیم پشتیبانی عصر سئو متعهد به پاسخگویی در سطوح مختلف است: اختلالات بحرانی سرور و قطعی سایت ظرف کمتر از ۲ ساعت؛ ایرادات با اولویت بالا و خطاهای سرچ کنسول ظرف ۴ الی ۸ ساعت کاری؛ سوالات تحلیلی و گزارش‌های سئو حداکثر ظرف ۲۴ ساعت کاری؛ و درخواست‌های محتوایی و فیچرهای جدید طبق برنامه زمان‌بندی قرارداد اجرا می‌گردند.'
+  },
+  {
+    q: 'فرآیند ارسال گزارش‌های سئو و بررسی نتایج به چه صورت است؟',
+    a: 'کارفرمایان عصر سئو به دشبورد اختصاصی و لحظه‌ای در Looker Studio دسترسی دارند تا روند ترافیک ارگانیک، ایمپرشن‌ها و جایگاه کلمات کلیدی را پایش کنند. علاوه بر آن، گزارش تحلیلی ماهانه شامل خلاصه اقدامات انجام‌شده، تحلیل رقبا و برنامه ماه آتی در ابتدای هر ماه خورشیدی ارائه و در جلسه آنلاین با مدیر پروژه بررسی می‌شود.'
+  },
+  {
+    q: 'آیا آموزش و راهنمایی تیم کارفرما برای کار با پنل سایت و بارگذاری محتوا ارائه می‌شود؟',
+    a: 'بله. پس از طراحی وب‌سایت یا بازسازی ساختار محتوا، ویدیوهای آموزشی اختصاصی همراه با مستندات گام‌به‌گام در اختیار تیم شما قرار می‌گیرد تا پرسنل شما بتوانند بدون وابستگی و مطابق با اصول سئو، محصولات یا مقالات جدید را منتشر کنند.'
+  }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: supportFaqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+
+const breadcrumbs = [
+  { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+  { position: 2, name: 'مرکز پشتیبانی', item: 'https://asreseo.com/support/' },
+];
+
+const slaItems = [
+  {
+    level: 'بحرانی (Critical)',
+    time: 'زیر ۲ ساعت کاری',
+    color: 'red',
+    badgeClass: 'bg-red-100 text-red-700 border-red-200',
+    title: 'قطعی سایت و خطاهای سرور',
+    desc: 'قطعی کامل دسترسی به وب‌سایت، خطاهای 500 Internal Server، اختلال درگاه بانکی یا گزارش مشکلات امنیتی.'
+  },
+  {
+    level: 'اولویت بالا (High)',
+    time: '۴ الی ۸ ساعت کاری',
+    color: 'amber',
+    badgeClass: 'bg-amber-100 text-amber-800 border-amber-200',
+    title: 'خطاهای فنی و افت ناگهانی',
+    desc: 'خطاهای ایندکس در گوگل سرچ کنسول، افت محسوس رتبه‌ها، باگ‌های ریسپانسیو و ناسازگاری افزونه‌ها.'
+  },
+  {
+    level: 'اولویت عادی (Normal)',
+    time: 'حداکثر ۲۴ ساعت کاری',
+    color: 'blue',
+    badgeClass: 'bg-blue-100 text-blue-700 border-blue-200',
+    title: 'سوالات عمومی و گزارش‌ها',
+    desc: 'درخواست راهنمایی درباره گزارش‌های ماهانه، مشاوره کلمات کلیدی، راهنمایی متاتگ‌ها و ایجاد صفحات معمول.'
+  },
+  {
+    level: 'توسعه و محتوا (Standard)',
+    time: 'طبق تقویم پروژه',
+    color: 'emerald',
+    badgeClass: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+    title: 'تولید محتوا و فیچرهای سفارشی',
+    desc: 'نگارش و انتشار مقالات متنی، رپرتاژهای آگهی، توسعه فیچرهای اختصاصی جدید و بازطراحی المان‌های بصری.'
+  }
+];
+
+const workflowSteps = [
+  {
+    step: '۱',
+    title: 'ثبت و ارسال درخواست',
+    desc: 'ارسال توضیحات شفاف به همراه لینک صفحه، اسکرین‌شات خطا یا مستندات از طریق تلگرام، تیکت یا ایمیل رسمی.'
+  },
+  {
+    step: '۲',
+    title: 'بررسی اولیه و ارجاع تخصصی',
+    desc: 'کارشناس پشتیبانی درخواست را ارزیابی کرده و مستقیماً به متخصص مربوطه (سئو تکنیکال، محتوا یا برنامه‌نویس) می‌سپارد.'
+  },
+  {
+    step: '۳',
+    title: 'عیب‌یابی و اعمال در محیط امن',
+    desc: 'بررسی ریشه‌ای مشکل و اجرای بهینه‌سازی‌ها یا تست اصلاحات در محیط آزمایشی بدون ایجاد وقفه در عملکرد سایت.'
+  },
+  {
+    step: '۴',
+    title: 'تست نهایی و اعلام نتیجه',
+    desc: 'تست نهایی کیفیت، اطمینان از رفع پایدار مشکل و ارسال گزارش کامل حل مسئله به همراه راهکارهای پیشگیرانه.'
+  }
+];
+---
+
+<BaseLayout
+  title='مرکز پشتیبانی و خدمات مشتریان و راهنمای SLA | عصر سئو'
+  description='مرکز پشتیبانی عصر سئو؛ راهنمای جامع ارتباط با کارشناسان، تعهدات سطح خدمات (SLA)، پیگیری تیکت‌ها و ساعات پاسخگویی سریع در روزهای کاری.'
+  keywords='پشتیبانی عصر سئو, پشتیبانی سئو, مرکز پشتیبانی دیجیتال مارکتینگ, زمان پاسخگویی سئو, SLA خدمات سئو, ارتباط با عصر سئو'
+  canonical='https://asreseo.com/support/'
+  ogTitle='مرکز پشتیبانی و خدمات مشتریان | عصر سئو'
+  ogDescription='پاسخگویی سریع، تعهدات شفاف SLA و پشتیبانی فنی پروژه‌های سئو، تبلیغات گوگل و طراحی وب‌سایت در عصر سئو.'
+  ogType='website'
+  twitterCard='summary_large_image'
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
+
+  <div class="min-h-screen bg-slate-50/50">
+    <Header />
+
+    <main class="pt-28 pb-20" dir="rtl">
+      <!-- Hero Section -->
+      <section class="py-14 bg-linear-to-b from-white to-slate-50 border-b border-slate-100">
+        <div class="container-custom max-w-5xl text-center">
+          <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium mb-5 border border-blue-100">
+            <Icon name="life-buoy" class="w-4 h-4 text-blue-600" />
+            مرکز پشتیبانی و خدمات مشترکین عصر سئو
+          </div>
+          <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            مرکز پشتیبانی و خدمات <span class="gradient-text">مشتریان عصر سئو</span>
+          </h1>
+          <p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            تیم متخصص عصر سئو در تمام مراحل رشد کسب‌وکار در کنار شماست. ما متعهد به پاسخگویی شفاف، دقیق و سریع هستیم تا وب‌سایت شما بدون دغدغه فنی به اوج برسد.
+          </p>
+        </div>
+      </section>
+
+      <div class="container-custom max-w-5xl mt-12 space-y-16">
+        <!-- Communication Channels -->
+        <section>
+          <div class="text-center mb-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">کانال‌های ارتباطی مستقیم</h2>
+            <p class="text-gray-600 text-sm md:text-base">سریع‌ترین روش‌های دسترسی به کارشناسان و تیم فنی عصر سئو</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Telegram Support -->
+            <div class="bg-white p-7 rounded-2xl border border-gray-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between text-right">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-5">
+                  <Icon name="message-circle" class="h-6 w-6" />
+                </div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <h3 class="text-lg font-bold text-gray-900">پشتیبانی تلگرام</h3>
+                  <span class="text-xs bg-emerald-50 text-emerald-700 px-2.5 py-0.5 rounded-full font-medium border border-emerald-100">پاسخگویی سریع</span>
+                </div>
+                <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                  مناسب برای هماهنگی‌های روزمره، ارسال فایل و تصاویر خطا، و ارتباط بی‌واسطه با کارشناس پروژه.
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl text-xs text-gray-500 mb-6 space-y-1">
+                  <div><strong>زمان پاسخگویی:</strong> کمتر از ۱۵ دقیقه در ساعات کاری</div>
+                  <div><strong>شناسه تلگرام:</strong> <span dir="ltr">@asreseo</span></div>
+                </div>
+              </div>
+              <Button class="w-full" href="https://t.me/asreseo" target="_blank" rel="noopener">
+                ارسال پیام در تلگرام
+              </Button>
+            </div>
+
+            <!-- Email & Ticketing -->
+            <div class="bg-white p-7 rounded-2xl border border-gray-200/80 shadow-xs hover:shadow-md hover:border-indigo-300 transition-all flex flex-col justify-between text-right">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-5">
+                  <Icon name="mail" class="h-6 w-6" />
+                </div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <h3 class="text-lg font-bold text-gray-900">پشتیبانی ایمیلی و تیکت</h3>
+                  <span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-0.5 rounded-full font-medium border border-indigo-100">رسمی و مستند</span>
+                </div>
+                <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                  مناسب برای ارسال اطلاعات دسترسی حساس، قراردادها، فایل‌های فنی حجیم و مکاتبات رسمی کارفرمایان.
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl text-xs text-gray-500 mb-6 space-y-1">
+                  <div><strong>زمان پاسخگویی:</strong> حداکثر ۲ تا ۴ ساعت کاری</div>
+                  <div><strong>آدرس ایمیل:</strong> <span dir="ltr">info@asreseo.com</span></div>
+                </div>
+              </div>
+              <Button variant="outline" class="w-full border-indigo-200 hover:bg-indigo-50/50" href="mailto:info@asreseo.com">
+                ارسال ایمیل به پشتیبانی
+              </Button>
+            </div>
+
+            <!-- Phone Call -->
+            <div class="bg-white p-7 rounded-2xl border border-gray-200/80 shadow-xs hover:shadow-md hover:border-slate-400 transition-all flex flex-col justify-between text-right">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center mb-5">
+                  <Icon name="phone-call" class="h-6 w-6" />
+                </div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <h3 class="text-lg font-bold text-gray-900">تماس تلفنی مستقیم</h3>
+                  <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-full font-medium">ساعات اداری</span>
+                </div>
+                <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                  گفتگوی مستقیم با مشاوران ارشد سئو برای بررسی سریع موارد اضطراری و ارزیابی هفتگی پروژه.
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl text-xs text-gray-500 mb-6 space-y-1">
+                  <div><strong>ساعات کاری:</strong> شنبه تا چهارشنبه ۹ الی ۱۷</div>
+                  <div><strong>شماره تماس:</strong> <span dir="ltr">۰۹۱۲۵۸۱۱۸۸۰</span></div>
+                </div>
+              </div>
+              <Button variant="outline" class="w-full border-slate-300" href="tel:+989125811880">
+                تماس تلفنی با مشاور
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLA (Service Level Agreement) Section -->
+        <section class="bg-white rounded-3xl p-8 md:p-10 border border-gray-200/80 shadow-xs">
+          <div class="max-w-3xl mb-8 text-right">
+            <div class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 mb-2">
+              <Icon name="shield-check" class="w-4 h-4" />
+              تعهدات کیفیت و زمان‌بندی
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">تعهد سطح خدمات (SLA) و زمان پاسخگویی</h2>
+            <p class="text-gray-600 text-sm md:text-base leading-relaxed">
+              ما در عصر سئو به شفافیت و سرعت عمل پایبندیم. برای اطمینان خاطر کارفرمایان، زمان پاسخگویی به درخواست‌های فنی و سئو بر اساس میزان اولویت به شرح زیر تضمین می‌گردد:
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {slaItems.map((item) => (
+              <div class="p-5 rounded-2xl border border-gray-150 bg-slate-50/70 hover:bg-white hover:border-blue-200 hover:shadow-xs transition-all text-right">
+                <div class="flex items-center justify-between gap-3 mb-3">
+                  <span class={`text-xs px-3 py-1 rounded-full font-semibold border ${item.badgeClass}`}>
+                    {item.level}
+                  </span>
+                  <span class="text-xs font-bold text-gray-700 bg-white px-3 py-1 rounded-lg border border-gray-200 shadow-2xs">
+                    {item.time}
+                  </span>
+                </div>
+                <h3 class="text-base font-bold text-gray-900 mb-2">{item.title}</h3>
+                <p class="text-xs md:text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Workflow / How Requests Are Handled -->
+        <section>
+          <div class="text-center mb-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">فرآیند رسیدگی به تیکت‌ها و درخواست‌ها</h2>
+            <p class="text-gray-600 text-sm md:text-base">درخواست شما چگونه از ثبت اولیه تا تایید نهایی پیگیری می‌شود؟</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {workflowSteps.map((step) => (
+              <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs relative text-right flex flex-col justify-between">
+                <div>
+                  <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold text-lg flex items-center justify-center mb-4 shadow-sm shadow-blue-500/30">
+                    {step.step}
+                  </div>
+                  <h3 class="text-base font-bold text-gray-900 mb-2">{step.title}</h3>
+                  <p class="text-xs md:text-sm text-gray-600 leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Working Hours & Emergency Protocol -->
+        <section class="bg-linear-to-br from-slate-900 to-blue-950 text-white rounded-3xl p-8 md:p-10 shadow-lg text-right">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <div class="inline-flex items-center gap-2 bg-white/10 text-blue-200 px-3.5 py-1 rounded-full text-xs font-medium mb-4 border border-white/15">
+                <Icon name="clock" class="w-4 h-4 text-amber-300" />
+                ساعات کاری و پشتیبانی فعال
+              </div>
+              <h2 class="text-2xl md:text-3xl font-bold mb-4 leading-tight">ساعات کاری و دستورالعمل موارد اضطراری</h2>
+              <p class="text-blue-200/90 text-sm md:text-base leading-relaxed mb-6">
+                کارشناسان عصر سئو در روزهای کاری پاسخگوی شما هستند. برای موارد اضطراری که پایداری کسب‌وکار آنلاین شما را تهدید می‌کند، پروتکل کشیک خارج از ساعات اداری برقرار است.
+              </p>
+              <div class="space-y-2.5 text-sm text-blue-100">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span><strong>شنبه تا چهارشنبه:</strong> ساعت ۹:۰۰ الی ۱۷:۰۰ (پشتیبانی کامل)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                  <span><strong>پنج‌شنبه‌ها:</strong> ساعت ۹:۰۰ الی ۱۳:۰۰ (پیگیری تیکت‌های باز)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                  <span><strong>روزهای تعطیل:</strong> پایش خودکار سرور و مداخله در بحران‌های احتمالی</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/15">
+              <div class="flex items-center gap-3 mb-4">
+                <Icon name="alert-circle" class="w-6 h-6 text-amber-300" />
+                <h3 class="text-lg font-bold text-white">دستورالعمل گزارش قطعی اضطراری</h3>
+              </div>
+              <p class="text-xs md:text-sm text-blue-100 leading-relaxed mb-5">
+                در صورت بروز اختلال اساسی در سرور یا هک در ایام تعطیل، عبارت <strong>«[فوری - قطعی سایت]»</strong> را به آیدی تلگرام ارسال فرمایید تا هشدار مستقیم برای مهندسان سیستم ارسال گردد.
+              </p>
+              <Button href="https://t.me/asreseo" target="_blank" rel="noopener" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium border-0">
+                ارسال پیام اضطراری در تلگرام
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Accordion -->
+        <section class="bg-white rounded-3xl p-8 md:p-10 border border-gray-200/80 shadow-xs">
+          <div class="text-center max-w-2xl mx-auto mb-10">
+            <div class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 mb-2">
+              <Icon name="help-circle" class="w-4 h-4" />
+              راهنمای متداول
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">سوالات متداول مرکز پشتیبانی</h2>
+            <p class="text-gray-600 text-sm md:text-base">پاسخ شفاف به پرتکرارترین پرسش‌های کارفرمایان درباره خدمات پشتیبانی عصر سئو</p>
+          </div>
+
+          <Accordion type="single" collapsible class="w-full" dir="rtl">
+            {supportFaqs.map((faq, index) => (
+              <AccordionItem value={`support-faq-${index}`} class="border-b border-gray-150 last:border-none py-2">
+                <AccordionTrigger class="text-right text-base md:text-lg font-bold text-gray-900 hover:text-blue-600 py-3">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent class="text-right text-gray-600 text-sm md:text-base leading-relaxed pt-1 pb-4">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </section>
+
+        <!-- Final Consultation CTA -->
+        <section class="bg-linear-to-r from-blue-50 via-indigo-50 to-purple-50 rounded-3xl p-8 md:p-10 border border-blue-100 text-center">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">نیاز به ارزیابی تخصصی وب‌سایت خود دارید؟</h2>
+          <p class="text-gray-600 text-base max-w-2xl mx-auto leading-relaxed mb-8">
+            علاوه بر خدمات پشتیبانی جاری، کارشناسان عصر سئو آماده آنالیز رایگان سئو، تجربه کاربری و سرعت سایت شما هستند.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" class="px-8" href="/consultation/">
+              دریافت مشاوره رایگان سئو
+            </Button>
+            <Button size="lg" variant="outline" class="px-8 bg-white" href="tel:+989125811880">
+              <Icon name="phone" class="ml-2 h-4 w-4" />
+              تماس با دفتر: ۰۹۱۲۵۸۱۱۸۸۰
+            </Button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

@@ -1,0 +1,149 @@
+---
+import Icon from '../ui/Icon.astro';
+import Logo from '../Logo.astro';
+
+
+
+
+
+  // The footer date is generated at build time and frozen into the static
+  // output (this is an SSG site). Use the Persian (Jalali) calendar so the
+  // copyright reads the way Persian users expect. ICU 67+ (Node 22, all modern
+  // browsers) ships Persian calendar support for `fa-IR`, so no third-party
+  // library is needed. The day + month + year form makes the Shamsi calendar
+  // visible at a glance instead of looking like a Gregorian year that happens
+  // to be in Persian digits. After March 20/21 the year rolls over naturally.
+  const currentDate = new Date().toLocaleDateString('fa-IR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  const footerLinks = {
+    services: [
+      { title: 'سئو و بهینه‌سازی', href: '/services/seo/' },
+      { title: 'بازاریابی دیجیتال', href: '/services/marketing/' },
+      { title: 'طراحی وب‌سایت', href: '/services/web/' },
+      { title: 'استراتژی و تولید محتوا', href: '/services/content/' },
+      { title: 'هوش مصنوعی', href: '/services/ai/' }
+    ],
+    company: [
+      { title: 'درباره ما', href: '/about/' },
+      { title: 'نمونه کارها', href: '/portfolio/' },
+      { title: 'وبلاگ', href: '/blog/' },
+      { title: 'تماس با ما', href: '/contact/' }
+    ],
+    support: [
+      { title: 'سوالات متداول', href: '/faq/' },
+      { title: 'پشتیبانی', href: '/support/' },
+      { title: 'مشاوره رایگان', href: '/consultation/' },
+      { title: 'قوانین و مقررات', href: '/terms/' }
+    ]
+  };
+
+  
+---
+<footer class="bg-slate-900 text-white">
+      <div class="container-custom">
+        <!-- Main Footer -->
+        <div class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Brand -->
+          <div class="space-y-4">
+            <div class="flex items-center space-x-3 space-x-reverse">
+              <div class="w-10 h-10 bg-linear-to-br from-blue-500 to-green-500 rounded-lg flex items-center justify-center text-white">
+                <Logo class="w-6 h-6" />
+              </div>
+              <div>
+                <h2 class="text-xl font-bold">عصر سئو</h2>
+                <p class="text-sm text-gray-400">AsreSEO</p>
+              </div>
+            </div>
+            <p class="text-gray-300 leading-relaxed">
+              ما در عصر سئو با ارائه خدمات حرفه‌ای دیجیتال مارکتینگ، کسب‌وکار شما را به قله موفقیت می‌رسانیم. تیم متخصص ما آماده همراهی شماست.
+            </p>
+            <div class="flex items-center space-x-4 space-x-reverse">
+              <a href="mailto:info@asreseo.com" class="flex items-center text-gray-300 hover:text-white transition-colors">
+                <Icon name="mail" class="h-5 w-5 ml-2" />
+                info@asreseo.com
+              </a>
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">خدمات ما</h3>
+            <ul class="space-y-2">
+              {footerLinks.services.map((link, index) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-gray-300 hover:text-white transition-colors duration-200"
+                  >
+                    {link.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Company -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">شرکت</h3>
+            <ul class="space-y-2">
+              {footerLinks.company.map((link, index) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-gray-300 hover:text-white transition-colors duration-200"
+                  >
+                    {link.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Support -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">پشتیبانی</h3>
+            <ul class="space-y-2">
+              {footerLinks.support.map((link, index) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-gray-300 hover:text-white transition-colors duration-200"
+                  >
+                    {link.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="border-t border-gray-700 py-6">
+          <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p class="text-gray-400 text-sm">
+              © {currentDate} عصر سئو. تمامی حقوق محفوظ است.
+            </p>
+            <!-- `space-x-6 space-x-reverse` had inconsistent spacing in RTL
+                 across browsers. `gap-x-8` is direction-agnostic and renders
+                 the same 2 rem gap between every link on either side; bumped
+                 from `gap-x-6` (1.5 rem) because the privacy/terms/sitemap
+                 trio read as one run-on at the smaller size in RTL. -->
+            <div class="flex items-center gap-x-8 text-sm text-gray-400">
+              <a href="/privacy/" class="hover:text-white transition-colors">
+                حریم خصوصی
+              </a>
+              <a href="/terms/" class="hover:text-white transition-colors">
+                قوانین و مقررات
+              </a>
+              <a href="/sitemap/" class="hover:text-white transition-colors">
+                نقشه سایت
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>

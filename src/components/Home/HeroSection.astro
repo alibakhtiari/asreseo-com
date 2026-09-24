@@ -1,0 +1,123 @@
+---
+import Button from '../ui/button/Button.astro';
+import Icon from '../ui/Icon.astro';
+import { PROSE_STATS, HEADLINE_STATS } from '../../lib/site-claims';
+
+// P0.4: claims asreseo makes about itself must not show their digits while
+// `verified` is false in site-claims.ts. Each value below falls back to a
+// qualitative Persian word, so the 4-card grid keeps its shape and classes;
+// when the backing entry is verified, its figure renders straight from the
+// single source of truth. ۲۴/۷ is the one verified promise, so it is untouched.
+const projectsValue = PROSE_STATS.verified
+  ? `${PROSE_STATS.projectsCompleted}+`
+  : 'متعدد';
+
+const satisfactionStat = HEADLINE_STATS.find((stat) => stat.label === 'میزان رضایت');
+const satisfactionValue = satisfactionStat?.verified ? satisfactionStat.value : 'بالا';
+
+const experienceValue = PROSE_STATS.verified
+  ? `${PROSE_STATS.yearsExperience}+`
+  : 'سال‌ها';
+const experienceLabel = PROSE_STATS.verified ? 'سال تجربه' : 'تجربه';
+---
+<section class="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-28 pb-16 sm:pt-32">
+      <!-- Enhanced Background Gradient -->
+      <div class="absolute inset-0 bg-linear-to-br from-blue-50 via-purple-50 to-indigo-50"></div>
+
+      <!-- Advanced Animated Background Elements -->
+      <div class="absolute inset-0">
+        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-linear-to-r from-blue-300 to-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-float"></div>
+        <div class="absolute top-1/3 left-1/4 w-80 h-80 bg-linear-to-r from-purple-300 to-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-float" style="animation-delay:2s"></div>
+        <div class="absolute bottom-1/4 right-1/3 w-72 h-72 bg-linear-to-r from-indigo-300 to-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-float" style="animation-delay:4s"></div>
+      </div>
+
+      <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+        <div class="text-center">
+          <!-- Trust indicators -->
+          <div class="flex items-center justify-center gap-6 mb-8 animate-fade-in">
+            <div class="flex items-center gap-2 text-sm text-gray-600">
+              <Icon name="badge-check" class="h-4 w-4 text-yellow-500" />
+              <span>مشاوره رایگان پیش از عقد قرارداد</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-gray-600">
+              <Icon name="shield" class="h-4 w-4 text-green-500" />
+              <span>ضمانت کیفیت</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-gray-600">
+              <Icon name="award" class="h-4 w-4 text-blue-500" />
+              <span>برترین در ایران</span>
+            </div>
+          </div>
+
+          <!-- Main Heading with enhanced animation -->
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight animate-slide-in-up">
+            <span class="gradient-text animate-gradient">خدمات هوش مصنوعی و سئو</span>
+            {' '}حرفه‌ای در ایران
+          </h1>
+
+          <!-- Enhanced Subtitle -->
+          <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed animate-fade-in" style="animation-delay:0.3s">
+            با خدمات حرفه‌ای دیجیتال مارکتینگ، سئو، <span class="text-purple-600 font-semibold">هوش مصنوعی</span> و طراحی وب‌سایت،
+            کسب‌وکار خود را به <span class="text-blue-600 font-semibold">قله موفقیت</span> برسانید
+          </p>
+
+          <!-- Enhanced Statistics with icons -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-5xl mx-auto">
+            <div class="text-center animate-zoom-in hover-lift p-4 rounded-lg bg-white/50 backdrop-blur-xs" style="animation-delay:0.2s">
+              <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">{projectsValue}</div>
+              <div class="text-gray-600 font-medium">پروژه موفق</div>
+            </div>
+            <div class="text-center animate-zoom-in hover-lift p-4 rounded-lg bg-white/50 backdrop-blur-xs" style="animation-delay:0.4s">
+              <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">{satisfactionValue}</div>
+              <div class="text-gray-600 font-medium">رضایت مشتریان</div>
+            </div>
+            <div class="text-center animate-zoom-in hover-lift p-4 rounded-lg bg-white/50 backdrop-blur-xs" style="animation-delay:0.6s">
+              <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">{experienceValue}</div>
+              <div class="text-gray-600 font-medium">{experienceLabel}</div>
+            </div>
+            <div class="text-center animate-zoom-in hover-lift p-4 rounded-lg bg-white/50 backdrop-blur-xs" style="animation-delay:0.8s">
+              <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">۲۴/۷</div>
+              <div class="text-gray-600 font-medium">پشتیبانی</div>
+            </div>
+          </div>
+
+          <!-- Enhanced CTA Buttons -->
+          <!-- On mobile, the WhatsApp/call FABs sit at the bottom-right (x ≈ 314, w 52).
+               The CTA buttons are ~250 px wide, so without right clearance they extend
+               under the FAB and partially hide the play icon / right padding. -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8 animate-slide-in-up" style="animation-delay:0.5s">
+            <Button
+              href="/consultation/"
+              size="lg"
+              class="gradient-bg text-white px-8 py-4 text-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl group"
+            >
+              مشاوره رایگان دریافت کنید
+            </Button>
+            <Button
+              href="/portfolio/"
+              variant="outline"
+              size="lg"
+              class="border-2 border-blue-500 text-blue-600 px-8 py-4 text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 group"
+            >
+              <Icon name="play" class="h-5 w-5 group-hover:scale-110 transition-transform" />
+              مشاهده نمونه کارها
+            </Button>
+          </div>
+
+          <!-- Social proof -->
+          <div class="flex items-center justify-center gap-6 sm:gap-8 mb-12 text-sm text-gray-600 animate-fade-in flex-wrap" style="animation-delay:0.7s">
+            <span>✓ بدون پیش پرداخت</span>
+            <span>✓ مشاوره رایگان</span>
+            <span>✓ گزارش‌دهی شفاف</span>
+          </div>
+
+          <!-- Enhanced Scroll Indicator -->
+          <div class="animate-bounce">
+            <div class="w-6 h-10 border-2 border-gray-400 rounded-full mx-auto flex justify-center">
+              <div class="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
+            </div>
+            <Icon name="arrow-down" class="h-4 w-4 text-gray-400 mx-auto mt-2" />
+          </div>
+        </div>
+      </div>
+    </section>

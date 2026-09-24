@@ -1,0 +1,422 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'ترجمه و بومی‌سازی محتوا',
+  'description': 'خدمات کامل ترجمه و بومی‌سازی محتوا برای بازارهای جهانی',
+  'serviceType': 'Translation and Localization',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'عصر سئو',
+    'url': 'https://asreseo.com'
+  },
+  'areaServed': 'Worldwide',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'خدمات ترجمه',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'ترجمه حرفه‌ای',
+          'description': 'ترجمه تخصصی توسط مترجمین حرفه‌ای'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'بومی‌سازی',
+          'description': 'انطباق فرهنگی و بازاری محتوا'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const languages = [
+    {
+      name: 'انگلیسی',
+      flag: '🇺🇸',
+      description: 'ترجمه تجاری، فنی و وب‌سایت',
+      specialties: ['Business English', 'Technical Translation', 'Website Localization']
+    },
+    {
+      name: 'عربی',
+      flag: '🇸🇦',
+      description: 'ترجمه رسمی عربی استاندارد',
+      specialties: ['Modern Standard Arabic', 'Business Correspondence', 'Legal Translation']
+    },
+    {
+      name: 'فرانسوی',
+      flag: '🇫🇷',
+      description: 'ترجمه ادبیات، فرهنگی و تجاری',
+      specialties: ['European French', 'Canadian French', 'Technical Translation']
+    },
+    {
+      name: 'ترکی',
+      flag: '🇹🇷',
+      description: 'ترجمه برای بازار ترکیه',
+      specialties: ['Business Turkish', 'E-commerce Content', 'Website Translation']
+    },
+    {
+      name: 'آلمانی',
+      flag: '🇩🇪',
+      description: 'ترجمه فنی و صنعتی پیشرفته',
+      specialties: ['Technical German', 'Engineering Documents', 'Legal Translation']
+    }
+  ];
+
+  const services = [
+    {
+      icon: "languages",
+      title: 'ترجمه حرفه‌ای و دقیق',
+      description: 'ترجمه تخصصی انواع محتوا توسط زبان‌دانان حوزه کسب‌وکار شما، با رعایت اصول نگارشی، فرهنگی و ساختار جملات بومی.',
+      benefits: ['دقت بالا', 'کدنویسی فرهنگی', 'تطابق با برند']
+    },
+    {
+      icon: "globe",
+      title: 'بومی‌سازی خلاقانه',
+      description: 'انطباق کامل متن با فرهنگ، بازار هدف، ارزش‌های اجتماعی و نیازمندی‌های بازاریابی محلی هر زبان.',
+      benefits: ['بازدهی فرهنگی', 'ارتباط مؤثر', 'نرخ تبدیل بالاتر']
+    },
+    {
+      icon: "sparkles",
+      title: 'حفظ ساختار سئو در ترجمه',
+      description: 'بهینه‌سازی متون چندزبانه برای جستجوی گوگل و الگوریتم‌های محلی با حفظ رتبه کلمات کلیدی استراتژیک.',
+      benefits: ['رتبه جهانی', 'ترافیک بین‌المللی', 'بومی‌سازی فنی']
+    },
+    {
+      icon: "shield",
+      title: 'تضمین کیفیت و کنترل دو مرحله‌ای',
+      description: 'مرور اولیه توسط مترجم تخصصی، سپس کنترل کیفیت توسط متخصص زبان‌شناسی برای اطمینان از کیفیت عالی.',
+      benefits: ['کیفیت تضمینی', 'دقت دوگانه', 'رضایت مشتری']
+    }
+  ];
+
+  const benefits = [
+    'امکان ورود به بازارهای جدید ملی و بین‌المللی با مخاطبان میلیونی',
+    'حفظ انسجام کامل برند در تمام زبان‌ها و بازارها',
+    'افزایش رتبه سایت در نتایج جستجوی کشورهای هدف',
+    'ارتباط مؤثر و ایجاد اعتماد سریع‌تر با مشتریان بین‌المللی',
+    'کاهش هزینه‌های بازاریابی محلی با محتوای آماده‌سازی شده',
+    'مزیت رقابتی ماندگار نسبت به رقبای محلی'
+  ];
+
+  const contentTypes = [
+    {
+      type: 'وب‌سایت و اپلیکیشن',
+      description: 'ترجمه کامل صفحات، اپلیکیشن‌ها و رابط کاربری',
+      examples: ['صفحات وب‌سایت', 'اپلیکیشن موبایل', 'پنل مدیریت'],
+    },
+    {
+      type: 'محتوای بازاریابی',
+      description: 'ترجمه کتاب‌های راهنما، کاتالوگ و متون تبلیغاتی',
+      examples: ['بروشورها', 'کاتالوگ محصولات', 'کمپین‌های تبلیغاتی'],
+    },
+    {
+      type: 'مستندات فنی',
+      description: 'ترجمه اسناد، راهنماها و محتوای آموزشی',
+      examples: ['راهنمای کاربری', 'مطالعات موردی', 'اسناد فنی'],
+    },
+    {
+      type: 'محتوای حقوقی',
+      description: 'ترجمه قراردادها، شرایط استفاده و اسناد قانونی',
+      examples: ['شرایط خدمات', 'قراردادها', 'اسناد قانونی'],
+    }
+  ];
+
+  // Qualitative process facts, not performance percentages — quality and
+  // satisfaction scores are unverifiable (see src/lib/site-claims.ts).
+  const stats = [
+    { metric: 'دو مرحله', label: 'کنترل کیفیت و بازبینی', color: 'text-green-800', icon: "award" },
+    { metric: 'چندزبانه', label: 'زبان‌های اصلی دنیا', color: 'text-blue-600', icon: "globe" },
+    { metric: '۳-۷ روز', label: 'زمان تحویل', color: 'text-purple-600', icon: "clock" },
+    { metric: 'گارانتی', label: 'کیفیت هفت روز پس از تحویل', color: 'text-orange-600', icon: "shield" }
+  ];
+
+  const workflowSteps = [
+    {
+      step: 'ارزیابی و تحلیل',
+      desc: 'بررسی محتوای پایه، زبان هدف و نیازهای فرهنگی'
+    },
+    {
+      step: 'تخصیص مترجم تخصصی',
+      desc: 'انتخاب مترجم حرفه‌ای با تخصص در حوزه محتوای شما'
+    },
+    {
+      step: 'ترجمه اولیه و کنترل کیفیت',
+      desc: 'ترجمه توسط مترجم و بررسی کیفیت توسط متخصص زبان‌شناسی'
+    },
+    {
+      step: 'بومی‌سازی و نهایی‌سازی',
+      desc: 'انطباق فرهنگی، کنترل نهایی و تحویل محصول'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'چه زبان‌هایی را پوشش می‌دهید؟',
+      answer: 'انگلیسی، عربی، فرانسوی، ترکی، آلمانی، ایتالیایی، روسی، کره‌ای، ژاپنی و سایر زبان‌های اصلی دنیا را پوشش می‌دهیم. اگر زبان خاصی نیاز دارید، در زمان مشاوره بررسی خواهیم کرد.'
+    },
+    {
+      question: 'آیا محتوای تخصصی هم ترجمه می‌کنید؟',
+      answer: 'بله، این یکی از تخصص‌های اصلی ماست. مقالات علمی، متون فنی و تخصصی توسط مترجمین حوزه مربوطه (پزشکی، مهندسی، حقوق و غیره) ترجمه می‌شود.'
+    },
+    {
+      question: 'زمان تحویل ترجمه به چه صورت است؟',
+      answer: 'بسته به حجم و زبان، معمولاً ۳ روز تا یک هفته. برای پروژه‌های اورژانسی، خدمات سریع‌العمل در دسترس است. زمان دقیق هنگام ثبت سفارش اعلام خواهد شد.'
+    },
+    {
+      question: 'چطور کیفیت ترجمه را تضمین می‌کنید؟',
+      answer: 'تمام ترجمه‌ها از دو مرحله کنترل کیفیت عبور می‌کنند: ۱) کنترل توسط مترجم تخصصی، ۲) بازبینی توسط متخصص زبان‌شناسی. همچنین با هفت روز گارانتی کیفیت رسپانس هستیم.'
+    },
+    {
+      question: 'آیا سئو در ترجمه‌ها رعایت می‌شود؟',
+      answer: 'بله، متخصصین ما با دانش سئوی بین‌المللی کار می‌کنند. کلمات کلیدی استراتژیک حفظ شده، ساختار محتوا بهینه‌سازی می‌شود و برای موتورهای جستجوی محلی آماده می‌گردد.'
+    },
+    {
+      question: 'هزینه ترجمه چگونه محاسبه می‌شود؟',
+      answer: 'بر اساس زبان، حوزه تخصصی، تعداد کلمات و زمان تحویل. پکیج‌های مختلفی داریم که از اقتصادی تا VIP. ریچمپ دقیق در زمان ارائه مشاوره اعلام خواهد شد.'
+    }
+  ];
+
+---
+<BaseLayout title='ترجمه و بومی‌سازی محتوا | Translation Services | عصر سئو' description='خدمات کامل ترجمه و بومی‌سازی محتوا برای بازارهای جهانی. حفظ سبک برند، بهینه‌سازی سئوی چندزبانه و ورود به بازارهای جدید با مترجمین متخصص.' keywords='ترجمه, بومی‌سازی محتوا, Translation, Localization, محتوای چندزبانه, ترجمه حرفه‌ای' canonical='https://asreseo.com/services/content/translation/' ogType='website' ogUrl='https://asreseo.com/services/content/translation/' ogImages={[{ url: "/og/translation-hero.jpg", width: 1200, height: 630, alt: "ترجمه و بومی‌سازی | عصر سئو" }]} twitterCard='summary_large_image'
+  ogTitle='ترجمه و بومی‌سازی محتوا | عصر سئو'
+
+  ogDescription='ترجمه دقیق و بومی‌سازی محتوا برای گسترش کسب‌وکار جهانی.'
+>
+<div class="min-h-screen bg-white">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/content/translation/', image: '/og/translation-hero.jpg' }))}
+      />
+
+      <Header />
+      <BreadcrumbStructuredData
+        items={[
+          { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+          { position: 2, name: 'خدمات محتوا', item: 'https://asreseo.com/services/content/' },
+          { position: 3, name: 'ترجمه و بومی‌سازی', item: 'https://asreseo.com/services/content/translation/' }
+        ]}
+      />
+
+      <main>
+        <!-- Hero Section -->
+        <ServiceHero
+          badge="خدمات ترجمه تخصصی"
+          title="ترجمه و"
+          titleGradient="بومی‌سازی"
+          description="مترجمین تخصصی حوزه کسب‌وکار شما برای گسترش جهانی. از ترجمه دقیق تا بومی‌سازی کامل فرهنگی، عصر سئو در کنار شماست."
+          primaryCta={{ text: "شروع ترجمه حرفه‌ای" }}
+          secondaryCta={{ text: "تحلیل محتوای شما" }}
+          imageSrc="/images/translation-hero.webp"
+          imageAlt="ترجمه و بومی‌سازی"
+          theme="teal"
+        />
+
+        <!-- Stats Section -->
+        <ServiceStats stats={stats} theme="teal" />
+
+        <!-- Languages Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                پوشش <span class="gradient-text">زبان‌های اصلی دنیا</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                مترجمین تخصصی در تمام زبان‌های اصلی برای بازارهای جهانی شما
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {languages.map((lang, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors text-2xl">
+                        {lang.flag}
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{lang.name}</CardTitle>
+                    </div>
+                    <p class="text-gray-600 mb-4">{lang.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-1">
+                      {lang.specialties.map((specialty, specialtyIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                          {specialty}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                خدمات <span class="gradient-text">ترجمه کامل</span> عصر سئو
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                رویکردی جامع برای ترجمه و بومی‌سازی محتوای شما در سطح جهانی
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {services.map((service, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                        <Icon name={service.icon} class="h-6 w-6 text-green-800" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{service.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                      {service.description}
+                    </p>
+                    <div class="space-y-2">
+                      {service.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Content Types Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                انواع <span class="gradient-text">محتوای قابل ترجمه</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                پوشش کامل انواع محتوا از وب‌سایت تا مستندات قانونی
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {contentTypes.map((type, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
+                        <Icon name="file-text" class="h-6 w-6 text-indigo-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{type.type}</CardTitle>
+                    </div>
+                    <p class="text-gray-600 mb-4">{type.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-1">
+                      {type.examples.map((example, exampleIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="badge-check" class="h-4 w-4 text-green-500 shrink-0" />
+                          {example}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits title="مزایای ترجمه و" titleHighlight="بومی‌سازی حرفه‌ای" subtitle="گسترش جهانی کسب‌وکار با مترجمین متخصص حوزه شما" benefits={benefits} />
+
+        <!-- Workflow Section -->
+        <section class="section-padding bg-linear-to-br from-teal-50 to-green-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                فرآیند <span class="gradient-text">ترجمه تخصصی</span> عصر سئو
+              </h2>
+              <p class="text-xl text-gray-600">
+                رویکرد علمی ۴ مرحله‌ای برای ترجمه دقیق و با کیفیت
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {workflowSteps.map((step, index) => (
+                <div class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs">
+                  <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-2xl font-bold text-green-800">
+                    {index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      {step.step}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <ServiceFAQ
+          title="سوالات"
+          titleGradient="متداول"
+          subtitle="پاسخ به پرسش‌های رایج مشتریان درباره خدمات ترجمه"
+          faqs={faqs}
+        />
+
+        <!-- CTA Section -->
+        <ServiceCTA
+          title="زبان مرز نمی‌شناسد، کسب‌وکار شما را جهانی کنید!"
+          description="با مترجمین تخصصی عصر سئو، محتوای شما به زبان‌های زنده دنیا ترجمه شود و به بازارهای میلیونی دسترسی پیدا کنید. از تحلیل فرهنگی تا بهینه‌سازی سئو چندزبانه، ما در کنار شما هستیم."
+          primaryCta={{ text: "شروع ترجمه حرفه‌ای" }}
+          secondaryCta={{ text: "مشاوره رایگان ترجمه" }}
+          primaryClass="bg-green-700 hover:bg-green-800 text-white font-semibold shadow-lg shadow-green-700/30"
+        />
+      </main>
+
+      <Footer />
+    </div>
+</BaseLayout>

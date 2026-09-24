@@ -1,0 +1,364 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'بازاریابی ایمیلی',
+  'description': 'خدمات حرفه‌ای بازاریابی ایمیلی شامل اتوماسیون، شخصی‌سازی و تحلیل عملکرد',
+  'serviceType': 'Email Marketing',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'عصر سئو',
+    'url': 'https://asreseo.com'
+  },
+  'areaServed': 'Iran',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'خدمات بازاریابی ایمیلی',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'اتوماسیون ایمیل',
+          'description': 'سیستم ارسال زمان‌بندی شده خودکار'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'تحلیل عملکرد',
+          'description': 'گزارش دقیق نرخ باز شدن و کلیک'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const features = [
+    {
+      icon: "send",
+      title: 'اتوماسیون ایمیل کامل',
+      description: 'سیستم ارسال خودکار و زمان‌بندی شده با Workflow هوشمند برای کمپین‌های مختلف بازاریابی.',
+      benefits: ['ارسال زودهنگام', 'پیام‌رسانی مداوم', 'بازدهی بالا']
+    },
+    {
+      icon: "users",
+      title: 'تقسیم‌بندی پیشرفته مخاطبان',
+      description: 'دسته‌بندی هوشمند مشتریان بر اساس رفتار، علایق و مرحله خرید در مسیر فروش.',
+      benefits: ['پیام‌های هدفمند', 'نرخ تبدیل بالاتر', 'مشتریان وفادار']
+    },
+    {
+      icon: "target",
+      title: 'شخصی‌سازی هوشمند محتوا',
+      description: 'ارسال محتوا بر اساس نام، تاریخ خرید، محصولات مورد علاقه و رفتار مرور.',
+      benefits: ['تعامل بالاتر', 'فروش بیشتر', 'تجربه شخصی']
+    },
+    {
+      icon: "bar-chart3",
+      title: 'تحلیل و گزارش‌دهی لحظه‌ای',
+      description: 'داشبورد پیشرفته با آمار کامل باز شدن، کلیک، کلیک‌های منحصربه‌فرد و نرخ تبدیل.',
+      benefits: ['اطلاعات لحظه‌ای', 'تصمیم‌گیری آگاهانه', 'بهینه‌سازی دائمی']
+    },
+    {
+      icon: "clock",
+      title: 'زمان‌بندی هوشمند ارسال',
+      description: 'انتخاب بهترین زمان ارسال بر اساس آنالیز رفتار مخاطبان و نرخ باز شدن بالاتر.',
+      benefits: ['بازدهی حداکثری', 'مشارکت بالاتر', 'نتایج بهتر']
+    },
+    {
+      icon: "filter",
+      title: 'A/B Testing پیشرفته',
+      description: 'تست همزمان بر خط موضوع، محتوا، زمان ارسال و CTA برای بهترین نتیجه.',
+      benefits: ['بهینه‌سازی مداوم', 'نتایج ثابت شده', 'بازدهی بالاتر']
+    }
+  ];
+
+  const campaignTypes = [
+    {
+      type: 'کمپین‌های خوش‌آمدگویی',
+      description: 'خوش‌آمدگویی جدید مشتریان و ارائه پیشنهادات ویژه',
+      target: 'مشتریان جدید',
+      goal: 'بهبود نرخ بازگشایی'
+    },
+    {
+      type: 'کمپین‌های وفاداری',
+      description: 'یادآوری سرویس‌ها، محصولات تکمیلی و پیشنهادات ویژه',
+      target: 'مشتریان فعلی',
+      goal: 'بهبود نرخ کلیک'
+    },
+    {
+      type: 'کمپین‌های فروش ویژه',
+      description: 'معرفی تخفیف‌های زمان‌دار و فروش‌های فصلی',
+      target: 'تمام مخاطبان',
+      goal: 'رشد نرخ تبدیل'
+    },
+    {
+      type: 'کمپین‌های آموزشی',
+      description: 'ارائه دانش تخصصی و راهنمای استفاده از محصولات',
+      target: 'مشتریان علاقه‌مند',
+      goal: 'افزایش ماندگاری مخاطب'
+    }
+  ];
+
+  const benefits = [
+    'نرخ بازگشایی بالا با خطوط موضوع جذاب و شخصی‌سازی شده',
+    'افزایش نرخ کلیک با CTAهای استراتژیک و طراحی‌های جذاب',
+    'کاهش bounce rate با تقسیم‌بندی دقیق مخاطبان',
+    'بهبود نرخ تبدیل با اتوماسیون workflows هوشمند',
+    '۲۴/۷ ارتباط مداوم با مشتریان از طریق کمپین‌های drip marketing'
+  ];
+
+  const stats = [
+    { metric: 'پایش لحظه‌ای', label: 'نرخ باز شدن', color: 'text-green-800', icon: "eye" },
+    { metric: 'اندازه‌گیری دقیق', label: 'نرخ کلیک', color: 'text-blue-600', icon: "target" },
+    { metric: 'گزارش کامل', label: 'نرخ تبدیل', color: 'text-purple-600', icon: "trending-up" },
+    { metric: 'بازگشت سرمایه', label: 'ROI قابل پیگیری', color: 'text-red-600', icon: "award" }
+  ];
+
+  const workflowSteps = [
+    {
+      step: 'بررسی و استراتژی',
+      desc: 'تحلیل مخاطبان، اهداف تجاری و طراحی استراتژی ایمیل مارکتینگ'
+    },
+    {
+      step: 'طراحی کمپین',
+      desc: 'ساخت تمپلیت‌های جذاب، کپی‌رایتینگ قوی و تنظیم اتوماسیون'
+    },
+    {
+      step: 'تست و ارسال آزمایشی',
+      desc: 'A/B Testing وسیع و اطمینان از عدم ورود به اسپم'
+    },
+    {
+      step: 'راه‌اندازی و نظارت',
+      desc: 'شروع کمپین، پایش عملکرد و بهینه‌سازی لحظه‌ای'
+    },
+    {
+      step: 'تحلیل و گزارش',
+      desc: 'ارزیابی نتایج جامع و ارائه استراتژی‌های بهبود برای کمپین بعدی'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'آیا ایمیل‌ها وارد inbox می‌شوند یا اسپم؟',
+      answer: 'با اطلاعات ارسال‌کننده معتبر و IPهای سفید و رعایت تمامی پروتکل‌های ضد هرزنامه، ایمیل‌ها را به inbox می‌رسانیم و نرخ ورود به اسپم را در داشبورد گزارش‌دهی پایش می‌کنیم.'
+    },
+    {
+      question: 'چطور نرخ تبدیل ایمیل مارکتینگ را اندازه‌گیری می‌کنم؟',
+      answer: 'انتهای تمامی لینک‌ها کد پیگیری داریم که کلیک، خرید و مبدا هر ایمیل را دقیقاً ثبت می‌کند. داشبورد پیشرفته با نمودارها و آمار دقیق نرخ تبدیل در اختیارتان قرار می‌دهیم.'
+    },
+    {
+      question: 'امکان شخصی‌سازی چقدر گسترده است؟',
+      answer: 'هر قسمت ایمیل قابل شخصی‌سازی است: سلام، محصولات پیشنهاد، تصاویر، تخفیف‌ها، حتی رنگ‌ها و فونت‌ها. اطلاعات دقیق از سابقه خرید، علایق و رفتار کاربر در دسترس است.'
+    },
+    {
+      question: 'کمپین‌های ایمیلی چقدر طول می‌کشند؟',
+      answer: 'کمپین‌های معمولی ۴-۶ هفته آماده‌سازی نیاز دارند، اما آماده‌سازی اولیه با لیست مخاطبان موجود همان روز ممکن است. کمپین‌های پیچیده اتوماسیون ۸-۱۰ هفته زمان نیاز دارند.'
+    },
+    {
+      question: 'آیا پشتیبانی فنی و استراتژیک دارید؟',
+      answer: '۲۴/۷ پشتیبانی فنی برای ارسال و پشتیبانی استراتژیک برای بهبود کمپین‌ها ارائه می‌دهیم. متخصصان باتجربه در کنار شما هستند.'
+    },
+    {
+      question: 'چطور هزینه ایمیل مارکتینگ را محاسبه می‌کنید؟',
+      answer: 'بر اساس تعداد مخاطبان، تعداد ارسال ماهانه، پیچیدگی اتوماسیون و سفارشی‌سازی حساب می‌شود. بسته‌های اقتصادی از ۵۰۰ هزار تومان شروع می‌شود.'
+    }
+  ];
+
+---
+<BaseLayout title='بازاریابی ایمیلی و ایمیل مارکتینگ حرفه‌ای | عصر سئو' description='کمپین‌های حرفه‌ای ایمیل مارکتینگ با اتوماسیون، شخصی‌سازی، A/B Testing و افزایش قابل اندازه‌گیری نرخ تبدیل. تحلیل لحظه‌ای و گزارش کامل عملکرد.' keywords='بازاریابی ایمیلی, ایمیل مارکتینگ, Email Marketing, Newsletter, اتوماسیون ایمیل, شخصی‌سازی' canonical='https://asreseo.com/services/marketing/email-marketing/' ogType='website' ogUrl='https://asreseo.com/services/marketing/email-marketing/' ogImages={[{ url: "/og/email-marketing-hero.jpg", width: 1200, height: 630, alt: "ایمیل مارکتینگ | عصر سئو" }]} twitterCard='summary_large_image'
+  ogTitle='بازاریابی ایمیلی حرفه‌ای | عصر سئو'
+
+  ogDescription='کمپین‌های ایمیل مارکتینگ هدفمند و اتوماسیون برای افزایش فروش.'
+>
+<div class="min-h-screen bg-white">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/marketing/email-marketing/', image: '/og/email-marketing-hero.jpg' }))}
+      />
+
+      <Header />
+      <BreadcrumbStructuredData
+        items={[
+          { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+          { position: 2, name: 'خدمات بازاریابی', item: 'https://asreseo.com/services/marketing/' },
+          { position: 3, name: 'ایمیل مارکتینگ', item: 'https://asreseo.com/services/marketing/email-marketing/' }
+        ]}
+      />
+
+      <main>
+        <!-- Hero Section -->
+        <ServiceHero
+          badge="بازاریابی ایمیلی پیشرفته"
+          title="بازاریابی"
+          titleGradient="ایمیلی حرفه‌ای"
+          description="کمپین‌های ایمیل مارکتینگ هوشمند با اتوماسیون، شخصی‌سازی و افزایش نرخ فروش. عصر سئو با تکنولوژی روز دنیا مخاطبان شما را به مشتریان وفادار تبدیل می‌کند."
+          primaryCta={{ text: "شروع کمپین ایمیلی" }}
+          secondaryCta={{ text: "تحلیل لیست ایمیلی رایگان" }}
+          imageSrc="/images/email-marketing-hero.webp"
+          imageAlt="بازاریابی ایمیلی حرفه‌ای"
+          theme="purple"
+        />
+
+        <!-- Stats Section -->
+        <ServiceStats stats={stats} theme="purple" />
+
+        <!-- Campaign Types Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                انواع <span class="gradient-text">کمپین‌های ایمیلی استراتژیک</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                کمپین‌های مختلف برای اهداف بازاریابی متفاوت با نتایج قابل اندازه‌گیری
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {campaignTypes.map((campaign, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                        <Icon name="mail" class="h-6 w-6 text-purple-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{campaign.type}</CardTitle>
+                    </div>
+                    <p class="text-gray-600 mb-4">{campaign.description}</p>
+                    <div class="flex justify-between items-center text-sm">
+                      <span class="text-gray-500">هدف:</span>
+                      <span class="text-purple-600 font-medium">{campaign.target}</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm mt-1">
+                      <span class="text-gray-500">نتیجه:</span>
+                      <span class="text-green-800 font-medium">{campaign.goal}</span>
+                    </div>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                تکنولوژی‌های پیشرفته <span class="gradient-text">ایمیل مارکتینگ</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                از اتوماسیون هوشمند تا شخصی‌سازی پیشرفته، تمام ابزارهای روز دنیا
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {features.map((feature, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-200 transition-colors">
+                        <Icon name={feature.icon} class="h-6 w-6 text-pink-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits title="مزایای بازاریابی" titleHighlight="ایمیلی حرفه‌ای" subtitle="بازگشایی درب ارتباط مستقیم با مشتریان و افزایش درآمد پایدار" benefits={benefits} />
+
+        <!-- Workflow Section -->
+        <section class="section-padding bg-linear-to-br from-purple-50 to-pink-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                فرآیند ساخت <span class="gradient-text">کمپین ایمیلی</span> عصر سئو
+              </h2>
+              <p class="text-xl text-gray-600">
+                رویکرد علمی ۵ مرحله‌ای برای کمپین‌هایی که واقعاً فروش می‌کنند
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {workflowSteps.map((step, index) => (
+                <div class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs">
+                  <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center text-2xl font-bold text-pink-700">
+                    {index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      {step.step}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <ServiceFAQ
+          title="سوالات"
+          titleGradient="متداول"
+          subtitle="پاسخ به پرسش‌های رایج مشتریان درباره بازاریابی ایمیلی"
+          faqs={faqs}
+        />
+
+        <!-- CTA Section -->
+        <ServiceCTA
+          title="مهمترین کانال فروش خود را هم اکنون فعال کنید!"
+          description="بازاریابی ایمیلی یکی از قدرتمندترین و مقرون‌به‌صرفه‌ترین روش‌های بازاریابی دیجیتال است. عصر سئو با سیستم‌های اتوماسیون پیشرفته و تیم تخصصی، کمپین‌هایی طراحی می‌کند که فروش شما را چندین برابر می‌کنند. اولین کمپین خود را همین امروز شروع کنید."
+          primaryCta={{ text: "شروع کمپین ایمیلی" }}
+          secondaryCta={{ text: "مشاوره بازاریابی ایمیلی" }}
+          primaryClass="bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg shadow-pink-600/30"
+        />
+      </main>
+
+      <Footer />
+    </div>
+</BaseLayout>

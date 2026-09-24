@@ -1,0 +1,47 @@
+---
+import { withServiceMeta } from '../lib/service-schema';
+const data = {
+  '@context': 'https://schema.org',
+  '@type': 'OfferCatalog',
+  name: 'خدمات دیجیتال مارکتینگ',
+  provider: {
+    '@id': 'https://asreseo.com/#organization',
+  },
+  itemListElement: [
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'خدمات سئو حرفه‌ای',
+        description: 'بهینه‌سازی موتور جستجو و افزایش رتبه سایت',
+        provider: {
+          '@id': 'https://asreseo.com/#organization',
+        },
+      },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'تبلیغات گوگل ادز',
+        description: 'مدیریت و بهینه‌سازی کمپین‌های تبلیغاتی',
+        provider: {
+          '@id': 'https://asreseo.com/#organization',
+        },
+      },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'خدمات هوش مصنوعی',
+        description: 'راهکارهای نوین AI برای رشد کسب‌وکار و اتوماسیون',
+        provider: {
+          '@id': 'https://asreseo.com/#organization',
+        },
+      },
+    },
+  ],
+};
+---
+<script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(data, { url: 'https://asreseo.com/', image: '/og-default.png', idNamespace: 'home-service' }))}></script>

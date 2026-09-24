@@ -1,0 +1,368 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Button from '../../../../components/ui/button/Button.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Picture from '../../../../components/ui/Picture.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+import ServiceWorkflow from '../../../../components/Services/ServiceWorkflow.astro';
+
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'تبلیغات گوگل ادز',
+  'description': 'خدمات تبلیغات گوگل ادز شامل کمپین‌های تبلیغاتی، مدیریت بودجه و بهینه‌سازی نرخ تبدیل',
+  'serviceType': 'Pay-Per-Click Advertising',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'عصر سئو',
+    'url': 'https://asreseo.com'
+  },
+  'areaServed': 'Iran',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'خدمات تبلیغات گوگل ادز',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'کمپین تبلیغات کلیکی',
+          'description': 'طراحی و اجرای کمپین‌های Google Ads بهینه'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'مدیریت بودجه تبلیغاتی',
+          'description': 'نظارت و کنترل بودجه تبلیغاتی'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const campaignTypes = [
+    {
+      title: 'جستجوی گوگل',
+      description: 'تبلیغات در نتایج جستجوی گوگل با کلمات کلیدی مرتبط',
+      icon: "search",
+      benefits: ['هدفمندی بالا', 'نرخ تبدیل بالاتر', 'ایمنی برند']
+    },
+    {
+      title: 'شبکه نمایش',
+      description: 'تبلیغات در شبکه وب‌سایت‌های گوگل با میلیون‌ها بازدیدکننده',
+      icon: "eye",
+      benefits: ['دامنه گسترده', 'قابل مشاهده بودن', 'بهینه‌سازی خودکار']
+    },
+    {
+      title: 'شاپینگ گوگل',
+      description: 'تبلیغات محصولات فروشگاه آنلاین با تصاویر و قیمت‌ها',
+      icon: "shopping-cart",
+      benefits: ['فروش مستقیم', 'اطلاعات محصول', 'امتیاز SEO']
+    },
+    {
+      title: 'ویدیو یوتیوب',
+      description: 'تبلیغات ویدئویی در یوتیوب با بالاترین نرخ تعامل',
+      icon: "megaphone",
+      benefits: ['محتوای جذاب', 'ارتباط عاطفی', 'بازچوانی مجدد برند']
+    }
+  ];
+
+  const targetingOptions = [
+    'تارگتینگ جغرافیایی - نمایش تبلیغ فقط در شهر‌ها یا مناطق مورد نظر',
+    'تارگتینگ جمعیتی - نمایش بر اساس سن، جنس و سطح تحصیلات',
+    'تارگتینگ رفتاری - نمایش بر اساس علایق و رفتارهای آنلاین کاربر',
+    'تارگتینگ retargeting - نمایش مجدد تبلیغ به کسانی که سایت شما را دیده‌اند',
+    'تارگتینگ دستگاهی - نمایش در موبایل یا دسکتاپ بر اساس رفتار کاربران'
+  ];
+
+  const benefits = [
+    'جذب مشتری با کمترین هزینه و بیشترین بازدهی',
+    'کنترل کامل بر بودجه تبلیغاتی روزانه/ماهانه',
+    'مشاوره و اجرای کمپین متناسب با کسب‌وکار شما',
+    'مدیریت حرفه‌ای و به‌روزرسانی کلیدواژه‌ها',
+    'صرفه‌جویی در زمان با ابزارهای اتوماسیون',
+    'گزارش‌دهی شفاف و آنلاین از عملکرد کمپین‌ها',
+    'شروع تبلیغات فقط پس از گرفتن تأیید نهایی شما',
+    'تیم پشتیبانی فنی ۲۴ ساعته برای مدیریت کمپین'
+  ];
+
+  const results = [
+    { metric: 'پیگیری تبدیل', label: 'افزایش فروش', icon: "trending-up" },
+    { metric: 'بهره‌وری هزینه', label: 'کاهش هزینه جذب مشتری', icon: "dollar-sign" },
+    { metric: 'نمونه‌کارها', label: 'کمپین موفق اجرا شده', icon: "trophy" },
+    { metric: '۲۴/۷', label: 'پشتیبانی فنی', icon: "users" }
+  ];
+
+  const features = [
+    {
+      icon: "target",
+      title: 'تارگت دقیق مخاطبان',
+      description: 'مخاطبان شما را با دقت بی‌نظیر و براساس علایق، موقعیت و هدف کسب‌وکارتان انتخاب می‌کنیم.',
+      benefits: ['دقت بالا', 'بازدهی بهتر', 'هزینه کمتر']
+    },
+    {
+      icon: "trending-up",
+      title: 'بهینه‌سازی مداوم',
+      description: 'بودجه و کمپین‌ها را روزانه رصد و برای بهترین بازده، دائماً بهینه می‌نماییم.',
+      benefits: ['بهبود پیوسته', 'بازدهی حداکثری', 'بررسی روزانه']
+    },
+    {
+      icon: "bar-chart3",
+      title: 'گزارش‌دهی شفاف',
+      description: 'شفافیت کامل؛ دسترسی به گزارش‌های آنلاین و تحلیل عملکرد کمپین‌ها.',
+      benefits: ['شفافیت کامل', 'گزارش آنلاین', 'تحلیل حرفه‌ای']
+    },
+    {
+      icon: "users",
+      title: 'افزایش نرخ تبدیل',
+      description: 'طراحی لندینگ و متن تبلیغ به صورت حرفه‌ای برای بیشترین تبدیل و جذب مشتری.',
+      benefits: ['تبلیغ جذاب', 'نرخ تبدیل بالا', 'جذب مشتری بیشتر']
+    }
+  ];
+
+  const processSteps = [
+    {
+      step: '۱',
+      title: 'تحقیق و استراتژی',
+      desc: 'بررسی کلمات کلیدی، مخاطب هدف و رقبا برای تعیین استراتژی تبلیغاتی'
+    },
+    {
+      step: '۲',
+      title: 'راه‌اندازی کمپین',
+      desc: 'ایجاد حساب گوگل ادز و تنظیم کمپین‌های تبلیغاتی با پارامترهای بهینه'
+    },
+    {
+      step: '۳',
+      title: 'تارگتینگ و بودجه',
+      desc: 'پیکربندی گروه‌های هدف، تعیین بودجه روزانه و تنظیم تبلیغات'
+    },
+    {
+      step: '۴',
+      title: 'نظارت و بهینه‌سازی',
+      desc: 'گزارش‌دهی روزانه و بهینه‌سازی کمپین بر اساس عملکرد و نرخ تبدیل'
+    },
+    {
+      step: '۵',
+      title: 'گزارش‌گیری و گسترش',
+      desc: 'ارائه گزارش نهایی و برنامه‌ریزی برای گسترش کمپین‌های موفق'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'آیا بودجه روزانه من قابل کنترل است؟',
+      answer: 'بله، می‌توانید حداقل و حداکثر بودجه را تعریف کرده و هیچ‌گاه بیش از آن هزینه نکنید. حساب گوگل ادز شما در کنترل کامل شماست.'
+    },
+    {
+      question: 'چه مدت زمان می‌برد تا نتایج را ببینم؟',
+      answer: 'معمولاً ظرف چند ساعت از فعال‌سازی کمپین، اولین بازخوردها دریافت می‌شود. اما نتایج کامل با بهینه‌سازی در طی ۲ تا ۴ هفته مشاهده می‌شود.'
+    },
+    {
+      question: 'گزارش عملکرد کمپین چطور ارسال می‌شود؟',
+      answer: 'هر هفته گزارش کامل به صورت PDF ارسال می‌شود و دسترسی آنلاین به داشبورد کمپین برای مشاهده آمار لحظه‌ای خواهید داشت.'
+    },
+    {
+      question: 'آیا نیاز به داشتن حساب گوگل ادز دارم؟',
+      answer: 'خیر، ما حساب حرفه‌ای گوگل ادز را راه‌اندازی و مدیریت می‌کنیم. شما فقط بودجه تبلیغاتی را تأمین خواهید کرد.'
+    },
+    {
+      question: 'چه گارانتی برای بازگشت سرمایه دارید؟',
+      answer: 'پرداخت بر اساس عملکرد (performance-based) است و در صورتی که نتیجه دلخواه حاصل نشود، بخشی از هزینه بازگردانده خواهد شد.'
+    },
+    {
+      question: 'آیا کمپین را در موبایل هم نمایش می‌دهیم؟',
+      answer: 'بله، کمپین‌های ما در دسکتاپ و موبایل بهینه می‌شوند و تنظیمات خاصی برای دستگاه‌های مختلف اعمال خواهد شد.'
+    }
+  ];
+
+
+
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات بازاریابی', item: 'https://asreseo.com/services/marketing/' },
+    { position: 3, name: 'تبلیغات گوگل ادز', item: 'https://asreseo.com/services/marketing/google-ads/' },
+  ];
+
+---
+<BaseLayout title='تبلیغات گوگل ادز | Google Ads حرفه‌ای PPC | عصر سئو' description='خدمات تبلیغات گوگل ادز با هدف جذب سریع مشتری و افزایش نرخ تبدیل. راهکارهای بهینه و مدیریت کامل بودجه تبلیغاتی با متخصصین عصر سئو.' keywords='گوگل ادز, تبلیغات گوگل, Google Ads, PPC, تبلیغات کلیکی, تبلیغات گوگل ادز' canonical='https://asreseo.com/services/marketing/google-ads/' ogType='website' ogUrl='https://asreseo.com/services/marketing/google-ads/' ogImages={[{ url: "/og/marketing-google-ads-hero.jpg", width: 1200, height: 630, alt: "تبلیغات گوگل ادز | عصر سئو" }]} twitterCard='summary_large_image'
+  ogTitle='تبلیغات گوگل ادز | Google Ads حرفه‌ای | عصر سئو'
+
+  ogDescription='کمپین‌های تبلیغاتی هوشمند در گوگل برای جذب مشتری و افزایش فروش با نرخ تبدیل بالا.'
+>
+<div class="min-h-screen bg-white">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/marketing/google-ads/', image: '/og/marketing-google-ads-hero.jpg' }))}
+      />
+
+      <Header />
+      <BreadcrumbStructuredData items={breadcrumbs} />
+
+      <main>
+        <ServiceHero
+          badge="تبلیغات گوگل ادز حرفه‌ای"
+          title="تبلیغات گوگل ادز"
+          titleHighlight="گوگل ادز"
+          description="کمپین‌های تبلیغاتی هوشمند و مؤثر در گوگل برای جذب مشتری و افزایش فروش. کاهش هزینه جذب مشتری با استراتژی‌های پیشرفته PPC."
+          primaryCtaText="شروع کمپین تبلیغاتی"
+          secondaryCtaText="مشاوره رایگان"
+          imageSrc="/images/marketing-google-ads-hero.webp"
+          imageAlt="تبلیغات گوگل ادز حرفه‌ای"
+          theme="amber"
+        />
+
+        <ServiceStats stats={results} gradientClass="section-padding bg-linear-to-r from-orange-50 to-red-50" metricColorClass="text-orange-700 mb-2" iconColorClass="h-8 w-8 text-orange-600 mx-auto mb-3" />
+
+        <!-- Campaign Types Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                انواع <span class="gradient-text">کمپین‌های گوگل ادز</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                کمپین‌های متنوع برای پوشش تمام نیازهای تبلیغاتی کسب‌وکار شما
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {campaignTypes.map((campaign, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
+                        <Icon name={campaign.icon} class="h-6 w-6 text-red-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{campaign.title}</CardTitle>
+                    </div>
+                    <p class="text-gray-600 mb-2">{campaign.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-1">
+                      {campaign.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                قابلیت‌های <span class="gradient-text">گوگل ادز ما</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                چرا کمپین‌های گوگل ادز عصر سئو نتیجه‌بخش‌تر هستند؟
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {features.map((feature, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
+                        <Icon name={feature.icon} class="h-6 w-6 text-red-600" />
+                      </div>
+                      <CardTitle class="text-lg font-semibold">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Targeting Options -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                امکانات <span class="gradient-text">تارگتینگ پیشرفته</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                نمایش تبلیغات فقط به مخاطبان هدف و حذف مشتریان غیرضروری
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              {targetingOptions.map((option, index) => (
+                <div class="flex items-center gap-4 p-4 bg-linear-to-r from-red-50 to-orange-50 rounded-xl border border-red-100">
+                  <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center shrink-0">
+                    <Icon name="target" class="h-4 w-4 text-red-600" />
+                  </div>
+                  <span class="text-gray-900 font-medium">
+                    {option}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits title="مزایای تبلیغات گوگل ادز با" titleHighlight="عصر سئو" subtitle="نتایج ملموس تبلیغات گوگل ادز در رشد سریع کسب‌وکار شما" benefits={benefits} />
+
+              <ServiceWorkflow title="فرآیند راه‌اندازی" titleHighlight="کمپین گوگل ادز" subtitle="رویکرد علمی ۵ مرحله‌ای راه‌اندازی کمپین‌های تبلیغاتی موفق" steps={processSteps} bgGradient="section-padding bg-linear-to-br from-orange-50 to-red-50" />
+
+        <ServiceFAQ
+          title="سوالات متداول"
+          highlightWord="متداول"
+          subtitle="پاسخ به رایج‌ترین سوالات درباره تبلیغات گوگل ادز"
+          faqs={faqs}
+        />
+
+        <ServiceCTA
+          title="کمپین تبلیغاتی خود را همین امروز شروع کنید!"
+          description="با تبلیغات گوگل ادز حرفه‌ای، مشتریان جدید را سریع‌تر جذب کنید و فروش خود را چندین برابر کنید. راه‌اندازی رایگان کمپین از امروز!"
+          primaryText="راه‌اندازی کمپین"
+          secondaryText="تحلیل رایگان رقبا"
+          primaryClass="bg-red-600 hover:bg-red-700 text-white font-semibold shadow-lg shadow-red-600/30"
+        />
+      </main>
+
+      <Footer />
+    </div>
+</BaseLayout>

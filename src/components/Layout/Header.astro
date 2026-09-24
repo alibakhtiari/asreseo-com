@@ -1,0 +1,232 @@
+---
+import Button from '../ui/button/Button.astro';
+import Icon from '../ui/Icon.astro';
+import MegaMenu from './MegaMenu.astro';
+import Logo from '../Logo.astro';
+import { menuCategories } from './MegaMenu/menuData';
+
+  const navLinks = [
+    { title: 'صفحه اصلی', href: '/' },
+    { title: 'خدمات', href: '/services/', isMegaMenu: true },
+    { title: 'نمونه کارها', href: '/portfolio/' },
+    { title: 'درباره ما', href: '/about/' },
+    { title: 'وبلاگ', href: '/blog/' },
+    { title: 'تماس با ما', href: '/contact/' }
+  ];
+---
+<header
+  class="fixed top-3 sm:top-4 left-0 right-0 z-50 transition-all duration-300 ease-in-out mx-3 sm:mx-6 md:mx-auto max-w-7xl rounded-2xl bg-white/95 backdrop-blur-md shadow-md border border-gray-100/90 py-1.5"
+  data-header
+>
+  <div class="px-4 sm:px-6" data-header-inner>
+    <div class="flex items-center justify-between h-14">
+      <!-- Enhanced Logo -->
+      <a href="/" class="flex items-center gap-2 group">
+        <Logo class="w-10 h-10 text-primary-600 group-hover:text-primary-700 transition-colors duration-200" />
+        <div>
+          <span class="block text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors duration-200">عصر سئو</span>
+          <p class="text-xs text-gray-500">AsreSEO Digital Marketing</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
+        {navLinks.map((item) =>
+          item.isMegaMenu ? (
+            <MegaMenu />
+          ) : (
+            <a
+              href={item.href}
+              class="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium text-sm xl:text-base"
+            >
+              {item.title}
+            </a>
+          )
+        )}
+      </nav>
+
+      <!-- Enhanced CTA Button -->
+      <div class="hidden lg:flex items-center gap-4">
+        <Button
+          href="/consultation/"
+          class="bg-linear-to-r from-primary-500 to-secondary-500 text-white hover:opacity-90 transition-opacity duration-200 px-5 xl:px-6 py-2 font-semibold shadow-md hover:shadow-lg rounded-xl"
+        >
+          مشاوره رایگان
+        </Button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="lg:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-700 transition-colors duration-200 cursor-pointer"
+        data-menu-btn
+        aria-label="منوی موبایل"
+        aria-controls="mobile-menu-panel"
+        aria-expanded="false"
+      >
+        <span data-icon-open class="hidden"><Icon name="x" class="h-6 w-6 text-gray-700" /></span><span data-icon-closed><Icon name="menu" class="h-6 w-6 text-gray-700" /></span>
+      </button>
+    </div>
+
+    <!-- Enhanced Mobile Menu -->
+    <div data-menu-panel id="mobile-menu-panel" hidden>
+      <div class="lg:hidden border-t border-gray-100 py-4 animate-fade-in mt-2">
+        <nav class="flex flex-col space-y-2">
+          {navLinks.map((item) =>
+            item.isMegaMenu ? (
+              <details class="group rounded-lg hover:bg-gray-50 transition-colors">
+                <summary class="flex items-center justify-between cursor-pointer py-2.5 px-4 font-medium text-sm text-gray-700 list-none">
+                  <span>{item.title}</span>
+                  <Icon name="chevron-down" class="h-4 w-4 text-gray-400 group-open:rotate-180 transition-transform duration-200" />
+                </summary>
+                <div class="pe-2 ps-6 pb-2 space-y-3 border-r-2 border-primary-200 mr-4 mt-1 bg-gray-50/50 rounded-lg p-2">
+                  <a href="/services/" class="block text-xs font-bold text-primary-600 hover:underline py-1" data-menu-close>
+                    مشاهده همه خدمات ←
+                  </a>
+                  {menuCategories.map((cat) => (
+                    <div class="pt-1">
+                      <a href={cat.href || '/services/'} class={`block text-xs font-semibold ${cat.color} mb-1`} data-menu-close>
+                        {cat.title}
+                      </a>
+                      <ul class="space-y-1">
+                        {cat.items.map((subItem) => (
+                          <li>
+                            <a href={subItem.href} class="block text-xs text-gray-600 hover:text-primary-600 py-0.5" data-menu-close>
+                              {subItem.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </details>
+            ) : (
+              <a
+                href={item.href}
+                class="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors duration-200 py-2.5 px-4 rounded-lg font-medium text-sm"
+                data-menu-close
+              >
+                {item.title}
+              </a>
+            )
+          )}
+          <div class="pt-3">
+            <Button
+              href="/consultation/"
+              data-menu-close
+              class="bg-linear-to-r from-primary-500 to-secondary-500 text-white w-full font-semibold py-2.5 rounded-xl"
+            >
+              مشاوره رایگان
+            </Button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const onScroll = () => {
+    const sc = window.scrollY > 20;
+    if (header) {
+      if (sc) {
+        header.classList.add('bg-white/90', 'shadow-xl', 'border-gray-200/80');
+        header.classList.remove('bg-white/95', 'shadow-md', 'border-gray-100/90');
+      } else {
+        header.classList.add('bg-white/95', 'shadow-md', 'border-gray-100/90');
+        header.classList.remove('bg-white/90', 'shadow-xl', 'border-gray-200/80');
+      }
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const panel = document.querySelector('[data-menu-panel]');
+  const iconOpen = document.querySelector('[data-icon-open]');
+  const iconClosed = document.querySelector('[data-icon-closed]');
+  const isOpen = () => panel ? !panel.hasAttribute('hidden') : false;
+  // Element that had focus before the menu opened, so we can hand it back.
+  let lastFocused: HTMLElement | null = null;
+
+  const focusables = () =>
+    panel
+      ? Array.from(
+          panel.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
+          ),
+        ).filter((el) => el.offsetParent !== null)
+      : [];
+
+  const setMenu = (open: boolean, trigger?: HTMLElement, restoreFocus = true) => {
+    panel?.toggleAttribute('hidden', !open);
+    iconOpen?.classList.toggle('hidden', !open);
+    iconClosed?.classList.toggle('hidden', open);
+    document.querySelectorAll('[data-menu-btn]').forEach((b) =>
+      b.setAttribute('aria-expanded', String(open)),
+    );
+    if (open) {
+      // Remember where focus must go back to. `document.activeElement` alone is
+      // not reliable: a tap on iOS never focuses the button, and a programmatic
+      // `.click()` doesn't either — both would strand focus on <body>.
+      lastFocused =
+        trigger ??
+        (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+      focusables()[0]?.focus();
+    } else {
+      if (restoreFocus) {
+        const target =
+          lastFocused && lastFocused.isConnected && lastFocused !== document.body
+            ? lastFocused
+            : document.querySelector<HTMLElement>('[data-menu-btn]');
+        // Not restored when the menu is dismissed by following a link: focus()
+        // would scroll the page right before navigation.
+        target?.focus();
+      }
+      lastFocused = null;
+    }
+  };
+
+  document.querySelectorAll('[data-menu-btn]').forEach((b) =>
+    b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setMenu(!isOpen(), b as HTMLElement);
+    }),
+  );
+  document.querySelectorAll('[data-menu-close]').forEach((b) =>
+    b.addEventListener('click', () => setMenu(false, undefined, false)),
+  );
+
+  // Tapping anywhere outside the header dismisses the menu. The trigger calls
+  // stopPropagation(), so its own clicks never reach this handler.
+  document.addEventListener('click', (e: MouseEvent) => {
+    if (!isOpen()) return;
+    const target = e.target as Node | null;
+    if (header && target && header.contains(target)) return;
+    setMenu(false, undefined, false);
+  });
+
+  // Escape closes the menu and returns focus to the trigger.
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (!isOpen()) return;
+    if (e.key === 'Escape') {
+      setMenu(false);
+      return;
+    }
+    // Keep Tab focus inside the open panel.
+    if (e.key === 'Tab') {
+      const items = focusables();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      } else if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    }
+  });
+</script>
+
+</header>

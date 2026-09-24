@@ -1,0 +1,254 @@
+---
+import Card from '../ui/card/Card.astro';
+import CardContent from '../ui/card/CardContent.astro';
+import CardHeader from '../ui/card/CardHeader.astro';
+import Accordion from '../ui/Accordion.astro';
+import AccordionContent from '../ui/AccordionContent.astro';
+import AccordionItem from '../ui/AccordionItem.astro';
+import AccordionTrigger from '../ui/AccordionTrigger.astro';
+import Badge from '../ui/badge/Badge.astro';
+import Button from '../ui/button/Button.astro';
+import Icon from '../ui/Icon.astro';
+import Picture from '../ui/Picture.astro';
+import BlogCTA from './BlogCTA.astro';
+
+const { post, Content }: any = Astro.props;
+
+// P1.8: derived values for optional frontmatter fields.
+// Persian read-time label. All 9 posts supply values like "۱۴ دقیقه"; a bare
+// number (`readTime: 14`) is treated as minutes, ASCII digits are converted to
+// Persian, and "مطالعه" is appended so the line reads naturally next to the
+// clock icon ("۱۴ دقیقه مطالعه"). Missing/empty renders nothing at all.
+const toPersianDigits = (s: string) => s.replace(/[0-9]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[Number(d)]);
+const readTimeLabel = (value: unknown): string => {
+    if (value === undefined || value === null) return '';
+    const raw = String(value).trim();
+    if (!raw) return '';
+    if (/^[0-9]+$/.test(raw)) return `${toPersianDigits(raw)} دقیقه مطالعه`;
+    const s = toPersianDigits(raw);
+    if (s.includes('مطالعه')) return s;
+    if (s.includes('دقیقه')) return `${s} مطالعه`;
+    return s;
+};
+const readTime = readTimeLabel(post.readTime);
+
+// Tag chips: trimmed non-empty strings only. When the list is empty the whole
+// block below renders nothing — no empty container, no heading.
+const tags: string[] = (Array.isArray(post.tags) ? post.tags : [])
+    .map((tag: unknown) => String(tag ?? '').trim())
+    .filter(Boolean);
+
+// Only a real boolean `true` shows the ویژه badge; false/undefined/"false"
+// emit no markup (the schema normalises featured to a boolean anyway).
+const featured = post.featured === true;
+
+const jsonLdFAQ = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": post.faqs?.map((faq: any) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    })) || []
+  };
+---
+{post.faqs && post.faqs.length > 0 && (
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdFAQ)} />
+)}
+<article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <header class="mb-8">
+          <div class="flex items-center gap-4 mb-6">
+            <Badge class="bg-primary/10 text-blue-700">
+              {post.category}
+            </Badge>
+            {featured && (
+              <Badge class="bg-green-100 text-green-800">
+                ویژه
+              </Badge>
+            )}
+          </div>
+          
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+            {post.title}
+          </h1>
+          
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 text-sm text-gray-500 gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <div class="flex items-center gap-1">
+                <Icon name="user" class="h-4 w-4" />
+                {post.author}
+              </div>
+              {readTime && (
+                <div class="flex items-center gap-1">
+                  <Icon name="clock" class="h-4 w-4" />
+                  {readTime}
+                </div>
+              )}
+              <span>{new Date(post.date).toLocaleDateString('fa-IR')}</span>{post.updated && (
+                <span>به‌روزرسانی: {new Date(post.updated).toLocaleDateString('fa-IR')}</span>
+              )}
+            </div>
+            
+            <div class="flex gap-2">
+              <Button 
+                variant="outline" 
+                size="sm"
+                data-share-btn
+              >
+                <Icon name="share2" class="h-4 w-4 ml-2" />
+                اشتراک‌گذاری
+              </Button>
+            </div>
+          </div>
+          
+<Picture
+            src={post.image}
+            alt={post.title}
+            eager={true}
+            aspectRatio="16 / 9"
+            class="w-full h-64 md:h-96 object-cover rounded-lg mb-8"
+          />
+        </header>
+
+        <!-- Table of Contents Accordion -->
+        {post.tableOfContents && post.tableOfContents.length > 0 && (
+          <div class="mb-8">
+            <Accordion type="single" collapsible class="w-full">
+              <AccordionItem value="toc">
+                <AccordionTrigger class="text-lg font-semibold">
+                  <div class="flex items-center gap-2">
+                    <Icon name="list" class="h-5 w-5" />
+                    فهرست مطالب
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div class="grid md:grid-cols-2 gap-2 pt-4">
+                    {post.tableOfContents.map((item: any, index: number) => (
+                      <a
+                       
+                        href={`#${item.id}`}
+                        class={`block text-sm hover:text-primary transition-colors p-2 rounded hover:bg-primary/5 ${
+                          item.level === 2 ? 'font-medium' : 'mr-4 text-gray-600'
+                        }`}
+                      >
+                        <div class="flex items-center gap-2">
+                          <Icon name="chevron-right" class="h-3 w-3" />
+                          {item.title}
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        )}
+
+        <!-- Key Takeaways -->
+        {post.keyTakeaways && post.keyTakeaways.length > 0 && (
+          <aside class="speakable-summary mb-8 rounded-xl border border-gray-200 bg-gray-50/70 px-5 py-5 sm:px-6">
+            <!-- h2, not h3: this aside sits directly under the article h1, and the
+                 MDX body's top-level sections are h2. Marking it h3 skipped a
+                 level and broke the document outline (affects screen-reader
+                 navigation). text-base keeps the visual size unchanged. -->
+            <h2 class="font-bold text-base text-gray-900 mb-4 flex items-center gap-2">
+              <Icon name="check" class="h-5 w-5 text-green-800" />
+              نکات کلیدی
+            </h2>
+            <ul class="space-y-2.5">
+              {post.keyTakeaways.map((takeaway: any) => (
+                <li class="flex items-start gap-2.5 text-sm leading-relaxed text-gray-700">
+                  <Icon name="check" class="h-4 w-4 text-green-800 shrink-0 mt-0.5" />
+                  <span>{takeaway}</span>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
+
+        <div class="grid grid-cols-1 gap-8">
+
+          <!-- Article Content -->
+          <div class="prose prose-lg max-w-none mb-12 prose-headings:text-gray-900 prose-h2:text-2xl prose-h3:text-xl prose-p:text-gray-700 prose-p:leading-relaxed prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 blog-body">
+              <Content />
+          </div>
+
+          <!-- FAQs -->
+          {post.faqs && post.faqs.length > 0 && (
+            <section class="mb-12">
+              <h2 class="text-2xl font-bold mb-6">سوالات متداول</h2>
+              <Accordion type="single" collapsible>
+                {post.faqs.map((faq: any, index: number) => (
+                  <AccordionItem value={`faq-${index}`} defaultOpen={index === 0}>
+                    <AccordionTrigger class="text-right font-semibold text-gray-900">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p class="leading-relaxed text-gray-600">{faq.answer}</p>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </section>
+          )}
+
+          {tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mb-8">
+              {tags.map((tag) => (
+                <Badge variant="outline">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          )}
+
+          <BlogCTA slug={post.slug} />
+        </div>
+      </article>
+
+<script>
+  document.querySelectorAll('[data-share-btn]').forEach((b) =>
+    b.addEventListener('click', async () => {
+      const url = window.location.href;
+      const title = document.title;
+      if (navigator.share) {
+        try {
+          await navigator.share({ title, url });
+        } catch {}
+      } else if (navigator.clipboard) {
+        try {
+          await navigator.clipboard.writeText(url);
+        } catch {}
+      }
+    }),
+  );
+</script>
+<style>
+  .blog-body table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+  }
+  .blog-body th,
+  .blog-body td {
+    padding: 0.625rem 0.875rem;
+    border-bottom: 1px solid #f3f4f6;
+    text-align: right;
+    vertical-align: top;
+  }
+  .blog-body thead th {
+    background: #f9fafb;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .blog-body tbody tr:last-child td {
+    border-bottom: 0;
+  }
+</style>

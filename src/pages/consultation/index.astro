@@ -1,0 +1,120 @@
+---
+import { withServiceMeta } from '../../lib/service-schema';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import Button from '../../components/ui/button/Button.astro';
+import Icon from '../../components/ui/Icon.astro';
+import ServiceFAQ from '../../components/Services/ServiceFAQ.astro';
+
+const consultFaqs = [
+  { question: 'آیا جلسه مشاوره واقعاً رایگان است؟', answer: 'بله؛ جلسه اول مشاوره عصر سئو کاملاً رایگان است و هیچ تعهدی برای ادامه همکاری ایجاد نمی‌کند.' },
+  { question: 'جلسه مشاوره چقدر طول می‌کشد؟', answer: 'حدود نیم ساعت؛ در همین زمان وضعیت فعلی کسب‌وکار شما تحلیل و نقشه راه رشد ارائه می‌شود.' },
+  { question: 'در جلسه مشاوره چه چیزی دریافت می‌کنم؟', answer: 'تحلیل وضعیت سایت و کانال‌های بازاریابی شما به‌همراه اولویت‌بندی اقدامات بعدی برای رشد.' },
+  { question: 'چگونه جلسه را رزرو کنم؟', answer: 'فرم همین صفحه را تکمیل کنید تا برای هماهنگی زمان جلسه با شما تماس بگیریم.' },
+];
+const consultSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'SEO & Marketing Consultation',
+  name: 'مشاوره رایگان سئو و دیجیتال مارکتینگ',
+  provider: { '@type': 'Organization', name: 'عصر سئو', url: 'https://asreseo.com/' },
+  areaServed: 'IR',
+  inLanguage: 'fa-IR',
+};
+const consultFaqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: consultFaqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { '@type': 'ListItem', position: 2, name: 'مشاوره رایگان', item: 'https://asreseo.com/consultation/' },
+  ],
+};
+---
+<BaseLayout title='مشاوره رایگان سئو و دیجیتال مارکتینگ | عصر سئو' description='رزرو مشاوره رایگان سئو و دیجیتال مارکتینگ؛ تحلیل وضعیت سایت شما و ارائه نقشه راه رشد در یک جلسه تخصصی. همین حالا درخواست خود را ثبت کنید.' canonical='https://asreseo.com/consultation/' ogType='website' twitterCard='summary_large_image'>
+<div class="min-h-screen bg-white">
+            <Header />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(consultSchema, { url: 'https://asreseo.com/consultation/', image: '/og-default.png' }))} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(consultFaqSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+            <main class="section-padding pt-32">
+                <div class="container-custom">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="order-2 lg:order-1 bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
+                            <h2 class="text-2xl font-bold mb-8 text-right">درخواست جلسه مشاوره</h2>
+                            <form data-ajax-form action="/api/send-email" method="post" class="space-y-6" dir="rtl">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="consult-name" class="block text-sm font-medium text-gray-700 mb-2">نام و نام خانوادگی</label>
+                                        <input id="consult-name" type="text" name="name" required maxlength="100" autocomplete="name" class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-hidden" />
+                                    </div>
+                                    <div>
+                                        <label for="consult-phone" class="block text-sm font-medium text-gray-700 mb-2">شماره تماس</label>
+                                        <input id="consult-phone" type="tel" name="phone" required inputmode="numeric" autocomplete="tel" pattern="09[0-9]{9}" title="شماره موبایل ۱۱ رقمی با 09 شروع شود" class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-hidden" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="consult-email" class="block text-sm font-medium text-gray-700 mb-2">ایمیل</label>
+                                    <input id="consult-email" type="email" name="email" required maxlength="120" dir="ltr" autocomplete="email" class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-hidden" />
+                                </div>
+                                <div>
+                                    <label for="consult-service" class="block text-sm font-medium text-gray-700 mb-2">زمینه مشاوره</label>
+                                    <select id="consult-service" name="service" class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-hidden">
+                                        <option>سئو و بهینه‌سازی</option>
+                                        <option>تبلیغات گوگل</option>
+                                        <option>طراحی وب‌سایت</option>
+                                        <option>هوش مصنوعی</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="consult-message" class="block text-sm font-medium text-gray-700 mb-2">توضیحات کوتاه</label>
+                                    <textarea id="consult-message" rows={4} name="message" required class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-hidden"></textarea>
+                                </div>
+                                <Button type="submit" data-submit-btn class="w-full py-6 text-lg gradient-bg text-white shadow-lg shadow-blue-500/30">ثبت درخواست مشاوره</Button>
+                            </form>
+                        </div>
+
+                        <div class="order-1 lg:order-2 text-right">
+                            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">رزرو <span class="gradient-text">مشاوره تخصصی</span> رایگان</h1>
+                            <p class="text-xl text-gray-600 mb-12 leading-relaxed">برای نیم ساعت، کسب‌وکار شما را تحلیل می‌کنیم و نقشه راه رشدتان را ترسیم می‌کنیم. این جلسه کاملاً رایگان و بدون تعهد است.</p>
+
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4 justify-end">
+                                    <span class="text-gray-700 font-medium">۳۰ دقیقه تحلیل اختصاصی</span>
+                                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 shrink-0"><Icon name="clock" /></div>
+                                </div>
+                                <div class="flex items-center gap-4 justify-end">
+                                    <span class="text-gray-700 font-medium">بررسی رقبا و کلمات کلیدی</span>
+                                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-800 shrink-0"><Icon name="calendar" /></div>
+                                </div>
+                                <div class="flex items-center gap-4 justify-end">
+                                    <span class="text-gray-700 font-medium">حضوری یا آنلاین (Zoom/Meet)</span>
+                                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 shrink-0"><Icon name="map-pin" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-16">
+                        <ServiceFAQ
+                            title="سوالات متداول مشاوره"
+                            highlightWord="مشاوره"
+                            subtitle="پاسخ به سوالات پرتکرار درباره نحوه برگزاری و خروجی جلسات مشاوره رایگان"
+                            faqs={consultFaqs}
+                            includeSchema={false}
+                        />
+                    </div>
+                </div>
+            </main>
+            <Footer />
+        </div>
+</BaseLayout>
+<script src="/js/ajax-form.js" defer></script>

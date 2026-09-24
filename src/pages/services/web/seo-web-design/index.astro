@@ -1,0 +1,536 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'طراحی وب‌سایت سئو محور',
+  'description': 'خدمات طراحی وب‌سایت با رویکرد سئو، تجربه کاربری و نرخ تبدیل بالا',
+  'serviceType': 'SEO Web Design',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'عصر سئو',
+    'url': 'https://asreseo.com'
+  },
+  'areaServed': 'Iran',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'خدمات طراحی وب‌سایت',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'طراحی رسپانسیو',
+          'description': 'سازگار با تمام دستگاه‌ها و اندازه‌ها'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'بهینه‌سازی سرعت',
+          'description': 'زمان بارگذاری کمتر از ۲ ثانیه'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const designPrinciples = [
+    {
+      principle: 'SEO-First Architecture',
+      description: 'ساختار سایت از پایه بر اساس الگوریتم‌های گوگل طراحی می‌شود',
+      benefits: ['رتبه‌بندی سریع‌تر', 'بازدیدکنندگان بیشتر', 'فروش پایدار']
+    },
+    {
+      principle: 'User Experience Excellence',
+      description: 'رابط کاربری بر اساس روانشناسی مشتری و رفتار آنلاین طراحی می‌شود',
+      benefits: ['رضایت بالاتر', 'نرخ تبدیل بیشتر', 'بازگشت مشتریان']
+    },
+    {
+      principle: 'Conversion Rate Optimization',
+      description: 'هر عنصر صفحه برای هدایت کاربر به سمت اقدام طراحی می‌شود',
+      benefits: ['فروش بیشتر', 'نرخ تبدیل بالاتر', 'ROI بهتر']
+    },
+    {
+      principle: 'Technical Performance',
+      description: 'کدهای بهینه، سرعت بالا و سازگاری کامل با موتورهای جستجو',
+      benefits: ['کارایی بهتر', 'رتبه‌بندی بالاتر', 'تجربه کاربری عالی']
+    }
+  ];
+
+  const seoFeatures = [
+    {
+      category: 'On-Page SEO',
+      features: [
+        'سلسله مراتب URL های بهینه برای سئو',
+        'تگ‌های عنوان و متا توصیف منحصربه‌فرد',
+        'ساختار هدینگ بهینه (H1 تا H6)',
+        'بهینه‌سازی تصاویر و alt tags',
+        'Schema markup پیاده‌سازی شده'
+      ]
+    },
+    {
+      category: 'Technical SEO',
+      features: [
+        'سرعت بارگذاری کمتر از ۲ ثانیه',
+        'سازگاری کامل با موبایل (Mobile-First)',
+        'امنیت SSL و HTTPS پیاده‌سازی شده',
+        'Core Web Vitals بهینه‌سازی شده',
+        'XML Sitemap و Robots.txt استاندارد'
+      ]
+    },
+    {
+      category: 'UX/UI Excellence',
+      features: [
+        'رابط کاربری بصری و کاربرپسند',
+        'ناوبری ساده و منطقی',
+        'فرم‌های ورودی بهینه‌سازی شده',
+        'CTA های استراتژیک در جای مناسب',
+        'طراحی ریسپانسیو برای تمام دستگاه‌ها'
+      ]
+    }
+  ];
+
+  const conversionElements = [
+    {
+      element: 'Smart CTAs',
+      description: 'فراخوان‌های هوشمند و استراتژیک برای افزایش تبدیل',
+      impact: 'افزایش نرخ کلیک'
+    },
+    {
+      element: 'Trust Signals',
+      description: 'عناصر اعتمادساز از گواهی‌نامه‌ها تا نظرات مشتریان',
+      impact: 'بهبود اعتبار'
+    },
+    {
+      element: 'Social Proof',
+      description: 'آمارها، تعداد مشتریان و موفقیت‌های گذشته نمایش داده می‌شود',
+      impact: 'افزایش اعتماد'
+    }
+  ];
+
+  const technologyStack = [
+    {
+      name: 'Next.js 14 Framework',
+      description: 'فریمورک مدرن با سرعت و سئو بی‌نظیر',
+      benefits: ['سرعت بالا', 'سئو عالی', 'SSR/SSG']
+    },
+    {
+      name: 'React Components',
+      description: 'کامپوننت‌های reusable و کارآمد',
+      benefits: ['نرخ تبدیل بالا', 'UX پیشرفته', ' Performance']
+    },
+    {
+      name: 'Tailwind CSS',
+      description: 'سیستم طراحی مدرن و ریسپانسیو',
+      benefits: ['سرعت توسعه', 'سازگاری کامل', 'بهینه‌سازی اتوماتیک']
+    },
+    {
+      name: 'Cloud Database',
+      description: 'پایگاه داده قدرتمند و ایمن در فضای ابری',
+      benefits: ['قابلیت اطمینان بالا', 'سرعت دسترسی', 'امنیت کامل']
+    }
+  ];
+
+  const comparisonFeatures = [
+    {
+      feature: 'زمان بارگذاری',
+      seoDesign: 'کمتر از ۲ ثانیه',
+      regularDesign: 'معمولاً کندتر',
+      improvement: 'سریع‌تر'
+    },
+    {
+      feature: 'نرخ تبدیل',
+      seoDesign: 'بالاتر',
+      regularDesign: 'پایین‌تر',
+      improvement: 'بهره‌وری بیشتر'
+    },
+    {
+      feature: 'رتبه گوگل',
+      seoDesign: 'صفحه ۱-۲',
+      regularDesign: 'صفحه ۵-۱۰',
+      improvement: 'دید بیشتر'
+    },
+    {
+      feature: 'هزینه توسعه مجدد',
+      seoDesign: 'کمتر',
+      regularDesign: 'بیشتر',
+      improvement: 'صرفه‌جویی در هزینه'
+    }
+  ];
+
+  const projectPhases = [
+    {
+      phase: 'Discovery & Strategy',
+      description: 'تحلیل نیازها، رقبا و استراتژی برند'
+    },
+    {
+      phase: 'Information Architecture',
+      description: 'طراحی ساختار محتوا و معماری اطلاعات'
+    },
+    {
+      phase: 'Wireframing & Prototyping',
+      description: 'نمونه‌سازی اولیه و پروتوتایپ تعاملی'
+    },
+    {
+      phase: 'Design & Development',
+      description: 'طراحی رابط کاربری و توسعه فنی'
+    },
+    {
+      phase: 'SEO Implementation',
+      description: 'پیاده‌سازی کامل عناصر سئو تکنیکال'
+    },
+    {
+      phase: 'Testing & Launch',
+      description: 'تست نهایی و راه‌اندازی رسمی'
+    },
+    {
+      phase: 'Training & Support',
+      description: 'آموزش تیم و پشتیبانی پس از راه‌اندازی'
+    }
+  ];
+
+  const stats = [
+    { metric: '۲ ثانیه', label: 'زمان بارگذاری', icon: "zap" },
+    { metric: 'CRO', label: 'افزایش نرخ تبدیل', icon: "trending-up" },
+    { metric: 'SEO-friendly', label: 'بهبود رتبه گوگل', icon: "search" },
+    { metric: 'موبایل‌فرست', label: 'سازگاری موبایل', icon: "smartphone" }
+  ];
+
+  const benefits = [
+    'افزایش نرخ تبدیل با طراحی UX استراتژیک محور',
+    'بهبود رتبه گوگل با معماری SEO-friendly',
+    'کاهش هزینه بازاریابی به دلیل طراحی بهینه‌شده',
+    'افزایش سرعت سایت با تکنولوژی‌های مدرن'
+  ];
+
+  const faqs = [
+    {
+      question: 'چرا طراحی سئو محور بهتر از طراحی معمولی است؟',
+      answer: 'طراحی سئو محور از پایه برای موتورهای جستجو ساخته می‌شود. تمام عناصر از URLها تا کدها به صورت بهینه طراحی می‌شوند. در نتیجه سایت شما زودتر دیده می‌شود، رتبه بهتری می‌گیرد و نرخ تبدیل بالاتری دارد. در واقع شما در همان زمان طراحی، بخشی از سئو را هم انجام داده‌اید.'
+    },
+    {
+      question: 'آیا وب‌سایت طراحی شده ریسپانسیو خواهد بود؟',
+      answer: 'بله! عصر سئو تمام وب‌سایت‌ها را با رویکرد Mobile-First طراحی می‌کند. این یعنی ابتدا برای موبایل طراحی می‌شود و سپس برای دستگاه‌های بزرگ‌تر بهینه‌سازی می‌شود. بسیاری از کاربران اینترنت از موبایل استفاده می‌کنند، پس سایت شما برای دستگاه اصلی‌شان بهینه است.'
+    },
+    {
+      question: 'چه مدت زمان برای طراحی و راه‌اندازی سایت نیاز است؟',
+      answer: 'بسته به پیچیدگی پروژه متفاوت است، اما متوسط زمان اجرای پروژه‌ها در عصر سئو بین ۲ تا ۶ هفته است. پروژه‌های ساده ۲ هفته، فروشگاه‌های آنلاین ۴ هفته و پروژه‌های سازمانی پیچیده حداکثر ۶ هفته زمان نیاز دارند. این زمان شامل طراحی، توسعه، تست و راه‌اندازی است.'
+    },
+    {
+      question: 'آیا پس از راه‌اندازی سایت از آن پشتیبانی خواهید کرد؟',
+      answer: 'بله! هر پکیج طراحی شامل دوره پشتیبانی مشخصی است. از پکیج استارت‌آپ ۳ ماه تا پکیج سازمانی ۱۲ ماه پشتیبانی دریافت می‌کنید. این پشتیبانی شامل بروزرسانی امنیتی، رفع باگ‌ها، آموزش تیم شما و مشاوره‌های بهینه‌سازی است.'
+    },
+    {
+      question: 'چه فریمورک‌ها و تکنولوژی‌هایی استفاده می‌کنید؟',
+      answer: 'از جدیدترین و بهترین تکنولوژی‌ها استفاده می‌کنیم: Next.js ۱۴ برای ساختار، React برای کامپوننت‌ها، Tailwind CSS برای استایل‌دهی، و پایگاه داده ابری برای کارایی بالا. تمام این‌ها منجر به سرعت بالا، سئو عالی و تجربه کاربری بی‌نظیر می‌شود.'
+    },
+    {
+      question: 'هزینه طراحی سایت سئو محور چقدر است؟',
+      answer: 'قیمت‌گذاری بر اساس نیازهای شما انجام می‌شود. پکیج استارت‌آپ از ۴.۹ میلیون تومان شروع می‌شود که برای کسب‌وکارهای کوچک مناسب است. پکیج حرفه‌ای ۱۲.۵ میلیون تومان برای کسب‌وکارهای در حال رشد و پکیج سازمانی ۲۵ میلیون تومان برای شرکت‌های بزرگ. هر پکیج شامل خدماتی متناسب با نیاز شما است.'
+    }
+  ];
+
+  
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات وب', item: 'https://asreseo.com/services/web/' },
+    { position: 3, name: 'طراحی سایت سئو محور', item: 'https://asreseo.com/services/web/seo-web-design/' },
+  ];
+
+---
+<BaseLayout title='طراحی سایت سئو محور و بهینه‌سازی سرعت | عصر سئو' description='طراحی وب‌سایت سئو محور با سرعت بالا، تجربه کاربری عالی و رتبه‌بندی بهتر گوگل. افزایش نرخ تبدیل با طراحی UX/UI حرفه‌ای.' keywords='طراحی سایت سئو محور, طراحی وب‌سایت, بهینه‌سازی سئو, UX/UI, طراحی رسپانسیو' canonical='https://asreseo.com/services/web/seo-web-design/' ogType='website' ogUrl='https://asreseo.com/services/web/seo-web-design/' ogImages={[{ url: "/og/web-design-hero.jpg", width: 1200, height: 630, alt: "طراحی سایت سئو محور | عصر سئو" }]} twitterCard='summary_large_image'
+  ogTitle='طراحی سایت سئو محور و بهینه‌سازی سرعت | عصر سئو'
+
+  ogDescription='طراحی وب‌سایت سئو محور با بهترین استانداردها.'
+>
+<div class="min-h-screen bg-white">
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/web/seo-web-design/', image: '/og/web-design-hero.jpg' }))} />
+
+      <Header />
+      <BreadcrumbStructuredData items={breadcrumbs} />
+
+      <main>
+        <ServiceHero
+          badge="طراحی وب‌سایت حرفه‌ای"
+          title="طراحی سایت سئو محور"
+          titleHighlight="سایت سئو محور"
+          description="وب‌سایت شما از روز اول برای رتبه‌بندی گوگل، تجربه عالی کاربر و نرخ تبدیل بالا طراحی می‌شود. عصر سئو با تکنولوژی‌های پیشرفته وب‌سایت‌هایی می‌سازد که در صفحه اول گوگل می‌درخشند!"
+          primaryCtaText="مشاوره رایگان طراحی"
+          secondaryCtaText="نمونه کارها را ببینید"
+          imageSrc="/images/web-design-hero.webp"
+          imageAlt="طراحی وب‌سایت سئو محور"
+          theme="indigo"
+        />
+
+        <ServiceStats
+          stats={stats}
+          gradientClass="bg-linear-to-r from-indigo-50 to-blue-50"
+          metricColorClass="text-indigo-700"
+          iconColorClass="text-blue-600"
+        />
+
+        <!-- Design Principles Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                چهار اصل پایه <span class="gradient-text">طراحی سئو محور</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                رویکردی که وب‌سایت شما را به ماشین فروش آنلاین تبدیل می‌کند
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {designPrinciples.map((principle, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
+                        <Icon name="target" class="h-6 w-6 text-indigo-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{principle.principle}</CardTitle>
+                    </div>
+                    <p class="text-gray-600">{principle.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-1">
+                      {principle.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle2" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- SEO Features Grid -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                پوشش کامل <span class="gradient-text">عناصر سئو</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                هیچ عنصر سئویی را فراموش نکنید
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {seoFeatures.map((category, index) => (
+                <Card class="p-6 border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <CardTitle class="text-2xl text-center">{category.category}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div class={`grid ${category.category === 'UX/UI Excellence' ? 'md:grid-cols-3' : 'md:grid-cols-5'} gap-4`}>
+                      {category.features.map((feature, featureIndex) => (
+                        <div class="text-center p-4 bg-white rounded-lg border">
+                          <Icon name="check-circle2" class="h-6 w-6 text-green-500 mx-auto mb-2" />
+                          <p class="text-sm font-medium text-gray-900">{feature}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Conversion Elements -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                عناصر <span class="gradient-text">افزایش تبدیل</span> استراتژیک
+              </h2>
+              <p class="text-xl text-gray-600">
+                تکنیک‌های اثبات‌شده برای تبدیل بازدیدکنندگان به مشتریان
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+              {conversionElements.map((element, index) => (
+                <Card class="hover:shadow-lg transition-all duration-300">
+                  <CardHeader>
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                      <Icon name="trending-up" class="h-8 w-8 text-green-800" />
+                    </div>
+                    <CardTitle class="text-lg">{element.element}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-3">{element.description}</p>
+                    <Badge class="bg-green-100 text-green-800">{element.impact}</Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Technology Stack -->
+        <section class="section-padding bg-slate-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                تکنولوژی‌های پیشرفته <span class="gradient-text">مورد استفاده</span>
+              </h2>
+              <p class="text-xl text-gray-600">
+                جدیدترین ابزارهای وب برای حداکثر کارایی و امنیت
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {technologyStack.map((tech, index) => (
+                <Card class="hover:shadow-md transition-shadow">
+                  <CardContent class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">{tech.name}</h3>
+                    <p class="text-gray-600 mb-4">{tech.description}</p>
+                    <div class="flex flex-wrap gap-2">
+                      {tech.benefits.map((benefit, benefitIndex) => (
+                        <Badge variant="outline" class="text-sm">
+                          {benefit}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                مقایسه <span class="gradient-text">طراحی معمولی</span> vs <span class="gradient-text">سئو محور</span>
+              </h2>
+              <p class="text-xl text-gray-600">
+                چرا طراحی سئو محور بازگشت سرمایه بهتری دارد؟
+              </p>
+            </div>
+
+            <div class="overflow-hidden rounded-xl border border-gray-200">
+              <table class="w-full">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-4 text-right font-semibold">معیار مقایسه</th>
+                    <th class="px-6 py-4 text-center font-semibold">طراحی سئو محور</th>
+                    <th class="px-6 py-4 text-center font-semibold">طراحی معمولی</th>
+                    <th class="px-6 py-4 text-center font-semibold">بهبود</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonFeatures.map((comp, index) => (
+                    <tr class="border-t border-gray-200">
+                      <td class="px-6 py-4 font-medium">{comp.feature}</td>
+                      <td class="px-6 py-4 text-center bg-green-50 text-green-800 font-semibold">
+                        {comp.seoDesign}
+                      </td>
+                      <td class="px-6 py-4 text-center bg-red-50 text-red-700">
+                        {comp.regularDesign}
+                      </td>
+                      <td class="px-6 py-4 text-center bg-blue-50 text-blue-700 font-semibold">
+                        {comp.improvement}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Project Phases -->
+        <section class="section-padding bg-linear-to-br from-blue-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                فرایند <span class="gradient-text">طراحی و اجرای</span> پروژه
+              </h2>
+              <p class="text-xl text-gray-600">
+                رویکرد ۷ مرحله‌ای برای اطمینان از کیفیت و رضایت
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {projectPhases.map((phase, index) => (
+                <div class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs">
+                  <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-2xl font-bold text-blue-700">
+                    {index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      {phase.phase}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      {phase.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <ServiceBenefits
+          title="مزایای طراحی سئو محور عصر سئو"
+          titleHighlight="سئو محور"
+          subtitle="آنچه با طراحی سئو محور عصر سئو به دست می‌آورید"
+          benefits={benefits}
+          iconColorClass="text-blue-600"
+          iconBgClass="bg-blue-100"
+        />
+
+        <ServiceFAQ
+          title="سوالات متداول"
+          highlightWord="متداول"
+          subtitle="پاسخ به پرسش‌های رایج مشتریان درباره طراحی سایت سئو محور"
+          faqs={faqs}
+        />
+
+        <ServiceCTA
+          title="وب‌سایت شما از صفحه اول گوگل شروع می‌شود!"
+          description="عصر سئو با تجربه طراحی وب‌سایت‌های متعدد، وب‌سایتی برای شما می‌سازد که نه تنها زیبا باشد، بلکه ماشین فروش آنلاین شما خواهد بود. طراحی سئو محور به معنای این است که از همان لحظه راه‌اندازی، رقابت را شروع کرده‌اید!"
+          primaryText="شروع طراحی سئو محور"
+          secondaryText="مشاوره رایگان پروژه"
+          primaryClass="bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg shadow-blue-600/30"
+        />
+      </main>
+
+      <Footer />
+    </div>
+</BaseLayout>

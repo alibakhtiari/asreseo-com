@@ -1,0 +1,110 @@
+---
+import Card from '../ui/card/Card.astro';
+import CardContent from '../ui/card/CardContent.astro';
+import CardDescription from '../ui/card/CardDescription.astro';
+import CardHeader from '../ui/card/CardHeader.astro';
+import CardTitle from '../ui/card/CardTitle.astro';
+import Button from '../ui/button/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+
+
+
+
+  const services = [
+    {
+      icon: "search",
+      title: 'سئو و بهینه‌سازی',
+      description: 'بهینه‌سازی وب‌سایت شما برای موتورهای جستجو و افزایش رتبه در گوگل',
+      features: ['تحلیل کلمات کلیدی', 'بهینه‌سازی محتوا', 'لینک‌سازی داخلی و خارجی', 'گزارش‌دهی مفصل'],
+      color: 'from-blue-500 to-blue-600',
+      href: '/services/seo/'
+    },
+    {
+      icon: "user",
+      title: 'دیجیتال مارکتینگ',
+      description: 'استراتژی‌های جامع بازاریابی دیجیتال برای رشد کسب‌وکار شما',
+      features: ['مدیریت شبکه‌های اجتماعی', 'تبلیغات محتوایی', 'ایمیل مارکتینگ', 'تحلیل رقبا'],
+      color: 'from-green-500 to-green-600',
+      href: '/services/marketing/'
+    },
+    {
+      icon: "image",
+      title: 'طراحی وب‌سایت',
+      description: 'طراحی و توسعه وب‌سایت‌های مدرن، سریع و کاربرپسند',
+      features: ['طراحی ریسپانسیو', 'بهینه‌سازی سرعت', 'رابط کاربری حرفه‌ای', 'پشتیبانی فنی'],
+      color: 'from-purple-500 to-purple-600',
+      href: '/services/web/'
+    }
+  ];
+
+  
+---
+<section class="py-16 lg:py-24 bg-white">
+      <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <!-- Section Header -->
+        <div class="text-center mb-16 animate-fade-in">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            خدمات <span class="gradient-text">حرفه‌ای</span> ما
+          </h2>
+          <p class="text-xl text-gray-800 max-w-3xl mx-auto leading-relaxed">
+            با استفاده از جدیدترین تکنولوژی‌ها و روش‌های بازاریابی، کسب‌وکار شما را به سطح بعدی می‌بریم
+          </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {services.map((service, index) => (
+            <Card
+             
+              class="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 border-0 shadow-lg overflow-hidden animate-slide-in-right bg-linear-to-br hover:from-white hover:to-gray-50"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              <CardHeader class="text-center pb-4">
+                <div class={`inline-flex p-4 rounded-full bg-linear-to-r ${service.color} mb-4 mx-auto group-hover:scale-110 transition-transform duration-300`}>
+                  <Icon name={service.icon} class="h-8 w-8 text-white" />
+                </div>
+                <CardTitle class="text-xl font-bold text-gray-900 mb-2">
+                  {service.title}
+                </CardTitle>
+                <CardDescription class="text-gray-800 leading-relaxed">
+                  {service.description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul class="space-y-3 mb-6">
+                  {service.features.map((feature, featureIndex) => (
+                    <li class="flex items-center text-gray-800">
+                      <div class="w-2 h-2 bg-linear-to-r from-blue-500 to-green-500 rounded-full ml-3"></div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <Button variant="outline" class="w-full border-2 hover:bg-linear-to-r hover:from-blue-500 hover:to-green-500 hover:text-white hover:border-transparent transition-all duration-300 w-full" href={service.href}>
+                    اطلاعات بیشتر درباره {service.title}
+                  </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <!-- CTA Section -->
+        <div class="text-center">
+          <div class="bg-linear-to-r from-blue-600 to-green-600 rounded-2xl p-8 md:p-12 text-white animate-fade-in">
+            <h3 class="text-2xl md:text-3xl font-bold mb-4">
+              آماده شروع هستید؟
+            </h3>
+            <p class="text-lg mb-6 opacity-90">
+              مشاوره رایگان دریافت کنید و ببینید چگونه می‌توانیم کسب‌وکار شما را متحول کنیم
+            </p>
+            <Button
+              href="/consultation/"
+              size="lg"
+              class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold transition-all duration-200 transform hover:scale-105"
+            >
+              درخواست مشاوره رایگان
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>

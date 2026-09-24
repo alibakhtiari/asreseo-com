@@ -1,0 +1,500 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'طراحی تجربه کاربری UX',
+  'description': 'خدمات طراحی تجربه کاربری و معماری اطلاعات بهینه',
+  'serviceType': 'UX Design & Information Architecture',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'عصر سئو',
+    'url': 'https://asreseo.com'
+  },
+  'areaServed': 'Iran',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'خدمات UX Design',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'معماری اطلاعات',
+          'description': 'طراحی ساختار داده‌های وب‌سایت'
+        }
+      }
+    ]
+  }
+}
+
+
+
+  const designPrinciples = [
+    {
+      principle: 'معماری اطلاعات ساخت‌یافته',
+      description: 'تنظیم ساختار استاندارد سایت برای یافتن سریع اطلاعات توسط کاربران و گوگل با سلسله مراتب منطقی و ناوبری روان.',
+      benefits: ['یافت سریع اطلاعات', 'بهبود تجربه کاربر', 'رتبه‌بندی بهتر گوگل']
+    },
+    {
+      principle: 'سفر کاربر بهینه‌شده',
+      description: 'طراحی مسیرهای دسترسی و تعامل به گونه‌ای که کاربر بدون سردرگمی و با کمترین کلیک به هدف خود برسد.',
+      benefits: ['افزایش نرخ تبدیل', 'کاهش نرخ خروج', 'رضایت بالاتر کاربر']
+    },
+    {
+      principle: 'رعایت الگوهای برتر جهان',
+      description: 'استفاده از بهترین شیوه‌ها و پترن‌های UX جهانی که توسط میلیون‌ها کاربر تست شده‌اند.',
+      benefits: ['تجربه شناخته شده', 'قابل پیش‌بینی بودن', 'کارایی بالا']
+    }
+  ];
+
+  const methodologies = [
+    {
+      name: 'Design Thinking Process',
+      steps: [
+        'Empathize - فهم نیاز کاربران',
+        'Define - تعریف مسئله',
+        'Ideate - تولید ایده',
+        'Prototype - ایجاد نمونه',
+        'Test - آزمایش و بهبود'
+      ],
+      impact: 'بهبود تجربه کاربری'
+    },
+    {
+      name: 'User Journey Mapping',
+      steps: [
+        'نقشه‌ریزی مسیر کاربر',
+        'شناسایی نقاط تماس',
+        'تحلیل نقاط درد',
+        'طراحی راه حل‌ها',
+        'بهینه‌سازی مداوم'
+      ],
+      impact: 'افزایش نرخ ماندگاری'
+    },
+    {
+      name: 'Usability Testing Framework',
+      steps: [
+        'تایین سناریوهای تست',
+        'اجرای تست با کاربران واقعی',
+        'تحلیل رفتار کاربران',
+        'شناسایی مشکلات',
+        'تکرار و بهبود'
+      ],
+      impact: 'بهبود نرخ تکمیل هدف'
+    }
+  ];
+
+  const uxTechniques = [
+    {
+      technique: 'F-Pattern & Z-Pattern Layout',
+      description: 'طراحی چیدمان صفحات بر اساس الگوی طبیعی خواندن کاربران',
+      effect: 'بهبود جذب اولیه'
+    },
+    {
+      technique: 'Progressive Disclosure',
+      description: 'نمایش اطلاعات به تدریج برای جلوگیری از overwhelming شدن کاربر',
+      effect: 'کاهش نرخ خروج'
+    },
+    {
+      technique: 'Visual Hierarchy',
+      description: 'مرتب‌سازی عناصر بصری بر اساس اهمیت نسبی آنها',
+      effect: 'بهبود فهم محتوا'
+    },
+    {
+      technique: 'Affordance Design',
+      description: 'طراحی عناصر که عملکرد خود را نشان دهند',
+      effect: 'کاهش سردرگمی کاربر'
+    }
+  ];
+
+  const userResearchMethods = [
+    {
+      method: 'User Interviews',
+      description: 'مصاحبه عمیق با کاربران هدف برای فهم نیازهای واقعی',
+      benefit: 'دریافت بینش‌های جامع'
+    },
+    {
+      method: 'Usability Testing',
+      description: 'تست کاربردپذیری با کاربران واقعی در شرایط واقعی',
+      benefit: 'شناسایی مشکلات واقعی'
+    },
+    {
+      method: 'A/B Testing',
+      description: 'تست دو یا چند نسخه متفاوت برای یافتن بهترین رویکرد',
+      benefit: 'تصمیم‌گیری مبتنی بر داده'
+    },
+    {
+      method: 'Heatmap Analysis',
+      description: 'تحلیل نقشه حرارتی کلیک‌ها و اسکرول صفحات',
+      benefit: 'درک رفتار کاربر'
+    }
+  ];
+
+  const deliverables = [
+    'User Personas - پروفایل کاربران هدف',
+    'User Journey Maps - نقشه سفر کاربر',
+    'Information Architecture Diagrams - نمودار معماری اطلاعات',
+    'Wireframes & Prototypes - نمونه‌های اولیه و تعاملی',
+    'Usability Reports - گزارش‌های کاربردپذیری',
+    'A/B Testing Results - نتایج تست A/B'
+  ];
+
+  const workflowSteps = [
+    {
+      step: 'تحقیق و تحلیل',
+      desc: 'مصاحبه با کاربران، تحلیل رقبا، بررسی اهداف کسب‌وکار',
+      duration: '۱-۲ هفته'
+    },
+    {
+      step: 'طراحی استراتژی',
+      desc: 'تعریف معماری اطلاعات، نقشه سفر کاربر، اهداف کمی',
+      duration: '۳-۵ روز'
+    },
+    {
+      step: 'نمونه‌سازی اولیه',
+      desc: 'Wireframe، Prototype تعاملی، طرح‌های اولیه',
+      duration: '۱ هفته'
+    },
+    {
+      step: 'تست و بررسی',
+      desc: 'Usability testing، A/B Testing، جمع‌آوری بازخورد',
+      duration: '۵-۷ روز'
+    },
+    {
+      step: 'نهایی‌سازی و تحویل',
+      desc: 'اجرای نهایی، مستندسازی، آموزش تیم توسعه',
+      duration: '۳-۵ روز'
+    },
+    {
+      step: 'پشتیبانی پس از تحویل',
+      desc: 'پیگیری عملکرد، پیشنهادات بهبود، تا ۳ ماه',
+      duration: '۲-۳ ماه'
+    }
+  ];
+
+  const benefits = [
+    'افزایش نرخ تبدیل با سفر کاربر بهینه‌سازی شده',
+    'کاهش نرخ خروج سایت با تجربه کاربری روان',
+    'بهبود زمان یافت اطلاعات با معماری اطلاعات استاندارد',
+    'افزایش رضایت کاربران با الگوهای UX جهانی'
+  ];
+
+  const faqs = [
+    {
+      question: 'تجربه کاربری (UX) دقیقاً چیست و چه تفاوتی با UI دارد؟',
+      answer: 'UX یا تجربه کاربری کل تجربه کاربر از محصول یا سرویس شماست - از راه‌اندازی اولیه تا استفاده روزمره. UI یا رابط کاربری صرفاً ظاهر گرافیکی است. UX شامل تحقیق کاربران، معماری اطلاعات، قابلیت استفاده و رضایت کلی است.'
+    },
+    {
+      question: 'چقدر زمان برای طراحی UX یک وب‌سایت نیاز است؟',
+      answer: 'بسته به پیچیدگی پروژه، معمولاً بین ۲ تا ۶ هفته زمان نیاز است. پروژه‌های ساده‌ ۲ هفته، فروشگاه‌های آنلاین ۴ هفته و پلتفرم‌های پیچیده ۶ هفته یا بیشتر زمان نیاز دارند.'
+    },
+    {
+      question: 'آیا پروژه UX شامل تحقیقات کاربر هم می‌شود؟',
+      answer: 'بله! قوی‌ترین بخش سرویس ما انجام تحقیقات عمیق است. ما از روش‌های User Interviews، Usability Testing، A/B Testing و تحلیل داده‌ها برای طراحی UX استفاده می‌کنیم و به این تحقیقات تکیه می‌کنیم.'
+    },
+    {
+      question: 'پس از طراحی UX، چه تحویلاتی دریافت می‌کنم؟',
+      answer: 'User Personas، User Journey Maps، Wireframes، Interactive Prototypes، Usability Test Reports، و مستندات کامل UX Guidelines که تیم توسعه شما برای پیاده‌سازی دقیقاً نیاز دارد.'
+    },
+    {
+      question: 'آیا می‌توان UX را برای اپلیکیشن موبایل هم طراحی کرد؟',
+      answer: 'بله! علاوه بر وب‌سایت‌ها، ما خدمات UX Design برای اپلیکیشن‌های موبایل و وب‌اپلیکیشن‌ها هم ارائه می‌دهیم. رویکرد Mobile-First Design را در تمام پروژه‌ها رعایت می‌کنیم.'
+    },
+    {
+      question: 'چطور می‌توانم کیفیت کار UX Design را ارزیابی کنم؟',
+      answer: 'کیفیت کار UX را می‌توان از طریق Usability Testing، A/B Testing و تحلیل نرخ تبدیل اندازه‌گیری کرد. ما این تحلیل‌ها را به همراه مستندات تحویل می‌دهیم.'
+    }
+  ];
+
+  
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات وب', item: 'https://asreseo.com/services/web/' },
+    { position: 3, name: 'معماری تجربه کاربری UX', item: 'https://asreseo.com/services/web/ux-architecture/' },
+  ];
+
+  const stats = [
+    { metric: 'سفر کاربر', label: 'افزایش نرخ تبدیل' },
+    { metric: 'ناوبری روان', label: 'کاهش نرخ خروج' },
+    { metric: 'ساختار منظم', label: 'سرعت یافت اطلاعات' },
+    { metric: 'الگوهای جهانی', label: 'افزایش رضایت' },
+  ];
+---
+<BaseLayout title='طراحی تجربه کاربری و معماری اطلاعات UX | عصر سئو' description='طراحی UX پیشرفته و معماری اطلاعات بهینه برای وب‌سایت؛ بهینه‌سازی نرخ تبدیل، ساختار مسیر کاربر و بهبود تجربه کاربری در تمام صفحات.' keywords='تجربه کاربری UX, معماری اطلاعات, Information Architecture, UI/UX Design, نرخ تبدیل' canonical='https://asreseo.com/services/web/ux-architecture/' ogType='website' ogUrl='https://asreseo.com/services/web/ux-architecture/' ogImages={[{ url: "/og/ux-architecture-hero.jpg", width: 1200, height: 630, alt: "معماری تجربه کاربری UX | عصر سئو" }]} twitterCard='summary_large_image'
+  ogTitle='طراحی تجربه کاربری و معماری اطلاعات | عصر سئو'
+
+  ogDescription='طراحی UX پیشرفته برای وب‌سایت شما.'
+>
+<div class="min-h-screen bg-white">
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/web/ux-architecture/', image: '/og/ux-architecture-hero.jpg' }))} />
+
+      <Header />
+      <BreadcrumbStructuredData items={breadcrumbs} />
+
+      <main>
+        <ServiceHero
+          badge="طراحی تجربه کاربری پیشرفته"
+          title="معماری اطلاعات و تجربه کاربری UX"
+          titleHighlight="تجربه کاربری UX"
+          description="راز ماندگاری کاربران و موفقیت دیجیتال! طراحی UX علمی با روانشناسی کاربران و معماری اطلاعات هوشمند برای افزایش نرخ تبدیل در عصر سئو."
+          primaryCtaText="شروع طراحی UX"
+          secondaryCtaText="مشاهده نمونه کارها"
+          imageSrc="/images/ux-architecture-hero.webp"
+          imageAlt="طراحی تجربه کاربری و معماری اطلاعات"
+          theme="indigo"
+        />
+
+                <ServiceStats stats={stats} gradientClass="section-padding bg-linear-to-r from-purple-50 to-indigo-50" metricColorClass="text-indigo-600 mb-2" />
+
+        <!-- Core Principles Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                سه اصل پایه <span class="gradient-text">طراحی UX موفق</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                رویکرد علمی عصر سئو برای تجربه کاربری بی‌نظیر
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+              {designPrinciples.map((principle, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
+                      <Icon name="target" class="h-6 w-6 text-indigo-600" />
+                    </div>
+                    <CardTitle class="text-xl font-semibold">{principle.principle}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4">{principle.description}</p>
+                    <div class="space-y-2">
+                      {principle.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle2" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Methodologies Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                رویکردهای <span class="gradient-text">UX پیشرفته</span> عصر سئو
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                متدهایی که توسط برندهای جهانی اثبات شده‌اند
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {methodologies.map((method, index) => (
+                <Card class="p-6 border-0 shadow-lg">
+                  <CardContent>
+                    <div class="flex items-center gap-4 mb-6">
+                      <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                        <Icon name="brain" class="h-6 w-6 text-purple-600" />
+                      </div>
+                      <h3 class="text-2xl font-semibold text-gray-900">{method.name}</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 class="font-medium text-gray-900 mb-3">فرآیند اجرایی:</h4>
+                        <ul class="space-y-1">
+                          {method.steps.map((step, stepIndex) => (
+                            <li class="flex items-center gap-2 text-sm text-gray-600">
+                              <Icon name="check-circle2" class="h-4 w-4 text-green-500 shrink-0" />
+                              {step}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div class="flex items-center justify-center">
+                        <Badge class="bg-green-100 text-green-800 text-lg">{method.impact}</Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- UX Techniques Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                تکنیک‌های UX <span class="gradient-text">اثبات‌شده</span>
+              </h2>
+              <p class="text-xl text-gray-600">
+                روش‌هایی که نرخ تبدیل را به طور چشمگیری بهبود می‌دهند
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {uxTechniques.map((technique: any) => (
+                <Card class="hover:shadow-lg transition-all duration-300">
+                  <CardContent class="p-6">
+                    <div class="flex items-start gap-4">
+                      <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
+                        <Icon name="zap" class="h-6 w-6 text-green-800" />
+                      </div>
+                      <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                          {technique.technique}
+                        </h3>
+                        <p class="text-gray-600 mb-3">
+                          {technique.description}
+                        </p>
+                        <Badge class="bg-green-100 text-green-800">
+                          {technique.effect}
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section class="section-padding bg-slate-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                روش‌های تحقیق <span class="gradient-text">کاربر محور</span>
+              </h2>
+              <p class="text-xl text-gray-600">
+                کشف نیازهای واقعی کاربران با رویکرد علمی
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {userResearchMethods.map((method, index) => (
+                <Card class="hover:shadow-md transition-shadow">
+                  <CardContent class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">{method.method}</h3>
+                    <p class="text-gray-600 mb-3">{method.description}</p>
+                    <Badge variant="outline" class="text-sm">
+                      {method.benefit}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Deliverables Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                محصولات تحویلی <span class="gradient-text">UX Design</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                ارزش واقعی را در تحویل نهایی دریافت کنید
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {deliverables.map((deliverable, index) => (
+                <div class="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+                  <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center shrink-0">
+                    <Icon name="eye" class="h-5 w-5 text-indigo-600" />
+                  </div>
+                  <span class="text-gray-900 font-medium text-sm">
+                    {deliverable}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits title="مزایای طراحی عصر سئو" titleHighlight="UX حرفه‌ای" subtitle="آنچه در پروژه‌های UX عصر سئو بهبود می‌یابد" benefits={benefits} />
+
+        <!-- Workflow Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                فرآیند <span class="gradient-text">طراحی UX</span> عصر سئو
+              </h2>
+              <p class="text-xl text-gray-600">
+                رویکرد ۶ مرحله‌ای برای UX Design کاملاً اثربخش
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {workflowSteps.map((step, index) => (
+                <div class="flex items-center gap-8 p-6 bg-white rounded-xl shadow-xs">
+                  <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center text-2xl font-bold text-indigo-700">
+                    {index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      {step.step}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-2">
+                      {step.desc}
+                    </p>
+                    <Badge variant="outline" class="text-sm">
+                      مدت زمان: {step.duration}
+                    </Badge>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <ServiceFAQ
+          title="سوالات متداول"
+          highlightWord="متداول"
+          subtitle="پاسخ به پرسش‌های مشتریان درباره طراحی UX و تجربه کاربری"
+          faqs={faqs}
+        />
+
+        <ServiceCTA
+          title="تجربه کاربری برتر، فروش بی‌رقیب!"
+          description="با طراحی UX علمی عصر سئو، تبدیل کاربران به مشتریان وفادار. تجربه‌ای که فراموش‌نشدنی است و فروش شما را چندین برابر می‌کند. پروژه UX خود را همین امروز شروع کنید!"
+          primaryText="مشاوره طراحی UX رایگان"
+          secondaryText="مشاهده نمونه کارهای UX"
+        />
+      </main>
+
+      <Footer />
+    </div>
+</BaseLayout>

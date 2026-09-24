@@ -1,0 +1,80 @@
+---
+// Vanilla single/collapsible accordion (replaces the React context version).
+// Same compositional API: Accordion > Item(value) > Trigger + Content.
+export interface Props {
+  class?: string;
+  dir?: string;
+  type?: string;
+  collapsible?: boolean;
+  value?: string;
+}
+const { class: className, dir }: any = Astro.props;
+---
+<div class={className} dir={dir} data-accordion>
+  <slot />
+</div>
+<script>
+  let uid = 0;
+  function initAccordions() {
+    document.querySelectorAll('[data-accordion]').forEach((root) => {
+      const items = root.querySelectorAll('[data-acc-item]');
+
+      // Wire up the ARIA relationship: button <-> panel.
+      items.forEach((item) => {
+        const btn = item.querySelector('[data-acc-trigger]');
+        const panel = item.querySelector('[data-acc-content]');
+        if (!btn || !panel) return;
+        if (!panel.id) panel.id = `acc-panel-${++uid}`;
+        if (!btn.id) btn.id = `acc-trigger-${uid}`;
+        btn.setAttribute('aria-controls', panel.id);
+        panel.setAttribute('role', 'region');
+        panel.setAttribute('aria-labelledby', btn.id);
+        btn.setAttribute(
+          'aria-expanded',
+          item.getAttribute('data-open') === 'true' ? 'true' : 'false',
+        );
+
+        if (item.getAttribute('data-open') === 'true') {
+          panel.removeAttribute('hidden');
+        } else {
+          panel.setAttribute('hidden', '');
+        }
+
+        if ((btn as HTMLElement).dataset.accInit === 'true') return;
+        (btn as HTMLElement).dataset.accInit = 'true';
+
+        btn.addEventListener('click', () => {
+          const isOpen = item.getAttribute('data-open') === 'true';
+          items.forEach((o) => {
+            o.setAttribute('data-open', 'false');
+            o.querySelector('[data-acc-content]')?.setAttribute('hidden', '');
+            o.querySelector('[data-acc-trigger]')?.setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            item.setAttribute('data-open', 'true');
+            panel.removeAttribute('hidden');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    });
+  }
+
+  initAccordions();
+  document.addEventListener('astro:page-load', initAccordions);
+</script>
+
+
+<style is:global>
+  [data-accordion] [data-acc-trigger][aria-expanded="true"] [data-acc-icon] {
+    transform: rotate(180deg);
+  }
+  [data-accordion] [data-acc-trigger][aria-expanded="true"] {
+    color: var(--color-blue-600, #2563eb);
+  }
+  [data-accordion] [data-acc-trigger][aria-expanded="true"] span:has([data-acc-icon]) {
+    background-color: #eff6ff;
+    color: #2563eb;
+  }
+</style>
+

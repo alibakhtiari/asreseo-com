@@ -1,0 +1,474 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+// Tailwind scans source text, so a class built at runtime (`bg-${c}-100`) is
+// invisible to it — those colours only worked because some *other* file happened
+// to use them literally. Map them out explicitly. -800 (not -700) keeps the
+// label at 6.4:1 on the -100 background, comfortably past WCAG 1.4.3.
+const stageBadge: Record<string, string> = {
+  blue: 'bg-blue-100 text-blue-800',
+  green: 'bg-green-100 text-green-800',
+  yellow: 'bg-yellow-100 text-yellow-800',
+  orange: 'bg-orange-100 text-orange-800',
+  purple: 'bg-purple-100 text-purple-800',
+};
+
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'مدیریت قیف فروش',
+  'description': 'خدمات طراحی و بهینه‌سازی قیف فروش شامل تحلیل رفتار مشتری و اتوماسیون بازاریابی',
+  'serviceType': 'Sales Funnel Management',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'عصر سئو',
+    'url': 'https://asreseo.com'
+  },
+  'areaServed': 'Iran',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'خدمات قیف فروش',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'تحلیل بین',
+          'description': 'بررسی مسیر مسیر فعلی مشتریان'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'بهینه‌سازی تبدیل',
+          'description': 'افزایش نرخ تبدیل در هر مرحله'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const funnelStages = [
+    {
+      stage: 'آگاهی (Awareness)',
+      phase: 'TOP',
+      percentage: 'تمام مخاطبان هدف',
+      description: 'شناخت نیاز و معرفی برند',
+      color: 'blue',
+      activities: ['محتوای آموزشی', 'سوشال مدیا', 'تبلیغات']
+    },
+    {
+      stage: 'علاقه‌مندی (Interest)',
+      phase: 'MIDDLE',
+      percentage: 'علاقه‌مندان به راه‌حل',
+      description: 'کشف راه‌حل‌ها و مقایسه گزینه‌ها',
+      color: 'green',
+      activities: ['وبلاگ تخصصی', 'ویدیو آموزشی', 'وبینار']
+    },
+    {
+      stage: 'تصمیم‌گیری (Consideration)',
+      phase: 'MIDDLE',
+      percentage: 'گزینه‌های جدی خرید',
+      description: 'ارزیابی مزایا و مقایسه رقبا',
+      color: 'yellow',
+      activities: ['مطالعات موردی', 'تست رایگان', 'مشاوره رایگان']
+    },
+    {
+      stage: 'اقدام (Action)',
+      phase: 'BOTTOM',
+      percentage: 'خریداران نهایی',
+      description: 'خرید نهایی و تکمیل تراکنش',
+      color: 'orange',
+      activities: ['پیشنهاد ویژه', 'گارانتی', 'پرداخت آسان']
+    },
+    {
+      stage: 'وفاداری (Retention)',
+      phase: 'BOTTOM',
+      percentage: 'مشتران بازگشتی',
+      description: 'تکرار خرید و بازاریابی دهان به دهان',
+      color: 'purple',
+      activities: ['پشتیبانی عالی', 'برنامه وفاداری', 'بازاریابی مجدد']
+    }
+  ];
+
+  const services = [
+    {
+      icon: "bar-chart3",
+      title: 'تحلیل پیشرفته قیف فروش فعلی',
+      description: 'بررسی کامل مسیر مشتری از ورود تا خرید، شناسایی نقاط ضعف و فرصت‌های بهین##سازی با ابزارهای گوگل آنالیتیکس و هاتجار.',
+      benefits: ['شناسایی نقاط ضعف', 'داده‌های دقیق', 'برنامه‌ریزی علمی']
+    },
+    {
+      icon: "target",
+      title: 'طراحی قیف فروش شخصی‌سازی شده',
+      description: 'ساخت مسیر مشتری منحصربه‌فرد بر اساس محصول، مخاطب و اهداف کسب‌وکار با استفاده از بهترین روش‌های بازاریابی دیجیتال.',
+      benefits: ['بازدهی بالاتر', 'تجربه شخصی', 'نرخ تبدیل بهتر']
+    },
+    {
+      icon: "zap",
+      title: 'اتوماسیون بازاریابی هوشمند',
+      description: 'پیاده‌سازی سیستم اتوماسیون ایمیل، پیامک و پیام‌رسانی برای یادآوری‌ها، فالوآپ‌ها و پیشنهادات هوشمند.',
+      benefits: ['کارایی عملیاتی', 'بازدهی ۲۴/۷', 'کاهش هزینه‌ها']
+    },
+    {
+      icon: "trending-up",
+      title: 'A/B Testing و بهبود مستمر',
+      description: 'تست مداوم صفحات، فرم‌ها، CTAها و محتوای بازاریابی برای دستیابی به بهترین نرخ تبدیل ممکن.',
+      benefits: ['بهبود مداوم', 'نتایج مبتنی بر داده', 'بازدهی حداکثری']
+    },
+    {
+      icon: "users",
+      title: 'مدیریت مشتری و CRM یکپارچه',
+      description: 'نظام مدیریت مشتری متمرکز با دسته‌بندی هوشمند بر اساس مرحله قیف، تاریخچه خرید و رفتار آنلاین.',
+      benefits: ['مدیریت ساده', 'نمایش یکپارچه', 'مشتری‌سازی بهتر']
+    },
+    {
+      icon: "dollar-sign",
+      title: 'گزارش‌دهی مالی و ROI دقیق',
+      description: 'اندازه‌گیری دقیق هزینه‌های بازاریابی، درآمدهای حاصل و نرخ بازگشت سرمایه برای تصمیم‌گیری‌های آگاهانه.',
+      benefits: ['برنامه‌ریزی بودجه', 'شفافیت مالی', 'تصمیم‌گیری بهتر']
+    }
+  ];
+
+  const optimizationStrategies = [
+    {
+      title: 'Landing Page Optimization',
+      icon: "target",
+      techniques: [
+        'A/B Testing عنوان‌ها و تصاویر',
+        'بهینه‌سازی فرم‌های ورودی',
+        'افزایش سرعت بارگذاری',
+        'CTAهای استراتژیک'
+      ],
+      impact: 'بهبود پیوسته نرخ تبدیل'
+    },
+    {
+      title: 'Email Marketing Automation',
+      icon: "scroll-text",
+      techniques: [
+        'کمپین‌های welcome خودکار',
+        'ایمیل‌های follow-up هوشمند',
+        'کمپین‌های remarketing',
+        'فالوآپ ترک خرید'
+      ],
+      impact: 'بهبود نرخ بازگشایی ایمیل'
+    },
+    {
+      title: 'Customer Journey Mapping',
+      icon: "users",
+      techniques: [
+        'نقشه‌ریزی مسیر مشتری',
+        'شناسایی نقاط تماس',
+        'بهینه‌سازی تجربه کاربری',
+        'کاهش friction در فرآیند خرید'
+      ],
+      impact: 'افزایش نرخ تکمیل خرید'
+    }
+  ];
+
+  const benefits = [
+    'افزایش قابل اندازه‌گیری نرخ تبدیل لید به مشتری با مسیر بهینه‌سازی شده',
+    'کاهش هزینه مشتری جدید با اتوماسیون فرایند فروش',
+    'بهبود تجربه مشتری و نرخ رضایت از طریق UX شخصی‌سازی شده',
+    'شفافیت کامل در عملکرد قیف با داشبوردهای تحلیلی پیشرفته',
+    'نگهساری و بازگردانی مشتریان با استراتژی‌های بازاریابی مجدد'
+  ];
+
+  const stats = [
+    { metric: 'رشد مداوم', label: 'نرخ تبدیل قابل اندازه‌گیری', color: 'text-green-800', icon: "trending-up" },
+    { metric: 'بهره‌وری هزینه', label: 'کاهش cost acquisition', color: 'text-blue-600', icon: "dollar-sign" },
+    { metric: 'داشبورد آنلاین', label: 'گزارش شفافیت', color: 'text-purple-600', icon: "bar-chart3" },
+    { metric: '۲۴/۷', label: 'اتوماسیون کامل', color: 'text-orange-600', icon: "zap" }
+  ];
+
+  const workflowSteps = [
+    {
+      step: 'تحلیل و بررسی',
+      desc: 'کنار قیف فعلی، شناسایی نقاط ضعف و فرصت‌های بهبود'
+    },
+    {
+      step: 'طراحی استراتژی',
+      desc: 'ساخت نقشه راه جامع با اهداف کمی و استراتژی‌های اجرایی'
+    },
+    {
+      step: 'پیاده‌سازی فنی',
+      desc: 'راه‌اندازی ابزارها، اتوماسیون‌ها و پیکسل‌های پیگیری'
+    },
+    {
+      step: 'تست و بهینه‌سازی',
+      desc: 'A/B Testing گسترده و بهینه‌سازی مداوم بر اساس داده‌ها'
+    },
+    {
+      step: 'گزارش‌دهی و مانیتورینگ',
+      desc: 'گزارش هفتگی، تحلیل ROI و پیشنهادات بهبود مستمر'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'قیف فروش به چه معناست و چرا اهمیت دارد؟',
+      answer: 'قیف فروش (Sales Funnel) مسیر علمی هدایت مشتری از مرحله آگاهی تا خرید نهایی است. اگر این مسیر بهینه نباشد، بسیاری از مشتریان بالقوه را از دست می‌دهید. بهینه‌سازی همین مسیر نرخ تبدیل را به‌شکل محسوسی بهبود می‌دهد.'
+    },
+    {
+      question: 'چطور نرخ تبدیل قیف فروش را اندازه‌گیری می‌کنیم؟',
+      answer: 'با ابزارهایی مانند Google Analytics، Hotjar، پایگاه داده CRM و پیکسل‌های تبلیغاتی، هر مرحله از قیف را دقیقاً اندازه‌گیری می‌کنیم. نرخ تبدیل بین مراحل، میانگین مدت زمان هر مرحله و نقاط خروج مشتری‌ها را پیگیری می‌کنیم.'
+    },
+    {
+      question: 'چه مدت طول می‌کشد تا نتایج بهبود qفروشيمق فروش را ببینیم؟',
+      answer: 'معمولاً در عرض ۱-۲ هفته اول تغییرات اساسی اعمال می‌شود و نتایج اولیه قابل مشاهده است. اما بهینه‌سازی کامل و پایدار معمولاً ۴-۸ هفته زمان نیاز دارد. در این مدت نرخ تبدیل به صورت مداوم بهبود می‌یابد.'
+    },
+    {
+      question: 'آیا قیف فروش برای همه نوع کسب‌وکار مناسب است؟',
+      answer: 'بله! هم برای فروشگاه‌های آنلاین، هم خدمات دیجیتال، هم B2B و هم کسب‌وکارهای سنتی. استراتژی هر کدام متفاوت است اما هدف مشترک بهینه‌سازی نرخ تبدیل است. از استارتاپ‌های کوچک تا شرکت‌های بزرگ از این سرویس بهره‌مند می‌شوند.'
+    },
+    {
+      question: 'آیا تغییرات فنی روی وب‌سایت لازم است؟',
+      answer: 'بسته به شرایط فعلی شما متفاوت است. اگر ابزارهای آنالیز و اتوماسیون ندارید، نیاز به راه‌اندازی دارند. اگر دارید، استراتژی را بر موجودیت فعلی پیاده‌سازی می‌کنیم. هیچ اختلالی در عملکرد عادی وب‌سایت ایجاد نخواهد شد.'
+    },
+    {
+      question: 'هزینه خدمات مدیریت قیف فروش چقدر است؟',
+      answer: 'قیمت‌گذاری بر اساس پیچیدگی قیف فعلی، ابزارهای مورد نیاز و مدت زمان قرارداد تعیین می‌شود. بسته‌های اقتصادی از ۲ میلیون تومان شروع می‌شود و بسته‌های VIP تا ۱۵ میلیون تومان برای پروژه‌های جامع. هزینه سرمایه‌گذاری مناسبی برای رشد پایدار فروش است!'
+    }
+  ];
+
+---
+<BaseLayout title='مدیریت قیف فروش | افزایش نرخ تبدیل | عصر سئو' description='طراحی و مدیریت علمی قیف فروش با تحلیل رفتار مشتری، اتوماسیون بازاریابی، تست A/B و بهینه‌سازی نرخ تبدیل (CRO).' keywords='قیف فروش, Sales Funnel, نرخ تبدیل, Customer Journey, اتوماسیون فروش, بازاریابی دیجیتال' canonical='https://asreseo.com/services/marketing/sales-funnel-management/' ogType='website' ogUrl='https://asreseo.com/services/marketing/sales-funnel-management/' ogImages={[{ url: "/og/sales-funnel-hero.jpg", width: 1200, height: 630, alt: "مدیریت قیف فروش | عصر سئو" }]} twitterCard='summary_large_image'
+  ogTitle='مدیریت قیف فروش | عصر سئو'
+
+  ogDescription='طراحی و بهینه‌سازی قیف فروش برای افزایش نرخ تبدیل.'
+>
+<div class="min-h-screen bg-white">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/marketing/sales-funnel-management/', image: '/og/sales-funnel-hero.jpg' }))}
+      />
+
+      <Header />
+      <BreadcrumbStructuredData
+        items={[
+          { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+          { position: 2, name: 'خدمات بازاریابی', item: 'https://asreseo.com/services/marketing/' },
+          { position: 3, name: 'مدیریت قیف فروش', item: 'https://asreseo.com/services/marketing/sales-funnel-management/' }
+        ]}
+      />
+
+      <main>
+        <!-- Hero Section -->
+        <ServiceHero
+          badge="مدیریت قیف فروش حرفه‌ای"
+          title="مدیریت"
+          titleGradient="قیف فروش"
+          description="افزایش قابل اندازه‌گیری نرخ تبدیل با طراحی علمی قیف فروش، اتوماسیون بازاریابی هوشمند و بهینه‌سازی رفتار مشتری در عصر سئو."
+          primaryCta={{ text: "بهینه‌سازی قیف فروش" }}
+          secondaryCta={{ text: "تحلیل رایگان قیف فروش فعلی" }}
+          imageSrc="/images/sales-funnel-hero.webp"
+          imageAlt="مدیریت قیف فروش حرفه‌ای"
+          theme="orange"
+        />
+
+        <!-- Stats Section -->
+        <ServiceStats stats={stats} theme="orange" />
+
+        <!-- Funnel Stages Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                مراحل <span class="gradient-text">قیف فروش استاندارد</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                مسیر علمی هدایت مشتریان از آگاهی تا خرید نهایی
+              </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-6">
+              {funnelStages.map((stage, index) => (
+                <Card class="hover:shadow-lg transition-all duration-300">
+                  <CardContent class="p-6">
+                    <div class="flex items-center gap-6">
+                      <div class="shrink-0">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                          <span class="text-lg font-bold text-orange-700">{index + 1}</span>
+                        </div>
+                      </div>
+                      <div class="flex-1">
+                        <div class="flex items-center justify-between mb-2">
+                          <h3 class="text-xl font-semibold text-gray-900">{stage.stage}</h3>
+                          <Badge class={stageBadge[stage.color] ?? 'bg-gray-100 text-gray-800'}>{stage.percentage}</Badge>
+                        </div>
+                        <p class="text-gray-600 mb-3">{stage.description}</p>
+                        <div class="flex flex-wrap gap-2">
+                          {stage.activities.map((activity, actIndex) => (
+                            <Badge variant="outline" class="text-sm">
+                              {activity}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                خدمات <span class="gradient-text">مدیریت قیف فروش</span> عصر سئو
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                رویکردی جامع برای تبدیل بازدیدکنندگان به مشتریان
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {services.map((service, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
+                        <Icon name={service.icon} class="h-6 w-6 text-orange-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{service.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                      {service.description}
+                    </p>
+                    <div class="space-y-2">
+                      {service.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle2" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Optimization Strategies Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                استراتژی‌های <span class="gradient-text">بهینه‌سازی اثربخش</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                تکنیک‌های عملی با نتایج قابل اندازه‌گیری برای هر مرحله قیف فروش
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+              {optimizationStrategies.map((strategy, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
+                        <Icon name={strategy.icon} class="h-6 w-6 text-indigo-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{strategy.title}</CardTitle>
+                    </div>
+                    <Badge class="mb-3 bg-green-100 text-green-800">{strategy.impact}</Badge>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-1">
+                      {strategy.techniques.map((technique, techniqueIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-600">
+                          <Icon name="check-circle2" class="h-4 w-4 text-green-500 shrink-0" />
+                          {technique}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits title="مزایای مدیریت" titleHighlight="قیف فروش حرفه‌ای" subtitle="نتایج ملموس که مستقیماً به کسب‌وکار شما کمک می‌کنند" benefits={benefits} />
+
+        <!-- Workflow Section -->
+        <section class="section-padding bg-linear-to-br from-red-50 to-orange-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                فرآیند <span class="gradient-text">مدیریت قیف فروش</span> عصر سئو
+              </h2>
+              <p class="text-xl text-gray-600">
+                رویکرد علمی ۵ مرحله‌ای برای حداکثر نرخ تبدیل
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {workflowSteps.map((step, index) => (
+                <div class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs">
+                  <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center text-2xl font-bold text-orange-700">
+                    {index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      {step.step}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <ServiceFAQ
+          title="سوالات"
+          titleGradient="متداول"
+          subtitle="پاسخ به پرسش‌های رایج مشتریان درباره قیف فروش"
+          faqs={faqs}
+        />
+
+        <!-- CTA Section -->
+        <ServiceCTA
+          title="چرا بسیاری از مشتریان بالقوه را از دست می‌دهید؟"
+          description="احتمال خیلی بالا است که قیف فروش شما بهینه نباشد و مشتریان شما در مسیر خرید رها شوند. عصر سئو با تحلیل علمی و پیاده‌سازی اتوماسیون پیشرفته، نرخ تبدیل شما را به‌شکل محسوسی افزایش می‌دهد. اجازه ندهید مشتریان شما به رقبا بروند!"
+          primaryCta={{ text: "شروع بهینه‌سازی قیف فروش" }}
+          secondaryCta={{ text: "تحلیل رایگان قیف فروش فعلی" }}
+          primaryClass="bg-orange-700 hover:bg-orange-800 text-white font-semibold shadow-lg shadow-orange-700/30"
+        />
+      </main>
+
+      <Footer />
+    </div>
+</BaseLayout>

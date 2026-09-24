@@ -1,0 +1,42 @@
+---
+import Icon from '../../ui/Icon.astro';
+import type { MenuItem as MenuItemType } from './types';
+const { item }: any = Astro.props;
+
+
+
+interface MenuItemProps {
+  item: MenuItemType;
+  onClose: () => void;
+}
+
+
+
+  
+---
+<li>
+      <a
+        href={item.href}
+        class="group flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors"
+        data-mm-close
+      >
+        <div class="flex-1">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-medium text-text-700 group-hover:text-text-900">
+              {item.title}
+            </span>
+            {item.isNew && (
+              <span class="bg-green-100 text-green-800 text-xs px-1.5 py-0.5 rounded font-medium">
+                جدید
+              </span>
+            )}
+            {item.isPopular && (
+              <span class="bg-orange-100 text-orange-700 text-xs px-1.5 py-0.5 rounded font-medium">
+                محبوب
+              </span>
+            )}
+          </div>
+        </div>
+        <Icon name="arrow-right" class="h-3 w-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity rotate-180" />
+      </a>
+    </li>

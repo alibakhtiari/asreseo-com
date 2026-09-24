@@ -1,0 +1,53 @@
+---
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+
+// Build-time inline SVG icon (replaces lucide-react; zero client JS).
+// Usage: <Icon name="menu" class="h-6 w-6" />  (kebab-case lucide names)
+export interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className = 'h-5 w-5' }: any = Astro.props;
+
+// Renames after lucide deprecated old names (brand icons vendored locally).
+const RENAMES = {
+  'bar-chart3': 'chart-column',
+  'check-circle2': 'circle-check-big',
+  'code2': 'code-xml',
+  edit3: 'pen-line',
+  link2: 'link-2',
+  share2: 'share-2',
+  wand2: 'wand-sparkles',
+  'headphones-icon': 'headphones',
+  'image-icon': 'image',
+} as Record<string, string>;
+
+const BRANDS = new Set(['instagram', 'linkedin', 'twitter', 'youtube']);
+
+const file = BRANDS.has(name)
+  ? join(process.cwd(), 'src', 'components', 'ui', 'brands', `${name}.svg`)
+  : join(process.cwd(), 'node_modules', 'lucide-static', 'icons', `${RENAMES[name] ?? name}.svg`);
+let svg = '';
+try {
+  svg = existsSync(file) ? readFileSync(file, 'utf8') : '';
+} catch {
+  svg = '';
+}
+// Normalize the root <svg>: merge our sizing classes INTO the icon's existing
+// class attribute instead of emitting a second `class="..."`. Lucide icons
+// ship `class="lucide lucide-<name>"`, so the old approach produced
+// `<svg class="h-5 w-5" aria-hidden="true" class="lucide lucide-play" ...>` —
+// invalid HTML where browsers silently drop the lucide classes.
+svg = svg.replace(/<svg\b[^>]*>/, (tag) => {
+  let t = tag
+    .replace(/\s+class="([^"]*)"/, (_m, existing) => ` class="${className} ${existing}"`)
+    .replace(/\s+aria-hidden="[^"]*"/, '')
+    .replace(/\s+width="[^"]*"/, '')
+    .replace(/\s+height="[^"]*"/, '');
+  if (!/\sclass="/.test(t)) t = t.replace('<svg', `<svg class="${className}"`);
+  return t.replace('<svg', '<svg aria-hidden="true"');
+});
+---
+<Fragment set:html={svg} />

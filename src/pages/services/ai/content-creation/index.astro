@@ -1,0 +1,416 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': 'تولید محتوای هوشمند با هوش مصنوعی (متن و ویدیو)',
+    'description': 'خدمات جامع تولید محتوای متنی و ویدیویی با هوش مصنوعی، اتوماسیون چرخه محتوا و مقالات تخصصی سئومحور.',
+    'serviceType': 'AI Content Creation',
+    'provider': {
+        '@type': 'Organization',
+        'name': 'عصر سئو',
+        'url': 'https://asreseo.com'
+    },
+    'areaServed': 'Iran',
+    'hasOfferCatalog': {
+        '@type': 'OfferCatalog',
+        'name': 'خدمات تولید محتوا با هوش مصنوعی',
+        'itemListElement': [
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'تولید مقاله و متن هوشمند',
+                    'description': 'تولید مقالات سئومحور عمیق با AI و اعتبارسنجی انسانی'
+                }
+            },
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'تولید ویدیو و تیزر هوشمند',
+                    'description': 'ساخت ویدیوهای تبلیغاتی و آموزشی با سناریونویسی AI'
+                }
+            }
+        ]
+    }
+};
+
+const faqs = [
+    {
+        q: 'آیا مقالات تولید شده با هوش مصنوعی رتبه سئو می‌گیرند؟',
+        a: 'بله. الگوریتم‌های گوگل بر کیفیت و مفید بودن محتوا تمرکز دارند. در عصر سئو مقالات تولیدشده با AI تحت ویرایش تخصصی و غنی‌سازی با داده‌های دست‌اول و تجربیات واقعی قرار می‌گیرند تا رتبه‌های برتر گوگل را تصاحب کنند.'
+    },
+    {
+        q: 'اتوماسیون چرخه محتوا با هوش مصنوعی چگونه کار می‌کند؟',
+        a: 'فرآیند از تحقیق خودکار کلمات کلیدی و ایده‌پردازی آغاز شده، سپس پیش‌نویس مقاله یا سناریو توسط مدل‌های زبانی تدوین و پس از تایید کیفی کارشناس، طبق تقویم در وب‌سایت یا شبکه‌های اجتماعی منتشر می‌شود.'
+    },
+    {
+        q: 'ویدیوهای تولید شده با هوش مصنوعی برای چه پلتفرم‌هایی مناسب است؟',
+        a: 'این ویدیوها برای ریلز اینستاگرام، ویدیوهای یوتیوب، آپارات و صفحات معرفی محصولات در لندینگ پیج‌ها بهینه‌سازی شده‌اند و شامل زیرنویس خودکار و گویندگی صوتی روان هستند.'
+    },
+    {
+        q: 'هزینه تولید محتوا با هوش مصنوعی در مقایسه با تولید سنتی چقدر است؟',
+        a: 'استفاده از هوش مصنوعی هزینه‌های تولید محتوای متنی و ویدیویی را به‌شکل محسوسی کاهش می‌دهد و سرعت انتشار را بالا می‌برد؛ میزان دقیق آن بسته به حجم پروژه در گزارش عملکرد اندازه‌گیری می‌شود.'
+    }
+];
+
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات هوش مصنوعی', item: 'https://asreseo.com/services/ai/' },
+    { position: 3, name: 'تولید محتوای هوشمند', item: 'https://asreseo.com/services/ai/content-creation/' }
+];
+
+
+
+    const textFeatures = [
+        {
+            icon: "file-text",
+            title: 'تولید مقاله هوشمند',
+            description: 'تولید مقالات کامل، جذاب و سئو بهینه‌سازی شده در کمترین زمان.',
+            benefits: ['سئو بهینه', 'محتوای منحصر به فرد', 'تحویل سریع']
+        },
+        {
+            icon: "pen-tool",
+            title: 'محتوای شبکه‌های اجتماعی',
+            description: 'پست‌های جذاب و تعاملی برای تمام پلتفرم‌های اجتماعی.',
+            benefits: ['ویژگی‌های ویروسی', 'تعامل بالا', 'زمان‌بندی مناسب']
+        },
+        {
+            icon: "target",
+            title: 'بازاریابی محتوایی',
+            description: 'استراتژی بازاریابی محتوایی هوشمند و هدفمند.',
+            benefits: ['بازاریابی inbound', 'CTA بهینه', 'تبدیل بالا']
+        },
+        {
+            icon: "globe",
+            title: 'محتوای چند زبانه',
+            description: 'تولید محتوای بهینه‌سازی شده برای بازارهای مختلف.',
+            benefits: ['پوشش جهانی', 'SEO بین‌المللی', 'فروش بیشتر']
+        }
+    ];
+
+    const videoFeatures = [
+        {
+            icon: "film",
+            title: 'ساخت ویدیوهای تبلیغاتی',
+            description: 'تولید ویدیوهای کوتاه و جذاب متناسب با اهداف بازاریابی.',
+            benefits: ['بازاریابی هدفمند', 'ویدیوهای ویروسی', 'آنالیز رقبا']
+        },
+        {
+            icon: "sparkles",
+            title: 'انیمیشن و گرافیک',
+            description: 'افزودن انیمیشن و افکت‌های گرافیکی بدون نیاز به طراح.',
+            benefits: ['کیفیت بالا', 'انیمیشن حرفه‌ای', 'جلوه‌های ویژه']
+        },
+        {
+            icon: "type",
+            title: 'تبدیل متن به ویدیو',
+            description: 'تولید ویدیو از روی سناریو یا مقاله در چند دقیقه.',
+            benefits: ['سرعت بالا', 'دقت بالا', 'هزینه مناسب']
+        },
+        {
+            icon: "wand2",
+            title: 'گوینده هوشمند',
+            description: 'استفاده از صداهای طبیعی و متنوع فارسی برای نریشن.',
+            benefits: ['صداهای متنوع', 'لحن طبیعی', 'بدون هزینه استودیو']
+        }
+    ];
+
+    const contentTypes = [
+        {
+            title: 'مقالات وبلاگ',
+            description: 'مقالات آموزشی و تخصصی سئو شده',
+            icon: "file-text",
+            type: 'متن'
+        },
+        {
+            title: 'ویدیوهای تبلیغاتی',
+            description: 'تیزرهای جذاب برای اینستاگرام و یوتیوب',
+            icon: "video",
+            type: 'ویدیو'
+        },
+        {
+            title: 'پست‌های اجتماعی',
+            description: 'کپشن و محتوای متنی برای شبکه‌ها',
+            icon: "pen-tool",
+            type: 'متن'
+        },
+        {
+            title: 'ویدیوهای آموزشی',
+            description: 'ویدیوهای دمو محصول و راهنما',
+            icon: "play",
+            type: 'ویدیو'
+        }
+    ];
+
+    const benefits = [
+        'تولید سریع‌تر محتوای با کیفیت با اتوماسیون',
+        'کاهش هزینه‌های تولید محتوا',
+        'یکپارچگی تولید متن و ویدیو در یک پلتفرم',
+        'بهینه‌سازی خودکار برای موتورهای جستجو',
+        'افزایش ترافیک ارگانیک و نرخ تعامل',
+        'پوشش کامل نیازهای محتوایی برند'
+    ];
+
+    const stats = [
+        { metric: '۱۰x', label: 'سرعت تولید', color: 'text-blue-600' },
+        { metric: 'خودکارسازی', label: 'کاهش هزینه تولید محتوا', color: 'text-green-800' },
+        { metric: 'استاندارد گوگل', label: 'بهینه‌سازی سئو', color: 'text-purple-600' },
+        { metric: '۲۴/۷', label: 'تولید مداوم', color: 'text-orange-600' }
+    ];
+
+    
+---
+<BaseLayout
+  title='تولید محتوای هوشمند با هوش مصنوعی (متن و ویدیو) | عصر سئو'
+  description='خدمات تولید محتوای متنی و ویدیویی با هوش مصنوعی، اتوماسیون چرخه محتوا و مقالات سئومحور. افزایش سرعت تولید محتوا با اتوماسیون و کنترل کیفیت پیش از تحویل.'
+  keywords='تولید محتوا با هوش مصنوعی, اتوماسیون چرخه محتوا, AI Content, تولید ویدیو با AI, تولید مقاله هوشمند, سئو محتوا'
+  canonical='https://asreseo.com/services/ai/content-creation/'
+  ogType='website'
+  ogUrl='https://asreseo.com/services/ai/content-creation/'
+  ogImages={[{ url: "/og/ai-content-hero.jpg", width: 1200, height: 630, alt: "تولید محتوای متنی و ویدیویی با هوش مصنوعی عصر سئو" }]}
+  twitterCard='summary_large_image'
+>
+<div class="min-h-screen bg-white">
+            <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/ai/content-creation/', image: '/og/ai-content-hero.jpg' }))} />
+            <BreadcrumbStructuredData items={breadcrumbs} />
+
+            <Header />
+
+            <main>
+                <!-- Hero Section -->
+                <ServiceHero
+                    badge="استودیوی هوشمند تولید محتوا"
+                    title="تولید محتوای متنی و ویدیویی با هوش مصنوعی"
+                    titleGradient="متنی و ویدیویی"
+                    description="پلتفرم جامع تولید محتوا با هوش مصنوعی. از مقالات سئو شده تا ویدیوهای تبلیغاتی جذاب، همه چیز را با سرعت و کیفیت بالا تولید کنید."
+                    primaryCta={{ text: "شروع تولید محتوا", href: "/consultation/" }}
+                    secondaryCta={{ text: "مشاهده نمونه‌ها", href: "/portfolio/" }}
+                    imageSrc="/images/ai-content-hero.webp"
+                    imageAlt="تولید محتوای متنی و ویدیویی با هوش مصنوعی"
+                    theme="purple"
+                />
+
+                <!-- Stats Section -->
+                <ServiceStats stats={stats} theme="purple" />
+
+                <!-- Text Generation Section -->
+                <section class="section-padding">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <Badge class="bg-blue-100 text-blue-700 mb-4">تولید متن</Badge>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                تولید <span class="gradient-text">محتوای متنی</span> هوشمند
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                تولید مقالات، پست‌های وبلاگ و محتوای شبکه‌های اجتماعی با رعایت کامل اصول سئو
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {textFeatures.map((feature, index) => (
+                                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                                                <Icon name={feature.icon} class="h-6 w-6 text-blue-600" />
+                                            </div>
+                                            <CardTitle class="text-lg font-semibold">{feature.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">
+                                            {feature.description}
+                                        </p>
+                                        <div class="space-y-2">
+                                            {feature.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                                                    {benefit}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Video Generation Section -->
+                <section class="section-padding bg-slate-50">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <Badge class="bg-pink-100 text-pink-700 mb-4">تولید ویدیو</Badge>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                ساخت <span class="gradient-text">ویدیوهای حرفه‌ای</span> با AI
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                تبدیل متن به ویدیو، ساخت تیزرهای تبلیغاتی و ویدیوهای آموزشی بدون نیاز به تجهیزات
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {videoFeatures.map((feature, index) => (
+                                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-200 transition-colors">
+                                                <Icon name={feature.icon} class="h-6 w-6 text-pink-600" />
+                                            </div>
+                                            <CardTitle class="text-lg font-semibold">{feature.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">
+                                            {feature.description}
+                                        </p>
+                                        <div class="space-y-2">
+                                            {feature.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                                                    {benefit}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Content Types Grid -->
+                <section class="section-padding">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                پوشش کامل <span class="gradient-text">نیازهای محتوایی</span>
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                هر نوع محتوایی که برای رشد کسب‌وکار خود نیاز دارید
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {contentTypes.map((type, index) => (
+                                <Card class="hover:shadow-md transition-shadow bg-linear-to-br from-gray-50 to-white border border-gray-100">
+                                    <CardContent class="p-6">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600">
+                                                <Icon name={type.icon} class="h-5 w-5" />
+                                            </div>
+                                            <div>
+                                                <h3 class="font-semibold text-gray-900">{type.title}</h3>
+                                                <span class="text-xs text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full">
+                                                    {type.type}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-600">{type.description}</p>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Publishing automation. The audit flagged «اتوماسیون انتشار محتوا»
+                     and «اتوماسیون چرخه محتوا» as GSC queries with NO owning page.
+                     This section is now that owner, so the query has a landing
+                     target instead of scattering across unrelated services.
+                     No invented statistics. -->
+                <section class="section-padding bg-slate-50 border-t border-gray-200/60">
+                    <div class="container-custom max-w-5xl">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                                اتوماسیون چرخه تولید و انتشار محتوا
+                            </h2>
+                            <p class="text-lg text-gray-600">
+                                از ایده تا انتشار و توزیع؛ هر مرحله با ابزار مشخص و یک خروجی قابل اندازه‌گیری
+                            </p>
+                        </div>
+
+                        <ol class="grid gap-6 md:grid-cols-2">
+                            <li class="bg-white rounded-2xl p-6 shadow-xs border border-gray-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="flex items-center justify-center w-9 h-9 rounded-full bg-purple-100 text-purple-700 font-bold">۱</span>
+                                    <h3 class="text-xl font-bold text-gray-900">تولید پیش‌نویس</h3>
+                                </div>
+                                <p class="text-gray-600 leading-relaxed">
+                                    ساخت پیش‌نویس بر اساس خوشه معنایی و پرسش‌های واقعی کاربران، نه صرفاً یک کلمه کلیدی.
+                                </p>
+                            </li>
+                            <li class="bg-white rounded-2xl p-6 shadow-xs border border-gray-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="flex items-center justify-center w-9 h-9 rounded-full bg-purple-100 text-purple-700 font-bold">۲</span>
+                                    <h3 class="text-xl font-bold text-gray-900">بازبینی انسانی</h3>
+                                </div>
+                                <p class="text-gray-600 leading-relaxed">
+                                    ویرایش توسط نویسنده، بررسی درستی ادعاها و اطمینان از یکتایی متن پیش از انتشار.
+                                </p>
+                            </li>
+                            <li class="bg-white rounded-2xl p-6 shadow-xs border border-gray-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="flex items-center justify-center w-9 h-9 rounded-full bg-purple-100 text-purple-700 font-bold">۳</span>
+                                    <h3 class="text-xl font-bold text-gray-900">انتشار زمان‌بندی‌شده</h3>
+                                </div>
+                                <p class="text-gray-600 leading-relaxed">
+                                    انتشار خودکار روی وبلاگ و شبکه‌های اجتماعی طبق
+                                    <a href="/services/content/content-calendar/" class="text-purple-700 font-semibold underline hover:no-underline">تقویم محتوایی</a>
+                                    شما.
+                                </p>
+                            </li>
+                            <li class="bg-white rounded-2xl p-6 shadow-xs border border-gray-200">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="flex items-center justify-center w-9 h-9 rounded-full bg-purple-100 text-purple-700 font-bold">۴</span>
+                                    <h3 class="text-xl font-bold text-gray-900">توزیع و پایش</h3>
+                                </div>
+                                <p class="text-gray-600 leading-relaxed">
+                                    ارسال به خبرنامه و پایش عملکرد هر مطلب برای اصلاح خوشه در دوره بعد.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                      <ServiceBenefits title="مزایای استودیوی" titleHighlight="تولید محتوا" subtitle="چرا باید از هوش مصنوعی برای تولید محتوا استفاده کنید؟" benefits={benefits} />
+
+                <!-- FAQ Section -->
+                <ServiceFAQ
+                    faqs={faqs}
+                    title="سوالات متداول تولید محتوا با هوش مصنوعی"
+                    description="پاسخ به پرسش‌های رایج کارفرمایان درباره کیفیت مقالات، عدم جریمه گوگل و اتوماسیون"
+                    theme="purple"
+                />
+
+                <!-- CTA Section -->
+                <ServiceCTA
+                    title="محتوای حرفه‌ای خود را همین امروز بسازید!"
+                    description="با استودیوی هوشمند ما، قدرت کلمات و تصاویر را ترکیب کنید و محتوایی بسازید که مخاطبان را جذب و تبدیل به مشتری کند."
+                    primaryCta={{ text: "شروع تولید محتوا", href: "/consultation/" }}
+                    secondaryCta={{ text: "مشاوره رایگان", href: "/consultation/" }}
+                    theme="purple"
+                />
+            </main>
+
+            <Footer />
+        </div>
+</BaseLayout>

@@ -1,0 +1,172 @@
+{
+ "perf": [
+  {
+   "name": "static-home-desktop",
+   "url": "http://127.0.0.1:4399/",
+   "mobile": false,
+   "ttfb": 1,
+   "fcp": 80,
+   "load": 44,
+   "dcl": 31,
+   "transferKB": 0,
+   "decodedKB": 0,
+   "requests": 0,
+   "byType": {},
+   "h1": 1,
+   "imgs": 2
+  },
+  {
+   "name": "static-home-mobile",
+   "url": "http://127.0.0.1:4399/",
+   "mobile": true,
+   "ttfb": 0,
+   "fcp": 116,
+   "load": 97,
+   "dcl": 57,
+   "transferKB": 0,
+   "decodedKB": 0,
+   "requests": 0,
+   "byType": {},
+   "h1": 1,
+   "imgs": 2
+  },
+  {
+   "name": "live-home-desktop",
+   "url": "https://asreseo.com/",
+   "mobile": false,
+   "ttfb": 553,
+   "fcp": 812,
+   "load": 1105,
+   "dcl": 728,
+   "transferKB": 365,
+   "decodedKB": 1043,
+   "requests": 40,
+   "byType": {
+    "other": {
+     "n": 3,
+     "transfer": 7772,
+     "decoded": 31088
+    },
+    "link": {
+     "n": 3,
+     "transfer": 107800,
+     "decoded": 116166
+    },
+    "script": {
+     "n": 14,
+     "transfer": 199576,
+     "decoded": 643356
+    },
+    "fetch": {
+     "n": 20,
+     "transfer": 58411,
+     "decoded": 276967
+    }
+   },
+   "h1": 2,
+   "imgs": 0
+  },
+  {
+   "name": "live-home-mobile",
+   "url": "https://asreseo.com/",
+   "mobile": true,
+   "ttfb": 156,
+   "fcp": 508,
+   "load": 1809,
+   "dcl": 691,
+   "transferKB": 295,
+   "decodedKB": 835,
+   "requests": 20,
+   "byType": {
+    "other": {
+     "n": 2,
+     "transfer": 4700,
+     "decoded": 16002
+    },
+    "link": {
+     "n": 3,
+     "transfer": 107800,
+     "decoded": 116166
+    },
+    "script": {
+     "n": 10,
+     "transfer": 156090,
+     "decoded": 510430
+    },
+    "fetch": {
+     "n": 5,
+     "transfer": 33336,
+     "decoded": 212460
+    }
+   },
+   "h1": 2,
+   "imgs": 0
+  },
+  {
+   "name": "static-services-ai",
+   "url": "http://127.0.0.1:4399/services/ai/",
+   "mobile": false,
+   "ttfb": 1,
+   "fcp": 48,
+   "load": 29,
+   "dcl": 20,
+   "transferKB": 0,
+   "decodedKB": 0,
+   "requests": 0,
+   "byType": {},
+   "h1": 1,
+   "imgs": 2
+  },
+  {
+   "name": "live-services-ai",
+   "url": "https://asreseo.com/services/ai/",
+   "mobile": false,
+   "ttfb": 146,
+   "fcp": 288,
+   "load": 579,
+   "dcl": 174,
+   "transferKB": 414,
+   "decodedKB": 1080,
+   "requests": 40,
+   "byType": {
+    "other": {
+     "n": 2,
+     "transfer": 4700,
+     "decoded": 16002
+    },
+    "link": {
+     "n": 3,
+     "transfer": 107800,
+     "decoded": 116166
+    },
+    "script": {
+     "n": 14,
+     "transfer": 199576,
+     "decoded": 643356
+    },
+    "img": {
+     "n": 1,
+     "transfer": 53584,
+     "decoded": 53284
+    },
+    "fetch": {
+     "n": 20,
+     "transfer": 58375,
+     "decoded": 276967
+    }
+   },
+   "h1": 2,
+   "imgs": 1
+  }
+ ],
+ "clicks": [
+  {
+   "label": "مشاوره رایگان دریافت کنید",
+   "found": false
+  },
+  {
+   "label": "مشاهده نمونه کارها",
+   "found": false
+  }
+ ]
+}

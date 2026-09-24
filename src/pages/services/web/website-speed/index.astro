@@ -1,0 +1,528 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'بهینه‌سازی سرعت وب‌سایت',
+  'description': 'خدمات تخصصی بهینه‌سازی سرعت و عملکرد وب‌سایت برای تجربه کاربری بهتر',
+  'serviceType': 'Website Speed Optimization',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'عصر سئو',
+    'url': 'https://asreseo.com'
+  },
+  'areaServed': 'Iran',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'خدمات بهینه‌سازی سرعت',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Core Web Vitals Optimization',
+          'description': 'بهبود معیارهای حیاتی گوگل برای سرعت'
+        }
+      }
+    ]
+  }
+}
+
+
+
+  const speedFeatures = [
+    {
+      icon: "zap",
+      title: 'افزایش سرعت بارگذاری',
+      description: 'هدف‌گیری زمان لود زیر ۲ ثانیه برای رضایت گوگل و کاربر، با فشرده‌سازی پیشرفته.',
+      benefits: ['رضایت کاربر بالاتر', 'رتبه‌بندی بهتر', 'نرخ تبدیل بیشتر']
+    },
+    {
+      icon: "cpu",
+      title: 'بهینه‌سازی منابع مرورگر',
+      description: 'مدیریت هوشمند منابع، کشینگ پیشرفته و توزیع محتوا از نزدیک‌ترین CDN.',
+      benefits: ['کارایی حداکثری', 'تجزیه بارگذاری', 'سرعت جهانی']
+    },
+    {
+      icon: "bar-chart3",
+      title: 'بهبود Core Web Vitals',
+      description: 'رفع کامل مشکلات Largest Contentful Paint، Cumulative Layout Shift و Interaction to Next Paint.',
+      benefits: ['امتیاز کامل گوگل', 'تجربه عالی', 'رتبه بالاتر']
+    },
+    {
+      icon: "smartphone",
+      title: 'بهینه‌سازی موبایل',
+      description: 'طراحی Mobile-First با تصاویر ریسپانسیو و تاچ بهینه‌سازی برای سرعت حداکثر.',
+      benefits: ['رضایت موبایل', 'دسترسی‌پذیری بهتر', 'مزیت رقابتی']
+    },
+    {
+      icon: "gauge",
+      title: 'نظارت مداوم عملکرد',
+      description: 'پیگیری منظم سرعت سایت و هشداردهی برای حافظه مصرفی بالا یا کندی عملکرد.',
+      benefits: ['شناسایی سریع مشکلات', 'نگهداری پایدار', 'کارایی بلندمدت']
+    },
+    {
+      icon: "trending-up",
+      title: 'تجزیه تحلیل رقابتی',
+      description: 'مقایسه سرعت سایت با رقبا و یافت فرصت‌های بهبود عملکرد منحصربه‌فرد.',
+      benefits: ['برتری رقابتی', 'بینش استراتژیک', 'بهبود مستمر']
+    }
+  ];
+
+  const coreWebVitals = [
+    {
+      metric: 'Largest Contentful Paint (LCP)',
+      description: 'زمان بارگذاری بزرگترین عنصر صفحه - باید زیر ۲.۵ ثانیه باشد',
+      importance: 'اولین چیزی که کاربر می‌بیند',
+      target: '< 2.5s'
+    },
+    {
+      metric: 'Interaction to Next Paint (INP)',
+      description: 'زمان پاسخگویی تعاملی صفحه به تمام کلیک‌ها و لمس‌ها - باید زیر ۲۰۰ میلی‌ثانیه باشد',
+      importance: 'استاندارد نوین گوگل برای سنجش پاسخگویی تعاملی کاربر',
+      target: '< 200ms'
+    },
+    {
+      metric: 'Cumulative Layout Shift (CLS)',
+      description: 'میزان جابجایی غیرمنتظره عناصر - باید زیر ۰.۱ باشد',
+      importance: 'ثبات بصری صفحه',
+      target: '< 0.1'
+    }
+  ];
+
+  const speedOptimizations = [
+    {
+      category: 'Server-side Optimizations',
+      optimizations: [
+        'پیکربندی وب سرور (Nginx/Apache)',
+        'ذخیره‌سازی سمت سرور و کشینگ',
+        'فشرده‌سازی GZIP/Brotli پیشرفته',
+        'Database query optimization',
+        'CDN جهانی و Edge computing'
+      ]
+    },
+    {
+      category: 'Client-side Optimizations',
+      optimizations: [
+        'Code splitting و lazy loading',
+        'Minification کردن کدهای JS/CSS',
+        'Optimize کردن تصاویر با WebP',
+        'Critical CSS inlining',
+        'Font loading optimization'
+      ]
+    },
+    {
+      category: 'Content Optimizations',
+      optimizations: [
+        'Lazy load تصاویر و ویدیوها',
+        'Prefetch و preload استراتژیک',
+        'Remove unused CSS/JS',
+        'Optimize third-party scripts',
+        'Resource hints و priority hints'
+      ]
+    }
+  ];
+
+  const impactMetrics = [
+    { before: 'کند و پرنوسان', after: 'سریع و پایدار', metric: 'زمان بارگذاری', improvement: 'سنجش با PageSpeed Insights' },
+    { before: 'خروج زودهنگام کاربر', after: 'ماندگاری بیشتر', metric: 'نرخ خروج (Bounce Rate)', improvement: 'گزارش در Google Analytics' },
+    { before: 'بازدید بی‌نتیجه', after: 'بازدید هدفمند', metric: 'نرخ تبدیل', improvement: 'گزارش ماهانه تبدیل' },
+    { before: 'محدوده قرمز و نارنجی', after: 'محدوده سبز گوگل', metric: 'امتیاز Core Web Vitals', improvement: 'طبق آستانه web.dev' }
+  ];
+
+  const toolsUsed = [
+    {
+      tool: 'Google PageSpeed Insights',
+      purpose: 'اندازه‌گیری عملکرد و امتیازدهی',
+      frequency: 'پیش از شروع و پس از پایان'
+    },
+    {
+      tool: 'Lighthouse',
+      purpose: 'تجزیه تحلیل حداکثر جزئیات عملکرد',
+      frequency: 'پس از هر بهینه‌سازی بزرگ'
+    },
+    {
+      tool: 'WebPageTest',
+      purpose: 'تست سرعت از مکان‌های مختلف جهان',
+      frequency: 'بررسی CDN و عملکرد جهانی'
+    },
+    {
+      tool: 'GTmetrix',
+      purpose: 'تجزیه عملیاتی Waterfall و مسیر بحرانی',
+      frequency: 'شناسایی bottleneckها'
+    }
+  ];
+
+  const benefits = [
+    'کاهش زمان بارگذاری صفحه با فشرده‌سازی و بهینه‌سازی حرفه‌ای منابع',
+    'کاهش نرخ خروج وب‌سایت به دلیل تجربه سریع‌تر کاربر',
+    'افزایش نرخ تبدیل به دلیل بهبود احساس تجربه کاربر',
+    'بهبود امتیاز Core Web Vitals و رتبه‌بندی بهتر در گوگل',
+    'کاهش هزینه‌های سرور به دلیل استفاده بهینه از منابع'
+  ];
+
+  const stats = [
+    { metric: '۲ ثانیه', label: 'زمان هدف بارگذاری', icon: "zap" },
+    { metric: 'گزارش ماهانه', label: 'پایش مستمر سرعت', icon: "trending-up" },
+    { metric: 'هدف ۹۵', label: 'امتیاز PageSpeed', icon: "gauge" },
+    { metric: 'موبایل‌فرست', label: 'سازگاری موبایل', icon: "smartphone" }
+  ];
+
+  const workflowSteps = [
+    {
+      step: 'تحلیل اولیه عملکرد',
+      desc: 'سنجش سرعت فعلی با ابزارهای مختلف و شناسایی مشکلات اصلی',
+      duration: '۲-۳ روز'
+    },
+    {
+      step: 'بررسی سرور و هاستینگ',
+      desc: 'بهبود پیکربندی سرور، انتخاب CDN مناسب و بهینه‌سازی منابع',
+      duration: '۳-۵ روز'
+    },
+    {
+      step: 'بهینه‌سازی سمت کلاینت',
+      desc: 'فشرده‌سازی کد، بهینه‌سازی تصاویر و حذف منابع مسدودکننده',
+      duration: '۴-۷ روز'
+    },
+    {
+      step: 'بهبود Core Web Vitals',
+      desc: 'حل مشکلات LCP، INP و CLS با تکنیک‌های تخصصی',
+      duration: '۳-۵ روز'
+    },
+    {
+      step: 'تست نهایی و مانیتورینگ',
+      desc: 'تست عملکرد از دستگاه‌های مختلف و تنظیم مانیتورینگ مستمر',
+      duration: '۲-۳ روز'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'چرا سرعت وب‌سایت مهم است و چه ارتباطی با گوگل دارد؟',
+      answer: 'سرعت وب‌سایت یکی از ۳ عامل حیاتی رتبه‌بندی گوگل (Core Web Vitals) است. گوگل معتقد است کاربران زمان انتظار ندارند و اولویت رتبه‌بندی را به سایت‌های سریع می‌دهد. علاوه بر این، سرعت بالا نرخ خروج را کاهش داده و نرخ تبدیل را افزایش می‌دهد.'
+    },
+    {
+      question: 'چه مدت طول می‌کشد تا سرعت وب‌سایت بهبود یابد؟',
+      answer: 'بسته به اندازه و پیچیدگی وب‌سایت، معمولاً بین ۱ تا ۲ هفته زمان نیاز است. پروژه‌های ساده شاید ۳ روز کامل شوند، اما وب‌سایت‌های سنگین‌تر با تصاویر زیاد ممکن است ۲-۳ هفته نیاز داشته باشند. مهمترین نکته این است که نتایج فوری و ملموس خواهد بود.'
+    },
+    {
+      question: 'آیا بهبود سرعت باعث کاهش هزینه‌های سرور می‌شود؟',
+      answer: 'بله! با فشرده‌سازی منابع و استفاده بهینه از کشینگ، مصرف منابع سرور شما به‌شکل محسوسی کاهش می‌یابد. این یعنی هم هزینه کمتر و هم سرعت بالاتر. علاوه بر این، گوگل سایت‌های سریع‌تر را ترجیح می‌دهد.'
+    },
+    {
+      question: 'پس از بهبود سرعت، آیا نیاز به نگهداری داریم؟',
+      answer: 'سرعت وب‌سایت نیاز به مراقبت مستمر دارد. با اضافه شدن محتوا جدید، سرعت ممکن است کاهش یابد. ما علاوه بر ابزارهای مانیتورینگ، گزارش‌های ماهانه ارائه می‌کنیم و تا ۶ ماه پشتیبانی رایگان شامل نگهداری سرعت می‌دهیم.'
+    },
+    {
+      question: 'آیا بهینه‌سازی سرعت برای موبایل هم ضروری است؟',
+      answer: 'صد در صد! بخش بزرگی از کاربران اینترنت از موبایل استفاده می‌کنند. Core Web Vitals مخصوصاً برای موبایل اهمیت دارد و گوگل اولویت را به سایت‌های همراه با موبایل داده. ما رویکرد Mobile-First را در همه بهینه‌سازی‌ها رعایت می‌کنیم.'
+    },
+    {
+      question: 'چه عوارضی سرعت پایین برای کسب‌وکار دارد؟',
+      answer: '۱) رتبه پایین‌تر در گوگل و کمتر دیده شدن، ۲) نرخ خروج بالاتر، ۳) نرخ تبدیل پایین‌تر، ۴) تجربه کاربری ضعیف و از دست دادن مشتریان، ۵) هزینه بالاتر سرور بدون بازگشت موثر.'
+    }
+  ];
+
+  
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات وب', item: 'https://asreseo.com/services/web/' },
+    { position: 3, name: 'بهینه‌سازی سرعت سایت', item: 'https://asreseo.com/services/web/website-speed/' },
+  ];
+
+---
+<BaseLayout title='بهینه‌سازی سرعت وب‌سایت و Core Web Vitals | عصر سئو' description='بهینه‌سازی تخصصی سرعت وب‌سایت با زمان بارگذاری کمتر از ۲ ثانیه، بهبود Core Web Vitals و افزایش نرخ تبدیل Google PageSpeed Insights.' keywords='بهینه‌سازی سرعت سایت, افزایش سرعت وب‌سایت, Core Web Vitals, Page Speed, Lighthouse' canonical='https://asreseo.com/services/web/website-speed/' ogType='website' ogUrl='https://asreseo.com/services/web/website-speed/' ogImages={[{ url: "/og/website-speed-hero.jpg", width: 1200, height: 630, alt: "بهینه‌سازی سرعت سایت | عصر سئو" }]} twitterCard='summary_large_image'
+  ogTitle='بهینه‌سازی سرعت وب‌سایت و Core Web Vitals | عصر سئو'
+
+  ogDescription='افزایش سرعت بارگذاری وب‌سایت با استانداردهای گوگل.'
+>
+<div class="min-h-screen bg-white">
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/web/website-speed/', image: '/og/website-speed-hero.jpg' }))} />
+
+      <Header />
+      <BreadcrumbStructuredData items={breadcrumbs} />
+
+      <main>
+        <ServiceHero
+          badge="بهینه‌سازی سرعت حرفه‌ای"
+          title="بهینه‌سازی سرعت وب‌سایت"
+          titleHighlight="سرعت وب‌سایت"
+          description="سرعت بارگذاری کمتر از ۲ ثانیه با استانداردها گوگل PageSpeed Insights. بهبود Core Web Vitals و افزایش نرخ تبدیل بازدیدکنندگان در عصر سئو!"
+          primaryCtaText="تحلیل سریع سرعت سایت"
+          secondaryCtaText="ابزار تست سرعت رایگان"
+          imageSrc="/images/website-speed-hero.webp"
+          imageAlt="بهینه‌سازی سرعت وب‌سایت"
+          theme="green"
+        />
+
+        <ServiceStats
+          stats={stats}
+          gradientClass="bg-linear-to-r from-emerald-50 to-green-50"
+          metricColorClass="text-emerald-700"
+          iconColorClass="text-green-800"
+        />
+
+        <!-- Speed Features Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                تکنولوژی‌های پیشرفته <span class="gradient-text">بهینه‌سازی سرعت</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                رویکرد جامع برای حداکثر سرعت بارگذاری
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {speedFeatures.map((feature, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                        <Icon name={feature.icon} class="h-6 w-6 text-green-800" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle2" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Core Web Vitals Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-gray-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                بهبود <span class="gradient-text">Core Web Vitals</span> گوگل
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                استانداردهای حیاتی سرعت گوگل که باید بهینه شوند
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+              {coreWebVitals.map((vital, index) => (
+                <Card class="hover:shadow-lg transition-all duration-300">
+                  <CardContent class="p-6">
+                    <div class="flex items-start gap-4">
+                      <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
+                        <Icon name="gauge" class="h-6 w-6 text-blue-600" />
+                      </div>
+                      <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                          {vital.metric}
+                        </h3>
+                        <p class="text-gray-600 mb-3 text-sm">
+                          {vital.description}
+                        </p>
+                        <div class="space-y-2">
+                          <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-500">اهمیت:</span>
+                            <span class="text-gray-700 font-medium">{vital.importance}</span>
+                          </div>
+                          <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-500">هدف:</span>
+                            <Badge class="bg-green-100 text-green-800">{vital.target}</Badge>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Speed Optimizations Grid -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                استراتژی‌های جامع <span class="gradient-text">بهینه‌سازی</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                پوشش تمام لایه‌های پیشرفت برای حداکثر سرعت
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {speedOptimizations.map((category, index) => (
+                <Card class="p-6 border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <CardTitle class="text-2xl text-center">{category.category}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="grid md:grid-cols-5 gap-4">
+                      {category.optimizations.map((optimization, optIndex) => (
+                        <div class="text-center p-4 bg-white rounded-lg border">
+                          <Icon name="check-circle2" class="h-6 w-6 text-green-500 mx-auto mb-2" />
+                          <p class="text-sm font-medium text-gray-900">{optimization}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Impact Metrics Section -->
+        <section class="section-padding bg-slate-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                نتایج <span class="gradient-text">قابل اندازه‌گیری</span> بهینه‌سازی
+              </h2>
+              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                آنچه را پیش و پس از پروژه می‌سنجیم و گزارش می‌کنیم؛ محدوده «سبز» Core Web Vitals طبق آستانه‌های رسمی گوگل: https://web.dev/articles/vitals
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {impactMetrics.map((metric, index) => (
+                <Card class="hover:shadow-md transition-shadow">
+                  <CardContent class="p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4 text-center">
+                      {metric.metric}
+                    </h3>
+                    <div class="flex justify-between items-center mb-3">
+                      <div class="text-center">
+                        <div class="text-red-600 font-bold">قبل: {metric.before}</div>
+                      </div>
+                      <div class="text-center">
+                        <div class="text-green-800 font-bold">بعد: {metric.after}</div>
+                      </div>
+                    </div>
+                    <Badge class="bg-green-100 text-green-800 w-fit mx-auto">
+                      {metric.improvement}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits title="مزایای سرعت عصر سئو" titleHighlight="بالا وب‌سایت" subtitle="آنچه در پروژه‌های بهینه‌سازی سرعت بهبود می‌یابد" benefits={benefits} />
+
+        <!-- Tools Section -->
+        <section class="section-padding bg-linear-to-br from-green-50 to-emerald-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                ابزارهای حرفه‌ای <span class="gradient-text">اندازه‌گیری سرعت</span>
+              </h2>
+              <p class="text-xl text-gray-600">
+                استفاده از بهترین ابزارهای بین‌المللی برای نتایج دقیق
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              {toolsUsed.map((tool, index) => (
+                <Card class="hover:shadow-md transition-shadow">
+                  <CardContent class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">{tool.tool}</h3>
+                    <p class="text-gray-600 mb-2">{tool.purpose}</p>
+                    <Badge variant="outline" class="text-sm">
+                      {tool.frequency}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Workflow Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                فرآیند <span class="gradient-text">بهینه‌سازی سرعت</span> عصر سئو
+              </h2>
+              <p class="text-xl text-gray-600">
+                رویکرد سیستماتیک ۵ مرحله‌ای برای سرعت حداکثری
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {workflowSteps.map((step, index) => (
+                <div class="flex items-center gap-8 p-6 bg-white rounded-xl shadow-xs">
+                  <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-2xl font-bold text-green-800">
+                    {index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      {step.step}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-2">
+                      {step.desc}
+                    </p>
+                    <Badge variant="outline" class="text-sm">
+                      مدت زمان: {step.duration}
+                    </Badge>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <ServiceFAQ
+          title="سوالات متداول"
+          highlightWord="متداول"
+          subtitle="پاسخ به پرسش‌های مشتریان درباره بهینه‌سازی سرعت"
+          faqs={faqs}
+        />
+
+        <ServiceCTA
+          title="سرعت سایت شما را همین الان بالا ببریم!"
+          description="با بهینه‌سازی سرعت عصر سئو، مشتریان شما دیگر صبر نمی‌کنند. امتیاز ۱۰۰ PageSpeed، رتبه گوگل بالاتر و نرخ تبدیل بیشتر را همین امروز شروع کنید. مشاوره رایگان سرعت سایت دریافت کنید!"
+          primaryText="تحلیل رایگان سرعت"
+          secondaryText="شروع بهینه‌سازی سرعت"
+          primaryClass="bg-green-700 hover:bg-green-800 text-white font-semibold shadow-lg shadow-green-700/30"
+        />
+      </main>
+
+      <Footer />
+    </div>
+</BaseLayout>

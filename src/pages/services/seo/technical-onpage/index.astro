@@ -1,0 +1,406 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+
+
+
+
+
+
+const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': 'سئو تکنیکال و داخلی',
+    'description': 'خدمات جامع بهینه‌سازی فنی و داخلی وب‌سایت شامل سرعت، امنیت، ساختار و محتوا',
+    'serviceType': 'SEO Services',
+    'provider': {
+        '@type': 'Organization',
+        'name': 'عصر سئو',
+        'url': 'https://asreseo.com'
+    },
+    'areaServed': 'Iran',
+    'hasOfferCatalog': {
+        '@type': 'OfferCatalog',
+        'name': 'خدمات سئو تکنیکال و داخلی',
+        'itemListElement': [
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'سئو تکنیکال',
+                    'description': 'بهینه‌سازی سرعت، امنیت و ساختار فنی سایت'
+                }
+            },
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'سئو داخلی',
+                    'description': 'تحقیق کلمات کلیدی و بهینه‌سازی محتوا و متا تگ‌ها'
+                }
+            }
+        ]
+    }
+};
+
+
+
+    const technicalServices = [
+        {
+            icon: "zap",
+            title: 'بهینه‌سازی سرعت و Core Web Vitals',
+            description: 'افزایش سرعت لود صفحات به زیر ۳ ثانیه و بهبود امتیازهای حیاتی گوگل (LCP, INP, CLS).',
+            benefits: ['تجربه کاربری عالی', 'رتبه بهتر موبایل', 'کاهش نرخ پرش']
+        },
+        {
+            icon: "shield",
+            title: 'امنیت و SSL',
+            description: 'پیکربندی کامل HTTPS، رفع آسیب‌پذیری‌های امنیتی و حفاظت از داده‌های کاربران.',
+            benefits: ['اعتماد کاربران', 'سیگنال مثبت رتبه‌بندی', 'حفاظت از برند']
+        },
+        {
+            icon: "code",
+            title: 'داده‌های ساختاریافته (Schema)',
+            description: 'پیاده‌سازی کدهای اسکیما برای نمایش غنی در نتایج جستجو (ستاره، قیمت، سوالات متداول).',
+            benefits: ['نرخ کلیک بالاتر', 'نمایش متمایز', 'درک بهتر گوگل']
+        },
+        {
+            icon: "smartphone",
+            title: 'سئو موبایل (Mobile-First)',
+            description: 'تضمین عملکرد بی‌نقص سایت در دستگاه‌های موبایل و تبلت با طراحی واکنش‌گرا.',
+            benefits: ['ایندکس موبایل اول', 'دسترسی بیشتر', 'رضایت کاربران']
+        },
+        {
+            icon: "database",
+            title: 'بهینه‌سازی خزش و ایندکس',
+            description: 'مدیریت بودجه خزش، اصلاح فایل robots.txt و نقشه سایت برای ایندکس سریع و کامل.',
+            benefits: ['ایندکس سریع‌تر', 'کشف صفحات جدید', 'حذف صفحات زاید']
+        },
+        {
+            icon: "globe",
+            title: 'ساختار URL و معماری سایت',
+            description: 'طراحی ساختار آدرس‌دهی منطقی و معماری اطلاعاتی برای درک آسان توسط کاربر و گوگل.',
+            benefits: ['ناوبری آسان', 'توزیع اعتبار صفحات', 'URLهای تمیز']
+        }
+    ];
+
+    const onPageServices = [
+        {
+            icon: "search",
+            title: 'تحقیق کلمات کلیدی پیشرفته',
+            description: 'شناسایی کلمات کلیدی پول‌ساز، طولانی (Long-tail) و بررسی شکاف کلمات کلیدی رقبا.',
+            benefits: ['ترافیک هدفمند', 'نرخ تبدیل بالا', 'استراتژی محتوایی دقیق']
+        },
+        {
+            icon: "settings",
+            title: 'بهینه‌سازی متا تگ‌ها',
+            description: 'نوشتن عناوین جذاب و توضیحات متا (Meta Description) برای افزایش نرخ کلیک (CTR).',
+            benefits: ['CTR بالاتر', 'جذب کاربر بیشتر', 'تطابق با جستجو']
+        },
+        {
+            icon: "monitor",
+            title: 'بهینه‌سازی محتوا و هدینگ‌ها',
+            description: 'ساختاردهی صحیح محتوا با تگ‌های H1-H6 و استفاده طبیعی از کلمات کلیدی و LSI.',
+            benefits: ['خوانایی بهتر', 'درک موضوع توسط گوگل', 'رتبه در کلمات کلیدی']
+        },
+        {
+            icon: "target",
+            title: 'لینک‌سازی داخلی استراتژیک',
+            description: 'ایجاد شبکه لینک‌های داخلی برای انتقال اعتبار به صفحات مهم و افزایش زمان حضور کاربر.',
+            benefits: ['افزایش اعتبار صفحات', 'کاهش نرخ پرش', 'اینکس بهتر صفحات']
+        }
+    ];
+
+    const coreWebVitals = [
+        {
+            metric: 'LCP',
+            title: 'Largest Contentful Paint',
+            description: 'زمان بارگذاری بزرگترین عنصر محتوایی',
+            target: '< ۲.۵ ثانیه',
+            icon: "gauge",
+            color: 'text-blue-600'
+        },
+        {
+            metric: 'INP',
+            title: 'Interaction to Next Paint',
+            description: 'پاسخ‌دهی تعاملی و سرعت واکنش صفحه به کلیک و لمس',
+            target: '< ۲۰۰ میلی‌ثانیه',
+            icon: "activity",
+            color: 'text-green-800'
+        },
+        {
+            metric: 'CLS',
+            title: 'Cumulative Layout Shift',
+            description: 'میزان تغییر ناگهانی چیدمان صفحه',
+            target: '< ۰.۱ امتیاز',
+            icon: "monitor",
+            color: 'text-purple-600'
+        }
+    ];
+
+    const technicalIssues = [
+        'خطاهای crawl و index کردن توسط گوگل',
+        'ناهنجاری در فایل robots.txt یا متا روبات',
+        'اشکال در Sitemap XML و ساختار ناوبری',
+        'مشکل URLهای تکراری یا نبود canonical مناسب',
+        'لینک‌های شکسته و خطاهای ۴۰۴ و ۵xx',
+        'خطاهای Core Web Vitals (LCP، INP، CLS)',
+        'مشکلات ساختار URL و پارامترهای غیرضروری',
+        'اختلالات طراحی واکنش‌گرا و موبایل',
+        'مشکلات تصاویر غیربهینه و حجم بالا',
+        'نبود پروتکل HTTPS و گواهی SSL منقضی',
+        'کدهای برنامه‌نویسی نامناسب و ارورهای JS',
+        'مشکلات دسترسی‌پذیری و استاندارهای WCAG'
+    ];
+
+    // Qualitative process/measurement facts, not performance percentages —
+    // see src/lib/site-claims.ts authenticity policy.
+    const stats = [
+        { metric: 'Core Web Vitals', label: 'بهینه‌سازی سرعت سایت', color: 'text-blue-600', icon: "zap" },
+        { metric: 'PageSpeed', label: 'پایش و بهبود امتیاز', color: 'text-green-800', icon: "gauge" },
+        { metric: 'سرچ کنسول', label: 'پایش ترافیک ارگانیک', color: 'text-purple-600', icon: "trending-up" },
+        { metric: 'ممیزی فنی', label: 'رفع خطاهای فنی', color: 'text-orange-600', icon: "check-circle" }
+    ];
+
+    const faqs = [
+        {
+            question: 'سئو تکنیکال چه تأثیری در رتبه سایت دارد؟',
+            answer: 'سئو تکنیکال زیربنای سایت شماست. بدون زیرساخت فنی سالم (سرعت، امنیت، قابلیت خزش)، حتی بهترین محتوا هم رتبه نمی‌گیرد. تأثیر آن بر رتبه‌بندی پس از اجرا با داده‌های سرچ کنسول اندازه‌گیری می‌شود.'
+        },
+        {
+            question: 'تحقیق کلمات کلیدی چقدر زمان می‌برد؟',
+            answer: 'این یک فرآیند مداوم است، اما تحقیق اولیه جامع معمولاً ۱ تا ۲ هفته زمان می‌برد تا تمام فرصت‌های بازار و رقبا شناسایی شوند.'
+        },
+        {
+            question: 'آیا رفع خطاهای تکنیکال باعث افت رتبه می‌شود؟',
+            answer: 'خیر، برعکس! رفع خطاها ممکن است باعث نوسان موقت شود (چون گوگل دوباره سایت را بررسی می‌کند)، اما در نهایت منجر به رشد پایدار و بهبود رتبه خواهد شد.'
+        },
+        {
+            question: 'Core Web Vitals چیست و چرا مهم است؟',
+            answer: 'این‌ها معیارهای گوگل برای سنجش تجربه کاربری واقعی (سرعت، تعامل، پایداری بصری) هستند و از سال ۲۰۲۱ رسماً فاکتور رتبه‌بندی محسوب می‌شوند.'
+        },
+        {
+            question: 'آیا سئو داخلی فقط شامل کلمات کلیدی است؟',
+            answer: 'خیر، سئو داخلی شامل بهینه‌سازی تصاویر، ساختار هدینگ‌ها، لینک‌سازی داخلی، بهبود نرخ کلیک (CTR)، و نگارش محتوای کاربرپسند نیز می‌شود.'
+        }
+    ];
+
+
+
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات سئو', item: 'https://asreseo.com/services/seo/' },
+    { position: 3, name: 'سئو تکنیکال و داخلی', item: 'https://asreseo.com/services/seo/technical-onpage/' },
+  ];
+
+---
+<BaseLayout title='سئو تکنیکال و بهینه‌سازی داخلی سایت | عصر سئو' description='خدمات جامع سئو تکنیکال و داخلی (On-Page). افزایش سرعت سایت، رفع خطاهای فنی، تحقیق کلمات کلیدی و بهینه‌سازی ساختار برای رتبه اول گوگل.' keywords='سئو تکنیکال, سئو داخلی, On-Page SEO, Technical SEO, افزایش سرعت سایت, تحقیق کلمات کلیدی, Core Web Vitals' canonical='https://asreseo.com/services/seo/technical-onpage/' ogType='website' ogUrl='https://asreseo.com/services/seo/technical-onpage/' ogImages={[{ url: "/og/technical-onpage-hero.jpg", width: 1200, height: 630, alt: "سئو تکنیکال و داخلی | عصر سئو" }]} twitterCard='summary_large_image'
+  ogTitle='سئو تکنیکال و داخلی | بهینه‌سازی کامل سایت | عصر سئو'
+
+  ogDescription='بهینه‌سازی فنی و محتوایی سایت برای کسب رتبه‌های برتر گوگل و تجربه کاربری عالی.'
+>
+<div class="min-h-screen bg-white">
+            <script id="structured-data" type="application/ld+json" is:inline
+                set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/seo/technical-onpage/', image: '/og/technical-onpage-hero.jpg' }))}
+            />
+
+            <Header />
+            <BreadcrumbStructuredData items={breadcrumbs} />
+
+            <main>
+                <ServiceHero
+                    badge="بهینه‌سازی جامع تکنیکال و داخلی"
+                    title="سئو تکنیکال و داخلی"
+                    titleHighlight="تکنیکال و داخلی"
+                    description="زیربنای فنی قدرتمند و محتوای بهینه‌سازی شده؛ دو بال پرواز وب‌سایت شما به صفحه اول گوگل. سرعت بالا، ساختار استاندارد و کلمات کلیدی هدفمند."
+                    primaryCtaText="شروع بهینه‌سازی سایت"
+                    secondaryCtaText="آنالیز رایگان فنی"
+                    imageSrc="/images/technical-onpage-hero.webp"
+                    imageAlt="سئو تکنیکال و داخلی"
+                    theme="cyan"
+                />
+
+                <!-- Stats Section -->
+                <ServiceStats stats={stats} gradientClass="section-padding bg-linear-to-r from-blue-50 to-cyan-50" metricColorClass="text-cyan-700 mb-2" iconColorClass="h-8 w-8 text-cyan-600 mx-auto mb-3" />
+
+                <!-- Technical Services Section -->
+                <section class="section-padding">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                خدمات <span class="gradient-text">سئو تکنیکال</span> (Technical SEO)
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                ساخت زیربنای فنی مستحکم برای درک بهتر سایت توسط گوگل
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {technicalServices.map((service, index) => (
+                                <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center group-hover:bg-cyan-200 transition-colors">
+                                                <Icon name={service.icon} class="h-6 w-6 text-cyan-600" />
+                                            </div>
+                                            <CardTitle class="text-xl font-semibold">{service.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">
+                                            {service.description}
+                                        </p>
+                                        <div class="space-y-2">
+                                            {service.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                                                    {benefit}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- On-Page Services Section -->
+                <section class="section-padding bg-slate-50">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                خدمات <span class="gradient-text">سئو داخلی</span> (On-Page SEO)
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                بهینه‌سازی محتوا و ساختار صفحات برای جذب حداکثری کاربران و گوگل
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-8">
+                            {onPageServices.map((service, index) => (
+                                <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg bg-white">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                                                <Icon name={service.icon} class="h-6 w-6 text-blue-600" />
+                                            </div>
+                                            <CardTitle class="text-xl font-semibold">{service.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">
+                                            {service.description}
+                                        </p>
+                                        <div class="space-y-2">
+                                            {service.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                                                    {benefit}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Core Web Vitals Section -->
+                <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                استانداردهای <span class="gradient-text">Core Web Vitals</span>
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                ما سایت شما را برای پاس کردن سخت‌گیرانه‌ترین معیارهای تجربه کاربری گوگل بهینه می‌کنیم
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8">
+                            {coreWebVitals.map((vital, index) => (
+                                <Card class="hover:shadow-lg transition-all duration-300 group border-0 shadow-lg bg-white">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                                                <Icon name={vital.icon} class="h-6 w-6 text-cyan-600" />
+                                            </div>
+                                            <div>
+                                                <h3 class="text-xl font-semibold">{vital.metric}</h3>
+                                                <p class="text-sm text-gray-600">{vital.title}</p>
+                                            </div>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-3 leading-relaxed">
+                                            {vital.description}
+                                        </p>
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-sm font-medium text-gray-700">هدف بهینه:</span>
+                                            <span class={`text-lg font-bold ${vital.color}`}>{vital.target}</span>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Technical Issues Section -->
+                <section class="section-padding">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                رفع <span class="gradient-text">خطاهای فنی</span> کشنده
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                                مشکلاتی که مانع رشد سایت شما می‌شوند را شناسایی و ریشه‌کن می‌کنیم
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {technicalIssues.map((issue, index) => (
+                                <div class="flex items-start gap-3 p-3 bg-red-50 rounded-lg border border-red-200">
+                                    <Icon name="alert-triangle" class="h-5 w-5 text-red-600 shrink-0 mt-0.5" />
+                                    <span class="text-gray-900 font-medium leading-relaxed text-sm">
+                                        {issue}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <ServiceFAQ
+                    title="سوالات متداول"
+                    highlightWord="متداول"
+                    subtitle="پاسخ به سوالات شما درباره سئو تکنیکال و داخلی"
+                    faqs={faqs}
+                />
+
+                <ServiceCTA
+                    title="سایت خود را برای موفقیت آماده کنید!"
+                    description="با ترکیب سئو تکنیکال قدرتمند و سئو داخلی دقیق، پتانسیل واقعی وب‌سایت خود را آزاد کنید. همین حالا برای آنالیز رایگان اقدام کنید."
+                    primaryText="شروع بهینه‌سازی"
+                    secondaryText="مشاوره رایگان"
+                    primaryClass="bg-cyan-700 hover:bg-cyan-800 text-white font-semibold shadow-lg shadow-cyan-700/30"
+                />
+            </main>
+
+            <Footer />
+        </div>
+</BaseLayout>

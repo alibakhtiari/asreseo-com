@@ -1,0 +1,791 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Picture from '../../components/ui/Picture.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+import Accordion from '../../components/ui/Accordion.astro';
+import AccordionItem from '../../components/ui/AccordionItem.astro';
+import AccordionTrigger from '../../components/ui/AccordionTrigger.astro';
+import AccordionContent from '../../components/ui/AccordionContent.astro';
+
+// The canonical Organization (#organization) is declared once in
+// OrganizationStructuredData.astro (rendered on the homepage); founder and
+// foundingDate were merged into that node — AboutPage now references it.
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  'name': 'درباره ما - عصر سئو',
+  'description': 'معرفی آژانس دیجیتال مارکتینگ و سئو عصر سئو، رسالت، استراتژی و سابقه متخصصان در حوزه سئو داده‌محور و هوش مصنوعی.',
+  'mainEntity': {
+    '@type': 'Organization',
+    '@id': 'https://asreseo.com/#organization'
+  }
+};
+
+const breadcrumbs = [
+  { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+  { position: 2, name: 'درباره ما', item: 'https://asreseo.com/about/' },
+];
+
+const milestones = [
+  {
+    year: '۱۳۹۸',
+    title: 'نقطه آغاز و تثبیت در سئو کلاه سفید',
+    desc: 'شروع فعالیت عصر سئو با تمرکز بر اصول بنیادین سئو ارگانیک، استراتژی‌های ضد پنالتی و کمک به استارتاپ‌های ایرانی برای کسب جایگاه‌های برتر در صفحه اول گوگل.'
+  },
+  {
+    year: '۱۴۰۰',
+    title: 'توسعه سئو تکنیکال عمیق و پرفورمنس مارکتینگ',
+    desc: 'ارتقای زیرساخت‌های مهندسی وب، بهینه‌سازی سرعت و Core Web Vitals برای وب‌سایت‌های پرترافیک و اجرای کمپین‌های کلیکی هدفمند گوگل ادز.'
+  },
+  {
+    year: '۱۴۰۲',
+    title: 'راه‌اندازی آزمایشگاه هوش مصنوعی و اتوماسیون محتوا',
+    desc: 'پیشگامی در ادغام مدل‌های زبانی پیشرفته در فرآیندهای تحلیل داده، طراحی چت‌بات‌های هوشمند فارسی و اتوماسیون خوشه‌های محتوایی سئومحور.'
+  },
+  {
+    year: '۱۴۰۴',
+    title: 'پیشگامی در سئو معنایی (Semantic SEO) و بهینه‌سازی AEO',
+    desc: 'هدایت برندها در عصر موتورهای پاسخگو و هوش مصنوعی (Google AI Overviews)، ارتقای Topical Authority و تعریف استانداردهای نوین سئو در بازار وب فارسی.'
+  }
+];
+
+const methodology = [
+  {
+    step: '۰۱',
+    title: 'ممیزی فنی و تکنیکال ۳۶۰ درجه',
+    desc: 'بررسی جامع کدها، معماری URL، بودجه خزش (Crawl Budget)، خطاهای ایندکس، شاخص‌های Core Web Vitals و سازگاری کامل نسخه موبایل برای رفع موانع موتورهای جستجو.',
+    badge: 'زیرساخت بی‌نقص'
+  },
+  {
+    step: '۰۲',
+    title: 'معماری معنایی، آنتیتی‌ها و تاپیکال آتوریتی',
+    desc: 'استخراج موجودیت‌های کلیدی صنعت، طراحی خوشه‌های محتوایی (Topic Clusters)، لینک‌سازی داخلی هوشمند و برطرف‌سازی هم‌نوع‌خواری کلمات (Cannibalization).',
+    badge: 'مرجعیت موضوعی'
+  },
+  {
+    step: '۰۳',
+    title: 'شتاب‌دهی با هوش مصنوعی و بهینه‌سازی AEO',
+    desc: 'تحلیل داده‌های کلان سرچ کنسول با مدل‌های زبانی، شناسایی الگوهای نوظهور جستجو، تدوین کپسول‌های پاسخ برای هوش مصنوعی (AEO/GEO) و اتوماسیون گردش کارها.',
+    badge: 'پیشتازی در عصر AI'
+  },
+  {
+    step: '۰۴',
+    title: 'سئو خارجی کلاه سفید، روابط عمومی دیجیتال و تثبیت',
+    desc: 'ایجاد پیوندهای اعتبارساز طبیعی از مراجع معتبر، کمپین‌های هدفمند رپرتاژ آگهی، پایش پیوسته رفتار رقبا و تثبیت پایدار رتبه‌های صفحه اول گوگل.',
+    badge: 'پایداری و رشد مداوم'
+  }
+];
+
+const departments = [
+  {
+    title: 'مهندسی سئو تکنیکال و پرفورمنس',
+    desc: 'متخصصان معماری وب، بهینه‌سازی سرعت لود، ساختار داده‌های Schema.org و رفع موانع فنی در پلتفرم‌های مدرن (Next.js, Astro, WordPress).',
+    metric: 'مطابق استانداردهای گوگل'
+  },
+  {
+    title: 'استراتژی محتوا، معماری کلمات و AEO',
+    desc: 'خلق محتواهای عمیق مطابق استانداردهای E-E-A-T گوگل، بهینه‌سازی برای موتورهای جستجوی هوش مصنوعی و تدوین استراتژی تاپیکال آتوریتی.',
+    metric: 'محتوای رتبه‌دار متعدد'
+  },
+  {
+    title: 'آزمایشگاه هوش مصنوعی و داده‌کاوی',
+    desc: 'طراحی الگوریتم‌های تحلیلی، استخراج کوئری‌های پرپتانسیل از داده‌های سرچ کنسول و اتوماسیون فرآیندهای سئو داده‌محور.',
+    metric: 'تحلیل کلان‌داده اختصاصی'
+  },
+  {
+    title: 'روابط عمومی دیجیتال و برندینگ ارگانیک',
+    desc: 'کمپین‌های حرفه‌ای برند منشن، رپرتاژهای استراتژیک، ارتقای Domain Authority و ایجاد پیوندهای طبیعی و ضد جریمه الگوریتمی.',
+    metric: 'همکاری با مراجع معتبر رسانه‌ای'
+  }
+];
+
+const industries = [
+  { name: 'فروشگاه‌های آنلاین و ایکامرس', desc: 'مدیریت معماری هزاران محصول، دسته‌بندی و صفحات فیلتر' },
+  { name: 'شرکت‌های SaaS و پلتفرم‌های B2B', desc: 'جذب لیدهای تجاری، تصمیم‌گیرندگان و مدیران سازمان‌ها' },
+  { name: 'سلامت، دارویی و پزشکی (YMYL)', desc: 'پایبندی عمیق به فاکتورهای اعتماد، ارجاعات علمی و E-E-A-T' },
+  { name: 'صنعت گردشگری و رزرو آنلاین', desc: 'رقابت در عبارات پرترافیک و فصلی بلیط، تور و هتل' },
+  { name: 'خدمات مالی، فین‌تک و سرمایه‌گذاری', desc: 'سئو کلمات پرارزش مالی و ارتقای امنیت و نرخ تبدیل لندینگ‌ها' },
+  { name: 'پلتفرم‌های آموزش و آکادمی‌ها', desc: 'تبدیل جستجوگران عبارات آموزشی به خریداران دوره‌ها' }
+];
+
+const values = [
+  {
+    title: 'سئو کلاه سفید و امنیت سرمایه',
+    desc: 'پایبندی مطلق به اصول اخلاقی و استانداردهای گوگل؛ بدون هیچ روش فریبنده یا پرخطر تا رتبه‌های کسب‌شده پایدار و همیشگی بمانند.'
+  },
+  {
+    title: 'رویکرد داده‌محور و شفافیت کامل',
+    desc: 'تمام تصمیمات ما بر اساس تحلیل داده‌های دقیق سرچ کنسول و رفتار واقعی کاربران اتخاذ می‌شوند و گزارش‌های ماهانه کاملاً شفاف ارائه می‌گردند.'
+  },
+  {
+    title: 'تلفیق هوش مصنوعی و هوش انسانی',
+    desc: 'بهره‌مندی از سرعت و توان پردازشی الگوریتم‌های AI در کنار تجربه، قضاوت عمیق و خلاقیت استراتژیست‌های متخصص.'
+  },
+  {
+    title: 'تمرکز بر بازگشت سرمایه (ROI)',
+    desc: 'هدف غایی ما صرفاً افزایش رتبه یا کلیک نیست؛ بلکه تبدیل مخاطبان ارگانیک به سرنخ‌های کیفی، مشتریان وفادار و رشد درآمد شماست.'
+  },
+  {
+    title: 'پشتیبانی متعهد و پاسخگویی سریع',
+    desc: 'همراهی اختصاصی مشاور در تمامی مراحل پروژه، پاسخ به سوالات، تحلیل دوره‌ای رقبا و رفع سریع چالش‌های فنی وب‌سایت.'
+  },
+  {
+    title: 'نوآوری و تطابق لحظه‌ای با الگوریتم‌ها',
+    desc: 'رصد لحظه‌ای آپدیت‌های هسته گوگل و تحولات موتورهای جستجو برای به‌روزرسانی پیشگیرانه استراتژی‌های سئو.'
+  }
+];
+
+const aboutFaqs = [
+  {
+    q: 'رویکرد عصر سئو در ارائه خدمات چگونه است و چه تمایزی با سایر شرکت‌ها دارد؟',
+    a: 'ما سئو را به عنوان یک علم مهندسی داده و استراتژی سرمایه‌گذاری نگاه می‌کنیم، نه ترفندهای ناپایدار یا لینک‌سازی کورکورانه. تمایز اصلی ما تلفیق تحلیل تکنیکال عمیق، معماری معنایی (Semantic SEO) و ابزارهای هوش مصنوعی اختصاصی است که در قالب قراردادهای شفاف و گزارش‌دهی مستقیم ماهانه ارائه می‌گردد.'
+  },
+  {
+    q: 'آیا عصر سئو رتبه‌بندی کلمات کلیدی را تضمین می‌کند؟',
+    a: 'گوگل در مستندات رسمی خود صراحتاً اعلام کرده هیچ آژانسی توانایی تضمین رتبه یک گوگل را ندارد. تعهد ما «تضمین بالاترین کیفیت اجرای فرآیند سئو بر اساس استانداردهای کلاه سفید» است که در پروژه‌های متعدد به رشد مستمر ورودی سرچ ارگانیک و رتبه‌های اول انجامیده است.'
+  },
+  {
+    q: 'چگونه از هوش مصنوعی استفاده می‌کنید بدون آنکه سایت دچار افت کیفیت یا پنالتی شود؟',
+    a: 'ما از هوش مصنوعی برای داده‌کاوی، تحلیل سریع رقبا، پیدا کردن شکاف‌های معنایی (Content Gaps) و ایجاد درفت اولیه استفاده می‌کنیم. در مرحله نهایی، تمامی متون توسط استراتژیست‌های انسانی با تخصص E-E-A-T بازبینی، ویرایش و غنی‌سازی محتوایی می‌شوند.'
+  },
+  {
+    q: 'فرآیند گزارش‌دهی و مانیتورینگ پروژه در طول ماه چگونه انجام می‌شود؟',
+    a: 'هر پروژه یک مدیر اختصاصی دارد. کارفرمایان به داشبورد آنلاین دسترسی دارند و در پایان هر ماه گزارش جامع شامل مقایسه کلیک‌ها، ایمپرشن‌ها، وضعیت کلمات کلیدی هدف و اقدامات ماه آتی همراه با جلسه آنلاین ارائه می‌گردد.'
+  }
+];
+
+const aboutFaqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': aboutFaqs.map(item => ({
+    '@type': 'Question',
+    'name': item.q,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': item.a
+    }
+  }))
+};
+---
+<BaseLayout
+  title='درباره ما | آژانس دیجیتال مارکتینگ و سئو عصر سئو'
+  description='آشنایی با تیم متخصص عصر سئو، پیشگام خدمات سئو، تبلیغات گوگل، تولید محتوا و هوش مصنوعی در ایران با سابقه اجرای پروژه‌های موفق متعدد.'
+  keywords='درباره عصر سئو, تیم متخصص سئو, شرکت سئو, آژانس دیجیتال مارکتینگ, سابقه عصر سئو, علی بختیاری سئو'
+  canonical='https://asreseo.com/about/'
+  ogType='website'
+  ogUrl='https://asreseo.com/about/'
+  ogImages={[{ url: '/og/about-hero.jpg', width: 1200, height: 630, alt: 'درباره آژانس دیجیتال مارکتینگ و سئو عصر سئو' }]}
+  twitterCard='summary_large_image'
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(aboutSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(aboutFaqSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
+
+  <div class="min-h-screen bg-slate-50/40">
+    <Header />
+    <main class="pt-28 pb-20">
+      <!-- Rich Visual Hero Section -->
+      <section class="py-12 md:py-16 bg-linear-to-b from-blue-50/70 via-slate-50/30 to-transparent border-b border-slate-100">
+        <div class="container-custom max-w-6xl">
+          <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <!-- Hero Content (7 Cols) -->
+            <div class="lg:col-span-7 space-y-6 text-right">
+              <div class="inline-flex items-center gap-2 bg-blue-100/80 text-blue-800 px-3.5 py-1.5 rounded-full text-xs md:text-sm font-semibold">
+                <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+                پیشگام در سئو نوین و هوش مصنوعی در ایران
+              </div>
+
+              <h1 class="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
+                درباره <span class="gradient-text">عصر سئو</span>؛ آژانس تخصصی رشد ارگانیک و سئو مدرن
+              </h1>
+
+              <p class="text-base md:text-lg text-slate-600 leading-relaxed">
+                عصر سئو از سال ۱۳۹۸ با یک هدف روشن آغاز شد: رهایی کسب‌وکارهای ایرانی از تکنیک‌های پرخطر و زودگذر، و پایه‌ریزی سیستم‌های سئو داده‌محور، ساختاریافته و مقاوم در برابر به‌روزرسانی‌های گوگل. ما امروز به‌عنوان شرکت خدمات هوش مصنوعی و سئو پیشرفته، علم داده را با تفکر استراتژیک انسانی ادغام کرده‌ایم.
+              </p>
+
+              <!-- Trust Points Checklist -->
+              <div class="space-y-3 pt-2">
+                <div class="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                  <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span>تعهد کامل به سئو کلاه سفید و رشد طبیعی پایدار در گوگل</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                  <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span>شفافیت کامل در داده‌ها، گزارش‌های ماهانه سرچ کنسول و دسترسی‌ها</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                  <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span>آماده‌سازی زیرساخت سایت برای موتورهای پاسخگو و سئو هوش مصنوعی (AEO/GEO)</span>
+                </div>
+              </div>
+
+              <!-- Hero Actions -->
+              <div class="pt-4 flex flex-wrap gap-3">
+                <a
+                  href="/consultation/"
+                  class="rounded-xl bg-blue-600 px-6 py-3 text-sm font-bold text-white shadow-md hover:bg-blue-700 hover:shadow-lg shadow-blue-600/20 transition-all flex items-center gap-2"
+                >
+                  رزرو جلسه مشاوره رایگان
+                  <svg class="w-4 h-4 transform -rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+                <a
+                  href="/services/"
+                  class="rounded-xl border border-slate-300 bg-white px-6 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50 transition-all"
+                >
+                  مشاهده خدمات تخصصی
+                </a>
+              </div>
+            </div>
+
+            <!-- Hero Visual Asset (5 Cols) -->
+            <div class="lg:col-span-5 relative">
+              <div class="relative mx-auto max-w-md lg:max-w-none">
+                <!-- Background Accent Glow -->
+                <div class="absolute -inset-2 rounded-3xl bg-linear-to-tr from-blue-500/20 to-indigo-500/20 blur-xl"></div>
+
+                <!-- Main Image Card -->
+                <div class="relative rounded-3xl overflow-hidden border border-slate-200/80 shadow-2xl bg-white">
+                  <Picture
+                    src="/images/about-hero.webp"
+                    alt="تیم متخصص آژانس دیجیتال مارکتینگ و سئو عصر سئو"
+                    class="w-full h-auto object-cover aspect-4/3"
+                    eager={true}
+                  />
+                  <!-- Subtle Image Overlay Gradient -->
+                  <div class="absolute inset-0 bg-linear-to-t from-slate-950/60 via-transparent to-transparent"></div>
+                  
+                  <div class="absolute bottom-4 right-4 left-4 text-white">
+                    <div class="text-xs text-blue-200 font-medium mb-1">عصر سئو</div>
+                    <div class="text-sm font-bold">پیشگام سئو داده‌محور و هوش مصنوعی در ایران</div>
+                  </div>
+                </div>
+
+                <!-- Floating Trust Badge 1: Projects -->
+                <div class="absolute -bottom-5 -right-4 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200 shadow-lg flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-black text-lg">
+                    متعدد
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-500 font-medium">پروژه‌های انجام‌شده</div>
+                    <div class="text-sm font-bold text-slate-900">سئو و مارکتینگ موفق</div>
+                  </div>
+                </div>
+
+                <!-- Floating Trust Badge 2: Satisfaction -->
+                <div class="absolute -top-4 -left-4 bg-white/95 backdrop-blur-md p-3 rounded-2xl border border-slate-200 shadow-lg flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-xs font-bold text-slate-900">رضایت مشتریان</div>
+                    <div class="text-[10px] text-slate-500">و تمدید همکاری مستمر</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Headline Metrics Grid -->
+      <section class="py-12">
+        <div class="container-custom max-w-6xl">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 text-center shadow-xs hover:shadow-md transition-shadow">
+              <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="text-3xl md:text-4xl font-black text-slate-900 mb-1 font-mono">متعدد</div>
+              <div class="text-xs md:text-sm font-bold text-slate-700 mb-1">پروژه موفق اجراشده</div>
+              <div class="text-xs text-slate-500">در انواع صنایع و فروشگاه‌ها</div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 text-center shadow-xs hover:shadow-md transition-shadow">
+              <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="text-3xl md:text-4xl font-black text-indigo-600 mb-1 font-mono">بالا</div>
+              <div class="text-xs md:text-sm font-bold text-slate-700 mb-1">رضایت کارفرمایان</div>
+              <div class="text-xs text-slate-500">پایداری نتایج و قراردادها</div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 text-center shadow-xs hover:shadow-md transition-shadow">
+              <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="text-3xl md:text-4xl font-black text-emerald-600 mb-1 font-mono">سال‌ها</div>
+              <div class="text-xs md:text-sm font-bold text-slate-700 mb-1">سابقه مستمر</div>
+              <div class="text-xs text-slate-500">از سال ۱۳۹۸ در وب فارسی</div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 text-center shadow-xs hover:shadow-md transition-shadow">
+              <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div class="text-3xl md:text-4xl font-black text-purple-600 mb-1 font-mono">۲۴/۷</div>
+              <div class="text-xs md:text-sm font-bold text-slate-700 mb-1">مانیتورینگ و پشتیبانی</div>
+              <div class="text-xs text-slate-500">پایش مداوم سلامت سرچ کنسول</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission and Vision -->
+      <section class="py-12">
+        <div class="container-custom max-w-6xl">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white rounded-3xl p-8 md:p-10 border border-slate-200/90 shadow-sm relative overflow-hidden group hover:border-blue-300 transition-all">
+              <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h2 class="text-2xl font-bold text-slate-900 mb-4">مأموریت ما</h2>
+              <p class="text-slate-600 leading-relaxed text-base">
+                کمک به کسب‌وکارهای ایرانی برای تبدیل وب‌سایت به یک دارایی درآمدزای پایدار. ما با تدوین استراتژی‌های سئو کلاه سفید، اصلاح زیرساخت فنی و تولید محتوای ارزشمند، ترافیک سرچ ارگانیک را به خریداران و مشتریان وفادار تبدیل می‌کنیم تا حضور دیجیتال شما مستقل از هزینه‌های سرسام‌آور تبلیغات باشد.
+              </p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-8 md:p-10 border border-slate-200/90 shadow-sm relative overflow-hidden group hover:border-indigo-300 transition-all">
+              <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </div>
+              <h2 class="text-2xl font-bold text-slate-900 mb-4">چشم‌انداز ما</h2>
+              <p class="text-slate-600 leading-relaxed text-base">
+                پیشگامی بی‌رقیب در معماری سئو معنایی (Semantic Search) و بهینه‌سازی موتورهای پاسخگو (AEO/GEO) در خاورمیانه. ما باور داریم عصر آینده متعلق به پیوند ناگسستنی هوش مصنوعی و تفکر استراتژیک انسانی است و عصر سئو این افق را برای برندهای پیشرو خلق می‌کند.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4-Stage Proprietary Methodology Section -->
+      <section class="py-16 bg-slate-900 text-white relative overflow-hidden rounded-3xl mx-4 sm:mx-6 lg:mx-8 my-8 border border-slate-800 shadow-2xl">
+        <!-- Ambient background glows -->
+        <div class="absolute -top-32 right-10 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 left-10 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="container-custom max-w-6xl relative z-10">
+          <div class="text-center max-w-3xl mx-auto mb-14">
+            <div class="inline-flex items-center gap-2 bg-blue-500/10 text-blue-400 border border-blue-500/20 px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold mb-4">
+              <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+              فرایند علمی و استاندارد مهندسی سئو
+            </div>
+            <h2 class="text-2xl md:text-4xl font-black text-white mb-4">
+              متدولوژی ۴ مرحله‌ای عصر سئو برای صدرنشینی در گوگل
+            </h2>
+            <p class="text-sm md:text-base text-slate-300 leading-relaxed">
+              رویکرد گام‌به‌گام و داده‌محور ما که ریسک پنالتی و افت را به صفر رسانده و نتایج را پایدار می‌سازد.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {methodology.map((m) => (
+              <div class="bg-slate-800/80 backdrop-blur-sm border border-slate-700/80 rounded-2xl p-6 flex flex-col justify-between hover:border-blue-500/50 hover:bg-slate-800 transition-all group">
+                <div>
+                  <div class="flex items-center justify-between mb-4">
+                    <span class="text-3xl font-mono font-black text-blue-400 group-hover:text-blue-300 transition-colors">
+                      {m.step}
+                    </span>
+                    <span class="text-[11px] font-bold bg-blue-900/60 text-blue-200 border border-blue-700/50 px-2.5 py-1 rounded-full">
+                      {m.badge}
+                    </span>
+                  </div>
+                  <h3 class="text-lg font-bold text-white mb-3 group-hover:text-blue-200 transition-colors">
+                    {m.title}
+                  </h3>
+                  <p class="text-xs md:text-sm text-slate-300 leading-relaxed mb-4">
+                    {m.desc}
+                  </p>
+                </div>
+                <div class="pt-3 border-t border-slate-700/50 flex items-center gap-1.5 text-xs text-blue-400 font-semibold">
+                  <span>استاندارد تأییدشده</span>
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Specialist Department Breakdown -->
+      <section class="py-14">
+        <div class="container-custom max-w-6xl">
+          <div class="text-center max-w-2xl mx-auto mb-12">
+            <div class="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium mb-3">
+              ساختار تخصصی آژانس
+            </div>
+            <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-3">
+              دپارتمان‌های متمرکز و هسته فنی عصر سئو
+            </h2>
+            <p class="text-sm md:text-base text-slate-600 leading-relaxed">
+              پروژه شما توسط یک فرد مدیریت نمی‌شود؛ تیمی از متخصصان ارشد هر حوزه بر روی تک‌تک بخش‌های سایت کار می‌کنند.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {departments.map((dept) => (
+              <div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-indigo-300 transition-all flex flex-col justify-between">
+                <div>
+                  <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  </div>
+                  <h3 class="text-base font-bold text-slate-900 mb-2">
+                    {dept.title}
+                  </h3>
+                  <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                    {dept.desc}
+                  </p>
+                </div>
+                <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <span class="text-slate-400 font-medium">شاخص کلیدی:</span>
+                  <span class="font-bold text-indigo-600">{dept.metric}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Industries Served Showcase -->
+      <section class="py-12 bg-slate-100/70 border-y border-slate-200/60">
+        <div class="container-custom max-w-6xl">
+          <div class="text-center max-w-2xl mx-auto mb-10">
+            <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium mb-3">
+              تجربه در بازارهای رقابتی
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
+              صنایع و حوزه‌هایی که در آن‌ها تخصص داریم
+            </h2>
+            <p class="text-xs md:text-sm text-slate-600">
+              استراتژی هر صنعت کاملاً متمایز است؛ ما زبان و رفتار خریداران هر بازار را به خوبی می‌شناسیم.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+            {industries.map((ind) => (
+              <div class="bg-white p-4 rounded-xl border border-slate-200 text-center shadow-2xs hover:border-blue-400 hover:shadow-xs transition-all flex flex-col justify-center">
+                <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-2">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                </div>
+                <div class="text-xs font-bold text-slate-900 mb-1 leading-snug">
+                  {ind.name}
+                </div>
+                <div class="text-[10px] text-slate-500 leading-tight line-clamp-2">
+                  {ind.desc}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Our Journey & Milestone Timeline -->
+      <section class="py-16 bg-white border-y border-slate-200/70">
+        <div class="container-custom max-w-5xl">
+          <div class="text-center mb-14">
+            <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium mb-3">
+              مسیر تکامل و دستاوردها
+            </div>
+            <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4">
+              داستان رشد و نقاط عطف <span class="gradient-text">عصر سئو</span>
+            </h2>
+            <p class="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              روایت تعهد بی‌وقفه از سال ۱۳۹۸ به استانداردسازی سئو در فضای وب فارسی
+            </p>
+          </div>
+
+          <div class="space-y-8 relative before:absolute before:inset-0 before:right-6 md:before:right-1/2 before:w-0.5 before:bg-slate-200">
+            {milestones.map((m, idx) => (
+              <div class={`relative flex flex-col md:flex-row items-start gap-8 ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                <!-- Timeline Dot -->
+                <div class="absolute right-6 md:right-1/2 transform translate-x-1/2 w-8 h-8 rounded-full bg-blue-600 border-4 border-white shadow-md flex items-center justify-center text-white text-xs font-bold z-10">
+                  {idx + 1}
+                </div>
+
+                <!-- Content Card -->
+                <div class="w-full md:w-1/2 pr-14 md:pr-0 md:px-8">
+                  <div class="bg-slate-50/80 p-6 md:p-8 rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all">
+                    <span class="inline-block bg-blue-600 text-white font-mono font-bold text-xs px-3 py-1 rounded-full mb-3">
+                      سال {m.year}
+                    </span>
+                    <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2">
+                      {m.title}
+                    </h3>
+                    <p class="text-sm md:text-base text-slate-600 leading-relaxed">
+                      {m.desc}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Leadership & E-E-A-T Authority -->
+      <section class="py-16">
+        <div class="container-custom max-w-5xl">
+          <div class="bg-linear-to-br from-slate-900 to-indigo-950 text-white rounded-3xl p-8 md:p-12 shadow-xl">
+            <div class="grid md:grid-cols-12 gap-8 items-center">
+              <div class="md:col-span-8 space-y-4 text-right">
+                <div class="inline-flex items-center gap-2 bg-white/10 text-blue-300 px-3.5 py-1 rounded-full text-xs font-semibold">
+                  مدیریت ارشد و استراتژی
+                </div>
+                <h2 class="text-2xl md:text-3xl font-black text-white">
+                  مهندس علی بختیاری
+                </h2>
+                <div class="text-sm font-bold text-blue-300">
+                  بنیان‌گذار و مدیر ارشد استراتژی سئو و هوش مصنوعی عصر سئو
+                </div>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                  با سال‌ها سابقه در مهندسی نرم‌افزار، تحلیل عمیق الگوریتم‌های گوگل، معماری سیستم‌های سئو تکنیکال و پیاده‌سازی اتوماسیون‌های هوش مصنوعی. رویکرد ما در عصر سئو حذف حدس و گمان از فرآیند بازاریابی و تبدیل سئو به یک علم دقیق مهندسی است.
+                </p>
+                <div class="pt-2 flex flex-wrap gap-4 text-xs text-slate-300 font-medium">
+                  <span class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                    متخصص سئو تکنیکال و Core Web Vitals
+                  </span>
+                  <span class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                    معماری محتوای معنایی (Semantic Search)
+                  </span>
+                  <span class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+                    راهکارهای پیشرفته AI و AEO
+                  </span>
+                </div>
+              </div>
+
+              <div class="md:col-span-4 text-center">
+                <div class="bg-white/10 p-6 rounded-2xl border border-white/10 backdrop-blur-xs space-y-3">
+                  <div class="text-3xl font-mono font-black text-white">سال‌ها</div>
+                  <div class="text-xs text-slate-300">تجربه تخصصی مهندسی سئو و نرم‌افزار</div>
+                  <hr class="border-white/10 my-3" />
+                  <a
+                    href="/consultation/"
+                    class="block w-full py-2.5 px-4 rounded-xl bg-white text-slate-900 font-bold text-xs hover:bg-blue-50 transition-colors"
+                  >
+                    درخواست مشاوره مستقیم
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Core Values -->
+      <section class="py-16">
+        <div class="container-custom max-w-6xl">
+          <div class="text-center mb-14">
+            <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium mb-3">
+              اصول اخلاقی و استانداردهای حرفه‌ای
+            </div>
+            <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-4">
+              ارزش‌های بنیادین و <span class="gradient-text">تمایز عصر سئو</span>
+            </h2>
+            <p class="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              اصولی که از سال ۱۳۹۸ بدون هیچ مصالحه‌ای به آن‌ها پایبند مانده‌ایم
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-emerald-300 transition-all flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 mb-2.5">
+                  سئو کلاه سفید و امنیت سرمایه
+                </h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  پایبندی مطلق به اصول اخلاقی و استانداردهای گوگل؛ بدون هیچ روش فریبنده یا پرخطر تا رتبه‌های کسب‌شده پایدار و همیشگی بمانند.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-5">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 mb-2.5">
+                  رویکرد داده‌محور و شفافیت کامل
+                </h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  تمام تصمیمات ما بر اساس تحلیل داده‌های دقیق سرچ کنسول و رفتار واقعی کاربران اتخاذ می‌شوند و گزارش‌های ماهانه کاملاً شفاف ارائه می‌گردند.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-purple-300 transition-all flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-5">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V5.25a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 5.25v10.5A2.25 2.25 0 006.75 18z" />
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 mb-2.5">
+                  تلفیق هوش مصنوعی و هوش انسانی
+                </h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  بهره‌مندی از سرعت و توان پردازشی الگوریتم‌های AI در کنار تجربه، قضاوت عمیق و خلاقیت استراتژیست‌های متخصص.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-amber-300 transition-all flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-5">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 mb-2.5">
+                  تمرکز بر بازگشت سرمایه (ROI)
+                </h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  هدف غایی ما صرفاً افزایش رتبه یا کلیک نیست؛ بلکه تبدیل مخاطبان ارگانیک به سرنخ‌های کیفی، مشتریان وفادار و رشد درآمد شماست.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-rose-300 transition-all flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mb-5">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3.666-3.091c-.598-.016-1.192-.047-1.78-.093M3.75 8.511C2.866 8.795 2.25 9.639 2.25 10.608v4.286c0 1.136.847 2.1 1.98 2.193.34.027.68.052 1.02.072v3.091l3.666-3.091c.598-.016 1.192-.047 1.78-.093" />
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 mb-2.5">
+                  پشتیبانی متعهد و پاسخگویی سریع
+                </h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  همراهی اختصاصی مشاور در تمامی مراحل پروژه، پاسخ به سوالات، تحلیل دوره‌ای رقبا و رفع سریع چالش‌های فنی وب‌سایت.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-cyan-300 transition-all flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center mb-5">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 mb-2.5">
+                  نوآوری و تطابق لحظه‌ای با الگوریتم‌ها
+                </h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  رصد لحظه‌ای آپدیت‌های هسته گوگل و تحولات موتورهای جستجو برای به‌روزرسانی پیشگیرانه استراتژی‌های سئو.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About FAQs Section -->
+      <section class="py-16 bg-slate-50 border-t border-slate-200/70">
+        <div class="container-custom max-w-4xl">
+          <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium mb-3">
+              پرسش‌های متداول
+            </div>
+            <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-3">
+              سوالات پرتکرار درباره همکاری با <span class="gradient-text">عصر سئو</span>
+            </h2>
+            <p class="text-sm md:text-base text-slate-600">
+              شفافیت در همکاری، شیوه کار و استانداردهایی که برای هر پروژه اجرا می‌کنیم
+            </p>
+          </div>
+
+          <Accordion type="single" collapsible class="w-full space-y-4">
+            {aboutFaqs.map((faq, idx) => (
+              <AccordionItem value={`faq-${idx}`} class="border border-slate-200/90 rounded-2xl bg-white overflow-hidden shadow-2xs hover:border-blue-300 transition-colors">
+                <AccordionTrigger class="w-full text-right p-5 md:p-6 font-bold text-slate-900 hover:text-blue-600 transition-colors flex items-center justify-between gap-4 text-base md:text-lg">
+                  <span>{faq.q}</span>
+                </AccordionTrigger>
+                <AccordionContent class="px-5 pb-6 md:px-6 pt-1 text-slate-600 text-sm md:text-base leading-relaxed border-t border-slate-100/80">
+                  <p>{faq.a}</p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      <!-- High Converting CTA -->
+      <section class="container-custom max-w-5xl mt-6">
+        <div class="rounded-3xl bg-linear-to-r from-blue-700 via-indigo-700 to-blue-900 text-white p-8 md:p-14 text-center shadow-xl relative overflow-hidden">
+          <div class="relative z-10">
+            <h2 class="text-2xl md:text-4xl font-black mb-4">
+              آماده تحول در ترافیک ارگانیک و فروش آنلاین خود هستید؟
+            </h2>
+            <p class="text-blue-100 text-sm md:text-base leading-relaxed mb-8 max-w-2xl mx-auto">
+              همین امروز یک جلسه مشاوره رایگان ۳۰ دقیقه‌ای با کارشناسان ارشد عصر سئو رزرو کنید تا وضعیت فعلی سایت و فرصت‌های رشد کلمات کلیدی شما را بررسی نماییم.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/consultation/"
+                class="rounded-xl bg-white text-blue-900 hover:bg-slate-100 px-8 py-3.5 text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2"
+              >
+                رزرو جلسه مشاوره رایگان ۳۰ دقیقه‌ای
+                <svg class="w-4 h-4 transform -rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+              <a
+                href="/contact/"
+                class="rounded-xl border border-white/40 text-white hover:bg-white/10 px-8 py-3.5 text-sm font-bold transition-all flex items-center justify-center gap-2"
+              >
+                تماس مستقیم با ما
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

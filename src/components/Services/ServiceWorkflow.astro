@@ -1,0 +1,109 @@
+---
+export interface WorkflowStep {
+  step: string | number;
+  title: string;
+  desc: string;
+}
+
+export interface Props {
+  title?: string;
+  titleHighlight?: string;
+  subtitle?: string;
+  steps: WorkflowStep[];
+  themeColor?: 'pink' | 'indigo' | 'blue' | 'green' | 'purple' | 'cyan' | 'amber';
+  bgGradient?: string;
+}
+
+const {
+  title = 'فرآیند اجرای خدمات',
+  titleHighlight,
+  subtitle,
+  steps = [],
+  themeColor = 'indigo',
+  bgGradient,
+} = Astro.props;
+
+const THEME_STYLES = {
+  indigo: {
+    bg: 'bg-linear-to-br from-slate-50 to-indigo-50/40',
+    stepCircle: 'bg-indigo-100 text-indigo-700',
+  },
+  pink: {
+    bg: 'bg-linear-to-br from-purple-50 to-pink-50',
+    stepCircle: 'bg-pink-100 text-pink-700',
+  },
+  blue: {
+    bg: 'bg-linear-to-br from-blue-50 to-indigo-50/40',
+    stepCircle: 'bg-blue-100 text-blue-700',
+  },
+  purple: {
+    bg: 'bg-linear-to-br from-purple-50 to-indigo-50/40',
+    stepCircle: 'bg-purple-100 text-purple-700',
+  },
+  green: {
+    bg: 'bg-linear-to-br from-emerald-50 to-teal-50',
+    stepCircle: 'bg-emerald-100 text-emerald-700',
+  },
+  cyan: {
+    bg: 'bg-linear-to-br from-cyan-50 to-blue-50',
+    stepCircle: 'bg-cyan-100 text-cyan-700',
+  },
+  amber: {
+    bg: 'bg-linear-to-br from-amber-50 to-orange-50',
+    stepCircle: 'bg-amber-100 text-amber-700',
+  },
+};
+
+const currentTheme = THEME_STYLES[themeColor] ?? THEME_STYLES.indigo;
+const activeBg = bgGradient || currentTheme.bg;
+
+let beforeHighlight = title;
+let afterHighlight = '';
+let hasHighlight = false;
+
+if (titleHighlight && title.includes(titleHighlight)) {
+  const parts = title.split(titleHighlight);
+  beforeHighlight = parts[0];
+  afterHighlight = parts.slice(1).join(titleHighlight);
+  hasHighlight = true;
+}
+---
+
+<section class={`section-padding ${activeBg}`}>
+  <div class="container-custom">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6">
+        {hasHighlight ? (
+          <>
+            {beforeHighlight}<span class="gradient-text">{titleHighlight}</span>{afterHighlight}
+          </>
+        ) : (
+          title
+        )}
+      </h2>
+      {subtitle && (
+        <p class="text-xl text-gray-600">
+          {subtitle}
+        </p>
+      )}
+    </div>
+
+    <div class="space-y-8">
+      {steps.map((step) => (
+        <div class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs">
+          <div class={`w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold shrink-0 ${currentTheme.stepCircle}`}>
+            {step.step}
+          </div>
+          <div class="flex-1 text-right">
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              {step.title}
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              {step.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

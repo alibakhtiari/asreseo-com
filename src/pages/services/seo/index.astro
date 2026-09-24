@@ -1,0 +1,222 @@
+---
+import { withServiceMeta } from '../../../lib/service-schema';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Layout/Header.astro';
+import Footer from '../../../components/Layout/Footer.astro';
+import Card from '../../../components/ui/card/Card.astro';
+import CardContent from '../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../components/ui/card/CardTitle.astro';
+import Button from '../../../components/ui/button/Button.astro';
+import Picture from '../../../components/ui/Picture.astro';
+import Icon from '../../../components/ui/Icon.astro';
+import BreadcrumbStructuredData from '../../../components/BreadcrumbStructuredData.astro';
+import ServiceFAQ from '../../../components/Services/ServiceFAQ.astro';
+
+const seoServices = [
+  {
+    title: 'سئو تکنیکال و داخلی',
+    description: 'بهینه‌سازی فنی، ساختاری و محتوایی وب‌سایت برای افزایش سرعت و تسخیر رتبه اول گوگل.',
+    icon: "zap",
+    href: '/services/seo/technical-onpage/',
+    features: ['بهینه‌سازی Core Web Vitals', 'رفع خطاهای خزش و ایندکس', 'معماری ساختار URL و سایت', 'نشانه گذاری اسکیما پیشرفته']
+  },
+  {
+    title: 'سئو محتوا و افزایش اعتبار (Authority)',
+    description: 'استراتژی محتوای خوشه‌ای (Topical Authority) و لینک‌سازی خارجی برای ارتقای پیج آتوریتی و دامین آتوریتی.',
+    icon: "file-text",
+    href: '/services/seo/content-authority/',
+    features: ['تحقیق عمیق کلمات کلیدی', 'تولید محتوای تاپیکال آتوریتی', 'رپورتاژ آگهی در رسانه‌های برتر', 'لینک‌سازی کلاه سفید اصولی']
+  },
+  {
+    title: 'سئو محلی و گوگل مپ (Local SEO)',
+    description: 'ثبت و بهینه‌سازی کسب‌وکار در گوگل مپ و جلب اعتماد مشتریان منطقه‌ای و شهری.',
+    icon: "globe",
+    href: '/services/seo/local-seo/',
+    features: ['ثبت و تایید لوکیشن در گوگل مپ', 'مدیریت نظرات و امتیازات کاربران', 'افزایش تماس‌های ورودی محلی', 'سئو کلمات کلیدی مبتنی بر منطقه']
+  }
+];
+
+const faqs = [
+  {
+    q: 'خدمات سئو سایت در عصر سئو به چه صورتی ارائه می‌شود؟',
+    a: 'ما پروژه‌های سئو را در ۴ مرحله کلیدی ممیزی فنی و رفع خطاها، تحقیق کلمات کلیدی و تدوین استراتژی محتوا، بهینه‌سازی آن‌پیج و در نهایت کمپین‌های آف‌پیج و لینک‌سازی معتبر اجرا می‌کنیم.'
+  },
+  {
+    q: 'چه مدت طول می‌کشد تا سایت در کلمات کلیدی سخت به صفحه اول برسد؟',
+    a: 'با توجه به سطح رقابت و قدمت سایت، نتایج ملموس معمولاً بین ۳ تا ۶ ماه پس از شروع اجرای استراتژی تثبیت می‌شوند و ترافیک ارگانیک به طور پیوسته رشد می‌کند.'
+  },
+  {
+    q: 'آیا گزارش‌های سئو به صورت شفاف ارائه می‌شوند؟',
+    a: 'بله. به صورت ماهانه گزارش کامل پیشرفت رتبه‌بندی‌ها، تعداد کلیک‌ها و ایمپرشن‌های سرچ کنسول، وضعیت سلامت فنی و جزئیات فعالیت‌های انجام‌شده تحویل کارفرما می‌گردد.'
+  }
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'خدمات سئو حرفه‌ای وب‌سایت',
+  'description': 'ارائه جامع‌ترین خدمات سئو سایت در ایران شامل سئو تکنیکال، سئو محتوا، افزایش اعتبار صفحه و سئو محلی توسط متخصصین عصر سئو.',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'عصر سئو',
+    'url': 'https://asreseo.com',
+    'logo': 'https://asreseo.com/Logo-spaced.png'
+  },
+  'areaServed': 'Iran',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'خدمات سئو عصر سئو',
+    'itemListElement': seoServices.map(s => ({
+      '@type': 'Offer',
+      'itemOffered': {
+        '@type': 'Service',
+        'name': s.title,
+        'description': s.description
+      }
+    }))
+  }
+};
+
+
+
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات سئو', item: 'https://asreseo.com/services/seo/' },
+  ];
+---
+
+<!-- Description was «برای تضمین رتبه یک گوگل». Guaranteeing a specific rank is
+     precisely what the site's own FAQ calls «یک ادعای غیرواقعی و گمراه‌کننده»
+     (and the blog calls «کلاهبرداری»), so it contradicted our own content. -->
+<BaseLayout
+  title='خدمات سئو حرفه‌ای و بهینه‌سازی سایت در گوگل | عصر سئو'
+  description='خدمات سئو حرفه‌ای وب‌سایت در عصر سئو: سئو تکنیکال، سئو محتوا، افزایش اعتبار صفحه و لینک‌سازی اصولی برای بهبود رتبه در گوگل و افزایش ترافیک ارگانیک.'
+  keywords='خدمات سئو, سئو حرفه‌ای, بهینه‌سازی سایت, سئو تکنیکال, سئو محتوا, افزایش اعتبار صفحه, لینک‌سازی'
+  canonical='https://asreseo.com/services/seo/'
+  ogType='website'
+  ogUrl='https://asreseo.com/services/seo/'
+  ogImages={[{ url: "/og/seo-service-hero.jpg", width: 1200, height: 630, alt: "خدمات سئو حرفه‌ای و افزایش رتبه سایت عصر سئو" }]}
+  twitterCard='summary_large_image'
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(serviceSchema, { url: 'https://asreseo.com/services/seo/', image: '/og/seo-service-hero.jpg' }))} />
+  
+  <BreadcrumbStructuredData items={breadcrumbs} />
+
+  <div class="min-h-screen bg-white">
+    <Header />
+    <main>
+      <!-- Hero Section -->
+      <section class="section-padding bg-linear-to-br from-slate-50 to-blue-50 overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob"></div>
+        <div class="absolute bottom-0 left-0 w-1/3 h-full bg-purple-100/50 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
+
+        <div class="container-custom relative z-10">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="text-right animate-fade-in order-2 lg:order-1">
+              <div class="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6">
+                <Icon name="trending-up" class="w-4 h-4 ml-2" />
+                رتبه اول گوگل را به کسب‌وکار خود اختصاص دهید
+              </div>
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                خدمات <span class="gradient-text">سئو حرفه‌ای</span> وب‌سایت
+              </h1>
+              <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                با استراتژی دقیق سئو عصر سئو، سایت خود را در معرض دید هزاران مشتری مشتاق قرار دهید و فروش ارگانیک را متحول کنید. اجرای اصولی سئو تکنیکال، محتوا و لینک‌سازی کلاه سفید.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-start">
+                <Button size="lg" class="gradient-bg text-white px-8 hover:shadow-lg hover:bg-blue-700 transition-all duration-300" href="/consultation/">
+                    دریافت مشاوره رایگان سئو
+                  </Button>
+                <Button variant="outline" size="lg" class="border-blue-200 hover:bg-blue-50 text-blue-700" href="tel:+989125811880">
+                    آنالیز اولیه وب‌سایت
+                  </Button>
+              </div>
+            </div>
+
+            <div class="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50">
+              <div class="absolute inset-0 bg-linear-to-tr from-blue-600/10 to-transparent z-10" />
+              <Picture
+                src="/images/seo-service-hero.webp"
+                alt="خدمات سئو حرفه‌ای و افزایش رتبه سایت عصر سئو"
+                class="object-cover hover:scale-105 transition-transform duration-700 w-full h-full"
+                eager
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Grid -->
+      <section class="section-padding">
+        <div class="container-custom">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              محورهای اصلی خدمات سئو عصر سئو
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              رویکردی ۳۶۰ درجه برای فتح قله‌های نتایج گوگل و تثبیت ماندگار در صدر جستجوها
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {seoServices.map((service) => (
+              <Card class="hover:shadow-xl transition-all duration-300 flex flex-col justify-between border-gray-200">
+                <CardHeader>
+                  <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4 text-blue-600 shadow-xs">
+                    <Icon name={service.icon} class="h-7 w-7" />
+                  </div>
+                  <CardTitle class="text-xl font-bold hover:text-blue-600 transition-colors">
+                    <a href={service.href}>{service.title}</a>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent class="flex-1 flex flex-col justify-between">
+                  <div>
+                    <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                      {service.description}
+                    </p>
+                    <ul class="space-y-2.5 text-xs text-gray-700 mb-6">
+                      {service.features.map((feature) => (
+                        <li class="flex items-center">
+                          <Icon name="check-circle" class="w-4 h-4 text-emerald-500 ml-2 shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <a href={service.href} class="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-700 pt-4 border-t border-gray-100">
+                    مشاهده جزئیات خدمات
+                    <Icon name="arrow-left" class="w-4 h-4 mr-2" />
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+            <ServiceFAQ title="پرسش‌های متداول خدمات سئو" subtitle="پاسخ به سوالات کلیدی درباره مدت زمان رتبه‌گیری، فرآیند اجرا و تضمین کیفیت" faqs={faqs} />
+
+      <!-- CTA Section -->
+      <section class="section-padding bg-linear-to-br from-blue-900 to-indigo-950 text-white">
+        <div class="container-custom text-center max-w-3xl">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">آماده تسخیر رتبه‌های برتر گوگل هستید؟</h2>
+          <p class="text-xl text-blue-200 mb-8 leading-relaxed">
+            همین امروز با مشاوران سئو عصر سئو تماس بگیرید و از پتانسیل ترافیک ورودی کسب‌وکار خود مطلع شوید.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" class="bg-white text-blue-950 hover:bg-gray-100 px-8 font-bold" href="tel:+989125811880">
+                <Icon name="phone" class="ml-2 h-5 w-5" />
+                تماس مستقیم: ۰۹۱۲۵۸۱۱۸۸۰
+              </Button>
+            <Button size="lg" variant="outline" class="bg-transparent border-blue-300 text-white hover:bg-white/10 px-8" href="/consultation/">
+                رزرو وقت مشاوره آنلاین
+              </Button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

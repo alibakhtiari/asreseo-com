@@ -1,0 +1,94 @@
+---
+import Icon from '../ui/Icon.astro';
+import MenuCategory from './MegaMenu/MenuCategory.astro'
+import { menuCategories } from './MegaMenu/menuData';
+
+
+
+  
+---
+<div class="relative group" data-megamenu>
+      <button
+        class="flex items-center text-text-700 hover:text-primary-600 transition-colors py-2 px-3 rounded-lg hover:bg-primary-50 group-hover:text-primary-600 cursor-pointer"
+        data-mm-btn
+        data-mm-enter
+        data-mm-leave
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <span class="font-medium">خدمات</span>
+        <Icon name="chevron-down" class="mr-2 h-4 w-4 transition-transform duration-200" data-mm-chevron />
+      </button>
+
+      <div data-mm-panel hidden>
+<div
+          class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[980px] max-w-[95vw] bg-white rounded-2xl shadow-xl border border-gray-100 z-50 overflow-hidden animate-fade-in"
+          data-mm-enter
+          data-mm-leave
+        >
+          <!-- Menu Grid - 5 Columns -->
+          <div class="p-6 bg-linear-to-b from-white to-gray-50/50">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5" dir="rtl">
+              {menuCategories.map((category, index) => (
+                <MenuCategory
+                 
+                  category={category}
+                  
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+</div>
+    </div>
+
+<script>
+  let t: ReturnType<typeof setTimeout> | undefined;
+  const root = document.querySelector('[data-megamenu]');
+  const panel = root?.querySelector('[data-mm-panel]');
+  const chevron = root?.querySelector('[data-mm-chevron]');
+  const btn = root?.querySelector('[data-mm-btn]');
+
+  const open = () => {
+    clearTimeout(t);
+    panel?.removeAttribute('hidden');
+    chevron?.classList.add('rotate-180');
+    btn?.setAttribute('aria-expanded', 'true');
+  };
+  const close = () => {
+    t = setTimeout(() => {
+      closeImmediate();
+    }, 150);
+  };
+  const closeImmediate = () => {
+    clearTimeout(t);
+    panel?.setAttribute('hidden', '');
+    chevron?.classList.remove('rotate-180');
+    btn?.setAttribute('aria-expanded', 'false');
+  };
+
+  btn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (panel?.hasAttribute('hidden')) {
+      open();
+    } else {
+      closeImmediate();
+    }
+  });
+
+  root?.querySelectorAll('[data-mm-enter]').forEach((el) => el.addEventListener('mouseenter', open));
+  root?.querySelectorAll('[data-mm-leave]').forEach((el) => el.addEventListener('mouseleave', close));
+  root?.querySelectorAll('[data-mm-close]').forEach((el) => el.addEventListener('click', closeImmediate));
+
+  document.addEventListener('click', (e) => {
+    if (!root?.contains(e.target as Node)) {
+      closeImmediate();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeImmediate();
+    }
+  });
+</script>

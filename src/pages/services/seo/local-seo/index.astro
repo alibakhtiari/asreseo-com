@@ -1,0 +1,268 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Button from '../../../../components/ui/button/Button.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Picture from '../../../../components/ui/Picture.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+
+
+
+
+
+
+const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': 'سئو محلی (Local SEO)',
+    'description': 'خدمات بهینه‌سازی برای جستجوهای محلی و گوگل مپ برای جذب مشتریان فیزیکی',
+    'serviceType': 'SEO Services',
+    'provider': {
+        '@type': 'Organization',
+        'name': 'عصر سئو',
+        'url': 'https://asreseo.com'
+    },
+    'areaServed': 'Iran',
+    'hasOfferCatalog': {
+        '@type': 'OfferCatalog',
+        'name': 'خدمات سئو محلی',
+        'itemListElement': [
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'ثبت و بهینه‌سازی گوگل مپ',
+                    'description': 'ایجاد و مدیریت پروفایل کسب‌وکار گوگل (Google Business Profile)'
+                }
+            },
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'مدیریت نظرات و شهرت',
+                    'description': 'استراتژی دریافت نظرات مثبت و پاسخگویی به مشتریان'
+                }
+            }
+        ]
+    }
+};
+
+
+
+    const localServices = [
+        {
+            icon: "map-pin",
+            title: 'بهینه‌سازی پروفایل گوگل (GBP)',
+            description: 'ثبت، تایید و بهینه‌سازی کامل Google Business Profile با اطلاعات دقیق، تصاویر حرفه‌ای و دسته‌بندی صحیح.',
+            benefits: ['دیده شدن در نقشه', 'اطلاعات تماس دقیق', 'جذب مشتری حضوری']
+        },
+        {
+            icon: "navigation",
+            title: 'مدیریت Citations (نقل‌قول‌ها)',
+            description: 'ثبت یکپارچه نام، آدرس و تلفن (NAP) شما در دایرکتوری‌های معتبر و سایت‌های مرجع محلی.',
+            benefits: ['اعتماد گوگل', 'ثبات اطلاعات', 'سیگنال‌های محلی قوی']
+        },
+        {
+            icon: "message-circle",
+            title: 'مدیریت شهرت و نظرات',
+            description: 'استراتژی دریافت نظرات ۵ ستاره، پاسخگویی حرفه‌ای به نقدها و مدیریت اعتبار آنلاین برند شما.',
+            benefits: ['نرخ تبدیل بالا', 'اعتمادسازی', 'رتبه بهتر در مپ']
+        },
+        {
+            icon: "layout",
+            title: 'تولید محتوای محلی (Local Content)',
+            description: 'ایجاد صفحات فرود اختصاصی برای هر منطقه یا شهر و تولید مقالات مرتبط با دغدغه‌های بومی.',
+            benefits: ['رتبه در کلمات "نزدیک من"', 'ارتباط با جامعه محلی', 'پوشش مناطق مختلف']
+        }
+    ];
+
+    const features = [
+        {
+            title: 'حضور در Local Pack',
+            description: 'هدف ما قرار دادن شما در ۳ نتیجه اول گوگل مپ است که بیشترین کلیک را دریافت می‌کنند.',
+            icon: "star",
+            color: 'text-yellow-500'
+        },
+        {
+            title: 'جستجوهای صوتی',
+            description: 'بهینه‌سازی برای عباراتی مثل "رستوران نزدیک من" که در جستجوهای موبایل و صوتی رایج هستند.',
+            icon: "phone",
+            color: 'text-blue-500'
+        },
+        {
+            title: 'افزایش تماس و مسیریابی',
+            description: 'تبدیل جستجوگران به مشتریان واقعی که با شما تماس می‌گیرند یا به فروشگاه شما می‌آیند.',
+            icon: "navigation",
+            color: 'text-green-500'
+        }
+    ];
+
+    const stats = [
+        { metric: 'جستجوی محلی', label: 'دیده شدن در نتایج گوگل', color: 'text-blue-600', icon: "search" },
+        { metric: 'مراجعه حضوری', label: 'جذب مشتریان اطراف شما', color: 'text-green-800', icon: "store" },
+        { metric: '۳x', label: 'افزایش تماس‌های تلفنی', color: 'text-purple-600', icon: "phone" },
+        { metric: 'مالکیت کامل', label: 'پروفایل مپ به نام شما', color: 'text-orange-600', icon: "map-pin" }
+    ];
+
+    const faqs = [
+        {
+            question: 'آیا بدون وب‌سایت هم می‌توان سئو محلی انجام داد؟',
+            answer: 'بله، پروفایل گوگل مپ مستقل از سایت عمل می‌کند، اما داشتن وب‌سایت بهینه‌شده تأثیر بسیار زیادی در رتبه گرفتن پروفایل مپ شما دارد.'
+        },
+        {
+            question: 'NAP چیست و چرا مهم است؟',
+            answer: 'NAP مخفف Name, Address, Phone است. یکسان بودن این اطلاعات در تمام سطح وب (سایت، اینستاگرام، دایرکتوری‌ها) مهمترین سیگنال اعتماد برای گوگل است.'
+        },
+        {
+            question: 'چگونه نظرات منفی را مدیریت کنیم؟',
+            answer: 'نظرات منفی فرصتی برای نشان دادن حرفه‌ای بودن شماست. ما به شما یاد می‌دهیم چطور با پاسخگویی صحیح، حتی مشتری ناراضی را به وفادار تبدیل کنید.'
+        },
+        {
+            question: 'آیا سئو محلی برای فروشگاه‌های آنلاین هم مفید است؟',
+            answer: 'اگر انبار یا دفتر فیزیکی دارید بله، اما سئو محلی عمدتاً برای کسب‌وکارهایی است که با مشتریان در یک موقعیت جغرافیایی تعامل دارند.'
+        }
+    ];
+
+
+
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات سئو', item: 'https://asreseo.com/services/seo/' },
+    { position: 3, name: 'سئو محلی و گوگل مپ', item: 'https://asreseo.com/services/seo/local-seo/' },
+  ];
+
+---
+<BaseLayout title='سئو محلی | ثبت گوگل مپ و جذب مشتری | عصر سئو' description='خدمات تخصصی سئو محلی برای کسب‌وکارهای فیزیکی. ثبت و بهینه‌سازی گوگل مپ، مدیریت نظرات، و جذب مشتریان از محله و شهر شما.' keywords='سئو محلی, Local SEO, ثبت در گوگل مپ, Google Business Profile, افزایش مشتری محلی, لوکال سئو' canonical='https://asreseo.com/services/seo/local-seo/' ogType='website' ogUrl='https://asreseo.com/services/seo/local-seo/' ogImages={[{ url: "/og/local-seo-hero.jpg", width: 1200, height: 630, alt: "سئو محلی و گوگل مپ | عصر سئو" }]} twitterCard='summary_large_image'
+  ogTitle='سئو محلی (Local SEO) | جذب مشتریان اطراف شما | عصر سئو'
+
+  ogDescription='کسب‌وکار خود را به مشتریان نزدیکتان معرفی کنید. بهینه‌سازی نقشه گوگل و جستجوهای محلی.'
+>
+<div class="min-h-screen bg-white">
+            <script id="structured-data" type="application/ld+json" is:inline
+                set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/seo/local-seo/', image: '/og/local-seo-hero.jpg' }))}
+            />
+
+            <Header />
+            <BreadcrumbStructuredData items={breadcrumbs} />
+
+            <main>
+                <ServiceHero
+                    badge="سلطان محله خود باشید"
+                    title="سئو محلی (Local SEO)"
+                    titleHighlight="محلی (Local SEO)"
+                    description="مشتریان دقیقاً در لحظه‌ای که به شما نیاز دارند، شما را پیدا کنند. افزایش تماس، مسیریابی و فروش حضوری با تسخیر نتایج گوگل مپ."
+                    primaryCtaText="ثبت کسب‌وکارتان در گوگل"
+                    secondaryCtaText="مشاوره سئو محلی"
+                    imageSrc="/images/local-seo-hero.webp"
+                    imageAlt="سئو محلی و گوگل مپ"
+                    theme="green"
+                />
+
+                <ServiceStats stats={stats} theme="green" />
+
+                <!-- Local Services Section -->
+                <section class="section-padding">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                خدمات <span class="gradient-text">سئو محلی</span> ما
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                راهکارهای جامع برای اینکه انتخاب اول مشتریان هم‌شهری خود باشید
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-8">
+                            {localServices.map((service, index) => (
+                                <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                                                <Icon name={service.icon} class="h-6 w-6 text-green-800" />
+                                            </div>
+                                            <CardTitle class="text-xl font-semibold">{service.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">
+                                            {service.description}
+                                        </p>
+                                        <div class="space-y-2">
+                                            {service.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                                                    {benefit}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Features Section -->
+                <section class="section-padding bg-slate-50">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                چرا <span class="gradient-text">سئو محلی</span> ضروری است؟
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                رفتار کاربران تغییر کرده است؛ آن‌ها به دنبال نزدیک‌ترین و بهترین گزینه هستند
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8">
+                            {features.map((feature, index) => (
+                                <Card class="hover:shadow-lg transition-all duration-300 group border-0 shadow-lg bg-white">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-gray-200 transition-colors">
+                                                <Icon name={feature.icon} class={`h-6 w-6 ${feature.color}`} />
+                                            </div>
+                                            <CardTitle class="text-xl font-semibold">{feature.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 leading-relaxed">
+                                            {feature.description}
+                                        </p>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <ServiceFAQ
+                    title="سوالات متداول"
+                    highlightWord="متداول"
+                    subtitle="پاسخ به سوالات شما درباره سئو محلی و گوگل مپ"
+                    faqs={faqs}
+                />
+
+                <ServiceCTA
+                    title="مشتریان اطراف خود را از دست ندهید!"
+                    description="همین حالا حضور خود را در گوگل مپ قدرتمند کنید و تماس‌های ورودی خود را چند برابر کنید. ما راه را بلدیم."
+                    primaryText="ثبت سفارش سئو محلی"
+                    secondaryText="مشاوره رایگان"
+                    primaryClass="bg-green-700 hover:bg-green-800 text-white font-semibold shadow-lg shadow-green-700/30"
+                />
+            </main>
+
+            <Footer />
+        </div>
+</BaseLayout>

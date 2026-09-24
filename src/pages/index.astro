@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Layout/Header.astro';
+import Footer from '../components/Layout/Footer.astro';
+import HeroSection from '../components/Home/HeroSection.astro';
+import ServicesSection from '../components/Home/ServicesSection.astro';
+import AllServicesSection from '../components/Home/AllServicesSection.astro';
+import PortfolioPreview from '../components/Home/PortfolioPreview.astro';
+import WhyChooseUsSection from '../components/Home/WhyChooseUsSection.astro';
+import TestimonialsSection from '../components/Home/TestimonialsSection.astro';
+import CTASection from '../components/Home/CTASection.astro';
+import HomepageStructuredData from '../components/HomepageStructuredData.astro';
+import OrganizationStructuredData from '../components/OrganizationStructuredData.astro';
+---
+<BaseLayout
+  title='آژانس دیجیتال مارکتینگ، خدمات سئو و هوش مصنوعی | عصر سئو'
+  description='عصر سئو؛ آژانس تخصصی خدمات سئو حرفه‌ای، بهینه‌سازی موتورهای هوش مصنوعی (AEO/GEO)، تبلیغات گوگل و تولید محتوای داده‌محور برای رشد ترافیک و فروش آنلاین.'
+  keywords='سئو, دیجیتال مارکتینگ, تبلیغات گوگل, طراحی وب‌سایت, بهینه‌سازی سایت, AsreSEO, چت‌بات فارسی, هوش مصنوعی, AI, اتوماسیون بازاریابی, تولید محتوا با AI'
+  canonical='/'
+  ogTitle='عصر سئو | بهترین خدمات دیجیتال مارکتینگ و سئو در ایران'
+  ogDescription='با خدمات حرفه‌ای سئو، طراحی وب‌سایت و هوش مصنوعی، مسیر رشد کسب‌وکار خود را هموار کنید'
+  ogImages={[{ url: '/og-default.png', width: 1200, height: 630, alt: 'آژانس دیجیتال مارکتینگ و سئو عصر سئو' }]}
+  twitterCard='summary_large_image'
+>
+<div class="min-h-screen bg-white">
+      <OrganizationStructuredData />
+      <HomepageStructuredData />
+      <Header />
+      <main>
+        <HeroSection />
+        <ServicesSection />
+        <AllServicesSection />
+        <PortfolioPreview />
+        <WhyChooseUsSection />
+        <TestimonialsSection />
+        <CTASection />
+      </main>
+      <Footer />
+    </div>
+</BaseLayout>

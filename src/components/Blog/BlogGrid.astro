@@ -1,0 +1,174 @@
+---
+import Card from '../ui/card/Card.astro';
+import Badge from '../ui/badge/Badge.astro';
+import Button from '../ui/button/Button.astro';
+import Icon from '../ui/Icon.astro';
+import Picture from '../ui/Picture.astro';
+const { posts }: any = Astro.props;
+const categories: string[] = [...new Set<string>((posts ?? []).map((p: any) => p.category).filter(Boolean))];
+const [featured, ...rest] = posts ?? [];
+const isFresh = (p: any) => p.updated && p.updated !== p.date;
+---
+<div class="space-y-8">
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <h2 class="text-2xl font-bold text-gray-900">آخرین مطالب</h2>
+    <div class="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1" data-category-filter>
+      <button type="button" data-filter="all" class="shrink-0 rounded-full border px-4 py-1.5 text-sm font-medium transition-colors bg-primary text-white border-primary" aria-pressed="true">همه</button>
+      {categories.map((c: string) => (
+        <button type="button" data-filter={c} class="shrink-0 rounded-full border px-4 py-1.5 text-sm font-medium transition-colors border-gray-200 text-gray-600 hover:border-primary hover:text-primary" aria-pressed="false">{c}</button>
+      ))}
+    </div>
+  </div>
+
+  {featured && (
+    <article data-category={featured.category}>
+      <Card class="overflow-hidden hover:shadow-xl transition-shadow">
+        <div class="md:flex">
+          <div class="md:w-1/2">
+            <a href={`/blog/${featured.slug}/`} tabindex="-1" aria-hidden="true">
+              <Picture
+                src={featured.image}
+                alt={featured.title}
+                eager={true}
+                aspectRatio="16 / 9"
+                class="w-full h-56 sm:h-64 md:h-full object-cover"
+              />
+            </a>
+          </div>
+          <div class="md:w-1/2 p-6 sm:p-8 flex flex-col">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <Badge class="bg-primary/10 text-blue-700">{featured.category}</Badge>
+              <Badge class="bg-green-100 text-green-800">ویژه</Badge>
+              {isFresh(featured) && (
+                <Badge class="bg-amber-100 text-amber-800">به‌روزرسانی</Badge>
+              )}
+            </div>
+            <a href={`/blog/${featured.slug}/`}>
+              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-snug mb-3 line-clamp-2 hover:text-primary transition-colors">
+                {featured.title}
+              </h3>
+            </a>
+            <p class="text-gray-600 leading-relaxed mb-4 line-clamp-2 sm:line-clamp-3">
+              {featured.excerpt}
+            </p>
+            <div class="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2">
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-500">
+                <span class="inline-flex items-center gap-1.5">
+                  <Icon name="user" class="h-4 w-4" />
+                  {featured.author}
+                </span>
+                <span class="inline-flex items-center gap-1.5">
+                  <Icon name="clock" class="h-4 w-4" />
+                  {featured.readTime}
+                </span>
+                <span>{new Date(featured.updated || featured.date).toLocaleDateString('fa-IR')}</span>
+              </div>
+              <!-- Button renders an anchor when given an href, so wrapping it
+                   in another anchor produced nested interactive content, which
+                   is invalid (WCAG 4.1.2). min-h-[24px] keeps the tap target
+                   at the WCAG 2.5.8 minimum. Do not re-add an anchor wrapper. -->
+              <Button href={`/blog/${featured.slug}/`} variant="ghost" class="text-primary p-0 h-auto min-h-[24px]">
+                ادامه مطلب
+                <Icon name="arrow-left" class="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </article>
+  )}
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-posts-grid>
+    {rest.map((post: any) => (
+      <article data-category={post.category} class="h-full">
+        <Card class="overflow-hidden hover:shadow-xl transition-shadow h-full flex flex-col">
+          <a href={`/blog/${post.slug}/`} tabindex="-1" aria-hidden="true">
+            <Picture
+              src={post.image}
+              alt={post.title}
+              aspectRatio="16 / 9"
+              class="w-full aspect-video object-cover"
+            />
+          </a>
+          <div class="p-5 sm:p-6 flex flex-col flex-1">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <Badge class="bg-primary/10 text-blue-700">{post.category}</Badge>
+              {post.featured && (
+                <Badge class="bg-green-100 text-green-800">ویژه</Badge>
+              )}
+              {isFresh(post) && (
+                <Badge class="bg-amber-100 text-amber-800">به‌روزرسانی</Badge>
+              )}
+            </div>
+            <a href={`/blog/${post.slug}/`}>
+              <h3 class="text-lg font-bold text-gray-900 leading-snug mb-2 line-clamp-2 hover:text-primary transition-colors">
+                {post.title}
+              </h3>
+            </a>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
+              {post.excerpt}
+            </p>
+            <div class="mt-auto flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-gray-100 text-[13px] text-gray-500">
+              <span class="inline-flex items-center gap-1.5 min-w-0">
+                <Icon name="user" class="h-3.5 w-3.5 shrink-0" />
+                <span class="truncate">{post.author}</span>
+              </span>
+              <span class="inline-flex items-center gap-1.5">
+                <Icon name="clock" class="h-3.5 w-3.5" />
+                {post.readTime}
+              </span>
+              <a href={`/blog/${post.slug}/`} class="inline-flex items-center gap-1 text-primary font-medium">
+                ادامه
+                <Icon name="arrow-left" class="h-3.5 w-3.5" />
+              </a>
+            </div>
+          </div>
+        </Card>
+      </article>
+    ))}
+  </div>
+  <p data-no-results class="text-center text-gray-500 py-8" hidden>مطلبی در این دسته‌بندی یافت نشد.</p>
+</div>
+
+<script>
+  const bar = document.querySelector('[data-category-filter]');
+  const cards = Array.from(document.querySelectorAll('article[data-category]'));
+  const empty = document.querySelector('[data-no-results]');
+  const search = document.getElementById('blog-search') as HTMLInputElement | null;
+  const ACTIVE = ['bg-primary', 'text-white', 'border-primary'];
+  const IDLE = ['border-gray-200', 'text-gray-600'];
+  function paint(btn: Element) {
+    const on = btn.getAttribute('aria-pressed') === 'true';
+    btn.classList.remove(...(on ? IDLE : ACTIVE));
+    btn.classList.add(...(on ? ACTIVE : IDLE));
+  }
+  function activeFilter() {
+    return bar?.querySelector('[aria-pressed="true"]')?.getAttribute('data-filter') ?? 'all';
+  }
+  function norm(s: string | null | undefined) {
+    return (s ?? '').replace(/[\u200c\s]+/g, ' ').trim();
+  }
+  function apply() {
+    const f = activeFilter();
+    const q = norm(search?.value);
+    let visible = 0;
+    cards.forEach((c) => {
+      const el = c as HTMLElement;
+      const catOk = f === 'all' || c.getAttribute('data-category') === f;
+      const title = norm(c.querySelector('h3')?.textContent);
+      const qOk = !q || title.includes(q);
+      el.hidden = !(catOk && qOk);
+      if (catOk && qOk) visible += 1;
+    });
+    if (empty) (empty as HTMLElement).hidden = visible > 0;
+  }
+  bar?.querySelectorAll('[data-filter]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      bar.querySelectorAll('[data-filter]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      bar.querySelectorAll('[data-filter]').forEach(paint);
+      apply();
+    });
+  });
+  search?.addEventListener('input', apply);
+</script>

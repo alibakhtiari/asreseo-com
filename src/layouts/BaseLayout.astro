@@ -1,0 +1,154 @@
+---
+// Shared document shell: replaces Next.js root layout + per-page `metadata`.
+// Persian (fa), RTL, Vazirmatn via @font-face in globals.css (same woff2 files).
+export interface OgImage {
+  url: string;
+  width?: number;
+  height?: number;
+  alt?: string;
+}
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  keywords?: string;
+  canonical?: string;
+  ogType?: string;
+  ogUrl?: string;
+  ogImages?: OgImage[];
+  twitterCard?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+}
+
+const SITE = 'https://asreseo.com';
+const DEFAULT_TITLE = 'عصر سئو | بهترین خدمات دیجیتال مارکتینگ، سئو و هوش مصنوعی در ایران';
+
+const {
+  title = DEFAULT_TITLE,
+  // Was «رشد ۳۰۰٪ کسب‌وکار خود را تضمین کنید». Two unverifiable claims in one
+  // sentence: a specific growth figure with no source, and a guarantee of it —
+  // which the site's own FAQ calls «یک ادعای غیرواقعی و گمراه‌کننده». This is
+  // the fallback description, so it is what ships on any page that omits one.
+  description = 'عصر سئو - ارائه خدمات دیجیتال مارکتینگ، سئو، هوش مصنوعی، تبلیغات گوگل و طراحی وب‌سایت. مشاوره رایگان پیش از عقد قرارداد و گزارش‌دهی شفاف در تمام مراحل.',
+  keywords = '',
+  canonical,
+  ogType = 'website',
+  ogUrl,
+  ogImages = [],
+  twitterCard = 'summary_large_image',
+  noindex = false,
+  nofollow = false,
+}: any = Astro.props;
+
+// `noindex` and `nofollow` are independent directives. An HTML sitemap is
+// `noindex, follow` — it must stay out of the index while still passing link
+// equity to every internal page it lists; `noindex, nofollow` there would
+// cut equity flow to the whole site. The 404 page sets both.
+const robots = [noindex ? 'noindex' : 'index', nofollow ? 'nofollow' : 'follow'].join(', ');
+
+const canonicalUrl = (() => {
+  const raw = canonical ?? Astro.url.pathname;
+  const path = raw.startsWith('http') ? new URL(raw).pathname : raw;
+  const normalized = path.endsWith('/') ? path : `${path}/`;
+  return new URL(normalized, SITE).href;
+})();
+
+const normalizedOgUrl = (() => {
+  const raw = ogUrl ?? canonicalUrl;
+  const path = raw.startsWith('http') ? new URL(raw).pathname : raw;
+  const normalized = path.endsWith('/') ? path : `${path}/`;
+  return new URL(normalized, SITE).href;
+})();
+
+const ogTitle = Astro.props.ogTitle ?? title;
+const ogDescription = Astro.props.ogDescription ?? description;
+
+// Default social-share image. 1200×630 matches X/Twitter/LinkedIn/Telegram's
+// `summary_large_image` spec — the prior 512×512 logo was either cropped
+// (square feed layouts) or declared with wrong dimensions on /faq/ and /services/.
+// Regenerate from /tmp/ogcard/index.html if branding changes.
+const DEFAULT_OG_IMAGE: OgImage = {
+  url: '/og-default.png',
+  width: 1200,
+  height: 630,
+  alt: 'عصر سئو - آژانس سئو، هوش مصنوعی و دیجیتال مارکتینگ',
+};
+
+const validOgImages: OgImage[] = (() => {
+  const isImageFile = (u: string) =>
+    /\.(png|jpe?g|webp|avif|svg)(\?.*)?$/i.test(u);
+  const filtered = ogImages.filter((img: OgImage) => {
+    if (!img?.url) return false;
+    // Discard any entry whose URL looks like a web page path (e.g. https://asreseo.com/about)
+    return isImageFile(img.url);
+  });
+  return filtered.length > 0 ? filtered : [DEFAULT_OG_IMAGE];
+})();
+
+const primaryTwitterImage = new URL(validOgImages[0].url, SITE).href;
+
+import FloatingActions from '../components/FloatingActions.astro';
+import '../styles/globals.css';
+---
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="fa-IR" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="fa_IR" />
+    <meta property="og:site_name" content="عصر سئو" />
+    <meta property="og:title" content={ogTitle} />
+    {ogDescription && <meta property="og:description" content={ogDescription} />}
+    <meta property="og:url" content={normalizedOgUrl} />
+    {validOgImages.map((img: OgImage) => (
+      <>
+        <meta property="og:image" content={new URL(img.url, SITE).href} />
+        {img.width && <meta property="og:image:width" content={String(img.width)} />}
+        {img.height && <meta property="og:image:height" content={String(img.height)} />}
+        {img.alt && <meta property="og:image:alt" content={img.alt} />}
+      </>
+    ))}
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:title" content={ogTitle} />
+    {ogDescription && <meta name="twitter:description" content={ogDescription} />}
+    <meta name="twitter:image" content={primaryTwitterImage} />
+    <meta name="twitter:site" content="@asreseo" />
+    <meta name="twitter:creator" content="@asreseo" />
+    <link rel="preload" href="/regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="/bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <slot name="head" />
+  </head>
+  <body class="font-vazir antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:right-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:shadow-lg">
+      پرش به محتوای اصلی
+    </a>
+    <slot />
+    <FloatingActions />
+    <!-- Clean up any legacy or orphaned Service Workers -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+          for (var i = 0; i < registrations.length; i++) {
+            registrations[i].unregister();
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

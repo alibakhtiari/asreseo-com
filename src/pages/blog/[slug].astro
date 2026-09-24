@@ -1,0 +1,137 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import BlogPost from '../../components/Blog/BlogPost.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((entry: any) => ({
+    params: { slug: entry.id.replace(/\.mdx?$/, '') },
+    props: { entry },
+  }));
+}
+
+const { entry }: any = Astro.props;
+const { Content, headings } = await render(entry);
+// Key takeaways and FAQs live in frontmatter (see src/content.config.ts), so
+// BlogPost.astro is the only thing that renders them — no duplication.
+const keyTakeaways: string[] = entry.data.keyTakeaways ?? [];
+const faqs: { question: string; answer: string }[] = entry.data.faqs ?? [];
+const TOC_SKIP = ['فهرست مطالب', 'نکات کلیدی'];
+// Exclude FAQ questions from the auto TOC by text (they're shown in the FAQ
+// accordion instead), rather than by position.
+const faqQuestions = new Set(
+  faqs.map((f: any) => String(f.question ?? '').trim()).filter(Boolean),
+);
+const tableOfContents = headings
+  .filter((h: any) => {
+    if (h.depth !== 2 && h.depth !== 3) return false;
+    if (TOC_SKIP.includes(h.text)) return false;
+    if (faqQuestions.has(String(h.text).trim())) return false;
+    return true;
+  })
+  .map((h: any) => ({ id: h.slug, title: h.text, level: h.depth }));
+
+// MDX frontmatter is the single source of truth for post metadata.
+// (A legacy `lib/blog-data.ts` override table used to shadow these fields and
+// had drifted out of sync — different authors and dates. Removed.)
+const slug = entry.id.replace(/\.mdx?$/, '');
+const d: any = entry.data;
+const post = {
+  slug,
+  title: d.title,
+  // Short form for the <title> tag only (see content.config.ts).
+  seoTitle: d.seoTitle,
+  excerpt: d.excerpt ?? '',
+  description: d.description ?? d.excerpt ?? '',
+  category: d.category ?? '',
+  author: d.author ?? '',
+  date: d.date ?? '',
+  updated: d.updated ?? '',
+  readTime: d.readTime ?? '',
+  image: d.image ?? '',
+  featured: d.featured ?? false,
+  tags: d.tags ?? [],
+  keyTakeaways,
+  faqs,
+  tableOfContents,
+};
+
+// Persian renders wide enough that a title TAG past ~60 chars is truncated in
+// the SERP, while the on-page H1 can carry the full headline. `seoTitle` is the
+// short form for the tag only; `post.title` stays the H1 / headline / crumb.
+const seoTitle = `${post.seoTitle ?? post.title} | عصر سئو`;
+
+// Mirrors the visual <ol> rendered directly under the header:
+// صفحه اصلی / وبلاگ / {post.title}
+const breadcrumbs = [
+  { position: 1, name: 'صفحه اصلی', item: 'https://asreseo.com/' },
+  { position: 2, name: 'وبلاگ', item: 'https://asreseo.com/blog/' },
+  { position: 3, name: post.title, item: `https://asreseo.com/blog/${post.slug}/` },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  '@id': `https://asreseo.com/blog/${post.slug}/#article`,
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': 'https://asreseo.com/#website',
+    name: 'عصر سئو',
+    url: 'https://asreseo.com/',
+  },
+  headline: post.title,
+  description: post.description || post.excerpt,
+  image: post.image ? [new URL(post.image, 'https://asreseo.com').href] : undefined,
+  datePublished: post.date || undefined,
+  dateModified: post.updated || post.date || undefined,
+  author: post.author
+    ? { '@type': 'Person', name: post.author }
+    : { '@type': 'Organization', name: 'عصر سئو' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'عصر سئو',
+    logo: { '@type': 'ImageObject', url: 'https://asreseo.com/Logo-spaced.png' },
+  },
+  mainEntityOfPage: `https://asreseo.com/blog/${post.slug}/`,
+  inLanguage: 'fa-IR',
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.speakable-summary'] },
+};
+---
+<BaseLayout
+  title={seoTitle}
+  description={post.description}
+  canonical={`https://asreseo.com/blog/${post.slug}/`}
+  ogType="article"
+  ogImages={[{ url: post.image.replace('/images/', '/og/').replace(/\.webp$/, '.jpg'), width: 1200, height: 630, alt: post.title }]}
+  ogUrl={`https://asreseo.com/blog/${post.slug}/`}
+
+>
+  <Header />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
+  <main class="section-padding pt-32">
+    <div class="container-custom">
+      <nav class="mb-8 max-w-4xl mx-auto" aria-label="مسیر">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+          <li>
+            <a href="/" class="hover:text-primary transition-colors">صفحه اصلی</a>
+          </li>
+          <li>/</li>
+          <li>
+            <a href="/blog/" class="hover:text-primary transition-colors">وبلاگ</a>
+          </li>
+          <li>/</li>
+          <li class="text-gray-900 font-medium truncate">{post.title}</li>
+        </ol>
+      </nav>
+      <div class="max-w-4xl mx-auto">
+        <BlogPost post={post} Content={Content} />
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

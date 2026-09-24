@@ -1,0 +1,101 @@
+---
+import Button from '../ui/button/Button.astro';
+import Card from '../ui/card/Card.astro';
+import CardContent from '../ui/card/CardContent.astro';
+import Icon from '../ui/Icon.astro';
+---
+<section class="section-padding bg-slate-50 relative overflow-hidden border-t border-slate-200">
+      <!-- Subtle background pattern -->
+      <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image:radial-gradient(#3b82f6 1px, transparent 1px);background-size:24px 24px"></div>
+
+      <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+        <div class="text-center mb-12 animate-fade-in">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            آماده شروع <span class="text-primary-600">همکاری</span> هستید؟
+          </h2>
+          <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            امروز اولین قدم را برای رشد دیجیتال کسب‌وکارتان بردارید. مشاوره رایگان دریافت کنید
+          </p>
+        </div>
+
+        <!-- Main CTA Card -->
+        <div class="max-w-4xl mx-auto mb-12">
+          <Card class="bg-white border-slate-200 shadow-xl animate-pulse-glow">
+            <CardContent class="p-8 md:p-12 text-center">
+              <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
+                مشاوره رایگان ۳۰ دقیقه‌ای
+              </h3>
+              <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+                با متخصصان ما صحبت کنید و بهترین استراتژی برای کسب‌وکارتان را کشف کنید. بدون هیچ تعهدی!
+              </p>
+
+              <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <Button
+                  href="/consultation/"
+                  size="lg"
+                  class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 text-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg w-full sm:w-auto"
+                >
+                  <Icon name="calendar" class="h-5 w-5 mr-2" />
+                  رزرو جلسه مشاوره
+                </Button>
+                <Button variant="outline" size="lg" class="border-2 border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-4 text-lg transition-all duration-200 font-semibold w-full w-full sm:w-auto" href="tel:+989125811880">
+                    <Icon name="phone" class="h-5 w-5 mr-2" />
+                    تماس فوری: ۰۹۱۲۵۸۱۱۸۸۰
+                  </Button>
+              </div>
+
+              <!-- Quick contact options -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center border-t border-slate-100 pt-8 mt-8">
+                <div class="flex items-center justify-center gap-2 text-slate-600 hover:text-primary-600 transition-colors cursor-pointer group">
+                  <div class="p-2 bg-slate-100 rounded-full group-hover:bg-primary-50 transition-colors">
+                    <Icon name="phone" class="h-5 w-5" />
+                  </div>
+                  <span class="font-medium">تماس تلفنی</span>
+                </div>
+                <div class="flex items-center justify-center gap-2 text-slate-600 hover:text-primary-600 transition-colors cursor-pointer group">
+                  <div class="p-2 bg-slate-100 rounded-full group-hover:bg-primary-50 transition-colors">
+                    <Icon name="message-circle" class="h-5 w-5" />
+                  </div>
+                  <span class="font-medium">چت آنلاین</span>
+                </div>
+                <div class="flex items-center justify-center gap-2 text-slate-600 hover:text-primary-600 transition-colors cursor-pointer group">
+                  <div class="p-2 bg-slate-100 rounded-full group-hover:bg-primary-50 transition-colors">
+                    <Icon name="mail" class="h-5 w-5" />
+                  </div>
+                  <span class="font-medium">ایمیل</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <!-- Guarantee section -->
+        <div class="text-center animate-slide-in-up">
+          <div class="inline-flex items-center gap-2 px-6 py-3 bg-green-100 text-green-800 rounded-full font-bold mb-4 border border-green-200">
+            <span>✓</span>
+            <!-- Was «ضمانت رضایت ۱۰۰٪». Two problems: it is an absolute claim we
+                 cannot evidence, and it contradicted the very next sentence — if
+                 ۹۸٪ are satisfied, the figure is not ۱۰۰٪. The paragraph below
+                 describes a refund, so the badge now names that actual
+                 commitment instead of an unsupportable absolute. -->
+            ضمانت بازگشت وجه
+          </div>
+          <p class="text-slate-500 max-w-2xl mx-auto">
+            اگر از کیفیت خدمات ما راضی نباشید، هزینه پرداختی شما برگردانده می‌شود.
+          </p>
+        </div>
+
+        <!-- Emergency contact -->
+        <div class="mt-16 text-center">
+          <div class="inline-block bg-white border border-red-100 shadow-xs px-6 py-3 rounded-lg animate-bounce">
+            <div class="flex items-center gap-2">
+              <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+              </span>
+              <span class="font-bold text-red-600">پشتیبانی اورژانسی ۲۴/۷: ۰۹۱۲۵۸۱۱۸۸۰</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

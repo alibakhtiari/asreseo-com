@@ -1,0 +1,292 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import Picture from '../../components/ui/Picture.astro';
+import Badge from '../../components/ui/badge/Badge.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+
+const cases = [  {
+    slug: 'case-law-rag',
+    title: 'چت‌بات حقوقی هوشمند با RAG',
+    category: 'هوش مصنوعی | دستیار حقوقی',
+    image: '/images/portfolio-law-rag.webp',
+    summary: 'دستیار فارسی پاسخ‌گویی به پرسش‌های حقوقی که با استناد مستقیم به متن ماده قانونی جواب می‌دهد؛ قوانین پراکنده درگاه‌های قوانین، dotic و ara را یکپارچه و در چند ثانیه قابل پرس‌وجو کرد.',
+    challenges: [
+      'اصطلاحات تخصصی و عربی متون حقوقی که جست‌وجوی کلیدواژه‌ای را ناکارآمد می‌کرد',
+      'پراکندگی قوانین در چند درگاه با ساختار متفاوت',
+      'خطر توهم مدل و پاسخ بدون استناد در موضوع حساس حقوقی',
+    ],
+    actions: [
+      'خزش و نرمال‌سازی متون قوانین از سه درگاه قوانین، dotic و ara',
+      'امبدینگ فارسی و جست‌وجوی معنایی روی پایگاه‌داده برداری',
+      'بازیابی قطعه‌به‌قطعه همراه با نمایش منبع هر پاسخ',
+      'نگهبان پاسخ: امتناع از جواب در صورت نبود مدرک کافی',
+    ],
+    tech: [
+      'RAG',
+      'پایگاه‌داده برداری',
+      'امبدینگ فارسی',
+      'رابط چت فارسی',
+      'استناد خودکار',
+    ],
+    results: [
+      'هر پاسخ مستند به ماده قانونی مشخص است',
+      'زمان جست‌وجوی حقوقی به چند ثانیه رسید',
+      'قابل اتکا برای مشاوران به‌عنوان دستیار پژوهشی',
+    ],
+    links: [
+      { text: 'خدمات هوش مصنوعی', href: '/services/ai/' },
+      { text: 'مشاوره رایگان', href: '/consultation/' },
+    ],
+  },
+  {
+    slug: 'case-ai-callcenter',
+    title: 'مرکز تماس هوشمند با تحلیل مکالمات',
+    category: 'هوش مصنوعی | اتوماسیون فروش',
+    image: '/images/portfolio-ai-callcenter.webp',
+    summary: 'ضبط تماس‌های VoIP، تبدیل گفتار به متن فارسی و امتیازدهی سرنخ‌ها با هدایت هوشمند به کارشناس مناسب؛ هیچ تماسی بی‌پاسخ نمی‌ماند و مدیران گزارش روزانه شفاف دارند.',
+    challenges: [
+      'از دست رفتن تماس‌های خارج از ساعت کاری',
+      'صدها ساعت فایل صوتی ضبط‌شده بدون هیچ تحلیلی',
+      'ارجاع اشتباه تماس و سرد شدن سرنخ‌های داغ',
+    ],
+    actions: [
+      'خط لوله ضبط و بایگانی تماس‌های VoIP',
+      'تبدیل گفتار فارسی به متن با دقت مناسب مکالمه تلفنی',
+      'امتیازدهی سرنخ و قوانین هدایت هوشمند به کارشناس مرتبط',
+      'داشبورد خلاصه روزانه برای مدیران فروش',
+    ],
+    tech: [
+      'یکپارچه‌سازی VoIP',
+      'تبدیل گفتاربه‌متن فارسی',
+      'تحلیل LLM',
+      'وب‌هوک CRM',
+    ],
+    results: [
+      'پوشش کامل تماس‌ها حتی خارج ساعت کاری',
+      'رسیدن سریع سرنخ داغ به کارشناس درست',
+      'تصویر شفاف مدیران از عملکرد مرکز تماس',
+    ],
+    links: [
+      { text: 'خدمات هوش مصنوعی', href: '/services/ai/' },
+      { text: 'دیجیتال مارکتینگ', href: '/services/marketing/' },
+    ],
+  },
+  {
+    slug: 'case-seo-monitoring',
+    title: 'پایش خودکار سئو با هشدار لحظه‌ای',
+    category: 'سئو | اتوماسیون پایش',
+    image: '/images/portfolio-seo-monitoring.webp',
+    summary: 'رصد مداوم خطاهای خزش، افت رتبه و مشکلات فنی سایت با هشدار تلگرامی و تیکت خودکار؛ تیم فنی به‌جای رصد دستی، روی رفع متمرکز شد.',
+    challenges: [
+      'دیر فهمیدن افت رتبه و خطاهای فنی',
+      'بررسی دستی پرهزینه و فراموش‌شدنی',
+      'گم شدن هشدارها میان کارهای روزمره تیم',
+    ],
+    actions: [
+      'خزش دوره‌ای سایت و رصد روزانه رتبه کلمات کلیدی',
+      'تعریف آستانه هشدار با اطلاع‌رسانی تلگرامی',
+      'ساخت تیکت خودکار اولویت‌بندی‌شده برای تیم فنی',
+      'گزارش هفتگی وضعیت سلامت فنی برای مدیریت',
+    ],
+    tech: [
+      'خزش دوره‌ای',
+      'API سرچ کنسول',
+      'ربات تلگرام',
+      'داشبورد وضعیت',
+    ],
+    results: [
+      'واکنش سریع به افت‌ها پیش از بحرانی شدن',
+      'شفافیت دائمی وضعیت فنی سایت',
+      'آزاد شدن زمان تیم از رصد دستی',
+    ],
+    links: [
+      { text: 'سئو تکنیکال', href: '/services/seo/technical-onpage/' },
+      { text: 'خدمات سئو', href: '/services/seo/' },
+    ],
+  },
+  {
+    slug: 'case-content-pipeline',
+    title: 'خط لوله اتوماسیون تولید و انتشار محتوا',
+    category: 'محتوا | اتوماسیون انتشار',
+    image: '/images/portfolio-content-pipeline.webp',
+    summary: 'از بریف استاندارد تا انتشار زمان‌بندی‌شده در سایت و شبکه‌های اجتماعی؛ تولید پیش‌نویس با هوش مصنوعی و بازبینی انسانی اجباری در میانه راه.',
+    challenges: [
+      'نامنظمی انتشار و وقفه‌های طولانی',
+      'گم شدن بریف‌ها و ایده‌ها در پیام‌رسان‌ها',
+      'انتشار دستی وقت‌گیر در چند کانال هم‌زمان',
+    ],
+    actions: [
+      'بریف استاندارد و تولید پیش‌نویس با هوش مصنوعی',
+      'بازبینی انسانی اجباری پیش از انتشار',
+      'زمان‌بندی و انتشار خودکار چندکاناله',
+      'بایگانی متمرکز و گزارش عملکرد انتشار',
+    ],
+    tech: [
+      'اتوماسیون انتشار',
+      'زمان‌بند انتشار',
+      'بازبینی انسانی',
+      'توزیع چندکاناله',
+    ],
+    results: [
+      'انتشار منظم و بدون وقفه',
+      'حفظ کیفیت با کنترل انسانی',
+      'صرفه‌جویی محسوس در زمان تیم محتوا',
+    ],
+    links: [
+      { text: 'اتوماسیون انتشار محتوا', href: '/services/ai/content-creation/' },
+      { text: 'تقویم محتوایی سایت', href: '/services/content/content-calendar/' },
+    ],
+  },
+  {
+    slug: 'case-ads-reporting',
+    title: 'گزارش‌دهی خودکار تبلیغات با تحلیل هوشمند',
+    category: 'تبلیغات | اتوماسیون گزارش',
+    image: '/images/portfolio-ads-reporting.webp',
+    summary: 'دایجست روزانه گوگل ادز و آنالیتیکس با تحلیل علّی افت‌وخیزها به زبان ساده مدیریتی؛ پایان اکسل‌های دستی و تصمیم دیرهنگام روی بودجه.',
+    challenges: [
+      'گزارش‌گیری دستی و زمان‌بر هر هفته',
+      'دیر دیده شدن اتلاف بودجه کمپین‌ها',
+      'فنی بودن گزارش‌ها و نامفهوم برای مدیران',
+    ],
+    actions: [
+      'اتصال API تبلیغات گوگل و آنالیتیکس',
+      'دایجست روزانه خودکار با شاخص‌های کلیدی',
+      'تحلیل علّی تغییرات با هوش مصنوعی',
+      'هشدار آستانه هزینه برای جلوگیری از اتلاف بودجه',
+    ],
+    tech: [
+      'API گوگل ادز',
+      'گوگل آنالیتیکس',
+      'تحلیل LLM',
+      'گزارش خودکار',
+    ],
+    results: [
+      'تصمیم سریع و به‌موقع روی بودجه',
+      'حذف کامل کار دستی گزارش‌گیری',
+      'گزارش به زبان ساده برای مدیریت',
+    ],
+    links: [
+      { text: 'تبلیغات گوگل ادز', href: '/services/marketing/google-ads/' },
+      { text: 'مشاوره رایگان', href: '/consultation/' },
+    ],
+  },
+];
+
+const breadcrumbs = [
+  { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+  { position: 2, name: 'نمونه‌کارها', item: 'https://asreseo.com/portfolio/' },
+];
+
+const portfolioSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': 'https://asreseo.com/portfolio/#collection',
+      url: 'https://asreseo.com/portfolio/',
+      name: 'نمونه‌کارهای هوش مصنوعی و اتوماسیون عصر سئو',
+      description: 'پروژه‌های واقعی اجراشده با شرح چالش، اقدامات، فناوری‌ها و نتایج.',
+      inLanguage: 'fa-IR',
+      // Self-contained on purpose: an @id-only stub would be a dangling
+      // reference, because /portfolio is the only page that mentions
+      // #website and nothing else on the site ever defines that entity.
+      isPartOf: {
+        '@type': 'WebSite',
+        '@id': 'https://asreseo.com/#website',
+        name: 'عصر سئو',
+        url: 'https://asreseo.com/',
+        inLanguage: 'fa-IR',
+      },
+      mainEntity: { '@id': 'https://asreseo.com/portfolio/#cases' },
+    },
+    {
+      '@type': 'ItemList',
+      '@id': 'https://asreseo.com/portfolio/#cases',
+      name: 'نمونه‌کارهای هوش مصنوعی و اتوماسیون عصر سئو',
+      inLanguage: 'fa-IR',
+      itemListElement: cases.map((c, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: c.title,
+        description: c.summary,
+        url: `https://asreseo.com/portfolio/#${c.slug}`,
+      })),
+    },
+  ],
+};
+---
+<BaseLayout
+  title='نمونه‌کارهای هوش مصنوعی و اتوماسیون | عصر سئو'
+  description='نمونه‌کارهای واقعی عصر سئو: چت‌بات حقوقی RAG، مرکز تماس هوشمند، پایش خودکار سئو، اتوماسیون محتوا و گزارش‌دهی تبلیغات؛ با شرح چالش، اقدام و فناوری.'
+  canonical='https://asreseo.com/portfolio/'
+  ogUrl='https://asreseo.com/portfolio/'
+  ogImages={[{ url: '/og/portfolio-law-rag.jpg', width: 1200, height: 630, alt: 'نمونه‌کارهای هوش مصنوعی عصر سئو' }]}
+>
+  <div class="min-h-screen bg-white">
+    <Header />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(portfolioSchema)} />
+    <BreadcrumbStructuredData items={breadcrumbs} />
+    <main class="section-padding pt-36 md:pt-40">
+      <div class="container-custom">
+        <div class="text-center mb-12 max-w-3xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">نمونه‌کارهای هوش مصنوعی و اتوماسیون</h1>
+          <p class="text-lg text-gray-600 leading-relaxed">پروژه‌های واقعی اجراشده؛ با شرح چالش، اقدامات، فناوری‌ها و نتایج — نه اسلاید تبلیغاتی.</p>
+          <div class="flex flex-wrap justify-center gap-2 mt-6">
+            {cases.map((c) => (
+              <a href={`#${c.slug}`} class="rounded-full border border-gray-200 px-4 py-1.5 text-sm text-gray-600 hover:border-primary hover:text-primary transition-colors">{c.title}</a>
+            ))}
+          </div>
+        </div>
+        <div class="space-y-16">
+          {cases.map((c, i) => (
+            <section id={c.slug} class="scroll-mt-28">
+              <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <div class={i % 2 === 1 ? 'lg:order-2' : ''}>
+                  <Picture src={c.image} alt={c.title} aspectRatio="16 / 9" class="w-full rounded-2xl object-cover shadow-lg" />
+                </div>
+                <div class={i % 2 === 1 ? 'lg:order-1' : ''}>
+                  <div class="flex flex-wrap gap-2 mb-3">
+                    <Badge class="bg-primary/10 text-blue-700">{c.category}</Badge>
+                    <Badge class="bg-green-100 text-green-800">پروژه واقعی</Badge>
+                  </div>
+                  <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">{c.title}</h2>
+                  <p class="text-gray-600 leading-relaxed mb-5">{c.summary}</p>
+                  <h3 class="font-bold text-gray-900 mb-2">چالش‌ها</h3>
+                  <ul class="list-disc pr-5 space-y-1.5 text-sm text-gray-700 mb-4">
+                    {c.challenges.map((x) => (<li>{x}</li>))}
+                  </ul>
+                  <h3 class="font-bold text-gray-900 mb-2">اقدامات</h3>
+                  <ul class="list-disc pr-5 space-y-1.5 text-sm text-gray-700 mb-4">
+                    {c.actions.map((x) => (<li>{x}</li>))}
+                  </ul>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {c.tech.map((x) => (
+                      <span class="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">{x}</span>
+                    ))}
+                  </div>
+                  <h3 class="font-bold text-gray-900 mb-2">نتایج</h3>
+                  <ul class="space-y-1.5 text-sm text-gray-700 mb-5">
+                    {c.results.map((x) => (<li class="flex items-start gap-2"><span class="text-green-800 font-bold">✓</span><span>{x}</span></li>))}
+                  </ul>
+                  <div class="flex flex-wrap gap-3">
+                    {c.links.map((l) => (
+                      <a href={l.href} class="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white hover:bg-primary/90 transition-colors">{l.text}</a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          ))}
+        </div>
+        <div class="text-center mt-16 rounded-2xl bg-linear-to-l from-primary to-indigo-700 px-6 py-10">
+          <h2 class="text-2xl font-bold text-white mb-3">پروژه بعدی، کسب‌وکار شماست</h2>
+          <p class="text-blue-100 mb-6">ایده اتوماسیون دارید؟ در یک جلسه رایگان بررسی‌اش می‌کنیم.</p>
+          <a href="/consultation/" class="rounded-full bg-white px-6 py-3 text-sm font-bold text-primary hover:bg-blue-50 transition-colors">رزرو مشاوره رایگان</a>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

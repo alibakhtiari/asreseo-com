@@ -1,0 +1,355 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': 'تحلیل و استراتژی هوشمند و سئو با AI',
+    'description': 'خدمات جامع تحلیل داده، سئو هوشمند و بهینه‌سازی نرخ تبدیل (CRO) با الگوریتم‌های هوش مصنوعی توسط عصر سئو.',
+    'serviceType': 'AI Business Intelligence & SEO Analysis',
+    'provider': {
+        '@type': 'Organization',
+        'name': 'عصر سئو',
+        'url': 'https://asreseo.com'
+    },
+    'areaServed': 'Iran',
+    'hasOfferCatalog': {
+        '@type': 'OfferCatalog',
+        'name': 'خدمات تحلیل و استراتژی AI',
+        'itemListElement': [
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'سئو هوشمند با AI',
+                    'description': 'بهینه‌سازی عمیق موتورهای جستجو با الگوریتم‌های هوش مصنوعی'
+                }
+            },
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'بهینه‌سازی نرخ تبدیل (CRO)',
+                    'description': 'افزایش فروش با تحلیل رفتار کاربر و Heatmap'
+                }
+            },
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'مانیتورینگ و تحلیل رقبا',
+                    'description': 'نظارت هوشمند بر بازار و رصد تحرکات رقبا'
+                }
+            }
+        ]
+    }
+};
+
+const faqs = [
+    {
+        q: 'خدمات سئو هوش مصنوعی (AI SEO) دقیقاً شامل چه اقداماتی است؟',
+        a: 'این خدمات شامل تحلیل هوشمند حجم انبوه کوئری‌های سرچ کنسول، شناسایی کلمات کلیدی با پتانسیل بالای رشد سریع، بهینه‌سازی ساختار لینک‌سازی داخلی و پیش‌بینی روندهای جستجو قبل از رقبا است.'
+    },
+    {
+        q: 'چگونه هوش مصنوعی به بهبود نرخ تبدیل (CRO) کمک می‌کند؟',
+        a: 'با تحلیل الگوهای رفتاری کاربران، نقشه‌های حرارتی (Heatmaps) و نقاط ریزش در صفحات فرود، هوش مصنوعی مسیر خرید را کوتاه‌تر کرده و المان‌های اثرگذار بر ترغیب خریدار را بهینه‌سازی می‌کند.'
+    },
+    {
+        q: 'پایش و مانیتورینگ رقبا با هوش مصنوعی به چه صورت انجام می‌شود؟',
+        a: 'سیستم‌های هوشمند تغییرات رتبه‌بندی، بک‌لینک‌های جدید، استراتژی‌های محتوایی و کمپین‌های تبلیغاتی رقبا را به شکل بلادرنگ رصد کرده و هشدارهای تحلیلی ارائه می‌دهند.'
+    },
+    {
+        q: 'آیا برای اجرای استراتژی هوش مصنوعی نیاز به تغییر پلتفرم سایت است؟',
+        a: 'خیر. ابزارها و مدل‌های تحلیلی عصر سئو به سادگی بر روی انواع سایت‌های وردپرسی، اختصاصی و فروشگاهی بدون نیاز به تغییر پلتفرم قابل پیاده‌سازی هستند.'
+    }
+];
+
+const breadcrumbs = [
+    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+    { position: 2, name: 'خدمات هوش مصنوعی', item: 'https://asreseo.com/services/ai/' },
+    { position: 3, name: 'تحلیل و استراتژی هوشمند', item: 'https://asreseo.com/services/ai/analysis-strategy/' }
+];
+
+
+
+    const seoCroFeatures = [
+        {
+            icon: "search",
+            title: 'سئو هوشمند',
+            description: 'تحلیل کلمات کلیدی و بهینه‌سازی محتوا با الگوریتم‌های پیشرفته گوگل.',
+            benefits: ['رتبه بالاتر', 'ترافیک ارگانیک', 'تحلیل رقبا']
+        },
+        {
+            icon: "target",
+            title: 'بهینه‌سازی نرخ تبدیل (CRO)',
+            description: 'تست A/B هوشمند و تحلیل قیف فروش برای تبدیل بازدیدکننده به مشتری.',
+            benefits: ['افزایش فروش', 'کاهش هزینه جذب', 'بهبود UX']
+        },
+        {
+            icon: "trending-up",
+            title: 'استراتژی محتوایی',
+            description: 'تدوین تقویم محتوایی و استراتژی کلمات کلیدی بر اساس داده‌های واقعی.',
+            benefits: ['محتوای هدفمند', 'جذب مخاطب درست', 'ROI بالا']
+        }
+    ];
+
+    const behaviorFeatures = [
+        {
+            icon: "eye",
+            title: 'نقشه حرارتی و رفتار کاربر',
+            description: 'تحلیل دقیق نقاط کلیک، اسکرول و رفتار کاربران در سایت.',
+            benefits: ['شناسایی نقاط داغ', 'رفع مشکلات UX', 'بهینه‌سازی چیدمان']
+        },
+        {
+            icon: "users",
+            title: 'تحلیل سفر مشتری',
+            description: 'ردیابی مسیر حرکت کاربر از ورود تا خرید و شناسایی نقاط ریزش.',
+            benefits: ['درک رفتار مشتری', 'بهبود مسیر خرید', 'افزایش وفاداری']
+        },
+        {
+            icon: "brain",
+            title: 'پیش‌بینی رفتار',
+            description: 'استفاده از یادگیری ماشین برای پیش‌بینی نیازها و رفتار آینده کاربران.',
+            benefits: ['پیشنهاد هوشمند', 'شخصی‌سازی', 'پیش‌بینی فروش']
+        }
+    ];
+
+    const brandConsultingFeatures = [
+        {
+            icon: "shield",
+            title: 'مانیتورینگ برند',
+            description: 'نظارت ۲۴ ساعته بر نام برند شما در شبکه‌های اجتماعی و وب.',
+            benefits: ['مدیریت شهرت', 'شناسایی بحران', 'تحلیل احساسات']
+        },
+        {
+            icon: "lightbulb",
+            title: 'مشاوره استراتژیک AI',
+            description: 'مشاوره تخصصی برای پیاده‌سازی هوش مصنوعی در فرایندهای کسب‌وکار.',
+            benefits: ['نقشه راه AI', 'اتوماسیون فرایند', 'تحول دیجیتال']
+        },
+        {
+            icon: "line-chart",
+            title: 'تحلیل رقبا',
+            description: 'رصد مداوم فعالیت‌های رقبا و ارائه راهکارهای پیشی گرفتن از آنها.',
+            benefits: ['شناخت بازار', 'مزیت رقابتی', 'تصمیم‌گیری بهتر']
+        }
+    ];
+
+    const stats = [
+        { metric: 'سرچ کنسول', label: 'پایش ترافیک ارگانیک', color: 'text-green-800' },
+        { metric: '۳x', label: 'افزایش نرخ تبدیل', color: 'text-blue-600' },
+        { metric: 'نقشه حرارتی', label: 'بهینه‌سازی تجربه کاربر', color: 'text-purple-600' },
+        { metric: '۲۴/۷', label: 'نظارت هوشمند', color: 'text-orange-600' }
+    ];
+
+    const benefits = [
+        'تصمیم‌گیری دقیق بر اساس داده‌های واقعی نه حدس و گمان',
+        'شناسایی سریع فرصت‌های رشد و تهدیدهای بازار',
+        'بهینه‌سازی بودجه بازاریابی و افزایش بازگشت سرمایه',
+        'درک عمیق از نیازها و رفتار مشتریان',
+        'پیشی گرفتن از رقبا با استراتژی‌های هوشمند',
+        'کاهش ریسک‌های کسب‌وکار با پیش‌بینی‌های دقیق'
+    ];
+
+    
+---
+<BaseLayout
+  title='تحلیل و استراتژی هوشمند کسب‌وکار | عصر سئو'
+  description='خدمات جامع تحلیل، استراتژی و سئو با هوش مصنوعی در عصر سئو. تحلیل داده‌محور رفتار کاربران، بهینه‌سازی نرخ تبدیل (CRO) و پایش رقبا برای تسخیر رتبه ۱ گوگل.'
+  keywords='سئو با هوش مصنوعی, خدمات سئو هوش مصنوعی, سئو هوشمند, تحلیل رفتار کاربر, CRO, استراتژی هوش مصنوعی, بهینه‌سازی نرخ تبدیل'
+  canonical='https://asreseo.com/services/ai/analysis-strategy/'
+  ogType='website'
+  ogUrl='https://asreseo.com/services/ai/analysis-strategy/'
+  ogImages={[{ url: "/og/analysis-strategy-hero.jpg", width: 1200, height: 630, alt: "تحلیل و استراتژی سئو با هوش مصنوعی عصر سئو" }]}
+  twitterCard='summary_large_image'
+>
+<div class="min-h-screen bg-white">
+            <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/ai/analysis-strategy/', image: '/og/analysis-strategy-hero.jpg' }))} />
+            <BreadcrumbStructuredData items={breadcrumbs} />
+
+            <Header />
+
+            <main>
+                <!-- Hero Section -->
+                <ServiceHero
+                    badge="هوش تجاری و استراتژی داده‌محور"
+                    title="تحلیل و استراتژی"
+                    titleGradient="هوشمند"
+                    description="با قدرت داده‌ها و هوش مصنوعی، مسیر رشد کسب‌وکار خود را هموار کنید. از سئو و بهینه‌سازی نرخ تبدیل تا تحلیل رفتار کاربران و مانیتورینگ برند."
+                    primaryCta={{ text: "دریافت تحلیل رایگان", href: "/consultation/" }}
+                    secondaryCta={{ text: "مشاوره استراتژیک", href: "/consultation/" }}
+                    imageSrc="/images/analysis-strategy-hero.webp"
+                    imageAlt="تحلیل و استراتژی هوشمند"
+                    theme="indigo"
+                />
+
+                <!-- Stats Section -->
+                <ServiceStats stats={stats} theme="indigo" />
+
+                <!-- SEO & CRO Section -->
+                <section class="section-padding">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <Badge class="bg-blue-100 text-blue-700 mb-4">رشد و بهینه‌سازی</Badge>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                سئو و <span class="gradient-text">بهینه‌سازی نرخ تبدیل</span>
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                جذب ترافیک هدفمند و تبدیل بازدیدکنندگان به مشتریان وفادار
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8">
+                            {seoCroFeatures.map((feature, index) => (
+                                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                                                <Icon name={feature.icon} class="h-6 w-6 text-blue-600" />
+                                            </div>
+                                            <CardTitle class="text-lg font-semibold">{feature.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">
+                                            {feature.description}
+                                        </p>
+                                        <div class="space-y-2">
+                                            {feature.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                                                    {benefit}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Behavior Analysis Section -->
+                <section class="section-padding bg-slate-50">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <Badge class="bg-purple-100 text-purple-700 mb-4">تحلیل رفتار کاربر</Badge>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                درک عمیق <span class="gradient-text">رفتار مشتریان</span>
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                شناخت دقیق نیازها و رفتار کاربران برای ارائه بهترین تجربه کاربری
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8">
+                            {behaviorFeatures.map((feature, index) => (
+                                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                                                <Icon name={feature.icon} class="h-6 w-6 text-purple-600" />
+                                            </div>
+                                            <CardTitle class="text-lg font-semibold">{feature.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">
+                                            {feature.description}
+                                        </p>
+                                        <div class="space-y-2">
+                                            {feature.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                                                    {benefit}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Brand & Consulting Section -->
+                <section class="section-padding">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <Badge class="bg-orange-100 text-orange-700 mb-4">استراتژی و برندینگ</Badge>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                مدیریت برند و <span class="gradient-text">مشاوره استراتژیک</span>
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                حفاظت از شهرت برند و تدوین نقشه‌راه هوشمند برای آینده کسب‌وکار
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8">
+                            {brandConsultingFeatures.map((feature, index) => (
+                                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
+                                                <Icon name={feature.icon} class="h-6 w-6 text-orange-600" />
+                                            </div>
+                                            <CardTitle class="text-lg font-semibold">{feature.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">
+                                            {feature.description}
+                                        </p>
+                                        <div class="space-y-2">
+                                            {feature.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                                                    {benefit}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                      <ServiceBenefits title="چرا به تحلیل و استراتژی نیاز دارید؟" titleHighlight="هوشمند" subtitle="مزایای تصمیم‌گیری داده‌محور برای رشد پایدار" benefits={benefits} />
+
+                <!-- FAQ Section -->
+                <ServiceFAQ
+                    faqs={faqs}
+                    title="سوالات متداول تحلیل، استراتژی و سئو هوشمند"
+                    description="پاسخ به سوالات رایج درباره ابزارهای AI SEO، تحلیل رقبا و بازدهی کمپین‌ها"
+                    theme="indigo"
+                />
+
+                <!-- CTA Section -->
+                <ServiceCTA
+                    title="آینده کسب‌وکار خود را با داده‌ها بسازید!"
+                    description="با تحلیل‌های دقیق و استراتژی‌های هوشمند، ریسک‌ها را کاهش دهید و فرصت‌های رشد را شکار کنید. ما در این مسیر همراه شما هستیم."
+                    primaryCta={{ text: "شروع تحلیل هوشمند", href: "/consultation/" }}
+                    secondaryCta={{ text: "دریافت مشاوره", href: "/consultation/" }}
+                    theme="indigo"
+                />
+            </main>
+
+            <Footer />
+        </div>
+</BaseLayout>

@@ -1,0 +1,240 @@
+---
+import Card from '../ui/card/Card.astro';
+import CardContent from '../ui/card/CardContent.astro';
+import CardHeader from '../ui/card/CardHeader.astro';
+import CardTitle from '../ui/card/CardTitle.astro';
+import Button from '../ui/button/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+
+
+
+  const serviceCategories: Array<{ title: string; description?: string; href?: string; icon?: string; color?: string; isNew?: boolean; isPopular?: boolean; services?: Array<{ title: string; href: string; icon?: string; description?: string; isNew?: boolean; isPopular?: boolean }> }> = [
+    {
+      title: 'خدمات سئو',
+      href: '/services/seo/',
+      icon: "search",
+      color: 'from-blue-500 to-blue-700',
+      services: [
+        { title: 'سئو تکنیکال و داخلی', description: 'بهینه‌سازی فنی و محتوایی سایت برای رتبه اول گوگل', href: '/services/seo/technical-onpage/', icon: "zap", isPopular: true, isNew: true },
+        { title: 'سئو محتوا و اعتبار', description: 'استراتژی محتوا و لینک‌سازی برای افزایش اعتبار دامنه', href: '/services/seo/content-authority/', icon: "file-text", isNew: true },
+        { title: 'سئو محلی', description: 'ثبت در گوگل مپ و جذب مشتریان محلی', href: '/services/seo/local-seo/', icon: "globe", isNew: true }
+      ]
+    },
+    {
+      title: 'طراحی و توسعه',
+      href: '/services/web/',
+      icon: "palette",
+      color: 'from-purple-500 to-purple-700',
+      services: [
+        { title: 'طراحی سایت سئو محور', description: 'طراحی سایت‌های زیبا و کاملاً بهینه برای گوگل', href: '/services/web/seo-web-design/', icon: "globe" },
+        { title: 'بهینه‌سازی سرعت', description: 'افزایش سرعت بارگذاری برای تجربه کاربری بهتر', href: '/services/web/website-speed/', icon: "zap" },
+        { title: 'صفحات فرود', description: 'طراحی صفحات فرود با نرخ تبدیل بالا', href: '/services/web/landing-pages/', icon: "target" },
+        { title: 'تجربه کاربری', description: 'طراحی مسیر کاربر برای تعامل بهتر و فروش بیشتر', href: '/services/web/ux-architecture/', icon: "users" }
+      ]
+    },
+    {
+      title: 'بازاریابی دیجیتال',
+      href: '/services/marketing/',
+      icon: "trending-up",
+      color: 'from-green-500 to-green-700',
+      services: [
+        { title: 'تبلیغات گوگل', description: 'تبلیغات هدفمند در نتایج جستجوی گوگل با بازدهی بالا', href: '/services/marketing/google-ads/', icon: "target" },
+        { title: 'بازاریابی ایمیلی', description: 'ارتباط موثر با مشتریان و افزایش وفاداری', href: '/services/marketing/email-marketing/', icon: "mail" },
+        { title: 'شبکه‌های اجتماعی', description: 'مدیریت حرفه‌ای شبکه‌های اجتماعی و جذب مخاطب', href: '/services/marketing/social-media/', icon: "share2" },
+        { title: 'قیف فروش', description: 'طراحی مسیر تبدیل بازدیدکننده به مشتری وفادار', href: '/services/marketing/sales-funnel-management/', icon: "trending-up" },
+        { title: 'کمپین یکپارچه', description: 'اجرای کمپین‌های 360 درجه برای حداکثر تاثیرگذاری', href: '/services/marketing/integrated-campaigns/', icon: "bar-chart3" }
+      ]
+    },
+    {
+      title: 'محتوا و ترجمه',
+      href: '/services/content/',
+      icon: "file-text",
+      color: 'from-orange-500 to-orange-700',
+      services: [
+        { title: 'تولید محتوای متنی', description: 'تولید مقالات تخصصی و یونیک برای وبلاگ و محصولات', href: '/services/content/text-content/', icon: "file-text" },
+        { title: 'محتوای شبکه‌های اجتماعی', description: 'تولید محتوای جذاب و ویروسی برای اینستاگرام و لینکدین', href: '/services/content/social-media-content/', icon: "share2" },
+        { title: 'تولید محتوای بصری', description: 'طراحی گرافیک، اینفوگرافیک و بنرهای تبلیغاتی', href: '/services/content/visual-content/', icon: "eye" },
+        { title: 'تقویم محتوایی', description: 'برنامه‌ریزی دقیق انتشار محتوا برای نظم و تداوم', href: '/services/content/content-calendar/', icon: "bar-chart3" },
+        { title: 'ترجمه تخصصی', description: 'ترجمه متون تخصصی با رعایت اصول سئو و نگارش', href: '/services/content/translation/', icon: "globe" }
+      ]
+    },
+    {
+      title: 'خدمات هوش مصنوعی',
+      href: '/services/ai/',
+      icon: "bot",
+      color: 'from-violet-500 to-violet-700',
+      services: [
+        { title: 'تولید محتوای هوشمند', description: 'تولید محتوای متنی و ویدیویی با هوش مصنوعی', href: '/services/ai/content-creation/', icon: "sparkles", isNew: true },
+        { title: 'بازاریابی و تعامل AI', description: 'اتوماسیون بازاریابی، چت‌بات و شخصی‌سازی', href: '/services/ai/marketing-engagement/', icon: "bot", isNew: true },
+        { title: 'تحلیل و استراتژی', description: 'سئو هوشمند، تحلیل رفتار و مانیتورینگ برند', href: '/services/ai/analysis-strategy/', icon: "brain-circuit", isNew: true }
+      ]
+    }
+  ];
+
+  
+---
+<section class="py-16 lg:py-24 bg-linear-to-br from-gray-50 to-white relative overflow-hidden" aria-label="تمام خدمات" data-services-section>
+      <!-- Background decoration -->
+      <div class="absolute inset-0 opacity-30 pointer-events-none">
+        <div class="absolute top-20 right-20 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
+        <div class="absolute bottom-20 left-20 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl animate-float" style="animation-delay:3s"></div>
+      </div>
+
+      <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-10 animate-fade-in">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            تمام <span class="gradient-text">خدمات</span> ما
+          </h2>
+          <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            مجموعه کاملی از خدمات دیجیتال مارکتینگ، سئو، طراحی وب و هوش مصنوعی برای رشد کسب‌وکار شما
+          </p>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-12" role="tablist" aria-label="دسته‌بندی خدمات">
+          <button
+            type="button"
+            data-tab="all"
+            class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-primary text-white shadow-md cursor-pointer"
+            role="tab"
+            aria-selected="true"
+          >
+            همه خدمات ({serviceCategories.reduce((acc, c) => acc + (c.services?.length || 0), 0)})
+          </button>
+          {serviceCategories.map((c, idx) => (
+            <button
+              type="button"
+              data-tab={String(idx)}
+              class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer"
+              role="tab"
+              aria-selected="false"
+            >
+              {c.title} ({c.services?.length || 0})
+            </button>
+          ))}
+        </div>
+
+        <!-- Services Categories -->
+        <div class="space-y-16" data-services-container>
+          {serviceCategories.map((category, categoryIndex) => (
+            <div class="animate-slide-in-up" data-cat-idx={String(categoryIndex)} style={{ animationDelay: `${categoryIndex * 0.15}s` }}>
+              <!-- Category Header -->
+              <div class="flex items-center justify-center mb-8">
+                <a
+                  href={category.href}
+                  class={`inline-flex items-center gap-3 px-6 py-3 rounded-full bg-linear-to-r ${category.color} text-white shadow-lg hover:opacity-95 hover:scale-105 transition-all duration-200 group`}
+                >
+                  <Icon name={category.icon ?? ''} class="h-6 w-6" aria-hidden="true" />
+                  <h3 class="text-xl font-bold">{category.title}</h3>
+                  <Icon name="arrow-left" class="h-4 w-4 group-hover:-translate-x-1 transition-transform" aria-hidden="true" />
+                </a>
+              </div>
+
+              <!-- Services Grid -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {category.services?.map((service: any, serviceIndex: number) => (
+                  <a href={service.href} class="group block h-full" aria-label={`مشاهده جزئیات ${service.title}`}>
+                    <Card class="service-card hover-lift hover-glow h-full relative overflow-hidden flex flex-col border-transparent hover:border-blue-200 transition-all duration-300">
+                      <!-- New/Popular Badge -->
+                      {(service.isNew || service.isPopular) && (
+                        <div class={`absolute top-3 left-3 px-2 py-1 rounded-full text-xs font-bold text-white z-10 shadow-xs ${service.isNew ? 'bg-linear-to-r from-green-500 to-green-600' : 'bg-linear-to-r from-orange-500 to-orange-600'
+                          }`}>
+                          {service.isNew ? 'جدید' : 'محبوب'}
+                        </div>
+                      )}
+
+                      <CardHeader class="text-center pb-2 pt-6">
+                        <div class={`inline-flex p-3 rounded-2xl bg-linear-to-r ${category.color} mb-4 mx-auto group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-md`}>
+                          <Icon name={service.icon ?? ''} class="h-6 w-6 text-white" aria-hidden="true" />
+                        </div>
+                        <CardTitle class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                          {service.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent class="pt-0 grow flex flex-col justify-between text-center">
+                        <p class="text-sm text-gray-500 mb-4 leading-relaxed line-clamp-3">
+                          {service.description}
+                        </p>
+                        <!-- The whole card above is the <a>, so this must not be a
+                             <button> — nested interactive content is invalid and
+                             breaks keyboard/screen-reader navigation (WCAG 4.1.2).
+                             as="span" keeps the button look with no interactivity. -->
+                        <Button
+                          as="span"
+                          variant="ghost"
+                          size="sm"
+                          class="w-full mt-auto text-blue-600 bg-blue-50 group-hover:bg-blue-100 group-hover:text-blue-700 transition-colors duration-300"
+                        >
+                          مشاهده جزئیات
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA Section -->
+        <div class="text-center mt-16">
+          <div class="glass-effect rounded-3xl p-8 md:p-12 animate-pulse-glow">
+            <h3 class="text-2xl md:text-3xl font-bold mb-4 gradient-text">
+              سوالی دارید؟
+            </h3>
+            <p class="text-lg text-gray-600 mb-6">
+              با مشاورین ما تماس بگیرید تا بهترین خدمات برای نیاز شما را انتخاب کنیم
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                href="/consultation/"
+                size="lg"
+                class="gradient-bg text-white hover:opacity-90 transition-all duration-200 transform hover:scale-105 shadow-lg"
+              >
+                مشاوره رایگان
+              </Button>
+              <Button
+                href="/portfolio/"
+                variant="outline"
+                size="lg"
+                class="border-2 hover:bg-gray-50 transition-all duration-200"
+              >
+                مشاهده نمونه کارها
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const section = document.querySelector('[data-services-section]');
+      const tabBtns = section?.querySelectorAll<HTMLButtonElement>('[data-tab]');
+      const categories = section?.querySelectorAll<HTMLElement>('[data-cat-idx]');
+
+      tabBtns?.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-tab');
+          tabBtns.forEach((b) => {
+            b.classList.remove('bg-primary', 'text-white', 'shadow-md');
+            b.classList.add('bg-gray-100', 'text-gray-700');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.remove('bg-gray-100', 'text-gray-700');
+          btn.classList.add('bg-primary', 'text-white', 'shadow-md');
+          btn.setAttribute('aria-selected', 'true');
+
+          categories?.forEach((cat) => {
+            const idx = cat.getAttribute('data-cat-idx');
+            if (target === 'all' || target === idx) {
+              cat.style.display = '';
+              cat.classList.add('animate-fade-in');
+            } else {
+              cat.style.display = 'none';
+            }
+          });
+        });
+      });
+    </script>

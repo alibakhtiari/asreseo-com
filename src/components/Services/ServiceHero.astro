@@ -1,0 +1,215 @@
+---
+import Badge from '../ui/badge/Badge.astro';
+import Button from '../ui/button/Button.astro';
+import Picture from '../ui/Picture.astro';
+
+export type ThemeColor = 'indigo' | 'purple' | 'pink' | 'blue' | 'green' | 'cyan' | 'amber' | 'emerald' | 'orange' | 'teal';
+
+export interface Props {
+  badge?: string;
+  badgeClass?: string;
+  title: string;
+  titleHighlight?: string;
+  titleGradient?: string;
+  description: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  primaryCtaClass?: string;
+  primaryCta?: { text?: string; href?: string; class?: string };
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  secondaryCtaClass?: string;
+  secondaryCta?: { text?: string; href?: string; class?: string };
+  imageSrc: string;
+  imageAlt: string;
+  theme?: ThemeColor;
+}
+
+const {
+  badge,
+  badgeClass,
+  title,
+  titleHighlight,
+  titleGradient,
+  description,
+  primaryCtaText,
+  primaryCtaHref,
+  primaryCtaClass,
+  primaryCta,
+  secondaryCtaText,
+  secondaryCtaHref,
+  secondaryCtaClass,
+  secondaryCta,
+  imageSrc,
+  imageAlt,
+  theme = 'indigo',
+} = Astro.props;
+
+const THEME_STYLES: Record<ThemeColor, {
+  sectionBg: string;
+  blob1: string;
+  blob2: string;
+  defaultBadge: string;
+  imgOverlay: string;
+  defaultSecondary: string;
+}> = {
+  indigo: {
+    sectionBg: 'from-slate-50 to-indigo-50/40',
+    blob1: 'bg-indigo-100/50',
+    blob2: 'bg-blue-100/50',
+    defaultBadge: 'bg-indigo-100 text-indigo-700 border-indigo-200',
+    imgOverlay: 'from-indigo-600/10',
+    defaultSecondary: 'border-indigo-200 text-indigo-700 hover:bg-indigo-50',
+  },
+  purple: {
+    sectionBg: 'from-purple-50 to-indigo-50/40',
+    blob1: 'bg-purple-100/50',
+    blob2: 'bg-pink-100/50',
+    defaultBadge: 'bg-purple-100 text-purple-700 border-purple-200',
+    imgOverlay: 'from-purple-600/10',
+    defaultSecondary: 'border-purple-200 text-purple-700 hover:bg-purple-50',
+  },
+  pink: {
+    sectionBg: 'from-pink-50 to-purple-50',
+    blob1: 'bg-pink-100/50',
+    blob2: 'bg-purple-100/50',
+    defaultBadge: 'bg-pink-100 text-pink-700 border-pink-200',
+    imgOverlay: 'from-pink-600/10',
+    defaultSecondary: 'border-pink-200 text-pink-700 hover:bg-pink-50',
+  },
+  blue: {
+    sectionBg: 'from-blue-50 to-indigo-50/40',
+    blob1: 'bg-blue-100/50',
+    blob2: 'bg-indigo-100/50',
+    defaultBadge: 'bg-blue-100 text-blue-700 border-blue-200',
+    imgOverlay: 'from-blue-600/10',
+    defaultSecondary: 'border-blue-200 text-blue-700 hover:bg-blue-50',
+  },
+  green: {
+    sectionBg: 'from-emerald-50 to-teal-50',
+    blob1: 'bg-emerald-100/50',
+    blob2: 'bg-teal-100/50',
+    defaultBadge: 'bg-green-100 text-green-800 border-green-200',
+    imgOverlay: 'from-green-600/10',
+    defaultSecondary: 'border-green-200 text-green-800 hover:bg-green-50',
+  },
+  emerald: {
+    sectionBg: 'from-emerald-50 to-teal-50',
+    blob1: 'bg-emerald-100/50',
+    blob2: 'bg-teal-100/50',
+    defaultBadge: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+    imgOverlay: 'from-emerald-600/10',
+    defaultSecondary: 'border-emerald-200 text-emerald-700 hover:bg-emerald-50',
+  },
+  cyan: {
+    sectionBg: 'from-cyan-50 to-blue-50',
+    blob1: 'bg-cyan-100/50',
+    blob2: 'bg-blue-100/50',
+    defaultBadge: 'bg-cyan-100 text-cyan-700 border-cyan-200',
+    imgOverlay: 'from-cyan-600/10',
+    defaultSecondary: 'border-cyan-200 text-cyan-700 hover:bg-cyan-50',
+  },
+  amber: {
+    sectionBg: 'from-amber-50 to-orange-50',
+    blob1: 'bg-amber-100/50',
+    blob2: 'bg-orange-100/50',
+    defaultBadge: 'bg-amber-100 text-amber-700 border-amber-200',
+    imgOverlay: 'from-amber-600/10',
+    defaultSecondary: 'border-amber-200 text-amber-700 hover:bg-amber-50',
+  },
+  orange: {
+    sectionBg: 'from-orange-50 to-red-50',
+    blob1: 'bg-orange-100/50',
+    blob2: 'bg-red-100/50',
+    defaultBadge: 'bg-orange-100 text-orange-700 border-orange-200',
+    imgOverlay: 'from-orange-600/10',
+    defaultSecondary: 'border-orange-200 text-orange-700 hover:bg-orange-50',
+  },
+  teal: {
+    sectionBg: 'from-green-50 to-teal-50',
+    blob1: 'bg-green-100/50',
+    blob2: 'bg-teal-100/50',
+    defaultBadge: 'bg-teal-100 text-teal-700 border-teal-200',
+    imgOverlay: 'from-teal-600/10',
+    defaultSecondary: 'border-teal-200 text-teal-700 hover:bg-teal-50',
+  },
+};
+
+const currentTheme = THEME_STYLES[theme] ?? THEME_STYLES.indigo;
+
+const effPrimaryText = primaryCta?.text || primaryCtaText || 'مشاوره رایگان';
+const effPrimaryHref = primaryCta?.href || primaryCtaHref || '/contact/';
+const effPrimaryClass = primaryCta?.class || primaryCtaClass || 'gradient-bg text-white px-8 hover:shadow-lg transition-all duration-300';
+
+const effSecondaryText = secondaryCta?.text || secondaryCtaText;
+const effSecondaryHref = secondaryCta?.href || secondaryCtaHref || '/services/';
+const effSecondaryClass = secondaryCta?.class || secondaryCtaClass;
+
+const highlight = titleGradient || titleHighlight;
+let beforeHighlight = title;
+let afterHighlight = '';
+let hasHighlight = false;
+
+if (highlight) {
+  if (title.includes(highlight)) {
+    const parts = title.split(highlight);
+    beforeHighlight = parts[0];
+    afterHighlight = parts.slice(1).join(highlight);
+    hasHighlight = true;
+  } else {
+    beforeHighlight = `${title} `;
+    afterHighlight = '';
+    hasHighlight = true;
+  }
+}
+---
+
+<section class={`section-padding bg-linear-to-br ${currentTheme.sectionBg} overflow-hidden relative`}>
+  <div class={`absolute top-0 right-0 w-1/3 h-full ${currentTheme.blob1} blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob`}></div>
+  <div class={`absolute bottom-0 left-0 w-1/3 h-full ${currentTheme.blob2} blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000`}></div>
+
+  <div class="container-custom relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="text-right animate-fade-in order-1">
+        {badge && (
+          <Badge class={`${badgeClass || currentTheme.defaultBadge} mb-4 px-4 py-1 text-sm`}>
+            {badge}
+          </Badge>
+        )}
+        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+          {hasHighlight ? (
+            <>
+              {beforeHighlight}<span class="gradient-text">{highlight}</span>{afterHighlight}
+            </>
+          ) : (
+            title
+          )}
+        </h1>
+        <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+          {description}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-start">
+          <Button size="lg" class={effPrimaryClass} href={effPrimaryHref}>
+              {effPrimaryText}
+            </Button>
+          {effSecondaryText && (
+            <Button variant="outline" size="lg" class={effSecondaryClass || currentTheme.defaultSecondary} href={effSecondaryHref}>
+                {effSecondaryText}
+              </Button>
+          )}
+        </div>
+      </div>
+
+      <div class="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-2 ring-1 ring-gray-200/50 group">
+        <div class={`absolute inset-0 bg-linear-to-tr ${currentTheme.imgOverlay} to-transparent z-10`} />
+        <Picture
+          src={imageSrc}
+          alt={imageAlt}
+          class="object-cover group-hover:scale-105 transition-transform duration-700"
+          eager
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </div>
+    </div>
+  </div>
+</section>

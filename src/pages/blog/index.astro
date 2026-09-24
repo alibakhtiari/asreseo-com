@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import BlogGrid from '../../components/Blog/BlogGrid.astro';
+import BlogHero from '../../components/Blog/BlogHero.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+
+// MDX frontmatter is the single source of truth (see src/content/blog/*.mdx).
+const posts: any[] = (await getCollection('blog'))
+  .map((e: any) => ({ ...e.data, slug: e.id.replace(/\.mdx?$/, '') }))
+  .sort((a: any, b: any) => String(b.date ?? '').localeCompare(String(a.date ?? '')));
+
+const blogListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'وبلاگ عصر سئو',
+  url: 'https://asreseo.com/blog/',
+  inLanguage: 'fa-IR',
+  // datePublished / author / image are required by Google's BlogPosting
+  // guidelines — they were dropped when this page moved off the legacy
+  // blog-data.ts override table, so they are read straight from frontmatter.
+  // `@id` must match the BlogPosting `@id` emitted by /blog/<slug>/ so both
+  // pages resolve to the same article entities instead of duplicating them.
+  blogPost: posts.map((p: any) => {
+    const node: Record<string, unknown> = {
+      '@type': 'BlogPosting',
+      '@id': `https://asreseo.com/blog/${p.slug}/#article`,
+      headline: p.title,
+      description: p.description ?? p.excerpt,
+      url: `https://asreseo.com/blog/${p.slug}/`,
+      inLanguage: 'fa-IR',
+    };
+    if (p.date) node.datePublished = p.date;
+    if (p.updated ?? p.date) node.dateModified = p.updated ?? p.date;
+    if (p.author) node.author = { '@type': 'Person', name: p.author };
+    if (p.image) node.image = new URL(p.image, 'https://asreseo.com').href;
+    return node;
+  }),
+};
+
+// No visible breadcrumb UI on this template; the trail mirrors the site
+// header nav (صفحه اصلی > وبلاگ) for breadcrumb entity completeness.
+const breadcrumbs = [
+  { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+  { position: 2, name: 'وبلاگ', item: 'https://asreseo.com/blog/' },
+];
+---
+<BaseLayout
+  title='وبلاگ عصر سئو | مقالات تخصصی سئو، محتوا و هوش مصنوعی'
+  description='مقالات تخصصی عصر سئو درباره سئو، تولید محتوا، تبلیغات گوگل و هوش مصنوعی؛ راهنمای عملی دیجیتال مارکتینگ برای بهبود رتبه گوگل و افزایش ترافیک وب‌سایت شما.'
+  keywords='وبلاگ دیجیتال مارکتینگ, مقالات سئو, آموزش Marketing, مطالب آموزشی, عصر سئو'
+  canonical='https://asreseo.com/blog/'
+  ogUrl='https://asreseo.com/blog/'
+
+  ogTitle='وبلاگ آموزشی عصر سئو'
+
+  ogDescription='مقالات تخصصی دیجیتال مارکتینگ و سئو.'
+
+  ogImages={[{ url: '/og/blog-hero.jpg', width: 1200, height: 630, alt: 'وبلاگ عصر سئو' }]}
+>
+  <Header />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(blogListSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
+  <main>
+    <BlogHero />
+    <div class="section-padding">
+      <div class="container-custom">
+        <!-- The answer-first block moved into BlogHero.astro so it sits directly
+             under the H1 instead of below the grid. -->
+        <BlogGrid posts={posts} />
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

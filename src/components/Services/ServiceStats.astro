@@ -1,0 +1,98 @@
+---
+import Card from '../ui/card/Card.astro';
+import CardContent from '../ui/card/CardContent.astro';
+import Icon from '../ui/Icon.astro';
+
+export interface StatItem {
+  metric: string;
+  label: string;
+  icon?: string;
+  color?: string;
+}
+
+export interface Props {
+  stats: StatItem[];
+  gradientClass?: string;
+  metricColorClass?: string;
+  iconColorClass?: string;
+  theme?: string;
+}
+
+const {
+  stats = [],
+  gradientClass,
+  metricColorClass,
+  iconColorClass,
+  theme = 'indigo',
+} = Astro.props;
+
+const THEME_PRESETS: Record<string, { gradient: string; metric: string; icon: string }> = {
+  indigo: {
+    gradient: 'bg-linear-to-r from-slate-50 to-indigo-50/40',
+    metric: 'text-indigo-700',
+    icon: 'text-indigo-600',
+  },
+  purple: {
+    gradient: 'bg-linear-to-r from-indigo-50 to-purple-50',
+    metric: 'text-purple-700',
+    icon: 'text-indigo-600',
+  },
+  pink: {
+    gradient: 'bg-linear-to-r from-purple-50 to-pink-50',
+    metric: 'text-purple-700',
+    icon: 'text-purple-600',
+  },
+  orange: {
+    gradient: 'bg-linear-to-r from-red-50 to-orange-50',
+    metric: 'text-red-700',
+    icon: 'text-orange-600',
+  },
+  green: {
+    gradient: 'bg-linear-to-r from-emerald-50 to-green-50',
+    metric: 'text-emerald-700',
+    icon: 'text-emerald-600',
+  },
+  teal: {
+    gradient: 'bg-linear-to-r from-teal-50 to-green-50',
+    metric: 'text-green-800',
+    icon: 'text-green-800',
+  },
+  blue: {
+    gradient: 'bg-linear-to-r from-blue-50 to-indigo-50/40',
+    metric: 'text-blue-700',
+    icon: 'text-blue-600',
+  },
+  amber: {
+    gradient: 'bg-linear-to-r from-amber-50 to-orange-50',
+    metric: 'text-amber-700',
+    icon: 'text-amber-600',
+  },
+};
+
+const preset = THEME_PRESETS[theme] ?? THEME_PRESETS.indigo;
+const effGradient = gradientClass || preset.gradient;
+const effMetricColor = metricColorClass || preset.metric;
+const effIconColor = iconColorClass || preset.icon;
+---
+
+<section class={`section-padding ${effGradient}`}>
+  <div class="container-custom">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {stats.map((stat) => (
+        <Card class="text-center border-0 bg-white/80 backdrop-blur-sm">
+          <CardContent class="p-6">
+            {stat.icon && (
+              <Icon name={stat.icon} class={`h-8 w-8 ${effIconColor} mx-auto mb-3`} />
+            )}
+            <div class={`text-3xl font-bold ${stat.color || effMetricColor} mb-2`}>
+              {stat.metric}
+            </div>
+            <p class="text-gray-900 font-medium">
+              {stat.label}
+            </p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

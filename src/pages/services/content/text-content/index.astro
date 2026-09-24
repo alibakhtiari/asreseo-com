@@ -1,0 +1,362 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+import ServiceWorkflow from '../../../../components/Services/ServiceWorkflow.astro';
+
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'تولید محتوای متنی',
+  'description': 'تولید محتوای متنی تخصصی و سئومحور شامل مقالات وبلاگ، توضیحات محصول و متن وب‌سایت',
+  'serviceType': 'Content Creation & SEO',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'عصر سئو',
+    'url': 'https://asreseo.com'
+  },
+  'areaServed': 'Iran',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'خدمات تولید محتوای متنی',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'مقاله تخصصی',
+          'description': 'تولید مقالات وبلاگ حرفه‌ای و کاملاً بهینه‌سازی شده'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'توضیحات محصول',
+          'description': 'نگارش توضیحات جذاب و قانع‌کننده برای محصولات'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const features = [
+    {
+      icon: "scroll-text",
+      title: 'مقالات تخصصی و سئو محور',
+      description: 'نگارش مقالات هدفمند و کاملاً بهینه برای موتورهای جستجو در حوزه شما.',
+      benefits: ['سئو پیشرفته', 'محتوای تخصصی', 'رتبه‌بندی بهتر']
+    },
+    {
+      icon: "book-open",
+      title: 'تولید توضیحات محصولات',
+      description: 'متون جذاب و قانع‌کننده برای معرفی بهتر محصولات فروشگاه اینترنتی شما.',
+      benefits: ['افزایش فروش', 'جذب مشتری', 'تجربه بهتر خرید']
+    },
+    {
+      icon: "sparkles",
+      title: 'تنوع سبک نگارش',
+      description: 'مطابق با پرسونای کسب‌وکار شما، با لحنی رسمی یا غیر رسمی، دوستانه یا آموزشی تولید می‌شود.',
+      benefits: ['تطبیق برند', 'تنوع محتوایی', 'ارتباط موثر']
+    },
+    {
+      icon: "star",
+      title: 'ویرایش و تضمین کیفیت',
+      description: 'تمام محتوای تولیدی قبل از تحویل ویرایش و از نظر انحصار و کیفیت بررسی می‌گردد.',
+      benefits: ['کیفیت تضمینی', 'مراجعه نهایی', 'رضایت مشتری']
+    }
+  ];
+
+  const contentTypes = [
+    {
+      title: 'محتوای وب‌سایت',
+      description: 'صفحات اصلی، درباره ما، خدمات، مزایای محصولات',
+      icon: "file-text",
+      features: 'بهینه‌سازی برای سئو، خوانایی بالا، تطابق برند'
+    },
+    {
+      title: 'مقالات وبلاگ',
+      description: 'مقالات آموزشی و خبری حوزه کاری شما',
+      icon: "scroll-text",
+      features: 'سئو فنی، ساختار مقاله، پل‌های ارتباطی'
+    },
+    {
+      title: 'توضیحات محصولات',
+      description: 'کپی تبلیغاتی، ویژگی‌ها، فواید محصولات',
+      icon: "book-open",
+      features: 'کپی قانع‌کننده، بیان مزایا،_call-to-action'
+    },
+    {
+      title: 'مطالب ارگانیک',
+      description: 'مطالب انگیزشی، اخبار شرکت، داستان‌های موفق',
+      icon: "lightbulb",
+      features: 'روایت جذاب، هدف‌گذاری فروش، برندینگ'
+    }
+  ];
+
+  const benefits = [
+    'افزایش رتبه سئو و حضور ثابت در نتایج گوگل',
+    'جذب اعتماد و ارتباط قوی‌تر با مشتریان',
+    'صرفه‌جویی در وقت شما توسط تیم حرفه‌ای محتوا',
+    'افزایش نرخ تبدیل و وفاداری مخاطب',
+    'بهبود تجربه کاربری و تعامل بازدیدکنندگان',
+    'بازاریابی محتوایی موثر و پایدار'
+  ];
+
+  const process = [
+    {
+      step: '1',
+      title: 'بررسی نیاز و استراتژی',
+      desc: 'تحلیل کلمات کلیدی، مخاطب هدف و اهداف محتوایی'
+    },
+    {
+      step: '2',
+      title: 'برنامه‌ریزی محتوا',
+      desc: 'طراحی ساختار و نقشه محتوا برای هر صفحه'
+    },
+    {
+      step: '3',
+      title: 'تحقیق و نگارش',
+      desc: 'جمع‌آوری اطلاعات و تولید محتوای اولیه'
+    },
+    {
+      step: '4',
+      title: 'بهینه‌سازی و ویرایش',
+      desc: 'بهینه‌سازی سئو، ویرایش محتوا و کنترل کیفیت'
+    },
+    {
+      step: '5',
+      title: 'تحویل و پشتیبانی',
+      desc: 'ارسال فایل نهایی و ارائه پشتیبانی پس از تولید'
+    }
+  ];
+
+  // Qualitative process facts, not performance percentages — traffic/ranking
+  // lift figures are unverifiable (see src/lib/site-claims.ts).
+  const stats = [
+    { metric: 'ماهانه', label: 'پایش ترافیک ارگانیک', color: 'text-blue-600' },
+    { metric: 'سرچ کنسول', label: 'رصد رتبه کلمات هدف', color: 'text-green-800' },
+    { metric: '۱۸۵', label: 'کلمات بهینه سئو', color: 'text-purple-600' },
+    { metric: 'ویرایش', label: 'کنترل کیفیت پیش از تحویل', color: 'text-orange-600' }
+  ];
+
+  const qualityGuarantees = [
+    'بررسی انحصار محتوای تولید شده',
+    'رعایت اصول سئو پیشرفته',
+    'همگون بودن با سبک برند شما',
+    'کیفیت گرامری و ادبی بالای محتوا',
+    'بررسی کامل توسط کارشناسان محتوا',
+    'امکان ویرایش رایگان تا رضایت کامل'
+  ];
+
+  const faqs = [
+    {
+      question: 'محتوای تولید شده منحصر به فرد است؟',
+      answer: 'بله، تمام متون با ضمانت یونیک بودن و بدون کپی برای هر سفارش تولید می‌شوند. از ابزارهای پیشرفته تشخیص کپی برای اطمینان استفاده می‌کنیم.'
+    },
+    {
+      question: 'چه نوع محتواهایی را پوشش می‌دهید؟',
+      answer: 'از بلاگ پست، متن سایت، توضیح محصول، معرفی خدمات، پرسش و پاسخ، محتوای خبری، تا هر نوع محتوای نگارشی مورد نیاز شما.'
+    },
+    {
+      question: 'زمان تحویل به چه صورت است؟',
+      answer: 'بسته به حجم سفارش، از ۲ روز تا یک هفته متداول است. برای محتوای پیچیده‌تر ممکن است تا دو هفته طول بکشد. مدت دقیق هنگام سفارش اعلام می‌شود.'
+    },
+    {
+      question: 'آیا امکان شخصی‌سازی لحن محتوا دارید؟',
+      answer: 'بله، ما بر اساس پرسونای برند شما، لحن گرامشانه، دوستانه، آموزشی، یا حرفه‌ای را انتخاب کرده و محتوای شما را در همین سبک نگارش می‌کنیم.'
+    },
+    {
+      question: 'چه افرادی محتوای شما را تولید می‌کنند؟',
+      answer: 'تیم ما شامل کارشناسان محتوا، متخصصین سئو و نویسندگان حرفه‌ای با سالهاست تجربه هستند. هر نویسنده در حوزه تخصصی خودش فعالیت می‌کند.'
+    },
+    {
+      question: 'پس از تولید محتوا چه پشتیبانی دارید؟',
+      answer: 'تا یک هفته پس از تحویل، امکان ویرایش رایگان محتوا وجود دارد. همچنین مشاوره استراتژی محتوایی را نیز به صورت ماهانه ارائه می‌دهیم.'
+    }
+  ];
+
+---
+<BaseLayout title='تولید محتوای متنی | محتوای سئومحور و منحصر‌به‌فرد | عصر سئو' description='تولید محتوای متنی تخصصی و سئومحور با کیفیت بالا. مقالات وبلاگ، توضیحات محصول، متن سایت با رعایت اصول SEO و استانداردهای محتوایی.' keywords='تولید محتوا, محتوای متنی, مقاله نویسی, محتوای سئو, SEO Content, متن منحصر‌به‌فرد, مقاله تخصصی' canonical='https://asreseo.com/services/content/text-content/' ogType='website' ogUrl='https://asreseo.com/services/content/text-content/' ogImages={[{ url: "/og/content-creation-hero.jpg", width: 1200, height: 630, alt: "تولید محتوای متنی | عصر سئو" }]} twitterCard='summary_large_image'
+  ogTitle='تولید محتوای متنی | محتوای سئومحور با عصر سئو'
+
+  ogDescription='تولید محتوای متنی تخصصی، جذاب و کاملاً بهینه‌سازی شده برای موتورهای جستجو.'
+>
+<div class="min-h-screen bg-white">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/content/text-content/', image: '/og/content-creation-hero.jpg' }))}
+      />
+
+      <Header />
+      <BreadcrumbStructuredData
+        items={[
+          { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
+          { position: 2, name: 'خدمات محتوا', item: 'https://asreseo.com/services/content/' },
+          { position: 3, name: 'تولید محتوای متنی', item: 'https://asreseo.com/services/content/text-content/' }
+        ]}
+      />
+
+      <main>
+        <!-- Hero Section -->
+        <ServiceHero
+          badge="تخصصی در تولید محتوای متنی"
+          title="تولید محتوای"
+          titleGradient="متنی"
+          description="محتوای جذاب، سئومحور و منحصربه‌فرد توسط کارشناسان حرفه‌ای سلامت دیجیتال. مقالات وبلاگ، توضیحات محصول و متن‌های وب‌سایت با کیفیت عالی."
+          primaryCta={{ text: "سفارش تولید محتوا" }}
+          secondaryCta={{ text: "نمونه کارها" }}
+          imageSrc="/images/content-creation-hero.webp"
+          imageAlt="تولید محتوای متنی"
+          theme="green"
+        />
+
+        <!-- Stats Section -->
+        <ServiceStats stats={stats} gradientClass="bg-linear-to-r from-emerald-50 to-green-50" metricColorClass="text-emerald-700" iconColorClass="text-emerald-600" />
+
+        <!-- Content Types Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                انواع محتوای <span class="gradient-text">قابل تولید</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                پوشش تمام نیازهای محتوایی وب‌سایت از وبلاگ گرفته تا محصولات
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {contentTypes.map((contentType, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                        <Icon name={contentType.icon} class="h-6 w-6 text-green-800" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{contentType.title}</CardTitle>
+                    </div>
+                    <p class="text-gray-600 mb-2">{contentType.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-sm text-gray-500">{contentType.features}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                ویژگی‌های <span class="gradient-text">محتوای ما</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                چرا کیفیت محتوای عصر سئو بالاتر از سایر رقباست؟
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {features.map((feature, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                        <Icon name={feature.icon} class="h-6 w-6 text-green-800" />
+                      </div>
+                      <CardTitle class="text-lg font-semibold">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Quality Guarantees -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                ضمانت‌های <span class="gradient-text">کیفیت</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                استانداردها و تعهداتی که ما را متمایز می‌کند
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              {qualityGuarantees.map((guarantee, index) => (
+                <div class="flex items-center gap-4 p-4 bg-linear-to-r from-green-50 to-emerald-50 rounded-xl border border-green-100">
+                  <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
+                    <Icon name="award" class="h-4 w-4 text-green-800" />
+                  </div>
+                  <span class="text-gray-900 font-medium">
+                    {guarantee}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits title="مزایای تولید محتوا با" titleHighlight="عصر سئو" subtitle="نتایج ملموس محتوای حرفه‌ای در رشد کسب‌وکار شما" benefits={benefits} />
+
+              <ServiceWorkflow title="فرآیند" titleHighlight="تولید محتوا" subtitle="رویکرد گام به گام برای تولید محتوای حرفه‌ای و نتیجه‌بخش" steps={process} bgGradient="section-padding bg-linear-to-br from-emerald-50 to-green-50" />
+
+        <!-- FAQ Section -->
+        <ServiceFAQ
+          title="سوالات"
+          titleGradient="متداول"
+          subtitle="پاسخ به رایج‌ترین سوالات درباره تولید محتوای متنی"
+          faqs={faqs}
+        />
+
+        <!-- CTA Section -->
+        <ServiceCTA
+          title="محتوای خود را حرفه‌ای کنید!"
+          description="با تولید محتوای متنی حرفه‌ای و بهینه‌سازی شده، رتبه گوگل خود را بهبود دهید و ترافیک ارگانیک بیشتری کسب کنید. محتوای خوب، پایه هر بازاریابی موفقی است."
+          primaryCta={{ text: "شروع تولید محتوا" }}
+          secondaryCta={{ text: "مشاوره رایگان" }}
+          primaryClass="bg-green-700 hover:bg-green-800 text-white font-semibold shadow-lg shadow-green-700/30"
+        />
+      </main>
+
+      <Footer />
+    </div>
+</BaseLayout>

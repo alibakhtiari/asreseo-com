@@ -1,0 +1,52 @@
+---
+// Testimonials come from the single auditable source in src/lib/site-claims.ts.
+// This section previously declared its own three names («احمد محمدی»,
+// «فاطمه احمدی», «علی رضایی»), which meant the site named nine clients in total
+// while the audit only ever counted six — and those three bypassed the
+// `verified` flag entirely. See the header of site-claims.ts before editing.
+import { TESTIMONIALS, faNum } from '../../lib/site-claims';
+
+const testimonials = TESTIMONIALS.slice(0, 3);
+---
+<section class="section-padding">
+      <div class="container-custom">
+        <div class="text-center mb-16 animate-fade-in">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            نظرات <span class="gradient-text">مشتریان</span> ما
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            تجربه مشتریان راضی از همکاری با عصر سئو
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <div class="bg-white p-8 rounded-xl shadow-xs border hover:shadow-md transition-shadow animate-fade-in">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="text-4xl" aria-hidden="true">
+                  {testimonial.avatar}
+                </div>
+                <div>
+                  <h3 class="font-bold text-gray-900">{testimonial.name}</h3>
+                  <p class="text-sm text-gray-600">{testimonial.company}</p>
+                </div>
+              </div>
+
+              <blockquote class="text-gray-700 leading-relaxed italic">
+                "{testimonial.text}"
+              </blockquote>
+
+              <!-- Rating. Rendered only when verified to avoid misleading placeholder ratings.
+                   Unverified client quotes render cleanly as quote cards without fake star badges. -->
+              {testimonial.verified && testimonial.rating && (
+                <div class="flex text-amber-600 mt-4" role="img" aria-label={`امتیاز ${faNum(testimonial.rating)} از ۵`}>
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <span aria-hidden="true">⭐</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
