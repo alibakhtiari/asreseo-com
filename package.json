@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "copy:images": "node scripts/copy-images.mjs",
     "og:generate": "node scripts/generate-all-og.mjs",
+    "favicons:generate": "node scripts/generate-favicons.mjs",
     "prebuild": "npm run copy:images",
     "verify:deploy": "node scripts/verify-deploy.mjs"
   },
