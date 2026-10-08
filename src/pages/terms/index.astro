@@ -7,67 +7,68 @@ import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.
 const pageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: 'شرایط استفاده از خدمات عصر سئو',
+  name: 'AsreSEO Terms of Service',
   url: 'https://asreseo.com/terms/',
-  inLanguage: 'fa-IR',
+  inLanguage: 'en-US',
 };
 const breadcrumbs = [
-  { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-  { position: 2, name: 'شرایط استفاده', item: 'https://asreseo.com/terms/' },
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'Terms of Service', item: 'https://asreseo.com/terms/' },
 ];
 ---
-<BaseLayout title='قوانین و مقررات و شرایط همکاری | عصر سئو' description='قوانین و مقررات عصر سئو؛ دامنه خدمات، نحوه شروع قرارداد، تعهدات طرفین، پرداخت و صورتحساب، محرمانگی، مالکیت فکری، فسخ و شرایط حل اختلاف در همکاری‌ها.' canonical='https://asreseo.com/terms/' ogType='website' twitterCard='summary_large_image'>
+<BaseLayout lang="en" title='Terms & Conditions of Cooperation | AsreSEO' description='AsreSEO terms and conditions: scope of services, how contracts start, obligations of both parties, payment and invoicing, confidentiality, intellectual property, termination and dispute resolution.' canonical='/terms/' ogUrl='https://asreseo.com/terms/' ogType='website' twitterCard='summary_large_image'>
   <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
   <BreadcrumbStructuredData items={breadcrumbs} />
-<div class="min-h-screen bg-white">
-            <Header />
+<div class="min-h-screen bg-[#000000] text-slate-100">
+            <Header lang="en" />
             <main class="section-padding pt-32">
                 <div class="container-custom max-w-4xl">
-                    <h1 class="text-4xl font-bold mb-8 text-right">قوانین و مقررات</h1>
-                    <div class="prose prose-lg max-w-none text-right" dir="rtl">
-                        <p>استفاده از وب‌سایت و خدمات عصر سئو به منزله پذیرش کامل قوانین و مقررات زیر است. این شرایط چارچوب همکاری میان عصر سئو و کارفرما را مشخص می‌کند و در کنار پیشنهاد فنی و قرارداد منعقدشده، سند مرجع روابط طرفین خواهد بود.</p>
+                    <h1 class="text-4xl font-extrabold mb-8 text-left text-white tracking-tight">Terms & Conditions</h1>
+                    <div class="prose prose-lg prose-invert max-w-none text-left text-slate-300" dir="ltr">
+                        <p>Using the AsreSEO website and services constitutes full acceptance of the terms and conditions below. These terms define the framework of cooperation between AsreSEO and the client and, together with the technical proposal and the signed contract, serve as the governing document of the relationship.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۱. دامنه خدمات و نحوه شروع همکاری</h2>
-                        <p>خدمات عصر سئو شامل سئو و بهینه‌سازی وب‌سایت، دیجیتال مارکتینگ، تبلیغات گوگل، تولید محتوا، هوش مصنوعی و طراحی وب است. هر همکاری با بررسی درخواست شما و ارائه پیشنهاد کاری آغاز می‌شود؛ پس از تایید پیشنهاد، قرارداد کتبی شامل دامنه کارها، زمان‌بندی و شرایط مالی تنظیم و توسط طرفین امضا می‌شود. تا پیش از امضای قرارداد، تعهدی برای شروع اجرا وجود ندارد.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">1. Scope of services and how engagements begin</h2>
+                        <p>AsreSEO services include website SEO and optimization, digital marketing, Google Ads, content production, AI solutions, and web design. Every engagement starts with a review of your request and a written proposal; once the proposal is approved, a written contract covering the scope of work, timeline, and financial terms is prepared and signed by both parties. Until the contract is signed, there is no obligation to begin execution.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۲. تعهدات عصر سئو</h2>
-                        <p>عصر سئو متعهد است خدمات خود را مطابق با قرارداد، برنامه زمان‌بندی توافق‌شده و استانداردهای حرفه‌ای روز دنیای دیجیتال ارائه دهد، اقدامات انجام‌شده را شفاف گزارش کند و برای پاسخگویی در دسترس کارفرما باشد. تغییرات مهم در روند کار یا ریسک‌های احتمالی پیش از اجرا با کارفرما در میان گذاشته می‌شود.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">2. AsreSEO's obligations</h2>
+                        <p>AsreSEO undertakes to deliver its services in accordance with the contract, the agreed timeline, and the current professional standards of the digital world, to report the actions taken transparently, and to remain available to the client. Significant changes to the course of work or potential risks are shared with the client before execution.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۳. تعهدات کارفرما</h2>
-                        <p>کارفرما موظف است اطلاعات صحیح و به‌روز را در اختیار تیم قرار دهد، دسترسی‌های لازم را به‌موقع تامین کند و بازخوردها و تاییدیه‌های خود را در زمان توافق‌شده ارائه دهد. تاخیر در تامین دسترسی یا تاییدیه‌ها می‌تواند زمان‌بندی پروژه را جابه‌جا کند. همچنین استفاده غیرمجاز از محتوای وب‌سایت و ارائه اطلاعات خلاف واقع خارج از تعهدات عصر سئو است.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">3. Client's obligations</h2>
+                        <p>The client is required to provide accurate and up-to-date information to the team, supply the necessary access on time, and deliver feedback and approvals within the agreed timeframe. Delays in providing access or approvals may shift the project timeline. Unauthorized use of website content and providing false information fall outside AsreSEO's obligations.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۴. تاییدیه‌ها و دوره‌های بازنگری</h2>
-                        <p>پیش از انتشار هر خروجی، نسخه پیش‌نویس برای تایید به کارفرما ارائه می‌شود. تعداد دوره‌های بازنگری و مهلت پاسخگویی در قرارداد مشخص می‌شود؛ بازخوردی که خارج از دامنه توافق‌شده باشد، پس از بررسی در صورت نیاز بازنگری در قرارداد را می‌طلبد. پس از تایید و انتشار، اعمال تغییرات جدید در چارچوب درخواست جداگانه انجام می‌شود.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">4. Approvals and review cycles</h2>
+                        <p>Before any deliverable is published, a draft is submitted to the client for approval. The number of review cycles and the response deadline are specified in the contract; feedback that falls outside the agreed scope may require a contract revision upon review. After approval and publication, further changes are handled as a separate request.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۵. پرداخت و صورتحساب</h2>
-                        <p>هزینه هر خدمت، دوره پرداخت و شیوه صدور صورتحساب در پیشنهاد مالی یا قرارداد مشخص می‌شود و صورتحساب‌ها در موعد مقرر ارسال می‌گردد. در صورت تاخیر در پرداخت، عصر سئو می‌تواند اجرای خدمات را تا زمان تسویه حساب تعلیق کند و تعلیق مداوم می‌تواند به فسخ قرارداد منجر شود.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">5. Payment and invoicing</h2>
+                        <p>The cost of each service, the payment schedule, and the invoicing method are specified in the financial proposal or contract, and invoices are issued on their due dates. In case of late payment, AsreSEO may suspend service delivery until the balance is settled, and prolonged suspension may lead to contract termination.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۶. محرمانگی</h2>
-                        <p>هر دو طرف متعهدند اطلاعات محرمانه طرف مقابل مانند اسرار تجاری، فهرست مشتریان، دسترسی‌های فنی و جزئیات مالی را صرفاً در حد اجرای قرارداد استفاده کنند و در اختیار اشخاص ثالث قرار ندهند. این تعهد پس از پایان قرارداد نیز تا زمانی که خود اطلاعات محرمانه باقی است پابرجاست.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">6. Confidentiality</h2>
+                        <p>Both parties undertake to use the other party's confidential information — such as trade secrets, client lists, technical credentials, and financial details — solely to the extent of performing the contract, and not to disclose it to third parties. This obligation survives the end of the contract for as long as the information itself remains confidential.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۷. مالکیت فکری و واگذاری مجوز</h2>
-                        <p>پس از تسویه کامل مالی، مجوز استفاده از خروجی‌های سفارشی پروژه مانند طراحی‌ها، متن‌ها و مستندات تحویل‌داده‌شده به کارفرما واگذار می‌شود. ابزارها و کدهای عمومی که عصر سئو مستقل از پروژه توسعه داده متعلق به همین مجموعه می‌ماند و استفاده از آن‌ها مشروط به شرایط مجوز خودش است. محتوای منتشرشده در وب‌سایت عصر سئو نیز متعلق به این مجموعه بوده و کپی‌برداری از آن بدون اجازه پیگرد قانونی دارد.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">7. Intellectual property, Open Source & Automation Systems</h2>
+                        <p>After full financial settlement, the license to use the project's custom deliverables — such as delivered designs, copy, and documentation — is transferred to the client. Tools, automated workflows, and software components that AsreSEO developed independently remain the intellectual property of AsreSEO or are governed by open-source licenses.</p>
+                        <p>In particular, automated orchestration workflows hosted under <a href="https://n8n.asreseo.com" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-bold underline hover:no-underline">n8n.asreseo.com</a> and custom n8n node packages authored by Ali Bakhtiari — including <a href="https://github.com/alibakhtiari/n8n-nodes-avvalai" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-bold underline hover:no-underline">n8n-nodes-avvalai</a> and <a href="https://github.com/alibakhtiari/n8n-nodes-imagerouter" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-bold underline hover:no-underline">n8n-nodes-imagerouter</a> — are open-source software libraries provided under their respective GitHub repository licenses. Clients utilizing AsreSEO automated deployment pipelines benefit from these custom integrations subject to acceptable API usage, data integrity, and compliance policies.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۸. نمایش نمونه کار</h2>
-                        <p>عصر سئو حق دارد نام کارفرما و نمونه‌کارهای انجام‌شده را برای معرفی خدمات خود در وب‌سایت، شبکه‌های اجتماعی و پیشنهادهای آینده استفاده کند، مگر اینکه کارفرما پیش از شروع همکاری به‌صورت کتبی با این استفاده مخالفت کرده باشد.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">8. Portfolio display</h2>
+                        <p>AsreSEO reserves the right to use the client's name and completed work samples to present its services on its website, social channels, and future proposals, unless the client objects to such use in writing before the engagement begins.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۹. تعلیق و فسخ</h2>
-                        <p>در صورت نقض تعهدات طرف مقابل، تاخیر مداوم در پرداخت یا همکاری نکردن با درخواست‌های منطقی، هر یک از طرفین می‌تواند قرارداد را فسخ کند. در این حالت کارهای تکمیل‌شده تا تاریخ فسخ محاسبه و تسویه می‌شود و تعهدات محرمانگی و مالکیت فکری مطابق همین شرایط ادامه می‌یابد.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">9. Suspension and termination</h2>
+                        <p>In case of breach of obligations by either party, persistent payment delays, or failure to cooperate with reasonable requests, either party may terminate the contract. In that event, completed work up to the termination date is calculated and settled, and the confidentiality and intellectual property obligations continue in accordance with these terms.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۱۰. محدودیت مسئولیت</h2>
-                        <p>مسئولیت عصر سئو در قبال هر قرارداد محدود به مبلغ همان قرارداد و خسارات مستقیم ناشی از تقصیر آن است. عصر سئو در قبال خسارات غیرمستقیم مانند از دست رفتن درآمد یا نتایجی که خارج از کنترل آن بوده — از جمله تغییرات الگوریتم موتورهای جستجو، اقدامات رقبا یا قطعی زیرساخت‌های شخص ثالث — مسئولیتی ندارد. خدمات بر مبنای دانش روز و حسن‌نیت ارائه می‌شود و هیچ نتیجه رتبه یا درآمدی تضمین نمی‌شود.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">10. Limitation of liability</h2>
+                        <p>AsreSEO's liability under any contract is limited to the value of that contract and to direct damages resulting from its own fault. AsreSEO bears no responsibility for indirect damages such as lost revenue, or for outcomes beyond its control — including search engine algorithm changes, competitor actions, or third-party infrastructure outages. Services are provided based on current knowledge and in good faith, and no ranking or revenue outcome is guaranteed.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۱۱. حل اختلاف و قانون حاکم</h2>
-                        <p>ابتدا تلاش می‌شود اختلاف از طریق مذاکره مستقیم و حسن‌نیت حل شود. در صورت عدم توافق، موضوع به مراجع قضایی صالح ارجاع می‌شود و قوانین جمهوری اسلامی ایران حاکم بر این قرارداد است.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">11. Dispute resolution and governing law</h2>
+                        <p>Disputes are first addressed through direct negotiation in good faith. Failing agreement, the matter is resolved as specified in the service agreement.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۱۲. فورس ماژور</h2>
-                        <p>هیچ‌یک از طرفین در قبال تاخیر یا عدم‌اجرا ناشی از رویدادهای خارج از کنترل معقول مانند بلایای طبیعی، قطعی گسترده ارتباطات یا تصمیمات دولتی مسئول نیست؛ به شرط آنکه موضوع را اطلاع دهد و پس از رفع شرایط، اجرای تعهدات را از سر بگیرد.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">12. Force majeure</h2>
+                        <p>Neither party is liable for delays or non-performance caused by events beyond reasonable control, such as natural disasters, widespread communication outages, or government decisions — provided the matter is communicated and performance resumes once conditions are resolved.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">۱۳. تغییرات قوانین</h2>
-                        <p>عصر سئو حق دارد در هر زمان این شرایط را به‌روزرسانی کند. نسخه جاری همیشه در همین صفحه منتشر می‌شود و تغییرات از طریق همین صفحه به اطلاع کاربران خواهد رسید.</p>
+                        <h2 class="text-2xl font-bold mt-8 mb-4">13. Changes to these terms</h2>
+                        <p>AsreSEO reserves the right to update these terms at any time. The current version is always published on this page, and changes will be announced to users through this page.</p>
                     </div>
                 </div>
             </main>
-            <Footer />
+            <Footer lang="en" />
         </div>
 </BaseLayout>

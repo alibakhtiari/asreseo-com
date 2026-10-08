@@ -2,148 +2,199 @@
 import Icon from '../ui/Icon.astro';
 import Logo from '../Logo.astro';
 
+interface Props {
+  lang?: string;
+}
 
+const { lang = 'en' } = Astro.props as Props;
+void lang;
 
+const currentDate = new Date().toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 
-
-  // The footer date is generated at build time and frozen into the static
-  // output (this is an SSG site). Use the Persian (Jalali) calendar so the
-  // copyright reads the way Persian users expect. ICU 67+ (Node 22, all modern
-  // browsers) ships Persian calendar support for `fa-IR`, so no third-party
-  // library is needed. The day + month + year form makes the Shamsi calendar
-  // visible at a glance instead of looking like a Gregorian year that happens
-  // to be in Persian digits. After March 20/21 the year rolls over naturally.
-  const currentDate = new Date().toLocaleDateString('fa-IR', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-
-  const footerLinks = {
-    services: [
-      { title: 'سئو و بهینه‌سازی', href: '/services/seo/' },
-      { title: 'بازاریابی دیجیتال', href: '/services/marketing/' },
-      { title: 'طراحی وب‌سایت', href: '/services/web/' },
-      { title: 'استراتژی و تولید محتوا', href: '/services/content/' },
-      { title: 'هوش مصنوعی', href: '/services/ai/' }
-    ],
-    company: [
-      { title: 'درباره ما', href: '/about/' },
-      { title: 'نمونه کارها', href: '/portfolio/' },
-      { title: 'وبلاگ', href: '/blog/' },
-      { title: 'تماس با ما', href: '/contact/' }
-    ],
-    support: [
-      { title: 'سوالات متداول', href: '/faq/' },
-      { title: 'پشتیبانی', href: '/support/' },
-      { title: 'مشاوره رایگان', href: '/consultation/' },
-      { title: 'قوانین و مقررات', href: '/terms/' }
-    ]
-  };
-
-  
+const footerLinks = {
+  services: [
+    { title: 'Master Services Suite ↗', href: '/services/' },
+    { title: 'SEO Infrastructure', href: '/services/seo/' },
+    { title: 'Web Engineering & Speed', href: '/services/web/' },
+    { title: 'Digital Marketing & Ads', href: '/services/marketing/' },
+    { title: 'Content & Entity Systems', href: '/services/content/' },
+    { title: 'Neural AI & GEO Suite', href: '/services/ai/' },
+  ],
+  company: [
+    { title: 'About Us', href: '/about/' },
+    { title: 'Portfolio', href: '/portfolio/' },
+    { title: 'Blog', href: '/blog/' },
+    { title: 'Contact', href: '/contact/' },
+    { title: 'WhatsApp (+1 346 327 2878) ↗', href: 'https://wa.me/13463272878' },
+    { title: 'Call Us (+1 346 327 2878)', href: 'tel:+13463272878' },
+    { title: 'n8n AvvalAI Node ↗', href: 'https://github.com/alibakhtiari/n8n-nodes-avvalai' },
+    { title: 'n8n ImageRouter Node ↗', href: 'https://github.com/alibakhtiari/n8n-nodes-imagerouter' },
+  ],
+  support: [
+    { title: 'FAQ', href: '/faq/' },
+    { title: 'Support', href: '/support/' },
+    { title: 'Free Consultation', href: '/consultation/' },
+    { title: 'Privacy Policy', href: '/privacy/' },
+    { title: 'Terms & Conditions', href: '/terms/' },
+    { title: 'n8n Automation Engine ↗', href: 'https://n8n.asreseo.com' },
+  ],
+};
 ---
-<footer class="bg-slate-900 text-white">
-      <div class="container-custom">
-        <!-- Main Footer -->
-        <div class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- Brand -->
-          <div class="space-y-4">
-            <div class="flex items-center space-x-3 space-x-reverse">
-              <div class="w-10 h-10 bg-linear-to-br from-blue-500 to-green-500 rounded-lg flex items-center justify-center text-white">
-                <Logo class="w-6 h-6" />
-              </div>
-              <div>
-                <h2 class="text-xl font-bold">عصر سئو</h2>
-                <p class="text-sm text-gray-400">AsreSEO</p>
-              </div>
-            </div>
-            <p class="text-gray-300 leading-relaxed">
-              ما در عصر سئو با ارائه خدمات حرفه‌ای دیجیتال مارکتینگ، کسب‌وکار شما را به قله موفقیت می‌رسانیم. تیم متخصص ما آماده همراهی شماست.
-            </p>
-            <div class="flex items-center space-x-4 space-x-reverse">
-              <a href="mailto:info@asreseo.com" class="flex items-center text-gray-300 hover:text-white transition-colors">
-                <Icon name="mail" class="h-5 w-5 ml-2" />
-                info@asreseo.com
-              </a>
-            </div>
+<footer class="bg-[#000000] border-t-2 border-white/20 text-slate-300 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <!-- Main Footer -->
+    <div class="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <!-- Brand & Telemetry -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-black border-2 border-white/20 flex items-center justify-center text-[#CCFF00] shrink-0">
+            <Logo class="w-6 h-6 text-[#CCFF00]" />
           </div>
-
-          <!-- Services -->
           <div>
-            <h3 class="text-lg font-semibold mb-4">خدمات ما</h3>
-            <ul class="space-y-2">
-              {footerLinks.services.map((link, index) => (
-                <li>
-                  <a
-                    href={link.href}
-                    class="text-gray-300 hover:text-white transition-colors duration-200"
-                  >
-                    {link.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <!-- Company -->
-          <div>
-            <h3 class="text-lg font-semibold mb-4">شرکت</h3>
-            <ul class="space-y-2">
-              {footerLinks.company.map((link, index) => (
-                <li>
-                  <a
-                    href={link.href}
-                    class="text-gray-300 hover:text-white transition-colors duration-200"
-                  >
-                    {link.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <!-- Support -->
-          <div>
-            <h3 class="text-lg font-semibold mb-4">پشتیبانی</h3>
-            <ul class="space-y-2">
-              {footerLinks.support.map((link, index) => (
-                <li>
-                  <a
-                    href={link.href}
-                    class="text-gray-300 hover:text-white transition-colors duration-200"
-                  >
-                    {link.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <h2 class="text-xl font-black uppercase text-white tracking-tight font-sans">AsreSEO</h2>
+            <p class="text-[10px] font-mono text-[#CCFF00] uppercase tracking-widest">[AUTONOMOUS_SEARCH_SYSTEMS]</p>
           </div>
         </div>
 
-        <!-- Bottom Footer -->
-        <div class="border-t border-gray-700 py-6">
-          <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p class="text-gray-400 text-sm">
-              © {currentDate} عصر سئو. تمامی حقوق محفوظ است.
-            </p>
-            <!-- `space-x-6 space-x-reverse` had inconsistent spacing in RTL
-                 across browsers. `gap-x-8` is direction-agnostic and renders
-                 the same 2 rem gap between every link on either side; bumped
-                 from `gap-x-6` (1.5 rem) because the privacy/terms/sitemap
-                 trio read as one run-on at the smaller size in RTL. -->
-            <div class="flex items-center gap-x-8 text-sm text-gray-400">
-              <a href="/privacy/" class="hover:text-white transition-colors">
-                حریم خصوصی
-              </a>
-              <a href="/terms/" class="hover:text-white transition-colors">
-                قوانین و مقررات
-              </a>
-              <a href="/sitemap/" class="hover:text-white transition-colors">
-                نقشه سایت
-              </a>
-            </div>
-          </div>
+        <p class="text-slate-400 leading-relaxed text-xs sm:text-sm font-sans">
+          Autonomous search infrastructure, deterministic knowledge graphs, and LLM citation dominance engineered for enterprise scale.
+        </p>
+
+        <div class="pt-2 font-mono text-xs flex flex-col gap-2">
+          <a
+            href="https://wa.me/13463272878"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2.5 text-slate-300 hover:text-black hover:bg-[#25D366] hover:border-black transition-all bg-black border border-white/20 px-3.5 py-2 uppercase font-bold"
+          >
+            <Icon name="whatsapp" class="h-3.5 w-3.5 text-[#25D366] group-hover:text-black" />
+            <span>WhatsApp: +1 (346) 327-2878 ↗</span>
+          </a>
+          <a
+            href="tel:+13463272878"
+            class="inline-flex items-center gap-2.5 text-slate-300 hover:text-black hover:bg-[#CCFF00] hover:border-black transition-all bg-black border border-white/20 px-3.5 py-2 uppercase font-bold"
+          >
+            <Icon name="phone-call" class="h-3.5 w-3.5 text-[#CCFF00] group-hover:text-black" />
+            <span>Call: +1 (346) 327-2878</span>
+          </a>
+          <a
+            href="mailto:info@asreseo.com"
+            class="inline-flex items-center gap-2.5 text-slate-300 hover:text-black hover:bg-[#CCFF00] hover:border-black transition-all bg-black border border-white/20 px-3.5 py-2 uppercase font-bold"
+          >
+            <Icon name="mail" class="h-3.5 w-3.5 text-[#CCFF00] group-hover:text-black" />
+            <span>info@asreseo.com</span>
+          </a>
         </div>
       </div>
-    </footer>
+
+      <!-- Services / Tactical Protocols -->
+      <div class="font-mono text-xs">
+        <div class="text-[#CCFF00] font-black uppercase tracking-wider mb-4 pb-2 border-b border-white/10">
+          [Tactical Protocols]
+        </div>
+        <ul class="space-y-2">
+          {footerLinks.services.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class={`block transition-colors uppercase py-1 ${
+                  link.href === '/services/'
+                    ? 'text-[#CCFF00] font-bold hover:underline'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                {link.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company / Systems Division -->
+      <div class="font-mono text-xs">
+        <div class="text-[#CCFF00] font-black uppercase tracking-wider mb-4 pb-2 border-b border-white/10">
+          [Systems Division]
+        </div>
+        <ul class="space-y-2">
+          {footerLinks.company.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                target={link.href.startsWith('http') ? '_blank' : undefined}
+                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                class="block text-slate-400 hover:text-white transition-colors uppercase py-1"
+              >
+                {link.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Support & Legal Telemetry -->
+      <div class="font-mono text-xs">
+        <div class="text-[#CCFF00] font-black uppercase tracking-wider mb-4 pb-2 border-b border-white/10">
+          [Telemetry & Legal]
+        </div>
+        <ul class="space-y-2">
+          {footerLinks.support.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                target={link.href.startsWith('http') ? '_blank' : undefined}
+                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                class={`block transition-colors uppercase py-1 ${
+                  link.href.includes('n8n')
+                    ? 'text-slate-300 hover:text-[#CCFF00] font-bold'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                {link.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Footer -->
+    <div class="border-t-2 border-white/15 py-6 font-mono text-xs">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500">
+        <p class="uppercase">
+          © {currentDate} AsreSEO. All rights reserved.
+        </p>
+        <div class="flex items-center gap-x-4 sm:gap-x-6 uppercase flex-wrap justify-center">
+          <a href="https://wa.me/13463272878" target="_blank" rel="noopener noreferrer" class="text-[#25D366] hover:underline transition-colors font-bold flex items-center gap-1.5">
+            <Icon name="whatsapp" class="w-3.5 h-3.5" />
+            WhatsApp: +1 346 327 2878 ↗
+          </a>
+          <span>/</span>
+          <a href="tel:+13463272878" class="text-slate-300 hover:text-[#CCFF00] transition-colors font-bold flex items-center gap-1.5">
+            <Icon name="phone-call" class="w-3.5 h-3.5" />
+            Call: +1 346 327 2878
+          </a>
+          <span>/</span>
+          <a href="https://n8n.asreseo.com" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] hover:underline transition-colors font-bold">
+            n8n.asreseo.com ↗
+          </a>
+          <span>/</span>
+          <a href="/privacy/" class="hover:text-[#CCFF00] transition-colors">
+            Privacy
+          </a>
+          <span>/</span>
+          <a href="/terms/" class="hover:text-[#CCFF00] transition-colors">
+            Terms
+          </a>
+          <span>/</span>
+          <a href="/sitemap/" class="hover:text-[#CCFF00] transition-colors">
+            Sitemap
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
