@@ -4,6 +4,7 @@ import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
 import { getCollection } from 'astro:content';
 import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+import { PORTFOLIO_PROJECTS } from '../../lib/portfolio-data';
 
 const localize = (p: string) => p;
 
@@ -17,12 +18,19 @@ const sections = [
       { title: 'About Us', href: '/about/' },
       { title: 'Contact Us', href: '/contact/' },
       { title: 'Support Center', href: '/support/' },
-      { title: 'Blog', href: '/blog/' },
-      { title: 'Portfolio', href: '/portfolio/' },
+      { title: 'Blog Archive', href: '/blog/' },
+      { title: 'Portfolio Archive', href: '/portfolio/' },
       { title: 'FAQ', href: '/faq/' },
       { title: 'Privacy Policy', href: '/privacy/' },
       { title: 'Terms & Conditions', href: '/terms/' }
     ]
+  },
+  {
+    title: 'Portfolio & Engineering Systems',
+    links: PORTFOLIO_PROJECTS.map((p) => ({
+      title: p.title,
+      href: `/portfolio/${p.slug}/`,
+    }))
   },
   {
     title: 'SEO Services',

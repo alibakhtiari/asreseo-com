@@ -1,0 +1,412 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+import Button from '../../components/ui/button/Button.astro';
+import Icon from '../../components/ui/Icon.astro';
+import { PORTFOLIO_PROJECTS, type PortfolioProject } from '../../lib/portfolio-data';
+
+export async function getStaticPaths() {
+  return PORTFOLIO_PROJECTS.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: PortfolioProject;
+}
+
+const { project } = Astro.props as Props;
+
+const breadcrumbs = [
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'Portfolio', item: 'https://asreseo.com/portfolio/' },
+  { position: 3, name: project.title, item: `https://asreseo.com/portfolio/${project.slug}/` },
+];
+
+const currentIndex = PORTFOLIO_PROJECTS.findIndex((p) => p.slug === project.slug);
+const prevProject = currentIndex > 0 ? PORTFOLIO_PROJECTS[currentIndex - 1] : PORTFOLIO_PROJECTS[PORTFOLIO_PROJECTS.length - 1];
+const nextProject = currentIndex < PORTFOLIO_PROJECTS.length - 1 ? PORTFOLIO_PROJECTS[currentIndex + 1] : PORTFOLIO_PROJECTS[0];
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: `${project.title} — Technical Case Study & Architecture Audit`,
+  description: project.subtitle,
+  url: `https://asreseo.com/portfolio/${project.slug}/`,
+  inLanguage: 'en-US',
+  author: {
+    '@type': 'Organization',
+    name: 'AsreSEO',
+    url: 'https://asreseo.com',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'AsreSEO',
+    url: 'https://asreseo.com',
+  },
+  about: {
+    '@type': 'SoftwareApplication',
+    name: project.title,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Cloudflare Workers Edge',
+  },
+};
+---
+<BaseLayout
+  lang="en"
+  title={`${project.title} | Enterprise Case Study | AsreSEO`}
+  description={project.subtitle}
+  keywords={`${project.title}, ${project.category}, enterprise SEO case study, AI search optimization, Cloudflare Workers, AsreSEO`}
+  canonical={`/portfolio/${project.slug}/`}
+  ogType="article"
+  ogUrl={`https://asreseo.com/portfolio/${project.slug}/`}
+  ogImages={[{ url: '/og-default.png', width: 1200, height: 630, alt: project.title }]}
+  twitterCard="summary_large_image"
+>
+  <BreadcrumbStructuredData items={breadcrumbs} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+
+  <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+    <Header lang="en" />
+
+    <main class="pt-28 pb-20">
+      <!-- Top Dossier Header -->
+      <section class="py-12 md:py-16 border-b-2 border-white/10 relative">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+          <!-- Back Link -->
+          <div class="mb-8">
+            <a
+              href="/portfolio/"
+              class="inline-flex items-center gap-2 font-mono text-xs uppercase text-slate-400 hover:text-[#CCFF00] transition-colors"
+            >
+              <span>←</span>
+              <span>Back to Portfolio Archive</span>
+            </a>
+          </div>
+
+          <!-- Metadata Tags -->
+          <div class="flex flex-wrap items-center gap-3 mb-6 font-mono text-xs">
+            <span class="px-3 py-1 bg-black border border-[#CCFF00]/40 text-[#CCFF00] font-bold uppercase tracking-wider">
+              {project.tag}
+            </span>
+            <span class="px-3 py-1 bg-[#0a0e17] border border-white/20 text-slate-300 font-bold uppercase tracking-wider">
+              {project.badge}
+            </span>
+            <span class="text-slate-500 hidden sm:inline">//</span>
+            <span class="text-slate-400 font-mono uppercase">{project.category}</span>
+          </div>
+
+          <!-- Title & Subtitle -->
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black uppercase text-white tracking-tight leading-[1.08] mb-6 max-w-5xl">
+            {project.title}
+          </h1>
+
+          <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-4xl mb-8 font-sans">
+            {project.subtitle}
+          </p>
+
+          <!-- Action CTAs and External Links -->
+          <div class="flex flex-wrap items-center gap-4 pt-4 border-t border-white/10">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 bg-[#CCFF00] text-black border-2 border-black px-5 py-3 font-mono text-xs font-black uppercase shadow-[3px_3px_0px_#FFFFFF] hover:bg-white transition-all"
+              >
+                <Icon name="external-link" class="w-4 h-4 text-black" />
+                <span>Launch Live System ({project.liveUrl.replace('https://', '')}) ↗</span>
+              </a>
+            )}
+
+            {project.repoUrl && (
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 bg-black text-white border-2 border-white/20 px-5 py-3 font-mono text-xs font-bold uppercase hover:border-[#CCFF00] hover:text-[#CCFF00] transition-all"
+              >
+                <Icon name="github" class="w-4 h-4 text-current" />
+                <span>
+                  {project.isPrivateRepo ? 'Repository (Private Access) ↗' : 'GitHub Repository (Open Source) ↗'}
+                </span>
+              </a>
+            )}
+
+            <Button
+              href="/consultation/"
+              variant="outline"
+              size="sm"
+              class="font-mono text-xs uppercase px-5 py-3"
+            >
+              Request Architecture Audit
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Metrics Strip -->
+      <section class="py-12 bg-[#05070d] border-b-2 border-white/10">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {project.metrics.map((m, idx) => (
+              <div class="p-5 sm:p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card font-mono text-xs min-w-0 overflow-hidden flex flex-col justify-between">
+                <div>
+                  <div class="text-slate-500 text-[10px] uppercase tracking-widest mb-2 flex items-center justify-between">
+                    <span>TELEMETRY_0{idx + 1}</span>
+                    <span class="text-[#CCFF00]">VERIFIED</span>
+                  </div>
+                  <div class="text-2xl sm:text-3xl lg:text-4xl font-black text-[#CCFF00] wrap-break-word mb-1">
+                    {m.value}
+                  </div>
+                </div>
+                <div class="text-xs uppercase font-bold text-slate-300 mt-2 truncate">{m.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Deep Dive Dossier Body -->
+      <section class="py-20 border-b-2 border-white/10">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Left Main Column (Challenge, Solution, Key Features) -->
+            <div class="lg:col-span-8 space-y-16">
+              <!-- Challenge Box -->
+              <div class="p-8 bg-[#0a0e17] border-2 border-white/20 brutalist-card">
+                <div class="flex items-center gap-2 font-mono text-xs text-rose-400 uppercase tracking-widest mb-4">
+                  <span class="w-2 h-2 bg-rose-400"></span>
+                  <span>[OPERATIONAL_BOTTLENECK // THE_CHALLENGE]</span>
+                </div>
+                <h2 class="text-2xl font-black uppercase text-white mb-4 tracking-tight">
+                  Pre-Deployment Constraints & Problem Statement
+                </h2>
+                <p class="text-slate-300 leading-relaxed text-base font-sans">
+                  {project.challenge}
+                </p>
+              </div>
+
+              <!-- Solution Box -->
+              <div class="p-8 bg-[#0a0e17] border-2 border-[#CCFF00]/40 brutalist-card">
+                <div class="flex items-center gap-2 font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-4">
+                  <span class="w-2 h-2 bg-[#CCFF00] animate-pulse"></span>
+                  <span>[ENGINEERING_INTERVENTION // THE_SOLUTION]</span>
+                </div>
+                <h2 class="text-2xl font-black uppercase text-white mb-4 tracking-tight">
+                  Architectural Solution & Deployment Strategy
+                </h2>
+                <p class="text-slate-300 leading-relaxed text-base font-sans mb-6">
+                  {project.solution}
+                </p>
+
+                <!-- Architecture Breakdown -->
+                <div class="pt-6 border-t border-white/10">
+                  <h3 class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider mb-4">
+                    [Core Architectural Pipelines]:
+                  </h3>
+                  <ul class="space-y-3 font-mono text-xs text-slate-300">
+                    {project.architecture.map((arch) => (
+                      <li class="flex items-start gap-3">
+                        <span class="text-[#CCFF00] mt-0.5">►</span>
+                        <span>{arch}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Key Technical Features -->
+              {project.keyFeatures && project.keyFeatures.length > 0 && (
+                <div>
+                  <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-4">
+                    [TECHNICAL_CAPABILITIES // DEPLOYED_MODULES]
+                  </div>
+                  <h2 class="text-2xl sm:text-3xl font-black uppercase text-white mb-8 tracking-tight">
+                    Subsystem Engineering & Modules
+                  </h2>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {project.keyFeatures.map((f, idx) => (
+                      <div class="p-6 bg-[#090d16] border border-white/20 brutalist-card flex flex-col justify-between">
+                        <div>
+                          <div class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mb-2">
+                            CAPABILITY_0{idx + 1}
+                          </div>
+                          <h3 class="text-lg font-bold uppercase text-white mb-3 tracking-tight font-sans">
+                            {f.title}
+                          </h3>
+                          <p class="text-slate-400 text-xs sm:text-sm leading-relaxed font-sans">
+                            {f.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <!-- Verified Results Checklist -->
+              <div class="p-8 bg-[#0a0e17] border-2 border-white/20">
+                <div class="font-mono text-xs text-emerald-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <span class="w-2 h-2 bg-emerald-400"></span>
+                  <span>[AUDITED_YIELD // EMPIRICAL_METRICS]</span>
+                </div>
+                <h2 class="text-2xl font-black uppercase text-white mb-6 tracking-tight">
+                  Verified Yield & Deliverable Outcomes
+                </h2>
+                <ul class="space-y-4 font-mono text-xs sm:text-sm text-slate-300">
+                  {project.results.map((res) => (
+                    <li class="flex items-start gap-3">
+                      <span class="text-emerald-400 font-bold mt-0.5">✔</span>
+                      <span class="leading-relaxed">{res}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <!-- Right Sidebar Column (Telemetry Audit, Tech Stack, Metadata) -->
+            <div class="lg:col-span-4 space-y-8">
+              <!-- Telemetry Audit Card -->
+              <div class="p-6 bg-[#0a0e17] border-2 border-white/20 brutalist-card font-mono text-xs">
+                <div class="text-[#CCFF00] font-bold uppercase tracking-widest mb-4 pb-2 border-b border-white/10 flex items-center justify-between">
+                  <span>[TELEMETRY_LOG]</span>
+                  <span class="text-slate-500">SYS_AUDIT</span>
+                </div>
+
+                <div class="space-y-4">
+                  {Object.entries(project.telemetry).map(([key, val]) => (
+                    <div class="flex flex-col pb-3 border-b border-white/10 last:border-0 last:pb-0">
+                      <span class="text-slate-500 text-[10px] uppercase tracking-wider">
+                        {key.replace(/([A-Z])/g, '_$1')}
+                      </span>
+                      <span class="text-white font-bold text-sm mt-0.5">{val}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Tech Stack Monospace Matrix -->
+              <div class="p-6 bg-[#0a0e17] border-2 border-white/20 brutalist-card font-mono text-xs">
+                <div class="text-[#CCFF00] font-bold uppercase tracking-widest mb-4 pb-2 border-b border-white/10">
+                  [TECHNOLOGY_MATRIX]
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  {project.techStack.map((tech) => (
+                    <span class="px-2.5 py-1 bg-black border border-white/20 text-slate-300 font-mono text-xs hover:border-[#CCFF00] hover:text-[#CCFF00] transition-colors">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Project Metadata -->
+              <div class="p-6 bg-[#090d16] border border-white/20 font-mono text-xs space-y-3">
+                <div class="text-slate-500 uppercase tracking-widest mb-2">[PROJECT_ORIGIN]</div>
+                <div>
+                  <div class="text-slate-500 text-[10px] uppercase">Client / Environment:</div>
+                  <div class="text-white font-bold">{project.client}</div>
+                </div>
+                <div>
+                  <div class="text-slate-500 text-[10px] uppercase">Engineering Sector:</div>
+                  <div class="text-[#CCFF00] font-bold">{project.category}</div>
+                </div>
+                <div>
+                  <div class="text-slate-500 text-[10px] uppercase">Compliance Status:</div>
+                  <div class="text-emerald-400 font-bold">100% Deterministic White-Hat</div>
+                </div>
+              </div>
+
+              <!-- Deliverables Checklist -->
+              {project.deliverables && (
+                <div class="p-6 bg-[#090d16] border border-white/20 font-mono text-xs">
+                  <div class="text-[#CCFF00] font-bold uppercase tracking-widest mb-3">
+                    [CORE_DELIVERABLES]
+                  </div>
+                  <ul class="space-y-2 text-slate-400">
+                    {project.deliverables.map((del) => (
+                      <li class="flex items-start gap-2">
+                        <span class="text-white">▸</span>
+                        <span>{del}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Next & Previous Project Navigation -->
+      <section class="py-12 bg-[#05070d] border-b-2 border-white/10 font-mono text-xs">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <a
+              href={`/portfolio/${prevProject.slug}/`}
+              class="p-6 bg-black border-2 border-white/15 hover:border-[#CCFF00] transition-colors flex flex-col justify-between group"
+            >
+              <span class="text-slate-500 uppercase">← Previous Dossier</span>
+              <span class="text-white font-bold text-base mt-2 group-hover:text-[#CCFF00] transition-colors">
+                {prevProject.title}
+              </span>
+            </a>
+
+            <a
+              href={`/portfolio/${nextProject.slug}/`}
+              class="p-6 bg-black border-2 border-white/15 hover:border-[#CCFF00] transition-colors flex flex-col justify-between text-right group"
+            >
+              <span class="text-slate-500 uppercase">Next Dossier →</span>
+              <span class="text-white font-bold text-base mt-2 group-hover:text-[#CCFF00] transition-colors">
+                {nextProject.title}
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Dispatch CTA -->
+      <section class="py-20 bg-black text-center relative">
+        <div class="w-full max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#0a0d14] border border-[#CCFF00]/40 text-[#CCFF00] font-mono text-xs uppercase tracking-widest mb-6">
+            <span class="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse"></span>
+            <span>[ENTERPRISE_DISPATCH // INITIATE]</span>
+          </div>
+
+          <h2 class="text-3xl sm:text-5xl font-black uppercase text-white mb-6 tracking-tight">
+            Deploy Similar Infrastructure for Your Enterprise
+          </h2>
+
+          <p class="text-slate-400 text-base max-w-2xl mx-auto mb-10 leading-relaxed">
+            Eliminate vanity retainers. Our deterministic search engineering, agentic MCP protocols, and edge pipelines deliver verifiable market yield.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              href="/consultation/"
+              variant="acid"
+              size="lg"
+              class="font-mono text-xs uppercase px-8 py-4"
+            >
+              Book Direct Architecture Consultation ↗
+            </Button>
+            <Button
+              href="/contact/"
+              variant="outline"
+              size="lg"
+              class="font-mono text-xs uppercase px-8 py-4"
+            >
+              Contact Dispatch Terminal
+            </Button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="en" />
+  </div>
+</BaseLayout>
