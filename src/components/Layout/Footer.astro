@@ -9,11 +9,7 @@ interface Props {
 const { lang = 'en' } = Astro.props as Props;
 void lang;
 
-const currentDate = new Date().toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
+const currentYear = new Date().getFullYear();
 
 const footerLinks = {
   services: [
@@ -40,8 +36,7 @@ const footerLinks = {
     { title: 'n8n Automation Engine ↗', href: 'https://n8n.asreseo.com' },
     { title: 'n8n AvvalAI Node ↗', href: 'https://github.com/alibakhtiari/n8n-nodes-avvalai' },
     { title: 'n8n ImageRouter Node ↗', href: 'https://github.com/alibakhtiari/n8n-nodes-imagerouter' },
-    { title: 'Privacy Policy', href: '/privacy/' },
-    { title: 'Terms & Conditions', href: '/terms/' },
+    { title: 'LLM Manifest (llms.txt) ↗', href: '/llms.txt' },
   ],
 };
 ---
@@ -136,10 +131,10 @@ const footerLinks = {
         </ul>
       </div>
 
-      <!-- Support & Legal Telemetry -->
+      <!-- Support & Automation Telemetry -->
       <div class="font-mono text-xs">
         <div class="text-[#CCFF00] font-black uppercase tracking-wider mb-4 pb-2 border-b border-white/10">
-          [Telemetry & Legal]
+          [Telemetry & Automation]
         </div>
         <ul class="space-y-2">
           {footerLinks.support.map((link) => (
@@ -166,27 +161,9 @@ const footerLinks = {
     <div class="border-t-2 border-white/15 py-6 font-mono text-xs">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500">
         <p class="uppercase">
-          © {currentDate} AsreSEO. All rights reserved.
+          © {currentYear} AsreSEO. All rights reserved.
         </p>
         <div class="flex items-center gap-x-4 sm:gap-x-6 uppercase flex-wrap justify-center">
-          <a href="https://wa.me/13463272878" target="_blank" rel="noopener noreferrer" class="text-[#25D366] hover:underline transition-colors font-bold flex items-center gap-1.5">
-            <Icon name="whatsapp" class="w-3.5 h-3.5" />
-            WhatsApp: +1 346 327 2878 ↗
-          </a>
-          <span>/</span>
-          <a href="tel:+13463272878" class="text-slate-300 hover:text-[#CCFF00] transition-colors font-bold flex items-center gap-1.5">
-            <Icon name="phone-call" class="w-3.5 h-3.5" />
-            Call: +1 346 327 2878
-          </a>
-          <span>/</span>
-          <a href="https://mcp.asreseo.com" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] hover:underline transition-colors font-bold">
-            mcp.asreseo.com ↗
-          </a>
-          <span>/</span>
-          <a href="https://n8n.asreseo.com" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] hover:underline transition-colors font-bold">
-            n8n.asreseo.com ↗
-          </a>
-          <span>/</span>
           <a href="/privacy/" class="hover:text-[#CCFF00] transition-colors">
             Privacy
           </a>
