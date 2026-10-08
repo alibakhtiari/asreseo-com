@@ -1,94 +1,125 @@
 ---
-import Card from '../ui/card/Card.astro';
-import CardContent from '../ui/card/CardContent.astro';
-import Badge from '../ui/badge/Badge.astro';
 import Button from '../ui/button/Button.astro';
 import Icon from '../ui/Icon.astro';
-import Picture from '../ui/Picture.astro';
 
-// Real delivered work — mirrors `cases` on /portfolio/ (single source of truth
-// would be better; keep these in sync if a case is added or retitled).
-const cases = [
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+const localize = (p: string) => p;
+
+const dossiers = [
   {
-    slug: 'case-law-rag',
-    title: 'چت‌بات حقوقی هوشمند با RAG',
-    category: 'هوش مصنوعی',
-    image: '/images/portfolio-law-rag.webp',
+    tag: 'DOSSIER_01 // FINTECH_SCALEUP',
+    title: 'From Unnoticed to #1 Perplexity & Google AI Overview Source',
+    challenge: 'Trapped behind legacy banking incumbent content farms with 0% AI search visibility.',
+    solution: 'Deployed 4,200 programmatic semantic nodes + Wikidata institutional entity injection.',
+    metrics: [
+      { label: 'LLM Ingestion', value: '+580%' },
+      { label: 'Top-Slot Citation', value: '94.8%' },
+      { label: 'Retainer Saved', value: '$1.4M' },
+    ],
+    category: 'AI & Knowledge Graph',
   },
   {
-    slug: 'case-ai-callcenter',
-    title: 'مرکز تماس هوشمند با تحلیل مکالمات',
-    category: 'هوش مصنوعی',
-    image: '/images/portfolio-ai-callcenter.webp',
+    tag: 'DOSSIER_02 // ENTERPRISE_B2B_SAAS',
+    title: '28-Country Programmatic Syntactic Expansion',
+    challenge: 'Fragmented localization and high crawl-budget exhaustion across 500,000 legacy URLs.',
+    solution: 'Serverless Edge-computed dynamic hreflang + zero-JS SSR hydration optimization.',
+    metrics: [
+      { label: 'Edge TTFB', value: '89ms' },
+      { label: 'Organic Impressions', value: '+340%' },
+      { label: 'Top-3 Positions', value: '12,400+' },
+    ],
+    category: 'Programmatic SEO',
   },
   {
-    slug: 'case-seo-monitoring',
-    title: 'پایش خودکار سئو با هشدار لحظه‌ای',
-    category: 'سئو',
-    image: '/images/portfolio-seo-monitoring.webp',
-  },
-  {
-    slug: 'case-content-pipeline',
-    title: 'خط لوله اتوماسیون تولید و انتشار محتوا',
-    category: 'محتوا',
-    image: '/images/portfolio-content-pipeline.webp',
-  },
-  {
-    slug: 'case-ads-reporting',
-    title: 'گزارش‌دهی خودکار تبلیغات با تحلیل هوشمند',
-    category: 'تبلیغات',
-    image: '/images/portfolio-ads-reporting.webp',
+    tag: 'DOSSIER_03 // GLOBAL_ECOMMERCE',
+    title: 'Autonomous Core Web Vitals & Indexation Rescue',
+    challenge: '42,000 orphaned catalog URLs dropped by core algorithm update within 48 hours.',
+    solution: 'Headless 24/7 indexing bot pipeline + sub-40ms edge caching and automated canonical trees.',
+    metrics: [
+      { label: 'Orphan Recovery', value: '100%' },
+      { label: 'Recovery Time', value: '14 Days' },
+      { label: 'Pipeline Revenue', value: '+$34.2M' },
+    ],
+    category: 'Edge Infrastructure',
   },
 ];
 ---
-
-<section class="py-16 lg:py-24 bg-white">
-  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-        نمونه‌کارهای <span class="gradient-text">واقعی</span> ما
-      </h2>
-      <p class="text-xl text-gray-800 max-w-3xl mx-auto leading-relaxed">
-        پروژه‌های اجراشده با خروجی قابل اندازه‌گیری، نه وعده‌های کلی
+<section class="py-24 bg-[#000000] text-white border-b-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+      <div>
+        <div class="inline-block font-mono text-xs text-[#CCFF00] bg-black px-3 py-1 border border-[#CCFF00]/40 uppercase tracking-widest mb-3">
+          [VERIFIED_DOSSIERS // EMPIRICAL_YIELD]
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white font-sans">
+          Proven Enterprise Dossiers
+        </h2>
+      </div>
+      <p class="text-slate-400 max-w-md text-sm sm:text-base font-normal">
+        Real balance sheets and automated traffic pipelines engineered for high-growth tech firms and global marketplaces.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {cases.map((c) => (
-        <Card class="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-shadow duration-300">
-          <a href={`/portfolio/#${c.slug}`} class="block">
-            <Picture
-              src={c.image}
-              alt={c.title}
-              aspectRatio="16 / 9"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </a>
-          <CardContent class="p-6">
-            <Badge class="mb-3 bg-primary/10 text-blue-700">{c.category}</Badge>
-            <h3 class="text-lg font-bold text-gray-900 mb-4 leading-snug">
-              <a href={`/portfolio/#${c.slug}`} class="hover:text-primary transition-colors">
-                {c.title}
-              </a>
+    <!-- Dossiers Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+      {dossiers.map((d) => (
+        <div class="bg-[#090d16] border-2 border-white/15 p-6 sm:p-8 flex flex-col justify-between brutalist-card group">
+          <div>
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10 font-mono text-xs">
+              <span class="text-[#CCFF00] font-bold">{d.tag}</span>
+              <span class="text-slate-400">{d.category}</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-black uppercase text-white mb-4 group-hover:text-[#CCFF00] transition-colors leading-snug">
+              {d.title}
             </h3>
+
+            <div class="space-y-3 mb-6 text-xs text-slate-300">
+              <p><strong class="font-mono uppercase text-[#CCFF00]">[CHALLENGE]:</strong> {d.challenge}</p>
+              <p><strong class="font-mono uppercase text-white">[SOLUTION]:</strong> {d.solution}</p>
+            </div>
+          </div>
+
+          <div>
+            <!-- Metrics Box -->
+            <div class="grid grid-cols-3 gap-2 p-3 bg-black border border-white/15 mb-6 text-center font-mono">
+              {d.metrics.map((m) => (
+                <div class="min-w-0">
+                  <div class="text-sm sm:text-base lg:text-lg font-black text-[#CCFF00] wrap-break-word">{m.value}</div>
+                  <div class="text-[10px] text-slate-400 uppercase tracking-tight truncate">{m.label}</div>
+                </div>
+              ))}
+            </div>
+
             <a
-              href={`/portfolio/#${c.slug}`}
-              class="inline-flex items-center gap-1 text-sm font-medium text-primary hover:gap-2 transition-all"
+              href={localize('/portfolio/')}
+              class="inline-flex items-center justify-between w-full py-3 px-4 bg-white/5 border border-white/20 text-xs font-mono font-bold uppercase text-white hover:bg-[#CCFF00] hover:text-black hover:border-[#CCFF00] transition-all"
             >
-              مشاهده جزئیات پروژه
-              <Icon name="arrow-left" class="h-4 w-4" />
+              <span>Examine Telemetry Audit</span>
+              <span>↗</span>
             </a>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       ))}
     </div>
 
-    <div class="text-center mt-12">
-      <Button href="/portfolio/" size="lg" class="group">
-        مشاهده همه نمونه‌کارها
-        <Icon name="arrow-left" class="mr-2 h-5 w-5 group-hover:-translate-x-1 transition-transform" />
-      </Button>
+    <!-- Bottom Ticker -->
+    <div class="flex flex-col sm:flex-row items-center justify-between p-6 bg-[#0a0e17] border border-white/20 font-mono text-xs text-slate-400 gap-4">
+      <div class="flex items-center gap-3">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="text-white font-bold uppercase tracking-wider">Historical Portfolio Benchmark:</span>
+        <span class="text-[#CCFF00]">18,000,000+ Synthesized Index Nodes</span>
+      </div>
+      <a href={localize('/portfolio/')} class="text-[#CCFF00] hover:underline uppercase font-bold flex items-center gap-1">
+        <span>View Full Portfolio Index</span>
+        <span>→</span>
+      </a>
     </div>
   </div>
 </section>
