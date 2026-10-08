@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import { getCollection } from 'astro:content';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+import { PORTFOLIO_PROJECTS } from '../../lib/portfolio-data';
+
+const localize = (p: string) => p;
+
+const posts = await getCollection('blog');
+
+const sections = [
+  {
+    title: 'Main Pages',
+    links: [
+      { title: 'Home', href: '/' },
+      { title: 'About Us', href: '/about/' },
+      { title: 'Contact Us', href: '/contact/' },
+      { title: 'Support Center', href: '/support/' },
+      { title: 'Blog Archive', href: '/blog/' },
+      { title: 'Portfolio Archive', href: '/portfolio/' },
+      { title: 'FAQ', href: '/faq/' },
+      { title: 'Privacy Policy', href: '/privacy/' },
+      { title: 'Terms & Conditions', href: '/terms/' }
+    ]
+  },
+  {
+    title: 'Portfolio & Engineering Systems',
+    links: PORTFOLIO_PROJECTS.map((p) => ({
+      title: p.title,
+      href: `/portfolio/${p.slug}/`,
+    }))
+  },
+  {
+    title: 'SEO Services',
+    links: [
+      { title: 'All SEO Services', href: '/services/seo/' },
+      { title: 'Page & Domain Authority Building', href: '/services/seo/content-authority/' },
+      { title: 'Local SEO', href: '/services/seo/local-seo/' },
+      { title: 'Technical & On-Page SEO', href: '/services/seo/technical-onpage/' }
+    ]
+  },
+  {
+    title: 'Digital Marketing',
+    links: [
+      { title: 'All Digital Marketing Services', href: '/services/marketing/' },
+      { title: 'Google Ads (PPC)', href: '/services/marketing/google-ads/' },
+      { title: 'Social Media Marketing', href: '/services/marketing/social-media/' },
+      { title: 'Email Marketing', href: '/services/marketing/email-marketing/' },
+      { title: 'Integrated Ad Campaigns', href: '/services/marketing/integrated-campaigns/' },
+      { title: 'Sales Funnel Management', href: '/services/marketing/sales-funnel-management/' }
+    ]
+  },
+  {
+    title: 'Web Design & Development',
+    links: [
+      { title: 'All Web Services', href: '/services/web/' },
+      { title: 'SEO-Focused Web Design', href: '/services/web/seo-web-design/' },
+      { title: 'Custom Landing Page Design', href: '/services/web/landing-pages/' },
+      { title: 'UX Architecture', href: '/services/web/ux-architecture/' },
+      { title: 'Website Speed Optimization', href: '/services/web/website-speed/' }
+    ]
+  },
+  {
+    title: 'Content & AI',
+    links: [
+      { title: 'Content Marketing & Production', href: '/services/content/' },
+      { title: 'AsreSEO AI Services', href: '/services/ai/' },
+      { title: 'Smart Analysis & Strategy', href: '/services/ai/analysis-strategy/' },
+      { title: 'AI Content Production (Text & Video)', href: '/services/ai/content-creation/' },
+      { title: 'Smart Marketing, Automation & AI Chatbot', href: '/services/ai/marketing-engagement/' },
+      { title: 'Website & Social Content Calendar', href: '/services/content/content-calendar/' },
+      { title: 'Social Media Content Production', href: '/services/content/social-media-content/' },
+      { title: 'SEO Copywriting & Text Content', href: '/services/content/text-content/' },
+      { title: 'Specialized Translation & Localization', href: '/services/content/translation/' },
+      { title: 'Visual & Video Content Production', href: '/services/content/visual-content/' }
+    ]
+  },
+  {
+    title: 'Blog Articles',
+    links: posts.map((post: any) => ({
+      title: post.data.title,
+      href: `/blog/${post.id.replace(/\.mdx?$/, '')}/`,
+    }))
+  }
+];
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'AsreSEO Sitemap',
+  url: 'https://asreseo.com/sitemap/',
+  inLanguage: 'en-US',
+};
+const breadcrumbs = [
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'AsreSEO Sitemap', item: 'https://asreseo.com/sitemap/' },
+];
+---
+<!-- noindex only: this HTML sitemap must keep `follow` so link equity still flows
+     to every internal page it lists. Excluded from the XML sitemap in astro.config.mjs. -->
+<BaseLayout lang="en" title='Full Sitemap & Page Directory | AsreSEO' description='The complete AsreSEO sitemap: fast, categorized access to main pages, SEO services, AI, digital marketing, web design and educational blog articles.' canonical='/sitemap/' ogUrl='https://asreseo.com/sitemap/' ogType='website' twitterCard='summary_large_image' noindex>
+<div class="min-h-screen bg-[#000000] text-slate-100">
+  <Header lang="en" />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
+  <main class="section-padding pt-32">
+    <div class="container-custom max-w-5xl" dir="ltr">
+      <h1 class="text-4xl font-extrabold mb-4 text-left text-white tracking-tight">Sitemap</h1>
+      <p class="text-slate-400 mb-12 text-left">A complete guide to AsreSEO sections, services and articles</p>
+
+      <div class="space-y-12">
+        {sections.map((sec) => (
+          <section class="bg-slate-900/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/10 shadow-xl">
+            <h2 class="text-xl font-bold text-white mb-6 pb-3 border-b border-white/5">{sec.title}</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {sec.links.map((link: { title: string; href: string }) => (
+                <a
+                  href={localize(link.href)}
+                  class="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-500/40 hover:text-cyan-400 hover:bg-white/10 transition-all text-sm font-medium text-slate-200"
+                >
+                  {link.title}
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer lang="en" />
+</div>
+</BaseLayout>

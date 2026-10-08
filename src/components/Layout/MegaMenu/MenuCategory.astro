@@ -1,0 +1,37 @@
+---
+import type { MenuCategory as MenuCategoryType } from './types';
+import MenuItem from './MenuItem.astro';
+import Icon from '../../ui/Icon.astro';
+
+interface Props {
+  category: MenuCategoryType;
+  lang?: string;
+}
+
+const { category, lang = 'en' } = Astro.props as Props;
+void lang;
+---
+<div class="space-y-3 font-mono text-xs">
+  <!-- Category Header -->
+  <div class="flex items-center gap-2.5 pb-2 mb-2 border-b border-white/10">
+    <span class="w-7 h-7 rounded-none bg-black border border-white/20 flex items-center justify-center shrink-0 text-[#CCFF00]">
+      <Icon name={category.icon} class="h-3.5 w-3.5 text-[#CCFF00]" />
+    </span>
+    {category.href ? (
+      <a href={category.href} class="font-black text-xs uppercase text-white hover:text-[#CCFF00] transition-colors tracking-wider truncate">
+        {category.title}
+      </a>
+    ) : (
+      <h4 class="font-black text-xs uppercase text-white tracking-wider truncate">
+        {category.title}
+      </h4>
+    )}
+  </div>
+
+  <!-- Category Items -->
+  <ul class="space-y-1">
+    {category.items.map((item: any) => (
+      <MenuItem item={item} />
+    ))}
+  </ul>
+</div>

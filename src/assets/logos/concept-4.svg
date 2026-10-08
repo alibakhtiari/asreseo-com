@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Base Grid Platform -->
+  <line x1="16" y1="84" x2="84" y2="84" stroke="rgba(255,255,255,0.25)" stroke-width="2" />
+  <!-- Pillar 1: Rank #4 / Crawl -->
+  <rect x="18" y="60" width="12" height="24" fill="#FFFFFF" />
+  <!-- Pillar 2: Rank #3 / Index -->
+  <rect x="34" y="44" width="12" height="40" fill="#FFFFFF" />
+  <!-- Pillar 3: Rank #2 / Authority -->
+  <rect x="50" y="28" width="12" height="56" fill="#FFFFFF" />
+  <!-- Pillar 4: Rank #1 Dominance (Acid Yellow) -->
+  <rect x="66" y="14" width="16" height="70" fill="#CCFF00" />
+  <!-- Architectural Laser Beam / A Cross-Bar -->
+  <polygon points="14,64 78,14 82,18 18,68" fill="#CCFF00" />
+  <!-- Rank #1 Crown Block -->
+  <rect x="66" y="10" width="16" height="3" fill="#FFFFFF" />
+</svg>

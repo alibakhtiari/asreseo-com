@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Layout/Header.astro';
+import Footer from '../components/Layout/Footer.astro';
+import HeroSection from '../components/Home/HeroSection.astro';
+import ServicesSection from '../components/Home/ServicesSection.astro';
+import PortfolioPreview from '../components/Home/PortfolioPreview.astro';
+import WhyChooseUsSection from '../components/Home/WhyChooseUsSection.astro';
+import TestimonialsSection from '../components/Home/TestimonialsSection.astro';
+import CTASection from '../components/Home/CTASection.astro';
+import HomepageStructuredData from '../components/HomepageStructuredData.astro';
+import OrganizationStructuredData from '../components/OrganizationStructuredData.astro';
+---
+<BaseLayout
+  lang="en"
+  title="Digital Marketing Agency, SEO & AI Services | AsreSEO"
+  description="AsreSEO is a specialized agency for professional SEO, AI search optimization (AEO/GEO), Google Ads and data-driven content production to grow traffic and online sales."
+  keywords="SEO, digital marketing, Google Ads, web design, website optimization, AsreSEO, AI, marketing automation, AI content production"
+  canonical="/"
+  ogTitle="AsreSEO | Digital Marketing & SEO Services"
+  ogDescription="Grow your business with professional SEO, web design and AI services"
+  ogImages={[{ url: '/og-default.png', width: 1200, height: 630, alt: 'AsreSEO digital marketing and SEO agency' }]}
+  twitterCard="summary_large_image"
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+      <OrganizationStructuredData lang="en" />
+      <HomepageStructuredData lang="en" />
+      <Header lang="en" />
+      <main id="main-content">
+        <HeroSection lang="en" />
+        <ServicesSection lang="en" />
+        <PortfolioPreview lang="en" />
+        <WhyChooseUsSection lang="en" />
+        <TestimonialsSection lang="en" />
+        <CTASection lang="en" />
+      </main>
+      <Footer lang="en" />
+    </div>
+</BaseLayout>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Isometric Facets -->
+  <polygon points="50,14 82,32 50,50 18,32" fill="#0C1322" stroke="#FFFFFF" stroke-width="2" />
+  <polygon points="18,32 50,50 50,86 18,68" fill="#060911" stroke="#FFFFFF" stroke-width="2" />
+  <polygon points="50,50 82,32 82,68 50,86" fill="#090E1A" stroke="#FFFFFF" stroke-width="2" />
+  <!-- Isometric 3D 'A' Framework -->
+  <line x1="50" y1="14" x2="50" y2="50" stroke="#CCFF00" stroke-width="3.5" />
+  <line x1="18" y1="68" x2="50" y2="50" stroke="#FFFFFF" stroke-width="3" />
+  <line x1="82" y1="68" x2="50" y2="50" stroke="#FFFFFF" stroke-width="3" />
+  <polygon points="50,30 68,40 50,50 32,40" fill="rgba(204,255,0,0.18)" stroke="#CCFF00" stroke-width="2" />
+  <!-- Knowledge Vertices -->
+  <circle cx="50" cy="14" r="4.5" fill="#CCFF00" />
+  <circle cx="82" cy="32" r="3.5" fill="#FFFFFF" />
+  <circle cx="82" cy="68" r="3.5" fill="#CCFF00" />
+  <circle cx="50" cy="86" r="3.5" fill="#FFFFFF" />
+  <circle cx="18" cy="68" r="3.5" fill="#CCFF00" />
+  <circle cx="18" cy="32" r="3.5" fill="#FFFFFF" />
+  <circle cx="50" cy="50" r="5" fill="#CCFF00" />
+</svg>

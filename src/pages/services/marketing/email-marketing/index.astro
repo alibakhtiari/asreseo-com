@@ -1,0 +1,365 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Email Marketing',
+  'description': 'Professional email marketing services including automation, personalization and performance analytics',
+  'serviceType': 'Email Marketing',
+  'inLanguage': 'en-US',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com'
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Email marketing services',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Email automation',
+          'description': 'Automated, scheduled sending workflows',
+          'inLanguage': 'en-US'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Performance analytics',
+          'description': 'Precise reporting on open and click rates',
+          'inLanguage': 'en-US'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const features = [
+    {
+      icon: "send",
+      title: 'Full Email Automation',
+      description: 'Automated, scheduled sending with smart workflows for every kind of marketing campaign.',
+      benefits: ['Timely delivery', 'Consistent messaging', 'High efficiency']
+    },
+    {
+      icon: "users",
+      title: 'Advanced Audience Segmentation',
+      description: 'Smart customer grouping based on behavior, interests and stage in the buying journey.',
+      benefits: ['Targeted messages', 'Higher conversion rates', 'Loyal customers']
+    },
+    {
+      icon: "target",
+      title: 'Smart Content Personalization',
+      description: 'Content tailored by name, purchase history, favorite products and browsing behavior.',
+      benefits: ['Higher engagement', 'More sales', 'Personal experience']
+    },
+    {
+      icon: "bar-chart3",
+      title: 'Real-Time Analytics & Reporting',
+      description: 'An advanced dashboard with complete stats on opens, clicks, unique clicks and conversions.',
+      benefits: ['Live insights', 'Informed decisions', 'Constant optimization']
+    },
+    {
+      icon: "clock",
+      title: 'Smart Send-Time Scheduling',
+      description: 'Picking the best send time based on audience-behavior analysis for higher open rates.',
+      benefits: ['Maximum impact', 'Higher engagement', 'Better results']
+    },
+    {
+      icon: "filter",
+      title: 'Advanced A/B Testing',
+      description: 'Simultaneous testing of subject lines, content, send times and CTAs for the best outcome.',
+      benefits: ['Continuous optimization', 'Proven results', 'Higher returns']
+    }
+  ];
+
+  const campaignTypes = [
+    {
+      type: 'Welcome Campaigns',
+      description: 'Greeting new customers with special introductory offers',
+      target: 'New customers',
+      goal: 'Better open rates'
+    },
+    {
+      type: 'Loyalty Campaigns',
+      description: 'Service reminders, complementary products and exclusive offers',
+      target: 'Existing customers',
+      goal: 'Better click rates'
+    },
+    {
+      type: 'Flash Sale Campaigns',
+      description: 'Promoting time-limited discounts and seasonal sales',
+      target: 'All subscribers',
+      goal: 'Higher conversion rates'
+    },
+    {
+      type: 'Educational Campaigns',
+      description: 'Sharing expert knowledge and product usage guides',
+      target: 'Engaged customers',
+      goal: 'Stronger subscriber retention'
+    }
+  ];
+
+  const benefits = [
+    'High open rates with compelling, personalized subject lines',
+    'Higher click rates with strategic CTAs and attractive designs',
+    'Lower bounce rates with precise audience segmentation',
+    'Better conversion rates with smart automation workflows',
+    '24/7 customer connection through drip-marketing campaigns'
+  ];
+
+  const stats = [
+    { metric: 'Live tracking', label: 'Open rate', color: 'text-green-800', icon: "eye" },
+    { metric: 'Precise measurement', label: 'Click rate', color: 'text-blue-600', icon: "target" },
+    { metric: 'Complete reports', label: 'Conversion rate', color: 'text-purple-600', icon: "trending-up" },
+    { metric: 'Trackable returns', label: 'Measurable ROI', color: 'text-red-600', icon: "award" }
+  ];
+
+  const workflowSteps = [
+    {
+      step: 'Research & Strategy',
+      desc: 'Analyzing your audience and business goals, then designing your email marketing strategy'
+    },
+    {
+      step: 'Campaign Design',
+      desc: 'Building attractive templates, strong copywriting and automation setup'
+    },
+    {
+      step: 'Testing & Trial Sends',
+      desc: 'Extensive A/B testing and making sure nothing lands in spam'
+    },
+    {
+      step: 'Launch & Monitoring',
+      desc: 'Campaign kickoff with performance tracking and live optimization'
+    },
+    {
+      step: 'Analysis & Reporting',
+      desc: 'Comprehensive results review plus improvement strategies for the next campaign'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'Will my emails reach the inbox or the spam folder?',
+      answer: 'With verified sender identities, clean IPs and full compliance with anti-spam protocols, we deliver to the inbox and track spam placement in the reporting dashboard.'
+    },
+    {
+      question: 'How do I measure my email marketing conversion rate?',
+      answer: 'Every link carries tracking codes that record clicks, purchases and the source email precisely. You get an advanced dashboard with charts and exact conversion stats.'
+    },
+    {
+      question: 'How far does personalization go?',
+      answer: 'Every part of the email can be personalized: greetings, product suggestions, images, discounts — even colors and fonts — using purchase history, interests and user behavior.'
+    },
+    {
+      question: 'How long do email campaigns take?',
+      answer: 'Typical campaigns need 4–6 weeks of preparation, though a first send to an existing list can go out the same day. Complex automation campaigns take 8–10 weeks.'
+    },
+    {
+      question: 'Do you offer technical and strategic support?',
+      answer: 'We provide round-the-clock technical support for sending and strategic support for improving campaigns. Experienced specialists stand by your side.'
+    },
+    {
+      question: 'How is email marketing priced?',
+      answer: 'Request a custom quote — pricing depends on scope: list size, monthly send volume, automation complexity and customization.'
+    }
+  ];
+
+---
+<BaseLayout lang="en" title='Professional Email Marketing Services | AsreSEO' description='Professional email marketing campaigns with automation, personalization, A/B testing and measurably higher conversion rates. Live analytics and complete performance reports.' keywords='email marketing, Email Marketing, newsletter, email automation, personalization, AsreSEO' canonical='/services/marketing/email-marketing/' ogType='website' ogUrl='https://asreseo.com/services/marketing/email-marketing/' ogImages={[{ url: "/og/email-marketing-hero.jpg", width: 1200, height: 630, alt: "Email marketing | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Professional Email Marketing | AsreSEO'
+
+  ogDescription='Targeted email marketing campaigns and automation that grow sales.'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/marketing/email-marketing/', image: '/og/email-marketing-hero.jpg' }))}
+      />
+
+      <Header lang="en" />
+      <BreadcrumbStructuredData
+        items={[
+          { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+          { position: 2, name: 'Marketing Services', item: 'https://asreseo.com/services/marketing/' },
+          { position: 3, name: 'Email Marketing', item: 'https://asreseo.com/services/marketing/email-marketing/' }
+        ]}
+      />
+
+      <main>
+        <!-- Hero Section -->
+        <ServiceHero lang="en"
+          badge="Advanced email marketing"
+          title="Professional Email Marketing"
+          titleGradient="Email Marketing"
+          description="Smart email marketing campaigns with automation, personalization and higher sales. AsreSEO turns your subscribers into loyal customers with world-class technology."
+          primaryCta={{ text: "Start Your Email Campaign" }}
+          secondaryCta={{ text: "Free Email List Audit" }}
+          imageSrc="/images/email-marketing-hero.webp"
+          imageAlt="Professional email marketing"
+          theme="purple"
+        />
+
+        <!-- Stats Section -->
+        <ServiceStats lang="en" stats={stats} theme="purple" />
+
+        <!-- Campaign Types Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Strategic <span class="gradient-text">Email Campaign Types</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Different campaigns for different marketing goals, with measurable results
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {campaignTypes.map((campaign, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                        <Icon name="mail" class="h-6 w-6 text-purple-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{campaign.type}</CardTitle>
+                    </div>
+                    <p class="text-gray-600 mb-4">{campaign.description}</p>
+                    <div class="flex justify-between items-center text-sm">
+                      <span class="text-gray-500">Audience:</span>
+                      <span class="text-purple-600 font-medium">{campaign.target}</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm mt-1">
+                      <span class="text-gray-500">Outcome:</span>
+                      <span class="text-green-800 font-medium">{campaign.goal}</span>
+                    </div>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Advanced <span class="gradient-text">Email Marketing</span> Technology
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                From smart automation to advanced personalization — every modern tool in one place
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {features.map((feature, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-200 transition-colors">
+                        <Icon name={feature.icon} class="h-6 w-6 text-pink-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits lang="en" title="Professional Email Marketing" titleHighlight="Email Marketing" subtitle="Open a direct line to your customers and grow steady revenue" benefits={benefits} />
+
+        <!-- Workflow Section -->
+        <section class="section-padding bg-linear-to-br from-purple-50 to-pink-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                How AsreSEO Builds Your <span class="gradient-text">Email Campaign</span>
+              </h2>
+              <p class="text-xl text-gray-600">
+                A proven 5-step approach to campaigns that actually sell
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {workflowSteps.map((step, index) => (
+                <div class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs">
+                  <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center text-2xl font-bold text-pink-700">
+                    {index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      {step.step}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <ServiceFAQ lang="en"
+          title="Frequently Asked Questions"
+          titleGradient="Asked Questions"
+          subtitle="Answers to our customers' most common questions about email marketing"
+          faqs={faqs}
+        />
+
+        <!-- CTA Section -->
+        <ServiceCTA lang="en"
+          title="Activate your most important sales channel today!"
+          description="Email marketing is one of the most powerful and cost-effective digital marketing methods. With advanced automation systems and a specialist team, AsreSEO designs campaigns that multiply your sales. Start your first campaign today."
+          primaryCta={{ text: "Start Your Email Campaign" }}
+          secondaryCta={{ text: "Email Marketing Consultation" }}
+          primaryClass="bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg shadow-pink-600/30"
+        />
+      </main>
+
+      <Footer lang="en" />
+    </div>
+</BaseLayout>

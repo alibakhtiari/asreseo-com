@@ -1,0 +1,205 @@
+---
+import Card from '../ui/card/Card.astro';
+import Icon from '../ui/Icon.astro';
+import Picture from '../ui/Picture.astro';
+
+interface Props {
+  posts?: any[];
+  lang?: string;
+}
+
+const { posts, lang = 'en' } = Astro.props as Props;
+const localize = (p: string) => p;
+const dateLocale = 'en-US';
+const categories: string[] = [...new Set<string>((posts ?? []).map((p: any) => p.category).filter(Boolean))];
+const [featured, ...rest] = posts ?? [];
+const isFresh = (p: any) => p.updated && p.updated !== p.date;
+---
+<div class="space-y-12">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-white/15">
+    <div>
+      <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-1">[ARCHIVE_STREAM]</div>
+      <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">Published Research Logs</h2>
+    </div>
+    <div class="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 font-mono text-xs" data-category-filter>
+      <button
+        type="button"
+        data-filter="all"
+        class="shrink-0 rounded-none border-2 px-4 py-2 font-bold uppercase transition-colors bg-[#CCFF00] text-black border-black shadow-[2px_2px_0px_#FFFFFF]"
+        aria-pressed="true"
+      >
+        ALL_DOMAINS
+      </button>
+      {categories.map((c: string) => (
+        <button
+          type="button"
+          data-filter={c}
+          class="shrink-0 rounded-none border-2 border-white/20 px-4 py-2 font-bold uppercase transition-colors text-slate-300 hover:border-[#CCFF00] hover:text-[#CCFF00] bg-black"
+          aria-pressed="false"
+        >
+          {c.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  {featured && (
+    <article data-category={featured.category}>
+      <Card class="bg-[#0a0e17] border-2 border-white/20 hover:border-[#CCFF00] brutalist-card brutalist-shadow-white rounded-none overflow-hidden transition-all duration-300">
+        <div class="md:flex">
+          <div class="md:w-1/2 border-b md:border-b-0 md:border-r border-white/15 relative bg-black">
+            <a href={localize(`/blog/${featured.slug}/`)} tabindex="-1" aria-hidden="true">
+              <Picture
+                src={featured.image}
+                alt={featured.title}
+                eager={true}
+                fetchpriority="high"
+                aspectRatio="16 / 9"
+                class="w-full h-64 sm:h-72 md:h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+              />
+            </a>
+            <div class="absolute top-4 left-4 bg-black/90 border border-white/20 px-2.5 py-1 font-mono text-[11px] text-[#CCFF00] font-bold uppercase">
+              FEATURED_DOSSIER
+            </div>
+          </div>
+          <div class="md:w-1/2 p-6 sm:p-10 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap items-center gap-2 mb-4 font-mono text-xs">
+                <span class="px-2 py-0.5 bg-black border border-white/20 text-[#CCFF00] font-bold uppercase">
+                  [{featured.category}]
+                </span>
+                {isFresh(featured) && (
+                  <span class="px-2 py-0.5 bg-black border border-emerald-500/40 text-emerald-400 font-bold uppercase">
+                    UPDATED
+                  </span>
+                )}
+              </div>
+              <a href={localize(`/blog/${featured.slug}/`)}>
+                <h3 class="text-2xl sm:text-3xl font-black uppercase text-white leading-tight mb-4 hover:text-[#CCFF00] transition-colors">
+                  {featured.title}
+                </h3>
+              </a>
+              <p class="text-slate-300 leading-relaxed mb-6 text-sm sm:text-base font-sans">
+                {featured.excerpt}
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-slate-400">
+              <div class="flex items-center gap-4">
+                <span class="flex items-center gap-1.5">
+                  <Icon name="user" class="h-3.5 w-3.5 text-[#CCFF00]" />
+                  {featured.author}
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <Icon name="clock" class="h-3.5 w-3.5 text-[#CCFF00]" />
+                  {featured.readTime}
+                </span>
+              </div>
+              <a href={localize(`/blog/${featured.slug}/`)} class="font-black text-black bg-[#CCFF00] px-4 py-2 uppercase hover:bg-white transition-colors border border-black">
+                READ_DOSSIER ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </article>
+  )}
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-posts-grid>
+    {rest.map((post: any) => (
+      <article data-category={post.category} class="h-full">
+        <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] rounded-none overflow-hidden transition-all duration-300 h-full flex flex-col justify-between">
+          <div>
+            <div class="relative bg-black border-b border-white/10">
+              <a href={localize(`/blog/${post.slug}/`)} tabindex="-1" aria-hidden="true">
+                <Picture
+                  src={post.image}
+                  alt={post.title}
+                  loading="lazy"
+                  aspectRatio="16 / 9"
+                  class="w-full aspect-video object-cover opacity-85 hover:opacity-100 transition-opacity"
+                />
+              </a>
+              <div class="absolute top-3 left-3 bg-black/90 border border-white/20 px-2 py-0.5 font-mono text-[10px] text-[#CCFF00] font-bold uppercase">
+                [{post.category}]
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="font-mono text-[11px] text-slate-500 mb-2 uppercase">
+                {new Date(post.updated || post.date).toLocaleDateString(dateLocale)}
+              </div>
+              <a href={localize(`/blog/${post.slug}/`)}>
+                <h3 class="text-lg font-black uppercase text-white leading-snug mb-3 hover:text-[#CCFF00] transition-colors">
+                  {post.title}
+                </h3>
+              </a>
+              <p class="text-xs sm:text-sm text-slate-400 leading-relaxed line-clamp-3">
+                {post.excerpt}
+              </p>
+            </div>
+          </div>
+          <div class="p-6 pt-0 mt-auto">
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-slate-400">
+              <span class="flex items-center gap-1.5">
+                <Icon name="clock" class="h-3.5 w-3.5 text-[#CCFF00]" />
+                {post.readTime}
+              </span>
+              <a href={localize(`/blog/${post.slug}/`)} class="text-[#CCFF00] font-bold hover:underline">
+                INSPECT ↗
+              </a>
+            </div>
+          </div>
+        </Card>
+      </article>
+    ))}
+  </div>
+  <p data-no-results class="text-center font-mono text-xs text-slate-400 py-12" hidden>// ZERO_RECORDS: No matching research dossiers found in this domain.</p>
+</div>
+
+<script>
+  const bar = document.querySelector('[data-category-filter]');
+  const cards = Array.from(document.querySelectorAll('article[data-category]'));
+  const empty = document.querySelector('[data-no-results]');
+  const search = document.getElementById('blog-search') as HTMLInputElement | null;
+  const ACTIVE = ['bg-[#CCFF00]', 'text-black', 'border-black', 'shadow-[2px_2px_0px_#FFFFFF]'];
+  const IDLE = ['border-white/20', 'text-slate-300', 'bg-black'];
+
+  function paint(btn: Element) {
+    const on = btn.getAttribute('aria-pressed') === 'true';
+    btn.classList.remove(...(on ? IDLE : ACTIVE));
+    btn.classList.add(...(on ? ACTIVE : IDLE));
+  }
+
+  function activeFilter() {
+    return bar?.querySelector('[aria-pressed="true"]')?.getAttribute('data-filter') ?? 'all';
+  }
+
+  function norm(s: string | null | undefined) {
+    return (s ?? '').toLowerCase().replace(/[\u200c\s]+/g, ' ').trim();
+  }
+
+  function apply() {
+    const f = activeFilter();
+    const q = norm(search?.value);
+    let visible = 0;
+    cards.forEach((c) => {
+      const el = c as HTMLElement;
+      const catOk = f === 'all' || c.getAttribute('data-category') === f;
+      const title = norm(c.querySelector('h3')?.textContent);
+      const qOk = !q || title.includes(q);
+      el.hidden = !(catOk && qOk);
+      if (catOk && qOk) visible += 1;
+    });
+    if (empty) (empty as HTMLElement).hidden = visible > 0;
+  }
+
+  bar?.querySelectorAll('[data-filter]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      bar.querySelectorAll('[data-filter]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      bar.querySelectorAll('[data-filter]').forEach(paint);
+      apply();
+    });
+  });
+
+  search?.addEventListener('input', apply);
+</script>

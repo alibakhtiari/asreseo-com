@@ -1,0 +1,188 @@
+---
+
+export interface FAQItem {
+  question?: string;
+  q?: string;
+  answer?: string;
+  a?: string;
+}
+
+export interface Props {
+  lang?: string;
+  title?: string;
+  highlightWord?: string;
+  titleGradient?: string;
+  subtitle?: string;
+  description?: string;
+  theme?: string;
+  faqs: FAQItem[];
+  includeSchema?: boolean;
+}
+
+const {
+  lang = 'en',
+  title: rawTitle,
+  highlightWord: rawHighlight,
+  titleGradient,
+  subtitle,
+  description,
+  faqs = [],
+  includeSchema = true,
+} = Astro.props;
+
+void lang;
+const title = rawTitle ?? 'Frequently Asked Technical Questions';
+const highlightWord = rawHighlight ?? 'Questions';
+
+const effSubtitle = description || subtitle || 'Deterministic answers on indexing velocity, algorithmic compliance, and edge infrastructure.';
+
+const normalizedFaqs = faqs.map((f) => ({
+  question: f.question || f.q || '',
+  answer: f.answer || f.a || '',
+}));
+
+const faqSchema = includeSchema && normalizedFaqs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': normalizedFaqs.map((f) => ({
+    '@type': 'Question',
+    'name': f.question,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': f.answer,
+    },
+  })),
+} : null;
+
+const highlight = titleGradient || highlightWord;
+let beforeHighlight = title;
+let afterHighlight = '';
+let hasHighlight = false;
+
+if (highlight) {
+  if (title.includes(highlight)) {
+    const parts = title.split(highlight);
+    beforeHighlight = parts[0];
+    afterHighlight = parts.slice(1).join(highlight);
+    hasHighlight = true;
+  } else {
+    beforeHighlight = `${title} `;
+    afterHighlight = '';
+    hasHighlight = false;
+  }
+}
+---
+
+{faqSchema && (
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+)}
+
+<section class="py-20 bg-[#000000] relative border-t-2 border-white/10 wireframe-grid">
+  <div class="w-full max-w-5xl mx-auto px-6 sm:px-8">
+    <div class="mb-14">
+      <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[PROTOCOL_FAQS // TELEMETRY]</div>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+        {hasHighlight ? (
+          <>
+            {beforeHighlight}<span class="text-[#CCFF00]">{highlight}</span>{afterHighlight}
+          </>
+        ) : (
+          title
+        )}
+      </h2>
+      {effSubtitle && (
+        <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+          // {effSubtitle}
+        </p>
+      )}
+    </div>
+
+    <div class="space-y-4" data-service-faq-root>
+      {normalizedFaqs.map((faq, index) => (
+        <div
+          class="service-faq-item bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors"
+          data-faq-item
+          data-open={index === 0 ? "true" : "false"}
+        >
+          <button
+            type="button"
+            class="service-faq-trigger w-full flex items-center justify-between gap-4 p-5 sm:p-6 cursor-pointer select-none text-left"
+            aria-expanded={index === 0 ? "true" : "false"}
+            aria-controls={`service-faq-ans-${index}`}
+            id={`service-faq-btn-${index}`}
+          >
+            <div class="flex items-center gap-4">
+              <span class="font-mono text-xs font-bold text-[#CCFF00]">
+                {String(index + 1).padStart(2, '0')} //
+              </span>
+              <span class="font-bold text-base sm:text-lg text-white group-hover:text-[#CCFF00] transition-colors uppercase">
+                {faq.question}
+              </span>
+            </div>
+            <span class="service-faq-icon font-mono text-sm text-[#CCFF00] px-2 py-1 bg-black border border-white/20 shrink-0">
+              {index === 0 ? '[-]' : '[+]'}
+            </span>
+          </button>
+          <div
+            id={`service-faq-ans-${index}`}
+            role="region"
+            aria-labelledby={`service-faq-btn-${index}`}
+            class="service-faq-content px-5 sm:px-6 pb-6 pt-3 text-slate-300 leading-relaxed text-sm border-t border-white/10 bg-black/40 font-mono"
+            hidden={index !== 0}
+          >
+            <p class="whitespace-pre-line text-slate-300">{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupServiceFaqs() {
+    document.querySelectorAll('[data-service-faq-root]').forEach((root) => {
+      const items = root.querySelectorAll('[data-faq-item]');
+
+      const updateState = (el: Element, isOpen: boolean) => {
+        el.setAttribute('data-open', isOpen ? 'true' : 'false');
+        const btn = el.querySelector('.service-faq-trigger');
+        const panel = el.querySelector('.service-faq-content');
+        const icon = el.querySelector('.service-faq-icon');
+        btn?.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        if (isOpen) {
+          panel?.removeAttribute('hidden');
+          if (icon) icon.textContent = '[-]';
+          el.classList.add('border-[#CCFF00]');
+          el.classList.remove('border-white/15');
+        } else {
+          panel?.setAttribute('hidden', '');
+          if (icon) icon.textContent = '[+]';
+          el.classList.remove('border-[#CCFF00]');
+          el.classList.add('border-white/15');
+        }
+      };
+
+      // Set initial states
+      items.forEach((item) => {
+        updateState(item, item.getAttribute('data-open') === 'true');
+      });
+
+      // Attach click events
+      items.forEach((item) => {
+        const btn = item.querySelector('.service-faq-trigger');
+        btn?.addEventListener('click', () => {
+          const currentlyOpen = item.getAttribute('data-open') === 'true';
+          items.forEach((other) => {
+            if (other !== item) {
+              updateState(other, false);
+            }
+          });
+          updateState(item, !currentlyOpen);
+        });
+      });
+    });
+  }
+
+  setupServiceFaqs();
+  document.addEventListener('astro:page-load', setupServiceFaqs);
+</script>

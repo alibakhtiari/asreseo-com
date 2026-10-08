@@ -1,0 +1,71 @@
+---
+// CSS-only hero section (no photography): layered gradients, blurred orbs,
+// dot texture and a glass eyebrow badge. Keeps white-on-dark AA contrast.
+export interface Props {
+  badge?: string;
+  title: string;
+  titleHighlight?: string;
+  description?: string;
+  theme?: 'indigo' | 'blue' | 'emerald';
+}
+
+const { badge, title, titleHighlight, description, theme = 'indigo' }: Props = Astro.props;
+
+const THEMES: Record<string, { base: string; orbA: string; orbB: string; accent: string }> = {
+  indigo: {
+    base: 'from-[#0b1030] via-[#141b4d] to-[#0b1030]',
+    orbA: 'bg-indigo-500/30',
+    orbB: 'bg-fuchsia-500/20',
+    accent: 'text-indigo-300',
+  },
+  blue: {
+    base: 'from-[#081226] via-[#0e2a5c] to-[#081226]',
+    orbA: 'bg-sky-500/30',
+    orbB: 'bg-cyan-400/20',
+    accent: 'text-sky-300',
+  },
+  emerald: {
+    base: 'from-[#071a17] via-[#0b3b32] to-[#071a17]',
+    orbA: 'bg-emerald-500/30',
+    orbB: 'bg-teal-300/20',
+    accent: 'text-emerald-300',
+  },
+};
+
+const t = THEMES[theme] ?? THEMES.indigo;
+---
+<section class={`relative overflow-hidden bg-linear-to-b ${t.base}`}>
+  <div class="absolute inset-0" aria-hidden="true">
+    <div class={`absolute -top-24 -right-24 h-96 w-96 rounded-full blur-3xl ${t.orbA}`}></div>
+    <div class={`absolute -bottom-32 -left-24 h-[28rem] w-[28rem] rounded-full blur-3xl ${t.orbB}`}></div>
+    <div
+      class="absolute inset-0 opacity-60"
+      style="background-image: radial-gradient(rgba(255,255,255,0.13) 1px, transparent 1px); background-size: 22px 22px;"
+    ></div>
+    <div class="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black/40 to-transparent"></div>
+  </div>
+  <div class="container-custom relative z-10 py-16 md:py-20">
+    <div class="text-center max-w-4xl mx-auto animate-fade-in pt-12 md:pt-14">
+      {badge && (
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm text-white/90 backdrop-blur mb-6">
+          <span class={`h-1.5 w-1.5 rounded-full bg-current ${t.accent}`}></span>
+          {badge}
+        </span>
+      )}
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+        {title}
+        {titleHighlight && (
+          <>
+            {' '}<span class={t.accent}>{titleHighlight}</span>
+          </>
+        )}
+      </h1>
+      {description && (
+        <p class="text-lg md:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
+          {description}
+        </p>
+      )}
+      <slot />
+    </div>
+  </div>
+</section>

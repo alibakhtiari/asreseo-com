@@ -1,0 +1,107 @@
+---
+import { withServiceMeta } from '../lib/service-schema';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+
+const data = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['Organization', 'ProfessionalService'],
+      '@id': 'https://asreseo.com/#organization',
+      name: 'AsreSEO',
+      alternateName: 'Asre SEO',
+      url: 'https://asreseo.com/',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://asreseo.com/Logo.svg',
+        width: 512,
+        height: 512,
+      },
+      foundingDate: '2019',
+      description: 'Provider of enterprise autonomous SEO, neural AI search optimization, Google Ads, and full-stack web performance engineering.',
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          contactType: 'customer service',
+          email: 'info@asreseo.com',
+          telephone: '+1-346-327-2878',
+          availableLanguage: ['English'],
+        },
+      ],
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '09:00',
+          closes: '18:00',
+        },
+      ],
+      founder: {
+        '@type': 'Person',
+        name: 'Alex Morgan',
+        jobTitle: 'Chief Strategy Officer & Founder',
+      },
+      sameAs: [
+        'https://instagram.com/asreseo',
+        'https://t.me/asreseo',
+        'https://linkedin.com/company/asreseo',
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'AsreSEO digital marketing and search infrastructure services',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'SEO services',
+              description: 'Website optimization for search engines and generative AI answers',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Google Ads',
+              description: 'High-ROI PPC and Google advertising campaign management',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Web design',
+              description: 'SEO-focused, ultra-fast responsive web engineering',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'AI services',
+              description: 'Autonomous AI pipelines and generative engine optimization',
+            },
+          },
+        ],
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://asreseo.com/#website',
+      url: 'https://asreseo.com/',
+      name: 'AsreSEO',
+      inLanguage: 'en-US',
+      publisher: {
+        '@id': 'https://asreseo.com/#organization',
+      },
+    },
+  ],
+};
+---
+<script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(data, { url: 'https://asreseo.com/', image: '/og-default.png', idNamespace: 'organization-service' }))}></script>

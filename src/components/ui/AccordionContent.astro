@@ -1,0 +1,9 @@
+---
+export interface Props {
+  class?: string;
+}
+const { class: className }: any = Astro.props;
+---
+<div data-acc-content hidden class={className}>
+  <slot />
+</div>

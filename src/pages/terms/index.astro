@@ -1,0 +1,222 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'AsreSEO Terms of Service & System Conditions',
+  url: 'https://asreseo.com/terms/',
+  inLanguage: 'en-US',
+  description:
+    'Terms of Service governing the use of AsreSEO professional digital marketing services, GCP Personal OAuth Proxy, and SEO Command Center on Cloudflare Workers.',
+};
+
+const breadcrumbs = [
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'Terms of Service', item: 'https://asreseo.com/terms/' },
+];
+---
+<BaseLayout
+  lang="en"
+  title="Terms of Service & Conditions | AsreSEO"
+  description="AsreSEO Terms of Service: service scope, GCP Personal OAuth Proxy terms, API security, data ownership, warranties disclaimer, and open-source licensing."
+  canonical="/terms/"
+  ogUrl="https://asreseo.com/terms/"
+  ogType="website"
+  twitterCard="summary_large_image"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
+
+  <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+    <Header lang="en" />
+
+    <main class="pt-28 pb-20">
+      <div class="w-full max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
+        <!-- Header Card -->
+        <div class="p-8 sm:p-10 bg-[#0a0e17] border-2 border-white/20 brutalist-card mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-black border border-[#CCFF00]/40 text-[#CCFF00] font-mono text-xs uppercase tracking-widest mb-4">
+            <span class="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse"></span>
+            <span>[LEGAL_FRAMEWORK // SERVICE_TERMS]</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white font-sans mb-4">
+            Terms of Service &amp; Conditions
+          </h1>
+
+          <p class="font-mono text-xs text-slate-400 mb-6">
+            Last updated: October 8, 2026 • Effective immediately across all engagements, platforms &amp; proxies
+          </p>
+
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
+            These Terms of Service ("Terms") govern your access to and use of <strong>AsreSEO</strong>, our agency consulting services, client portals, and the <strong>GCP Personal OAuth Proxy &amp; SEO Command Center</strong> ("Application", "Service", "we", or "us"). By engaging our services, configuring, or authenticating through our platforms, you agree to be bound by these Terms.
+          </p>
+        </div>
+
+        <div class="space-y-10 text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
+          <!-- Section 1: Scope of Services & Engagements -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_01]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              1. Acceptance of Terms &amp; Scope of Service
+            </h2>
+            <p>
+              AsreSEO provides professional website search engine optimization (SEO), generative engine optimization (GEO), Google Ads management, content architecture, and high-performance web engineering. Additionally, we provide edge-native tooling including the GCP Personal OAuth Proxy &amp; SEO Command Center, designed to interface securely with Google Cloud Platform, Google Search Console, Google Analytics 4, Bing Webmaster Tools, and Google Workspace APIs.
+            </p>
+            <p>
+              You represent and warrant that you are authorized to manage the Google Cloud projects, Search Console domain properties, Google Analytics accounts, and domains that you connect to our services or authorize us to audit.
+            </p>
+          </section>
+
+          <!-- Section 2: Account Security & Key Management -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_02]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              2. Security, Authentication &amp; User Responsibilities
+            </h2>
+            <p>
+              When utilizing our Command Center or client portals, you provide authentication credentials including Google OAuth 2.0 client secrets, proxy access keys, and API tokens:
+            </p>
+            <ul class="list-disc list-inside text-xs sm:text-sm space-y-2 pl-2">
+              <li>
+                <strong>Credential Confidentiality:</strong> You are solely responsible for maintaining the confidentiality of your <code class="font-mono text-[#CCFF00] bg-black px-1.5 py-0.5 border border-white/10">PROXY_API_KEY</code>, <code class="font-mono text-[#CCFF00] bg-black px-1.5 py-0.5 border border-white/10">SETUP_SECRET</code>, and Cloudflare account credentials.
+              </li>
+              <li>
+                <strong>Authorized Access:</strong> You agree not to provide access to unauthorized third parties or use the Service for abusive, malicious, or automated scraping purposes that exceed authorized API quotas.
+              </li>
+              <li>
+                <strong>Environment Isolation:</strong> When deployed on your own Cloudflare account or instance, you maintain sole administrative control over the underlying KV storage, D1 SQL databases, and environment variables.
+              </li>
+            </ul>
+          </section>
+
+          <!-- Section 3: Third-Party API Terms & Conditions -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-[#CCFF00]/40 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_03]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              3. Third-Party API Terms &amp; Conditions
+            </h2>
+            <p>
+              The Application and our automated pipelines act as a client interface and proxy to third-party services. Your use of those services remains governed by their respective developer policies:
+            </p>
+            <ul class="list-disc list-inside text-xs sm:text-sm space-y-2 pl-2">
+              <li>
+                <strong>Google APIs:</strong> You agree to comply with the <a href="https://developers.google.com/terms" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-mono hover:underline">Google APIs Terms of Service</a> and the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-mono hover:underline">Google API Services User Data Policy</a>.
+              </li>
+              <li>
+                <strong>Bing Webmaster Tools:</strong> Use of Bing APIs complies with Microsoft's Webmaster API terms and query quotas.
+              </li>
+              <li>
+                <strong>Cloudflare:</strong> The edge runtime is hosted subject to Cloudflare's Terms of Service and acceptable use policies.
+              </li>
+            </ul>
+          </section>
+
+          <!-- Section 4: Data Ownership & Intellectual Property -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_04]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              4. Data Ownership &amp; Intellectual Property
+            </h2>
+            <p class="font-semibold text-white">
+              You retain 100% full ownership, title, and all intellectual property rights to your website data, SEO telemetry, client information, generated A4 executive PDF reports, and Google Workspace documents exported through our Application.
+            </p>
+            <p>
+              We claim no intellectual property rights or ownership over any materials, search queries, or analytics you process through the Service.
+            </p>
+            <p>
+              Upon full financial settlement of contracted agency services, the license to use project deliverables — including custom designs, copy, code snippets, and audit documentation — is transferred to the client.
+            </p>
+          </section>
+
+          <!-- Section 5: Open Source & Automation Infrastructure -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_05]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              5. Open-Source Ecosystem &amp; Automation Clusters
+            </h2>
+            <p>
+              Tools, automated workflows, and software components independently authored by AsreSEO remain governed by their respective licenses:
+            </p>
+            <ul class="list-disc list-inside text-xs sm:text-sm space-y-2 pl-2">
+              <li>
+                <strong>Custom n8n Nodes:</strong> Packages authored by Ali Bakhtiari (<a href="https://github.com/alibakhtiari/n8n-nodes-avvalai" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-mono hover:underline">n8n-nodes-avvalai</a> and <a href="https://github.com/alibakhtiari/n8n-nodes-imagerouter" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-mono hover:underline">n8n-nodes-imagerouter</a>) are open-source software libraries provided under their repository licenses.
+              </li>
+              <li>
+                <strong>WebABC SEO Suite:</strong> The <a href="https://github.com/alibakhtiari/emdash-seo" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-mono hover:underline">emdash-seo</a> plugin for Astro &amp; EmDash CMS is licensed as open-source MIT software.
+              </li>
+              <li>
+                <strong>Enterprise Command Center:</strong> The multi-tool MCP Gateway (<a href="https://mcp.asreseo.com" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-mono hover:underline">mcp.asreseo.com</a> / <a href="https://github.com/alibakhtiari/asreseo-command-center" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-mono hover:underline">asreseo-command-center</a>) is a proprietary intelligence system. Access is granted subject to authorized user seats and API compliance policies.
+              </li>
+            </ul>
+          </section>
+
+          <!-- Section 6: Disclaimers & Limitations of Liability -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_06]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              6. Disclaimer of Warranties &amp; Limitation of Liability
+            </h2>
+            <p>
+              The Application and consulting diagnostics are provided on an <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> basis without warranties of any kind, whether express, implied, statutory, or otherwise, including but not limited to warranties of merchantability, fitness for a particular purpose, non-infringement, or uninterrupted availability.
+            </p>
+            <p>
+              We do not warrant that third-party APIs (Google, Bing, Cloudflare) will be uninterrupted or error-free. Because search engine algorithms, competitor maneuvers, and AI answer engines evolve dynamically, no specific commercial ranking or revenue outcome can be guaranteed.
+            </p>
+            <p>
+              To the maximum extent permitted by law, in no event shall AsreSEO, its developer, or contributors be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or business goodwill.
+            </p>
+          </section>
+
+          <!-- Section 7: Termination & Revocation -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_07]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              7. Termination &amp; Revocation of Access
+            </h2>
+            <p>
+              You may terminate your use of the Application or proxy endpoints at any time by revoking OAuth tokens in your Google Account security panel (<a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] underline font-mono">Google Third-Party Account Access</a>) or deleting the deployed Cloudflare Worker instance.
+            </p>
+            <p>
+              For contracted consulting engagements, either party may terminate upon written notice in the event of material breach or non-cooperation. Upon termination, completed work up to that date is invoiced and settled, and confidentiality obligations remain binding.
+            </p>
+          </section>
+
+          <!-- Section 8: Portfolio Display -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_08]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              8. Portfolio Display
+            </h2>
+            <p>
+              AsreSEO reserves the right to present anonymized performance telemetry, architectural benchmarks, and client work samples in its portfolio archive and technical proposals, unless the client explicitly requests a non-disclosure agreement (NDA) or objects in writing prior to project kickoff.
+            </p>
+          </section>
+
+          <!-- Section 9: Contact Information -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4 font-mono text-xs">
+            <div class="text-[#CCFF00] uppercase tracking-wider">[SECTION_09 // LEGAL_CONTACT]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              9. Contact Information &amp; Legal Inquiries
+            </h2>
+            <p class="font-sans text-sm text-slate-300">
+              For any contractual, technical, or licensing questions regarding these Terms, reach us directly:
+            </p>
+            <div class="p-4 bg-black border border-white/15 space-y-1 text-slate-300">
+              <p><strong class="text-white">Organization:</strong> AsreSEO &amp; GCP Personal OAuth Proxy</p>
+              <p><strong class="text-white">Principal Engineer:</strong> Ali Bakhtiari</p>
+              <p><strong class="text-white">Legal &amp; Business Email:</strong> <a href="mailto:info@asreseo.com" class="text-[#CCFF00] hover:underline">info@asreseo.com</a></p>
+              <p><strong class="text-white">Developer Inquiries:</strong> <a href="mailto:ali.bakhtiarii@gmail.com" class="text-[#CCFF00] hover:underline">ali.bakhtiarii@gmail.com</a></p>
+              <p><strong class="text-white">Telephone:</strong> +1 (346) 327-2878</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <Footer lang="en" />
+  </div>
+</BaseLayout>

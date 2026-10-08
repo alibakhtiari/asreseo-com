@@ -1,0 +1,267 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Button from '../../../../components/ui/button/Button.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Picture from '../../../../components/ui/Picture.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+
+
+
+
+
+const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': 'Local SEO',
+    'description': 'Optimization services for local searches and Google Maps to attract walk-in customers',
+    'serviceType': 'SEO Services',
+    'provider': {
+        '@type': 'Organization',
+        'name': 'AsreSEO',
+        'url': 'https://asreseo.com'
+    },
+    'inLanguage': 'en-US',
+    'hasOfferCatalog': {
+        '@type': 'OfferCatalog',
+        'name': 'Local SEO Services',
+        'itemListElement': [
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'Google Maps Setup & Optimization',
+                    'description': 'Creating and managing your Google Business Profile'
+                }
+            },
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'Review & Reputation Management',
+                    'description': 'A strategy for earning positive reviews and responding to customers'
+                }
+            }
+        ]
+    }
+};
+
+
+
+    const localServices = [
+        {
+            icon: "map-pin",
+            title: 'Google Business Profile (GBP) Optimization',
+            description: 'Registering, verifying and fully optimizing your Google Business Profile with accurate info, professional photos and the right categories.',
+            benefits: ['Visible on the map', 'Accurate contact info', 'More walk-in customers']
+        },
+        {
+            icon: "navigation",
+            title: 'Citation Management',
+            description: 'Consistent listing of your name, address and phone (NAP) across trusted directories and local reference sites.',
+            benefits: ['Google\u2019s trust', 'Consistent information', 'Strong local signals']
+        },
+        {
+            icon: "message-circle",
+            title: 'Reputation & Review Management',
+            description: 'A strategy for earning 5-star reviews, professionally replying to criticism and managing your brand\u2019s online reputation.',
+            benefits: ['High conversion rate', 'Trust-building', 'Better map rankings']
+        },
+        {
+            icon: "layout",
+            title: 'Local Content Production',
+            description: 'Dedicated landing pages for each neighborhood or city, plus articles addressing local concerns.',
+            benefits: ['Ranking for \u201cnear me\u201d searches', 'Local community connection', 'Multi-area coverage']
+        }
+    ];
+
+    const features = [
+        {
+            title: 'Local Pack Presence',
+            description: 'Our goal is to place you in Google Maps\u2019 top 3 results \u2014 the ones that earn the most clicks.',
+            icon: "star",
+            color: 'text-yellow-500'
+        },
+        {
+            title: 'Voice Search',
+            description: 'Optimized for phrases like \u201crestaurant near me\u201d that dominate mobile and voice searches.',
+            icon: "phone",
+            color: 'text-blue-500'
+        },
+        {
+            title: 'More Calls & Directions',
+            description: 'Turning searchers into real customers who call you or walk into your store.',
+            icon: "navigation",
+            color: 'text-green-500'
+        }
+    ];
+
+    const stats = [
+        { metric: 'Local search', label: 'Visible in Google results', color: 'text-blue-600', icon: "search" },
+        { metric: 'Walk-in traffic', label: 'Customers from around you', color: 'text-green-800', icon: "store" },
+        { metric: '3x', label: 'More incoming phone calls', color: 'text-purple-600', icon: "phone" },
+        { metric: 'Full ownership', label: 'Map profile in your name', color: 'text-orange-600', icon: "map-pin" }
+    ];
+
+    const faqs = [
+        {
+            question: 'Can I do local SEO without a website?',
+            answer: 'Yes \u2014 a Google Maps profile works independently of a website, but having an optimized site dramatically boosts your Maps profile\u2019s rankings.'
+        },
+        {
+            question: 'What is NAP and why does it matter?',
+            answer: 'NAP stands for Name, Address, Phone. Keeping this information identical across the web (your site, social profiles, directories) is Google\u2019s most important trust signal.'
+        },
+        {
+            question: 'How do you handle negative reviews?',
+            answer: 'Negative reviews are a chance to show your professionalism. We teach you how the right response can turn even an unhappy customer into a loyal one.'
+        },
+        {
+            question: 'Is local SEO useful for online stores too?',
+            answer: 'If you have a physical warehouse or office, yes \u2014 but local SEO mainly serves businesses that interact with customers in a specific location.'
+        }
+    ];
+
+
+
+const breadcrumbs = [
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'SEO Services', item: 'https://asreseo.com/services/seo/' },
+    { position: 3, name: 'Local SEO & Google Maps', item: 'https://asreseo.com/services/seo/local-seo/' },
+  ];
+
+---
+<BaseLayout lang="en" title='Local SEO | Google Maps Listing & Customer Growth | AsreSEO' description='Specialized local SEO for brick-and-mortar businesses. Google Maps setup & optimization, review management, and winning customers from your own neighborhood and city.' keywords='local SEO, Google Maps listing, Google Business Profile, more local customers' canonical='/services/seo/local-seo/' ogType='website' ogUrl='https://asreseo.com/services/seo/local-seo/' ogImages={[{ url: "/og/local-seo-hero.jpg", width: 1200, height: 630, alt: "Local SEO & Google Maps | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Local SEO | Win Customers Around You | AsreSEO'
+
+  ogDescription='Introduce your business to nearby customers. Google Maps and local search optimization.'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+            <script id="structured-data" type="application/ld+json" is:inline
+                set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/seo/local-seo/', image: '/og/local-seo-hero.jpg' }))}
+            />
+
+            <Header lang="en" />
+            <BreadcrumbStructuredData items={breadcrumbs} />
+
+            <main>
+                <ServiceHero lang="en"
+                    badge="Own Your Neighborhood"
+                    title="Local SEO That Wins Nearby Customers"
+                    titleHighlight="Local SEO"
+                    description="Get found by customers at the exact moment they need you. More calls, more directions and more walk-in sales by conquering Google Maps results."
+                    primaryCtaText="List My Business on Google"
+                    secondaryCtaText="Local SEO Consultation"
+                    imageSrc="/images/local-seo-hero.webp"
+                    imageAlt="Local SEO and Google Maps"
+                    theme="green"
+                />
+
+                <ServiceStats lang="en" stats={stats} theme="green" />
+
+                <!-- Local Services Section -->
+                <section class="section-padding">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                Our <span class="gradient-text">Local SEO</span> Services
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                Complete solutions to become your neighbors\u2019 first choice
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-8">
+                            {localServices.map((service, index) => (
+                                <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                                                <Icon name={service.icon} class="h-6 w-6 text-green-800" />
+                                            </div>
+                                            <CardTitle class="text-xl font-semibold">{service.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">
+                                            {service.description}
+                                        </p>
+                                        <div class="space-y-2">
+                                            {service.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                                                    {benefit}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Features Section -->
+                <section class="section-padding bg-slate-50">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                Why Is <span class="gradient-text">Local SEO</span> Essential?
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                User behavior has changed \u2014 people want the nearest, best option
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8">
+                            {features.map((feature, index) => (
+                                <Card class="hover:shadow-lg transition-all duration-300 group border-0 shadow-lg bg-white">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-gray-200 transition-colors">
+                                                <Icon name={feature.icon} class={`h-6 w-6 ${feature.color}`} />
+                                            </div>
+                                            <CardTitle class="text-xl font-semibold">{feature.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 leading-relaxed">
+                                            {feature.description}
+                                        </p>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <ServiceFAQ lang="en"
+                    title="Frequently Asked Questions"
+                    highlightWord="Asked Questions"
+                    subtitle="Answers to your questions about local SEO & Google Maps"
+                    faqs={faqs}
+                />
+
+                <ServiceCTA lang="en"
+                    title="Don\u2019t lose the customers next door!"
+                    description="Strengthen your Google Maps presence today and multiply your incoming calls. We know the way."
+                    primaryText="Order Local SEO"
+                    secondaryText="Free Consultation"
+                    primaryClass="bg-green-700 hover:bg-green-800 text-white font-semibold shadow-lg shadow-green-700/30"
+                />
+            </main>
+
+            <Footer lang="en" />
+        </div>
+</BaseLayout>

@@ -1,0 +1,91 @@
+---
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+
+const logs = [
+  {
+    role: 'VP of Growth',
+    company: 'Series C FinTech Unicorn',
+    scope: 'LLM Citation Capture & SGE Dominance',
+    impact: '+580% Ingestion in 90 Days',
+    quote: 'ASRESEO replaced our 6-figure agency retainer with deterministic vector topology. We became the #1 cited source on Perplexity within 6 weeks.',
+    hash: '0x4f92...a17b',
+    latency: '14ms',
+  },
+  {
+    role: 'Head of Organic',
+    company: 'Public Enterprise SaaS ($1.2B ARR)',
+    scope: '28-Country Syntactic Edge Expansion',
+    impact: '12,400+ Top-3 SERP Positions Gained',
+    quote: 'Their serverless edge-computed hreflang architecture completely eliminated our crawl budget drag across half a million international URLs.',
+    hash: '0x98b1...e42c',
+    latency: '19ms',
+  },
+  {
+    role: 'Chief Marketing Technologist',
+    company: 'Global Retail & Catalog Conglomerate',
+    scope: 'Autonomous Re-Indexation Pipeline',
+    impact: '100% Orphan Recovery in 14 Days',
+    quote: 'When our catalog of 42k URLs was dropped post-update, ASRESEO’s headless bot pipeline restored full Google indexation within two weeks.',
+    hash: '0x33e8...60df',
+    latency: '11ms',
+  },
+];
+---
+<section class="py-24 bg-[#000000] text-white border-b-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+      <div>
+        <div class="inline-block font-mono text-xs text-[#CCFF00] bg-black px-3 py-1 border border-[#CCFF00]/40 uppercase tracking-widest mb-3">
+          [VERIFIED_TELEMETRY // SIGNED_LOGS]
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white font-sans">
+          Executive Verification Logs
+        </h2>
+      </div>
+      <p class="text-slate-400 max-w-md text-sm sm:text-base font-normal">
+        Cryptographically signed performance audit feedback from VP and C-level engineering and growth leaders.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {logs.map((item, idx) => (
+        <div class="bg-[#090d16] border-2 border-white/15 p-6 sm:p-8 flex flex-col justify-between brutalist-card font-mono text-xs">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-slate-400">
+              <span class="text-[#CCFF00] font-bold">LOG_ENTRY_0{idx + 1}</span>
+              <span class="flex items-center gap-1.5 text-emerald-400">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>STATUS: VERIFIED</span>
+              </span>
+            </div>
+
+            <div class="space-y-1 mb-4 text-slate-300">
+              <div class="text-sm font-bold text-white uppercase">{item.role}</div>
+              <div class="text-slate-400">{item.company}</div>
+              <div class="text-[#CCFF00] pt-1">SCOPE: {item.scope}</div>
+            </div>
+
+            <div class="p-3 bg-black border border-white/10 text-[#CCFF00] font-bold text-sm mb-4">
+              IMPACT // {item.impact}
+            </div>
+
+            <blockquote class="text-slate-300 font-sans text-sm leading-relaxed mb-6 not-italic">
+              "{item.quote}"
+            </blockquote>
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-500">
+            <span>HASH: {item.hash}</span>
+            <span>NODE_LATENCY: {item.latency}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

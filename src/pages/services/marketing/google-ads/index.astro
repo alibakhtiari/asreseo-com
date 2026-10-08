@@ -1,0 +1,377 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Button from '../../../../components/ui/button/Button.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Picture from '../../../../components/ui/Picture.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+import ServiceWorkflow from '../../../../components/Services/ServiceWorkflow.astro';
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Google Ads Advertising',
+  'description': 'Professional Google Ads services including ad campaigns, budget management and conversion rate optimization',
+  'serviceType': 'Pay-Per-Click Advertising',
+  'inLanguage': 'en-US',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com'
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Google Ads advertising services',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'PPC ad campaigns',
+          'description': 'Design and execution of optimized Google Ads campaigns',
+          'inLanguage': 'en-US'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Ad budget management',
+          'description': 'Monitoring and controlling your advertising spend',
+          'inLanguage': 'en-US'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const campaignTypes = [
+    {
+      title: 'Google Search',
+      description: 'Ads in Google search results targeting relevant keywords',
+      icon: "search",
+      benefits: ['Precise targeting', 'Higher conversion rate', 'Brand safety']
+    },
+    {
+      title: 'Display Network',
+      description: 'Ads across Google partner websites reaching millions of visitors',
+      icon: "eye",
+      benefits: ['Wide reach', 'High visibility', 'Automatic optimization']
+    },
+    {
+      title: 'Google Shopping',
+      description: 'Product ads for your online store with images and prices',
+      icon: "shopping-cart",
+      benefits: ['Direct sales', 'Product info at a glance', 'Extra visibility']
+    },
+    {
+      title: 'YouTube Video',
+      description: 'Video ads on YouTube with the highest engagement rates',
+      icon: "megaphone",
+      benefits: ['Engaging content', 'Emotional connection', 'Strong brand recall']
+    }
+  ];
+
+  const targetingOptions = [
+    'Geographic targeting — show your ads only in the cities or regions you choose',
+    'Demographic targeting — reach people by age, gender and education level',
+    'Behavioral targeting — reach users based on their online interests and behavior',
+    'Retargeting — show your ads again to people who have already visited your site',
+    'Device targeting — serve ads on mobile or desktop based on user behavior'
+  ];
+
+  const benefits = [
+    'Win customers at the lowest cost with the highest return',
+    'Full control over your daily and monthly ad budget',
+    'Campaign strategy and execution tailored to your business',
+    'Professional management with continuously updated keywords',
+    'Save time with automation tools',
+    'Transparent online reporting on campaign performance',
+    'Ads go live only after your final approval',
+    '24/7 technical support for campaign management'
+  ];
+
+  const results = [
+    { metric: 'Conversion tracking', label: 'Sales growth', icon: "trending-up" },
+    { metric: 'Cost efficiency', label: 'Lower acquisition cost', icon: "dollar-sign" },
+    { metric: 'Proven track record', label: 'Successful campaigns delivered', icon: "trophy" },
+    { metric: '24/7', label: 'Technical support', icon: "users" }
+  ];
+
+  const features = [
+    {
+      icon: "target",
+      title: 'Precise audience targeting',
+      description: 'We pinpoint your audience with unmatched accuracy — based on interests, location and your business goals.',
+      benefits: ['High accuracy', 'Better returns', 'Lower costs']
+    },
+    {
+      icon: "trending-up",
+      title: 'Continuous optimization',
+      description: 'We monitor budgets and campaigns daily and keep optimizing for the best possible return.',
+      benefits: ['Ongoing improvement', 'Maximum ROI', 'Daily review']
+    },
+    {
+      icon: "bar-chart3",
+      title: 'Transparent reporting',
+      description: 'Full transparency, with access to online reports and campaign performance analysis.',
+      benefits: ['Full transparency', 'Online reports', 'Expert analysis']
+    },
+    {
+      icon: "users",
+      title: 'Higher conversion rates',
+      description: 'Professionally crafted landing pages and ad copy for maximum conversions and customer acquisition.',
+      benefits: ['Compelling ads', 'High conversion rate', 'More customers']
+    }
+  ];
+
+  const processSteps = [
+    {
+      step: '1',
+      title: 'Research & Strategy',
+      desc: 'Keyword, audience and competitor research to define your advertising strategy'
+    },
+    {
+      step: '2',
+      title: 'Campaign Setup',
+      desc: 'Creating your Google Ads account and configuring campaigns with optimal parameters'
+    },
+    {
+      step: '3',
+      title: 'Targeting & Budget',
+      desc: 'Setting up audience groups, daily budgets and ad scheduling'
+    },
+    {
+      step: '4',
+      title: 'Monitoring & Optimization',
+      desc: 'Daily reporting and campaign optimization based on performance and conversion rate'
+    },
+    {
+      step: '5',
+      title: 'Reporting & Scaling',
+      desc: 'Final performance report and a plan to scale winning campaigns'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'Can I control my daily budget?',
+      answer: 'Yes. You set a minimum and maximum budget and never spend more than that. Your Google Ads account stays fully under your control.'
+    },
+    {
+      question: 'How long does it take to see results?',
+      answer: 'You typically get the first signals within hours of launching a campaign. Full results arrive with optimization over 2 to 4 weeks.'
+    },
+    {
+      question: 'How do I receive campaign performance reports?',
+      answer: 'A complete report is sent every week as a PDF, and you get online dashboard access to watch live campaign stats at any time.'
+    },
+    {
+      question: 'Do I need to already have a Google Ads account?',
+      answer: 'No. We set up and manage a professional Google Ads account for you — you only fund the advertising budget.'
+    },
+    {
+      question: 'Do you guarantee a return on investment?',
+      answer: 'Our pricing is performance-based: if the agreed results are not achieved, part of the fee is refunded.'
+    },
+    {
+      question: 'Will my campaigns also show on mobile?',
+      answer: 'Yes. Our campaigns are optimized for both desktop and mobile, with dedicated settings for each device type.'
+    }
+  ];
+
+
+
+const breadcrumbs = [
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'Marketing Services', item: 'https://asreseo.com/services/marketing/' },
+    { position: 3, name: 'Google Ads', item: 'https://asreseo.com/services/marketing/google-ads/' },
+  ];
+
+---
+<BaseLayout lang="en" title='Google Ads & Professional PPC Advertising | AsreSEO' description='Google Ads services built for fast customer acquisition and higher conversion rates. Optimized strategies and full ad-budget management by AsreSEO specialists.' keywords='Google Ads, Google advertising, PPC, pay-per-click advertising, AsreSEO' canonical='/services/marketing/google-ads/' ogType='website' ogUrl='https://asreseo.com/services/marketing/google-ads/' ogImages={[{ url: "/og/marketing-google-ads-hero.jpg", width: 1200, height: 630, alt: "Google Ads advertising | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Google Ads & Professional PPC | AsreSEO'
+
+  ogDescription='Smart Google ad campaigns that win customers and grow sales with high conversion rates.'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/marketing/google-ads/', image: '/og/marketing-google-ads-hero.jpg' }))}
+      />
+
+      <Header lang="en" />
+      <BreadcrumbStructuredData items={breadcrumbs} />
+
+      <main>
+        <ServiceHero lang="en"
+          badge="Professional Google Ads advertising"
+          title="Google Ads Advertising"
+          titleHighlight="Google Ads"
+          description="Smart, high-performing Google ad campaigns that win customers and grow sales. Lower your acquisition cost with advanced PPC strategies."
+          primaryCtaText="Launch Your Ad Campaign"
+          secondaryCtaText="Free Consultation"
+          imageSrc="/images/marketing-google-ads-hero.webp"
+          imageAlt="Professional Google Ads advertising"
+          theme="amber"
+        />
+
+        <ServiceStats lang="en" stats={results} />
+
+        <!-- Campaign Types Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[CAMPAIGN_TAXONOMY // PPC_SOLUTIONS]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Types of <span class="text-[#CCFF00]">Google Ads Campaigns</span>
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                // Versatile campaigns covering all of your business advertising needs
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {campaignTypes.map((campaign, index) => (
+                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                        <Icon name={campaign.icon} class="h-6 w-6 text-[#CCFF00]" />
+                      </div>
+                      <CardTitle class="text-xl font-bold uppercase text-white">{campaign.title}</CardTitle>
+                    </div>
+                    <p class="text-slate-300 mb-2 text-sm">{campaign.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-2 border-t border-white/10 pt-4">
+                      {campaign.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-slate-300">
+                          <Icon name="check-circle" class="h-4 w-4 text-[#CCFF00] shrink-0" />
+                          <span>{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[PRECISION_EDGE // PERFORMANCE_METRICS]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Why Our <span class="text-[#CCFF00]">Google Ads</span> Performs Better
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                // Why do AsreSEO Google Ads campaigns deliver stronger results?
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((feature, index) => (
+                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                        <Icon name={feature.icon} class="h-6 w-6 text-[#CCFF00]" />
+                      </div>
+                      <CardTitle class="text-lg font-bold uppercase text-white">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-slate-300 mb-4 leading-relaxed text-sm">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2 border-t border-white/10 pt-4">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-slate-300">
+                          <Icon name="check-circle" class="h-4 w-4 text-[#CCFF00] shrink-0" />
+                          <span>{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Targeting Options -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[AUDIENCE_SEGMENTATION // ZERO_WASTE]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Advanced <span class="text-[#CCFF00]">Targeting Options</span>
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-2xl">
+                // Show your ads only to your target audience — never to wasted clicks
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              {targetingOptions.map((option, index) => (
+                <div class="flex items-center gap-4 p-4 bg-[#0a0e17] border-2 border-white/15 hover:border-[#CCFF00] transition-colors rounded-none brutalist-card group">
+                  <div class="w-10 h-10 bg-black border border-white/20 flex items-center justify-center shrink-0 group-hover:border-[#CCFF00] transition-colors">
+                    <Icon name="target" class="h-5 w-5 text-[#CCFF00]" />
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mb-0.5">
+                      PARAM_{String(index + 1).padStart(2, '0')}
+                    </div>
+                    <span class="text-white font-medium text-sm block">
+                      {option}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits lang="en" title="Google Ads Benefits with AsreSEO" titleHighlight="AsreSEO" subtitle="Tangible Google Ads results that grow your business fast" benefits={benefits} />
+
+              <ServiceWorkflow lang="en" title="Our Google Ads Campaign Launch Process" titleHighlight="Google Ads Campaign" subtitle="A proven 5-step approach to launching successful ad campaigns" steps={processSteps} bgGradient="section-padding bg-linear-to-br from-orange-50 to-red-50" />
+
+        <ServiceFAQ lang="en"
+          title="Frequently Asked Questions"
+          highlightWord="Asked Questions"
+          subtitle="Answers to the most common questions about Google Ads"
+          faqs={faqs}
+        />
+
+        <ServiceCTA lang="en"
+          title="Launch your ad campaign today!"
+          description="With professional Google Ads, win new customers faster and multiply your sales. Free campaign setup — starting today!"
+          primaryText="Launch Campaign"
+          secondaryText="Free Competitor Analysis"
+          primaryClass="bg-red-600 hover:bg-red-700 text-white font-semibold shadow-lg shadow-red-600/30"
+        />
+      </main>
+
+      <Footer lang="en" />
+    </div>
+</BaseLayout>

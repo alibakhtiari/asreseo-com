@@ -1,0 +1,522 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Website Speed Optimization',
+  'description': 'Specialized website speed and performance optimization for a better user experience',
+  'serviceType': 'Website Speed Optimization',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com'
+  },
+  'inLanguage': 'en-US',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Speed Optimization Services',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Core Web Vitals Optimization',
+          'description': 'Improving Google\u2019s essential speed metrics'
+        }
+      }
+    ]
+  }
+}
+
+
+
+  const speedFeatures = [
+    {
+      icon: "zap",
+      title: 'Faster Load Times',
+      description: 'Targeting sub-2-second loads to satisfy Google and users alike, with advanced compression.',
+      benefits: ['Happier users', 'Better rankings', 'Higher conversion rate']
+    },
+    {
+      icon: "cpu",
+      title: 'Browser Resource Optimization',
+      description: 'Smart resource management, advanced caching and content delivery from the nearest CDN.',
+      benefits: ['Maximum efficiency', 'Staggered loading', 'Global speed']
+    },
+    {
+      icon: "bar-chart3",
+      title: 'Core Web Vitals Improvement',
+      description: 'Fully resolving Largest Contentful Paint, Cumulative Layout Shift and Interaction to Next Paint issues.',
+      benefits: ['Full Google score', 'Superb experience', 'Higher rankings']
+    },
+    {
+      icon: "smartphone",
+      title: 'Mobile Optimization',
+      description: 'Mobile-first design with responsive images and touch optimization for maximum speed.',
+      benefits: ['Mobile satisfaction', 'Better accessibility', 'Competitive edge']
+    },
+    {
+      icon: "gauge",
+      title: 'Continuous Performance Monitoring',
+      description: 'Regular speed tracking with alerts for high memory use or slowdowns.',
+      benefits: ['Fast issue detection', 'Stable upkeep', 'Long-term efficiency']
+    },
+    {
+      icon: "trending-up",
+      title: 'Competitive Analysis',
+      description: 'Benchmarking your speed against competitors and finding unique improvement opportunities.',
+      benefits: ['Competitive edge', 'Strategic insight', 'Continuous improvement']
+    }
+  ];
+
+  const coreWebVitals = [
+    {
+      metric: 'Largest Contentful Paint (LCP)',
+      description: 'Time to load the page\u2019s largest element \u2014 must stay under 2.5 seconds',
+      importance: 'The first thing users see',
+      target: '< 2.5s'
+    },
+    {
+      metric: 'Interaction to Next Paint (INP)',
+      description: 'How responsively the page answers every tap and click \u2014 must stay under 200 milliseconds',
+      importance: 'Google\u2019s modern standard for interactive responsiveness',
+      target: '< 200ms'
+    },
+    {
+      metric: 'Cumulative Layout Shift (CLS)',
+      description: 'How much elements jump around unexpectedly \u2014 must stay under 0.1',
+      importance: 'Visual page stability',
+      target: '< 0.1'
+    }
+  ];
+
+  const speedOptimizations = [
+    {
+      category: 'Server-side Optimizations',
+      optimizations: [
+        'Web server tuning (Nginx/Apache)',
+        'Server-side storage and caching',
+        'Advanced GZIP/Brotli compression',
+        'Database query optimization',
+        'Global CDN and edge computing'
+      ]
+    },
+    {
+      category: 'Client-side Optimizations',
+      optimizations: [
+        'Code splitting and lazy loading',
+        'Minifying JS/CSS code',
+        'Optimizing images with WebP',
+        'Critical CSS inlining',
+        'Font loading optimization'
+      ]
+    },
+    {
+      category: 'Content Optimizations',
+      optimizations: [
+        'Lazy-loading images and videos',
+        'Strategic prefetch and preload',
+        'Removing unused CSS/JS',
+        'Optimizing third-party scripts',
+        'Resource hints and priority hints'
+      ]
+    }
+  ];
+
+  const impactMetrics = [
+    { before: 'Slow and unstable', after: 'Fast and stable', metric: 'Load time', improvement: 'Measured with PageSpeed Insights' },
+    { before: 'Users leaving early', after: 'Users staying longer', metric: 'Bounce rate', improvement: 'Reported in Google Analytics' },
+    { before: 'Aimless visits', after: 'Goal-driven visits', metric: 'Conversion rate', improvement: 'Monthly conversion report' },
+    { before: 'Google\u2019s red and orange zones', after: 'Google\u2019s green zone', metric: 'Core Web Vitals score', improvement: 'Per official web.dev thresholds' }
+  ];
+
+  const toolsUsed = [
+    {
+      tool: 'Google PageSpeed Insights',
+      purpose: 'Measuring performance and scoring',
+      frequency: 'Before kickoff and after completion'
+    },
+    {
+      tool: 'Lighthouse',
+      purpose: 'Maximum-detail performance analysis',
+      frequency: 'After every major optimization'
+    },
+    {
+      tool: 'WebPageTest',
+      purpose: 'Speed testing from locations worldwide',
+      frequency: 'Checking CDN and global performance'
+    },
+    {
+      tool: 'GTmetrix',
+      purpose: 'Waterfall and critical-path analysis',
+      frequency: 'Finding bottlenecks'
+    }
+  ];
+
+  const benefits = [
+    'Shorter page load times with professional resource compression and optimization',
+    'Lower website bounce rates thanks to a faster user experience',
+    'Higher conversion rates through a better perceived experience',
+    'Improved Core Web Vitals scores and better Google rankings',
+    'Lower server costs through efficient resource use'
+  ];
+
+  const stats = [
+    { metric: '2 seconds', label: 'Target load time', icon: "zap" },
+    { metric: 'Monthly report', label: 'Continuous speed monitoring', icon: "trending-up" },
+    { metric: 'Target 95', label: 'PageSpeed score', icon: "gauge" },
+    { metric: 'Mobile-first', label: 'Mobile compatibility', icon: "smartphone" }
+  ];
+
+  const workflowSteps = [
+    {
+      step: 'Initial Performance Analysis',
+      desc: 'Measuring current speed with multiple tools and identifying the core issues',
+      duration: '2\u20133 days'
+    },
+    {
+      step: 'Server & Hosting Review',
+      desc: 'Improving server configuration, choosing the right CDN and optimizing resources',
+      duration: '3\u20135 days'
+    },
+    {
+      step: 'Client-Side Optimization',
+      desc: 'Compressing code, optimizing images and removing render-blocking resources',
+      duration: '4\u20137 days'
+    },
+    {
+      step: 'Core Web Vitals Fixes',
+      desc: 'Resolving LCP, INP and CLS issues with specialist techniques',
+      duration: '3\u20135 days'
+    },
+    {
+      step: 'Final Testing & Monitoring',
+      desc: 'Performance testing across devices and setting up continuous monitoring',
+      duration: '2\u20133 days'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'Why does website speed matter, and what does Google have to do with it?',
+      answer: 'Site speed is one of Google\u2019s 3 vital ranking inputs (Core Web Vitals). Google believes users won\u2019t wait, so it ranks fast sites first. On top of that, high speed lowers bounce rates and lifts conversion rates.'
+    },
+    {
+      question: 'How long does it take to speed up a website?',
+      answer: 'Depending on size and complexity, usually 1\u20132 weeks. Simple projects may finish in 3 days, while heavier image-laden sites can need 2\u20133 weeks. The key point: results are immediate and tangible.'
+    },
+    {
+      question: 'Does faster speed lower server costs?',
+      answer: 'Yes! Compressing resources and using caching efficiently cuts your server resource consumption noticeably \u2014 meaning lower costs and higher speed. Plus, Google prefers faster sites.'
+    },
+    {
+      question: 'Does speed need maintenance after the fix?',
+      answer: 'Website speed needs ongoing care. New content can slow things down again. Beyond monitoring tools, we deliver monthly reports and include up to 6 months of free support covering speed upkeep.'
+    },
+    {
+      question: 'Is speed optimization necessary for mobile too?',
+      answer: 'Absolutely! A huge share of web users are on mobile. Core Web Vitals matter especially on mobile, and Google prioritizes mobile-friendly sites. We follow a mobile-first approach in every optimization.'
+    },
+    {
+      question: 'What does slow speed cost a business?',
+      answer: '1) Lower Google rankings and less visibility, 2) higher bounce rates, 3) lower conversion rates, 4) poor user experience and lost customers, 5) higher server costs with no effective return.'
+    }
+  ];
+
+
+const breadcrumbs = [
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'Web Services', item: 'https://asreseo.com/services/web/' },
+    { position: 3, name: 'Website Speed Optimization', item: 'https://asreseo.com/services/web/website-speed/' },
+  ];
+
+---
+<BaseLayout lang="en" title='Website Speed Optimization & Core Web Vitals | AsreSEO' description='Specialist website speed optimization with sub-2-second load times, Core Web Vitals improvement and higher conversion rates via Google PageSpeed Insights.' keywords='website speed optimization, faster website, Core Web Vitals, Page Speed, Lighthouse' canonical='/services/web/website-speed/' ogType='website' ogUrl='https://asreseo.com/services/web/website-speed/' ogImages={[{ url: "/og/website-speed-hero.jpg", width: 1200, height: 630, alt: "Website speed optimization | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Website Speed Optimization & Core Web Vitals | AsreSEO'
+
+  ogDescription='Faster page loads built to Google\u2019s standards.'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/web/website-speed/', image: '/og/website-speed-hero.jpg' }))} />
+
+      <Header lang="en" />
+      <BreadcrumbStructuredData items={breadcrumbs} />
+
+      <main>
+        <ServiceHero lang="en"
+          badge="Professional Speed Optimization"
+          title="Website Speed Optimization"
+          titleHighlight="Speed Optimization"
+          description="Sub-2-second load times meeting Google PageSpeed Insights standards. Better Core Web Vitals and more conversions from your visitors at AsreSEO!"
+          primaryCtaText="Analyze My Site Speed"
+          secondaryCtaText="Free Speed Test Tool"
+          imageSrc="/images/website-speed-hero.webp"
+          imageAlt="Website speed optimization"
+          theme="green"
+        />
+
+        <ServiceStats lang="en" stats={stats} />
+
+        <!-- Speed Features Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Advanced <span class="gradient-text">Speed Optimization</span> Technology
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                A comprehensive approach to maximum load speed
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {speedFeatures.map((feature, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                        <Icon name={feature.icon} class="h-6 w-6 text-green-800" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle2" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Core Web Vitals Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-gray-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Improving Google\u2019s <span class="gradient-text">Core Web Vitals</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                The vital Google speed standards that must be optimized
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+              {coreWebVitals.map((vital, index) => (
+                <Card class="hover:shadow-lg transition-all duration-300">
+                  <CardContent class="p-6">
+                    <div class="flex items-start gap-4">
+                      <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
+                        <Icon name="gauge" class="h-6 w-6 text-blue-600" />
+                      </div>
+                      <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                          {vital.metric}
+                        </h3>
+                        <p class="text-gray-600 mb-3 text-sm">
+                          {vital.description}
+                        </p>
+                        <div class="space-y-2">
+                          <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-500">Why it matters:</span>
+                            <span class="text-gray-700 font-medium">{vital.importance}</span>
+                          </div>
+                          <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-500">Target:</span>
+                            <Badge class="bg-green-100 text-green-800">{vital.target}</Badge>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Speed Optimizations Grid -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Comprehensive <span class="gradient-text">Optimization</span> Strategies
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Covering every layer of improvement for maximum speed
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {speedOptimizations.map((category, index) => (
+                <Card class="p-6 border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <CardTitle class="text-2xl text-center">{category.category}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="grid md:grid-cols-5 gap-4">
+                      {category.optimizations.map((optimization, optIndex) => (
+                        <div class="text-center p-4 bg-white rounded-lg border">
+                          <Icon name="check-circle2" class="h-6 w-6 text-green-500 mx-auto mb-2" />
+                          <p class="text-sm font-medium text-gray-900">{optimization}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Impact Metrics Section -->
+        <section class="section-padding bg-slate-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                <span class="gradient-text">Measurable</span> Optimization Results
+              </h2>
+              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                What we measure and report before and after the project; the Core Web Vitals \u201cgreen\u201d zone follows Google\u2019s official thresholds: https://web.dev/articles/vitals
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {impactMetrics.map((metric, index) => (
+                <Card class="hover:shadow-md transition-shadow">
+                  <CardContent class="p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4 text-center">
+                      {metric.metric}
+                    </h3>
+                    <div class="flex justify-between items-center mb-3">
+                      <div class="text-center">
+                        <div class="text-red-600 font-bold">Before: {metric.before}</div>
+                      </div>
+                      <div class="text-center">
+                        <div class="text-green-800 font-bold">After: {metric.after}</div>
+                      </div>
+                    </div>
+                    <Badge class="bg-green-100 text-green-800 w-fit mx-auto">
+                      {metric.improvement}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits lang="en" title="Benefits of AsreSEO Speed" titleHighlight="AsreSEO Speed" subtitle="What improves in speed-optimization projects" benefits={benefits} />
+
+        <!-- Tools Section -->
+        <section class="section-padding bg-linear-to-br from-green-50 to-emerald-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                Professional <span class="gradient-text">Speed Measurement</span> Tools
+              </h2>
+              <p class="text-xl text-gray-600">
+                Using the best international tools for precise results
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              {toolsUsed.map((tool, index) => (
+                <Card class="hover:shadow-md transition-shadow">
+                  <CardContent class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">{tool.tool}</h3>
+                    <p class="text-gray-600 mb-2">{tool.purpose}</p>
+                    <Badge variant="outline" class="text-sm">
+                      {tool.frequency}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Workflow Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                AsreSEO\u2019s <span class="gradient-text">Speed Optimization</span> Process
+              </h2>
+              <p class="text-xl text-gray-600">
+                A systematic 5-step approach to maximum speed
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {workflowSteps.map((step, index) => (
+                <div class="flex items-center gap-8 p-6 bg-white rounded-xl shadow-xs">
+                  <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-2xl font-bold text-green-800">
+                    {index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      {step.step}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-2">
+                      {step.desc}
+                    </p>
+                    <Badge variant="outline" class="text-sm">
+                      Duration: {step.duration}
+                    </Badge>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <ServiceFAQ lang="en"
+          title="Frequently Asked Questions"
+          highlightWord="Asked Questions"
+          subtitle="Answers to client questions about speed optimization"
+          faqs={faqs}
+        />
+
+        <ServiceCTA lang="en"
+          title="Let\u2019s speed up your site right now!"
+          description="With AsreSEO speed optimization, your customers never wait. A 100 PageSpeed score, higher Google rankings and more conversions \u2014 start today with a free site-speed consultation!"
+          primaryText="Free Speed Audit"
+          secondaryText="Start Speed Optimization"
+          primaryClass="bg-green-700 hover:bg-green-800 text-white font-semibold shadow-lg shadow-green-700/30"
+        />
+      </main>
+
+      <Footer lang="en" />
+    </div>
+</BaseLayout>

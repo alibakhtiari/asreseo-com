@@ -1,0 +1,88 @@
+---
+import { Picture as AstroPicture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+export interface Props {
+  src: string | ImageMetadata;
+  alt: string;
+  class?: string;
+  eager?: boolean;
+  widths?: number[];
+  sizes?: string;
+  loading?: 'eager' | 'lazy';
+  decoding?: 'async' | 'sync' | 'auto';
+  formats?: ('avif' | 'webp' | 'png' | 'jpeg')[];
+  aspectRatio?: string;
+  /**
+   * Hint to the preload scanner. Defaults to `high` when `eager` is set —
+   * every page carries exactly one eager image, so that image is the LCP
+   * candidate by construction. Audit 2026-09-23 (T6 / item 2.18) found
+   * **zero** `fetchpriority` attributes in the whole build.
+   */
+  fetchpriority?: 'high' | 'low' | 'auto';
+  /** Intrinsic size for the raw-`<img>` fallback, which gets no metadata. */
+  width?: number;
+  height?: number;
+}
+
+const {
+  src,
+  alt,
+  class: className,
+  eager = false,
+  widths = [320, 480, 640, 768, 1024],
+  sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1024px',
+  loading,
+  decoding = 'async',
+  formats = ['avif', 'webp'],
+  aspectRatio,
+  fetchpriority = eager ? 'high' : undefined,
+  width,
+  height,
+} = Astro.props as Props;
+
+// Eagerly glob all images in src/assets/images
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/**/*.{jpeg,jpg,png,gif,webp}',
+  { eager: true }
+);
+
+let imageMetadata: ImageMetadata | undefined;
+
+if (typeof src === 'string') {
+  // Normalize path variations: "/images/about-hero.webp" -> "/src/assets/images/about-hero.webp"
+  const cleanPath = src.replace(/^\/?(images\/)?/, '');
+  const assetKey = `/src/assets/images/${cleanPath}`;
+  imageMetadata = images[assetKey]?.default;
+} else if (src && typeof src === 'object' && 'src' in src) {
+  imageMetadata = src;
+}
+---
+
+{imageMetadata ? (
+  <AstroPicture
+    src={imageMetadata}
+    alt={alt}
+    widths={widths}
+    sizes={sizes}
+    formats={formats}
+    fallbackFormat="webp"
+    class={className}
+    loading={eager ? 'eager' : (loading ?? 'lazy')}
+    decoding={decoding}
+    fetchpriority={fetchpriority}
+    style={aspectRatio ? `aspect-ratio: ${aspectRatio}` : undefined}
+  />
+) : (
+  <img
+    src={typeof src === 'string' ? src : src.src}
+    alt={alt}
+    class={className}
+    loading={eager ? 'eager' : (loading ?? 'lazy')}
+    decoding={decoding}
+    fetchpriority={fetchpriority}
+    width={width}
+    height={height}
+    style={aspectRatio ? `aspect-ratio: ${aspectRatio}` : undefined}
+  />
+)}

@@ -24,4 +24,11 @@ dist-ssr
 *.sw?
 /.next
 /out
+.astro
 *.csv
+__pycache__/
+*.pyc
+/public/images/*.webp
+.workbuddy-ai
+.chrome-profile
+.gemini

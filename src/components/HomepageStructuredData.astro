@@ -1,0 +1,55 @@
+---
+import { withServiceMeta } from '../lib/service-schema';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+
+const data = {
+  '@context': 'https://schema.org',
+  '@type': 'OfferCatalog',
+  name: 'Digital Marketing Services',
+  provider: {
+    '@id': 'https://asreseo.com/#organization',
+  },
+  itemListElement: [
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'Professional SEO Services',
+        description: 'Search engine optimization and ranking growth',
+        provider: {
+          '@id': 'https://asreseo.com/#organization',
+        },
+      },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'Google Ads Management',
+        description: 'Ad campaign management and optimization',
+        provider: {
+          '@id': 'https://asreseo.com/#organization',
+        },
+      },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'AI Services',
+        description: 'Modern AI solutions for business growth and automation',
+        provider: {
+          '@id': 'https://asreseo.com/#organization',
+        },
+      },
+    },
+  ],
+};
+---
+<script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(data, { url: 'https://asreseo.com/', image: '/og-default.png', idNamespace: 'home-service' }))}></script>

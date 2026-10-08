@@ -1,0 +1,70 @@
+---
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+
+const steps = [
+  {
+    number: '01',
+    code: 'SYSTEM_AUDIT_&_RECON',
+    title: 'Architecture & Entity Recon',
+    description: 'We reverse-engineer your crawl budget, domain graph, knowledge vectors, and algorithmic bottlenecks using automated edge probes.',
+  },
+  {
+    number: '02',
+    code: 'ONTOLOGY_DESIGN',
+    title: 'Semantic Schema Design',
+    description: 'We construct deterministic RDF/JSON-LD knowledge graphs, entity relationships, and programmatic content architectures for AI ingestion.',
+  },
+  {
+    number: '03',
+    code: 'EDGE_INJECTION',
+    title: 'Autonomous Indexing Push',
+    description: 'We deploy sub-20ms IndexNow pipelines and Google Indexing API pushes to ensure instantaneous crawl and zero index latency.',
+  },
+  {
+    number: '04',
+    code: 'REALTIME_TELEMETRY',
+    title: 'Algorithmic SERP Defense',
+    description: 'Continuous 24/7 monitoring across LLM citation sources, Google AI Overviews, Perplexity Pro, and organic SERP ranking positions.',
+  },
+];
+---
+
+<section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+      <div>
+        <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[EXECUTION_CYCLE // 4_PHASE]</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white">Our Collaboration Pipeline</h2>
+      </div>
+      <p class="text-slate-400 font-mono text-xs max-w-md">// Deterministic 4-stage engineering protocol for maximum index coverage and conversion lift.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {steps.map((step) => (
+        <div class="p-6 sm:p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-6 border-b border-white/10 font-mono text-xs">
+              <span class="text-2xl font-black text-[#CCFF00]">{step.number} //</span>
+              <span class="text-slate-500 uppercase tracking-wider text-[10px]">{step.code}</span>
+            </div>
+            <h3 class="text-lg sm:text-xl font-black uppercase text-white mb-3">
+              {step.title}
+            </h3>
+            <p class="text-slate-300 leading-relaxed text-xs sm:text-sm">
+              {step.description}
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-emerald-400">
+            STATUS: ACTIVE_NODE
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

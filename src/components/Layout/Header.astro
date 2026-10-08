@@ -1,0 +1,249 @@
+---
+import Button from '../ui/button/Button.astro';
+import Icon from '../ui/Icon.astro';
+import MegaMenu from './MegaMenu.astro';
+import Logo from '../Logo.astro';
+import { getMenuCategories } from './MegaMenu/menuData';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+const menuCategories = getMenuCategories();
+
+const navLinks = [
+  { title: 'Home', href: '/' },
+  { title: 'Services', href: '/services/', isMegaMenu: true },
+  { title: 'Portfolio', href: '/portfolio/' },
+  { title: 'About', href: '/about/' },
+  { title: 'Blog', href: '/blog/' },
+  { title: 'Contact', href: '/contact/' },
+];
+---
+<header
+  class="fixed top-3 sm:top-4 left-0 right-0 z-50 transition-all duration-300 ease-in-out mx-3 sm:mx-6 md:mx-auto max-w-7xl rounded-none bg-black/95 backdrop-blur-xl border-2 border-white/20 shadow-[4px_4px_0px_#FFFFFF] py-1 text-white"
+  data-header
+>
+  <div class="px-4 sm:px-6" data-header-inner>
+    <div class="flex items-center justify-between h-14">
+      <!-- Enhanced Brutalist Logo -->
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 bg-black border-2 border-white/20 group-hover:border-[#CCFF00] flex items-center justify-center transition-colors">
+          <Logo class="w-5.5 h-5.5 text-white" />
+        </div>
+        <span class="text-xl font-black uppercase text-white group-hover:text-[#CCFF00] transition-colors tracking-tight font-sans">AsreSEO</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+        {navLinks.map((item) =>
+          item.isMegaMenu ? (
+            <MegaMenu label={item.title} />
+          ) : (
+            <a
+              href={item.href}
+              class="text-slate-300 hover:text-[#CCFF00] hover:bg-white/5 px-3 py-2 rounded-none transition-colors font-mono text-xs uppercase font-bold tracking-wider"
+            >
+              {item.title}
+            </a>
+          )
+        )}
+      </nav>
+
+      <!-- Enhanced CTA Button -->
+      <div class="hidden lg:flex items-center gap-4">
+        <Button
+          href="/contact/"
+          variant="acid"
+          class="font-mono text-xs uppercase px-5 py-2.5"
+        >
+          Free Consultation
+        </Button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="lg:hidden p-2 rounded-none border border-white/20 hover:border-[#CCFF00] hover:bg-white/10 text-slate-200 transition-colors duration-200 cursor-pointer"
+        data-menu-btn
+        aria-label="Mobile menu"
+        aria-controls="mobile-menu-panel"
+        aria-expanded="false"
+      >
+        <span data-icon-open class="hidden"><Icon name="x" class="h-6 w-6 text-white" /></span>
+        <span data-icon-closed><Icon name="menu" class="h-6 w-6 text-white" /></span>
+      </button>
+    </div>
+
+    <!-- Enhanced Mobile Menu -->
+    <div data-menu-panel id="mobile-menu-panel" hidden>
+      <div class="lg:hidden border-t-2 border-white/15 py-4 animate-fade-in mt-2 font-mono text-xs">
+        <div class="mb-4">
+          <a
+            href="/services/"
+            class="block text-xs font-bold text-black bg-[#CCFF00] p-3 text-center uppercase border-2 border-black shadow-[2px_2px_0px_#FFFFFF]"
+            data-menu-close
+          >
+            [MASTER_CATALOGUE] View All 20 Protocols ↗
+          </a>
+        </div>
+
+        <nav class="flex flex-col space-y-2">
+          {navLinks.map((item) =>
+            item.isMegaMenu ? (
+              <details class="group rounded-none bg-[#0a0e17] border border-white/10 hover:border-white/30 transition-colors">
+                <summary class="flex items-center justify-between cursor-pointer py-3 px-4 font-bold uppercase text-xs text-white list-none">
+                  <span>{item.title}</span>
+                  <Icon name="chevron-down" class="h-4 w-4 text-[#CCFF00] group-open:rotate-180 transition-transform duration-200" />
+                </summary>
+                <div class="pe-2 ps-4 pb-3 space-y-3 border-s-2 border-[#CCFF00] ms-4 mt-1 bg-black p-3">
+                  <a href="/services/" class="block text-xs font-bold text-[#CCFF00] hover:underline uppercase py-1" data-menu-close>
+                    View all services ↗
+                  </a>
+                  {menuCategories.map((cat) => (
+                    <div class="pt-2 border-t border-white/10">
+                      <a href={cat.href || '/services/'} class="block text-xs font-bold text-white uppercase mb-1.5 hover:text-[#CCFF00]" data-menu-close>
+                        {cat.title}
+                      </a>
+                      <ul class="space-y-1">
+                        {cat.items.map((subItem) => (
+                          <li>
+                            <a href={subItem.href || '/services/'} class="block text-[11px] text-slate-400 hover:text-white py-0.5" data-menu-close>
+                              → {subItem.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </details>
+            ) : (
+              <a
+                href={item.href}
+                class="block text-slate-300 hover:text-[#CCFF00] hover:bg-white/5 py-2.5 px-4 font-bold uppercase text-xs transition-colors"
+                data-menu-close
+              >
+                {item.title}
+              </a>
+            )
+          )}
+          <div class="pt-3 space-y-3">
+            <Button
+              href="/contact/"
+              variant="acid"
+              data-menu-close
+              class="w-full font-mono text-xs uppercase py-3"
+            >
+              Free Consultation
+            </Button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const onScroll = () => {
+    const sc = window.scrollY > 20;
+    if (header) {
+      if (sc) {
+        header.classList.add('bg-black', 'border-white/30');
+      } else {
+        header.classList.remove('border-white/30');
+      }
+    }
+  };
+
+  let ticking = false;
+  const debouncedScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        onScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
+  window.addEventListener('scroll', debouncedScroll, { passive: true });
+
+  const panel = document.querySelector('[data-menu-panel]');
+  const iconOpen = document.querySelector('[data-icon-open]');
+  const iconClosed = document.querySelector('[data-icon-closed]');
+  const isOpen = () => (panel ? !panel.hasAttribute('hidden') : false);
+  let lastFocused: HTMLElement | null = null;
+
+  const focusables = () =>
+    panel
+      ? Array.from(
+          panel.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
+          ),
+        ).filter((el) => !el.hasAttribute('hidden') && el.getAttribute('aria-hidden') !== 'true')
+      : [];
+
+  const setMenu = (open: boolean, trigger?: HTMLElement, restoreFocus = true) => {
+    panel?.toggleAttribute('hidden', !open);
+    iconOpen?.classList.toggle('hidden', !open);
+    iconClosed?.classList.toggle('hidden', open);
+    document.querySelectorAll('[data-menu-btn]').forEach((b) =>
+      b.setAttribute('aria-expanded', String(open)),
+    );
+    if (open) {
+      lastFocused =
+        trigger ??
+        (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+      focusables()[0]?.focus();
+    } else {
+      if (restoreFocus) {
+        const target =
+          lastFocused && lastFocused.isConnected && lastFocused !== document.body
+            ? lastFocused
+            : document.querySelector<HTMLElement>('[data-menu-btn]');
+        target?.focus();
+      }
+      lastFocused = null;
+    }
+  };
+
+  document.querySelectorAll('[data-menu-btn]').forEach((b) =>
+    b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setMenu(!isOpen(), b as HTMLElement);
+    }),
+  );
+  document.querySelectorAll('[data-menu-close]').forEach((b) =>
+    b.addEventListener('click', () => setMenu(false, undefined, false)),
+  );
+
+  document.addEventListener('click', (e: MouseEvent) => {
+    if (!isOpen()) return;
+    const target = e.target as Node | null;
+    if (header && target && header.contains(target)) return;
+    setMenu(false, undefined, false);
+  });
+
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (!isOpen()) return;
+    if (e.key === 'Escape') {
+      setMenu(false);
+      return;
+    }
+    if (e.key === 'Tab') {
+      const items = focusables();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      } else if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    }
+  });
+</script>

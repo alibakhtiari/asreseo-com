@@ -1,0 +1,415 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+
+
+
+
+
+const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': 'Technical & On-Page SEO',
+    'description': 'Comprehensive technical and on-page website optimization covering speed, security, site structure and content',
+    'serviceType': 'SEO Services',
+    'provider': {
+        '@type': 'Organization',
+        'name': 'AsreSEO',
+        'url': 'https://asreseo.com'
+    },
+    'inLanguage': 'en-US',
+    'hasOfferCatalog': {
+        '@type': 'OfferCatalog',
+        'name': 'Technical & On-Page SEO Services',
+        'itemListElement': [
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'Technical SEO',
+                    'description': 'Optimizing site speed, security and technical structure'
+                }
+            },
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'On-Page SEO',
+                    'description': 'Keyword research and content & meta tag optimization'
+                }
+            }
+        ]
+    }
+};
+
+
+
+    const technicalServices = [
+        {
+            icon: "zap",
+            title: 'Speed & Core Web Vitals Optimization',
+            description: 'Bring page load times under 3 seconds and improve Google\u2019s essential scores (LCP, INP, CLS).',
+            benefits: ['Excellent user experience', 'Better mobile rankings', 'Lower bounce rate']
+        },
+        {
+            icon: "shield",
+            title: 'Security & SSL',
+            description: 'Full HTTPS setup, fixing security vulnerabilities and protecting user data.',
+            benefits: ['User trust', 'Positive ranking signal', 'Brand protection']
+        },
+        {
+            icon: "code",
+            title: 'Structured Data (Schema)',
+            description: 'Schema markup for rich results in search (stars, prices, FAQs).',
+            benefits: ['Higher click-through rate', 'Standout appearance', 'Better Google understanding']
+        },
+        {
+            icon: "smartphone",
+            title: 'Mobile-First SEO',
+            description: 'Flawless performance on phones and tablets with fully responsive design.',
+            benefits: ['Mobile-first indexing', 'Wider reach', 'Happier users']
+        },
+        {
+            icon: "database",
+            title: 'Crawl & Index Optimization',
+            description: 'Crawl budget management plus robots.txt and sitemap fixes for fast, complete indexing.',
+            benefits: ['Faster indexing', 'New page discovery', 'Removing junk pages']
+        },
+        {
+            icon: "globe",
+            title: 'URL Structure & Site Architecture',
+            description: 'Logical URL design and information architecture that users and Google both understand.',
+            benefits: ['Easy navigation', 'Page authority distribution', 'Clean URLs']
+        }
+    ];
+
+    const onPageServices = [
+        {
+            icon: "search",
+            title: 'Advanced Keyword Research',
+            description: 'Finding money-making and long-tail keywords, plus competitor keyword-gap analysis.',
+            benefits: ['Targeted traffic', 'High conversion rate', 'Precise content strategy']
+        },
+        {
+            icon: "settings",
+            title: 'Meta Tag Optimization',
+            description: 'Compelling titles and meta descriptions written to lift click-through rate (CTR).',
+            benefits: ['Higher CTR', 'More visitors', 'Search-intent match']
+        },
+        {
+            icon: "monitor",
+            title: 'Content & Heading Optimization',
+            description: 'Properly structured content with H1\u2013H6 tags and natural keyword and LSI usage.',
+            benefits: ['Better readability', 'Google topic understanding', 'Keyword rankings']
+        },
+        {
+            icon: "target",
+            title: 'Strategic Internal Linking',
+            description: 'An internal link network that passes authority to key pages and keeps users around longer.',
+            benefits: ['Stronger key pages', 'Lower bounce rate', 'Better page indexing']
+        }
+    ];
+
+    const coreWebVitals = [
+        {
+            metric: 'LCP',
+            title: 'Largest Contentful Paint',
+            description: 'Time to load the largest content element on the page',
+            target: '< 2.5 seconds',
+            icon: "gauge",
+            color: 'text-blue-600'
+        },
+        {
+            metric: 'INP',
+            title: 'Interaction to Next Paint',
+            description: 'Interactive responsiveness \u2014 how fast the page reacts to taps and clicks',
+            target: '< 200 milliseconds',
+            icon: "activity",
+            color: 'text-green-800'
+        },
+        {
+            metric: 'CLS',
+            title: 'Cumulative Layout Shift',
+            description: 'How much the page layout shifts unexpectedly',
+            target: 'score < 0.1',
+            icon: "monitor",
+            color: 'text-purple-600'
+        }
+    ];
+
+    const technicalIssues = [
+        'Google crawl and indexing errors',
+        'robots.txt or meta robots anomalies',
+        'Broken XML sitemaps and navigation structure issues',
+        'Duplicate URLs and missing canonical tags',
+        'Broken links and 404 / 5xx errors',
+        'Core Web Vitals failures (LCP, INP, CLS)',
+        'Messy URL structure and unnecessary parameters',
+        'Responsive and mobile design issues',
+        'Unoptimized, heavy images',
+        'Missing HTTPS or expired SSL certificates',
+        'Poor code quality and JavaScript errors',
+        'Accessibility gaps and WCAG standard issues'
+    ];
+
+    // Qualitative process/measurement facts, not performance percentages —
+    // see src/lib/site-claims.ts authenticity policy.
+    const stats = [
+        { metric: 'Core Web Vitals', label: 'Site speed optimization', color: 'text-blue-600', icon: "zap" },
+        { metric: 'PageSpeed', label: 'Score monitoring & improvement', color: 'text-green-800', icon: "gauge" },
+        { metric: 'Search Console', label: 'Organic traffic monitoring', color: 'text-purple-600', icon: "trending-up" },
+        { metric: 'Technical audit', label: 'Fixing technical errors', color: 'text-orange-600', icon: "check-circle" }
+    ];
+
+    const faqs = [
+        {
+            question: 'How does technical SEO affect my rankings?',
+            answer: 'Technical SEO is your site\u2019s foundation. Without a healthy technical base (speed, security, crawlability), even the best content won\u2019t rank. Its impact is measured with Search Console data after implementation.'
+        },
+        {
+            question: 'How long does keyword research take?',
+            answer: 'It is an ongoing process, but a comprehensive initial research usually takes 1\u20132 weeks to map every market and competitor opportunity.'
+        },
+        {
+            question: 'Will fixing technical errors hurt my rankings?',
+            answer: 'No \u2014 quite the opposite! Fixes may cause brief fluctuations (as Google re-crawls your site), but they ultimately lead to stable, lasting growth.'
+        },
+        {
+            question: 'What are Core Web Vitals and why do they matter?',
+            answer: 'They are Google\u2019s metrics for real user experience (speed, interactivity, visual stability) and have officially been ranking factors since 2021.'
+        },
+        {
+            question: 'Is on-page SEO just about keywords?',
+            answer: 'No \u2014 on-page SEO also covers image optimization, heading structure, internal linking, click-through rate (CTR) improvements, and user-friendly copywriting.'
+        }
+    ];
+
+
+
+const breadcrumbs = [
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'SEO Services', item: 'https://asreseo.com/services/seo/' },
+    { position: 3, name: 'Technical & On-Page SEO', item: 'https://asreseo.com/services/seo/technical-onpage/' },
+  ];
+
+---
+<BaseLayout lang="en" title='Technical & On-Page SEO Services | AsreSEO' description='Comprehensive technical and on-page SEO services. Faster load times, technical error fixes, keyword research and site structure optimization for Google\u2019s top spots.' keywords='technical SEO, on-page SEO, Technical SEO, site speed optimization, keyword research, Core Web Vitals' canonical='/services/seo/technical-onpage/' ogType='website' ogUrl='https://asreseo.com/services/seo/technical-onpage/' ogImages={[{ url: "/og/technical-onpage-hero.jpg", width: 1200, height: 630, alt: "Technical & on-page SEO | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Technical & On-Page SEO | Full Site Optimization | AsreSEO'
+
+  ogDescription='Technical and content optimization to win top Google rankings and a superb user experience.'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+            <script id="structured-data" type="application/ld+json" is:inline
+                set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/seo/technical-onpage/', image: '/og/technical-onpage-hero.jpg' }))}
+            />
+
+            <Header lang="en" />
+            <BreadcrumbStructuredData items={breadcrumbs} />
+
+            <main>
+                <ServiceHero lang="en"
+                    badge="Complete Technical & On-Page Optimization"
+                    title="Technical & On-Page SEO"
+                    titleHighlight="On-Page SEO"
+                    description="A rock-solid technical foundation plus optimized content \u2014 the two wings that carry your website to Google\u2019s first page. Blazing speed, standard structure and targeted keywords."
+                    primaryCtaText="Start Optimizing My Site"
+                    secondaryCtaText="Free Technical Audit"
+                    imageSrc="/images/technical-onpage-hero.webp"
+                    imageAlt="Technical and on-page SEO"
+                    theme="cyan"
+                />
+
+                <!-- Stats Section -->
+                <ServiceStats lang="en" stats={stats} />
+                <!-- Technical Services Section -->
+                <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+                    <div class="container-custom">
+                        <div class="mb-14 text-left">
+                            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[INFRASTRUCTURE_ARCHITECTURE // TECHNICAL_SEO]</div>
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                                Our <span class="text-[#CCFF00]">Technical SEO</span> Services
+                            </h2>
+                            <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                                // Building a rock-solid technical foundation Google understands
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {technicalServices.map((service, index) => (
+                                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                                                <Icon name={service.icon} class="h-6 w-6 text-[#CCFF00]" />
+                                            </div>
+                                            <CardTitle class="text-xl font-bold uppercase text-white">{service.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-slate-300 mb-6 leading-relaxed text-sm">
+                                            {service.description}
+                                        </p>
+                                        <div class="space-y-2 border-t border-white/10 pt-4">
+                                            {service.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-slate-300">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-[#CCFF00] shrink-0" />
+                                                    <span>{benefit}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- On-Page Services Section -->
+                <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+                    <div class="container-custom">
+                        <div class="mb-14 text-left">
+                            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[SEMANTIC_STRUCTURE // ON_PAGE_SEO]</div>
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                                Our <span class="text-[#CCFF00]">On-Page SEO</span> Services
+                            </h2>
+                            <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                                // Optimizing content and page structure to win users and Google alike
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-8">
+                            {onPageServices.map((service, index) => (
+                                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                                                <Icon name={service.icon} class="h-6 w-6 text-[#CCFF00]" />
+                                            </div>
+                                            <CardTitle class="text-xl font-bold uppercase text-white">{service.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-slate-300 mb-6 leading-relaxed text-sm">
+                                            {service.description}
+                                        </p>
+                                        <div class="space-y-2 border-t border-white/10 pt-4">
+                                            {service.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-slate-300">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-[#CCFF00] shrink-0" />
+                                                    <span>{benefit}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Core Web Vitals Section -->
+                <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+                    <div class="container-custom">
+                        <div class="mb-14 text-left">
+                            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[PERFORMANCE_TELEMETRY // VITALS_STANDARDS]</div>
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                                <span class="text-[#CCFF00]">Core Web Vitals</span> Standards
+                            </h2>
+                            <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                                // We tune your site to pass Google’s toughest user-experience benchmarks
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8">
+                            {coreWebVitals.map((vital, index) => (
+                                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                                                <Icon name={vital.icon} class="h-6 w-6 text-[#CCFF00]" />
+                                            </div>
+                                            <div>
+                                                <h3 class="text-2xl font-black font-mono text-[#CCFF00]">{vital.metric}</h3>
+                                                <p class="text-xs font-mono uppercase text-slate-400">{vital.title}</p>
+                                            </div>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-slate-300 mb-4 leading-relaxed text-sm">
+                                            {vital.description}
+                                        </p>
+                                        <div class="flex items-center justify-between border-t border-white/10 pt-4 font-mono text-xs">
+                                            <span class="text-slate-400 uppercase tracking-wider">Benchmark Target:</span>
+                                            <span class="text-xs font-bold text-[#CCFF00] bg-black px-2.5 py-1 border border-white/20">{vital.target}</span>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Technical Issues Section -->
+                <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+                    <div class="container-custom">
+                        <div class="mb-14 text-left">
+                            <div class="font-mono text-xs text-red-400 uppercase tracking-widest mb-2">[DEFECT_ELIMINATION // CRITICAL_RESOLUTIONS]</div>
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                                Killer <span class="text-[#CCFF00]">Technical Errors</span>, Fixed
+                            </h2>
+                            <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-2xl">
+                                // We find and eliminate the issues holding your site back
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {technicalIssues.map((issue, index) => (
+                                <div class="flex items-start gap-3.5 p-4 bg-[#0a0e17] border-2 border-white/15 hover:border-[#CCFF00] transition-colors rounded-none brutalist-card group">
+                                    <div class="w-8 h-8 bg-black border border-red-500/50 flex items-center justify-center shrink-0 mt-0.5 group-hover:border-red-400 transition-colors">
+                                        <Icon name="alert-triangle" class="h-4 w-4 text-red-400" />
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mb-1">
+                                            ERR_{String(index + 1).padStart(2, '0')}
+                                        </div>
+                                        <span class="text-white font-medium leading-snug text-sm block">
+                                            {issue}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <ServiceFAQ lang="en"
+                    title="Frequently Asked Questions"
+                    highlightWord="Asked Questions"
+                    subtitle="Answers to your questions about technical & on-page SEO"
+                    faqs={faqs}
+                />
+
+                <ServiceCTA lang="en"
+                    title="Get your site ready to win!"
+                    description="Unlock your website\u2019s real potential with powerful technical SEO and precise on-page optimization. Claim your free audit today."
+                    primaryText="Start Optimizing"
+                    secondaryText="Free Consultation"
+                    primaryClass="bg-cyan-700 hover:bg-cyan-800 text-white font-semibold shadow-lg shadow-cyan-700/30"
+                />
+            </main>
+
+            <Footer lang="en" />
+        </div>
+</BaseLayout>

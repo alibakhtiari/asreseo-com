@@ -1,0 +1,393 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import Button from '../../components/ui/button/Button.astro';
+import Icon from '../../components/ui/Icon.astro';
+import Accordion from '../../components/ui/Accordion.astro';
+import AccordionContent from '../../components/ui/AccordionContent.astro';
+import AccordionItem from '../../components/ui/AccordionItem.astro';
+import AccordionTrigger from '../../components/ui/AccordionTrigger.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+
+const localize = (p: string) => p;
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'AsreSEO Support Center & Customer Service',
+  url: 'https://asreseo.com/support/',
+  description: 'The AsreSEO support center: how to reach our specialists, service-level commitments (SLA), working hours, and answers to common questions about SEO and digital marketing support requests.',
+  inLanguage: 'en-US',
+};
+
+const supportFaqs = [
+  {
+    q: 'What is the safest way to share hosting, WordPress, and Google Search Console access?',
+    a: 'To maintain the highest security standards, we recommend granting Google tool access (Search Console, Analytics, and Tag Manager) via delegation with a Full or User role to the AsreSEO organizational email. For WordPress and hosting, we suggest creating a dedicated account with info@asreseo.com and sending the initial credentials via official chat or email, so you never have to reveal your own master password.'
+  },
+  {
+    q: 'On holidays or outside working hours, what should I do if my website has a problem?',
+    a: 'For all projects under technical management and SEO contracts, automated server uptime monitoring runs 24/7. If hosting goes down completely, a 500 server error occurs, or an acute security issue arises, clients can message us on Telegram prefixed with "[URGENT - Site Down]" so the on-call tech team intervenes as quickly as possible.'
+  },
+  {
+    q: 'How are response-time commitments (SLA) set for different cases?',
+    a: 'The AsreSEO support team commits to tiered response times: critical server outages and site downtime in under 2 hours; high-priority bugs and Search Console errors within 4 to 8 working hours; analytical questions and SEO reports within 24 working hours at most; and content requests and new features per the contract schedule.'
+  },
+  {
+    q: 'How do SEO reports and results reviews work?',
+    a: 'AsreSEO clients get access to a dedicated, real-time Looker Studio dashboard to track organic traffic, impressions, and keyword positions. On top of that, a monthly analytical report — summarizing completed actions, competitor analysis, and next month\'s plan — is delivered at the start of each month and reviewed in an online session with the project manager.'
+  },
+  {
+    q: 'Do you train the client\'s team on using the site panel and publishing content?',
+    a: 'Yes. After a website is designed or the content structure is rebuilt, dedicated tutorial videos plus step-by-step documentation are provided so your staff can publish new products or articles independently and in line with SEO principles.'
+  }
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: supportFaqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+
+const breadcrumbs = [
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'Support Center', item: 'https://asreseo.com/support/' },
+];
+
+const slaItems = [
+  {
+    level: 'Critical',
+    time: 'Under 2 working hours',
+    color: 'red',
+    badgeClass: 'bg-black text-red-400 border-red-500/50',
+    title: 'Site outages & server errors',
+    desc: 'Complete website inaccessibility, 500 internal server errors, payment gateway disruption, or reported security issues.'
+  },
+  {
+    level: 'High Priority',
+    time: '4 to 8 working hours',
+    color: 'amber',
+    badgeClass: 'bg-black text-amber-400 border-amber-500/50',
+    title: 'Technical errors & sudden drops',
+    desc: 'Indexing errors in Google Search Console, noticeable ranking drops, responsive bugs, and plugin incompatibilities.'
+  },
+  {
+    level: 'Normal Priority',
+    time: '24 working hours at most',
+    color: 'blue',
+    badgeClass: 'bg-black text-[#CCFF00] border-[#CCFF00]/50',
+    title: 'General questions & reports',
+    desc: 'Guidance on monthly reports, keyword advice, meta-tag guidance, and creating routine pages.'
+  },
+  {
+    level: 'Development & Content',
+    time: 'Per project calendar',
+    color: 'emerald',
+    badgeClass: 'bg-black text-emerald-400 border-emerald-500/50',
+    title: 'Content production & custom features',
+    desc: 'Writing and publishing articles, press features, developing new custom features, and redesigning visual elements.'
+  }
+];
+
+const workflowSteps = [
+  {
+    step: '1',
+    title: 'Submit your request',
+    desc: 'Send a clear description with the page link, error screenshots, or documents via Telegram, ticket, or official email.'
+  },
+  {
+    step: '2',
+    title: 'Initial review & specialist routing',
+    desc: 'The support specialist evaluates the request and assigns it directly to the relevant expert (technical SEO, content, or developer).'
+  },
+  {
+    step: '3',
+    title: 'Diagnosis & safe-environment fix',
+    desc: 'Root-cause analysis with optimizations applied or fixes tested in a staging environment — no interruption to the live site.'
+  },
+  {
+    step: '4',
+    title: 'Final test & resolution notice',
+    desc: 'Final quality testing, confirmation the issue is durably resolved, and a full resolution report with preventive advice.'
+  }
+];
+---
+
+<BaseLayout
+  lang="en"
+  title='Support Center, Customer Service & SLA Guide | AsreSEO'
+  description='The AsreSEO support center: a complete guide to reaching our specialists, service-level commitments (SLA), ticket tracking, and fast response times on working days.'
+  keywords='AsreSEO support, SEO support, digital marketing support center, SEO response time, SEO SLA, contact AsreSEO'
+  canonical='/support/'
+  ogTitle='Support Center & Customer Service | AsreSEO'
+  ogDescription='Fast responses, transparent SLA commitments, and technical support for SEO, Google Ads, and web design projects at AsreSEO.'
+  ogUrl='https://asreseo.com/support/'
+  ogType='website'
+  twitterCard='summary_large_image'
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
+
+  <div class="min-h-screen bg-[#000000] text-slate-100">
+    <Header lang="en" />
+
+    <main class="pt-28 pb-20" dir="ltr">
+      <!-- Hero Section -->
+      <section class="py-14 bg-[#000000] border-b border-white/5">
+        <div class="container-custom max-w-5xl text-center">
+          <div class="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-400 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium mb-5 border border-cyan-500/20">
+            <Icon name="life-buoy" class="w-4 h-4 text-cyan-400" />
+            AsreSEO support center & subscriber services
+          </div>
+          <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            AsreSEO <span class="gradient-text">Customer Support</span> Center
+          </h1>
+          <p class="text-base md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+            The AsreSEO specialist team stands by you at every stage of business growth. We are committed to transparent, precise, and fast responses so your website reaches the top without technical worries.
+          </p>
+        </div>
+      </section>
+
+      <div class="container-custom max-w-5xl mt-12 space-y-16">
+        <!-- Communication Channels -->
+        <section>
+          <div class="text-center mb-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">Direct Communication Channels</h2>
+            <p class="text-slate-400 text-sm md:text-base">The fastest ways to reach AsreSEO specialists and technical teams</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
+            <!-- WhatsApp Support -->
+            <div class="bg-[#0a0e17] p-7 border-2 border-white/15 hover:border-[#25D366] transition-all flex flex-col justify-between text-left brutalist-card">
+              <div>
+                <div class="w-12 h-12 bg-[#25D366]/10 text-[#25D366] border border-[#25D366]/30 flex items-center justify-center mb-5">
+                  <Icon name="whatsapp" class="h-6 w-6" />
+                </div>
+                <div class="flex items-center justify-between gap-2 mb-2 font-sans">
+                  <h3 class="text-lg font-bold text-white">WhatsApp Chat</h3>
+                  <span class="text-[10px] bg-[#25D366]/20 text-[#25D366] px-2.5 py-0.5 font-bold uppercase border border-[#25D366]/30">Instant</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed mb-4 font-sans">
+                  Direct instant messaging for day-to-day coordination, screenshots, telemetry alerts, and rapid support.
+                </p>
+                <div class="bg-black p-3 border border-white/10 text-slate-400 mb-6 space-y-1">
+                  <div><strong>Response time:</strong> &lt; 15 mins (24/7 priority)</div>
+                  <div><strong>Number:</strong> <span class="text-white font-bold" dir="ltr">+1 (346) 327-2878</span></div>
+                </div>
+              </div>
+              <a
+                href="https://wa.me/13463272878"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full py-3 bg-[#25D366] hover:bg-[#20ba5a] text-black font-bold uppercase text-center border-2 border-black shadow-[3px_3px_0px_#FFFFFF] hover:shadow-[3px_3px_0px_#25D366] transition-all block"
+              >
+                Chat on WhatsApp ↗
+              </a>
+            </div>
+
+            <!-- Direct Phone Line -->
+            <div class="bg-[#0a0e17] p-7 border-2 border-white/15 hover:border-[#CCFF00] transition-all flex flex-col justify-between text-left brutalist-card">
+              <div>
+                <div class="w-12 h-12 bg-[#CCFF00]/10 text-[#CCFF00] border border-[#CCFF00]/30 flex items-center justify-center mb-5">
+                  <Icon name="phone-call" class="h-6 w-6" />
+                </div>
+                <div class="flex items-center justify-between gap-2 mb-2 font-sans">
+                  <h3 class="text-lg font-bold text-white">Voice Line</h3>
+                  <span class="text-[10px] bg-[#CCFF00]/20 text-[#CCFF00] px-2.5 py-0.5 font-bold uppercase border border-[#CCFF00]/30">Direct</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed mb-4 font-sans">
+                  Direct phone access for urgent incident escalation, executive check-ins, and consultation sessions.
+                </p>
+                <div class="bg-black p-3 border border-white/10 text-slate-400 mb-6 space-y-1">
+                  <div><strong>Availability:</strong> Mon–Fri, Global On-Call</div>
+                  <div><strong>Hotline:</strong> <span class="text-white font-bold" dir="ltr">+1 (346) 327-2878</span></div>
+                </div>
+              </div>
+              <a
+                href="tel:+13463272878"
+                class="w-full py-3 bg-[#CCFF00] hover:bg-[#b8e600] text-black font-bold uppercase text-center border-2 border-black shadow-[3px_3px_0px_#FFFFFF] hover:shadow-[3px_3px_0px_#CCFF00] transition-all block"
+              >
+                Call Hotline ↗
+              </a>
+            </div>
+
+            <!-- Email & Ticketing -->
+            <div class="bg-[#0a0e17] p-7 border-2 border-white/15 hover:border-white transition-all flex flex-col justify-between text-left brutalist-card">
+              <div>
+                <div class="w-12 h-12 bg-white/10 text-white border border-white/20 flex items-center justify-center mb-5">
+                  <Icon name="mail" class="h-6 w-6" />
+                </div>
+                <div class="flex items-center justify-between gap-2 mb-2 font-sans">
+                  <h3 class="text-lg font-bold text-white">Email & Tickets</h3>
+                  <span class="text-[10px] bg-white/10 text-slate-300 px-2.5 py-0.5 font-bold uppercase border border-white/20">Official</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed mb-4 font-sans">
+                  Documented ticketing for audit trails, NDA filings, large data files, and contract correspondence.
+                </p>
+                <div class="bg-black p-3 border border-white/10 text-slate-400 mb-6 space-y-1">
+                  <div><strong>Response time:</strong> 2 to 4 working hours</div>
+                  <div><strong>Inbox:</strong> <span class="text-white font-bold" dir="ltr">info@asreseo.com</span></div>
+                </div>
+              </div>
+              <a
+                href="mailto:info@asreseo.com"
+                class="w-full py-3 bg-black hover:bg-zinc-900 text-white hover:text-[#CCFF00] font-bold uppercase text-center border-2 border-white/30 hover:border-[#CCFF00] shadow-[3px_3px_0px_#FFFFFF] hover:shadow-[3px_3px_0px_#CCFF00] transition-all block"
+              >
+                Send Email ↗
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLA (Service Level Agreement) Section -->
+        <section class="bg-white rounded-3xl p-8 md:p-10 border border-gray-200/80 shadow-xs">
+          <div class="max-w-3xl mb-8 text-left">
+            <div class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 mb-2">
+              <Icon name="shield-check" class="w-4 h-4" />
+              Quality & scheduling commitments
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Service-level agreement (SLA) & response times</h2>
+            <p class="text-gray-600 text-sm md:text-base leading-relaxed">
+              At AsreSEO we stand by transparency and speed. For clients' peace of mind, response times for technical and SEO requests are guaranteed by priority as follows:
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {slaItems.map((item) => (
+              <div class="p-5 rounded-none border-2 border-white/15 bg-[#0a0e17] hover:border-[#CCFF00] transition-all text-left brutalist-card">
+                <div class="flex items-center justify-between gap-3 mb-3">
+                  <span class={`text-xs px-3 py-1 font-mono uppercase font-semibold border ${item.badgeClass}`}>
+                    {item.level}
+                  </span>
+                  <span class="text-xs font-mono text-slate-300 bg-black px-3 py-1 border border-white/20">
+                    {item.time}
+                  </span>
+                </div>
+                <h3 class="text-base font-bold text-white mb-2">{item.title}</h3>
+                <p class="text-xs md:text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Workflow / How Requests Are Handled -->
+        <section>
+          <div class="text-center mb-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">How tickets & requests are handled</h2>
+            <p class="text-gray-600 text-sm md:text-base">How is your request tracked from initial submission to final sign-off?</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {workflowSteps.map((step) => (
+              <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs relative text-left flex flex-col justify-between">
+                <div>
+                  <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold text-lg flex items-center justify-center mb-4 shadow-sm shadow-blue-500/30">
+                    {step.step}
+                  </div>
+                  <h3 class="text-base font-bold text-gray-900 mb-2">{step.title}</h3>
+                  <p class="text-xs md:text-sm text-gray-600 leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Working Hours & Emergency Protocol -->
+        <section class="bg-linear-to-br from-slate-900 to-blue-950 text-white rounded-3xl p-8 md:p-10 shadow-lg text-left">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <div class="inline-flex items-center gap-2 bg-white/10 text-blue-200 px-3.5 py-1 rounded-full text-xs font-medium mb-4 border border-white/15">
+                <Icon name="clock" class="w-4 h-4 text-amber-300" />
+                Working hours & active support
+              </div>
+              <h2 class="text-2xl md:text-3xl font-bold mb-4 leading-tight">Working hours & emergency protocol</h2>
+              <p class="text-blue-200/90 text-sm md:text-base leading-relaxed mb-6">
+                AsreSEO specialists answer you on working days. For emergencies threatening your online business continuity, an after-hours on-call protocol is in place.
+              </p>
+              <div class="space-y-2.5 text-sm text-blue-100">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span><strong>Sat–Wed:</strong> 9:00 AM–5:00 PM (full support)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                  <span><strong>Thursdays:</strong> 9:00 AM–1:00 PM (open-ticket follow-ups)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                  <span><strong>Holidays:</strong> automated server monitoring with crisis intervention</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/15">
+              <div class="flex items-center gap-3 mb-4">
+                <Icon name="alert-circle" class="w-6 h-6 text-amber-300" />
+                <h3 class="text-lg font-bold text-white">Emergency outage reporting guide</h3>
+              </div>
+              <p class="text-xs md:text-sm text-blue-100 leading-relaxed mb-5">
+                If a major server disruption or hack occurs on a holiday, send <strong>"[URGENT - Site Down]"</strong> to our Telegram ID so a direct alert reaches the systems engineers.
+              </p>
+              <Button href="https://t.me/asreseo" target="_blank" rel="noopener" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium border-0">
+                Send an urgent Telegram message
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Accordion -->
+        <section class="bg-white rounded-3xl p-8 md:p-10 border border-gray-200/80 shadow-xs">
+          <div class="text-center max-w-2xl mx-auto mb-10">
+            <div class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 mb-2">
+              <Icon name="help-circle" class="w-4 h-4" />
+              Common guide
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Support center FAQ</h2>
+            <p class="text-gray-600 text-sm md:text-base">Transparent answers to clients' most frequent questions about AsreSEO support services</p>
+          </div>
+
+          <Accordion type="single" collapsible class="w-full" dir="ltr">
+            {supportFaqs.map((faq, index) => (
+              <AccordionItem value={`support-faq-${index}`} class="border-b border-gray-150 last:border-none py-2">
+                <AccordionTrigger class="text-left text-base md:text-lg font-bold text-gray-900 hover:text-blue-600 py-3">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent class="text-left text-gray-600 text-sm md:text-base leading-relaxed pt-1 pb-4">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </section>
+
+        <!-- Final Consultation CTA -->
+        <section class="bg-[#0a0e17] rounded-none p-8 md:p-10 border-2 border-white/15 text-center">
+          <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Need an expert review of your website?</h2>
+          <p class="text-slate-300 text-base max-w-2xl mx-auto leading-relaxed mb-8">
+            Beyond ongoing support, AsreSEO specialists are ready to analyze your SEO, user experience, and site speed free of charge.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" class="px-8" href={localize('/contact/')}>
+              Get a free SEO consultation
+            </Button>
+            <Button size="lg" variant="outline" class="px-8 bg-white" href="mailto:info@asreseo.com">
+              <Icon name="mail" class="mr-2 h-4 w-4" />
+              Email us: info@asreseo.com
+            </Button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <Footer lang="en" />
+  </div>
+</BaseLayout>

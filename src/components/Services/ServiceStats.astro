@@ -1,0 +1,117 @@
+---
+import Card from '../ui/card/Card.astro';
+import CardContent from '../ui/card/CardContent.astro';
+import Icon from '../ui/Icon.astro';
+
+export interface StatItem {
+  metric: string;
+  label: string;
+  icon?: string;
+  color?: string;
+}
+
+export interface Props {
+  lang?: string;
+  stats: StatItem[];
+  gradientClass?: string;
+  metricColorClass?: string;
+  iconColorClass?: string;
+  theme?: string;
+}
+
+const {
+  lang = 'en',
+  stats = [],
+  metricColorClass,
+  theme,
+} = Astro.props;
+
+void lang;
+
+// Maps legacy low-contrast light-mode colors and theme props into bright, high-contrast dark theme colors
+function getMetricColor(color?: string, th?: string): string {
+  if (color) {
+    const c = color.trim();
+    if (c.includes('orange-700') || c.includes('orange-600') || c.includes('orange-500')) return 'text-amber-400';
+    if (c.includes('cyan-700') || c.includes('cyan-600')) return 'text-cyan-300';
+    if (c.includes('blue-600') || c.includes('blue-700')) return 'text-sky-400';
+    if (c.includes('green-800') || c.includes('emerald-700') || c.includes('green-700')) return 'text-emerald-400';
+    if (c.includes('purple-600') || c.includes('indigo-600') || c.includes('purple-700')) return 'text-purple-300';
+    if (c.includes('amber-600') || c.includes('amber-700')) return 'text-amber-300';
+    if (c.includes('pink-600') || c.includes('pink-700')) return 'text-pink-400';
+    if (c.includes('teal-600') || c.includes('teal-700')) return 'text-teal-300';
+    return c;
+  }
+  if (th) {
+    if (th === 'green' || th === 'emerald') return 'text-emerald-400';
+    if (th === 'purple' || th === 'indigo') return 'text-purple-300';
+    if (th === 'blue' || th === 'cyan') return 'text-sky-400';
+    if (th === 'orange' || th === 'amber') return 'text-amber-400';
+    if (th === 'pink') return 'text-pink-400';
+    if (th === 'teal') return 'text-teal-300';
+  }
+  return 'text-[#CCFF00]';
+}
+
+const defaultMetricColor = getMetricColor(metricColorClass, theme);
+
+// Determine optimal typography class based on metric length to guarantee zero overflow or overlap
+function getMetricTypography(metric: string): string {
+  const clean = (metric || '').trim();
+  const len = clean.length;
+  if (len <= 4) {
+    // Ultra-short metrics: 24/7, 10x, 4x, 0, CLS, LCP, INP, 3x
+    return 'text-3xl sm:text-4xl lg:text-5xl font-black font-mono tracking-tight leading-none whitespace-nowrap';
+  }
+  if (len <= 7) {
+    // Medium-short stats: 18M+, +412%, 100%, 94.2%, 5 steps
+    return 'text-2xl sm:text-3xl lg:text-4xl font-black font-mono tracking-tight leading-tight wrap-break-word [overflow-wrap:anywhere]';
+  }
+  if (len <= 11) {
+    // Single or short compound words: 2 seconds, 12 days, PageSpeed, Heatmaps
+    return 'text-xl sm:text-2xl lg:text-3xl font-black font-sans uppercase tracking-tight leading-tight wrap-break-word [overflow-wrap:anywhere]';
+  }
+  if (len <= 20) {
+    // Multi-word phrase metrics: Conversion tracking, Cost efficiency, Proven track record, Core Web Vitals, etc.
+    return 'text-base sm:text-lg lg:text-xl font-black font-sans uppercase tracking-tight leading-snug wrap-break-word hyphens-auto [overflow-wrap:anywhere]';
+  }
+  // Very long phrases (>20 chars): Largest Contentful Paint (LCP), Interaction to Next Paint (INP)
+  return 'text-sm sm:text-base lg:text-lg font-black font-sans uppercase tracking-tight leading-snug wrap-break-word hyphens-auto [overflow-wrap:anywhere]';
+}
+---
+
+<section class="py-16 bg-[#000000] border-y-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      {stats.map((stat, idx) => {
+        const itemColor = stat.color ? getMetricColor(stat.color) : defaultMetricColor;
+        const typoClass = getMetricTypography(stat.metric);
+        return (
+          <Card class="bg-[#090d16] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none min-w-0 overflow-hidden flex flex-col justify-between">
+            <CardContent class="p-5 sm:p-6 lg:p-7 text-left flex flex-col justify-between h-full min-w-0 overflow-hidden">
+              <!-- Card Header -->
+              <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10 font-mono text-[11px] shrink-0">
+                <span class="text-slate-500 uppercase tracking-widest">METRIC_0{idx + 1}</span>
+                {stat.icon && (
+                  <Icon name={stat.icon} class="h-4 w-4 text-[#CCFF00] shrink-0" />
+                )}
+              </div>
+
+              <!-- Metric Content (guaranteed zero overflow / overlap) -->
+              <div class="min-w-0 my-2 flex-1 flex flex-col justify-center overflow-hidden">
+                <div class={`${typoClass} ${itemColor}`}>
+                  {stat.metric}
+                </div>
+              </div>
+
+              <!-- Metric Label -->
+              <p class="text-xs font-mono uppercase tracking-wider text-slate-400 mt-2 pt-3 border-t border-white/5 line-clamp-2 shrink-0">
+                {stat.label}
+              </p>
+            </CardContent>
+          </Card>
+        );
+      })}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,505 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'UX Design & Information Architecture',
+  'description': 'User experience design and optimized information architecture services',
+  'serviceType': 'UX Design & Information Architecture',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com'
+  },
+  'inLanguage': 'en-US',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'UX Design Services',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Information Architecture',
+          'description': 'Designing website data structures'
+        }
+      }
+    ]
+  }
+}
+
+
+
+  const designPrinciples = [
+    {
+      principle: 'Structured Information Architecture',
+      description: 'A standardized site structure so users and Google find information fast \u2014 with logical hierarchy and smooth navigation.',
+      benefits: ['Fast information discovery', 'Better user experience', 'Better Google rankings']
+    },
+    {
+      principle: 'Optimized User Journey',
+      description: 'Access paths and interactions designed so users reach their goal with zero confusion and minimal clicks.',
+      benefits: ['Higher conversion rate', 'Lower exit rate', 'Happier users']
+    },
+    {
+      principle: 'World-Class UX Patterns',
+      description: 'Using proven global UX best practices and patterns tested by millions of users.',
+      benefits: ['Familiar experience', 'Predictability', 'High efficiency']
+    }
+  ];
+
+  const methodologies = [
+    {
+      name: 'Design Thinking Process',
+      steps: [
+        'Empathize \u2014 understanding user needs',
+        'Define \u2014 framing the problem',
+        'Ideate \u2014 generating ideas',
+        'Prototype \u2014 building samples',
+        'Test \u2014 testing and refining'
+      ],
+      impact: 'Better user experience'
+    },
+    {
+      name: 'User Journey Mapping',
+      steps: [
+        'Mapping the user journey',
+        'Identifying touchpoints',
+        'Analyzing pain points',
+        'Designing solutions',
+        'Continuous optimization'
+      ],
+      impact: 'Higher retention rate'
+    },
+    {
+      name: 'Usability Testing Framework',
+      steps: [
+        'Defining test scenarios',
+        'Testing with real users',
+        'Analyzing user behavior',
+        'Identifying issues',
+        'Iterating and improving'
+      ],
+      impact: 'Better goal-completion rate'
+    }
+  ];
+
+  const uxTechniques = [
+    {
+      technique: 'F-Pattern & Z-Pattern Layout',
+      description: 'Page layouts designed around users\u2019 natural reading patterns',
+      effect: 'Better first-glance engagement'
+    },
+    {
+      technique: 'Progressive Disclosure',
+      description: 'Revealing information gradually so users never feel overwhelmed',
+      effect: 'Lower exit rate'
+    },
+    {
+      technique: 'Visual Hierarchy',
+      description: 'Ordering visual elements by their relative importance',
+      effect: 'Better content comprehension'
+    },
+    {
+      technique: 'Affordance Design',
+      description: 'Designing elements that visually signal how they work',
+      effect: 'Less user confusion'
+    }
+  ];
+
+  const userResearchMethods = [
+    {
+      method: 'User Interviews',
+      description: 'In-depth interviews with target users to uncover real needs',
+      benefit: 'Comprehensive insights'
+    },
+    {
+      method: 'Usability Testing',
+      description: 'Usability tests with real users in real conditions',
+      benefit: 'Finding real problems'
+    },
+    {
+      method: 'A/B Testing',
+      description: 'Testing two or more variants to find the best approach',
+      benefit: 'Data-driven decisions'
+    },
+    {
+      method: 'Heatmap Analysis',
+      description: 'Analyzing click and scroll heatmaps',
+      benefit: 'Understanding user behavior'
+    }
+  ];
+
+  const deliverables = [
+    'User Personas \u2014 target-user profiles',
+    'User Journey Maps \u2014 the user\u2019s path',
+    'Information Architecture Diagrams \u2014 IA blueprints',
+    'Wireframes & Prototypes \u2014 early and interactive samples',
+    'Usability Reports \u2014 usability findings',
+    'A/B Testing Results \u2014 test outcomes'
+  ];
+
+  const workflowSteps = [
+    {
+      step: 'Research & Analysis',
+      desc: 'User interviews, competitor analysis, business-goal review',
+      duration: '1\u20132 weeks'
+    },
+    {
+      step: 'Strategy Design',
+      desc: 'Defining information architecture, user journey maps, quantitative goals',
+      duration: '3\u20135 days'
+    },
+    {
+      step: 'Early Prototyping',
+      desc: 'Wireframes, interactive prototypes, initial mockups',
+      duration: '1 week'
+    },
+    {
+      step: 'Testing & Review',
+      desc: 'Usability testing, A/B testing, feedback collection',
+      duration: '5\u20137 days'
+    },
+    {
+      step: 'Finalization & Handoff',
+      desc: 'Final build, documentation, developer-team training',
+      duration: '3\u20135 days'
+    },
+    {
+      step: 'Post-Delivery Support',
+      desc: 'Performance tracking, improvement suggestions, up to 3 months',
+      duration: '2\u20133 months'
+    }
+  ];
+
+  const benefits = [
+    'Higher conversion rates with an optimized user journey',
+    'Lower site exit rates with a smooth user experience',
+    'Faster information discovery with standard information architecture',
+    'Happier users with global UX patterns'
+  ];
+
+  const faqs = [
+    {
+      question: 'What exactly is UX, and how is it different from UI?',
+      answer: 'UX \u2014 user experience \u2014 is the user\u2019s entire experience of your product or service, from first launch to everyday use. UI \u2014 user interface \u2014 is just the visual layer. UX covers user research, information architecture, usability and overall satisfaction.'
+    },
+    {
+      question: 'How long does UX design for a website take?',
+      answer: 'Depending on complexity, usually 2\u20136 weeks. Simple projects take 2 weeks, online stores 4 weeks, and complex platforms 6 weeks or more.'
+    },
+    {
+      question: 'Does a UX project include user research?',
+      answer: 'Yes! In-depth research is the strongest part of our service. We design UX using user interviews, usability testing, A/B testing and data analysis \u2014 and we stand on that research.'
+    },
+    {
+      question: 'What do I receive after the UX design?',
+      answer: 'User personas, user journey maps, wireframes, interactive prototypes, usability test reports, and complete UX guidelines documentation your development team needs for precise implementation.'
+    },
+    {
+      question: 'Can you design UX for a mobile app too?',
+      answer: 'Yes! Beyond websites, we offer UX design for mobile apps and web apps as well. We follow a mobile-first approach in every project.'
+    },
+    {
+      question: 'How can I evaluate the quality of UX work?',
+      answer: 'UX quality can be measured through usability testing, A/B testing and conversion-rate analysis. We deliver these analyses with documentation.'
+    }
+  ];
+
+
+const breadcrumbs = [
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'Web Services', item: 'https://asreseo.com/services/web/' },
+    { position: 3, name: 'UX Experience Architecture', item: 'https://asreseo.com/services/web/ux-architecture/' },
+  ];
+
+  const stats = [
+    { metric: 'User journey', label: 'Higher conversion rate' },
+    { metric: 'Smooth navigation', label: 'Lower exit rate' },
+    { metric: 'Organized structure', label: 'Faster information discovery' },
+    { metric: 'Global patterns', label: 'Happier users' },
+  ];
+---
+<BaseLayout lang="en" title='UX Design & Information Architecture | AsreSEO' description='Advanced UX design and optimized information architecture for websites; conversion-rate optimization, user-journey structure and better user experience on every page.' keywords='UX user experience, information architecture, Information Architecture, UI/UX Design, conversion rate' canonical='/services/web/ux-architecture/' ogType='website' ogUrl='https://asreseo.com/services/web/ux-architecture/' ogImages={[{ url: "/og/ux-architecture-hero.jpg", width: 1200, height: 630, alt: "UX experience architecture | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='UX Design & Information Architecture | AsreSEO'
+
+  ogDescription='Advanced UX design for your website.'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/web/ux-architecture/', image: '/og/ux-architecture-hero.jpg' }))} />
+
+      <Header lang="en" />
+      <BreadcrumbStructuredData items={breadcrumbs} />
+
+      <main>
+        <ServiceHero lang="en"
+          badge="Advanced User Experience Design"
+          title="Information Architecture & UX Design"
+          titleHighlight="UX Design"
+          description="The secret to keeping users and winning online! Science-led UX design with user psychology and smart information architecture to lift conversion rates at AsreSEO."
+          primaryCtaText="Start My UX Design"
+          secondaryCtaText="See Case Studies"
+          imageSrc="/images/ux-architecture-hero.webp"
+          imageAlt="User experience design and information architecture"
+          theme="indigo"
+        />
+
+        <ServiceStats lang="en" stats={stats} />
+
+        <!-- Core Principles Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Three Pillars of <span class="gradient-text">Successful UX Design</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                AsreSEO\u2019s scientific approach to an unbeatable user experience
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+              {designPrinciples.map((principle, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
+                      <Icon name="target" class="h-6 w-6 text-indigo-600" />
+                    </div>
+                    <CardTitle class="text-xl font-semibold">{principle.principle}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4">{principle.description}</p>
+                    <div class="space-y-2">
+                      {principle.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle2" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Methodologies Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                AsreSEO\u2019s <span class="gradient-text">Advanced UX</span> Approaches
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Methods proven by global brands
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {methodologies.map((method, index) => (
+                <Card class="p-6 border-0 shadow-lg">
+                  <CardContent>
+                    <div class="flex items-center gap-4 mb-6">
+                      <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                        <Icon name="brain" class="h-6 w-6 text-purple-600" />
+                      </div>
+                      <h3 class="text-2xl font-semibold text-gray-900">{method.name}</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 class="font-medium text-gray-900 mb-3">Delivery process:</h4>
+                        <ul class="space-y-1">
+                          {method.steps.map((step, stepIndex) => (
+                            <li class="flex items-center gap-2 text-sm text-gray-600">
+                              <Icon name="check-circle2" class="h-4 w-4 text-green-500 shrink-0" />
+                              {step}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div class="flex items-center justify-center">
+                        <Badge class="bg-green-100 text-green-800 text-lg">{method.impact}</Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- UX Techniques Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                Proven <span class="gradient-text">UX</span> Techniques
+              </h2>
+              <p class="text-xl text-gray-600">
+                Methods that dramatically improve conversion rates
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {uxTechniques.map((technique: any) => (
+                <Card class="hover:shadow-lg transition-all duration-300">
+                  <CardContent class="p-6">
+                    <div class="flex items-start gap-4">
+                      <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
+                        <Icon name="zap" class="h-6 w-6 text-green-800" />
+                      </div>
+                      <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                          {technique.technique}
+                        </h3>
+                        <p class="text-gray-600 mb-3">
+                          {technique.description}
+                        </p>
+                        <Badge class="bg-green-100 text-green-800">
+                          {technique.effect}
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section class="section-padding bg-slate-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                <span class="gradient-text">User-Centered</span> Research Methods
+              </h2>
+              <p class="text-xl text-gray-600">
+                Discovering real user needs with a scientific approach
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {userResearchMethods.map((method, index) => (
+                <Card class="hover:shadow-md transition-shadow">
+                  <CardContent class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">{method.method}</h3>
+                    <p class="text-gray-600 mb-3">{method.description}</p>
+                    <Badge variant="outline" class="text-sm">
+                      {method.benefit}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Deliverables Section -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[CLIENT_HANDOFF // CORE_DELIVERABLES]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                <span class="text-[#CCFF00]">UX Design</span> Deliverables
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-2xl">
+                // Get real value in the final handoff
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+              {deliverables.map((deliverable, index) => (
+                <div class="flex items-center gap-4 p-4 bg-[#0a0e17] border-2 border-white/15 hover:border-[#CCFF00] transition-colors rounded-none brutalist-card group">
+                  <div class="w-10 h-10 bg-black border border-white/20 flex items-center justify-center shrink-0 group-hover:border-[#CCFF00] transition-colors">
+                    <Icon name="eye" class="h-5 w-5 text-[#CCFF00]" />
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mb-0.5">
+                      ASSET_{String(index + 1).padStart(2, '0')}
+                    </div>
+                    <span class="text-white font-medium text-sm block">
+                      {deliverable}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits lang="en" title="Benefits of Professional UX" titleHighlight="Professional UX" subtitle="What improves in AsreSEO UX projects" benefits={benefits} />
+
+        <!-- Workflow Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                AsreSEO\u2019s <span class="gradient-text">UX Design</span> Process
+              </h2>
+              <p class="text-xl text-gray-600">
+                A 6-step approach to fully effective UX design
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {workflowSteps.map((step, index) => (
+                <div class="flex items-center gap-8 p-6 bg-white rounded-xl shadow-xs">
+                  <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center text-2xl font-bold text-indigo-700">
+                    {index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      {step.step}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-2">
+                      {step.desc}
+                    </p>
+                    <Badge variant="outline" class="text-sm">
+                      Duration: {step.duration}
+                    </Badge>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <ServiceFAQ lang="en"
+          title="Frequently Asked Questions"
+          highlightWord="Asked Questions"
+          subtitle="Answers to client questions about UX design & user experience"
+          faqs={faqs}
+        />
+
+        <ServiceCTA lang="en"
+          title="Superior user experience, unbeatable sales!"
+          description="Turn users into loyal customers with AsreSEO\u2019s science-led UX design. An unforgettable experience that multiplies your sales. Start your UX project today!"
+          primaryText="Free UX Design Consultation"
+          secondaryText="See UX Case Studies"
+        />
+      </main>
+
+      <Footer lang="en" />
+    </div>
+</BaseLayout>

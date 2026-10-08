@@ -1,0 +1,255 @@
+---
+import { withServiceMeta } from '../../../lib/service-schema';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Layout/Header.astro';
+import Footer from '../../../components/Layout/Footer.astro';
+import Button from '../../../components/ui/button/Button.astro';
+import Card from '../../../components/ui/card/Card.astro';
+import CardContent from '../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../components/ui/card/CardTitle.astro';
+import Picture from '../../../components/ui/Picture.astro';
+import Icon from '../../../components/ui/Icon.astro';
+import BreadcrumbStructuredData from '../../../components/BreadcrumbStructuredData.astro';
+import ServiceFAQ from '../../../components/Services/ServiceFAQ.astro';
+
+const webServices = [
+    {
+        code: 'ENG_01',
+        title: 'SEO-First Headless Architecture',
+        description: 'Serverless SSR architectures and clean semantic markup engineered from line one for instantaneous Googlebot parsing.',
+        icon: "search",
+        features: ['Semantic HTML5 document tree', 'Zero-render-blocking CSS/JS payloads', 'Automated JSON-LD schema generation', 'Native mobile-first responsiveness'],
+        href: '/services/web/seo-web-design/'
+    },
+    {
+        code: 'ENG_02',
+        title: 'Core Web Vitals & Sub-20ms Latency',
+        description: 'Hardening LCP, INP, and CLS scores to secure flawless 100/100 Google PageSpeed scores across mobile and desktop.',
+        icon: "gauge",
+        features: ['Edge cache asset distribution', 'Modern AVIF/WebP image transforms', 'Critical CSS extraction & code splitting', 'Zero cumulative layout shift (CLS)'],
+        href: '/services/web/website-speed/'
+    },
+    {
+        code: 'ENG_03',
+        title: 'High-Converting Landing Architecture',
+        description: 'High-signal landing systems optimized for paid campaigns and technical conversion rate maximization.',
+        icon: "layout",
+        features: ['Algorithmic visual hierarchy', 'Sub-second interaction response', 'Server-side attribution integration', 'Continuous split testing hooks'],
+        href: '/services/web/landing-pages/'
+    },
+    {
+        code: 'ENG_04',
+        title: 'Information Architecture & UX Topologies',
+        description: 'Frictionless human navigation hierarchies that maximize dwell time and eliminate user journey dead-ends.',
+        icon: "smartphone",
+        features: ['Quantitative user behavior flow mapping', 'Faceted crawl navigation controls', 'Deterministic accessibility (WCAG 2.1 AA)', 'Empirical usability benchmarking'],
+        href: '/services/web/ux-architecture/'
+    }
+];
+
+const faqs = [
+    {
+        q: 'How does SEO-first web architecture differ from standard web development?',
+        a: 'Standard agencies design pretty visuals first and try to patch SEO later. We construct the semantic document tree, JSON-LD schema, URL taxonomy, and edge rendering pipelines before writing a single visual style, guaranteeing day-one rank readiness.'
+    },
+    {
+        q: 'Are Core Web Vitals guarantees contractually enforceable?',
+        a: 'Yes. All our web architecture deployments include contractually backed sub-2-second mobile load SLAs and green Core Web Vitals scores in Google Search Console.'
+    },
+    {
+        q: 'How do you handle headless CMS and framework migrations?',
+        a: 'We implement zero-downtime 301 redirection maps, edge reverse-proxy routes, and automated crawl verification scripts to guarantee 0% traffic loss during platform transitions.'
+    }
+];
+
+const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': 'SEO-First Web Architecture & Performance Engineering',
+    'description': 'Advanced web design and engineering: headless SSR architectures, sub-20ms Core Web Vitals optimization, and high-converting landing pages by AsreSEO.',
+    'inLanguage': 'en-US',
+    'provider': {
+        '@type': 'Organization',
+        'name': 'AsreSEO',
+        'url': 'https://asreseo.com',
+        'logo': 'https://asreseo.com/Logo.svg'
+    },
+    'hasOfferCatalog': {
+        '@type': 'OfferCatalog',
+        'name': 'AsreSEO Web Services',
+        'itemListElement': webServices.map(s => ({
+            '@type': 'Offer',
+            'itemOffered': {
+                '@type': 'Service',
+                'name': s.title,
+                'description': s.description
+            }
+        }))
+    }
+};
+
+const breadcrumbs = [
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'Web Engineering', item: 'https://asreseo.com/services/web/' },
+];
+---
+
+<BaseLayout
+    lang="en"
+    title="SEO-First Web Architecture & Core Web Vitals | AsreSEO"
+    description="Build fast, search-ready web infrastructure with AsreSEO SEO-first web architecture, sub-20ms Core Web Vitals, and conversion-optimized landing pages."
+    keywords="web design, SEO web design, Core Web Vitals, page speed optimization, landing pages, information architecture"
+    canonical="/services/web/"
+    ogType="website"
+    ogUrl="https://asreseo.com/services/web/"
+    ogImages={[{ url: "/og/services-web.jpg", width: 1200, height: 630, alt: "AsreSEO web design and speed optimization services" }]}
+    twitterCard="summary_large_image"
+>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(serviceSchema, { url: 'https://asreseo.com/services/web/', image: '/og/services-web.jpg' }))} />
+    <BreadcrumbStructuredData items={breadcrumbs} />
+
+    <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+        <Header lang="en" />
+        <main class="pt-28 pb-20">
+            <!-- Hero Section -->
+            <section class="py-16 md:py-24 border-b-2 border-white/10 relative">
+                <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+                    <div class="grid lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7 text-left order-2 lg:order-1">
+                            <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#0a0d14] border border-white/20 mb-8 font-mono text-xs tracking-wider uppercase">
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+                                <span class="text-[#CCFF00] font-bold">[PROTOCOL_05 // HIGH_VELOCITY_EDGE_WEB]</span>
+                                <span class="text-slate-500">|</span>
+                                <span class="text-slate-300">CORE_WEB_VITALS</span>
+                            </div>
+
+                            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white mb-6 tracking-tight leading-[1.05]">
+                                SEO-Engineered <span class="text-[#CCFF00]">Web Architecture</span> & Edge Systems
+                            </h1>
+
+                            <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">
+                                Sub-20ms edge-rendered applications, headless frontend pipelines, and mathematically optimal Core Web Vitals built for immediate search dominance.
+                            </p>
+
+                            <div class="flex flex-wrap gap-4 font-mono text-xs">
+                                <Button
+                                    variant="acid"
+                                    size="lg"
+                                    class="px-8 py-4"
+                                    href="/consultation/"
+                                >
+                                    Commission Web Audit ↗
+                                </Button>
+                                <Button
+                                    variant="brutalist"
+                                    size="lg"
+                                    class="px-8 py-4"
+                                    href="/services/web/website-speed/"
+                                >
+                                    Inspect Speed Protocol
+                                </Button>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 order-1 lg:order-2 border-2 border-white/20 bg-[#090d16] brutalist-card brutalist-shadow-white group overflow-hidden">
+                            <div class="p-3 bg-black border-b border-white/10 font-mono text-[11px] flex items-center justify-between text-slate-400">
+                                <span class="text-[#CCFF00] font-bold">PERFORMANCE // AUDITED</span>
+                                <span>PAGESPEED: 100/100</span>
+                            </div>
+                            <div class="relative h-72 sm:h-80 md:h-96 w-full overflow-hidden">
+                                <Picture
+                                    src="/images/services-web.webp"
+                                    alt="AsreSEO SEO-first web design and speed optimization"
+                                    class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 opacity-90"
+                                    eager
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Grid -->
+            <section class="py-20 border-b-2 border-white/10 bg-[#05070d]">
+                <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+                        <div>
+                            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[TACTICAL_DISPATCH]</div>
+                            <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Engineering Vectors</h2>
+                        </div>
+                        <p class="text-slate-400 font-mono text-xs max-w-md">// Full-stack performance engineering, headless setups, and Core Web Vitals defense.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        {webServices.map((service) => (
+                            <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card group hover:border-[#CCFF00] transition-colors p-6 sm:p-8 flex flex-col justify-between rounded-none">
+                                <div>
+                                    <div class="flex items-center justify-between pb-4 mb-6 border-b border-white/10 font-mono text-xs">
+                                        <span class="text-[#CCFF00] font-bold">{service.code} //</span>
+                                        <div class="w-8 h-8 bg-black border border-white/20 flex items-center justify-center text-[#CCFF00]">
+                                            <Icon name={service.icon} class="h-4 w-4" />
+                                        </div>
+                                    </div>
+                                    <CardHeader class="p-0 mb-4">
+                                        <CardTitle class="text-2xl font-black uppercase text-white group-hover:text-[#CCFF00] transition-colors">
+                                            <a href={service.href}>{service.title}</a>
+                                        </CardTitle>
+                                    </CardHeader>
+                                    <CardContent class="p-0">
+                                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                                            {service.description}
+                                        </p>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 font-mono text-xs text-slate-400 mb-6">
+                                            {service.features.map((feature) => (
+                                                <div class="flex items-start">
+                                                    <span class="text-[#CCFF00] font-bold me-2">[✓]</span>
+                                                    <span>{feature}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </div>
+                                <div class="pt-4 border-t border-white/10 font-mono text-xs">
+                                    <a href={service.href} class="inline-flex items-center text-[#CCFF00] font-bold hover:underline">
+                                        Inspect Protocol Specs ↗
+                                    </a>
+                                </div>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <ServiceFAQ lang="en" title="Web Architecture FAQs" subtitle="Deterministic answers regarding Core Web Vitals guarantees, headless CMS migrations, and TTFB" faqs={faqs} />
+
+            <!-- CTA Terminal -->
+            <section class="py-20 bg-[#000000]">
+                <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+                    <div class="p-8 sm:p-12 bg-[#090d16] border-2 border-[#CCFF00] brutalist-shadow-white flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div class="space-y-2 text-center md:text-left">
+                            <div class="font-mono text-xs text-[#CCFF00] uppercase font-bold tracking-wider">[COMMISSION_FRONTEND]</div>
+                            <h2 class="text-2xl sm:text-4xl font-black text-white uppercase">Ready to Upgrade Web Performance?</h2>
+                            <p class="text-slate-300 text-sm sm:text-base max-w-xl">
+                                Consult with our frontend systems engineers to run an immediate Core Web Vitals audit and architecture inspection.
+                            </p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 font-mono text-xs shrink-0">
+                            <Button
+                                variant="acid"
+                                size="lg"
+                                class="px-8 py-4"
+                                href="/consultation/"
+                            >
+                                Schedule Web Audit ↗
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <Footer lang="en" />
+    </div>
+</BaseLayout>

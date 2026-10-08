@@ -1,0 +1,90 @@
+---
+import Button from '../ui/button/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+const localize = (p: string) => p;
+---
+<section class="relative min-h-[92svh] flex items-center justify-center overflow-hidden pt-32 pb-20 sm:pt-36 bg-[#000000] text-white border-b-2 border-white/10 wireframe-grid">
+
+
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <div class="text-left max-w-5xl">
+      <!-- Terminal Tag & Live Telemetry Ping -->
+      <div class="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-none bg-[#0a0d14] border border-white/20 mb-8 font-mono text-xs tracking-wider uppercase">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+        <span class="text-[#CCFF00] font-bold">[AUTONOMOUS_INFRASTRUCTURE // V3.8]</span>
+        <span class="text-slate-500">|</span>
+        <span class="text-slate-300">48 Crawl Clusters Live</span>
+        <span class="text-slate-500 hidden sm:inline">|</span>
+        <span class="text-emerald-400 hidden sm:inline">Ping: 14ms</span>
+      </div>
+
+      <!-- Giant Brutalist Headline -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-6 leading-[1.08] tracking-tight uppercase font-sans text-balance">
+        Dominate <span class="text-[#CCFF00] inline-block">AI Search</span> & Conversational Engines.
+      </h1>
+
+      <!-- High-impact Subtitle -->
+      <p class="text-lg sm:text-xl lg:text-2xl text-slate-300 mb-10 max-w-3xl leading-relaxed font-normal text-pretty">
+        Autonomous agent infrastructure engineered to capture AI citations, Google AI Overviews, and programmatic SERP dominance with mathematical precision.
+      </p>
+
+      <!-- Brutalist Metric Dossier Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10">
+        <div class="p-4 sm:p-5 bg-[#090d16] border border-white/15 brutalist-card">
+          <div class="font-mono text-xs text-[#CCFF00] uppercase mb-1 tracking-wider">[CITATION_YIELD]</div>
+          <div class="text-2xl sm:text-4xl font-black text-white tracking-tight">+412%</div>
+          <div class="text-xs text-slate-400 font-mono mt-1">LLM citation surge</div>
+        </div>
+        <div class="p-4 sm:p-5 bg-[#090d16] border border-white/15 brutalist-card">
+          <div class="font-mono text-xs text-[#CCFF00] uppercase mb-1 tracking-wider">[INDEX_RATE]</div>
+          <div class="text-2xl sm:text-4xl font-black text-white tracking-tight">99.8%</div>
+          <div class="text-xs text-slate-400 font-mono mt-1">Automated indexation</div>
+        </div>
+        <div class="p-4 sm:p-5 bg-[#090d16] border border-white/15 brutalist-card">
+          <div class="font-mono text-xs text-[#CCFF00] uppercase mb-1 tracking-wider">[LATENCY]</div>
+          <div class="text-2xl sm:text-4xl font-black text-white tracking-tight">18ms</div>
+          <div class="text-xs text-slate-400 font-mono mt-1">Sub-second crawl cycle</div>
+        </div>
+        <div class="p-4 sm:p-5 bg-[#090d16] border border-white/15 brutalist-card">
+          <div class="font-mono text-xs text-[#CCFF00] uppercase mb-1 tracking-wider">[TELEMETRY]</div>
+          <div class="text-2xl sm:text-4xl font-black text-white tracking-tight">24/7</div>
+          <div class="text-xs text-slate-400 font-mono mt-1">Real-time bot monitoring</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons with Acid Yellow and Hard Offset Shadows -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12">
+        <Button
+          href={localize('/contact/')}
+          variant="acid"
+          size="lg"
+          class="text-sm sm:text-base px-8 py-4.5"
+        >
+          Initialize Telemetry Audit ↗
+        </Button>
+        <Button
+          href={localize('/portfolio/')}
+          variant="brutalist"
+          size="lg"
+          class="text-sm sm:text-base px-8 py-4.5"
+        >
+          <Icon name="terminal" class="h-4 w-4 me-2 text-[#CCFF00]" />
+          Explore Proven Dossiers
+        </Button>
+      </div>
+
+      <!-- Spec Certifications Bar -->
+      <div class="flex items-center gap-6 sm:gap-8 pt-6 border-t border-white/10 text-xs sm:text-sm text-slate-400 font-mono flex-wrap">
+        <span class="flex items-center gap-2"><span class="text-[#CCFF00] font-bold">01 //</span> Zero Fluff Synthetics</span>
+        <span class="flex items-center gap-2"><span class="text-[#CCFF00] font-bold">02 //</span> Knowledge Graph Authority</span>
+        <span class="flex items-center gap-2"><span class="text-[#CCFF00] font-bold">03 //</span> 24/7 Autonomous Re-Indexing</span>
+      </div>
+    </div>
+  </div>
+</section>

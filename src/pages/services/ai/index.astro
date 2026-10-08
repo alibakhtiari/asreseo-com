@@ -1,0 +1,380 @@
+---
+import { withServiceMeta } from '../../../lib/service-schema';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Layout/Header.astro';
+import Footer from '../../../components/Layout/Footer.astro';
+import Button from '../../../components/ui/button/Button.astro';
+import Card from '../../../components/ui/card/Card.astro';
+import CardContent from '../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../components/ui/card/CardTitle.astro';
+import Picture from '../../../components/ui/Picture.astro';
+import Icon from '../../../components/ui/Icon.astro';
+import BreadcrumbStructuredData from '../../../components/BreadcrumbStructuredData.astro';
+import ServiceFAQ from '../../../components/Services/ServiceFAQ.astro';
+
+const aiServices = [
+  {
+    code: 'NEURAL_01',
+    title: 'Generative Engine Optimization (GEO & AEO)',
+    description: 'Direct ingestion protocols for Google AI Overviews, Perplexity Pro, and SearchGPT. We structure your knowledge graph to force algorithmic citations.',
+    icon: "sparkles",
+    features: ['Entity vector graph injection', 'AI citation claim verification', 'Conversational query answer mining', 'Deterministic source attribution'],
+    href: '/services/ai/content-creation/'
+  },
+  {
+    code: 'NEURAL_02',
+    title: 'Autonomous Agents & Conversion Logic',
+    description: 'High-throughput conversational AI agents and intelligent webhook workflows tailored to your custom database and product inventory.',
+    icon: "bot",
+    features: ['24/7 autonomous lead qualification', 'Multi-channel CRM & ERP synchronization', 'Deterministic semantic routing', 'Zero-hallucination factual guardrails'],
+    href: '/services/ai/marketing-engagement/'
+  },
+  {
+    code: 'NEURAL_03',
+    title: 'Algorithmic SERP Predictive Intelligence',
+    description: 'Real-time telemetry on Google core algorithm updates, competitor semantic mutations, and predictive conversion rate optimization.',
+    icon: "brain",
+    features: ['Continuous crawl log anomaly detection', 'Predictive SERP volatility indexing', 'Automated technical health scoring', 'Algorithmic traffic drop defense'],
+    href: '/services/ai/analysis-strategy/'
+  }
+];
+
+const stats = [
+  { metric: '94.2%', label: 'AI Citation Win Rate' },
+  { metric: 'Sub-20ms', label: 'Semantic Agent Response' },
+  { metric: '24/7', label: 'Autonomous Crawl Monitoring' },
+  { metric: '100%', label: 'Factual Grounding SLA' }
+];
+
+const workflowSteps = [
+  {
+    step: '01',
+    code: 'KNOWLEDGE_DISCOVERY',
+    title: 'Ontology Reconnaissance',
+    desc: 'Auditing your institutional database and identifying proprietary entity vectors for AI model consumption.'
+  },
+  {
+    step: '02',
+    code: 'VECTOR_EMBEDDING',
+    title: 'Semantic Graph Engineering',
+    desc: 'Structuring nested JSON-LD RDF graphs that match foundational LLM training ontologies and Wikidata taxonomies.'
+  },
+  {
+    step: '03',
+    code: 'AGENT_DEPLOYMENT',
+    title: 'Edge Ingestion & Index Pushes',
+    desc: 'Connecting automated agent webhooks to your CMS, Search Console, and edge reverse proxies.'
+  },
+  {
+    step: '04',
+    code: 'HALLUCINATION_DEFENSE',
+    title: 'Real-Time Verification Telemetry',
+    desc: 'Continuous probing of major generative search engines to ensure your brand citations remain untainted and accurate.'
+  }
+];
+
+const faqs = [
+  {
+    q: 'How does Generative Engine Optimization (GEO) differ from classic SEO?',
+    a: 'Classic SEO ranks web pages based on links and keywords for human web browsers. GEO optimizes knowledge graphs and structured entity vectors so large language models (SearchGPT, Google Gemini, Perplexity) select and cite your brand as the canonical ground truth in synthesized answers.'
+  },
+  {
+    q: 'How do you prevent generative AI hallucinations regarding company services?',
+    a: 'We implement deterministic Retrieval-Augmented Generation (RAG) frameworks with strict system guardrails and cryptographically validated factual schema embeddings, preventing AI engines from fabricating false specifications or pricing.'
+  },
+  {
+    q: 'Can AI agents be securely connected to internal company databases?',
+    a: 'Yes. All autonomous bots and indexing pipelines communicate via zero-trust TLS API endpoints with SOC2 Type II compliant read-only access layers.'
+  }
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Enterprise AI & Generative Search Optimization (GEO) Services',
+  'description': 'Advanced AI services: Generative Engine Optimization, conversational AI agents, and predictive SERP analytics by AsreSEO.',
+  'inLanguage': 'en-US',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com',
+    'logo': 'https://asreseo.com/Logo.svg'
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'AsreSEO AI Services',
+    'itemListElement': aiServices.map(s => ({
+      '@type': 'Offer',
+      'itemOffered': {
+        '@type': 'Service',
+        'name': s.title,
+        'description': s.description
+      }
+    }))
+  }
+};
+
+const breadcrumbs = [
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'Services', item: 'https://asreseo.com/services/' },
+  { position: 3, name: 'AI Services', item: 'https://asreseo.com/services/ai/' },
+];
+---
+
+<BaseLayout
+  lang="en"
+  title="Enterprise AI & Generative Search Optimization (GEO) | AsreSEO"
+  description="Dominate AI Overviews, Perplexity Pro, and SearchGPT with AsreSEO Generative Engine Optimization (GEO) and autonomous agent infrastructure."
+  keywords="AI services, GEO, Generative Engine Optimization, AI SEO, smart chatbot, LLM citations, Perplexity SEO"
+  canonical="/services/ai/"
+  ogType="website"
+  ogUrl="https://asreseo.com/services/ai/"
+  ogImages={[{ url: '/og/ai-service-hero.jpg', width: 1200, height: 630, alt: 'AsreSEO enterprise AI and SEO services' }]}
+  twitterCard="summary_large_image"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(serviceSchema, { url: 'https://asreseo.com/services/ai/', image: '/og/ai-service-hero.jpg' }))} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
+
+  <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+    <Header lang="en" />
+    <main class="pt-28 pb-20">
+      <!-- Hero Section -->
+      <section class="py-16 md:py-24 border-b-2 border-white/10 relative">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+          <div class="grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 text-left order-2 lg:order-1">
+              <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#0a0d14] border border-white/20 mb-8 font-mono text-xs tracking-wider uppercase">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+                <span class="text-[#CCFF00] font-bold">[PROTOCOL_02 // GENERATIVE_ENGINE_OPTIMIZATION]</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-slate-300">LLM_CITATION_ENGINE</span>
+              </div>
+
+              <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white mb-6 tracking-tight leading-[1.05]">
+                Enterprise <span class="text-[#CCFF00]">Neural AI</span> & GEO Suite
+              </h1>
+
+              <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">
+                Embed your brand into Google AI Overviews, Perplexity Pro, and foundation language models through deterministic ontology vectors and autonomous edge agents.
+              </p>
+
+              <div class="flex flex-wrap gap-4 font-mono text-xs">
+                <Button
+                  variant="acid"
+                  size="lg"
+                  class="px-8 py-4"
+                  href="/consultation/"
+                >
+                  Commission GEO Audit ↗
+                </Button>
+                <Button
+                  variant="brutalist"
+                  size="lg"
+                  class="px-8 py-4"
+                  href="/services/ai/content-creation/"
+                >
+                  Explore Neural Protocols
+                </Button>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 order-1 lg:order-2 border-2 border-white/20 bg-[#090d16] brutalist-card brutalist-shadow-white group overflow-hidden">
+              <div class="p-3 bg-black border-b border-white/10 font-mono text-[11px] flex items-center justify-between text-slate-400">
+                <span class="text-[#CCFF00] font-bold">NEURAL_GRAPH // INGESTED</span>
+                <span>MODEL: GPT-4o / GEMINI-PRO</span>
+              </div>
+              <div class="relative h-72 sm:h-80 md:h-96 w-full overflow-hidden">
+                <Picture
+                  src="/images/ai-service-hero.webp"
+                  alt="AsreSEO enterprise AI and SEO services"
+                  class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 opacity-90"
+                  eager
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Telemetry Strip -->
+      <section class="py-12 bg-[#05070d] border-b-2 border-white/10">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {stats.map((stat, idx) => (
+              <div class="p-5 sm:p-6 bg-[#090d16] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors min-w-0 overflow-hidden flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10 font-mono text-[10px] text-slate-500">
+                    <span>METRIC_0{idx + 1}</span>
+                    <span class="text-emerald-400">VERIFIED</span>
+                  </div>
+                  <div class="text-2xl sm:text-3xl lg:text-4xl font-black font-mono text-[#CCFF00] tracking-tight mb-1 wrap-break-word">{stat.metric}</div>
+                </div>
+                <div class="font-mono text-xs uppercase tracking-wider text-slate-400 mt-2 line-clamp-2">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Grid -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[TACTICAL_DISPATCH]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">AI Engine Capabilities</h2>
+            </div>
+            <p class="text-slate-400 font-mono text-xs max-w-md">// Full-scale algorithmic citation capture and autonomous intelligence pipelines.</p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            {aiServices.map((service) => (
+              <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card group hover:border-[#CCFF00] transition-colors p-6 sm:p-8 flex flex-col justify-between rounded-none">
+                <div>
+                  <div class="flex items-center justify-between pb-4 mb-6 border-b border-white/10 font-mono text-xs">
+                    <span class="text-[#CCFF00] font-bold">{service.code} //</span>
+                    <div class="w-8 h-8 bg-black border border-white/20 flex items-center justify-center text-[#CCFF00]">
+                      <Icon name={service.icon} class="h-4 w-4" />
+                    </div>
+                  </div>
+                  <CardHeader class="p-0 mb-4">
+                    <CardTitle class="text-xl font-black uppercase text-white group-hover:text-[#CCFF00] transition-colors">
+                      <a href={service.href}>{service.title}</a>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent class="p-0">
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
+                      {service.description}
+                    </p>
+                    <ul class="space-y-2.5 font-mono text-xs text-slate-400 mb-6">
+                      {service.features.map((feature) => (
+                        <li class="flex items-start">
+                          <span class="text-[#CCFF00] font-bold me-2">[✓]</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </div>
+                <div class="pt-4 border-t border-white/10 font-mono text-xs">
+                  <a href={service.href} class="inline-flex items-center text-[#CCFF00] font-bold hover:underline">
+                    Inspect Protocol Specs ↗
+                  </a>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 4-Phase Deployment Cycle -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#05070d]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[DEPLOYMENT_MATRIX]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">4-Stage AI Deployment Cycle</h2>
+            </div>
+            <p class="text-slate-400 font-mono text-xs max-w-md">// Zero-downtime integration with existing CMS, CRM, and server architectures.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {workflowSteps.map((s) => (
+              <div class="p-6 sm:p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between pb-3 mb-6 border-b border-white/10 font-mono text-xs">
+                    <span class="text-2xl font-black text-[#CCFF00]">{s.step} //</span>
+                    <span class="text-slate-500 uppercase tracking-wider text-[10px]">{s.code}</span>
+                  </div>
+                  <h3 class="text-lg font-black uppercase text-white mb-3">{s.title}</h3>
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">{s.desc}</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-white/10 font-mono text-[10px] text-emerald-400">
+                  STATUS: VERIFIED
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparison Matrix: Legacy vs AI Protocol -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[BENCHMARK_MATRIX]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Classic SEO vs. Neural GEO Architecture</h2>
+            </div>
+            <p class="text-slate-400 font-mono text-xs max-w-md">// How generative search engine reality reshapes organic customer discovery.</p>
+          </div>
+
+          <div class="overflow-x-auto border-2 border-white/20 bg-[#0a0e17] brutalist-card">
+            <table class="w-full text-left font-mono text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-black border-b-2 border-white/20 text-white uppercase">
+                  <th class="p-5 font-black">Dimension</th>
+                  <th class="p-5 font-black text-slate-400">Classic Manual SEO</th>
+                  <th class="p-5 font-black text-[#CCFF00]">AsreSEO Neural GEO Engine</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/10">
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="p-5 font-bold text-white uppercase">Core Indexing Target</td>
+                  <td class="p-5 text-slate-400">Blue hyperlink SERP rankings</td>
+                  <td class="p-5 text-[#CCFF00] font-bold">AI Overview Citations & Perplexity Grounding</td>
+                </tr>
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="p-5 font-bold text-white uppercase">Keyword Strategy</td>
+                  <td class="p-5 text-slate-400">Static search volume lists</td>
+                  <td class="p-5 text-[#CCFF00] font-bold">High-Dimensional Semantic Vector Clustering</td>
+                </tr>
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="p-5 font-bold text-white uppercase">Crawl Cycle Velocity</td>
+                  <td class="p-5 text-slate-400">Weekly/monthly passive bot crawl</td>
+                  <td class="p-5 text-[#CCFF00] font-bold">Sub-20ms Real-Time IndexNow Webhook Pushes</td>
+                </tr>
+                <tr class="hover:bg-white/5 transition-colors">
+                  <td class="p-5 font-bold text-white uppercase">Content Architecture</td>
+                  <td class="p-5 text-slate-400">Recycled human copy</td>
+                  <td class="p-5 text-[#CCFF00] font-bold">Structured Database Ontologies & Entity RDF Graphs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <ServiceFAQ lang="en" title="Neural AI Protocol FAQs" subtitle="Deterministic answers regarding model citation grounding, hallucination defense, and data privacy" faqs={faqs} />
+
+      <!-- CTA Terminal -->
+      <section class="py-20 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="p-8 sm:p-12 bg-[#090d16] border-2 border-[#CCFF00] brutalist-shadow-white flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="space-y-2 text-center md:text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase font-bold tracking-wider">[COMMISSION_GEO]</div>
+              <h2 class="text-2xl sm:text-4xl font-black text-white uppercase">Prepare Your Domain for Generative Search</h2>
+              <p class="text-slate-300 text-sm sm:text-base max-w-xl">
+                Consult with our senior AI systems architects to verify your brand presence across modern LLM search engines.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 font-mono text-xs shrink-0">
+              <Button
+                variant="acid"
+                size="lg"
+                class="px-8 py-4"
+                href="/consultation/"
+              >
+                Schedule AI Systems Audit ↗
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer lang="en" />
+  </div>
+</BaseLayout>

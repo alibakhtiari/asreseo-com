@@ -1,0 +1,571 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Visual & Video Content',
+  'description': 'Visual content services including graphic design, video marketing and infographics',
+  'serviceType': 'Visual Content Production',
+  'inLanguage': 'en-US',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com'
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Visual content services',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Graphic design',
+          'description': 'Professional banners, posters and ad graphics',
+          'inLanguage': 'en-US'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Video marketing',
+          'description': 'Promotional video production and editing',
+          'inLanguage': 'en-US'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const serviceCategories = [
+    {
+      category: 'Graphic Design',
+      icon: "palette",
+      services: [
+        {
+          name: 'Ad Banners & Posters',
+          description: 'Professional design for websites, social feeds and online ads',
+          formats: ['JPG', 'PNG', 'PSD', 'AI']
+        },
+        {
+          name: 'Infographics',
+          description: 'Complex information distilled into engaging, easy-to-grasp graphics',
+          formats: ['JPG', 'PNG', 'PDF', 'Animated GIF']
+        },
+        {
+          name: 'Photo Posts (Photo Content)',
+          description: 'Expert copy combined with relevant, engaging images for social feeds',
+          formats: ['JPG', 'PNG', 'Stories', 'Carousel']
+        }
+      ]
+    },
+    {
+      category: 'Video Production',
+      icon: "video",
+      services: [
+        {
+          name: 'Product Promo Videos',
+          description: 'Product and service intros in varied advertising styles',
+          formats: ['MP4', 'MOV', 'WebM']
+        },
+        {
+          name: 'Motion Graphics & Animation',
+          description: 'Modern animated ads that explain your offers',
+          formats: ['MP4', 'GIF', 'Animated PNG']
+        },
+        {
+          name: 'Live & Event Videos',
+          description: 'Live product streams, events and live tutorials',
+          formats: ['Facebook Live', 'Instagram Live', 'YouTube']
+        }
+      ]
+    },
+    {
+      category: 'Professional Photography',
+      icon: "camera",
+      services: [
+        {
+          name: 'Product Photography',
+          description: 'Striking professional product shots with pro lighting and setup',
+          formats: ['JPG', 'TIFF', 'PSD']
+        },
+        {
+          name: 'Corporate & Team Photography',
+          description: 'Professional portraits of staff, workspaces and company life',
+          formats: ['JPG', 'Web-optimized']
+        },
+        {
+          name: 'Editorial Photography',
+          description: 'Images matched to promotional and educational content',
+          formats: ['JPG', 'PNG', 'Animated']
+        }
+      ]
+    },
+    {
+      category: 'Editing & Post-Production',
+      icon: "edit",
+      services: [
+        {
+          name: 'Advanced Color Grading',
+          description: 'Color, light and quality correction for images and video',
+          formats: ['All standard formats']
+        },
+        {
+          name: 'Social Media Optimization',
+          description: 'Sizing, quality and format tuned for maximum appeal',
+          formats: ['Instagram', 'Facebook', 'TikTok', 'LinkedIn']
+        },
+        {
+          name: 'Special Effects',
+          description: 'Modern, engaging effects that lift content interaction',
+          formats: ['Video effects', 'Text overlays', 'Transitions']
+        }
+      ]
+    }
+  ];
+
+  const techniques = [
+    {
+      name: 'Visual Hierarchy',
+      description: 'Arranging visual elements to guide the viewer’s eye',
+      impact: 'Follow-through tracked in reports'
+    },
+    {
+      name: 'Color Psychology',
+      description: 'Purposeful color choices for emotional impact',
+      impact: 'Positive sentiment measured in reports'
+    },
+    {
+      name: 'Psychological Cues',
+      description: 'F-pattern and Z-pattern techniques for impact',
+      impact: 'Gaze paths tracked in the dashboard'
+    },
+    {
+      name: 'Visual Storytelling',
+      description: 'Telling your brand story through connected, relevant imagery',
+      impact: 'Monthly dwell-time measurement'
+    }
+  ];
+
+  const contentTypes = [
+    {
+      type: 'Educational Visual Content',
+      audience: 'Learners',
+      goal: 'Teaching skills',
+      impact: 'Learning rates in the reporting dashboard'
+    },
+    {
+      type: 'Entertaining Content',
+      audience: 'Young audiences',
+      goal: 'Engagement & branding',
+      impact: 'Monthly reach and reshares tracked'
+    },
+    {
+      type: 'Motivational Content',
+      audience: 'Brand community',
+      goal: 'Customer loyalty',
+      impact: 'Social engagement in performance reports'
+    },
+    {
+      type: 'Direct Promotional Content',
+      audience: 'Potential customers',
+      goal: 'More sales',
+      impact: 'Conversion rates in the reporting dashboard'
+    }
+  ];
+
+  const features = [
+    {
+      icon: "trending-up",
+      title: 'Applied Color Psychology',
+      description: 'Colors optimized for emotional impact and audience decisions, grounded in color science.',
+      benefits: ['Stronger positive feeling', 'Calls to action', 'Brand reinforcement']
+    },
+    {
+      icon: "eye",
+      title: 'Designed for Visual Algorithms',
+      description: 'Aligned with social feed changes and modern visual preferences.',
+      benefits: ['Wider reach', 'Higher engagement', 'Sustainable growth']
+    },
+    {
+      icon: "zap",
+      title: 'Multi-Platform & Responsive',
+      description: 'Content designed for every device and platform, from mobile to TV.',
+      benefits: ['Full coverage', 'Unified experience', 'Maximum returns']
+    },
+    {
+      icon: "target",
+      title: 'Performance Measurement & Analysis',
+      description: 'Regular tracking of engagement, reach and conversion with advanced analytics.',
+      benefits: ['Continuous optimization', 'Transparent reports', 'Data-driven decisions']
+    },
+    {
+      icon: "sparkles",
+      title: 'Smart Channel Distribution',
+      description: 'The right content for each platform, matched to its algorithm and audience.',
+      benefits: ['Higher returns', 'Stronger organization branding', 'Priority management']
+    },
+    {
+      icon: "award",
+      title: 'World-Brand Quality',
+      description: 'Professional equipment and current global techniques in visual production.',
+      benefits: ['Customer trust', 'Professional branding', 'Competitive edge']
+    }
+  ];
+
+  const benefits = [
+    'Audience engagement and dwell time measured in the reporting dashboard',
+    'Monthly tracking of post reshares across social feeds, reviewed in the monthly session',
+    'Click and conversion rates recorded per design, each with its data source for verification',
+    'Marketing spend compared against visual-content returns in performance reports',
+    'A proven approach from major global brand projects'
+  ];
+
+  const workflowSteps = [
+    {
+      step: 'Needs & Strategy Review',
+      desc: 'Understanding your business, content goals and brand strategy'
+    },
+    {
+      step: 'Ideation & Scriptwriting',
+      desc: 'Developing creative concepts and compelling visual scripts'
+    },
+    {
+      step: 'Design & First Drafts',
+      desc: 'Building early models for feedback and improvement'
+    },
+    {
+      step: 'Final Production & Editing',
+      desc: 'Full execution with professional equipment and final polish'
+    },
+    {
+      step: 'Distribution & Monitoring',
+      desc: 'Smart publishing with precise performance tracking'
+    },
+    {
+      step: 'Reporting & Optimization',
+      desc: 'Results and improvement ideas for the next campaigns'
+    }
+  ];
+
+  // Qualitative process facts, not performance percentages — client-result
+  // percentages are unverifiable (see src/lib/site-claims.ts authenticity policy).
+  const stats = [
+    { metric: '6 Steps', label: 'Documented production process', color: 'text-blue-600', icon: "trending-up" },
+    { metric: 'Monthly', label: 'Performance reports & reviews', color: 'text-green-800', icon: "sparkles" },
+    { metric: 'Dashboard', label: 'Engagement-rate measurement', color: 'text-orange-600', icon: "eye" },
+    { metric: 'White-Hat', label: 'Organic distribution & publishing', color: 'text-red-600', icon: "target" }
+  ];
+
+  const faqs = [
+    {
+      question: 'How long does visual content production take?',
+      answer: 'It varies by complexity: simple graphics 2–3 days, animated infographics 4–6 days, short videos 5–7 days and professional videos 10–14 days. Exact estimates are given in the free consultation.'
+    },
+    {
+      question: 'What file formats do you deliver, and how?',
+      answer: 'All social, web and print formats at top quality, with platform-ready sizes for direct publishing. Delivered via Google Drive with unlimited downloads and post-delivery technical support.'
+    },
+    {
+      question: 'Do you also handle ideation and scriptwriting?',
+      answer: 'Yes! The AsreSEO team starts with a free consultation session, then proposes creative ideas and compelling scripts based on your brand strategy. This is the most important part of the work.'
+    },
+    {
+      question: 'How can we be sure of high quality?',
+      answer: 'The AsreSEO design team has years of experience with major brands — you can review portfolios and past client satisfaction. We also present early models for final approval before full production.'
+    },
+    {
+      question: 'What does visual content production cost?',
+      answer: 'Pricing depends on volume, complexity and quality. Packages start affordably for simple graphics and scale to VIP tiers for large campaign projects — very reasonable for the quality and returns.'
+    },
+    {
+      question: 'Do you use professional equipment and software?',
+      answer: 'Yes! Professional photography gear including Canon and Nikon cameras, advanced lighting systems, Adobe Creative Suite and DaVinci Resolve for editing, plus After Effects for motion graphics.'
+    }
+  ];
+
+---
+<BaseLayout lang="en" title='Visual, Video & Infographic Content | AsreSEO' description='Graphic design and visual content with video marketing, animated infographics and professional photography. Track conversion and engagement in the AsreSEO reporting dashboard.' keywords='visual content, video marketing, graphic design, infographics, motion graphics, content production' canonical='/services/content/visual-content/' ogType='website' ogUrl='https://asreseo.com/services/content/visual-content/' ogImages={[{ url: "/og/visual-content-hero.jpg", width: 1200, height: 630, alt: "Visual and video content | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Visual & Video Content | AsreSEO'
+
+  ogDescription='Professional graphic design and video production for your brand.'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+      <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/content/visual-content/', image: '/og/visual-content-hero.jpg' }))} />
+
+      <Header lang="en" />
+      <BreadcrumbStructuredData
+        items={[
+          { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+          { position: 2, name: 'Content Services', item: 'https://asreseo.com/services/content/' },
+          { position: 3, name: 'Visual & Video Content', item: 'https://asreseo.com/services/content/visual-content/' }
+        ]}
+      />
+
+      <main>
+        <!-- Hero Section -->
+        <ServiceHero
+          lang="en"
+          badge="Professional Visual Content Production"
+          title="Visual"
+          titleGradient="& Video Content"
+          description="Visual power for your brand! Professional video marketing with conversions tracked in the reporting dashboard, and graphic content seen far and wide — at AsreSEO."
+          primaryCta={{ text: "Order Visual Content" }}
+          secondaryCta={{ text: "See Portfolio" }}
+          imageSrc="/images/visual-content-hero.webp"
+          imageAlt="Visual and video content"
+          theme="purple"
+        />
+
+        <!-- Stats Section -->
+        <ServiceStats lang="en" stats={stats} theme="purple" />
+
+        <!-- Content Types Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Content Strategy <span class="gradient-text">by Goal</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Specialized approaches for different marketing goals
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {contentTypes.map((content, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
+                        <Icon name="sparkles" class="h-6 w-6 text-indigo-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{content.type}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-3">
+                      <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Target audience:</span>
+                        <span class="text-indigo-600 font-medium">{content.audience}</span>
+                      </div>
+                      <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Main goal:</span>
+                        <span class="text-purple-600 font-medium">{content.goal}</span>
+                      </div>
+                      <Badge class="bg-green-100 text-green-800 w-fit">{content.impact}</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Service Categories Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                The Complete Range of <span class="gradient-text">AsreSEO Visual Services</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Every visual content need your brand has, on one platform
+              </p>
+            </div>
+
+            <div class="space-y-12">
+              {serviceCategories.map((category, index) => (
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                  <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center">
+                      <Icon name={category.icon} class="h-8 w-8 text-pink-600" />
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900">{category.category}</h3>
+                  </div>
+                  <div class="grid md:grid-cols-3 gap-6">
+                    {category.services.map((service, serviceIndex) => (
+                      <Card class="hover:shadow-md transition-shadow">
+                        <CardHeader>
+                          <CardTitle class="text-lg">{service.name}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p class="text-gray-600 mb-3 text-sm">{service.description}</p>
+                          <div class="flex flex-wrap gap-1">
+                            {service.formats.map((format, formatIndex) => (
+                              <Badge variant="outline" class="text-xs">
+                                {format}
+                              </Badge>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Psychology Techniques Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Advanced <span class="gradient-text">Visual Psychology</span> Techniques
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Proven science for maximum audience impact
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {techniques.map((technique, index) => (
+                <Card class="hover:shadow-lg transition-all duration-300">
+                  <CardContent class="p-6">
+                    <div class="flex items-start gap-4">
+                      <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
+                        <Icon name="zap" class="h-6 w-6 text-green-800" />
+                      </div>
+                      <div class="flex-1">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                          {technique.name}
+                        </h3>
+                        <p class="text-gray-600 mb-3">
+                          {technique.description}
+                        </p>
+                        <Badge class="bg-green-100 text-green-800">
+                          {technique.impact}
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section-padding bg-slate-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Advanced Technologies for <span class="gradient-text">Visual Content Production</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                From color psychology to machine-learning algorithms
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {features.map((feature, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-200 transition-colors">
+                        <Icon name={feature.icon} class="h-6 w-6 text-pink-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle2" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits lang="en" title="Strategic Benefits of" titleHighlight="AsreSEO Visual Content" subtitle="What professional visual content builds for your brand — tracked in performance reports" benefits={benefits} />
+
+        <!-- Workflow Section -->
+        <section class="section-padding bg-linear-to-br from-indigo-50 to-pink-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                The AsreSEO <span class="gradient-text">Visual Content</span> Production Process
+              </h2>
+              <p class="text-xl text-gray-600">
+                A systematic, scientific approach from ideation to results analysis
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {workflowSteps.map((step, index) => (
+                <div class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs">
+                  <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center text-2xl font-bold text-pink-700">
+                    {index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      {step.step}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <ServiceFAQ
+          lang="en"
+          title="Frequently"
+          titleGradient="Asked Questions"
+          subtitle="Answers to common client questions about visual content"
+          faqs={faqs}
+        />
+
+        <!-- CTA Section -->
+        <ServiceCTA
+          lang="en"
+          title="Let's Make Your Brand's Visual Content Professional and Compelling!"
+          description="AsreSEO brings professional equipment, current global techniques and a specialist team to your graphic and video needs. Start your first project today and see the difference."
+          primaryCta={{ text: "Order Visual Content" }}
+          secondaryCta={{ text: "Free Design Consultation" }}
+          primaryClass="bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg shadow-pink-600/30"
+        />
+      </main>
+
+      <Footer lang="en" />
+    </div>
+</BaseLayout>

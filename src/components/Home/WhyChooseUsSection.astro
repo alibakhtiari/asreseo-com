@@ -1,0 +1,85 @@
+---
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+
+const principles = [
+  {
+    num: '01',
+    code: 'DETERMINISTIC_DATA',
+    title: 'Zero Synthetic Fluff',
+    desc: 'We do not produce 1,500-word recycled blog posts. We architect deterministic semantic databases and structured entity vectors that search bots ingest instantly.',
+  },
+  {
+    num: '02',
+    code: 'VECTOR_SYNTHESIS',
+    title: 'Post-Human Search Engine Reality',
+    desc: 'Google AI Overviews, Perplexity Pro, and SearchGPT digest entity graphs, not raw keyword density. We engineer brand citations directly into their training corpora.',
+  },
+  {
+    num: '03',
+    code: 'CONTINUOUS_LOOP',
+    title: 'Continuous Programmatic Re-Indexation',
+    desc: 'If your site relies on weekly search console crawls, you are already invisible. Our sub-second edge bots push index signals the moment content mutates.',
+  },
+  {
+    num: '04',
+    code: 'COMPUTATIONAL_EDGE',
+    title: 'Algorithmic Arbitrage',
+    desc: 'Modern search is a computational efficiency equation. Autonomous infrastructure performs the work of 25 agency consultants in 30 milliseconds.',
+  },
+];
+---
+<section class="py-24 bg-[#05070d] text-white border-b-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+      <div>
+        <div class="inline-block font-mono text-xs text-[#CCFF00] bg-black px-3 py-1 border border-[#CCFF00]/40 uppercase tracking-widest mb-3">
+          [ENGINEERING_MANIFESTO // ZERO_FLUFF]
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white font-sans">
+          Core Engineering Principles
+        </h2>
+      </div>
+      <p class="text-slate-400 max-w-md text-sm sm:text-base font-normal">
+        We dismantle obsolete manual SEO playbooks in favor of autonomous, computational, and entity-driven search infrastructure.
+      </p>
+    </div>
+
+    <!-- 4 Principles Brutalist Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      {principles.map((p) => (
+        <div class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card group hover:border-[#CCFF00]">
+          <div class="flex items-center justify-between pb-4 mb-6 border-b border-white/10 font-mono text-xs">
+            <span class="text-3xl font-black text-[#CCFF00]">{p.num} //</span>
+            <span class="text-slate-400 uppercase tracking-wider">{p.code}</span>
+          </div>
+
+          <h3 class="text-2xl font-black uppercase text-white mb-4 group-hover:text-[#CCFF00] transition-colors">
+            {p.title}
+          </h3>
+
+          <p class="text-slate-300 leading-relaxed text-sm sm:text-base font-normal">
+            {p.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Verification Banner -->
+    <div class="p-6 bg-black border border-white/20 font-mono text-xs text-slate-400 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="text-[#CCFF00] font-bold">SHA-256 VERIFIED:</span>
+        <span class="text-slate-300">d7e3:a4f1:99cb:1894 // 100% Deterministic Architecture</span>
+      </div>
+      <div class="text-slate-500">
+        Continuous Machine-to-Machine Ingestion
+      </div>
+    </div>
+  </div>
+</section>

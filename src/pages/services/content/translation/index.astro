@@ -1,0 +1,426 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Content Translation & Localization',
+  'description': 'Full content translation and localization services for global markets',
+  'serviceType': 'Translation and Localization',
+  'inLanguage': 'en-US',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com'
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Translation services',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Professional translation',
+          'description': 'Expert translation by professional linguists',
+          'inLanguage': 'en-US'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Localization',
+          'description': 'Cultural and market adaptation of content',
+          'inLanguage': 'en-US'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const languages = [
+    {
+      name: 'English',
+      flag: '🇺🇸',
+      description: 'Business, technical and website translation',
+      specialties: ['Business English', 'Technical Translation', 'Website Localization']
+    },
+    {
+      name: 'Arabic',
+      flag: '🇸🇦',
+      description: 'Formal Modern Standard Arabic translation',
+      specialties: ['Modern Standard Arabic', 'Business Correspondence', 'Legal Translation']
+    },
+    {
+      name: 'French',
+      flag: '🇫🇷',
+      description: 'Literary, cultural and business translation',
+      specialties: ['European French', 'Canadian French', 'Technical Translation']
+    },
+    {
+      name: 'Turkish',
+      flag: '🇹🇷',
+      description: 'Translation for the Turkish market',
+      specialties: ['Business Turkish', 'E-commerce Content', 'Website Translation']
+    },
+    {
+      name: 'German',
+      flag: '🇩🇪',
+      description: 'Advanced technical and industrial translation',
+      specialties: ['Technical German', 'Engineering Documents', 'Legal Translation']
+    }
+  ];
+
+  const services = [
+    {
+      icon: "languages",
+      title: 'Professional, Accurate Translation',
+      description: 'Expert translation of all content types by linguists in your business domain, with native grammar, culture and sentence structure.',
+      benefits: ['High accuracy', 'Cultural fluency', 'Brand fit']
+    },
+    {
+      icon: "globe",
+      title: 'Creative Localization',
+      description: 'Full adaptation to the culture, target market, social values and local marketing needs of each language.',
+      benefits: ['Cultural resonance', 'Effective connection', 'Higher conversion']
+    },
+    {
+      icon: "sparkles",
+      title: 'SEO Preserved in Translation',
+      description: 'Multilingual copy optimized for Google and local algorithms while keeping strategic keyword rankings.',
+      benefits: ['Global rankings', 'International traffic', 'Technical localization']
+    },
+    {
+      icon: "shield",
+      title: 'Two-Stage Quality Guarantee',
+      description: 'First pass by a specialist translator, then quality control by a linguistics expert for assured excellence.',
+      benefits: ['Guaranteed quality', 'Double-checked accuracy', 'Client satisfaction']
+    }
+  ];
+
+  const benefits = [
+    'Enter new national and international markets with million-strong audiences',
+    'Keep your brand fully consistent across all languages and markets',
+    'Rank higher in the search results of target countries',
+    'Connect effectively and earn international customers’ trust faster',
+    'Cut local marketing costs with ready-prepared content',
+    'A lasting competitive edge over local rivals'
+  ];
+
+  const contentTypes = [
+    {
+      type: 'Websites & Apps',
+      description: 'Full translation of pages, apps and user interfaces',
+      examples: ['Website pages', 'Mobile apps', 'Admin panels'],
+    },
+    {
+      type: 'Marketing Content',
+      description: 'Guidebooks, catalogs and promotional copy',
+      examples: ['Brochures', 'Product catalogs', 'Ad campaigns'],
+    },
+    {
+      type: 'Technical Documentation',
+      description: 'Manuals, guides and educational content',
+      examples: ['User guides', 'Case studies', 'Technical documents'],
+    },
+    {
+      type: 'Legal Content',
+      description: 'Contracts, terms of use and legal documents',
+      examples: ['Terms of service', 'Contracts', 'Legal documents'],
+    }
+  ];
+
+  // Qualitative process facts, not performance percentages — quality and
+  // satisfaction scores are unverifiable (see src/lib/site-claims.ts).
+  const stats = [
+    { metric: 'Two Stages', label: 'Quality control & review', color: 'text-green-800', icon: "award" },
+    { metric: 'Multilingual', label: 'The world’s major languages', color: 'text-blue-600', icon: "globe" },
+    { metric: '3–7 Days', label: 'Delivery time', color: 'text-purple-600', icon: "clock" },
+    { metric: 'Guaranteed', label: 'Seven-day post-delivery quality cover', color: 'text-orange-600', icon: "shield" }
+  ];
+
+  const workflowSteps = [
+    {
+      step: 'Assessment & Analysis',
+      desc: 'Reviewing source content, target language and cultural needs'
+    },
+    {
+      step: 'Specialist Translator Assignment',
+      desc: 'Choosing a professional translator specialized in your content field'
+    },
+    {
+      step: 'First Translation & Quality Control',
+      desc: 'Translation plus quality review by a linguistics expert'
+    },
+    {
+      step: 'Localization & Finalization',
+      desc: 'Cultural adaptation, final checks and delivery'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'Which languages do you cover?',
+      answer: 'English, Arabic, French, Turkish, German, Italian, Russian, Korean, Japanese and the world’s other major languages. Need something specific? We’ll review it in consultation.'
+    },
+    {
+      question: 'Do you translate specialist content?',
+      answer: 'Yes — it’s one of our core strengths. Scientific papers and technical texts are translated by field-specialist translators (medical, engineering, legal and more).'
+    },
+    {
+      question: 'How do translation delivery times work?',
+      answer: 'Usually 3 days to a week depending on volume and language. Express service is available for urgent projects; exact timing is confirmed at order.'
+    },
+    {
+      question: 'How do you guarantee translation quality?',
+      answer: 'Every translation passes two quality gates: 1) review by a specialist translator, 2) revision by a linguistics expert. Plus a seven-day quality guarantee.'
+    },
+    {
+      question: 'Is SEO respected in translations?',
+      answer: 'Yes — our specialists work with international SEO knowledge. Strategic keywords are preserved, content structure optimized and pages prepared for local search engines.'
+    },
+    {
+      question: 'How are translation costs calculated?',
+      answer: 'By language, specialty, word count and turnaround. We offer packages from budget to VIP, with exact quotes given in consultation.'
+    }
+  ];
+
+---
+<BaseLayout lang="en" title='Content Translation & Localization | Translation Services | AsreSEO' description='Full content translation and localization for global markets. Brand-voice consistency, multilingual SEO and new-market entry with specialist translators.' keywords='translation, content localization, multilingual content, professional translation' canonical='/services/content/translation/' ogType='website' ogUrl='https://asreseo.com/services/content/translation/' ogImages={[{ url: "/og/translation-hero.jpg", width: 1200, height: 630, alt: "Translation and localization | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Content Translation & Localization | AsreSEO'
+
+  ogDescription='Accurate translation and content localization for global business growth.'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/content/translation/', image: '/og/translation-hero.jpg' }))}
+      />
+
+      <Header lang="en" />
+      <BreadcrumbStructuredData
+        items={[
+          { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+          { position: 2, name: 'Content Services', item: 'https://asreseo.com/services/content/' },
+          { position: 3, name: 'Translation & Localization', item: 'https://asreseo.com/services/content/translation/' }
+        ]}
+      />
+
+      <main>
+        <!-- Hero Section -->
+        <ServiceHero
+          lang="en"
+          badge="Specialist Translation Services"
+          title="Translation &"
+          titleGradient="Localization"
+          description="Specialist translators in your business domain for global expansion. From precise translation to full cultural localization, AsreSEO stands with you."
+          primaryCta={{ text: "Start Professional Translation" }}
+          secondaryCta={{ text: "Analyze My Content" }}
+          imageSrc="/images/translation-hero.webp"
+          imageAlt="Translation and localization"
+          theme="teal"
+        />
+
+        <!-- Stats Section -->
+        <ServiceStats lang="en" stats={stats} theme="teal" />
+
+        <!-- Languages Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Coverage of the <span class="gradient-text">World’s Major Languages</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Specialist translators in every major language for your global markets
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {languages.map((lang, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors text-2xl">
+                        {lang.flag}
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{lang.name}</CardTitle>
+                    </div>
+                    <p class="text-gray-600 mb-4">{lang.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-1">
+                      {lang.specialties.map((specialty, specialtyIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                          {specialty}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                AsreSEO’s <span class="gradient-text">Complete Translation</span> Services
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                A comprehensive approach to translating and localizing your content worldwide
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {services.map((service, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                        <Icon name={service.icon} class="h-6 w-6 text-green-800" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{service.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                      {service.description}
+                    </p>
+                    <div class="space-y-2">
+                      {service.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Content Types Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Types of <span class="gradient-text">Translatable Content</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Full coverage from websites to legal documents
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {contentTypes.map((type, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
+                        <Icon name="file-text" class="h-6 w-6 text-indigo-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{type.type}</CardTitle>
+                    </div>
+                    <p class="text-gray-600 mb-4">{type.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-1">
+                      {type.examples.map((example, exampleIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="badge-check" class="h-4 w-4 text-green-500 shrink-0" />
+                          {example}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits lang="en" title="Why Professional" titleHighlight="Translation & Localization" subtitle="Take your business global with field-specialist translators" benefits={benefits} />
+
+        <!-- Workflow Section -->
+        <section class="section-padding bg-linear-to-br from-teal-50 to-green-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                AsreSEO’s Specialist <span class="gradient-text">Translation</span> Process
+              </h2>
+              <p class="text-xl text-gray-600">
+                A scientific 4-step approach to precise, quality translation
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              {workflowSteps.map((step, index) => (
+                <div class="flex items-center gap-8 p-6 bg-white/80 rounded-xl shadow-xs">
+                  <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-2xl font-bold text-green-800">
+                    {index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      {step.step}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <ServiceFAQ
+          lang="en"
+          title="Frequently"
+          titleGradient="Asked Questions"
+          subtitle="Answers to common client questions about translation services"
+          faqs={faqs}
+        />
+
+        <!-- CTA Section -->
+        <ServiceCTA
+          lang="en"
+          title="Language Knows No Borders — Go Global!"
+          description="With AsreSEO's specialist translators, let your content speak the world's living languages and reach million-strong markets. From cultural analysis to multilingual SEO, we're beside you."
+          primaryCta={{ text: "Start Professional Translation" }}
+          secondaryCta={{ text: "Free Translation Consultation" }}
+          primaryClass="bg-green-700 hover:bg-green-800 text-white font-semibold shadow-lg shadow-green-700/30"
+        />
+      </main>
+
+      <Footer lang="en" />
+    </div>
+</BaseLayout>

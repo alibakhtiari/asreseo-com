@@ -1,0 +1,160 @@
+---
+// Shared document shell: replaces Next.js root layout + per-page `metadata`.
+export interface OgImage {
+  url: string;
+  width?: number;
+  height?: number;
+  alt?: string;
+}
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  keywords?: string;
+  canonical?: string;
+  ogType?: string;
+  ogUrl?: string;
+  ogImages?: OgImage[];
+  twitterCard?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+  lang?: string;
+}
+
+const SITE = 'https://asreseo.com';
+const DEFAULT_TITLE_EN = 'AsreSEO | Digital Marketing, SEO & AI Services';
+
+const {
+  title,
+  description,
+  keywords = '',
+  canonical,
+  ogType = 'website',
+  ogUrl,
+  ogImages = [],
+  twitterCard = 'summary_large_image',
+  noindex = false,
+  nofollow = false,
+  lang = 'en',
+}: any = Astro.props;
+
+const resolvedTitle = title ?? DEFAULT_TITLE_EN;
+const resolvedDescription =
+  description ??
+  'AsreSEO — digital marketing, SEO, AI, Google Ads and web design services. Free consultation before any contract and transparent reporting at every step.';
+
+const dir = 'ltr';
+
+// `noindex` and `nofollow` are independent directives. An HTML sitemap is
+// `noindex, follow` — it must stay out of the index while still passing link
+// equity to every internal page it lists; `noindex, nofollow` there would
+// cut equity flow to the whole site. The 404 page sets both.
+const robots = [noindex ? 'noindex' : 'index', nofollow ? 'nofollow' : 'follow'].join(', ');
+
+const canonicalUrl = (() => {
+  const raw = canonical ?? Astro.url.pathname;
+  const path = raw.startsWith('http') ? new URL(raw).pathname : raw;
+  const normalized = path.endsWith('/') ? path : `${path}/`;
+  return new URL(normalized, SITE).href;
+})();
+
+const normalizedOgUrl = (() => {
+  const raw = ogUrl ?? canonicalUrl;
+  const path = raw.startsWith('http') ? new URL(raw).pathname : raw;
+  const normalized = path.endsWith('/') ? path : `${path}/`;
+  return new URL(normalized, SITE).href;
+})();
+
+const enAlternateUrl = canonicalUrl;
+
+const ogTitle = Astro.props.ogTitle ?? resolvedTitle;
+const ogDescription = Astro.props.ogDescription ?? resolvedDescription;
+
+// Default social-share image. 1200×630 matches X/Twitter/LinkedIn/Telegram's
+// `summary_large_image` spec — the prior 512×512 logo was either cropped
+// (square feed layouts) or declared with wrong dimensions on /faq/ and /services/.
+// Regenerate from /tmp/ogcard/index.html if branding changes.
+const DEFAULT_OG_IMAGE: OgImage = {
+  url: '/og-default.png',
+  width: 1200,
+  height: 630,
+  alt: 'AsreSEO — SEO, AI & digital marketing agency',
+};
+
+const validOgImages: OgImage[] = (() => {
+  const isImageFile = (u: string) =>
+    /\.(png|jpe?g|webp|avif|svg)(\?.*)?$/i.test(u);
+  const filtered = ogImages.filter((img: OgImage) => {
+    if (!img?.url) return false;
+    // Discard any entry whose URL looks like a web page path (e.g. https://asreseo.com/about)
+    return isImageFile(img.url);
+  });
+  return filtered.length > 0 ? filtered : [DEFAULT_OG_IMAGE];
+})();
+
+const primaryTwitterImage = new URL(validOgImages[0].url, SITE).href;
+
+import FloatingActions from '../components/FloatingActions.astro';
+import '../styles/globals.css';
+---
+<!doctype html>
+<html lang="en" dir="ltr" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{resolvedTitle}</title>
+    {resolvedDescription && <meta name="description" content={resolvedDescription} />}
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="theme-color" content="#080c14" />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={enAlternateUrl} />
+    <link rel="alternate" hreflang="x-default" href={enAlternateUrl} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="AsreSEO" />
+    <meta property="og:title" content={ogTitle} />
+    {ogDescription && <meta property="og:description" content={ogDescription} />}
+    <meta property="og:url" content={normalizedOgUrl} />
+    {validOgImages.map((img: OgImage) => (
+      <>
+        <meta property="og:image" content={new URL(img.url, SITE).href} />
+        {img.width && <meta property="og:image:width" content={String(img.width)} />}
+        {img.height && <meta property="og:image:height" content={String(img.height)} />}
+        {img.alt && <meta property="og:image:alt" content={img.alt} />}
+      </>
+    ))}
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:title" content={ogTitle} />
+    {ogDescription && <meta name="twitter:description" content={ogDescription} />}
+    <meta name="twitter:image" content={primaryTwitterImage} />
+    <meta name="twitter:site" content="@asreseo" />
+    <meta name="twitter:creator" content="@asreseo" />
+    <!-- Preload Self-Hosted Critical Variable Font for Zero-CLS Initial Paint -->
+    <link rel="preload" href="/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <slot name="head" />
+  </head>
+  <body class="font-sans antialiased bg-[#000000] text-slate-100 selection:bg-[#CCFF00] selection:text-black">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#CCFF00] focus:text-black focus:font-bold focus:shadow-lg">
+      Skip to main content
+    </a>
+    <slot />
+    <FloatingActions lang="en" />
+    <!-- Clean up any legacy or orphaned Service Workers -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+          for (var i = 0; i < registrations.length; i++) {
+            registrations[i].unregister();
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

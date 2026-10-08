@@ -1,0 +1,163 @@
+---
+import Button from '../ui/button/Button.astro';
+import Icon from '../ui/Icon.astro';
+import Picture from '../ui/Picture.astro';
+import { PORTFOLIO_PROJECTS } from '../../lib/portfolio-data';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+
+const featuredProjects = PORTFOLIO_PROJECTS.slice(0, 3);
+---
+<section class="py-24 bg-[#000000] text-white border-b-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+      <div>
+        <div class="inline-block font-mono text-xs text-[#CCFF00] bg-black px-3 py-1 border border-[#CCFF00]/40 uppercase tracking-widest mb-3">
+          [VERIFIED_DOSSIERS // PRODUCTION_SYSTEMS]
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white font-sans">
+          Production Systems & <span class="text-[#CCFF00]">Engineering Dossiers</span>
+        </h2>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <p class="text-slate-400 text-sm max-w-md font-sans">
+          Real internal platforms, open-source edge tools, and verifiable client revenue architectures.
+        </p>
+        <Button
+          href="/portfolio/"
+          variant="acid"
+          size="sm"
+          class="shrink-0 px-5 py-3 font-mono text-xs uppercase"
+        >
+          View Full Archive ({PORTFOLIO_PROJECTS.length}) ↗
+        </Button>
+      </div>
+    </div>
+
+    <!-- Featured Dossiers Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {featuredProjects.map((p, idx) => (
+        <div class="p-6 sm:p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors flex flex-col justify-between">
+          <div>
+            <!-- Tag & Badge -->
+            <div class="flex items-center justify-between pb-4 mb-5 border-b border-white/10 font-mono text-xs">
+              <span class="text-[#CCFF00] font-bold uppercase truncate max-w-50">
+                {p.tag}
+              </span>
+              <span class="text-slate-400 text-[10px] bg-black px-2 py-0.5 border border-white/10 uppercase">
+                {p.badge}
+              </span>
+            </div>
+
+            <!-- Project Blueprint / Image Preview -->
+            <a
+              href={`/portfolio/${p.slug}/`}
+              class="block mb-5 overflow-hidden border-2 border-white/20 hover:border-[#CCFF00] transition-colors group relative bg-black"
+              aria-label={`View dossier for ${p.title}`}
+            >
+              <div class="absolute top-2 left-2 z-10 font-mono text-[9px] bg-black/85 text-[#CCFF00] px-1.5 py-0.5 border border-[#CCFF00]/40 uppercase tracking-wider">
+                DOSSIER_SYS // 0{idx + 1}
+              </div>
+              <Picture
+                src={p.image}
+                alt={p.imageAlt}
+                aspectRatio="16 / 10"
+                widths={[320, 480, 640, 800]}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
+                loading="lazy"
+                class="w-full h-44 sm:h-48 object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
+              />
+            </a>
+
+            <!-- Title -->
+            <h3 class="text-xl sm:text-2xl font-black uppercase text-white tracking-tight mb-3 font-sans">
+              <a href={`/portfolio/${p.slug}/`} class="hover:text-[#CCFF00] transition-colors">
+                {p.title}
+              </a>
+            </h3>
+
+            <!-- Client / Environment -->
+            <div class="font-mono text-xs text-slate-400 mb-5">
+              <span class="text-[#CCFF00] uppercase">[SYS]</span> {p.client}
+            </div>
+
+            <!-- Challenge & Solution -->
+            <div class="space-y-3 text-xs sm:text-sm text-slate-300 font-sans mb-6">
+              <p class="line-clamp-3">
+                <strong class="font-mono text-xs uppercase text-white">[CHALLENGE]:</strong> {p.challenge}
+              </p>
+              <p class="line-clamp-3">
+                <strong class="font-mono text-xs uppercase text-white">[SOLUTION]:</strong> {p.solution}
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <!-- Metrics Box -->
+            <div class="grid grid-cols-2 gap-2 p-3 bg-black border border-white/15 mb-6 text-center font-mono">
+              {p.metrics.slice(0, 2).map((m) => (
+                <div class="min-w-0">
+                  <div class="text-base sm:text-lg lg:text-xl font-black text-[#CCFF00] wrap-break-word">{m.value}</div>
+                  <div class="text-[10px] text-slate-400 uppercase tracking-tight truncate">{m.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <a
+                href={`/portfolio/${p.slug}/`}
+                aria-label={`Examine technical dossier for ${p.title}`}
+                class="inline-flex items-center justify-between w-full py-3 px-4 bg-white/5 border border-white/20 text-xs font-mono font-bold uppercase text-white hover:bg-[#CCFF00] hover:text-black hover:border-[#CCFF00] transition-all"
+              >
+                <span>Examine Technical Dossier</span>
+                <span>↗</span>
+              </a>
+
+              <div class="flex items-center gap-2 pt-1 font-mono text-[11px]">
+                {p.showcaseUrl ? (
+                  <a
+                    href={p.showcaseUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-[#CCFF00] hover:underline flex items-center gap-1 font-bold"
+                  >
+                    <Icon name="external-link" class="w-3 h-3 text-[#CCFF00]" />
+                    <span>Try Sandbox (Mock Data) ↗</span>
+                  </a>
+                ) : p.liveUrl ? (
+                  <a
+                    href={p.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-[#CCFF00] hover:underline flex items-center gap-1"
+                  >
+                    <Icon name="external-link" class="w-3 h-3" />
+                    <span>Live App ↗</span>
+                  </a>
+                ) : null}
+                {p.liveUrl && p.repoUrl && <span class="text-slate-600">/</span>}
+                {p.repoUrl && (
+                  <a
+                    href={p.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-slate-400 hover:text-white flex items-center gap-1"
+                  >
+                    <Icon name="github" class="w-3 h-3" />
+                    <span>{p.isPrivateRepo ? 'Private Repo' : 'GitHub'} ↗</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
