@@ -1,0 +1,511 @@
+---
+import Icon from '../ui/Icon.astro';
+
+// Interactive Showcase component with live Edge Gateway sandbox & mock data explorer
+// Ported from asreseo-command-center public showcase & docs/showcase-embed.html
+
+const showcaseModules = [
+  {
+    id: 'performance',
+    title: 'Search Visibility & GSC',
+    badge: 'CORE_ANALYTICS',
+    toolName: 'gsc_query_performance',
+    summary: 'Real-time Google Search Console performance analytics with automated parallel prior-period comparisons and delta curves.',
+    kpis: [
+      { label: 'Organic Clicks', value: '42,850', delta: '+18.4%', trend: 'up' },
+      { label: 'Impressions', value: '1.24M', delta: '+24.1%', trend: 'up' },
+      { label: 'Average CTR', value: '3.46%', delta: '+0.3%', trend: 'up' },
+      { label: 'Average Position', value: '7.8', delta: '-1.2', trend: 'up' },
+    ],
+    sampleRequest: {
+      siteUrl: "sc-domain:asreseo.com",
+      startDate: "2026-09-01",
+      endDate: "2026-09-28",
+      dimensions: ["query"],
+      rowLimit: 3
+    },
+    sampleResponse: {
+      rows: [
+        { query: "seo command center", clicks: 342, impressions: 4210, ctr: 0.081, position: 2.1 },
+        { query: "mcp server for search console", clicks: 288, impressions: 3105, ctr: 0.093, position: 1.8 },
+        { query: "cloudflare worker seo proxy", clicks: 195, impressions: 2640, ctr: 0.074, position: 3.4 }
+      ],
+      totalClicks: 42850,
+      cacheHit: true,
+      edgeResponseMs: 18
+    }
+  },
+  {
+    id: 'cannibalization',
+    title: 'Cannibalization Matrix',
+    badge: 'ALGORITHMIC_AUDIT',
+    toolName: 'gsc_detect_cannibalization',
+    summary: 'Detects internal keyword competition where multiple URLs fragment ranking power and dilute authority across Google search.',
+    kpis: [
+      { label: 'Detected Clusters', value: '3 Conflicted', delta: 'High Severity', trend: 'down' },
+      { label: 'Top Conflict Query', value: 'technical seo 2026', delta: '2 URLs Competing', trend: 'neutral' },
+      { label: 'Compete Score', value: '84/100', delta: 'Action Required', trend: 'down' },
+      { label: 'Estimated Lift', value: '+350 Clicks/mo', delta: 'Upon 301 / Canonical', trend: 'up' },
+    ],
+    sampleRequest: {
+      siteUrl: "sc-domain:asreseo.com",
+      minImpressions: 100,
+      periodDays: 28
+    },
+    sampleResponse: {
+      totalClusters: 3,
+      clusters: [
+        {
+          query: "technical seo checklist 2026",
+          competeScore: 84,
+          severity: "HIGH",
+          competingUrls: [
+            { page: "https://asreseo.com/blog/technical-seo", clicks: 120, impressions: 1800, position: 5.2 },
+            { page: "https://asreseo.com/services/technical-audit", clicks: 95, impressions: 1650, position: 6.8 }
+          ],
+          recommendedFix: "Set canonical to /services/technical-audit or consolidate content"
+        }
+      ]
+    }
+  },
+  {
+    id: 'opportunities',
+    title: 'Striking Distance Wins',
+    badge: 'GROWTH_SENTINEL',
+    toolName: 'gsc_opportunities',
+    summary: 'Surfaces high-potential queries currently ranking in positions 4 through 20 with CTR gaps ready for first-page push.',
+    kpis: [
+      { label: 'Target Keywords', value: '14 Quick Wins', delta: 'Pos 4-20', trend: 'up' },
+      { label: 'Impression Pool', value: '48,200', delta: 'Uncaptured Traffic', trend: 'up' },
+      { label: 'Potential Clicks', value: '+1,820 /mo', delta: 'With Pos 1-3 Push', trend: 'up' },
+      { label: 'Avg Current Rank', value: '6.4', delta: 'High Commercial Intent', trend: 'neutral' },
+    ],
+    sampleRequest: {
+      siteUrl: "sc-domain:asreseo.com",
+      minImpressions: 500,
+      targetPositions: [4, 20]
+    },
+    sampleResponse: {
+      totalOpportunities: 14,
+      strikingKeywords: [
+        { query: "autonomous seo agents", position: 5.4, impressions: 5200, currentClicks: 140, potentialClicks: 490 },
+        { query: "mcp json rpc gateway", position: 7.1, impressions: 3800, currentClicks: 88, potentialClicks: 260 },
+        { query: "cloudflare worker llms txt", position: 4.8, impressions: 4100, currentClicks: 210, potentialClicks: 520 }
+      ]
+    }
+  },
+  {
+    id: 'decay',
+    title: 'Content Decay Sentinel',
+    badge: 'RANK_PROTECTION',
+    toolName: 'gsc_decay',
+    summary: 'Compares current 28-day performance against prior periods to catch traffic drops and algorithmic decay before loss solidifies.',
+    kpis: [
+      { label: 'Decaying URLs', value: '2 Critical', delta: '-75% Traffic Drop', trend: 'down' },
+      { label: 'Lost Monthly Clicks', value: '-135 Clicks', delta: 'Last 28 Days', trend: 'down' },
+      { label: 'Risk Velocity', value: 'Critical', delta: 'SERP Intent Shift', trend: 'down' },
+      { label: 'Remediation Ready', value: 'Instant A4', delta: 'Gemini Action Plan', trend: 'up' },
+    ],
+    sampleRequest: {
+      siteUrl: "sc-domain:asreseo.com",
+      periodDays: 28,
+      dropThresholdPct: 30
+    },
+    sampleResponse: {
+      totalDecayingPages: 2,
+      decayingUrls: [
+        {
+          page: "https://asreseo.com/guides/page-speed",
+          currentClicks: 45,
+          previousClicks: 180,
+          dropPct: -75.0,
+          severity: "CRITICAL",
+          primaryCause: "Competitor updated LCP 2026 benchmarks"
+        }
+      ]
+    }
+  },
+  {
+    id: 'crux',
+    title: 'Chrome UX Real Vitals',
+    badge: 'PERFORMANCE_CRUX',
+    toolName: 'crux_query',
+    summary: 'Chrome UX Report 75th percentile real-user field measurements collected from real mobile and desktop sessions.',
+    kpis: [
+      { label: 'LCP (Largest Paint)', value: '1.82s', delta: 'GOOD (Target <2.5s)', trend: 'up' },
+      { label: 'INP (Next Paint)', value: '92ms', delta: 'GOOD (Target <200ms)', trend: 'up' },
+      { label: 'CLS (Layout Shift)', value: '0.02', delta: 'GOOD (Target <0.1)', trend: 'up' },
+      { label: 'Passing Device Share', value: '98.4%', delta: 'Zero Field Regressions', trend: 'up' },
+    ],
+    sampleRequest: {
+      origin: "https://asreseo.com",
+      formFactor: "PHONE"
+    },
+    sampleResponse: {
+      collectionPeriod: "2026-09",
+      formFactor: "PHONE",
+      metrics: {
+        largest_contentful_paint: { p75: 1820, category: "GOOD", unit: "ms" },
+        interaction_to_next_paint: { p75: 92, category: "GOOD", unit: "ms" },
+        cumulative_layout_shift: { p75: 0.02, category: "GOOD", unit: "score" }
+      },
+      cruxVerdict: "PASS_ALL_CORE_WEB_VITALS"
+    }
+  },
+  {
+    id: 'trends',
+    title: 'Trends Breakout Engine',
+    badge: 'VIRAL_DISCOVERY',
+    toolName: 'google_trends_explore',
+    summary: 'Monitors real-time search trends and sudden +5000% breakout search terms to capture fresh topical authority early.',
+    kpis: [
+      { label: 'Breakout Queries', value: '+4,200%', delta: 'Surging Velocity', trend: 'up' },
+      { label: 'Cluster Keyword', value: 'claude mcp gsc', delta: 'Breakout Detected', trend: 'up' },
+      { label: 'GEO AI Citations', value: 'Ready', delta: 'Perplexity & SearchGPT', trend: 'up' },
+      { label: 'Response Latency', value: '14ms', delta: 'Cloudflare KV Cached', trend: 'up' },
+    ],
+    sampleRequest: {
+      keyword: "model context protocol seo",
+      geo: "US",
+      timeframe: "now 7-d"
+    },
+    sampleResponse: {
+      mode: "breakout",
+      risingQueries: [
+        { query: "claude desktop mcp gsc", growth: "+4200%" },
+        { query: "cursor webmcp setup", growth: "Breakout" }
+      ],
+      aiCitationReady: true
+    }
+  }
+];
+---
+
+<section id="live-showcase" class="py-16 bg-[#04060b] border-2 border-white/20 brutalist-card relative overflow-hidden my-16">
+  <!-- Glowing subtle grid background -->
+  <div class="absolute inset-0 bg-[radial-gradient(#CCFF00_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none"></div>
+
+  <div class="relative z-10 px-6 sm:px-8 lg:px-10">
+    <!-- Top Status Bar & Badges -->
+    <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-white/15 font-mono text-xs">
+      <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+        <span class="inline-flex items-center gap-2 px-3 py-1 bg-black border border-[#CCFF00]/60 text-[#CCFF00] font-bold uppercase tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-[#10b981] animate-ping"></span>
+          <span>Cloudflare Edge · Live Gateway</span>
+        </span>
+        <span class="px-2.5 py-1 bg-[#0a0e17] border border-white/20 text-slate-300 font-bold uppercase">
+          Zero Auth Required
+        </span>
+        <span class="px-2.5 py-1 bg-[#0a0e17] border border-white/20 text-[#CCFF00] font-bold uppercase">
+          32 MCP Tools
+        </span>
+      </div>
+
+      <div class="text-slate-400 text-[11px] uppercase tracking-widest flex items-center gap-2">
+        <span>EDGE_HOST:</span>
+        <span class="text-white font-bold">mcp.asreseo.com</span>
+      </div>
+    </div>
+
+    <!-- Showcase Header -->
+    <div class="max-w-4xl mb-8">
+      <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">
+        [INTERACTIVE_SANDBOX // PUBLIC_GATEWAY_DEMO]
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-black uppercase text-white tracking-tight leading-tight mb-4 font-sans">
+        Live Model Context Protocol Gateway & Mock Data Sandbox
+      </h2>
+      <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
+        Try the Asre SEO Command Center directly. Below you can inspect real JSON-RPC tool calls across all 9 automated intelligence modules, or toggle the live interactive edge sandbox running directly on Cloudflare Workers.
+      </p>
+    </div>
+
+    <!-- Feature Pills Strip -->
+    <div class="flex flex-wrap gap-2 mb-8 font-mono text-xs">
+      <span class="px-3 py-1 bg-black border border-white/15 text-slate-300">⚡ CrUX Real-User Field Vitals</span>
+      <span class="px-3 py-1 bg-black border border-white/15 text-slate-300">🎯 Keyword Cannibalization Matrix</span>
+      <span class="px-3 py-1 bg-black border border-white/15 text-slate-300">📈 Striking Distance Opportunities</span>
+      <span class="px-3 py-1 bg-black border border-white/15 text-slate-300">📉 Content Decay Sentinel</span>
+      <span class="px-3 py-1 bg-black border border-white/15 text-slate-300">🔥 Google Trends Breakout (+5000%)</span>
+      <span class="px-3 py-1 bg-black border border-white/15 text-slate-300">🛡️ Safe 1-Click Rollback Pipeline</span>
+    </div>
+
+    <!-- Action Bar (Launch Fullscreen / Toggle Inline Sandbox) -->
+    <div class="flex flex-wrap items-center gap-4 mb-10 pb-8 border-b border-white/15">
+      <a
+        href="https://mcp.asreseo.com/showcase"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-[#CCFF00] text-black border-2 border-black px-6 py-3.5 font-mono text-xs font-black uppercase shadow-[3px_3px_0px_#FFFFFF] hover:bg-white hover:shadow-[3px_3px_0px_#CCFF00] transition-all cursor-pointer"
+      >
+        <Icon name="external-link" class="w-4 h-4 text-black" />
+        <span>Launch Fullscreen Showcase (mcp.asreseo.com/showcase) ↗</span>
+      </a>
+
+      <button
+        type="button"
+        id="btn-toggle-sandbox-frame"
+        class="inline-flex items-center gap-2 bg-black text-white border-2 border-white/20 px-6 py-3.5 font-mono text-xs font-bold uppercase hover:border-[#CCFF00] hover:text-[#CCFF00] transition-all cursor-pointer"
+      >
+        <Icon name="terminal" class="w-4 h-4 text-[#CCFF00]" />
+        <span id="btn-toggle-sandbox-text">Preview Live Edge Sandbox Inline</span>
+      </button>
+
+      <a
+        href="https://github.com/alibakhtiari/asreseo-command-center"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-[#0a0e17] text-slate-300 border border-white/20 px-4 py-3.5 font-mono text-xs font-bold uppercase hover:text-white hover:border-white transition-all"
+      >
+        <Icon name="github" class="w-4 h-4 text-current" />
+        <span>View Command Center Repo ↗</span>
+      </a>
+    </div>
+
+    <!-- Inline Iframe Container (Toggleable) -->
+    <div id="sandbox-iframe-container" class="hidden mb-12 border-2 border-[#CCFF00]/50 bg-black p-2 rounded-none relative">
+      <div class="flex items-center justify-between px-3 py-2 bg-[#090d16] border-b border-white/10 font-mono text-xs text-slate-400 mb-2">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <span class="text-white font-bold">EMBEDDED_EDGE_VIEW:</span>
+          <span>https://mcp.asreseo.com/showcase</span>
+        </div>
+        <button
+          type="button"
+          id="btn-close-sandbox-frame"
+          class="text-slate-400 hover:text-white uppercase text-[10px] tracking-wider px-2 py-0.5 border border-white/20 bg-black"
+        >
+          [Close Preview ✕]
+        </button>
+      </div>
+
+      <iframe
+        id="sandbox-iframe"
+        data-src="https://mcp.asreseo.com/showcase"
+        class="w-full h-[680px] border border-white/10 bg-black"
+        loading="lazy"
+        title="Asre SEO Command Center Public Showcase"
+        allow="clipboard-write"
+      ></iframe>
+    </div>
+
+    <!-- Interactive Mock Data & MCP Tool Explorer Tabs -->
+    <div class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider mb-1">[PAYLOAD_INSPECTOR]</div>
+          <h3 class="text-xl sm:text-2xl font-black uppercase text-white font-sans">
+            Explore 32 MCP Tools & Automated Pipeline Data
+          </h3>
+        </div>
+        <p class="font-mono text-xs text-slate-400">
+          // Click any module below to inspect real mock responses & tool signatures.
+        </p>
+      </div>
+
+      <!-- Tab Buttons Navigation -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 border-b border-white/15 no-scrollbar">
+        {showcaseModules.map((mod, idx) => (
+          <button
+            type="button"
+            data-module-tab={mod.id}
+            class={`px-4 py-2.5 font-mono text-xs font-bold uppercase whitespace-nowrap border transition-all cursor-pointer ${
+              idx === 0
+                ? 'bg-[#CCFF00] text-black border-black shadow-[2px_2px_0px_#FFFFFF]'
+                : 'bg-black text-slate-400 border-white/20 hover:text-white hover:border-[#CCFF00]'
+            }`}
+          >
+            <span>[{idx + 1}] {mod.title}</span>
+          </button>
+        ))}
+      </div>
+
+      <!-- Tab Panels -->
+      <div id="showcase-panels-container">
+        {showcaseModules.map((mod, idx) => (
+          <div
+            id={`panel-${mod.id}`}
+            class={`space-y-6 ${idx === 0 ? 'block' : 'hidden'}`}
+          >
+            <!-- Module Top Summary & Badge -->
+            <div class="p-5 bg-[#090d16] border border-white/20 flex flex-col md:flex-row md:items-center justify-between gap-4 font-mono text-xs">
+              <div>
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-[#CCFF00]/10 text-[#CCFF00] border border-[#CCFF00]/30">
+                    {mod.badge}
+                  </span>
+                  <span class="text-slate-500">|</span>
+                  <span class="text-white font-bold">MCP_TOOL:</span>
+                  <span class="text-[#CCFF00] font-bold">{mod.toolName}</span>
+                </div>
+                <p class="text-slate-300 font-sans text-sm max-w-3xl">
+                  {mod.summary}
+                </p>
+              </div>
+
+              <div class="shrink-0 flex items-center gap-2">
+                <span class="text-slate-500">PROTOCOL:</span>
+                <span class="text-emerald-400 font-bold bg-black px-2 py-1 border border-white/15">WebMCP JSON-RPC 2.0</span>
+              </div>
+            </div>
+
+            <!-- KPIs Grid -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {mod.kpis.map((kpi) => (
+                <div class="p-4 bg-black border border-white/15 font-mono text-xs">
+                  <div class="text-[10px] text-slate-500 uppercase tracking-widest mb-1">{kpi.label}</div>
+                  <div class="text-xl sm:text-2xl font-black text-[#CCFF00] mb-1">{kpi.value}</div>
+                  <div class={`text-[11px] font-bold ${
+                    kpi.trend === 'up'
+                      ? 'text-emerald-400'
+                      : kpi.trend === 'down'
+                      ? 'text-rose-400'
+                      : 'text-slate-400'
+                  }`}>
+                    {kpi.delta}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <!-- Payload Inspector (Request & Response) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 font-mono text-xs">
+              <!-- Left: Sample JSON-RPC Request -->
+              <div class="lg:col-span-5 bg-black border border-white/20 p-5 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10 text-slate-400 text-[11px]">
+                    <span class="text-white font-bold uppercase">[AI_AGENT_REQUEST]</span>
+                    <span class="text-[#CCFF00]">METHOD: tools/call</span>
+                  </div>
+                  <pre class="text-slate-300 text-[11px] leading-relaxed overflow-x-auto p-3 bg-[#070a12] border border-white/10 max-h-[280px]"><code>{JSON.stringify({
+  method: "tools/call",
+  params: {
+    name: mod.toolName,
+    arguments: mod.sampleRequest
+  }
+}, null, 2)}</code></pre>
+                </div>
+                <div class="pt-3 border-t border-white/10 text-[10px] text-slate-500">
+                  Agent Context: Claude Desktop · Cursor AI · Antigravity
+                </div>
+              </div>
+
+              <!-- Right: Real Edge Mock Response -->
+              <div class="lg:col-span-7 bg-black border border-white/20 p-5 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10 text-slate-400 text-[11px]">
+                    <span class="text-[#CCFF00] font-bold uppercase">[EDGE_GATEWAY_RESPONSE // MOCK_DATA]</span>
+                    <span class="text-emerald-400 font-bold">200 OK (18ms)</span>
+                  </div>
+                  <pre class="text-emerald-300 text-[11px] leading-relaxed overflow-x-auto p-3 bg-[#070a12] border border-white/10 max-h-[280px]"><code>{JSON.stringify(mod.sampleResponse, null, 2)}</code></pre>
+                </div>
+                <div class="pt-3 border-t border-white/10 flex items-center justify-between text-[10px] text-slate-500">
+                  <span>Storage: Cloudflare D1 SQL + KV Edge Cache</span>
+                  <span class="text-[#CCFF00]">ZERO_AUTH_VERIFIED</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Agent Setup Snippet -->
+    <div class="mt-12 p-6 bg-[#090d16] border border-white/20 font-mono text-xs">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 mb-4 border-b border-white/10">
+        <div>
+          <span class="text-[#CCFF00] font-bold uppercase tracking-wider">[AGENT_INTEGRATION_CONFIG]</span>
+          <p class="text-slate-400 text-xs font-sans mt-0.5">
+            Add this configuration to your Claude Desktop or Cursor AI settings to connect the AsreSEO MCP Gateway:
+          </p>
+        </div>
+        <span class="text-slate-500 text-[11px]">claude_desktop_config.json</span>
+      </div>
+
+      <pre class="text-slate-300 text-xs overflow-x-auto p-4 bg-black border border-white/15"><code>&#123;
+  "mcpServers": &#123;
+    "asreseo": &#123;
+      "url": "https://mcp.asreseo.com/api/mcp",
+      "transport": "sse"
+    &#125;
+  &#125;
+&#125;</code></pre>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Script for showcase inline toggle and interactive mock data tab switcher
+  function initShowcaseInteractions() {
+    // 1. Toggle Inline Sandbox Iframe
+    const toggleBtn = document.getElementById('btn-toggle-sandbox-frame');
+    const toggleText = document.getElementById('btn-toggle-sandbox-text');
+    const closeBtn = document.getElementById('btn-close-sandbox-frame');
+    const container = document.getElementById('sandbox-iframe-container');
+    const iframe = document.getElementById('sandbox-iframe') as HTMLIFrameElement | null;
+
+    function openSandbox() {
+      if (!container || !iframe) return;
+      if (!iframe.src && iframe.getAttribute('data-src')) {
+        iframe.src = iframe.getAttribute('data-src') || '';
+      }
+      container.classList.remove('hidden');
+      if (toggleText) toggleText.innerText = 'Collapse Inline Sandbox [▲]';
+      container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function closeSandbox() {
+      if (!container) return;
+      container.classList.add('hidden');
+      if (toggleText) toggleText.innerText = 'Preview Live Edge Sandbox Inline';
+    }
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        if (container && container.classList.contains('hidden')) {
+          openSandbox();
+        } else {
+          closeSandbox();
+        }
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeSandbox);
+    }
+
+    // 2. Tab switcher for Mock Data & Tool Explorer
+    const tabButtons = document.querySelectorAll<HTMLButtonElement>('[data-module-tab]');
+    tabButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-module-tab');
+        if (!targetId) return;
+
+        // Reset all buttons
+        tabButtons.forEach((b) => {
+          b.className = 'px-4 py-2.5 font-mono text-xs font-bold uppercase whitespace-nowrap border transition-all cursor-pointer bg-black text-slate-400 border-white/20 hover:text-white hover:border-[#CCFF00]';
+        });
+
+        // Highlight active button
+        btn.className = 'px-4 py-2.5 font-mono text-xs font-bold uppercase whitespace-nowrap border transition-all cursor-pointer bg-[#CCFF00] text-black border-black shadow-[2px_2px_0px_#FFFFFF]';
+
+        // Hide all panels, show active panel
+        const panels = document.querySelectorAll('[id^="panel-"]');
+        panels.forEach((p) => p.classList.add('hidden'));
+
+        const targetPanel = document.getElementById(`panel-${targetId}`);
+        if (targetPanel) {
+          targetPanel.classList.remove('hidden');
+        }
+      });
+    });
+  }
+
+  // Run on initial load and View Transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initShowcaseInteractions);
+  } else {
+    initShowcaseInteractions();
+  }
+  document.addEventListener('astro:page-load', initShowcaseInteractions);
+</script>

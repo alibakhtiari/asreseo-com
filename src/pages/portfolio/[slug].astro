@@ -5,6 +5,7 @@ import Footer from '../../components/Layout/Footer.astro';
 import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
 import Button from '../../components/ui/button/Button.astro';
 import Icon from '../../components/ui/Icon.astro';
+import CommandCenterShowcase from '../../components/portfolio/CommandCenterShowcase.astro';
 import { PORTFOLIO_PROJECTS, type PortfolioProject } from '../../lib/portfolio-data';
 
 export async function getStaticPaths() {
@@ -110,7 +111,17 @@ const pageSchema = {
 
           <!-- Action CTAs and External Links -->
           <div class="flex flex-wrap items-center gap-4 pt-4 border-t border-white/10">
-            {project.liveUrl && (
+            {project.showcaseUrl ? (
+              <a
+                href={project.showcaseUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 bg-[#CCFF00] text-black border-2 border-black px-5 py-3 font-mono text-xs font-black uppercase shadow-[3px_3px_0px_#FFFFFF] hover:bg-white transition-all"
+              >
+                <Icon name="external-link" class="w-4 h-4 text-black" />
+                <span>Try Live Showcase ({project.showcaseUrl.replace('https://', '')}) ↗</span>
+              </a>
+            ) : project.liveUrl ? (
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -119,6 +130,16 @@ const pageSchema = {
               >
                 <Icon name="external-link" class="w-4 h-4 text-black" />
                 <span>Launch Live System ({project.liveUrl.replace('https://', '')}) ↗</span>
+              </a>
+            ) : null}
+
+            {project.slug === 'asreseo-command-center' && (
+              <a
+                href="#live-showcase"
+                class="inline-flex items-center gap-2 bg-black text-[#CCFF00] border-2 border-[#CCFF00]/50 px-5 py-3 font-mono text-xs font-bold uppercase hover:bg-[#CCFF00] hover:text-black transition-all"
+              >
+                <Icon name="terminal" class="w-4 h-4 text-current" />
+                <span>Explore Live Edge Sandbox ↓</span>
               </a>
             )}
 
@@ -173,6 +194,10 @@ const pageSchema = {
       <!-- Deep Dive Dossier Body -->
       <section class="py-20 border-b-2 border-white/10">
         <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          {project.slug === 'asreseo-command-center' && (
+            <CommandCenterShowcase />
+          )}
+
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <!-- Left Main Column (Challenge, Solution, Key Features) -->
             <div class="lg:col-span-8 space-y-16">

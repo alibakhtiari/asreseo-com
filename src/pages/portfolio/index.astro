@@ -171,6 +171,18 @@ const testLogs = [
                         <span>Examine Full Dossier & Telemetry ↗</span>
                       </a>
 
+                      {project.showcaseUrl && (
+                        <a
+                          href={project.showcaseUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-[#CCFF00] uppercase hover:underline transition-colors px-3 py-2 border border-[#CCFF00]/40 bg-black"
+                        >
+                          <Icon name="external-link" class="w-3.5 h-3.5 text-[#CCFF00]" />
+                          <span>Try Live Showcase ↗</span>
+                        </a>
+                      )}
+
                       {project.liveUrl && (
                         <a
                           href={project.liveUrl}

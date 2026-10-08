@@ -10,6 +10,7 @@ export interface PortfolioProject {
   featured: boolean;
   repoUrl?: string;
   liveUrl?: string;
+  showcaseUrl?: string;
   isPrivateRepo?: boolean;
   challenge: string;
   solution: string;
@@ -43,6 +44,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     featured: true,
     repoUrl: 'https://github.com/alibakhtiari/asreseo-command-center',
     liveUrl: 'https://mcp.asreseo.com',
+    showcaseUrl: 'https://mcp.asreseo.com/showcase',
     isPrivateRepo: true,
     challenge:
       'Traditional enterprise SEO tools isolate search signals (GSC, GA4, Bing Webmaster, CrUX, PageSpeed) in disparate proprietary dashboards with manual clicks, zero AI-agent interoperability, and rate-limited CSV exports.',
@@ -111,6 +113,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     ],
     deliverables: [
       'Live edge dashboard deployment at mcp.asreseo.com',
+      'Interactive public showcase & mock data sandbox at mcp.asreseo.com/showcase',
       'Stdio MCP server package for Claude Desktop & Cursor',
       'D1 SQL data warehouse schema and cron ingestion scripts',
       'Enterprise Google OAuth 2.0 flow with automated token refresh',
