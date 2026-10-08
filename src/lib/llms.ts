@@ -68,6 +68,13 @@ export const AUTOMATION_INFRASTRUCTURE = {
     description:
       'High-throughput self-hosted workflow automation cluster orchestrating SEO telemetry triggers, webhook ingestion, AI content pipelines, and automated Google indexing alerts.',
   },
+  mcpGateway: {
+    label: 'Asre SEO Command Center & MCP Gateway',
+    url: 'https://mcp.asreseo.com',
+    repoUrl: 'https://github.com/alibakhtiari/asreseo-command-center',
+    description:
+      'Edge SEO intelligence platform and 32 Model Context Protocol (MCP) agent tools on Cloudflare Workers connecting GSC, GA4, CrUX, PageSpeed, and D1 SQL for Claude, Cursor, and Antigravity agents.',
+  },
   customNodes: [
     {
       name: 'n8n-nodes-avvalai',
@@ -82,6 +89,13 @@ export const AUTOMATION_INFRASTRUCTURE = {
       url: 'https://github.com/alibakhtiari/n8n-nodes-imagerouter',
       description:
         'Open-source custom n8n node extension engineered for high-throughput conditional image routing, compression, and AI vision dispatching.',
+    },
+    {
+      name: 'emdash-seo (WebABC SEO Suite)',
+      author: 'Ali Bakhtiari',
+      url: 'https://github.com/alibakhtiari/emdash-seo',
+      description:
+        'In-process native Astro and EmDash CMS plugin delivering edge SEO, GEO, AEO, Hemingway readability scoring, fuzzy 301 redirects, and dynamic /llms.txt rendering on Cloudflare Workers under 10ms CPU constraints.',
     },
   ],
 };
@@ -248,15 +262,15 @@ export const COMPANY_FAQS: { q: string; a: string }[] = [
 /** Portfolio cases, listed for AI consumers that summarise proof of work. */
 export const PORTFOLIO = {
   path: '/portfolio/',
-  en: 'Portfolio — Real AI & Automation Case Studies',
+  en: 'Portfolio & Engineering Systems Archive',
   cases: [
-    'Legal RAG chatbot over statutory sources',
-    'AI call-center with VoIP transcription + smart forwarding',
-    'Automated SEO monitoring with alerts',
-    'Content pipeline automation with n8n and custom nodes',
-    'Ads reporting automation',
+    'Asre SEO Command Center & MCP Gateway (32 tools for Claude/Cursor/Antigravity, Cloudflare Workers)',
+    'WebABC SEO Suite — Native Astro & EmDash CMS Plugin (in-process edge SEO/GEO/AEO engine)',
+    'FinTech Scaleup (#1 Perplexity & Google AI Overview citation source, 4,200 programmatic nodes)',
+    'Enterprise B2B SaaS (28-country programmatic syntactic expansion, sub-90ms edge TTFB)',
+    'Global E-Commerce Rescue (autonomous 100% orphan URL recovery via IndexNow in 14 days)',
   ],
-  note: 'Each case covers challenges, actions, technologies and results, with related service links and ItemList schema.',
+  note: 'Each dossier covers operational challenges, architectural interventions, technologies, and verified telemetry yield.',
 };
 
 /**

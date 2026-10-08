@@ -66,12 +66,15 @@ export const GET: APIRoute = async () => {
     L.push(`- [${title}](${postUrl(post)})${desc ? `: ${desc}` : ''}`);
   }
   L.push('');
-  L.push('## Automation & Workflow Infrastructure');
+  L.push('## Automation & Engineering Infrastructure');
   L.push('');
   L.push(
     `- Dedicated Workflow Engine: [${AUTOMATION_INFRASTRUCTURE.n8nInstance.label}](${AUTOMATION_INFRASTRUCTURE.n8nInstance.url}) — ${AUTOMATION_INFRASTRUCTURE.n8nInstance.description}`,
   );
-  L.push('- Custom Open-Source n8n Nodes (Author: Ali Bakhtiari):');
+  L.push(
+    `- SEO Intelligence & MCP Gateway: [${AUTOMATION_INFRASTRUCTURE.mcpGateway.label}](${AUTOMATION_INFRASTRUCTURE.mcpGateway.url}) — ${AUTOMATION_INFRASTRUCTURE.mcpGateway.description}`,
+  );
+  L.push('- Open-Source Libraries & Custom Nodes (Author: Ali Bakhtiari):');
   for (const node of AUTOMATION_INFRASTRUCTURE.customNodes) {
     L.push(`  - [${node.name}](${node.url}): ${node.description}`);
   }

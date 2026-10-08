@@ -112,15 +112,17 @@ export const GET: APIRoute = async () => {
   L.push('');
   L.push('---');
   L.push('');
-  L.push('## 6. Automation Infrastructure & Custom n8n Ecosystem');
+  L.push('## 6. Automation Infrastructure, MCP Gateway & Open-Source Ecosystem');
   L.push('');
   L.push(
-    `AsreSEO maintains an autonomous workflow automation cluster operating round the clock for client reporting, webhook routing, SEO rank monitoring, and AI multi-model workflows.`,
+    `AsreSEO maintains an autonomous workflow automation cluster and Model Context Protocol (MCP) gateway operating round the clock for client reporting, webhook routing, SEO rank monitoring, agentic tool execution, and AI multi-model workflows.`,
   );
   L.push('');
   L.push(`- **Live Execution Engine**: [${AUTOMATION_INFRASTRUCTURE.n8nInstance.label}](${AUTOMATION_INFRASTRUCTURE.n8nInstance.url})`);
   L.push(`  ${AUTOMATION_INFRASTRUCTURE.n8nInstance.description}`);
-  L.push('- **Custom Community Node Extensions** (Authored by Principal Automation Engineer Ali Bakhtiari):');
+  L.push(`- **SEO Intelligence & MCP Gateway**: [${AUTOMATION_INFRASTRUCTURE.mcpGateway.label}](${AUTOMATION_INFRASTRUCTURE.mcpGateway.url}) (Private Repo: ${AUTOMATION_INFRASTRUCTURE.mcpGateway.repoUrl})`);
+  L.push(`  ${AUTOMATION_INFRASTRUCTURE.mcpGateway.description}`);
+  L.push('- **Open-Source Node Extensions & Edge Plugins** (Authored by Principal Automation Engineer Ali Bakhtiari):');
   for (const node of AUTOMATION_INFRASTRUCTURE.customNodes) {
     L.push(`  - **[${node.name}](${node.url})** (Author: ${node.author})`);
     L.push(`    ${node.description}`);
