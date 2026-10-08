@@ -70,9 +70,17 @@ const { lang = 'en' } = Astro.props as Props;
 
 <script>
   const btt = document.querySelector('[data-backtotop]');
-  const onScroll = () => btt?.toggleAttribute('hidden', window.scrollY <= 300);
+  let ticking = false;
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        btt?.toggleAttribute('hidden', window.scrollY <= 300);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
   document.querySelectorAll('[data-scrolltop]').forEach((b) =>
     b.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' })),
   );

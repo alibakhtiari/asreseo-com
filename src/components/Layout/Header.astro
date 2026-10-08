@@ -31,7 +31,7 @@ const navLinks = [
       <!-- Enhanced Brutalist Logo -->
       <a href="/" class="flex items-center gap-3 group">
         <div class="w-9 h-9 bg-black border-2 border-white/20 group-hover:border-[#CCFF00] flex items-center justify-center transition-colors">
-          <Logo class="w-5 h-5 text-[#CCFF00]" />
+          <Logo class="w-5.5 h-5.5 text-white" />
         </div>
         <span class="text-xl font-black uppercase text-white group-hover:text-[#CCFF00] transition-colors tracking-tight font-sans">AsreSEO</span>
       </a>
@@ -157,8 +157,18 @@ const navLinks = [
       }
     }
   };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+
+  let ticking = false;
+  const debouncedScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        onScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
+  window.addEventListener('scroll', debouncedScroll, { passive: true });
 
   const panel = document.querySelector('[data-menu-panel]');
   const iconOpen = document.querySelector('[data-icon-open]');
@@ -172,7 +182,7 @@ const navLinks = [
           panel.querySelectorAll<HTMLElement>(
             'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
           ),
-        ).filter((el) => el.offsetParent !== null)
+        ).filter((el) => !el.hasAttribute('hidden') && el.getAttribute('aria-hidden') !== 'true')
       : [];
 
   const setMenu = (open: boolean, trigger?: HTMLElement, restoreFocus = true) => {

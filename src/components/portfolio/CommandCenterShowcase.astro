@@ -183,7 +183,7 @@ const showcaseModules = [
 
 <section id="live-showcase" class="py-16 bg-[#04060b] border-2 border-white/20 brutalist-card relative overflow-hidden my-16">
   <!-- Glowing subtle grid background -->
-  <div class="absolute inset-0 bg-[radial-gradient(#CCFF00_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(#CCFF00_1px,transparent_1px)] bg-size-[24px_24px] opacity-10 pointer-events-none"></div>
 
   <div class="relative z-10 px-6 sm:px-8 lg:px-10">
     <!-- Top Status Bar & Badges -->
@@ -282,7 +282,7 @@ const showcaseModules = [
       <iframe
         id="sandbox-iframe"
         data-src="https://mcp.asreseo.com/showcase"
-        class="w-full h-[680px] border border-white/10 bg-black"
+        class="w-full h-170 border border-white/10 bg-black"
         loading="lazy"
         title="Asre SEO Command Center Public Showcase"
         allow="clipboard-write"
@@ -377,7 +377,7 @@ const showcaseModules = [
                     <span class="text-white font-bold uppercase">[AI_AGENT_REQUEST]</span>
                     <span class="text-[#CCFF00]">METHOD: tools/call</span>
                   </div>
-                  <pre class="text-slate-300 text-[11px] leading-relaxed overflow-x-auto p-3 bg-[#070a12] border border-white/10 max-h-[280px]"><code>{JSON.stringify({
+                  <pre class="text-slate-300 text-[11px] leading-relaxed overflow-x-auto p-3 bg-[#070a12] border border-white/10 max-h-70"><code>{JSON.stringify({
   method: "tools/call",
   params: {
     name: mod.toolName,
@@ -397,7 +397,7 @@ const showcaseModules = [
                     <span class="text-[#CCFF00] font-bold uppercase">[EDGE_GATEWAY_RESPONSE // MOCK_DATA]</span>
                     <span class="text-emerald-400 font-bold">200 OK (18ms)</span>
                   </div>
-                  <pre class="text-emerald-300 text-[11px] leading-relaxed overflow-x-auto p-3 bg-[#070a12] border border-white/10 max-h-[280px]"><code>{JSON.stringify(mod.sampleResponse, null, 2)}</code></pre>
+                  <pre class="text-emerald-300 text-[11px] leading-relaxed overflow-x-auto p-3 bg-[#070a12] border border-white/10 max-h-70"><code>{JSON.stringify(mod.sampleResponse, null, 2)}</code></pre>
                 </div>
                 <div class="pt-3 border-t border-white/10 flex items-center justify-between text-[10px] text-slate-500">
                   <span>Storage: Cloudflare D1 SQL + KV Edge Cache</span>
