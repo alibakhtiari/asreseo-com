@@ -173,89 +173,425 @@ const breadcrumbs = [
 
 <BaseLayout
   lang="en"
-  title='SEO & Digital Marketing FAQ | AsreSEO'
-  description='The complete FAQ on SEO, AI, Google Ads and web design. Expert, transparent answers to clients’ key questions from the AsreSEO specialists.'
-  keywords='SEO FAQ, digital marketing questions, how long does SEO take, SEO cost, page authority, AI in SEO, Google Ads'
-  canonical='/faq/'
-  ogType='website'
-  ogUrl='https://asreseo.com/faq/'
-  ogImages={[{ url: '/og/faq-hero.png', width: 1200, height: 630, alt: 'AsreSEO SEO and digital marketing FAQ' }]}
-  twitterCard='summary_large_image'
+  title="SEO & Digital Marketing FAQ | AsreSEO Knowledge Base"
+  description="Declassified technical answers to 31 critical questions on Google search rankings, Core Web Vitals, AI search engines (AEO/GEO), crawl budget, and programmatic SEO."
+  keywords="SEO FAQ, AI search engine optimization, Google ranking factors, Core Web Vitals speed, SEO pricing timelines, AsreSEO knowledge base"
+  canonical="/faq/"
+  ogType="website"
+  ogUrl="https://asreseo.com/faq/"
+  ogImages={[{ url: '/og/faq-hero.png', width: 1200, height: 630, alt: 'AsreSEO Search Architecture FAQ' }]}
+  twitterCard="summary_large_image"
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
   <BreadcrumbStructuredData items={breadcrumbs} />
 
-  <div class="min-h-screen bg-[#000000] text-slate-100">
+  <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
     <Header lang="en" />
     <main class="pt-28 pb-20">
-      <!-- Hero Header -->
-      <section class="py-12 bg-[#000000] border-b border-white/5">
-        <div class="container-custom max-w-4xl text-center">
-          <div class="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-4 py-1.5 rounded-full text-sm font-medium mb-4">
-            <Icon name="help-circle" class="w-4 h-4" />
-            Your reference for common questions
+      <!-- 1. Hero Header Section -->
+      <section class="py-16 md:py-20 border-b-2 border-white/10 relative">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+          <div class="max-w-4xl">
+            <!-- Terminal Status Pill -->
+            <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#0a0d14] border border-white/20 mb-8 font-mono text-xs tracking-wider uppercase">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+              <span class="text-[#CCFF00] font-bold">[KNOWLEDGE_GRAPH // DECLASSIFIED_PROTOCOLS]</span>
+              <span class="text-slate-500">|</span>
+              <span class="text-slate-300">TOTAL: 31 ENTRIES</span>
+              <span class="text-slate-500 hidden sm:inline">|</span>
+              <span class="text-emerald-400 font-bold hidden sm:inline">STATUS: VERIFIED</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white mb-6 tracking-tight leading-[1.05]">
+              Algorithmic Search & <span class="text-[#CCFF00]">Engineering Protocols</span> FAQ.
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl font-sans">
+              Direct, deterministic answers on crawl efficiency, generative engine optimization (GEO), Google ranking volatility, edge web performance, and commercial timelines. Zero marketing euphemisms.
+            </p>
           </div>
-          <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-            <span class="gradient-text">SEO & Digital Marketing</span> FAQ
-          </h1>
-          <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Answers to managers' and clients' key questions on timelines, pricing, AI technologies, and web design standards
-          </p>
         </div>
       </section>
 
-      <!-- FAQ Groups Container -->
-      <section class="py-12">
-        <div class="container-custom max-w-4xl space-y-12">
-          {faqCategories.map((cat, catIdx) => (
-            <div class="bg-slate-900/60 backdrop-blur-md rounded-2xl border border-white/10 p-6 md:p-8 shadow-xl">
-              <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/5">
-                <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400">
-                  <Icon name={cat.icon} class="w-5 h-5" />
-                </div>
-                <h2 class="text-xl md:text-2xl font-bold text-white">
-                  {cat.category}
-                </h2>
+      <!-- 2. Interactive Search & Category Filter Console -->
+      <section class="py-10 border-b-2 border-white/10 bg-[#04060c]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="space-y-6">
+            <!-- Search Bar Terminal Input -->
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-4.5 flex items-center pointer-events-none text-[#CCFF00]">
+                <Icon name="search" class="w-5 h-5" />
+              </div>
+              <input
+                type="text"
+                id="faq-search-input"
+                placeholder='Search protocols (e.g. "Google Ads", "Core Web Vitals", "AI content", "pricing", "cannibalization")...'
+                class="w-full pl-13 pr-28 py-4.5 bg-black border-2 border-white/20 focus:border-[#CCFF00] text-white placeholder:text-slate-500 font-mono text-sm tracking-wide outline-none transition-colors brutalist-shadow-white"
+                aria-label="Search FAQ protocols"
+              />
+              <button
+                type="button"
+                id="faq-search-clear"
+                class="hidden absolute inset-y-0 right-3 my-auto h-8 px-3 font-mono text-xs uppercase bg-[#0a0e17] text-slate-400 border border-white/20 hover:text-[#CCFF00] hover:border-[#CCFF00] transition-colors"
+              >
+                Clear
+              </button>
+            </div>
+
+            <!-- Category Filter Tabs + Results Counter -->
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pt-2">
+              <div class="flex flex-wrap gap-2" id="faq-category-filters" role="tablist">
+                <button
+                  type="button"
+                  data-category="all"
+                  class="faq-cat-btn px-4 py-2 font-mono text-xs uppercase font-bold border-2 transition-all cursor-pointer bg-[#CCFF00] text-black border-[#CCFF00]"
+                >
+                  All Protocols (31)
+                </button>
+                {faqCategories.map((cat) => (
+                  <button
+                    type="button"
+                    data-category={cat.category}
+                    class="faq-cat-btn px-4 py-2 font-mono text-xs uppercase font-bold border border-white/20 text-slate-300 hover:text-[#CCFF00] hover:border-[#CCFF00] bg-black transition-all cursor-pointer"
+                  >
+                    {cat.category} ({cat.items.length})
+                  </button>
+                ))}
               </div>
 
-              <Accordion type="single" collapsible class="w-full" dir="ltr">
-                {cat.items.map((faq, index) => (
-                  <AccordionItem value={`cat-${catIdx}-item-${index}`} class="border-b border-gray-100 last:border-none py-1">
-                    <AccordionTrigger class="text-left text-base md:text-lg font-medium text-gray-900 hover:text-blue-600 py-3">
-                      {faq.q}
-                    </AccordionTrigger>
-                    <AccordionContent class="text-left text-gray-600 text-sm md:text-base leading-relaxed pt-1 pb-4">
-                      {faq.a}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+              <!-- Live Counter Status -->
+              <div class="font-mono text-xs text-slate-400 flex items-center gap-2 shrink-0">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>MATCHES:</span>
+                <span id="faq-match-count" class="text-[#CCFF00] font-bold">31</span>
+                <span>/ 31 ACTIVE</span>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
-      <!-- Still Have Questions CTA -->
-      <section class="container-custom max-w-4xl mt-8">
-        <div class="bg-linear-to-r from-blue-900 to-indigo-900 text-white rounded-3xl p-8 md:p-12 text-center">
-          <h2 class="text-2xl md:text-3xl font-bold mb-4">
-            Have a question that's not listed above?
-          </h2>
-          <p class="text-blue-200 mb-8 max-w-xl mx-auto text-base leading-relaxed">
-            AsreSEO senior consultants are ready to clear up any doubts and review your website completely free of charge.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" class="bg-white text-blue-950 hover:bg-gray-100 font-bold px-8" href="mailto:info@asreseo.com">
-                <Icon name="mail" class="mr-2 h-5 w-5" />
-                Email us: info@asreseo.com
-              </Button>
-            <Button size="lg" variant="outline" class="bg-transparent border-blue-300 text-white hover:bg-white/10 px-8" href={localize('/consultation/')}>
-                Request an online consultation
-              </Button>
+      <!-- 3. FAQ Groups Section -->
+      <section class="py-16">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-16" id="faq-categories-container">
+          {faqCategories.map((cat, catIdx) => (
+            <div
+              class="faq-category-block space-y-6"
+              data-category-name={cat.category}
+            >
+              <!-- Category Header Banner -->
+              <div class="flex items-center justify-between p-4 sm:p-5 bg-[#080c16] border-2 border-white/20 brutalist-card">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-9 h-9 bg-black border-2 border-white/20 flex items-center justify-center text-[#CCFF00] shrink-0">
+                    <Icon name={cat.icon} class="w-4.5 h-4.5" />
+                  </div>
+                  <div>
+                    <h2 class="text-lg sm:text-xl font-black uppercase text-white font-sans tracking-tight">
+                      {cat.category}
+                    </h2>
+                    <p class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">
+                      SECTION_CLUSTER // 0{catIdx + 1}
+                    </p>
+                  </div>
+                </div>
+                <div class="font-mono text-xs px-2.5 py-1 bg-black border border-white/20 text-[#CCFF00] font-bold shrink-0">
+                  {cat.items.length} PROTOCOLS
+                </div>
+              </div>
+
+              <!-- Category Questions Accordion Stack -->
+              <div class="space-y-3">
+                {cat.items.map((faq, itemIdx) => {
+                  const globalIdx = faqCategories.slice(0, catIdx).reduce((acc, c) => acc + c.items.length, 0) + itemIdx + 1;
+                  const itemId = `faq-q-${catIdx}-${itemIdx}`;
+                  const contentId = `faq-ans-${catIdx}-${itemIdx}`;
+                  return (
+                    <div
+                      class="faq-item border-2 border-white/15 bg-[#05070f] hover:border-[#CCFF00] transition-colors"
+                      data-q={faq.q.toLowerCase()}
+                      data-a={faq.a.toLowerCase()}
+                      data-category={cat.category}
+                    >
+                      <button
+                        type="button"
+                        id={itemId}
+                        aria-expanded="false"
+                        aria-controls={contentId}
+                        class="faq-trigger w-full p-5 sm:p-6 text-left flex items-start justify-between gap-4 cursor-pointer select-none group"
+                      >
+                        <div class="flex items-start gap-3.5 flex-1 min-w-0">
+                          <span class="font-mono text-xs font-bold text-[#CCFF00] bg-black border border-white/20 px-2 py-0.5 shrink-0 mt-0.5">
+                            {globalIdx < 10 ? `0${globalIdx}` : globalIdx}
+                          </span>
+                          <span class="font-sans font-bold text-base sm:text-lg text-white group-hover:text-[#CCFF00] transition-colors leading-snug">
+                            {faq.q}
+                          </span>
+                        </div>
+                        <span class="w-8 h-8 bg-black border border-white/20 group-hover:border-[#CCFF00] flex items-center justify-center shrink-0 text-slate-400 group-hover:text-[#CCFF00] transition-all ml-2 mt-0.5">
+                          <svg
+                            class="faq-chevron w-4 h-4 transition-transform duration-200"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            aria-hidden="true"
+                          >
+                            <path stroke-linecap="square" stroke-linejoin="miter" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </span>
+                      </button>
+
+                      <div
+                        id={contentId}
+                        role="region"
+                        aria-labelledby={itemId}
+                        hidden
+                        class="faq-panel px-6 sm:px-8 pb-6 pt-1 text-slate-300 font-sans text-sm sm:text-base leading-relaxed border-t border-white/10 bg-[#03050a]"
+                      >
+                        <div class="pt-4 border-t border-dashed border-white/10 space-y-3">
+                          <p>{faq.a}</p>
+                          <div class="pt-2 font-mono text-[10px] text-slate-500 uppercase flex items-center justify-between border-t border-white/5">
+                            <span>VERIFIED BY ASRESEO SENIOR ARCHITECTS</span>
+                            <span class="text-[#CCFF00]">PROTOCOL // READY</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+
+          <!-- No Results Fallback Card -->
+          <div
+            id="faq-no-results"
+            class="hidden p-12 text-center bg-[#070b14] border-2 border-white/20 brutalist-card space-y-6"
+          >
+            <div class="w-12 h-12 mx-auto bg-black border-2 border-white/20 flex items-center justify-center text-[#CCFF00]">
+              <Icon name="search" class="w-6 h-6" />
+            </div>
+            <div class="space-y-2">
+              <h3 class="text-2xl font-black uppercase text-white font-sans">
+                No Protocols Matched Your Query
+              </h3>
+              <p class="font-mono text-xs text-slate-400 max-w-md mx-auto">
+                No indexed questions match <span id="faq-search-query-display" class="text-[#CCFF00] font-bold">""</span>.
+                Try searching for broader terms like "SEO", "speed", "pricing", or "crawling".
+              </p>
+            </div>
+            <button
+              type="button"
+              id="faq-reset-btn"
+              class="inline-flex items-center gap-2 bg-[#CCFF00] text-black border-2 border-black px-6 py-3 font-mono text-xs font-black uppercase hover:bg-white transition-all shadow-[3px_3px_0px_#FFFFFF]"
+            >
+              Reset All Filters
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Still Have Questions CTA Terminal -->
+      <section class="py-16 border-t-2 border-white/10 bg-[#03050a]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="p-8 sm:p-12 lg:p-16 bg-[#070a12] border-2 border-white/20 brutalist-card relative overflow-hidden">
+            <!-- Background accent glow -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-[#CCFF00]/5 blur-3xl rounded-full pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-3xl space-y-6">
+              <div class="inline-flex items-center gap-2 font-mono text-xs text-[#CCFF00] bg-black border border-[#CCFF00]/40 px-3 py-1 uppercase tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse"></span>
+                <span>[DIRECT_DISPATCH // ENGINEER_ESCALATION]</span>
+              </div>
+
+              <h2 class="text-3xl sm:text-5xl font-black uppercase text-white font-sans tracking-tight leading-tight">
+                Have an Unresolved Search <span class="text-[#CCFF00]">Infrastructure Question?</span>
+              </h2>
+
+              <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
+                AsreSEO principal engineers analyze live crawl logs, entity authority gaps, and algorithmic bottlenecks directly. Zero junior sales reps, zero automated generic audits.
+              </p>
+
+              <div class="flex flex-wrap gap-4 pt-4">
+                <a
+                  href="/consultation/"
+                  class="inline-flex items-center gap-2 bg-[#CCFF00] text-black border-2 border-black px-6 py-4 font-mono text-xs font-black uppercase shadow-[3px_3px_0px_#FFFFFF] hover:bg-white transition-all"
+                >
+                  <Icon name="terminal" class="w-4 h-4 text-black" />
+                  <span>Schedule Technical Deep Dive ↗</span>
+                </a>
+
+                <a
+                  href="https://wa.me/13463272878"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 bg-black text-white border-2 border-white/20 px-6 py-4 font-mono text-xs font-bold uppercase hover:border-[#25D366] hover:text-[#25D366] transition-all"
+                >
+                  <Icon name="whatsapp" class="w-4 h-4 text-[#25D366]" />
+                  <span>WhatsApp Engineering ↗</span>
+                </a>
+
+                <a
+                  href="mailto:info@asreseo.com"
+                  class="inline-flex items-center gap-2 bg-black text-slate-300 border-2 border-white/20 px-6 py-4 font-mono text-xs font-bold uppercase hover:border-white hover:text-white transition-all"
+                >
+                  <Icon name="mail" class="w-4 h-4 text-[#CCFF00]" />
+                  <span>info@asreseo.com</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     </main>
     <Footer lang="en" />
   </div>
+
+  <!-- Interactive Search & Accordion Script -->
+  <script is:inline>
+    function setupFaqInteractive() {
+      const searchInput = document.getElementById('faq-search-input');
+      const searchClearBtn = document.getElementById('faq-search-clear');
+      const matchCountEl = document.getElementById('faq-match-count');
+      const catButtons = document.querySelectorAll('.faq-cat-btn');
+      const items = document.querySelectorAll('.faq-item');
+      const catBlocks = document.querySelectorAll('.faq-category-block');
+      const noResultsCard = document.getElementById('faq-no-results');
+      const queryDisplay = document.getElementById('faq-search-query-display');
+      const resetBtn = document.getElementById('faq-reset-btn');
+
+      let currentCategory = 'all';
+      let currentQuery = '';
+
+      function filterFaqs() {
+        let visibleCount = 0;
+        const q = currentQuery.trim().toLowerCase();
+
+        if (searchClearBtn) {
+          if (q.length > 0) {
+            searchClearBtn.classList.remove('hidden');
+          } else {
+            searchClearBtn.classList.add('hidden');
+          }
+        }
+
+        catBlocks.forEach((block) => {
+          const blockCat = block.getAttribute('data-category-name');
+          const blockItems = block.querySelectorAll('.faq-item');
+          let blockVisibleCount = 0;
+
+          blockItems.forEach((item) => {
+            const itemCat = item.getAttribute('data-category');
+            const itemQ = item.getAttribute('data-q') || '';
+            const itemA = item.getAttribute('data-a') || '';
+
+            const matchesCategory = currentCategory === 'all' || itemCat === currentCategory;
+            const matchesQuery = !q || itemQ.includes(q) || itemA.includes(q);
+
+            if (matchesCategory && matchesQuery) {
+              item.classList.remove('hidden');
+              blockVisibleCount++;
+              visibleCount++;
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+
+          if (blockVisibleCount > 0) {
+            block.classList.remove('hidden');
+          } else {
+            block.classList.add('hidden');
+          }
+        });
+
+        if (matchCountEl) {
+          matchCountEl.textContent = String(visibleCount);
+        }
+
+        if (noResultsCard) {
+          if (visibleCount === 0) {
+            noResultsCard.classList.remove('hidden');
+            if (queryDisplay) queryDisplay.textContent = `"${currentQuery}"`;
+          } else {
+            noResultsCard.classList.add('hidden');
+          }
+        }
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentQuery = e.target.value;
+          filterFaqs();
+        });
+      }
+
+      if (searchClearBtn) {
+        searchClearBtn.addEventListener('click', () => {
+          if (searchInput) {
+            searchInput.value = '';
+            searchInput.focus();
+          }
+          currentQuery = '';
+          filterFaqs();
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (searchInput) searchInput.value = '';
+          currentQuery = '';
+          currentCategory = 'all';
+          updateCatBtnStyles();
+          filterFaqs();
+        });
+      }
+
+      function updateCatBtnStyles() {
+        catButtons.forEach((btn) => {
+          const btnCat = btn.getAttribute('data-category');
+          if (btnCat === currentCategory) {
+            btn.className = 'faq-cat-btn px-4 py-2 font-mono text-xs uppercase font-bold border-2 transition-all cursor-pointer bg-[#CCFF00] text-black border-[#CCFF00]';
+          } else {
+            btn.className = 'faq-cat-btn px-4 py-2 font-mono text-xs uppercase font-bold border border-white/20 text-slate-300 hover:text-[#CCFF00] hover:border-[#CCFF00] bg-black transition-all cursor-pointer';
+          }
+        });
+      }
+
+      catButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          currentCategory = btn.getAttribute('data-category') || 'all';
+          updateCatBtnStyles();
+          filterFaqs();
+        });
+      });
+
+      // Accordion Toggle
+      const triggers = document.querySelectorAll('.faq-trigger');
+      triggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+          const panelId = trigger.getAttribute('aria-controls');
+          const panel = document.getElementById(panelId);
+          const chevron = trigger.querySelector('.faq-chevron');
+
+          if (isExpanded) {
+            trigger.setAttribute('aria-expanded', 'false');
+            if (panel) panel.setAttribute('hidden', '');
+            if (chevron) chevron.classList.remove('rotate-180');
+          } else {
+            trigger.setAttribute('aria-expanded', 'true');
+            if (panel) panel.removeAttribute('hidden');
+            if (chevron) chevron.classList.add('rotate-180');
+          }
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupFaqInteractive);
+    } else {
+      setupFaqInteractive();
+    }
+    document.addEventListener('astro:page-load', setupFaqInteractive);
+  </script>
 </BaseLayout>

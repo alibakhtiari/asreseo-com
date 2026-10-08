@@ -89,38 +89,67 @@ const footerLinks = {
           LLM citation dominance engineered for enterprise scale.
         </p>
 
-        <div class="pt-2 font-mono text-xs flex flex-col gap-2.5">
+        <div class="pt-2 font-mono text-xs flex flex-col gap-2">
+          <!-- WhatsApp Channel -->
           <a
             href="https://wa.me/13463272878"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2.5 text-slate-300 hover:text-black hover:bg-[#25D366] hover:border-black transition-all bg-black border border-white/20 px-4 py-2.5 min-h-11 uppercase font-bold"
+            aria-label="Direct WhatsApp Message +1 (346) 327-2878"
+            class="group flex items-center justify-between text-slate-300 hover:text-black hover:bg-[#25D366] hover:border-[#25D366] transition-all bg-black border border-white/20 px-3.5 py-2.5 min-h-11"
           >
-            <Icon
-              name="whatsapp"
-              class="h-4 w-4 text-[#25D366] group-hover:text-black shrink-0"
-            />
-            <span>WhatsApp: +1 (346) 327-2878 ↗</span>
+            <div class="flex items-center gap-2.5 min-w-0">
+              <Icon
+                name="whatsapp"
+                class="h-4 w-4 text-[#25D366] group-hover:text-black shrink-0 transition-colors"
+              />
+              <span class="font-bold uppercase tracking-wider text-white group-hover:text-black text-[11px] truncate">
+                WhatsApp
+              </span>
+            </div>
+            <span class="text-[11px] font-mono text-slate-400 group-hover:text-black font-semibold whitespace-nowrap shrink-0 transition-colors pl-2">
+              +1 (346) 327-2878&nbsp;↗
+            </span>
           </a>
+
+          <!-- Voice Hotline -->
           <a
             href="tel:+13463272878"
-            class="inline-flex items-center gap-2.5 text-slate-300 hover:text-black hover:bg-[#CCFF00] hover:border-black transition-all bg-black border border-white/20 px-4 py-2.5 min-h-11 uppercase font-bold"
+            aria-label="Direct Voice Hotline +1 (346) 327-2878"
+            class="group flex items-center justify-between text-slate-300 hover:text-black hover:bg-[#CCFF00] hover:border-[#CCFF00] transition-all bg-black border border-white/20 px-3.5 py-2.5 min-h-11"
           >
-            <Icon
-              name="phone-call"
-              class="h-4 w-4 text-[#CCFF00] group-hover:text-black shrink-0"
-            />
-            <span>Call: +1 (346) 327-2878</span>
+            <div class="flex items-center gap-2.5 min-w-0">
+              <Icon
+                name="phone-call"
+                class="h-4 w-4 text-[#CCFF00] group-hover:text-black shrink-0 transition-colors"
+              />
+              <span class="font-bold uppercase tracking-wider text-white group-hover:text-black text-[11px] truncate">
+                Hotline
+              </span>
+            </div>
+            <span class="text-[11px] font-mono text-slate-400 group-hover:text-black font-semibold whitespace-nowrap shrink-0 transition-colors pl-2">
+              +1 (346) 327-2878
+            </span>
           </a>
+
+          <!-- Email Dispatch -->
           <a
             href="mailto:info@asreseo.com"
-            class="inline-flex items-center gap-2.5 text-slate-300 hover:text-black hover:bg-[#CCFF00] hover:border-black transition-all bg-black border border-white/20 px-4 py-2.5 min-h-11 uppercase font-bold"
+            aria-label="Direct Email Dispatch info@asreseo.com"
+            class="group flex items-center justify-between text-slate-300 hover:text-black hover:bg-[#CCFF00] hover:border-[#CCFF00] transition-all bg-black border border-white/20 px-3.5 py-2.5 min-h-11"
           >
-            <Icon
-              name="mail"
-              class="h-4 w-4 text-[#CCFF00] group-hover:text-black shrink-0"
-            />
-            <span>info@asreseo.com</span>
+            <div class="flex items-center gap-2.5 min-w-0">
+              <Icon
+                name="mail"
+                class="h-4 w-4 text-[#CCFF00] group-hover:text-black shrink-0 transition-colors"
+              />
+              <span class="font-bold uppercase tracking-wider text-white group-hover:text-black text-[11px] truncate">
+                Dispatch
+              </span>
+            </div>
+            <span class="text-[11px] font-mono text-slate-400 group-hover:text-black font-semibold whitespace-nowrap shrink-0 transition-colors pl-2">
+              info@asreseo.com
+            </span>
           </a>
         </div>
       </div>
