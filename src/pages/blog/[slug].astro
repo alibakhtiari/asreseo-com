@@ -102,7 +102,12 @@ const articleSchema = {
   description={post.description}
   canonical={`https://asreseo.com/blog/${post.slug}/`}
   ogType="article"
-  ogImages={[{ url: post.image.replace('/images/', '/og/').replace(/\.webp$/, '.jpg'), width: 1200, height: 630, alt: post.title }]}
+  ogImages={[{
+    url: post.image ? post.image.replace('/images/', '/og/').replace(/\.webp$/, '.jpg') : '/og/blog-hero.jpg',
+    width: 1200,
+    height: 630,
+    alt: post.title,
+  }]}
   ogUrl={`https://asreseo.com/blog/${post.slug}/`}
 
 >

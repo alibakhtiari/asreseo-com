@@ -53,6 +53,7 @@ const isFresh = (p: any) => p.updated && p.updated !== p.date;
                 src={featured.image}
                 alt={featured.title}
                 eager={true}
+                fetchpriority="high"
                 aspectRatio="16 / 9"
                 class="w-full h-64 sm:h-72 md:h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
               />
@@ -113,6 +114,7 @@ const isFresh = (p: any) => p.updated && p.updated !== p.date;
                 <Picture
                   src={post.image}
                   alt={post.title}
+                  loading="lazy"
                   aspectRatio="16 / 9"
                   class="w-full aspect-video object-cover opacity-85 hover:opacity-100 transition-opacity"
                 />

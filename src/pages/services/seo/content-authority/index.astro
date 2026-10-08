@@ -14,6 +14,7 @@ import ServiceStats from '../../../../components/Services/ServiceStats.astro';
 import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
 import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import Picture from '../../../../components/ui/Picture.astro';
 
 
 
@@ -465,11 +466,12 @@ const breadcrumbs = [
                                 Everything we score in a page-authority audit
                             </p>
                         </div>
-                        <img
+                        <Picture
                             src="/images/content-authority-post-checklist.webp"
                             alt="Checklist of page authority factors: content quality, internal linking, user-experience signals and source credibility"
-                            width="1672"
-                            height="941"
+                            widths={[480, 768, 1024, 1400, 1672]}
+                            sizes="(max-width: 896px) 100vw, 896px"
+                            formats={['avif', 'webp']}
                             loading="lazy"
                             decoding="async"
                             class="w-full h-auto rounded-2xl shadow-xs border border-gray-200"
