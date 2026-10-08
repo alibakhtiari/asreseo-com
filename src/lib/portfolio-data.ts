@@ -8,6 +8,8 @@ export interface PortfolioProject {
   category: string;
   categorySlug: 'ai-mcp' | 'edge-cms' | 'fintech' | 'saas' | 'ecommerce';
   featured: boolean;
+  image: string;
+  imageAlt: string;
   repoUrl?: string;
   liveUrl?: string;
   showcaseUrl?: string;
@@ -42,6 +44,8 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     category: 'AI Intelligence & MCP Gateway',
     categorySlug: 'ai-mcp',
     featured: true,
+    image: '/images/portfolio-asreseo-command-center.webp',
+    imageAlt: 'Asre SEO Command Center edge dashboard and 32 Model Context Protocol (MCP) agent tools architecture on Cloudflare Workers',
     repoUrl: 'https://github.com/alibakhtiari/asreseo-command-center',
     liveUrl: 'https://mcp.asreseo.com',
     showcaseUrl: 'https://mcp.asreseo.com/showcase',
@@ -129,6 +133,8 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     category: 'Edge CMS Plugin & GEO/AEO Engine',
     categorySlug: 'edge-cms',
     featured: true,
+    image: '/images/portfolio-emdash-seo.webp',
+    imageAlt: 'WebABC SEO Suite native Astro and EmDash CMS plugin interface showing readability analysis, schema inference, and GEO optimization',
     repoUrl: 'https://github.com/alibakhtiari/emdash-seo',
     isPrivateRepo: false,
     challenge:
@@ -211,6 +217,8 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     category: 'Generative Search & Knowledge Graph',
     categorySlug: 'fintech',
     featured: true,
+    image: '/images/portfolio-fintech-scaleup.webp',
+    imageAlt: 'Fintech scaleup generative engine optimization (GEO) architecture blueprint showing 4,200 semantic nodes and Perplexity AI citation yield',
     challenge:
       'Trapped behind legacy banking incumbent content farms. 0% generative AI search citations, zero Google SGE visibility on core cross-border payment queries, and $150k/month wasted on traditional agency retainers.',
     solution:
@@ -266,6 +274,8 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     category: 'Programmatic SEO & Global Infrastructure',
     categorySlug: 'saas',
     featured: true,
+    image: '/images/portfolio-b2b-saas-global.webp',
+    imageAlt: 'Enterprise B2B SaaS programmatic SEO architecture diagram demonstrating dynamic edge hreflang routing across 28 global countries',
     challenge:
       'Severe crawl-budget exhaustion across 500,000 legacy URLs. Broken regional hreflang loops and high JavaScript rendering latency preventing global search indexing across Europe and APAC.',
     solution:
@@ -321,6 +331,8 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     category: 'Edge Infrastructure & Telemetry',
     categorySlug: 'ecommerce',
     featured: true,
+    image: '/images/portfolio-global-ecommerce-rescue.webp',
+    imageAlt: 'Global eCommerce Core Web Vitals and Google indexing recovery pipeline blueprint for 2.5 million catalog product SKUs',
     challenge:
       'Google Core Update wiped out 42,000 orphaned catalog URLs due to slow server response times, layout shifts, and missing canonical headers. Immediate monthly revenue drop of $2.1M.',
     solution:

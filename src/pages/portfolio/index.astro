@@ -5,6 +5,7 @@ import Footer from '../../components/Layout/Footer.astro';
 import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
 import Button from '../../components/ui/button/Button.astro';
 import Icon from '../../components/ui/Icon.astro';
+import Picture from '../../components/ui/Picture.astro';
 import { PORTFOLIO_PROJECTS } from '../../lib/portfolio-data';
 
 const breadcrumbs = [
@@ -139,6 +140,26 @@ const testLogs = [
                       <span class="text-[#CCFF00] uppercase">[CLIENT/ENVIRONMENT]:</span> {project.client}
                     </div>
 
+                    <!-- Schematic Blueprint Image -->
+                    <a
+                      href={`/portfolio/${project.slug}/`}
+                      class="block mb-6 overflow-hidden border-2 border-white/20 hover:border-[#CCFF00] transition-colors group relative bg-black shadow-[4px_4px_0px_rgba(255,255,255,0.08)]"
+                      aria-label={`View dossier for ${project.title}`}
+                    >
+                      <div class="absolute top-2 left-2 z-10 font-mono text-[10px] bg-black/85 text-[#CCFF00] px-2 py-0.5 border border-[#CCFF00]/40 uppercase tracking-wider">
+                        ARCHITECTURAL_SCHEMATIC // SYS_0{idx + 1}
+                      </div>
+                      <Picture
+                        src={project.image}
+                        alt={project.imageAlt}
+                        aspectRatio="16 / 9"
+                        widths={[400, 640, 768, 1024]}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 640px"
+                        loading={idx === 0 ? 'eager' : 'lazy'}
+                        class="w-full h-56 sm:h-72 object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-300"
+                      />
+                    </a>
+
                     <div class="space-y-4 mb-8 text-sm text-slate-300 font-sans">
                       <p>
                         <strong class="font-mono text-xs text-white uppercase">[CHALLENGE]:</strong> {project.challenge}
@@ -166,6 +187,7 @@ const testLogs = [
                     <div class="flex flex-wrap items-center gap-4">
                       <a
                         href={`/portfolio/${project.slug}/`}
+                        aria-label={`Examine full dossier and telemetry for ${project.title}`}
                         class="inline-flex items-center gap-2 bg-[#CCFF00] text-black border-2 border-black px-5 py-3 font-mono text-xs font-black uppercase shadow-[3px_3px_0px_#FFFFFF] hover:bg-white transition-all"
                       >
                         <span>Examine Full Dossier & Telemetry ↗</span>

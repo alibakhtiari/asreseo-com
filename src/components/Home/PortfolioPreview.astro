@@ -1,6 +1,7 @@
 ---
 import Button from '../ui/button/Button.astro';
 import Icon from '../ui/Icon.astro';
+import Picture from '../ui/Picture.astro';
 import { PORTFOLIO_PROJECTS } from '../../lib/portfolio-data';
 
 interface Props {
@@ -54,6 +55,26 @@ const featuredProjects = PORTFOLIO_PROJECTS.slice(0, 3);
               </span>
             </div>
 
+            <!-- Project Blueprint / Image Preview -->
+            <a
+              href={`/portfolio/${p.slug}/`}
+              class="block mb-5 overflow-hidden border-2 border-white/20 hover:border-[#CCFF00] transition-colors group relative bg-black"
+              aria-label={`View dossier for ${p.title}`}
+            >
+              <div class="absolute top-2 left-2 z-10 font-mono text-[9px] bg-black/85 text-[#CCFF00] px-1.5 py-0.5 border border-[#CCFF00]/40 uppercase tracking-wider">
+                DOSSIER_SYS // 0{idx + 1}
+              </div>
+              <Picture
+                src={p.image}
+                alt={p.imageAlt}
+                aspectRatio="16 / 10"
+                widths={[320, 480, 640, 800]}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
+                loading="lazy"
+                class="w-full h-44 sm:h-48 object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
+              />
+            </a>
+
             <!-- Title -->
             <h3 class="text-xl sm:text-2xl font-black uppercase text-white tracking-tight mb-3 font-sans">
               <a href={`/portfolio/${p.slug}/`} class="hover:text-[#CCFF00] transition-colors">
@@ -91,6 +112,7 @@ const featuredProjects = PORTFOLIO_PROJECTS.slice(0, 3);
             <div class="flex flex-col gap-2">
               <a
                 href={`/portfolio/${p.slug}/`}
+                aria-label={`Examine technical dossier for ${p.title}`}
                 class="inline-flex items-center justify-between w-full py-3 px-4 bg-white/5 border border-white/20 text-xs font-mono font-bold uppercase text-white hover:bg-[#CCFF00] hover:text-black hover:border-[#CCFF00] transition-all"
               >
                 <span>Examine Technical Dossier</span>
