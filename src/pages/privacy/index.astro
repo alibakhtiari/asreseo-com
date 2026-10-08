@@ -3,64 +3,268 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
 import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+import Icon from '../../components/ui/Icon.astro';
 
 const pageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: 'AsreSEO Privacy Policy',
+  name: 'AsreSEO Privacy Policy & Google API User Data Compliance',
   url: 'https://asreseo.com/privacy/',
   inLanguage: 'en-US',
+  description:
+    'Privacy Policy and Google API Services User Data Policy compliance for AsreSEO, GCP Personal OAuth Proxy and SEO Command Center on Cloudflare Workers.',
 };
+
 const breadcrumbs = [
   { position: 1, name: 'Home', item: 'https://asreseo.com/' },
   { position: 2, name: 'Privacy Policy', item: 'https://asreseo.com/privacy/' },
 ];
 ---
-<BaseLayout lang="en" title='Privacy Policy & User Data Protection | AsreSEO' description='AsreSEO privacy policy: how we collect information via contact forms and the newsletter, processing purposes, retention periods, cookies, processors and your rights.' canonical='/privacy/' ogUrl='https://asreseo.com/privacy/' ogType='website' twitterCard='summary_large_image'>
+<BaseLayout
+  lang="en"
+  title="Privacy Policy & Google API User Data Compliance | AsreSEO"
+  description="AsreSEO Privacy Policy and Google API Services User Data Policy compliance: Google OAuth scopes, Cloudflare Workers encryption, data retention, n8n infrastructure, and user rights."
+  canonical="/privacy/"
+  ogUrl="https://asreseo.com/privacy/"
+  ogType="website"
+  twitterCard="summary_large_image"
+>
   <script type="application/ld+json" is:inline set:html={JSON.stringify(pageSchema)} />
   <BreadcrumbStructuredData items={breadcrumbs} />
-<div class="min-h-screen bg-[#000000] text-slate-100">
-            <Header lang="en" />
-            <main class="section-padding pt-32">
-                <div class="container-custom max-w-4xl">
-                    <h1 class="text-4xl font-extrabold mb-8 text-left text-white tracking-tight">Privacy Policy</h1>
-                    <div class="prose prose-lg prose-invert max-w-none text-left text-slate-300" dir="ltr">
-                        <p>At AsreSEO, we take your privacy seriously. This page explains what information we collect and through which channels, why we use it, how long we keep it, and how you can exercise your rights as a data subject. This policy applies to the AsreSEO website and the forms and communication channels on it.</p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">1. Information we collect</h2>
-                        <p>When you use our contact form, subscribe to the newsletter, or request a consultation, we receive information such as your name, email address, and message text. Contractual correspondence may also include your business name and address. If providing a service requires limited access to tools such as Search Console or your content management panel, that access is used solely within the scope of that contract and revoked when the engagement ends. When you visit the website, limited technical data such as your IP address, browser type, and visited pages is also recorded automatically and in aggregate.</p>
+  <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+    <Header lang="en" />
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">2. How we use your information</h2>
-                        <p>Your information is used solely to respond to your requests, prepare proposals and enter into contracts, deliver services, send project reports, and — only with your consent — send relevant updates about our services. Newsletter subscription requires your explicit consent, and you can stop receiving it at any time by unsubscribing. We do not sell your contact information, nor do we use it for any purpose beyond those stated on this page.</p>
+    <main class="pt-28 pb-20">
+      <div class="w-full max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
+        <!-- Header Card -->
+        <div class="p-8 sm:p-10 bg-[#0a0e17] border-2 border-white/20 brutalist-card mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-black border border-[#CCFF00]/40 text-[#CCFF00] font-mono text-xs uppercase tracking-widest mb-4">
+            <span class="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse"></span>
+            <span>[LEGAL_COMPLIANCE // PRIVACY_DIRECTIVE]</span>
+          </div>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">3. Retention and deletion</h2>
-                        <p>Requests that do not lead to an engagement are kept until that request has been followed up, then deleted or aggregated. Financial and contractual records are kept for as long as the nature of the engagement and legal requirements demand, and deleted afterwards. Newsletter subscription data is retained until you unsubscribe. If you wish, we can also provide you with a copy of the data belonging to you before deletion.</p>
+          <h1 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white font-sans mb-4">
+            Privacy Policy &amp; User Data Protection
+          </h1>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">4. Processors and Automation Infrastructure (n8n)</h2>
-                        <p>To deliver our services we use processors such as website hosting, email delivery, traffic analytics tools, and cloud storage. These processors only access data to the extent necessary and are obligated to protect it. Data is shared with them solely for these same purposes. Your information is not shared with any third party outside the scope of these services.</p>
-                        <p>Furthermore, automated data pipelines, continuous SEO health monitors, and webhook integrations run on our dedicated workflow automation engine hosted at <a href="https://n8n.asreseo.com" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-bold underline hover:no-underline">n8n.asreseo.com</a>. Automated ingestion, model routing, and image payload handling utilize our open-source custom n8n node developments authored by Ali Bakhtiari: <a href="https://github.com/alibakhtiari/n8n-nodes-avvalai" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-bold underline hover:no-underline">n8n-nodes-avvalai</a> and <a href="https://github.com/alibakhtiari/n8n-nodes-imagerouter" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-bold underline hover:no-underline">n8n-nodes-imagerouter</a>. Workflows operating on our self-hosted n8n infrastructure process data in isolated sandboxes with strict zero-trust access controls.</p>
-                        <p>Additionally, our edge SEO intelligence telemetry and Model Context Protocol (MCP) gateway operate via Cloudflare Workers at <a href="https://mcp.asreseo.com" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-bold underline hover:no-underline">mcp.asreseo.com</a> (engineered via <a href="https://github.com/alibakhtiari/asreseo-command-center" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-bold underline hover:no-underline">asreseo-command-center</a>). Search performance queries, OAuth tokens, and AI agent executions sent through this gateway are encrypted in private Cloudflare KV and D1 SQL instances with zero third-party leakage. Our open-source edge tools such as <a href="https://github.com/alibakhtiari/emdash-seo" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-bold underline hover:no-underline">emdash-seo</a> execute strictly in-process within local worker boundaries without external data egress.</p>
+          <p class="font-mono text-xs text-slate-400 mb-6">
+            Last updated: October 8, 2026 • Effective immediately across all platforms, client portals &amp; edge proxies
+          </p>
 
-                        <h2 class="text-2xl font-bold mt-8 mb-4">5. Data security</h2>
-                        <p>We use modern security protocols including data-in-transit encryption, internal user access controls, and periodic tool reviews to protect your data. Team members' access to client information is limited to business necessity, and in the event of a security incident involving your data, we will notify you in accordance with legal requirements.</p>
-
-                        <h2 class="text-2xl font-bold mt-8 mb-4">6. Cookies</h2>
-                        <p>This website uses standard cookies to improve your experience. Essential cookies keep the pages' core features working, while analytics cookies show us in aggregate which sections are viewed most. You can block or delete cookies from your browser settings; in that case, some parts of the website may not work correctly.</p>
-
-                        <h2 class="text-2xl font-bold mt-8 mb-4">7. Your rights as a data subject</h2>
-                        <p>You have the right to ask us to provide a copy of the information we hold about you, correct inaccurate or incomplete information, and — where there is no need to retain it or where it was recorded based on your consent — have it deleted. You may also request restriction of processing or object to a specific use of your data.</p>
-
-                        <h2 class="text-2xl font-bold mt-8 mb-4">8. How to submit your request</h2>
-                        <p>To exercise any of the rights above, simply email your request to info@asreseo.com and verify your identity in a way that assures us the data is not disclosed to the wrong person. Your request will be reviewed and the outcome communicated through the same channel. If you do not receive a satisfactory response, you retain the right to appeal to the competent supervisory authorities.</p>
-
-                        <h2 class="text-2xl font-bold mt-8 mb-4">9. Changes to this policy</h2>
-                        <p>We may update this policy to reflect changes in our services or legal requirements. The current version is always published on this page, and material changes will be announced via email or a notice on the website.</p>
-
-                        <h2 class="text-2xl font-bold mt-8 mb-4">10. Contact us</h2>
-                        <p>If you have any questions about this policy or how your personal information is handled, reach us at info@asreseo.com. Our team also answers privacy-related questions before a contract is signed and throughout the engagement.</p>
-                    </div>
-                </div>
-            </main>
-            <Footer lang="en" />
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
+            This Privacy Policy explains how <strong>AsreSEO</strong>, our agency platforms, and the <strong>GCP Personal OAuth Proxy &amp; SEO Command Center</strong> ("Application", "we", "us", or "our") access, process, store, and protect your information when you interact with our website, request marketing consultations, or connect your Google Cloud Platform account to our edge SEO management systems.
+          </p>
         </div>
+
+        <div class="space-y-10 text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
+          <!-- Section 1: Architecture & Identity -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_01]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              1. Platform Architecture &amp; Identity
+            </h2>
+            <p>
+              AsreSEO is an enterprise digital marketing, generative search optimization (GEO), and technical web architecture agency. Alongside our core consulting and search engineering services, we operate the <strong>GCP Personal OAuth Proxy &amp; SEO Command Center</strong> (<a href="https://mcp.asreseo.com" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] hover:underline font-mono">mcp.asreseo.com</a>), a high-performance, edge-native SEO analytics dashboard and authenticated proxy built on Cloudflare Workers.
+            </p>
+            <p>
+              The Application acts as an edge proxy between your authorized client devices and third-party APIs (Google Cloud Platform, Google Search Console, Google Analytics 4, Bing Webmaster Tools). It is engineered to preserve tenant data sovereignty, zero-trust security, and zero external telemetry leakage.
+            </p>
+          </section>
+
+          <!-- Section 2: General Information We Collect -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_02]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              2. General Information Collected via Forms &amp; Inquiries
+            </h2>
+            <p>
+              When you use our contact terminal, book a strategic consultation, or initiate agency correspondence, we receive information such as your name, corporate email address, international phone number, website URL, and project specifications. Contractual correspondence may also include company registration details and billing addresses.
+            </p>
+            <p>
+              If delivering a contracted service requires administrative access to tools such as Google Search Console or your CMS, that access is used solely within the explicit scope of that engagement and revoked upon contract completion. Server log metadata (IP addresses, browser signatures, visited endpoints) is recorded strictly in aggregate for DDoS protection and edge performance routing.
+            </p>
+          </section>
+
+          <!-- Section 3: Google User Data Accessed & Scopes Requested -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-[#CCFF00]/40 brutalist-card space-y-6">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_03]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              3. Google API Data Accessed &amp; Scopes Requested
+            </h2>
+            <p>
+              When you connect your Google Account via OAuth 2.0 to the Command Center or our automated reporting pipelines, the Application requests only the specific scopes necessary to deliver core SEO analytics and remediation actions:
+            </p>
+
+            <div class="grid gap-4 pt-2 font-mono text-xs">
+              <div class="p-4 bg-black border border-white/15">
+                <div class="font-bold text-[#CCFF00] uppercase">Google Search Console API (webmasters.readonly)</div>
+                <p class="text-slate-400 mt-1 font-sans text-xs">
+                  Accesses search analytics performance data (clicks, impressions, average CTR, keyword positions), verified sitemaps, and URL inspection indexation telemetry to display SEO performance and detect keyword cannibalization clusters.
+                </p>
+              </div>
+
+              <div class="p-4 bg-black border border-white/15">
+                <div class="font-bold text-[#CCFF00] uppercase">Google Analytics 4 Data API (analytics.readonly)</div>
+                <p class="text-slate-400 mt-1 font-sans text-xs">
+                  Accesses aggregated visitor metrics (sessions, engaged sessions, active users, conversion events) to correlate organic search rankings with real-world website conversions.
+                </p>
+              </div>
+
+              <div class="p-4 bg-black border border-white/15">
+                <div class="font-bold text-[#CCFF00] uppercase">Google Drive API (drive.file)</div>
+                <p class="text-slate-400 mt-1 font-sans text-xs">
+                  Restricted exclusively to creating, managing, and organizing A4 executive PDF reports and audit spreadsheets within an application-managed "Client Vault" folder. <strong>The Application cannot view, modify, or access any other files in your Google Drive.</strong>
+                </p>
+              </div>
+
+              <div class="p-4 bg-black border border-white/15">
+                <div class="font-bold text-[#CCFF00] uppercase">Google Docs &amp; Sheets APIs (documents, spreadsheets)</div>
+                <p class="text-slate-400 mt-1 font-sans text-xs">
+                  Used only when you explicitly trigger an export action to create structured remediation briefs, keyword opportunity spreadsheets, and client pitch proposals.
+                </p>
+              </div>
+
+              <div class="p-4 bg-black border border-white/15">
+                <div class="font-bold text-[#CCFF00] uppercase">Google Tasks &amp; Calendar APIs (tasks, calendar.events)</div>
+                <p class="text-slate-400 mt-1 font-sans text-xs">
+                  Enables dispatch of actionable SEO remediation tasks (e.g. 404 error fixes, striking distance optimizations) and scheduling periodic quarterly SEO reviews on your calendar upon your explicit command.
+                </p>
+              </div>
+
+              <div class="p-4 bg-black border border-white/15">
+                <div class="font-bold text-[#CCFF00] uppercase">Gmail API (gmail.send)</div>
+                <p class="text-slate-400 mt-1 font-sans text-xs">
+                  Used exclusively to transmit user-configured scheduled weekly executive summaries and critical anomaly alerts (e.g. sudden ranking or indexing drops) directly to recipients specified by you. <strong>The Application never reads, scans, searches, or modifies your inbox or existing emails.</strong>
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 4: Mandatory Google Limited Use Statement -->
+          <section class="p-8 bg-black border-2 border-[#CCFF00] brutalist-card space-y-4">
+            <div class="flex items-center gap-2 font-mono text-xs text-[#CCFF00] uppercase tracking-widest">
+              <span class="w-2.5 h-2.5 bg-[#CCFF00]"></span>
+              <span>[SECTION_04 // MANDATORY_COMPLIANCE]</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              4. Google API Services User Data Policy (Limited Use Compliance)
+            </h2>
+            <p class="font-semibold text-white">
+              GCP Personal OAuth Proxy &amp; SEO Command Center's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] underline font-mono">Google API Services User Data Policy</a>, including the Limited Use requirements.
+            </p>
+            <p class="text-xs text-slate-400">
+              In strict adherence to Google's Limited Use requirements:
+            </p>
+            <ul class="list-disc list-inside text-xs sm:text-sm text-slate-300 space-y-2 pl-2">
+              <li><strong>User-Facing Features Only:</strong> We only use access to user data to provide or improve user-facing features that are prominent in the requesting application's user interface.</li>
+              <li><strong>No Third-Party Transfers:</strong> We do not transfer user data to third parties, unless necessary to provide or improve features, comply with applicable law, or as part of a merger/acquisition.</li>
+              <li><strong>Zero Advertising Use:</strong> We do not use or transfer user data for serving advertisements, including retargeting, personalized, or interest-based advertising.</li>
+              <li><strong>No Human Reading:</strong> We do not allow humans to read user data unless we have obtained your affirmative agreement, it is necessary for security purposes, or to comply with applicable law.</li>
+            </ul>
+          </section>
+
+          <!-- Section 5: Data Storage, Encryption & Security -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_05]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              5. Data Storage, Isolation &amp; Retention
+            </h2>
+            <p>
+              All OAuth credentials, refresh tokens, and session metadata are stored strictly in isolated, encrypted Cloudflare Workers Key-Value (KV) storage namespaces belonging to your deployed instance.
+            </p>
+            <ul class="list-disc list-inside text-xs sm:text-sm space-y-2 pl-2">
+              <li><strong>Encryption at Rest &amp; in Transit:</strong> All communications between the Application, Google APIs, and your browser are strictly encrypted using TLS 1.3.</li>
+              <li><strong>Ephemeral In-Memory Processing:</strong> Raw query results (Search Console analytics, PageSpeed diagnostics) are processed ephemerally in Worker memory and are not stored permanently on disk.</li>
+              <li><strong>Token Lifetime:</strong> OAuth access tokens are refreshed automatically and kept only in your private KV store.</li>
+            </ul>
+          </section>
+
+          <!-- Section 6: Processors, n8n Automation & Edge Plugins -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_06]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              6. Processors, Automation Clusters &amp; Open-Source Nodes
+            </h2>
+            <p>
+              To deliver our services we utilize trusted edge infrastructure providers (Cloudflare, Google Cloud Platform, GitHub). Processors only access data to the extent strictly necessary and operate under bound data protection agreements.
+            </p>
+            <p>
+              Furthermore, automated data pipelines, continuous SEO health monitors, and webhook integrations execute on our dedicated workflow automation engine hosted at <a href="https://n8n.asreseo.com" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-mono hover:underline">n8n.asreseo.com</a>. Automated ingestion, model routing, and image payload handling utilize our open-source custom n8n node developments authored by Ali Bakhtiari: <a href="https://github.com/alibakhtiari/n8n-nodes-avvalai" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-mono hover:underline">n8n-nodes-avvalai</a> and <a href="https://github.com/alibakhtiari/n8n-nodes-imagerouter" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-mono hover:underline">n8n-nodes-imagerouter</a>. Workflows operating on our self-hosted n8n cluster process data in isolated sandboxes with strict zero-trust access controls.
+            </p>
+            <p>
+              Our open-source edge tools such as <a href="https://github.com/alibakhtiari/emdash-seo" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] font-mono hover:underline">emdash-seo</a> (WebABC SEO Suite) execute strictly in-process within local Cloudflare Worker boundaries without external telemetry data egress.
+            </p>
+          </section>
+
+          <!-- Section 7: AI & Machine Learning Transparency -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_07]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              7. Artificial Intelligence &amp; Machine Learning Transparency
+            </h2>
+            <p>
+              When optional Gemini AI technical audits or executive summary generations are requested via the Command Center or our consulting pipelines, data is processed ephemerally using zero-data-retention enterprise API endpoints.
+            </p>
+            <div class="p-4 bg-black border border-[#CCFF00]/40 font-mono text-xs text-[#CCFF00]">
+              CONFIRMATION: Your Google user data and private business telemetry are NEVER used to train, retrain, improve, or fine-tune generalized machine learning models, foundation models, or third-party AI systems.
+            </div>
+          </section>
+
+          <!-- Section 8: User Rights & Revocation of Access -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_08]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              8. User Rights, Revocation of Access &amp; Data Deletion
+            </h2>
+            <p>
+              You retain full control over your credentials, personal information, and stored SEO telemetry at all times:
+            </p>
+            <ul class="list-disc list-inside text-xs sm:text-sm space-y-2 pl-2">
+              <li>
+                <strong>Revoke Access via Google:</strong> You can immediately revoke the Application's access to your Google Account at any time by visiting <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer" class="text-[#CCFF00] underline font-mono">Google Third-Party Account Permissions</a>.
+              </li>
+              <li>
+                <strong>Purge Local Storage &amp; KV Tokens:</strong> You can clear all cached credentials and stored telemetry directly from the Application's Settings panel or by purging the Cloudflare KV namespace.
+              </li>
+              <li>
+                <strong>Data Subject Rights (GDPR / CCPA):</strong> You have the right to request a complete copy of any data we hold about you, correct inaccurate records, or demand permanent erasure by emailing us.
+              </li>
+            </ul>
+          </section>
+
+          <!-- Section 9: Cookies Policy -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-wider">[SECTION_09]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              9. Cookies Policy
+            </h2>
+            <p>
+              This website uses minimal essential cookies to preserve user preferences and ensure security against automated CSRF attacks. We do not use intrusive third-party cross-site advertising cookies. You can disable cookies at any time in your browser settings.
+            </p>
+          </section>
+
+          <!-- Section 10: Contact Information -->
+          <section class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4 font-mono text-xs">
+            <div class="text-[#CCFF00] uppercase tracking-wider">[SECTION_10 // CONTACT_INQUIRIES]</div>
+            <h2 class="text-xl sm:text-2xl font-black uppercase text-white font-sans tracking-tight">
+              10. Contact &amp; Privacy Officer
+            </h2>
+            <p class="font-sans text-sm text-slate-300">
+              For any legal, privacy, or Google API compliance inquiries, please contact our data controller directly:
+            </p>
+            <div class="p-4 bg-black border border-white/15 space-y-1 text-slate-300">
+              <p><strong class="text-white">Organization:</strong> AsreSEO &amp; GCP Personal OAuth Proxy</p>
+              <p><strong class="text-white">Principal Engineer &amp; Maintainer:</strong> Ali Bakhtiari</p>
+              <p><strong class="text-white">Primary Email:</strong> <a href="mailto:info@asreseo.com" class="text-[#CCFF00] hover:underline">info@asreseo.com</a></p>
+              <p><strong class="text-white">Developer Email:</strong> <a href="mailto:ali.bakhtiarii@gmail.com" class="text-[#CCFF00] hover:underline">ali.bakhtiarii@gmail.com</a></p>
+              <p><strong class="text-white">WhatsApp &amp; Support:</strong> +1 (346) 327-2878</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <Footer lang="en" />
+  </div>
 </BaseLayout>
