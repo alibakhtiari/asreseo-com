@@ -9,9 +9,11 @@ const srcHUD = path.join(brainDir, 'sample_type_3_telemetry_1791464632629.jpg');
 
 const assetsDir = path.resolve('src/assets/images');
 const publicDir = path.resolve('public/images');
+const ogDir = path.resolve('public/og');
 
 fs.mkdirSync(assetsDir, { recursive: true });
 fs.mkdirSync(publicDir, { recursive: true });
+fs.mkdirSync(ogDir, { recursive: true });
 
 function escapeXml(unsafe) {
   return String(unsafe)
@@ -22,17 +24,19 @@ function escapeXml(unsafe) {
     .replace(/'/g, '&apos;');
 }
 
-function buildOverlay({ tag, title, telemetry, color = '#CCFF00' }) {
-  return `<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+function buildOverlay({ tag, title, telemetry, color = '#CCFF00', width = 1200, height = 675 }) {
+  const bottomLineY = height - 16;
+  const bottomBoxY = height - 59;
+  return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
   <!-- Subtle Vignette Frame -->
-  <rect x="16" y="16" width="1168" height="643" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
-  <path d="M 16 659 L 1184 659" stroke="${color}" stroke-width="2.5"/>
+  <rect x="16" y="16" width="${width - 32}" height="${height - 32}" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+  <path d="M 16 ${bottomLineY} L ${width - 16} ${bottomLineY}" stroke="${color}" stroke-width="2.5"/>
 
   <!-- Corner Registration Marks -->
   <path d="M 10 16 L 22 16 M 16 10 L 16 22" stroke="${color}" stroke-width="2"/>
-  <path d="M 1178 16 L 1190 16 M 1184 10 L 1184 22" stroke="${color}" stroke-width="2"/>
-  <path d="M 10 659 L 22 659 M 16 653 L 16 665" stroke="${color}" stroke-width="2"/>
-  <path d="M 1178 659 L 1190 659 M 1184 653 L 1184 665" stroke="${color}" stroke-width="2"/>
+  <path d="M ${width - 22} 16 L ${width - 10} 16 M ${width - 16} 10 L ${width - 16} 22" stroke="${color}" stroke-width="2"/>
+  <path d="M 10 ${bottomLineY} L 22 ${bottomLineY} M 16 ${bottomLineY - 6} L 16 ${bottomLineY + 6}" stroke="${color}" stroke-width="2"/>
+  <path d="M ${width - 22} ${bottomLineY} L ${width - 10} ${bottomLineY} M ${width - 16} ${bottomLineY - 6} L ${width - 16} ${bottomLineY + 6}" stroke="${color}" stroke-width="2"/>
 
   <!-- Top Left Monospace Protocol Badge -->
   <g transform="translate(32, 32)">
@@ -48,7 +52,7 @@ function buildOverlay({ tag, title, telemetry, color = '#CCFF00' }) {
   </g>` : ''}
 
   <!-- Bottom Right Telemetry Box -->
-  <g transform="translate(${1200 - Math.max(200, telemetry.length * 7.5 + 36) - 32}, 616)">
+  <g transform="translate(${width - Math.max(200, telemetry.length * 7.5 + 36) - 32}, ${bottomBoxY})">
     <rect width="${Math.max(200, telemetry.length * 7.5 + 36)}" height="28" fill="#000000" fill-opacity="0.88" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
     <text x="14" y="18" font-family="monospace" font-size="10.5" font-weight="bold" fill="#FFFFFF" letter-spacing="1">${escapeXml(telemetry)}</text>
   </g>
@@ -100,6 +104,25 @@ const imageConfigs = [
   { filename: 'analysis-strategy-hero.webp', src: srcTensor, tag: '[PROTOCOL // STRATEGY_NEURAL]', title: 'COMPETITOR VECTOR RETRIEVAL', telemetry: 'GAP CLASSIFICATION: REALTIME', hue: 15 },
   { filename: 'geo-ai-citations-hero.webp', src: srcTensor, tag: '[DOSSIER // GEO_PERPLEXITY]', title: 'SEARCHGPT & OVERVIEWS DOMINANCE', telemetry: 'LLM VISIBILITY: TOP TIER', hue: 0 },
 
+  // Category Hubs (Unique from service details)
+  { filename: 'services-marketing.webp', src: srcHUD, tag: '[SERVICES // GROWTH_MARKETING]', title: 'FULL-FUNNEL ACQUISITION & SEARCH ARBITRAGE', telemetry: 'ROAS: 4.8X | CONVERSION: +142%', hue: 0 },
+  { filename: 'services-content.webp', src: srcTensor, tag: '[SERVICES // CONTENT_AUTHORITY]', title: 'SEMANTIC TOPICAL AUTHORITY ARCHITECTURE', telemetry: 'COVERAGE: 99.4% | ENTITY NODES: 120', hue: 10 },
+  { filename: 'services-web.webp', src: srcTensor, tag: '[SERVICES // WEB_SPEED_ENGINEERING]', title: 'SUB-2S WEB SPEED & ZERO-CLS SYSTEM', telemetry: 'PAGESPEED: 100/100 | INP: < 100ms', hue: 180, color: '#38BDF8' },
+
+  // Dedicated Blog Post Images (Every post has its own unique asset)
+  { filename: 'blog-ai-content-automation.webp', src: srcTensor, tag: '[BLOG // AI_AUTOMATION]', title: 'CONTENT PRODUCTION-TO-DISTRIBUTION CYCLE', telemetry: 'VELOCITY: 10X | ENTITY GROUNDING: STRICT', hue: -10, ogCard: true },
+  { filename: 'blog-ai-seo-guide.webp', src: srcTensor, tag: '[BLOG // AI_SEO_GUIDE]', title: 'PRACTICAL GUIDE TO #1 RANKING ON GOOGLE', telemetry: 'ALGORITHM: CORE 2026 | ZERO PENALTY', hue: 0, ogCard: true },
+  { filename: 'blog-content-calendar-guide.webp', src: srcCrawl, tag: '[BLOG // CONTENT_CALENDAR]', title: 'EXECUTION FRAMEWORK & CADENCE MATRIX', telemetry: 'CADENCE: SCHEDULED | GAP: 0%', hue: 10, ogCard: true },
+  { filename: 'blog-content-strategy-guide.webp', src: srcTensor, tag: '[BLOG // CONTENT_STRATEGY]', title: 'SEVEN-STEP ENTITY AUTHORITY FRAMEWORK', telemetry: 'TOPICAL CLUSTERS: 12 TIERS', hue: 15, ogCard: true },
+  { filename: 'blog-digital-marketing-trends.webp', src: srcHUD, tag: '[BLOG // MARKETING_TRENDS]', title: 'LATEST DIGITAL MARKETING & AI SHIFTS', telemetry: 'TREND: AGENTIC SEARCH | MULTI-MODAL', hue: 20, ogCard: true },
+  { filename: 'blog-geo-ai-citations.webp', src: srcTensor, tag: '[BLOG // GEO_CITATIONS]', title: '10 PRACTICAL TACTICS FOR AI SEARCH CITATIONS', telemetry: 'PERPLEXITY & CHATGPT CITATIONS: +412%', hue: 0, ogCard: true },
+  { filename: 'blog-google-ads-guide.webp', src: srcHUD, tag: '[BLOG // GOOGLE_ADS_GUIDE]', title: 'COMPLETE PPC OPTIMIZATION BLUEPRINT', telemetry: 'QUALITY SCORE: 9.8 | ROAS: HIGH', hue: -15, ogCard: true },
+  { filename: 'blog-page-authority-guide.webp', src: srcCrawl, tag: '[BLOG // PAGE_AUTHORITY]', title: 'PA DEFINITION & ACTIONABLE AUDIT CHECKLIST', telemetry: 'LINK EQUITY: CONCENTRATED', hue: 0, ogCard: true },
+  { filename: 'blog-seo-digital-marketing-tips.webp', src: srcCrawl, tag: '[BLOG // PRACTICAL_TIPS]', title: '12 RECOMMENDATIONS FOR ENTERPRISE GROWTH', telemetry: 'VALIDATED: PRODUCTION ENV', hue: 20, ogCard: true },
+  { filename: 'blog-seo-faq-guide.webp', src: srcCrawl, tag: '[BLOG // SEO_FAQ_MANAGERS]', title: 'EXPERT ANSWERS TO 30 KEY QUESTIONS', telemetry: 'DECISION MATRIX: C-SUITE READY', hue: -10, ogCard: true },
+  { filename: 'blog-seo-friendly-web-design.webp', src: srcTensor, tag: '[BLOG // SEO_WEB_DESIGN]', title: '9 TECHNICAL ARCHITECTURE DECISIONS', telemetry: 'DOM DEPTH: OPTIMAL | HYDRATION: ZERO', hue: 180, color: '#38BDF8', ogCard: true },
+  { filename: 'blog-seo-guide.webp', src: srcCrawl, tag: '[BLOG // COMPLETE_SEO_GUIDE]', title: 'COMPLETE SEARCH FOUNDATIONS & ENTITIES', telemetry: 'CRAWL CYCLE: SUB-SECOND', hue: 0, ogCard: true },
+
   // Portfolio & MCP Command Center
   { filename: 'portfolio-asreseo-command-center.webp', src: srcTensor, tag: '[PORTFOLIO // MCP_GATEWAY]', title: '32 MODEL CONTEXT PROTOCOL TOOLS', telemetry: 'EDGE CLOUDFLARE WORKERS D1', hue: 0 },
   { filename: 'portfolio-emdash-seo.webp', src: srcCrawl, tag: '[PORTFOLIO // EMDASH_ENGINE]', title: 'PROGRAMMATIC SERP DOMINANCE', telemetry: '+380% REVENUE | 0 DROP', hue: -10 },
@@ -140,6 +163,26 @@ async function run() {
 
       fs.writeFileSync(path.join(assetsDir, item.filename), buffer);
       fs.writeFileSync(path.join(publicDir, item.filename), buffer);
+
+      if (item.ogCard) {
+        const ogFilename = item.filename.replace(/\.webp$/, '.jpg');
+        const ogSvg = buildOverlay({
+          tag: item.tag,
+          title: item.title,
+          telemetry: item.telemetry,
+          color: item.color || '#CCFF00',
+          width: 1200,
+          height: 630,
+        });
+        const ogBuffer = await sharp(item.src)
+          .resize(1200, 630, { fit: 'cover' })
+          .modulate(item.hue !== 0 ? { hue: item.hue } : {})
+          .composite([{ input: Buffer.from(ogSvg), top: 0, left: 0 }])
+          .jpeg({ quality: 90, mozjpeg: true })
+          .toBuffer();
+        fs.writeFileSync(path.join(ogDir, ogFilename), ogBuffer);
+      }
+
       count++;
       console.log(`✓ Generated ${item.filename} (${Math.round(buffer.length / 1024)} KB)`);
     } catch (err) {
