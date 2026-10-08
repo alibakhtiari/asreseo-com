@@ -1,137 +1,139 @@
-# عصر سئو — وب‌سایت آژانس بازاریابی دیجیتال و هوش مصنوعی (Asre SEO)
+# AsreSEO — Digital Marketing & Enterprise AI Agency Platform
 
-پلتفرم مدرن، فوق‌سریع و بهینه‌سازی‌شده برای موتورهای جستجوی سنتی (**SEO**)، موتورهای پاسخ‌دهی مستقیم (**AEO**) و موتورهای جستجوی مولد مبتنی بر هوش مصنوعی (**GEO**).
+A high-performance, edge-rendered agency platform engineered for traditional search engines (**SEO**), direct-answer engines (**AEO**), and generative AI search (**GEO**).
 
-این کدبیس با معماری **Astro 5** بازسازی شده و به عنوان جایگزین مستقیم نسخه قدیمی (Next.js) آماده استقرار روی **Cloudflare Pages** است.
-
----
-
-## ویژگی‌های کلیدی و معماری پروژه
-
-- **انطباق ۱۰۰٪ آدرس‌ها (1:1 URL Parity):** حفظ کامل تمام ۳۷ مسیر و ساختار لینک‌های قبلی سایت بدون ایجاد کوچک‌ترین خطای ۴۰۴ یا افت اعتبار سئو.
-- **ریدایرکت‌های استاندارد ۳۰۱:** انتقال خودکار و قطعی اسلاگ‌های قدیمی تاریخ‌دار (`-2024`) به آدرس‌های سبز و دائمی در `public/_redirects`.
-- **عملکرد خیره‌کننده (Core Web Vitals):**
-  - زمان مسدودی کل (TBT): **۰ میلی‌ثانیه** در تمام صفحات.
-  - سرعت لود بزرگ‌ترین عنصر بصری (LCP): کمتر از ۱.۲ ثانیه.
-  - ثبات بصری چیدمان (CLS): نزدیک به صفر.
-  - تعامل‌پذیری مدرن: انطباق کامل با معیار **INP** گوگل.
-- **آمادگی AEO و GEO (پاسخ به چت‌بات‌ها و موتورهای مولد):**
-  - تولید خودکار و اعتبارسنجی‌شده فایل‌های [`llms.txt`](/llms.txt) و [`llms-full.txt`](/llms-full.txt) در زمان بیلد جهت ارجاع مستقیم توسط مدل‌های زبانی (Perplexity, ChatGPT Search, Gemini, Claude).
-  - درج کپسول‌های پاسخ مستقیم (Direct Answer Capsules) در ۴۰ تا ۶۰ کلمه در ابتدای صفحات و مقالات.
-  - پیکربندی دسترسی خزنده‌های هوش مصنوعی (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Applebot-Extended, Amazonbot) در `public/robots.txt`.
-- **داده‌های ساختاریافته پیشرفته (JSON-LD Schemas):**
-  - اسکیماهای استاندارد و معتبر `FAQPage`، `Service`، `Article`، `BreadcrumbList`، `WebSite`، و `CollectionPage` مطابق با جدیدترین استانداردهای Google Search Central.
-- **طراحی دسترسی‌پذیر و بومی (RTL & A11y):**
-  - تایپوگرافی اصیل با فونت وزیرمتن (پری‌لود هر دو وزن Regular و Bold).
-  - تطابق با استانداردهای کنتراست رنگ WCAG 2.1 AA.
-  - کلیدهای کنترلی دسترسی‌پذیر (پشتیبانی از کلید Escape، محصور شدن فوکوس Tab در منوی موبایل و برچسب‌های متصل `for`/`id` در فرم‌ها).
+Built on **Astro 5** with static generation and Cloudflare edge deployment, integrated with self-hosted workflow automation engines and custom open-source extensions.
 
 ---
 
-## استک فنی (Tech Stack)
+## ⚡ Core Architecture & Automation Stack
 
-| بخش | ابزار / فریم‌ورک |
+### 1. Dedicated Workflow Automation Engine (n8n)
+- **Live Instance**: [https://n8n.asreseo.com](https://n8n.asreseo.com)
+- **Role**: Powers autonomous 24/7 background tasks including:
+  - Real-time webhook ingestion for lead funnels and contact forms.
+  - Automated Google Search Console telemetry and indexing pings.
+  - Periodic SEO site-health monitoring and schema validation audits.
+  - Multi-agent AI content drafting pipelines and publishing triggers.
+
+### 2. Custom Open-Source n8n Node Ecosystem
+Authored and maintained by **Ali Bakhtiari**:
+- **[`n8n-nodes-avvalai`](https://github.com/alibakhtiari/n8n-nodes-avvalai)**:
+  - Community n8n node providing native enterprise integration with AvvalAI intelligence services.
+  - Enables low-code orchestration of multimodal LLM chat, completion, embeddings, and vision APIs within automated n8n pipelines.
+- **[`n8n-nodes-imagerouter`](https://github.com/alibakhtiari/n8n-nodes-imagerouter)**:
+  - High-throughput conditional routing node for image processing in n8n.
+  - Handles dynamic visual transformations, CDN payload optimization, format negotiation, and intelligent distribution to multimodal AI vision models.
+
+---
+
+## 🚀 Key Platform Features
+
+- **100% URL Parity & Standard 301 Redirects**: Clean trailing-slash URLs with legacy route redirects configured in `public/_redirects`.
+- **Ultra-Fast Core Web Vitals**:
+  - Total Blocking Time (TBT): **0 ms**.
+  - Largest Contentful Paint (LCP): < 1.2s.
+  - Visual Layout Shift (CLS): ~0.
+  - Full Google **INP** compliance.
+- **AEO & GEO Ready (LLM Discovery)**:
+  - Dynamically generated and route-validated [`llms.txt`](https://asreseo.com/llms.txt) and [`llms-full.txt`](https://asreseo.com/llms-full.txt) files for Perplexity, ChatGPT, Gemini, and Claude citations.
+  - Comprehensive bot access rules in `public/robots.txt` covering GPTBot, OAI-SearchBot, ClaudeBot, and PerplexityBot.
+- **Structured Data (JSON-LD)**:
+  - Full schema coverage: `Organization`, `WebSite`, `Service`, `FAQPage`, `Article`, `BreadcrumbList`, and `CollectionPage`.
+- **Design System**: Neo-Brutalist & Acid Yellow aesthetic with wireframe grid accents, sharp contrast, and accessible WCAG AA standards.
+
+---
+
+## 🛠️ Technology Stack
+
+| Component | Technology |
 |---|---|
 | **Core Framework** | [Astro 5](https://astro.build/) (Static Site Generation - SSG) |
-| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) با پلاگین Vite |
-| **Content Management** | Astro Content Collections + MDX |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) with Vite plugin |
+| **Content Engine** | Astro Content Collections + MDX |
+| **Automation Engine** | [n8n](https://n8n.asreseo.com) (Self-Hosted Workflow Cluster) |
+| **Custom n8n Nodes** | [`n8n-nodes-avvalai`](https://github.com/alibakhtiari/n8n-nodes-avvalai), [`n8n-nodes-imagerouter`](https://github.com/alibakhtiari/n8n-nodes-imagerouter) |
 | **Icons** | [Lucide Static](https://lucide.dev/) |
-| **Image Pipeline** | Sharp + کامپوننت بومی `Picture` (فرمت‌های مدرن WebP و AVIF) |
-| **Type Checking** | TypeScript 5.9 + Astro Check |
-| **Linter** | ESLint 10 + TypeScript-ESLint |
-| **Edge Functions** | Cloudflare Pages Functions (`functions/api/send-email.ts`) با بایندینگ بومی `send_email` |
-| **Hosting & CDN** | [Cloudflare Pages](https://pages.cloudflare.com/) |
+| **Edge Functions** | Cloudflare Pages Functions (`functions/api/send-email.ts`) |
+| **Hosting & Edge CDN** | [Cloudflare Pages & Workers](https://pages.cloudflare.com/) |
 
 ---
 
-## ساختار دایرکتوری پروژه
+## 📁 Repository Structure
 
 ```
 asreseo-com/
-├── public/                     # فایل‌های استاتیک، تصاویر و فونت‌ها
-│   ├── _headers               # قواعد کشینگ و امنیت Cloudflare
-│   ├── _redirects             # ریدایرکت‌های ۳۰۱ روت‌های قدیمی
-│   ├── robots.txt             # دسترسی خزنده‌ها و سایت‌مپ
-│   └── js/ajax-form.js        # اسکریپت ارسال ناهمگام فرم‌ها
+├── public/                     # Static assets, fonts, icons, manifests
+│   ├── _headers               # Cloudflare security and caching headers
+│   ├── _redirects             # 301 URL redirect maps
+│   └── robots.txt             # Search crawler directives
 ├── src/
-│   ├── assets/images/         # تصاویر منبع و بهینه‌سازی‌شده
-│   ├── components/            # کامپوننت‌های ماژولار استرو
-│   │   ├── Blog/              # نمایش مقاله، کارت‌ها و CTA وبلاگ
-│   │   ├── Home/              # بخش‌های اختصاصی صفحه اصلی
-│   │   ├── Layout/            # هدر، فوتر و مگامنو ۵ ستونه
-│   │   ├── Services/          # کامپوننت‌های مشترک صفحات خدمات
-│   │   └── ui/                # المان‌های پایه (دکمه، آکاردئون، بج و کارت)
-│   ├── content/blog/          # مقالات آموزشی مرجع (۹ فایل MDX)
-│   ├── layouts/               # تمپلیت پایه سئو (BaseLayout.astro)
-│   ├── lib/                   # منطق کمکی، داده‌های سایت و تایپ‌های llms
-│   └── pages/                 # ساختار روتینگ صفحات استرو
-│       ├── blog/              # صفحه وبلاگ و جزئیات مقالات
-│       ├── services/          # ۵ شاخه و ۱۷ زیرسرویس تخصصی
-│       ├── llms.txt.ts        # اندپوینت پویا برای مدل‌های هوش مصنوعی
-│       ├── llms-full.txt.ts   # پایگاه دانش تفصیلی برای هوش مصنوعی
-│       └── consultation/      # صفحه دریافت مشاوره رایگان
+│   ├── assets/images/         # Optimized imagery
+│   ├── components/            # Astro components
+│   │   ├── Blog/              # Blog layout, cards, and CTA
+│   │   ├── Home/              # Homepage sections
+│   │   ├── Layout/            # Header, MegaMenu, Footer (with n8n links)
+│   │   ├── Services/          # Service templates and reusable blocks
+│   │   └── ui/                # UI primitives (Card, Badge, Button, Icon)
+│   ├── content/blog/          # Cornerstone MDX guides
+│   ├── layouts/               # Base SEO layouts (BaseLayout.astro)
+│   ├── lib/                   # Site config, i18n, schema builders, and llms.ts
+│   └── pages/                 # File-based Astro routing
+│       ├── about/             # Agency background & n8n architecture section
+│       ├── blog/              # Educational guides
+│       ├── services/          # Master service catalog & 17 specialized landing pages
+│       ├── llms.txt.ts        # Dynamic AI crawler endpoint
+│       ├── llms-full.txt.ts   # Comprehensive AI entity endpoint
+│       ├── privacy/           # Privacy policy (includes n8n infrastructure clause)
+│       └── terms/             # Terms of service (includes n8n & custom nodes clause)
 ├── functions/api/             # Cloudflare Pages Functions
-│   └── send-email.ts          # اندپوینت ارسال ایمیل با اعتبارسنجی امن
-├── scripts/                   # اسکریپت‌های کمکی بیلد و اعتبارسنجی استقرار
-├── audit/                     # مستندات کامل ممیزی‌ها، لاگ اصلاحات و راهنمای استقرار
-│   ├── DEPLOYMENT.md          # دستورالعمل استقرار نهایی روی Cloudflare
-│   ├── fixes-2026-09-12.md    # لاگ ۸۱ اقدام اصلاحی سئو، فنی و UI
-│   └── claims-to-verify.md    # ممیزی ادعاهای بازاریابی و آماری
-└── astro.config.mjs           # پیکربندی استرو و افزونه سایت‌مپ
+│   └── send-email.ts          # Contact form processor
+├── astro.config.mjs           # Astro configuration & sitemap integration
+└── wrangler.toml              # Cloudflare worker deployment settings
 ```
 
 ---
 
-## دستورات اجرایی و محیط توسعه
+## 💻 Development Commands
 
-### ۱. نصب وابستگی‌ها
+### 1. Install Dependencies
 ```bash
 npm install
 ```
 
-### ۲. اجرای سرور توسعه محلی
+### 2. Start Local Development Server
 ```bash
 npm run dev
 ```
-سرور محلی روی پورت `http://localhost:4321` اجرا خواهد شد.
+Available at `http://localhost:4321`.
 
-### ۳. اعتبارسنجی تایپ‌ها و لینتر
+### 3. Type Checking & Code Quality
 ```bash
-npm run type-check    # بررسی سلامت کدهای تایپ‌اسکریپت و استرو (0 errors)
-npm run lint          # بررسی استانداردهای کدنویسی با ESLint (0 errors)
+npm run type-check    # Validates TypeScript and Astro components
+npm run lint          # Runs ESLint checks
 ```
 
-### ۴. ساخت پروژه برای تولید (Production Build)
+### 4. Production Build
 ```bash
 npm run build
 ```
-خروجی استاتیک پروژه شامل تمام ۴۷ صفحه در پوشه `dist/` با سایت‌مپ‌های استاندارد ایجاد می‌شود.
+Generates production static artifacts in `dist/` and runs route validation on `llms.txt`.
 
 ---
 
-## راهنمای استقرار نهایی (Production Deployment)
+## 🌐 Production Deployment
 
-این پروژه با جدیدترین معماری **Cloudflare Workers with Static Assets** پیکربندی شده است:
-
-1. **مستندات استقرار را مطالعه فرمایید:** مراحل دقیق در [`audit/DEPLOYMENT.md`](./audit/DEPLOYMENT.md) ثبت شده است.
-2. **تنظیمات بیلد و دیپلوی در داشبورد کلودفلر:**
-   - دستور بیلد: `npm run build`
-   - دستور دیپلوی: `npx wrangler deploy`
-   - دایرکتوری خروجی: `dist`
-   - ⚠️ **مسیر واقعی استقرار:** push به شاخه `astro-migration` به‌صورت خودکار با build یکپارچه Cloudflare مستقر می‌شود (این همان مسیری است که در عمل کار می‌کند). نام ورکر زنده **`asreseocom`** روی حساب `ac07c7450925ccb475ebfc9ab75103e1` است؛ `wrangler.toml` قبلاً نام `asre-seo-website` را داشت که **وجود ندارد** و دیپلوی دستی یک ورکر بی‌استفاده می‌ساخت. هر دو فیلد اکنون در `wrangler.toml` ثابت شده‌اند. پس از هر استقرار: `node scripts/verify-deploy.mjs`.
-3. **اتصال بایندینگ ایمیل (Cloudflare Dashboard):**
-   - در مسیر **Settings → Bindings** پروژه در کلودفلر، متغیر Send Email را با نام **`asreseo`** (یا **`EMAIL`**) اضافه فرمایید تا فرم‌های تماس و مشاوره فعال شوند. (کد هر دو نام را پشتیبانی می‌کند).
-4. **غیرفعال‌سازی Content Signals Policy:**
-   - در داشبورد کلودفلر گزینه Content Signals Policy را غیرفعال کنید تا فایل `robots.txt` پروژه توسط کلودفلر بازنویسی نشود.
-5. **تغییر برنچ به `astro-migration` یا مرج در `main`:**
-   - برنچ بیلد پروژه را روی `astro-migration` تنظیم کرده یا تغییرات را در `main` مرج فرمایید.
-5. **تست و اعتبارسنجی پس از استقرار:**
-   ```bash
-   npm run verify:deploy
-   ```
+Deployed via Cloudflare Pages and Workers:
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **Worker Name**: `asreseocom`
+- **Email Binding**: `send_email` bound to `asreseo` or `EMAIL` in Cloudflare dashboard settings.
 
 ---
 
-## لایسنس و حقوق مالکیت
+## 📄 License & Attribution
 
-تمامی حقوق این پروژه متعلق به [عصر سئو (Asre SEO)](https://asreseo.com) است.
+- Platform & Content: © [AsreSEO](https://asreseo.com). All rights reserved.
+- Custom n8n Nodes: Open-source MIT/Apache libraries authored by [Ali Bakhtiari](https://github.com/alibakhtiari).
+  - [n8n-nodes-avvalai](https://github.com/alibakhtiari/n8n-nodes-avvalai)
+  - [n8n-nodes-imagerouter](https://github.com/alibakhtiari/n8n-nodes-imagerouter)
