@@ -15,16 +15,16 @@ function escapeXml(str = '') {
 }
 
 export function buildOgSvg(props = {}) {
-  const title = escapeXml(props.title || "Digital Marketing Agency, SEO & AI Services");
-  const eyebrow = escapeXml(props.eyebrow || "[PROTOCOL_01 // ENTERPRISE_SEARCH_INFRASTRUCTURE]");
-  const descLine1 = escapeXml(props.descLine1 || "Autonomous search infrastructure, deterministic knowledge graphs & neural AI citations (GEO/AEO).");
-  const descLine2 = escapeXml(props.descLine2 || "Full-funnel Google Ads acquisition and sub-2-second conversion-first web engineering.");
-  const tag1 = escapeXml(props.tag1 || "Technical SEO & CWV");
-  const tag1Sub = escapeXml(props.tag1Sub || "Sub-2s algorithmic defense");
-  const tag2 = escapeXml(props.tag2 || "AI Search (GEO/AEO)");
-  const tag2Sub = escapeXml(props.tag2Sub || "LLM citation dominance");
-  const tag3 = escapeXml(props.tag3 || "Performance Growth");
-  const tag3Sub = escapeXml(props.tag3Sub || "Data-driven ad funnels");
+  const title = escapeXml(props.title || "Dominate AI Search & Conversational Engines");
+  const eyebrow = escapeXml(props.eyebrow || "[AUTONOMOUS_INFRASTRUCTURE // V3.8]");
+  const descLine1 = escapeXml(props.descLine1 || "Autonomous agent infrastructure engineered to capture AI citations, Google AI Overviews,");
+  const descLine2 = escapeXml(props.descLine2 || "and programmatic SERP dominance with mathematical precision & sub-2s velocity.");
+  const tag1 = escapeXml(props.tag1 || "LLM Citation Yield");
+  const tag1Sub = escapeXml(props.tag1Sub || "+412% verified citation surge");
+  const tag2 = escapeXml(props.tag2 || "Automated Indexing");
+  const tag2Sub = escapeXml(props.tag2Sub || "99.8% crawl efficiency");
+  const tag3 = escapeXml(props.tag3 || "Edge Performance");
+  const tag3Sub = escapeXml(props.tag3Sub || "< 18ms TTFB sub-second cycle");
   const badge = escapeXml(props.badge || "asreseo.com");
   const eyebrowWidth = props.eyebrowWidth || Math.max(160, Math.min(560, Math.round(eyebrow.length * 8.6 + 28)));
   const titleFontSize = props.titleFontSize || (title.length > 42 ? 40 : title.length > 34 ? 45 : 50);
@@ -193,6 +193,7 @@ async function main() {
   // 1. Primary default OG image for Home and all fallback pages
   const defaultSvg = buildOgSvg();
   await renderCardToFile(defaultSvg, path.resolve('public/og-default.png'));
+  await renderCardToFile(defaultSvg, path.resolve('public/og-default.jpg'));
 
   // If --all flag is passed, generate additional section-specific cards
   if (process.argv.includes('--all')) {
