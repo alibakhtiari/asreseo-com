@@ -1,95 +1,73 @@
 ---
 import Icon from '../ui/Icon.astro';
 
+interface Props {
+  lang?: string;
+}
 
+const { lang = 'en' } = Astro.props as Props;
+void lang;
 
-
-  const features = [
-    {
-      icon: "award",
-      title: 'تیم متخصص و با تجربه',
-      description: 'متخصصان ما با سال‌ها تجربه در زمینه دیجیتال مارکتینگ آماده خدمت‌رسانی هستند',
-      color: 'from-accent-400 to-accent-600'
-    },
-    {
-      icon: "trending-up",
-      title: 'نتایج قابل اندازه‌گیری',
-      description: 'تمام فعالیت‌های ما بر اساس داده و آمار بوده و نتایج قابل اندازه‌گیری ارائه می‌دهیم',
-      color: 'from-secondary-400 to-secondary-600'
-    },
-    {
-      icon: "shield",
-      title: 'روش‌های ایمن و مطمئن',
-      description: 'تمام تکنیک‌های ما مطابق با استانداردهای گوگل و کاملاً ایمن هستند',
-      color: 'from-primary-400 to-primary-600'
-    },
-    {
-      icon: "clock",
-      title: 'پشتیبانی ۲۴/۷',
-      description: 'تیم پشتیبانی ما همیشه در دسترس شما قرار دارد تا بهترین خدمات را دریافت کنید',
-      color: 'from-secondary-300 to-primary-500'
-    },
-    {
-      icon: "users",
-      title: 'مشتری‌محوری',
-      description: 'نیازها و اهداف شما در اولویت قرار دارد و تمام تلاش‌مان برای رضایت شماست',
-      color: 'from-accent-500 to-primary-500'
-    },
-    {
-      icon: "headphones-icon",
-      title: 'مشاوره رایگان',
-      description: 'قبل از شروع هر پروژه، مشاوره کاملی در اختیار شما قرار می‌دهیم',
-      color: 'from-primary-400 to-secondary-500'
-    }
-  ];
-
-  
+const features = [
+  {
+    icon: "award",
+    title: 'Expert, Experienced Team',
+    description: 'Our specialists bring years of digital marketing experience to your service',
+    color: 'from-accent-400 to-accent-600',
+  },
+  {
+    icon: "trending-up",
+    title: 'Measurable Results',
+    description: 'Everything we do is data-driven, delivering results you can measure',
+    color: 'from-secondary-400 to-secondary-600',
+  },
+  {
+    icon: "shield",
+    title: 'Safe & Proven Methods',
+    description: 'All our techniques follow Google guidelines and are completely safe',
+    color: 'from-primary-400 to-primary-600',
+  },
+  {
+    icon: "clock",
+    title: '24/7 Support',
+    description: 'Our support team is always available to deliver the best possible service',
+    color: 'from-secondary-300 to-primary-500',
+  },
+  {
+    icon: "users",
+    title: 'Client-Centric Approach',
+    description: 'Your goals are our priority and everything is focused on your success',
+    color: 'from-accent-500 to-primary-500',
+  },
+  {
+    icon: "headphones-icon",
+    title: 'Free Consultation',
+    description: 'We offer a complete consultation before starting any project',
+    color: 'from-primary-400 to-secondary-500',
+  },
+];
 ---
-<section class="section-padding bg-linear-to-br from-background-50 to-background-100 relative overflow-hidden">
-      <!-- Background Pattern -->
-      <div class="absolute inset-0 opacity-5">
-        <div class="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(var(--primary-500)) 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }}></div>
-      </div>
+<section class="section-padding bg-slate-900 text-white">
+  <div class="container-custom">
+    <div class="text-center mb-16 animate-fade-in">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        Why Choose <span class="gradient-text">AsreSEO</span>?
+      </h2>
+      <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+        Key benefits of working with our specialized digital marketing team
+      </p>
+    </div>
 
-      <div class="container-custom relative z-10">
-        <div class="text-center mb-20 animate-fade-in">
-          <h2 class="text-4xl md:text-5xl font-bold text-text-900 mb-8">
-            چرا <span class="bg-linear-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent">عصر سئو</span> را انتخاب کنید؟
-          </h2>
-          <p class="text-xl md:text-2xl text-text-600 max-w-4xl mx-auto leading-relaxed">
-            مزایای همکاری با تیم حرفه‌ای و متخصص عصر سئو
-          </p>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature) => (
+        <div class="bg-slate-800/50 backdrop-blur-xs p-8 rounded-2xl border border-slate-700 hover:border-slate-600 transition-all duration-300 hover:-translate-y-1">
+          <div class={`w-14 h-14 rounded-xl bg-linear-to-r ${feature.color} flex items-center justify-center mb-6`}>
+            <Icon name={feature.icon} class="h-7 w-7 text-white" />
+          </div>
+          <h3 class="text-xl font-bold mb-3">{feature.title}</h3>
+          <p class="text-slate-300 leading-relaxed">{feature.description}</p>
         </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {features.map((feature, index) => (
-            <div 
-              
-              class="group bg-white/90 backdrop-blur-xs p-10 rounded-3xl shadow-lg border border-primary-100 hover:border-primary-200 hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 animate-fade-in relative overflow-hidden"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <!-- Background gradient on hover -->
-              <div class={`absolute inset-0 bg-linear-to-br ${feature.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
-              
-              <div class={`relative w-20 h-20 bg-linear-to-br ${feature.color} rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-12 group-hover:animate-glow transition-all duration-500 shadow-lg`}>
-                <Icon name={feature.icon} class="h-10 w-10 text-white" />
-              </div>
-              
-              <h3 class="text-2xl font-bold text-text-900 mb-6 group-hover:text-primary-600 transition-colors duration-300">
-                {feature.title}
-              </h3>
-              
-              <p class="text-text-600 leading-relaxed text-lg">
-                {feature.description}
-              </p>
-
-              <!-- Hover effect border -->
-              <div class="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-primary-200 transition-colors duration-500"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+      ))}
+    </div>
+  </div>
+</section>

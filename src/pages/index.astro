@@ -13,28 +13,29 @@ import HomepageStructuredData from '../components/HomepageStructuredData.astro';
 import OrganizationStructuredData from '../components/OrganizationStructuredData.astro';
 ---
 <BaseLayout
-  title='آژانس دیجیتال مارکتینگ، خدمات سئو و هوش مصنوعی | عصر سئو'
-  description='عصر سئو؛ آژانس تخصصی خدمات سئو حرفه‌ای، بهینه‌سازی موتورهای هوش مصنوعی (AEO/GEO)، تبلیغات گوگل و تولید محتوای داده‌محور برای رشد ترافیک و فروش آنلاین.'
-  keywords='سئو, دیجیتال مارکتینگ, تبلیغات گوگل, طراحی وب‌سایت, بهینه‌سازی سایت, AsreSEO, چت‌بات فارسی, هوش مصنوعی, AI, اتوماسیون بازاریابی, تولید محتوا با AI'
-  canonical='/'
-  ogTitle='عصر سئو | بهترین خدمات دیجیتال مارکتینگ و سئو در ایران'
-  ogDescription='با خدمات حرفه‌ای سئو، طراحی وب‌سایت و هوش مصنوعی، مسیر رشد کسب‌وکار خود را هموار کنید'
-  ogImages={[{ url: '/og-default.png', width: 1200, height: 630, alt: 'آژانس دیجیتال مارکتینگ و سئو عصر سئو' }]}
-  twitterCard='summary_large_image'
+  lang="en"
+  title="Digital Marketing Agency, SEO & AI Services | AsreSEO"
+  description="AsreSEO is a specialized agency for professional SEO, AI search optimization (AEO/GEO), Google Ads and data-driven content production to grow traffic and online sales."
+  keywords="SEO, digital marketing, Google Ads, web design, website optimization, AsreSEO, AI, marketing automation, AI content production"
+  canonical="/"
+  ogTitle="AsreSEO | Digital Marketing & SEO Services"
+  ogDescription="Grow your business with professional SEO, web design and AI services"
+  ogImages={[{ url: '/og-default.png', width: 1200, height: 630, alt: 'AsreSEO digital marketing and SEO agency' }]}
+  twitterCard="summary_large_image"
 >
-<div class="min-h-screen bg-white">
-      <OrganizationStructuredData />
-      <HomepageStructuredData />
-      <Header />
-      <main>
-        <HeroSection />
-        <ServicesSection />
-        <AllServicesSection />
-        <PortfolioPreview />
-        <WhyChooseUsSection />
-        <TestimonialsSection />
-        <CTASection />
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+      <OrganizationStructuredData lang="en" />
+      <HomepageStructuredData lang="en" />
+      <Header lang="en" />
+      <main id="main-content">
+        <HeroSection lang="en" />
+        <ServicesSection lang="en" />
+        <AllServicesSection lang="en" />
+        <PortfolioPreview lang="en" />
+        <WhyChooseUsSection lang="en" />
+        <TestimonialsSection lang="en" />
+        <CTASection lang="en" />
       </main>
-      <Footer />
+      <Footer lang="en" />
     </div>
 </BaseLayout>

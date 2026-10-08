@@ -1,65 +1,67 @@
-
 import type { MenuCategory } from './types';
 
 export const menuCategories: MenuCategory[] = [
   {
-    title: 'خدمات سئو',
+    title: 'SEO Services',
     icon: 'search',
     href: '/services/seo/',
     color: 'text-blue-600',
     items: [
-      { title: 'سئو تکنیکال و داخلی', href: '/services/seo/technical-onpage/' },
-      { title: 'سئو محتوا و اعتبار', href: '/services/seo/content-authority/' },
-      { title: 'سئو محلی', href: '/services/seo/local-seo/' }
-    ]
+      { title: 'Technical & On-Page SEO', href: '/services/seo/technical-onpage/' },
+      { title: 'Content & Authority SEO', href: '/services/seo/content-authority/' },
+      { title: 'Local SEO', href: '/services/seo/local-seo/' },
+    ],
   },
   {
-    title: 'طراحی و توسعه',
+    title: 'Design & Development',
     icon: 'code',
     href: '/services/web/',
     color: 'text-purple-600',
     items: [
-      { title: 'طراحی سایت سئو محور', href: '/services/web/seo-web-design/' },
-      { title: 'بهینه‌سازی سرعت', href: '/services/web/website-speed/' },
-      { title: 'صفحات فرود', href: '/services/web/landing-pages/' },
-      { title: 'تجربه کاربری', href: '/services/web/ux-architecture/' }
-    ]
+      { title: 'SEO-Focused Web Design', href: '/services/web/seo-web-design/' },
+      { title: 'Speed Optimization', href: '/services/web/website-speed/' },
+      { title: 'Landing Pages', href: '/services/web/landing-pages/' },
+      { title: 'User Experience', href: '/services/web/ux-architecture/' },
+    ],
   },
   {
-    title: 'بازاریابی دیجیتال',
+    title: 'Digital Marketing',
     icon: 'trending-up',
     href: '/services/marketing/',
     color: 'text-green-600',
     items: [
-      { title: 'تبلیغات گوگل', href: '/services/marketing/google-ads/' },
-      { title: 'بازاریابی ایمیلی', href: '/services/marketing/email-marketing/' },
-      { title: 'شبکه‌های اجتماعی', href: '/services/marketing/social-media/' },
-      { title: 'قیف فروش', href: '/services/marketing/sales-funnel-management/' },
-      { title: 'کمپین یکپارچه', href: '/services/marketing/integrated-campaigns/' }
-    ]
+      { title: 'Google Ads', href: '/services/marketing/google-ads/' },
+      { title: 'Email Marketing', href: '/services/marketing/email-marketing/' },
+      { title: 'Social Media', href: '/services/marketing/social-media/' },
+      { title: 'Sales Funnel', href: '/services/marketing/sales-funnel-management/' },
+      { title: 'Integrated Campaigns', href: '/services/marketing/integrated-campaigns/' },
+    ],
   },
   {
-    title: 'استراتژی و تولید محتوا',
+    title: 'Content Strategy',
     icon: 'file-text',
     href: '/services/content/',
     color: 'text-amber-600',
     items: [
-      { title: 'خدمات استراتژی محتوا', href: '/services/content/' },
-      { title: 'تقویم محتوایی سایت', href: '/services/content/content-calendar/' },
-      { title: 'تولید محتوای متنی', href: '/services/content/text-content/' },
-      { title: 'محتوای شبکه‌های اجتماعی', href: '/services/content/social-media-content/' },
-      { title: 'ترجمه تخصصی', href: '/services/content/translation/' }
-    ]
+      { title: 'Content Strategy Services', href: '/services/content/' },
+      { title: 'Content Calendar', href: '/services/content/content-calendar/' },
+      { title: 'Copywriting', href: '/services/content/text-content/' },
+      { title: 'Social Media Content', href: '/services/content/social-media-content/' },
+      { title: 'Specialized Translation', href: '/services/content/translation/' },
+    ],
   },
   {
-    title: 'خدمات هوش مصنوعی',
+    title: 'AI Services',
     icon: 'bot',
     href: '/services/ai/',
     color: 'text-violet-600',
     items: [
-      { title: 'تولید محتوای هوشمند', href: '/services/ai/content-creation/' },
-      { title: 'بازاریابی و تعامل AI', href: '/services/ai/marketing-engagement/' },
-      { title: 'تحلیل و استراتژی', href: '/services/ai/analysis-strategy/' }
-    ]
-  }
+      { title: 'Smart Content Creation', href: '/services/ai/content-creation/' },
+      { title: 'AI Marketing & Engagement', href: '/services/ai/marketing-engagement/' },
+      { title: 'Analysis & Strategy', href: '/services/ai/analysis-strategy/' },
+    ],
+  },
 ];
+
+export const menuCategoriesEn: MenuCategory[] = menuCategories;
+export const getMenuCategories = (): MenuCategory[] => menuCategories;

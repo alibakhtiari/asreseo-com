@@ -1,42 +1,38 @@
 ---
 import Icon from '../../ui/Icon.astro';
 import type { MenuItem as MenuItemType } from './types';
-const { item }: any = Astro.props;
 
-
-
-interface MenuItemProps {
+interface Props {
   item: MenuItemType;
-  onClose: () => void;
+  lang?: string;
 }
 
-
-
-  
+const { item, lang = 'en' } = Astro.props as Props;
+void lang;
 ---
 <li>
-      <a
-        href={item.href}
-        class="group flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors"
-        data-mm-close
-      >
-        <div class="flex-1">
-          <div class="flex items-center gap-2">
-            <span class="text-sm font-medium text-text-700 group-hover:text-text-900">
-              {item.title}
-            </span>
-            {item.isNew && (
-              <span class="bg-green-100 text-green-800 text-xs px-1.5 py-0.5 rounded font-medium">
-                جدید
-              </span>
-            )}
-            {item.isPopular && (
-              <span class="bg-orange-100 text-orange-700 text-xs px-1.5 py-0.5 rounded font-medium">
-                محبوب
-              </span>
-            )}
-          </div>
-        </div>
-        <Icon name="arrow-right" class="h-3 w-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity rotate-180" />
-      </a>
-    </li>
+  <a
+    href={item.href || '#'}
+    class="group flex items-center justify-between p-1.5 rounded-none hover:bg-white/5 transition-colors font-mono text-[11px]"
+    data-mm-close
+  >
+    <div class="flex-1 min-w-0 pr-1">
+      <div class="flex items-center gap-1.5">
+        <span class="text-slate-300 group-hover:text-[#CCFF00] transition-colors truncate">
+          {item.title}
+        </span>
+        {item.isPopular && (
+          <span class="bg-black border border-[#CCFF00] text-[#CCFF00] text-[9px] px-1 py-0.2 font-black uppercase shrink-0">
+            FLAGSHIP
+          </span>
+        )}
+        {item.isNew && !item.isPopular && (
+          <span class="bg-black border border-emerald-500/50 text-emerald-400 text-[9px] px-1 py-0.2 font-bold uppercase shrink-0">
+            NEW
+          </span>
+        )}
+      </div>
+    </div>
+    <Icon name="arrow-right" class="h-3 w-3 text-[#CCFF00] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all shrink-0" />
+  </a>
+</li>

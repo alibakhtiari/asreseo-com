@@ -1,4 +1,5 @@
 ---
+
 export interface FAQItem {
   question?: string;
   q?: string;
@@ -7,6 +8,7 @@ export interface FAQItem {
 }
 
 export interface Props {
+  lang?: string;
   title?: string;
   highlightWord?: string;
   titleGradient?: string;
@@ -18,17 +20,21 @@ export interface Props {
 }
 
 const {
-  title = 'سوالات متداول',
-  highlightWord = 'متداول',
+  lang = 'en',
+  title: rawTitle,
+  highlightWord: rawHighlight,
   titleGradient,
   subtitle,
   description,
-  theme,
   faqs = [],
   includeSchema = true,
 } = Astro.props;
 
-const effSubtitle = description || subtitle || 'پاسخ به پرسش‌های رایج مشتریان';
+void lang;
+const title = rawTitle ?? 'Frequently Asked Technical Questions';
+const highlightWord = rawHighlight ?? 'Questions';
+
+const effSubtitle = description || subtitle || 'Deterministic answers on indexing velocity, algorithmic compliance, and edge infrastructure.';
 
 const normalizedFaqs = faqs.map((f) => ({
   question: f.question || f.q || '',
@@ -62,7 +68,7 @@ if (highlight) {
   } else {
     beforeHighlight = `${title} `;
     afterHighlight = '';
-    hasHighlight = true;
+    hasHighlight = false;
   }
 }
 ---
@@ -71,72 +77,60 @@ if (highlight) {
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
 )}
 
-<section class="section-padding py-16">
-  <div class="container-custom">
-    <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium mb-3">
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        مرجع سوالات متداول
-      </div>
-      <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+<section class="py-20 bg-[#000000] relative border-t-2 border-white/10 wireframe-grid">
+  <div class="w-full max-w-5xl mx-auto px-6 sm:px-8">
+    <div class="mb-14">
+      <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[PROTOCOL_FAQS // TELEMETRY]</div>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
         {hasHighlight ? (
           <>
-            {beforeHighlight}<span class="gradient-text">{highlight}</span>{afterHighlight}
+            {beforeHighlight}<span class="text-[#CCFF00]">{highlight}</span>{afterHighlight}
           </>
         ) : (
           title
         )}
       </h2>
       {effSubtitle && (
-        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          {effSubtitle}
+        <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+          // {effSubtitle}
         </p>
       )}
     </div>
 
-    <div class="max-w-4xl mx-auto space-y-3" data-service-faq-root>
+    <div class="space-y-4" data-service-faq-root>
       {normalizedFaqs.map((faq, index) => (
         <div
-          class="service-faq-item bg-white rounded-2xl border border-slate-200/90 hover:border-blue-200 shadow-xs hover:shadow-md transition-all duration-200 overflow-hidden"
+          class="service-faq-item bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors"
           data-faq-item
           data-open={index === 0 ? "true" : "false"}
         >
           <button
             type="button"
-            class="service-faq-trigger w-full flex items-center justify-between gap-4 p-4 md:p-5 text-right cursor-pointer select-none transition-colors group"
+            class="service-faq-trigger w-full flex items-center justify-between gap-4 p-5 sm:p-6 cursor-pointer select-none text-left"
             aria-expanded={index === 0 ? "true" : "false"}
             aria-controls={`service-faq-ans-${index}`}
             id={`service-faq-btn-${index}`}
           >
-            <span class="flex items-center gap-3 font-semibold text-base md:text-lg text-slate-800 group-hover:text-blue-600 transition-colors">
-              <span class="w-7 h-7 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-700 flex items-center justify-center shrink-0 text-xs font-bold transition-colors">
-                {index + 1}
+            <div class="flex items-center gap-4">
+              <span class="font-mono text-xs font-bold text-[#CCFF00]">
+                {String(index + 1).padStart(2, '0')} //
               </span>
-              <span class="leading-relaxed">{faq.question}</span>
-            </span>
-            <span class="service-faq-icon w-8 h-8 rounded-full bg-slate-100 group-hover:bg-blue-100 flex items-center justify-center shrink-0 text-slate-500 group-hover:text-blue-600 transition-all duration-300">
-              <svg
-                class="w-4 h-4 transition-transform duration-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-                aria-hidden="true"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
+              <span class="font-bold text-base sm:text-lg text-white group-hover:text-[#CCFF00] transition-colors uppercase">
+                {faq.question}
+              </span>
+            </div>
+            <span class="service-faq-icon font-mono text-sm text-[#CCFF00] px-2 py-1 bg-black border border-white/20 shrink-0">
+              {index === 0 ? '[-]' : '[+]'}
             </span>
           </button>
           <div
             id={`service-faq-ans-${index}`}
             role="region"
             aria-labelledby={`service-faq-btn-${index}`}
-            class="service-faq-content px-4 md:px-6 pb-5 pt-1 text-slate-600 leading-relaxed text-sm md:text-base border-t border-slate-100"
+            class="service-faq-content px-5 sm:px-6 pb-6 pt-3 text-slate-300 leading-relaxed text-sm border-t border-white/10 bg-black/40 font-mono"
             hidden={index !== 0}
           >
-            <p class="whitespace-pre-line">{faq.answer}</p>
+            <p class="whitespace-pre-line text-slate-300">{faq.answer}</p>
           </div>
         </div>
       ))}
@@ -153,16 +147,18 @@ if (highlight) {
         el.setAttribute('data-open', isOpen ? 'true' : 'false');
         const btn = el.querySelector('.service-faq-trigger');
         const panel = el.querySelector('.service-faq-content');
-        const icon = el.querySelector('.service-faq-icon svg');
+        const icon = el.querySelector('.service-faq-icon');
         btn?.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         if (isOpen) {
           panel?.removeAttribute('hidden');
-          icon?.classList.add('rotate-180');
-          el.classList.add('border-blue-300', 'ring-1', 'ring-blue-100');
+          if (icon) icon.textContent = '[-]';
+          el.classList.add('border-[#CCFF00]');
+          el.classList.remove('border-white/15');
         } else {
           panel?.setAttribute('hidden', '');
-          icon?.classList.remove('rotate-180');
-          el.classList.remove('border-blue-300', 'ring-1', 'ring-blue-100');
+          if (icon) icon.textContent = '[+]';
+          el.classList.remove('border-[#CCFF00]');
+          el.classList.add('border-white/15');
         }
       };
 
@@ -176,21 +172,17 @@ if (highlight) {
         const btn = item.querySelector('.service-faq-trigger');
         btn?.addEventListener('click', () => {
           const currentlyOpen = item.getAttribute('data-open') === 'true';
-          // Close other items in the same section
           items.forEach((other) => {
             if (other !== item) {
               updateState(other, false);
             }
           });
-          // Toggle current
           updateState(item, !currentlyOpen);
         });
       });
     });
   }
 
-  // Initialize on load and on Astro view transitions
   setupServiceFaqs();
   document.addEventListener('astro:page-load', setupServiceFaqs);
 </script>
-

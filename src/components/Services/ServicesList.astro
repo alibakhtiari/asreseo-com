@@ -7,145 +7,147 @@ import CardTitle from '../ui/card/CardTitle.astro';
 import Button from '../ui/button/Button.astro';
 import Icon from '../ui/Icon.astro';
 
+interface Props {
+  lang?: string;
+}
 
+const { lang = 'en' } = Astro.props as Props;
+void lang;
 
-
-  const services = [
-    {
-      icon: "search",
-      title: 'سئو و بهینه‌سازی سایت',
-      description: 'بهینه‌سازی کامل وب‌سایت شما برای موتورهای جستجو و رسیدن به رتبه‌های بالا در گوگل',
-      features: [
-        'تحلیل و تحقیق کلمات کلیدی',
-        'بهینه‌سازی محتوا و متا تگ‌ها',
-        'بهبود سرعت و عملکرد سایت',
-        'ساخت بک‌لینک با کیفیت'
-      ],
-      price: 'از ۵ میلیون تومان',
-      gradient: 'from-blue-500 to-cyan-500'
-    },
-    {
-      icon: "target",
-      title: 'تبلیغات گوگل',
-      description: 'مدیریت حرفه‌ای کمپین‌های تبلیغاتی گوگل ادز برای حداکثر بازدهی سرمایه‌گذاری',
-      features: [
-        'تنظیم و مدیریت گوگل ادز',
-        'کمپین‌های جستجو و نمایشی',
-        'ریمارکتینگ و هدف‌گذاری دقیق',
-        'گزارش‌گیری تفصیلی'
-      ],
-      price: 'از ۳ میلیون تومان',
-      gradient: 'from-green-500 to-emerald-500'
-    },
-    {
-      icon: "trending-up",
-      title: 'دیجیتال مارکتینگ',
-      description: 'استراتژی جامع بازاریابی دیجیتال برای رشد و توسعه آنلاین کسب‌وکار شما',
-      features: [
-        'مدیریت شبکه‌های اجتماعی',
-        'تولید محتوای جذاب',
-        'ایمیل مارکتینگ',
-        'تحلیل و گزارش‌گیری'
-      ],
-      price: 'از ۴ میلیون تومان',
-      gradient: 'from-purple-500 to-pink-500'
-    },
-    {
-      icon: "palette",
-      title: 'طراحی وب‌سایت',
-      description: 'طراحی و توسعه وب‌سایت‌های مدرن، سریع و بهینه‌شده برای کسب‌وکار شما',
-      features: [
-        'طراحی ریسپانسیو و مدرن',
-        'بهینه‌سازی برای سئو',
-        'سرعت بالا و امنیت',
-        'پشتیبانی و نگهداری'
-      ],
-      price: 'از ۶ میلیون تومان',
-      gradient: 'from-orange-500 to-red-500'
-    },
-    {
-      icon: "users",
-      title: 'مشاوره استراتژیک',
-      description: 'مشاوره تخصصی برای تعیین بهترین استراتژی بازاریابی دیجیتال کسب‌وکار شما',
-      features: [
-        'تحلیل وضعیت فعلی',
-        'تعیین اهداف و KPI ها',
-        'طراحی نقشه راه',
-        'پیگیری و ارزیابی'
-      ],
-      price: 'از ۲ میلیون تومان',
-      gradient: 'from-indigo-500 to-blue-500'
-    },
-    {
-      icon: "bar-chart",
-      title: 'آنالیتیکس و گزارش‌گیری',
-      description: 'تحلیل عمیق داده‌ها و ارائه گزارش‌های جامع برای بهبود عملکرد',
-      features: [
-        'تنظیم گوگل آنالیتیکس',
-        'ردیابی تبدیل',
-        'گزارش‌های تفصیلی',
-        'توصیه‌های بهبود'
-      ],
-      price: 'از ۱.۵ میلیون تومان',
-      gradient: 'from-teal-500 to-cyan-500'
-    }
-  ];
-
-  
+const services = [
+  {
+    icon: "search",
+    title: 'SEO & Website Optimization',
+    description: 'Full optimization of your website for search engines to reach top Google rankings',
+    features: [
+      'Keyword analysis and research',
+      'Content and meta tag optimization',
+      'Site speed and performance improvements',
+      'Quality backlink building',
+    ],
+    price: 'Custom quote',
+    gradient: 'from-blue-500 to-cyan-500',
+  },
+  {
+    icon: "target",
+    title: 'Google Ads',
+    description: 'Professional management of Google Ads campaigns for maximum return on investment',
+    features: [
+      'Google Ads setup and management',
+      'Search and display campaigns',
+      'Remarketing and precise targeting',
+      'Detailed reporting',
+    ],
+    price: 'Custom quote',
+    gradient: 'from-green-500 to-emerald-500',
+  },
+  {
+    icon: "trending-up",
+    title: 'Digital Marketing',
+    description: 'A comprehensive digital marketing strategy to grow your business online',
+    features: [
+      'Social media management',
+      'Engaging content production',
+      'Email marketing',
+      'Analysis and reporting',
+    ],
+    price: 'Custom quote',
+    gradient: 'from-purple-500 to-pink-500',
+  },
+  {
+    icon: "palette",
+    title: 'Website Design',
+    description: 'Design and development of modern, fast, optimized websites for your business',
+    features: [
+      'Modern responsive design',
+      'SEO optimization',
+      'High speed and security',
+      'Support and maintenance',
+    ],
+    price: 'Custom quote',
+    gradient: 'from-orange-500 to-red-500',
+  },
+  {
+    icon: "users",
+    title: 'Strategic Consulting',
+    description: 'Expert consulting to define the best digital marketing strategy for your business',
+    features: [
+      'Current-state analysis',
+      'Goal and KPI setting',
+      'Roadmap design',
+      'Follow-up and evaluation',
+    ],
+    price: 'Custom quote',
+    gradient: 'from-indigo-500 to-blue-500',
+  },
+  {
+    icon: "bar-chart",
+    title: 'Analytics & Reporting',
+    description: 'In-depth data analysis and comprehensive reports to improve performance',
+    features: [
+      'Google Analytics setup',
+      'Conversion tracking',
+      'Detailed reports',
+      'Improvement recommendations',
+    ],
+    price: 'Custom quote',
+    gradient: 'from-teal-500 to-cyan-500',
+  },
+];
 ---
-<section class="section-padding">
-      <div class="container-custom">
-        <div class="text-center mb-16 animate-fade-in">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            خدمات <span class="gradient-text">جامع</span> ما
-          </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            مجموعه کاملی از خدمات دیجیتال مارکتینگ برای رشد و توسعه کسب‌وکار شما
-          </p>
-        </div>
+<section class="section-padding bg-[#080c14] relative">
+  <div class="container-custom">
+    <div class="text-center mb-16 animate-fade-in">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+        Our <span class="gradient-text">Full Range of</span> Services
+      </h2>
+      <p class="text-xl text-slate-400 max-w-3xl mx-auto">
+        A complete set of digital marketing services to grow your business
+      </p>
+    </div>
 
-        <div class="grid lg:grid-cols-2 gap-8">
-          {services.map((service, index) => (
-            <Card class="group hover:shadow-xl transition-all duration-300 border-0 shadow-md animate-fade-in">
-              <CardHeader class="pb-4">
-                <div class="flex items-start justify-between">
-                  <div class="flex items-center space-x-4 space-x-reverse">
-                    <div class={`w-16 h-16 rounded-xl bg-linear-to-r ${service.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon name={service.icon} class="h-8 w-8 text-white" />
-                    </div>
-                    <div>
-                      <CardTitle class="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                        {service.title}
-                      </CardTitle>
-                      <div class="text-lg font-semibold text-green-800 mt-1">
-                        {service.price}
-                      </div>
-                    </div>
+    <div class="grid lg:grid-cols-2 gap-8">
+      {services.map((service) => (
+        <Card class="group bg-slate-900/60 backdrop-blur-xl border border-white/10 hover:border-cyan-500/40 hover:shadow-2xl hover:shadow-cyan-500/5 transition-all duration-300 shadow-xl animate-fade-in relative overflow-hidden">
+          <CardHeader class="pb-4">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-4">
+                <div class={`w-16 h-16 rounded-2xl bg-linear-to-r ${service.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg shrink-0`}>
+                  <Icon name={service.icon} class="h-8 w-8 text-white" />
+                </div>
+                <div>
+                  <CardTitle class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                    {service.title}
+                  </CardTitle>
+                  <div class="text-lg font-semibold text-emerald-400 mt-1">
+                    {service.price}
                   </div>
                 </div>
-                <CardDescription class="text-gray-600 leading-relaxed mt-4">
-                  {service.description}
-                </CardDescription>
-              </CardHeader>
+              </div>
+            </div>
+            <CardDescription class="text-slate-400 leading-relaxed mt-4 text-sm sm:text-base">
+              {service.description}
+            </CardDescription>
+          </CardHeader>
 
-              <CardContent class="pt-0">
-                <ul class="space-y-3 mb-6">
-                  {service.features.map((feature, featureIndex) => (
-                    <li class="flex items-center text-gray-700">
-                      <div class="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center ml-3">
-                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                      </div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+          <CardContent class="pt-0">
+            <ul class="space-y-3 mb-6">
+              {service.features.map((feature) => (
+                <li class="flex items-center text-slate-300 text-sm sm:text-base">
+                  <div class="w-5 h-5 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center me-3 shrink-0">
+                    <div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
+                  </div>
+                  {feature}
+                </li>
+              ))}
+            </ul>
 
-                <Button href="/consultation/" class="w-full gradient-bg text-white hover:opacity-90 transition-opacity">
-                  درخواست مشاوره رایگان
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </section>
+            <Button href="/consultation/" class="w-full gradient-bg text-white hover:opacity-95 shadow-md shadow-cyan-500/10 transition-opacity">
+              Request a free consultation
+            </Button>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

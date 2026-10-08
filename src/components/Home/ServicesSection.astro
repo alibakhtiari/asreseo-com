@@ -1,110 +1,134 @@
 ---
-import Card from '../ui/card/Card.astro';
-import CardContent from '../ui/card/CardContent.astro';
-import CardDescription from '../ui/card/CardDescription.astro';
-import CardHeader from '../ui/card/CardHeader.astro';
-import CardTitle from '../ui/card/CardTitle.astro';
 import Button from '../ui/button/Button.astro';
 import Icon from '../ui/Icon.astro';
 
+interface Props {
+  lang?: string;
+}
 
+const { lang = 'en' } = Astro.props as Props;
+const localize = (p: string) => p;
 
-
-
-  const services = [
-    {
-      icon: "search",
-      title: 'سئو و بهینه‌سازی',
-      description: 'بهینه‌سازی وب‌سایت شما برای موتورهای جستجو و افزایش رتبه در گوگل',
-      features: ['تحلیل کلمات کلیدی', 'بهینه‌سازی محتوا', 'لینک‌سازی داخلی و خارجی', 'گزارش‌دهی مفصل'],
-      color: 'from-blue-500 to-blue-600',
-      href: '/services/seo/'
-    },
-    {
-      icon: "user",
-      title: 'دیجیتال مارکتینگ',
-      description: 'استراتژی‌های جامع بازاریابی دیجیتال برای رشد کسب‌وکار شما',
-      features: ['مدیریت شبکه‌های اجتماعی', 'تبلیغات محتوایی', 'ایمیل مارکتینگ', 'تحلیل رقبا'],
-      color: 'from-green-500 to-green-600',
-      href: '/services/marketing/'
-    },
-    {
-      icon: "image",
-      title: 'طراحی وب‌سایت',
-      description: 'طراحی و توسعه وب‌سایت‌های مدرن، سریع و کاربرپسند',
-      features: ['طراحی ریسپانسیو', 'بهینه‌سازی سرعت', 'رابط کاربری حرفه‌ای', 'پشتیبانی فنی'],
-      color: 'from-purple-500 to-purple-600',
-      href: '/services/web/'
-    }
-  ];
-
-  
+const modules = [
+  {
+    code: '01',
+    protocol: 'PROTOCOL_GEO',
+    title: 'Generative Search Optimization (GEO)',
+    desc: 'Reverse-engineering citations across Gemini, Perplexity Pro, and SearchGPT to capture prime Google AI Overviews.',
+    specs: ['Vector prompt audits', 'Knowledge graph syndication', 'Synthetic prompt benchmarking'],
+    href: '/services/ai/',
+  },
+  {
+    code: '02',
+    protocol: 'PROTOCOL_TOPOLOGY',
+    title: 'Programmatic Keyword Topology',
+    desc: 'Algorithmic creation of 10,000+ zero-fluff semantic nodes matching high-intent buyer queries with mathematical link hierarchy.',
+    specs: ['Automated clustering', 'Cannibalization elimination', 'Dynamic vector routing'],
+    href: '/services/seo/',
+  },
+  {
+    code: '03',
+    protocol: 'PROTOCOL_ENTITY',
+    title: 'Entity-Based Authority Accelerator',
+    desc: 'Permanent registration into Wikidata, Google Knowledge Graph, and research corpora to anchor your domain as an irrefutable source.',
+    specs: ['Schema graph trees', 'Academic citation loops', 'Wikidata verification'],
+    href: '/services/seo/content-authority/',
+  },
+  {
+    code: '04',
+    protocol: 'PROTOCOL_INDEXING',
+    title: 'Autonomous Audit & Re-Indexation Pipeline',
+    desc: '24/7 headless bot crawlers detecting dropped SERPs and pinging Google Indexing API + IndexNow sub-second cycles.',
+    specs: ['Sub-20ms edge push', 'Zero crawl budget drag', 'Real-time telemetry logs'],
+    href: '/services/web/website-speed/',
+  },
+  {
+    code: '05',
+    protocol: 'PROTOCOL_SYNTACTIC',
+    title: 'Multilingual Syntactic Expansion',
+    desc: 'Localized semantic reproduction across 28 global languages using neural phoneme mapping to capture international zero-click SERPs.',
+    specs: ['Serverless hreflang edge', 'Native query synthesis', 'Zero translation lag'],
+    href: '/services/content/translation/',
+  },
+  {
+    code: '06',
+    protocol: 'PROTOCOL_DEFENSE',
+    title: 'Conversational Reputation Defense',
+    desc: 'Neutralizing hallucinations and erroneous citations across enterprise LLMs with continuous automated consensus seeding.',
+    specs: ['Hallucination patch loops', 'Brand entity defense', 'Consensus seed verification'],
+    href: '/services/marketing/',
+  },
+];
 ---
-<section class="py-16 lg:py-24 bg-white">
-      <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <!-- Section Header -->
-        <div class="text-center mb-16 animate-fade-in">
-          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            خدمات <span class="gradient-text">حرفه‌ای</span> ما
-          </h2>
-          <p class="text-xl text-gray-800 max-w-3xl mx-auto leading-relaxed">
-            با استفاده از جدیدترین تکنولوژی‌ها و روش‌های بازاریابی، کسب‌وکار شما را به سطح بعدی می‌بریم
-          </p>
+<section class="py-24 bg-[#05070d] text-white border-b-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+      <div>
+        <div class="inline-block font-mono text-xs text-[#CCFF00] bg-black px-3 py-1 border border-[#CCFF00]/40 uppercase tracking-widest mb-3">
+          [MODULAR_SUITE // 06_CORE_SYSTEMS]
         </div>
-
-        <!-- Services Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {services.map((service, index) => (
-            <Card
-             
-              class="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 border-0 shadow-lg overflow-hidden animate-slide-in-right bg-linear-to-br hover:from-white hover:to-gray-50"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <CardHeader class="text-center pb-4">
-                <div class={`inline-flex p-4 rounded-full bg-linear-to-r ${service.color} mb-4 mx-auto group-hover:scale-110 transition-transform duration-300`}>
-                  <Icon name={service.icon} class="h-8 w-8 text-white" />
-                </div>
-                <CardTitle class="text-xl font-bold text-gray-900 mb-2">
-                  {service.title}
-                </CardTitle>
-                <CardDescription class="text-gray-800 leading-relaxed">
-                  {service.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul class="space-y-3 mb-6">
-                  {service.features.map((feature, featureIndex) => (
-                    <li class="flex items-center text-gray-800">
-                      <div class="w-2 h-2 bg-linear-to-r from-blue-500 to-green-500 rounded-full ml-3"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" class="w-full border-2 hover:bg-linear-to-r hover:from-blue-500 hover:to-green-500 hover:text-white hover:border-transparent transition-all duration-300 w-full" href={service.href}>
-                    اطلاعات بیشتر درباره {service.title}
-                  </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        <!-- CTA Section -->
-        <div class="text-center">
-          <div class="bg-linear-to-r from-blue-600 to-green-600 rounded-2xl p-8 md:p-12 text-white animate-fade-in">
-            <h3 class="text-2xl md:text-3xl font-bold mb-4">
-              آماده شروع هستید؟
-            </h3>
-            <p class="text-lg mb-6 opacity-90">
-              مشاوره رایگان دریافت کنید و ببینید چگونه می‌توانیم کسب‌وکار شما را متحول کنیم
-            </p>
-            <Button
-              href="/consultation/"
-              size="lg"
-              class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold transition-all duration-200 transform hover:scale-105"
-            >
-              درخواست مشاوره رایگان
-            </Button>
-          </div>
-        </div>
+        <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white font-sans">
+          Autonomous Services Suite
+        </h2>
       </div>
-    </section>
+      <p class="text-slate-400 max-w-md text-sm sm:text-base font-normal">
+        Engineered for enterprises replacing legacy manual SEO retainers with programmatic vector topologies and machine-to-machine indexation.
+      </p>
+    </div>
+
+    <!-- Stark 6-Module Editorial Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      {modules.map((m) => (
+        <div class="bg-[#0a0e17] border-2 border-white/15 p-6 sm:p-8 flex flex-col justify-between brutalist-card group hover:border-[#CCFF00]">
+          <div>
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10 font-mono text-xs">
+              <span class="text-2xl font-black text-[#CCFF00] tracking-tighter">{m.code} //</span>
+              <span class="text-slate-400 uppercase tracking-wider">{m.protocol}</span>
+            </div>
+            
+            <h3 class="text-xl sm:text-2xl font-black uppercase text-white mb-4 group-hover:text-[#CCFF00] transition-colors leading-snug">
+              {m.title}
+            </h3>
+            
+            <p class="text-slate-300 text-sm leading-relaxed mb-6 font-normal">
+              {m.desc}
+            </p>
+
+            <ul class="space-y-2 mb-8 font-mono text-xs text-slate-400">
+              {m.specs.map((spec) => (
+                <li class="flex items-center gap-2">
+                  <span class="text-[#CCFF00]">→</span>
+                  <span>{spec}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <a
+            href={localize(m.href)}
+            class="inline-flex items-center justify-between w-full py-3 px-4 bg-black border border-white/20 text-xs font-mono font-bold uppercase text-white group-hover:bg-[#CCFF00] group-hover:text-black group-hover:border-[#CCFF00] transition-all"
+          >
+            <span>Inspect Protocol Spec</span>
+            <span>↗</span>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <!-- Telemetry Link Banner -->
+    <div class="p-6 sm:p-8 bg-black border-2 border-[#CCFF00] flex flex-col md:flex-row items-center justify-between gap-6 brutalist-shadow-white">
+      <div class="space-y-1 text-center md:text-left">
+        <div class="font-mono text-xs text-[#CCFF00] uppercase font-bold tracking-wider">[INTEGRATED_DEPLOYMENT]</div>
+        <div class="text-xl sm:text-2xl font-black text-white uppercase">Need Custom Enterprise Vector Ingestion?</div>
+        <div class="text-sm text-slate-400">Our systems architects configure bespoke crawl pipelines within 48 hours.</div>
+      </div>
+      <Button
+        href={localize('/contact/')}
+        size="lg"
+        class="bg-[#CCFF00] text-black font-black uppercase tracking-wider px-8 py-4 rounded-none hover:bg-white transition-colors"
+      >
+        Transmit Ingestion Request ↗
+      </Button>
+    </div>
+  </div>
+</section>
