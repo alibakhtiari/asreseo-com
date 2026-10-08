@@ -1,6 +1,7 @@
 ---
 import Button from '../ui/button/Button.astro';
 import Icon from '../ui/Icon.astro';
+import { PORTFOLIO_PROJECTS } from '../../lib/portfolio-data';
 
 interface Props {
   lang?: string;
@@ -8,46 +9,8 @@ interface Props {
 
 const { lang = 'en' } = Astro.props as Props;
 void lang;
-const localize = (p: string) => p;
 
-const dossiers = [
-  {
-    tag: 'DOSSIER_01 // FINTECH_SCALEUP',
-    title: 'From Unnoticed to #1 Perplexity & Google AI Overview Source',
-    challenge: 'Trapped behind legacy banking incumbent content farms with 0% AI search visibility.',
-    solution: 'Deployed 4,200 programmatic semantic nodes + Wikidata institutional entity injection.',
-    metrics: [
-      { label: 'LLM Ingestion', value: '+580%' },
-      { label: 'Top-Slot Citation', value: '94.8%' },
-      { label: 'Retainer Saved', value: '$1.4M' },
-    ],
-    category: 'AI & Knowledge Graph',
-  },
-  {
-    tag: 'DOSSIER_02 // ENTERPRISE_B2B_SAAS',
-    title: '28-Country Programmatic Syntactic Expansion',
-    challenge: 'Fragmented localization and high crawl-budget exhaustion across 500,000 legacy URLs.',
-    solution: 'Serverless Edge-computed dynamic hreflang + zero-JS SSR hydration optimization.',
-    metrics: [
-      { label: 'Edge TTFB', value: '89ms' },
-      { label: 'Organic Impressions', value: '+340%' },
-      { label: 'Top-3 Positions', value: '12,400+' },
-    ],
-    category: 'Programmatic SEO',
-  },
-  {
-    tag: 'DOSSIER_03 // GLOBAL_ECOMMERCE',
-    title: 'Autonomous Core Web Vitals & Indexation Rescue',
-    challenge: '42,000 orphaned catalog URLs dropped by core algorithm update within 48 hours.',
-    solution: 'Headless 24/7 indexing bot pipeline + sub-40ms edge caching and automated canonical trees.',
-    metrics: [
-      { label: 'Orphan Recovery', value: '100%' },
-      { label: 'Recovery Time', value: '14 Days' },
-      { label: 'Pipeline Revenue', value: '+$34.2M' },
-    ],
-    category: 'Edge Infrastructure',
-  },
-];
+const featuredProjects = PORTFOLIO_PROJECTS.slice(0, 3);
 ---
 <section class="py-24 bg-[#000000] text-white border-b-2 border-white/10 wireframe-grid relative">
   <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
@@ -55,71 +18,114 @@ const dossiers = [
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
       <div>
         <div class="inline-block font-mono text-xs text-[#CCFF00] bg-black px-3 py-1 border border-[#CCFF00]/40 uppercase tracking-widest mb-3">
-          [VERIFIED_DOSSIERS // EMPIRICAL_YIELD]
+          [VERIFIED_DOSSIERS // PRODUCTION_SYSTEMS]
         </div>
         <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white font-sans">
-          Proven Enterprise Dossiers
+          Production Systems & <span class="text-[#CCFF00]">Engineering Dossiers</span>
         </h2>
       </div>
-      <p class="text-slate-400 max-w-md text-sm sm:text-base font-normal">
-        Real balance sheets and automated traffic pipelines engineered for high-growth tech firms and global marketplaces.
-      </p>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <p class="text-slate-400 text-sm max-w-md font-sans">
+          Real internal platforms, open-source edge tools, and verifiable client revenue architectures.
+        </p>
+        <Button
+          href="/portfolio/"
+          variant="acid"
+          size="sm"
+          class="shrink-0 px-5 py-3 font-mono text-xs uppercase"
+        >
+          View Full Archive ({PORTFOLIO_PROJECTS.length}) ↗
+        </Button>
+      </div>
     </div>
 
-    <!-- Dossiers Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-      {dossiers.map((d) => (
-        <div class="bg-[#090d16] border-2 border-white/15 p-6 sm:p-8 flex flex-col justify-between brutalist-card group">
+    <!-- Featured Dossiers Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {featuredProjects.map((p, idx) => (
+        <div class="p-6 sm:p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10 font-mono text-xs">
-              <span class="text-[#CCFF00] font-bold">{d.tag}</span>
-              <span class="text-slate-400">{d.category}</span>
+            <!-- Tag & Badge -->
+            <div class="flex items-center justify-between pb-4 mb-5 border-b border-white/10 font-mono text-xs">
+              <span class="text-[#CCFF00] font-bold uppercase truncate max-w-[200px]">
+                {p.tag}
+              </span>
+              <span class="text-slate-400 text-[10px] bg-black px-2 py-0.5 border border-white/10 uppercase">
+                {p.badge}
+              </span>
             </div>
 
-            <h3 class="text-xl sm:text-2xl font-black uppercase text-white mb-4 group-hover:text-[#CCFF00] transition-colors leading-snug">
-              {d.title}
+            <!-- Title -->
+            <h3 class="text-xl sm:text-2xl font-black uppercase text-white tracking-tight mb-3 font-sans">
+              <a href={`/portfolio/${p.slug}/`} class="hover:text-[#CCFF00] transition-colors">
+                {p.title}
+              </a>
             </h3>
 
-            <div class="space-y-3 mb-6 text-xs text-slate-300">
-              <p><strong class="font-mono uppercase text-[#CCFF00]">[CHALLENGE]:</strong> {d.challenge}</p>
-              <p><strong class="font-mono uppercase text-white">[SOLUTION]:</strong> {d.solution}</p>
+            <!-- Client / Environment -->
+            <div class="font-mono text-xs text-slate-400 mb-5">
+              <span class="text-[#CCFF00] uppercase">[SYS]</span> {p.client}
+            </div>
+
+            <!-- Challenge & Solution -->
+            <div class="space-y-3 text-xs sm:text-sm text-slate-300 font-sans mb-6">
+              <p class="line-clamp-3">
+                <strong class="font-mono text-xs uppercase text-white">[CHALLENGE]:</strong> {p.challenge}
+              </p>
+              <p class="line-clamp-3">
+                <strong class="font-mono text-xs uppercase text-white">[SOLUTION]:</strong> {p.solution}
+              </p>
             </div>
           </div>
 
           <div>
             <!-- Metrics Box -->
-            <div class="grid grid-cols-3 gap-2 p-3 bg-black border border-white/15 mb-6 text-center font-mono">
-              {d.metrics.map((m) => (
+            <div class="grid grid-cols-2 gap-2 p-3 bg-black border border-white/15 mb-6 text-center font-mono">
+              {p.metrics.slice(0, 2).map((m) => (
                 <div class="min-w-0">
-                  <div class="text-sm sm:text-base lg:text-lg font-black text-[#CCFF00] wrap-break-word">{m.value}</div>
+                  <div class="text-base sm:text-lg lg:text-xl font-black text-[#CCFF00] wrap-break-word">{m.value}</div>
                   <div class="text-[10px] text-slate-400 uppercase tracking-tight truncate">{m.label}</div>
                 </div>
               ))}
             </div>
 
-            <a
-              href={localize('/portfolio/')}
-              class="inline-flex items-center justify-between w-full py-3 px-4 bg-white/5 border border-white/20 text-xs font-mono font-bold uppercase text-white hover:bg-[#CCFF00] hover:text-black hover:border-[#CCFF00] transition-all"
-            >
-              <span>Examine Telemetry Audit</span>
-              <span>↗</span>
-            </a>
+            <div class="flex flex-col gap-2">
+              <a
+                href={`/portfolio/${p.slug}/`}
+                class="inline-flex items-center justify-between w-full py-3 px-4 bg-white/5 border border-white/20 text-xs font-mono font-bold uppercase text-white hover:bg-[#CCFF00] hover:text-black hover:border-[#CCFF00] transition-all"
+              >
+                <span>Examine Technical Dossier</span>
+                <span>↗</span>
+              </a>
+
+              <div class="flex items-center gap-2 pt-1 font-mono text-[11px]">
+                {p.liveUrl && (
+                  <a
+                    href={p.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-[#CCFF00] hover:underline flex items-center gap-1"
+                  >
+                    <Icon name="external-link" class="w-3 h-3" />
+                    <span>Live App ↗</span>
+                  </a>
+                )}
+                {p.liveUrl && p.repoUrl && <span class="text-slate-600">/</span>}
+                {p.repoUrl && (
+                  <a
+                    href={p.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-slate-400 hover:text-white flex items-center gap-1"
+                  >
+                    <Icon name="github" class="w-3 h-3" />
+                    <span>{p.isPrivateRepo ? 'Private Repo' : 'GitHub'} ↗</span>
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       ))}
-    </div>
-
-    <!-- Bottom Ticker -->
-    <div class="flex flex-col sm:flex-row items-center justify-between p-6 bg-[#0a0e17] border border-white/20 font-mono text-xs text-slate-400 gap-4">
-      <div class="flex items-center gap-3">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span class="text-white font-bold uppercase tracking-wider">Historical Portfolio Benchmark:</span>
-        <span class="text-[#CCFF00]">18,000,000+ Synthesized Index Nodes</span>
-      </div>
-      <a href={localize('/portfolio/')} class="text-[#CCFF00] hover:underline uppercase font-bold flex items-center gap-1">
-        <span>View Full Portfolio Index</span>
-        <span>→</span>
-      </a>
     </div>
   </div>
 </section>
