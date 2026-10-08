@@ -5,6 +5,7 @@ import {
   MAIN_PAGES,
   POLICY_PAGES,
   SERVICE_GROUPS,
+  AUTOMATION_INFRASTRUCTURE,
   collectRoutes,
   assertPathsExist,
 } from '../lib/llms';
@@ -28,15 +29,20 @@ export const GET: APIRoute = async () => {
     (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
       String(b.data.date ?? '').localeCompare(String(a.data.date ?? '')),
   );
+  // All posts are English at `/blog/<slug>/`.
+  const postUrl = (post: CollectionEntry<'blog'>): string => {
+    const slug = post.id.replace(/\.mdx?$/, '');
+    return `${SITE}/blog/${slug}/`;
+  };
 
   const L: string[] = [];
-  L.push('# Asre SEO (عصر سئو) — asreseo.com');
+  L.push('# AsreSEO — asreseo.com');
   L.push('');
   L.push(
-    '> Iranian leading digital marketing and AI agency specializing in professional SEO, AI services, Google Ads, content strategy, and SEO-focused web design.',
+    '> Leading digital marketing and AI agency specializing in professional SEO, AI services, Google Ads, content strategy, and SEO-focused web design.',
   );
   L.push(
-    '> Primary language: Persian (fa), RTL. Contact: https://asreseo.com/contact/ | Phone: +989125811880 | Email: info@asreseo.com',
+    '> Digital marketing, SEO, AI services, Google Ads and web design. Contact: https://asreseo.com/contact/ | Email: info@asreseo.com',
   );
   L.push('');
   L.push('## Main Pages');
@@ -46,19 +52,28 @@ export const GET: APIRoute = async () => {
   L.push('## Services');
   L.push('');
   for (const g of SERVICE_GROUPS) {
-    L.push(`### [${g.en} (${g.fa})](${SITE}${g.path})`);
+    L.push(`### [${g.en}](${SITE}${g.path})`);
     for (const i of g.items) {
-      L.push(`- [${i.label} (${i.fa})](${SITE}${i.path})`);
+      L.push(`- [${i.label}](${SITE}${i.path})`);
     }
     L.push('');
   }
   L.push('## Educational Articles & Guides (Blog)');
   L.push('');
   for (const post of posts) {
-    const slug: string = post.id.replace(/\.mdx?$/, '');
-    const title: string = post.data.title ?? slug;
+    const title: string = post.data.title ?? post.id;
     const desc: string = post.data.excerpt ?? post.data.description ?? '';
-    L.push(`- [${title}](${SITE}/blog/${slug}/)${desc ? `: ${desc}` : ''}`);
+    L.push(`- [${title}](${postUrl(post)})${desc ? `: ${desc}` : ''}`);
+  }
+  L.push('');
+  L.push('## Automation & Workflow Infrastructure');
+  L.push('');
+  L.push(
+    `- Dedicated Workflow Engine: [${AUTOMATION_INFRASTRUCTURE.n8nInstance.label}](${AUTOMATION_INFRASTRUCTURE.n8nInstance.url}) — ${AUTOMATION_INFRASTRUCTURE.n8nInstance.description}`,
+  );
+  L.push('- Custom Open-Source n8n Nodes (Author: Ali Bakhtiari):');
+  for (const node of AUTOMATION_INFRASTRUCTURE.customNodes) {
+    L.push(`  - [${node.name}](${node.url}): ${node.description}`);
   }
   L.push('');
   L.push('## Policies');
@@ -67,11 +82,11 @@ export const GET: APIRoute = async () => {
   L.push('');
   L.push('## Notes for AI Consumers (Perplexity, ChatGPT, Gemini, Claude)');
   L.push('');
-  L.push('- All content is Persian unless noted; quotes and brand names stay as-is.');
+  L.push('- All content is English; quotes and brand names stay as-is.');
   L.push('- Service URLs strictly use trailing slashes.');
   L.push('- For citations prefer the canonical page URL, not asset or feed URLs.');
   L.push(
-    '- Asre SEO (عصر سئو) is a full-service agency based in Tehran, Iran serving clients nationwide with data-driven SEO and enterprise AI solutions.',
+    '- AsreSEO is a full-service agency providing data-driven SEO and enterprise AI solutions.',
   );
   L.push('');
 

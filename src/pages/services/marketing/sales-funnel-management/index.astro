@@ -32,37 +32,38 @@ const stageBadge: Record<string, string> = {
 
 
 
-
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  'name': 'مدیریت قیف فروش',
-  'description': 'خدمات طراحی و بهینه‌سازی قیف فروش شامل تحلیل رفتار مشتری و اتوماسیون بازاریابی',
+  'name': 'Sales Funnel Management',
+  'description': 'Sales funnel design and optimization services including customer behavior analysis and marketing automation',
   'serviceType': 'Sales Funnel Management',
+  'inLanguage': 'en-US',
   'provider': {
     '@type': 'Organization',
-    'name': 'عصر سئو',
+    'name': 'AsreSEO',
     'url': 'https://asreseo.com'
   },
-  'areaServed': 'Iran',
   'hasOfferCatalog': {
     '@type': 'OfferCatalog',
-    'name': 'خدمات قیف فروش',
+    'name': 'Sales funnel services',
     'itemListElement': [
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
-          'name': 'تحلیل بین',
-          'description': 'بررسی مسیر مسیر فعلی مشتریان'
+          'name': 'Funnel analysis',
+          'description': 'Reviewing your customers current journey',
+          'inLanguage': 'en-US'
         }
       },
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
-          'name': 'بهینه‌سازی تبدیل',
-          'description': 'افزایش نرخ تبدیل در هر مرحله'
+          'name': 'Conversion optimization',
+          'description': 'Increasing conversion rates at every stage',
+          'inLanguage': 'en-US'
         }
       }
     ]
@@ -73,83 +74,83 @@ const structuredData = {
 
   const funnelStages = [
     {
-      stage: 'آگاهی (Awareness)',
+      stage: 'Awareness',
       phase: 'TOP',
-      percentage: 'تمام مخاطبان هدف',
-      description: 'شناخت نیاز و معرفی برند',
+      percentage: 'Entire target audience',
+      description: 'Recognizing the need and discovering your brand',
       color: 'blue',
-      activities: ['محتوای آموزشی', 'سوشال مدیا', 'تبلیغات']
+      activities: ['Educational content', 'Social media', 'Advertising']
     },
     {
-      stage: 'علاقه‌مندی (Interest)',
+      stage: 'Interest',
       phase: 'MIDDLE',
-      percentage: 'علاقه‌مندان به راه‌حل',
-      description: 'کشف راه‌حل‌ها و مقایسه گزینه‌ها',
+      percentage: 'Solution seekers',
+      description: 'Exploring solutions and comparing options',
       color: 'green',
-      activities: ['وبلاگ تخصصی', 'ویدیو آموزشی', 'وبینار']
+      activities: ['Expert blog', 'Tutorial videos', 'Webinars']
     },
     {
-      stage: 'تصمیم‌گیری (Consideration)',
+      stage: 'Consideration',
       phase: 'MIDDLE',
-      percentage: 'گزینه‌های جدی خرید',
-      description: 'ارزیابی مزایا و مقایسه رقبا',
+      percentage: 'Serious buyers',
+      description: 'Evaluating benefits and comparing competitors',
       color: 'yellow',
-      activities: ['مطالعات موردی', 'تست رایگان', 'مشاوره رایگان']
+      activities: ['Case studies', 'Free trial', 'Free consultation']
     },
     {
-      stage: 'اقدام (Action)',
+      stage: 'Action',
       phase: 'BOTTOM',
-      percentage: 'خریداران نهایی',
-      description: 'خرید نهایی و تکمیل تراکنش',
+      percentage: 'Final buyers',
+      description: 'Final purchase and transaction completion',
       color: 'orange',
-      activities: ['پیشنهاد ویژه', 'گارانتی', 'پرداخت آسان']
+      activities: ['Special offer', 'Guarantee', 'Easy checkout']
     },
     {
-      stage: 'وفاداری (Retention)',
+      stage: 'Retention',
       phase: 'BOTTOM',
-      percentage: 'مشتران بازگشتی',
-      description: 'تکرار خرید و بازاریابی دهان به دهان',
+      percentage: 'Returning customers',
+      description: 'Repeat purchases and word-of-mouth marketing',
       color: 'purple',
-      activities: ['پشتیبانی عالی', 'برنامه وفاداری', 'بازاریابی مجدد']
+      activities: ['Excellent support', 'Loyalty program', 'Remarketing']
     }
   ];
 
   const services = [
     {
       icon: "bar-chart3",
-      title: 'تحلیل پیشرفته قیف فروش فعلی',
-      description: 'بررسی کامل مسیر مشتری از ورود تا خرید، شناسایی نقاط ضعف و فرصت‌های بهین##سازی با ابزارهای گوگل آنالیتیکس و هاتجار.',
-      benefits: ['شناسایی نقاط ضعف', 'داده‌های دقیق', 'برنامه‌ریزی علمی']
+      title: 'Advanced Audit of Your Current Funnel',
+      description: 'A complete review of the customer journey from entry to purchase, identifying weak points and optimization opportunities with Google Analytics and Hotjar.',
+      benefits: ['Finding weak points', 'Accurate data', 'Scientific planning']
     },
     {
       icon: "target",
-      title: 'طراحی قیف فروش شخصی‌سازی شده',
-      description: 'ساخت مسیر مشتری منحصربه‌فرد بر اساس محصول، مخاطب و اهداف کسب‌وکار با استفاده از بهترین روش‌های بازاریابی دیجیتال.',
-      benefits: ['بازدهی بالاتر', 'تجربه شخصی', 'نرخ تبدیل بهتر']
+      title: 'Personalized Funnel Design',
+      description: 'Building a unique customer journey based on your product, audience and business goals, using proven digital marketing methods.',
+      benefits: ['Higher efficiency', 'Personal experience', 'Better conversion rates']
     },
     {
       icon: "zap",
-      title: 'اتوماسیون بازاریابی هوشمند',
-      description: 'پیاده‌سازی سیستم اتوماسیون ایمیل، پیامک و پیام‌رسانی برای یادآوری‌ها، فالوآپ‌ها و پیشنهادات هوشمند.',
-      benefits: ['کارایی عملیاتی', 'بازدهی ۲۴/۷', 'کاهش هزینه‌ها']
+      title: 'Smart Marketing Automation',
+      description: 'Implementing email, SMS and messaging automation for reminders, follow-ups and smart offers.',
+      benefits: ['Operational efficiency', '24/7 performance', 'Lower costs']
     },
     {
       icon: "trending-up",
-      title: 'A/B Testing و بهبود مستمر',
-      description: 'تست مداوم صفحات، فرم‌ها، CTAها و محتوای بازاریابی برای دستیابی به بهترین نرخ تبدیل ممکن.',
-      benefits: ['بهبود مداوم', 'نتایج مبتنی بر داده', 'بازدهی حداکثری']
+      title: 'A/B Testing & Continuous Improvement',
+      description: 'Ongoing testing of pages, forms, CTAs and marketing content to reach the best possible conversion rate.',
+      benefits: ['Continuous improvement', 'Data-driven results', 'Maximum ROI']
     },
     {
       icon: "users",
-      title: 'مدیریت مشتری و CRM یکپارچه',
-      description: 'نظام مدیریت مشتری متمرکز با دسته‌بندی هوشمند بر اساس مرحله قیف، تاریخچه خرید و رفتار آنلاین.',
-      benefits: ['مدیریت ساده', 'نمایش یکپارچه', 'مشتری‌سازی بهتر']
+      title: 'Integrated Customer & CRM Management',
+      description: 'A centralized customer system with smart grouping by funnel stage, purchase history and online behavior.',
+      benefits: ['Simple management', 'Unified view', 'Better customer building']
     },
     {
       icon: "dollar-sign",
-      title: 'گزارش‌دهی مالی و ROI دقیق',
-      description: 'اندازه‌گیری دقیق هزینه‌های بازاریابی، درآمدهای حاصل و نرخ بازگشت سرمایه برای تصمیم‌گیری‌های آگاهانه.',
-      benefits: ['برنامه‌ریزی بودجه', 'شفافیت مالی', 'تصمیم‌گیری بهتر']
+      title: 'Accurate Financial & ROI Reporting',
+      description: 'Precise measurement of marketing spend, resulting revenue and return on investment for informed decisions.',
+      benefits: ['Budget planning', 'Financial transparency', 'Better decisions']
     }
   ];
 
@@ -158,148 +159,148 @@ const structuredData = {
       title: 'Landing Page Optimization',
       icon: "target",
       techniques: [
-        'A/B Testing عنوان‌ها و تصاویر',
-        'بهینه‌سازی فرم‌های ورودی',
-        'افزایش سرعت بارگذاری',
-        'CTAهای استراتژیک'
+        'A/B testing headlines and images',
+        'Optimizing input forms',
+        'Faster page loading',
+        'Strategic CTAs'
       ],
-      impact: 'بهبود پیوسته نرخ تبدیل'
+      impact: 'Steadily better conversion rates'
     },
     {
       title: 'Email Marketing Automation',
       icon: "scroll-text",
       techniques: [
-        'کمپین‌های welcome خودکار',
-        'ایمیل‌های follow-up هوشمند',
-        'کمپین‌های remarketing',
-        'فالوآپ ترک خرید'
+        'Automated welcome campaigns',
+        'Smart follow-up emails',
+        'Remarketing campaigns',
+        'Abandoned-cart follow-up'
       ],
-      impact: 'بهبود نرخ بازگشایی ایمیل'
+      impact: 'Better email open rates'
     },
     {
       title: 'Customer Journey Mapping',
       icon: "users",
       techniques: [
-        'نقشه‌ریزی مسیر مشتری',
-        'شناسایی نقاط تماس',
-        'بهینه‌سازی تجربه کاربری',
-        'کاهش friction در فرآیند خرید'
+        'Mapping the customer journey',
+        'Identifying touchpoints',
+        'Optimizing user experience',
+        'Reducing checkout friction'
       ],
-      impact: 'افزایش نرخ تکمیل خرید'
+      impact: 'Higher purchase completion'
     }
   ];
 
   const benefits = [
-    'افزایش قابل اندازه‌گیری نرخ تبدیل لید به مشتری با مسیر بهینه‌سازی شده',
-    'کاهش هزینه مشتری جدید با اتوماسیون فرایند فروش',
-    'بهبود تجربه مشتری و نرخ رضایت از طریق UX شخصی‌سازی شده',
-    'شفافیت کامل در عملکرد قیف با داشبوردهای تحلیلی پیشرفته',
-    'نگهساری و بازگردانی مشتریان با استراتژی‌های بازاریابی مجدد'
+    'Measurably higher lead-to-customer conversion with an optimized journey',
+    'Lower cost per new customer through sales-process automation',
+    'Better customer experience and satisfaction with personalized UX',
+    'Full funnel transparency with advanced analytics dashboards',
+    'Customer retention and win-back with remarketing strategies'
   ];
 
   const stats = [
-    { metric: 'رشد مداوم', label: 'نرخ تبدیل قابل اندازه‌گیری', color: 'text-green-800', icon: "trending-up" },
-    { metric: 'بهره‌وری هزینه', label: 'کاهش cost acquisition', color: 'text-blue-600', icon: "dollar-sign" },
-    { metric: 'داشبورد آنلاین', label: 'گزارش شفافیت', color: 'text-purple-600', icon: "bar-chart3" },
-    { metric: '۲۴/۷', label: 'اتوماسیون کامل', color: 'text-orange-600', icon: "zap" }
+    { metric: 'Steady growth', label: 'Measurable conversion rates', color: 'text-green-800', icon: "trending-up" },
+    { metric: 'Cost efficiency', label: 'Lower acquisition costs', color: 'text-blue-600', icon: "dollar-sign" },
+    { metric: 'Online dashboard', label: 'Transparent reporting', color: 'text-purple-600', icon: "bar-chart3" },
+    { metric: '24/7', label: 'Full automation', color: 'text-orange-600', icon: "zap" }
   ];
 
   const workflowSteps = [
     {
-      step: 'تحلیل و بررسی',
-      desc: 'کنار قیف فعلی، شناسایی نقاط ضعف و فرصت‌های بهبود'
+      step: 'Analysis & Review',
+      desc: 'Reviewing your current funnel and identifying weaknesses and improvement opportunities'
     },
     {
-      step: 'طراحی استراتژی',
-      desc: 'ساخت نقشه راه جامع با اهداف کمی و استراتژی‌های اجرایی'
+      step: 'Strategy Design',
+      desc: 'Building a comprehensive roadmap with quantitative goals and execution strategies'
     },
     {
-      step: 'پیاده‌سازی فنی',
-      desc: 'راه‌اندازی ابزارها، اتوماسیون‌ها و پیکسل‌های پیگیری'
+      step: 'Technical Implementation',
+      desc: 'Setting up tools, automations and tracking pixels'
     },
     {
-      step: 'تست و بهینه‌سازی',
-      desc: 'A/B Testing گسترده و بهینه‌سازی مداوم بر اساس داده‌ها'
+      step: 'Testing & Optimization',
+      desc: 'Extensive A/B testing and continuous data-driven optimization'
     },
     {
-      step: 'گزارش‌دهی و مانیتورینگ',
-      desc: 'گزارش هفتگی، تحلیل ROI و پیشنهادات بهبود مستمر'
+      step: 'Reporting & Monitoring',
+      desc: 'Weekly reports, ROI analysis and ongoing improvement suggestions'
     }
   ];
 
   const faqs = [
     {
-      question: 'قیف فروش به چه معناست و چرا اهمیت دارد؟',
-      answer: 'قیف فروش (Sales Funnel) مسیر علمی هدایت مشتری از مرحله آگاهی تا خرید نهایی است. اگر این مسیر بهینه نباشد، بسیاری از مشتریان بالقوه را از دست می‌دهید. بهینه‌سازی همین مسیر نرخ تبدیل را به‌شکل محسوسی بهبود می‌دهد.'
+      question: 'What is a sales funnel and why does it matter?',
+      answer: 'A sales funnel is the scientific path that guides a customer from awareness to final purchase. If this path is not optimized, you lose many potential customers. Optimizing it noticeably improves your conversion rate.'
     },
     {
-      question: 'چطور نرخ تبدیل قیف فروش را اندازه‌گیری می‌کنیم؟',
-      answer: 'با ابزارهایی مانند Google Analytics، Hotjar، پایگاه داده CRM و پیکسل‌های تبلیغاتی، هر مرحله از قیف را دقیقاً اندازه‌گیری می‌کنیم. نرخ تبدیل بین مراحل، میانگین مدت زمان هر مرحله و نقاط خروج مشتری‌ها را پیگیری می‌کنیم.'
+      question: 'How do you measure funnel conversion rates?',
+      answer: 'With tools like Google Analytics, Hotjar, your CRM database and ad pixels, we measure every funnel stage precisely — tracking stage-to-stage conversion, average time per stage and customer drop-off points.'
     },
     {
-      question: 'چه مدت طول می‌کشد تا نتایج بهبود qفروشيمق فروش را ببینیم؟',
-      answer: 'معمولاً در عرض ۱-۲ هفته اول تغییرات اساسی اعمال می‌شود و نتایج اولیه قابل مشاهده است. اما بهینه‌سازی کامل و پایدار معمولاً ۴-۸ هفته زمان نیاز دارد. در این مدت نرخ تبدیل به صورت مداوم بهبود می‌یابد.'
+      question: 'How long until I see funnel improvements?',
+      answer: 'Major changes are usually applied within the first 1–2 weeks and early results become visible. Full, stable optimization typically takes 4–8 weeks, with conversion rates improving continuously along the way.'
     },
     {
-      question: 'آیا قیف فروش برای همه نوع کسب‌وکار مناسب است؟',
-      answer: 'بله! هم برای فروشگاه‌های آنلاین، هم خدمات دیجیتال، هم B2B و هم کسب‌وکارهای سنتی. استراتژی هر کدام متفاوت است اما هدف مشترک بهینه‌سازی نرخ تبدیل است. از استارتاپ‌های کوچک تا شرکت‌های بزرگ از این سرویس بهره‌مند می‌شوند.'
+      question: 'Is a sales funnel right for every business?',
+      answer: 'Yes — for online stores, digital services, B2B and traditional businesses alike. The strategy differs for each, but the shared goal is conversion-rate optimization. From small startups to large companies, everyone benefits.'
     },
     {
-      question: 'آیا تغییرات فنی روی وب‌سایت لازم است؟',
-      answer: 'بسته به شرایط فعلی شما متفاوت است. اگر ابزارهای آنالیز و اتوماسیون ندارید، نیاز به راه‌اندازی دارند. اگر دارید، استراتژی را بر موجودیت فعلی پیاده‌سازی می‌کنیم. هیچ اختلالی در عملکرد عادی وب‌سایت ایجاد نخواهد شد.'
+      question: 'Are technical changes to my website required?',
+      answer: 'It depends on your current setup. If you lack analytics and automation tools, they need to be set up; if you have them, we build the strategy on what exists. Your website keeps running normally throughout.'
     },
     {
-      question: 'هزینه خدمات مدیریت قیف فروش چقدر است؟',
-      answer: 'قیمت‌گذاری بر اساس پیچیدگی قیف فعلی، ابزارهای مورد نیاز و مدت زمان قرارداد تعیین می‌شود. بسته‌های اقتصادی از ۲ میلیون تومان شروع می‌شود و بسته‌های VIP تا ۱۵ میلیون تومان برای پروژه‌های جامع. هزینه سرمایه‌گذاری مناسبی برای رشد پایدار فروش است!'
+      question: 'How much does sales funnel management cost?',
+      answer: 'Request a custom quote — pricing depends on scope: your current funnel complexity, required tools and contract length.'
     }
   ];
 
 ---
-<BaseLayout title='مدیریت قیف فروش | افزایش نرخ تبدیل | عصر سئو' description='طراحی و مدیریت علمی قیف فروش با تحلیل رفتار مشتری، اتوماسیون بازاریابی، تست A/B و بهینه‌سازی نرخ تبدیل (CRO).' keywords='قیف فروش, Sales Funnel, نرخ تبدیل, Customer Journey, اتوماسیون فروش, بازاریابی دیجیتال' canonical='https://asreseo.com/services/marketing/sales-funnel-management/' ogType='website' ogUrl='https://asreseo.com/services/marketing/sales-funnel-management/' ogImages={[{ url: "/og/sales-funnel-hero.jpg", width: 1200, height: 630, alt: "مدیریت قیف فروش | عصر سئو" }]} twitterCard='summary_large_image'
-  ogTitle='مدیریت قیف فروش | عصر سئو'
+<BaseLayout lang="en" title='Sales Funnel Management | Boost Conversion Rates | AsreSEO' description='Scientific sales funnel design and management with customer behavior analysis, marketing automation, A/B testing and conversion rate optimization (CRO).' keywords='sales funnel, Sales Funnel, conversion rate, Customer Journey, sales automation, digital marketing, AsreSEO' canonical='/services/marketing/sales-funnel-management/' ogType='website' ogUrl='https://asreseo.com/services/marketing/sales-funnel-management/' ogImages={[{ url: "/og/sales-funnel-hero.jpg", width: 1200, height: 630, alt: "Sales funnel management | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Sales Funnel Management | AsreSEO'
 
-  ogDescription='طراحی و بهینه‌سازی قیف فروش برای افزایش نرخ تبدیل.'
+  ogDescription='Designing and optimizing sales funnels for higher conversion rates.'
 >
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
       <script id="structured-data" type="application/ld+json" is:inline
         set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/marketing/sales-funnel-management/', image: '/og/sales-funnel-hero.jpg' }))}
       />
 
-      <Header />
+      <Header lang="en" />
       <BreadcrumbStructuredData
         items={[
-          { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-          { position: 2, name: 'خدمات بازاریابی', item: 'https://asreseo.com/services/marketing/' },
-          { position: 3, name: 'مدیریت قیف فروش', item: 'https://asreseo.com/services/marketing/sales-funnel-management/' }
+          { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+          { position: 2, name: 'Marketing Services', item: 'https://asreseo.com/services/marketing/' },
+          { position: 3, name: 'Sales Funnel Management', item: 'https://asreseo.com/services/marketing/sales-funnel-management/' }
         ]}
       />
 
       <main>
         <!-- Hero Section -->
-        <ServiceHero
-          badge="مدیریت قیف فروش حرفه‌ای"
-          title="مدیریت"
-          titleGradient="قیف فروش"
-          description="افزایش قابل اندازه‌گیری نرخ تبدیل با طراحی علمی قیف فروش، اتوماسیون بازاریابی هوشمند و بهینه‌سازی رفتار مشتری در عصر سئو."
-          primaryCta={{ text: "بهینه‌سازی قیف فروش" }}
-          secondaryCta={{ text: "تحلیل رایگان قیف فروش فعلی" }}
+        <ServiceHero lang="en"
+          badge="Professional sales funnel management"
+          title="Sales Funnel Management"
+          titleGradient="Sales Funnel"
+          description="Measurably higher conversion rates with scientific funnel design, smart marketing automation and customer-behavior optimization at AsreSEO."
+          primaryCta={{ text: "Optimize My Sales Funnel" }}
+          secondaryCta={{ text: "Free Funnel Audit" }}
           imageSrc="/images/sales-funnel-hero.webp"
-          imageAlt="مدیریت قیف فروش حرفه‌ای"
+          imageAlt="Professional sales funnel management"
           theme="orange"
         />
 
         <!-- Stats Section -->
-        <ServiceStats stats={stats} theme="orange" />
+        <ServiceStats lang="en" stats={stats} theme="orange" />
 
         <!-- Funnel Stages Section -->
         <section class="section-padding">
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                مراحل <span class="gradient-text">قیف فروش استاندارد</span>
+                The Standard <span class="gradient-text">Sales Funnel Stages</span>
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                مسیر علمی هدایت مشتریان از آگاهی تا خرید نهایی
+                The scientific path guiding customers from awareness to final purchase
               </p>
             </div>
 
@@ -340,10 +341,10 @@ const structuredData = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                خدمات <span class="gradient-text">مدیریت قیف فروش</span> عصر سئو
+                AsreSEO <span class="gradient-text">Sales Funnel Management</span> Services
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                رویکردی جامع برای تبدیل بازدیدکنندگان به مشتریان
+                A comprehensive approach to turning visitors into customers
               </p>
             </div>
 
@@ -382,10 +383,10 @@ const structuredData = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                استراتژی‌های <span class="gradient-text">بهینه‌سازی اثربخش</span>
+                Effective <span class="gradient-text">Optimization Strategies</span>
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                تکنیک‌های عملی با نتایج قابل اندازه‌گیری برای هر مرحله قیف فروش
+                Practical techniques with measurable results for every funnel stage
               </p>
             </div>
 
@@ -417,17 +418,17 @@ const structuredData = {
           </div>
         </section>
 
-              <ServiceBenefits title="مزایای مدیریت" titleHighlight="قیف فروش حرفه‌ای" subtitle="نتایج ملموس که مستقیماً به کسب‌وکار شما کمک می‌کنند" benefits={benefits} />
+              <ServiceBenefits lang="en" title="Professional Sales Funnel Management" titleHighlight="Sales Funnel" subtitle="Tangible results that directly help your business" benefits={benefits} />
 
         <!-- Workflow Section -->
         <section class="section-padding bg-linear-to-br from-red-50 to-orange-50">
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                فرآیند <span class="gradient-text">مدیریت قیف فروش</span> عصر سئو
+                The AsreSEO <span class="gradient-text">Sales Funnel Management</span> Process
               </h2>
               <p class="text-xl text-gray-600">
-                رویکرد علمی ۵ مرحله‌ای برای حداکثر نرخ تبدیل
+                A proven 5-step approach to maximum conversion rates
               </p>
             </div>
 
@@ -452,23 +453,23 @@ const structuredData = {
         </section>
 
         <!-- FAQ Section -->
-        <ServiceFAQ
-          title="سوالات"
-          titleGradient="متداول"
-          subtitle="پاسخ به پرسش‌های رایج مشتریان درباره قیف فروش"
+        <ServiceFAQ lang="en"
+          title="Frequently Asked Questions"
+          titleGradient="Asked Questions"
+          subtitle="Answers to our customers' most common questions about sales funnels"
           faqs={faqs}
         />
 
         <!-- CTA Section -->
-        <ServiceCTA
-          title="چرا بسیاری از مشتریان بالقوه را از دست می‌دهید؟"
-          description="احتمال خیلی بالا است که قیف فروش شما بهینه نباشد و مشتریان شما در مسیر خرید رها شوند. عصر سئو با تحلیل علمی و پیاده‌سازی اتوماسیون پیشرفته، نرخ تبدیل شما را به‌شکل محسوسی افزایش می‌دهد. اجازه ندهید مشتریان شما به رقبا بروند!"
-          primaryCta={{ text: "شروع بهینه‌سازی قیف فروش" }}
-          secondaryCta={{ text: "تحلیل رایگان قیف فروش فعلی" }}
+        <ServiceCTA lang="en"
+          title="Why are you losing so many potential customers?"
+          description="Chances are your sales funnel is not optimized and customers drop off along the buying journey. With scientific analysis and advanced automation, AsreSEO noticeably lifts your conversion rate. Do not let your customers go to competitors!"
+          primaryCta={{ text: "Start Funnel Optimization" }}
+          secondaryCta={{ text: "Free Funnel Audit" }}
           primaryClass="bg-orange-700 hover:bg-orange-800 text-white font-semibold shadow-lg shadow-orange-700/30"
         />
       </main>
 
-      <Footer />
+      <Footer lang="en" />
     </div>
 </BaseLayout>

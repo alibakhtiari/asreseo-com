@@ -1,7 +1,7 @@
 {
-  "name": "عصر سئو",
-  "short_name": "عصر سئو",
-  "description": "خدمات دیجیتال مارکتینگ، سئو و هوش مصنوعی",
+  "name": "AsreSEO",
+  "short_name": "AsreSEO",
+  "description": "Digital marketing, SEO & AI services",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

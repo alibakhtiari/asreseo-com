@@ -15,6 +15,9 @@ import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
 import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
 import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
 
+const lang = 'en' as const;
+const localize = (p: string) => p;
+
 // Tailwind only sees class names that literally appear in source, so a runtime
 // `bg-${color}-100` is invisible to it. Map them explicitly instead. Icons use
 // -700 rather than -600 so they clear the 3:1 WCAG 1.4.11 floor on a -100 tile.
@@ -36,37 +39,38 @@ const platformIcon: Record<string, string> = {
 
 
 
-
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  'name': 'مدیریت شبکه‌های اجتماعی',
-  'description': 'مدیریت حرفه‌ای شبکه‌های اجتماعی شامل تولید محتوا، تعامل با کاربران و تحلیل عملکرد',
+  'name': 'Social Media Management',
+  'description': 'Professional social media management including content creation, audience engagement and performance analytics',
   'serviceType': 'Social Media Marketing',
+  'inLanguage': 'en-US',
   'provider': {
     '@type': 'Organization',
-    'name': 'عصر سئو',
+    'name': 'AsreSEO',
     'url': 'https://asreseo.com'
   },
-  'areaServed': 'Iran',
   'hasOfferCatalog': {
     '@type': 'OfferCatalog',
-    'name': 'خدمات مدیریت شبکه‌های اجتماعی',
+    'name': 'Social media management services',
     'itemListElement': [
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
-          'name': 'مدیریت اینستاگرام',
-          'description': 'مدیریت حرفه‌ای پیج اینستاگرام با استراتژی محتوای جذاب'
+          'name': 'Instagram management',
+          'description': 'Professional Instagram management with an engaging content strategy',
+          'inLanguage': 'en-US'
         }
       },
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
-          'name': 'مدیریت لینکدین',
-          'description': 'شخصی‌سازی حرفه‌ای برای شبکه‌های کسب‌وکار'
+          'name': 'LinkedIn management',
+          'description': 'Professional presence for B2B networks',
+          'inLanguage': 'en-US'
         }
       }
     ]
@@ -77,226 +81,227 @@ const structuredData = {
 
   const socialPlatforms = [
     {
-      name: 'اینستاگرام',
-      description: 'مدیریت پیج و استوری‌ها برای حداکثر تعامل',
+      name: 'Instagram',
+      description: 'Page and story management for maximum engagement',
       icon: "instagram",
-      features: ['پست‌های تبلیغاتی', 'استوری‌های تعاملی', 'آمار پیشرفته'],
+      features: ['Promotional posts', 'Interactive stories', 'Advanced analytics'],
       color: 'pink'
     },
     {
-      name: 'لینکدین',
-      description: 'شخصی‌سازی حرفه‌ای برای شبکه‌های B2B',
+      name: 'LinkedIn',
+      description: 'Professional presence for B2B networks',
       icon: "linkedin",
-      features: ['مقالات تخصصی', 'پست‌های حرفه‌ای', 'شبکه‌سازی B2B'],
+      features: ['Expert articles', 'Professional posts', 'B2B networking'],
       color: 'blue'
     },
     {
-      name: 'توئیتر',
-      description: 'مدیریت توییتر برای تعامل لحظه‌ای',
+      name: 'X (Twitter)',
+      description: 'Twitter management for real-time engagement',
       icon: "twitter",
-      features: ['توییت‌های ویروسی', 'پاسخگویی سریع', 'ترندهای لحظه‌ای'],
+      features: ['Viral tweets', 'Fast responses', 'Real-time trends'],
       color: 'cyan'
     },
     {
-      name: 'تلگرام',
-      description: 'مدیریت کانال و گروه‌های اختصاصی',
+      name: 'Telegram',
+      description: 'Dedicated channel and group management',
       icon: "message-circle",
-      features: ['ربات‌های خودکار', 'کانال آموزشی', 'پشتیبانی مشتریان'],
+      features: ['Automation bots', 'Educational channel', 'Customer support'],
       color: 'blue'
     },
     {
-      name: 'یوتیوب',
-      description: 'تولید و انتشار ویدیوهای حرفه‌ای',
+      name: 'YouTube',
+      description: 'Professional video production and publishing',
       icon: "youtube",
-      features: ['ویدیوهای آموزشی', 'تبلیغات وایرال', 'آمار پیشرفته'],
+      features: ['Tutorial videos', 'Viral campaigns', 'Advanced analytics'],
       color: 'red'
     },
     {
-      name: 'تیکتاک',
-      description: 'محتوای viral و تیک‌تاک‌های خلاقانه',
+      name: 'TikTok',
+      description: 'Viral content and creative short videos',
       icon: "heart",
-      features: ['ویدیوهای کوتاه', 'ترندهای جنجالی', 'تعامل بالا'],
+      features: ['Short videos', 'Hot trends', 'High engagement'],
       color: 'purple'
     }
   ];
 
   const contentStrategies = [
-    'محتوای آموزشی و اطلاع‌رسانی ارزشمند',
-    'پست‌های تعاملی و مسابقات جذاب',
-    'استوری‌های زنده و لحظهای',
-    'ویدیوهای کوتاه و وایرال',
-    'مطالب انگیزشی و الهام‌بخش'
+    'Valuable educational and informative content',
+    'Interactive posts and exciting contests',
+    'Live, in-the-moment stories',
+    'Short viral videos',
+    'Motivational and inspiring posts'
   ];
 
   const results = [
-    { metric: 'پایش مستمر', label: 'افزایش نرخ تعامل', icon: "message-circle" },
-    { metric: 'رشد طبیعی', label: 'رشد فالوورها', icon: "users" },
-    { metric: 'اندازه‌گیری دقیق', label: 'افزایش نرخ کلیک', icon: "trending-up" },
-    { metric: '۲۴/۷', label: 'پاسخگویی مداوم', icon: "clock" }
+    { metric: 'Ongoing tracking', label: 'Higher engagement rate', icon: "message-circle" },
+    { metric: 'Organic growth', label: 'Follower growth', icon: "users" },
+    { metric: 'Precise measurement', label: 'Higher click-through rate', icon: "trending-up" },
+    { metric: '24/7', label: 'Always-on responses', icon: "clock" }
   ];
 
   const features = [
     {
       icon: "users",
-      title: 'تعامل هدفمند با فالوورها',
-      description: 'پاسخ به نظرات و دایرکت‌ها و ایجاد ارتباط صمیمانه با کاربران شبکه اجتماعی شما.',
-      benefits: ['پاسخگویی سریع', 'ارتباط صمیمانه', 'رضایت مشتری افزایش']
+      title: 'Targeted follower engagement',
+      description: 'Replying to comments and DMs and building a warm relationship with your social audience.',
+      benefits: ['Fast responses', 'Warm communication', 'Happier customers']
     },
     {
       icon: "scroll-text",
-      title: 'برنامه‌ریزی و تولید محتوای اختصاصی',
-      description: 'خلق محتوای جذاب (تصویری، ویدیویی، متنی) متناسب برند شما و بالاتر بردن تعامل پیج.',
-      benefits: ['محتوای منحصربه‌فرد', 'همخوانی با برند', 'جذب مخاطب بیشتر']
+      title: 'Dedicated content planning & production',
+      description: 'Creating engaging content (visual, video, text) matched to your brand to lift page interaction.',
+      benefits: ['Unique content', 'On-brand voice', 'More reach']
     },
     {
       icon: "trending-up",
-      title: 'تحلیل عملکرد و رشد',
-      description: 'گزارش‌های تحلیلی درباره بازخورد پست‌ها، نرخ رشد، و بهینه‌سازی برنامه محتوا.',
-      benefits: ['گزارش دقیق', 'بهبود مداوم', 'نتایج قابل اندازه‌گیری']
+      title: 'Performance analysis & growth',
+      description: 'Analytical reports on post feedback and growth rate, with ongoing content-plan optimization.',
+      benefits: ['Accurate reports', 'Continuous improvement', 'Measurable results']
     },
     {
       icon: "clock",
-      title: 'پوشش ۲۴/۷ و پاسخگویی سریع',
-      description: 'مدیریت کامل حضور شما در شبکه‌های اجتماعی با پاسخگویی شبانه‌روزی.',
-      benefits: ['پاسخگویی فوری', 'ارتباط دائمی', 'قدردانی مشتری']
+      title: '24/7 coverage & fast responses',
+      description: 'Complete management of your social presence with round-the-clock responses.',
+      benefits: ['Instant replies', 'Always-on presence', 'Customer appreciation']
     }
   ];
 
   const metrics = [
-    'رشد تعداد فالوورها و دنبال‌کنندگان',
-    'میزان تعامل (لایک، کامنت، شییر)',
-    'نرخ بازدید و ایمپرشن پست‌ها',
-    'وضعیت تبدیل ترافیک به فروش',
-    'بررسی ترندها و بازخورد کاربران'
+    'Follower and subscriber growth',
+    'Engagement volume (likes, comments, shares)',
+    'Post views and impressions',
+    'Traffic-to-sales conversion health',
+    'Trend monitoring and user feedback'
   ];
 
   const workflowSteps = [
     {
-      step: '۱',
-      title: 'بررسی و استراتژی',
-      desc: 'تحلیل اهداف، مخاطب هدف و رقبا برای طراحی استراتژی'
+      step: '1',
+      title: 'Audit & Strategy',
+      desc: 'Analyzing your goals, target audience and competitors to design the strategy'
     },
     {
-      step: '۲',
-      title: 'بررسی و بهبود پروفایل',
-      desc: 'بهینه‌سازی بیو، عکس پروفایل و محتوای اولیه'
+      step: '2',
+      title: 'Profile Review & Polish',
+      desc: 'Optimizing your bio, profile picture and starter content'
     },
     {
-      step: '۳',
-      title: 'طراحی تقویم محتوا',
-      desc: 'برنامه‌ریزی محتوا و زمان‌بندی انتشار پست‌ها'
+      step: '3',
+      title: 'Content Calendar Design',
+      desc: 'Planning content and scheduling post publication'
     },
     {
-      step: '۴',
-      title: 'تولید و انتشار محتوا',
-      desc: 'ایجاد محتوای جذاب و انتشار بهینه در شبکه‌ها'
+      step: '4',
+      title: 'Content Production & Publishing',
+      desc: 'Creating engaging content and publishing it optimally across networks'
     },
     {
-      step: '۵',
-      title: 'تعامل و مدیریت',
-      desc: 'پاسخگویی به کامنت‌ها و تعامل مداوم با کاربران'
+      step: '5',
+      title: 'Engagement & Management',
+      desc: 'Replying to comments and staying continuously engaged with users'
     },
     {
-      step: '۶',
-      title: 'تحلیل و بهینه‌سازی',
-      desc: 'بررسی آمار عملکرد و بهبود استراتژی محتوا'
+      step: '6',
+      title: 'Analysis & Optimization',
+      desc: 'Reviewing performance stats and improving the content strategy'
     }
   ];
 
   const faqs = [
     {
-      question: 'مدیریت چه شبکه‌هایی ارائه می‌شود؟',
-      answer: 'خدمات ما برای اینستاگرام، تلگرام، لینکدین، توئیتر، یوتیوب، تیک‌تاک و دیگر شبکه‌های رایج قابل ارائه است. بسته به نیاز کسب‌وکار شما پلتفرم مناسب را انتخاب می‌کنیم.'
+      question: 'Which networks do you manage?',
+      answer: 'We cover Instagram, Telegram, LinkedIn, X (Twitter), YouTube, TikTok and other popular networks. We pick the right platforms for your business needs.'
     },
     {
-      question: 'آیا تقویم محتوایی ارائه می‌شود؟',
-      answer: 'بله، ماهانه تقویم انتشار محتوا، ایده‌های خلاقانه و استراتژی تعاملی متناسب با اهداف برند شما آماده می‌گردد و در ابتدای هر ماه تحویل داده می‌شود.'
+      question: 'Do you provide a content calendar?',
+      answer: 'Yes. Every month you receive a publishing calendar with creative ideas and an engagement strategy tailored to your brand goals, delivered at the start of the month.'
     },
     {
-      question: 'راهکاری برای افزایش تعامل پیج دارید؟',
-      answer: 'همایش‌های تعاملی، مسابقات اینستاگرامی، استوری‌های زنده، محتوای وایرال، همکاری با اینفلوئنسرها و تبلیغات هدفمند از جمله راهکارهای تخصصی ما برای افزایش تعامل هستند.'
+      question: 'How do you grow page engagement?',
+      answer: 'Interactive campaigns, Instagram contests, live stories, viral content, influencer collaborations and targeted ads are among our specialist tactics for growing engagement.'
     },
     {
-      question: 'چند پست در هفته منتشر می‌شود؟',
-      answer: 'بسته به پلتفرم و استراتژی بازاریابی شما، معمولاً در اینستاگرام ۵-۷ پست در هفته، لینکدین ۳-۴ پست و شبکه‌های دیگر متناسب با مخاطب هدف منتشر می‌شود.'
+      question: 'How many posts go out per week?',
+      answer: 'Depending on the platform and your marketing strategy: typically 5–7 posts per week on Instagram, 3–4 on LinkedIn, and other networks matched to their audiences.'
     },
     {
-      question: 'آیا برای کسب‌وکارهای مختلف استراتژی متفاوتی دارید؟',
-      answer: 'بله، استراتژی برای هر کسب‌وکار کاملاً سفارشی‌سازی می‌شود. ما بر اساس صنعت، مخاطب هدف، رقبا و اهداف بازاریابی استراتژی منحصربه‌فردی برای شما طراحی می‌کنیم.'
+      question: 'Do different businesses get different strategies?',
+      answer: 'Yes — the strategy is fully customized for every business. We design a unique plan based on your industry, target audience, competitors and marketing goals.'
     },
     {
-      question: 'چطور از کیفیت محتوا اطمینان حاصل می‌کنیم؟',
-      answer: 'تمام محتوای تولیدی توسط کارشناسان محتوا بررسی می‌شود، آمار تعامل پست‌های قبلی تحلیل می‌گردد و محتوای جدید بر اساس بازخورد کاربران بهبود پیدا می‌کند.'
+      question: 'How do you guarantee content quality?',
+      answer: 'All content is reviewed by content specialists, engagement stats from previous posts are analyzed, and new content keeps improving based on user feedback.'
     }
   ];
 
 ---
-<BaseLayout title='خدمات سوشال مدیا | مدیریت شبکه‌های اجتماعی | عصر سئو' description='مدیریت حرفه‌ای شبکه‌های اجتماعی شامل تولید محتوا، تعامل با کاربران، تحلیل عملکرد. افزایش تعامل و نرخ تبدیل با متخصصین عصر سئو.' keywords='مدیریت شبکه‌های اجتماعی, سوشال مدیا, اینستاگرام, تلگرام, توئیتر, لینکدین, مارکتینگ اجتماعی' canonical='https://asreseo.com/services/marketing/social-media/' ogType='website' ogUrl='https://asreseo.com/services/marketing/social-media/' ogImages={[{ url: "/og/social-media-hero.jpg", width: 1200, height: 630, alt: "مدیریت شبکه‌های اجتماعی | عصر سئو" }]} twitterCard='summary_large_image'
-  ogTitle='مدیریت شبکه‌های اجتماعی | عصر سئو'
+<BaseLayout lang="en" title='Social Media Management Services | AsreSEO' description='Professional social media management including content creation, audience engagement and performance analytics. Grow engagement and conversion rates with AsreSEO specialists.' keywords='social media management, social media, Instagram, Telegram, X, LinkedIn, social marketing, AsreSEO' canonical='/services/marketing/social-media/' ogType='website' ogUrl='https://asreseo.com/services/marketing/social-media/' ogImages={[{ url: "/og/social-media-hero.jpg", width: 1200, height: 630, alt: "Social media management | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Social Media Management | AsreSEO'
 
-  ogDescription='مدیریت کامل و حرفه‌ای حضور برند شما در شبکه‌های اجتماعی قهرمانی بازاریابی دیجیتال.'
+  ogDescription='Complete, professional management of your brand presence across social networks.'
 >
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
       <script id="structured-data" type="application/ld+json" is:inline
         set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/marketing/social-media/', image: '/og/social-media-hero.jpg' }))}
       />
 
-      <Header />
+      <Header lang="en" />
       <BreadcrumbStructuredData
         items={[
-          { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-          { position: 2, name: 'خدمات بازاریابی', item: 'https://asreseo.com/services/marketing/' },
-          { position: 3, name: 'مدیریت شبکه‌های اجتماعی', item: 'https://asreseo.com/services/marketing/social-media/' }
+          { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+          { position: 2, name: 'Marketing Services', item: 'https://asreseo.com/services/marketing/' },
+          { position: 3, name: 'Social Media Management', item: 'https://asreseo.com/services/marketing/social-media/' }
         ]}
       />
 
       <main>
         <!-- Hero Section -->
-        <ServiceHero
-          badge="مدیریت حرفه‌ای شبکه‌های اجتماعی"
-          title="مدیریت"
-          titleGradient="شبکه‌های اجتماعی"
-          description="مدیریت کامل و حرفه‌ای حضور برند شما در شبکه‌های اجتماعی. افزایش مداوم تعامل، رشد طبیعی فالوورها و تبدیل اجتماعی به فروش با استراتژی‌های پیشرفته عصر سئو."
-          primaryCta={{ text: "شروع مدیریت سوشال وایرال" }}
-          secondaryCta={{ text: "تحلیل رایگان پیج شما" }}
+        <ServiceHero lang="en"
+          badge="Professional social media management"
+          title="Social Media Management"
+          titleGradient="Social Media"
+          description="Complete, professional management of your brand presence across social networks. Steady engagement growth, organic follower gains and social-to-sales conversion with advanced AsreSEO strategies."
+          primaryCta={{ text: "Grow My Social Presence" }}
+          secondaryCta={{ text: "Free Page Audit" }}
           imageSrc="/images/social-media-hero.webp"
-          imageAlt="مدیریت شبکه‌های اجتماعی"
+          imageAlt="Social media management"
           theme="pink"
         />
 
         <!-- Results Section -->
-        <ServiceStats stats={results} theme="pink" />
+        <ServiceStats lang="en" stats={results} theme="pink" />
 
         <!-- Social Platforms Section -->
-        <section class="section-padding">
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
           <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                شبکه‌های اجتماعی <span class="gradient-text">پوشش داده شده</span>
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[CHANNEL_DISTRIBUTION // SOCIAL_MATRIX]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Social Networks <span class="text-[#CCFF00]">We Cover</span>
               </h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                مدیریت حرفه‌ای تمامی پلتفرم‌های اجتماعی محبوب با استراتژی‌های اختصاصی
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                // Professional management of every popular social platform with dedicated strategies
               </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {socialPlatforms.map((platform, index) => (
-                <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg">
+                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
                   <CardHeader class="pb-4">
                     <div class="flex items-center gap-3 mb-3">
-                      <div class={`w-12 h-12 ${platformTile[platform.color] ?? 'bg-gray-100'} rounded-lg flex items-center justify-center ${platformTileHover[platform.color] ?? 'group-hover:bg-gray-200'} transition-colors`}>
-                        <Icon name={platform.icon} class={`h-6 w-6 ${platformIcon[platform.color] ?? 'text-gray-600'}`} />
+                      <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                        <Icon name={platform.icon} class="h-6 w-6 text-[#CCFF00]" />
                       </div>
-                      <CardTitle class="text-xl font-semibold">{platform.name}</CardTitle>
+                      <CardTitle class="text-xl font-bold uppercase text-white">{platform.name}</CardTitle>
                     </div>
-                    <p class="text-gray-600 mb-2">{platform.description}</p>
+                    <p class="text-slate-300 mb-2 text-sm">{platform.description}</p>
                   </CardHeader>
                   <CardContent>
-                    <div class="space-y-1">
+                    <div class="space-y-2 border-t border-white/10 pt-4">
                       {platform.features.map((feature, featureIndex) => (
-                        <div class="flex items-center gap-2 text-sm text-gray-500">
-                          <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
-                          {feature}
+                        <div class="flex items-center gap-2 text-sm text-slate-300">
+                          <Icon name="check-circle" class="h-4 w-4 text-[#CCFF00] shrink-0" />
+                          <span>{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -308,37 +313,38 @@ const structuredData = {
         </section>
 
         <!-- Features Section -->
-        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
           <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                خدمات <span class="gradient-text">مدیریت سوشال مدیا</span>
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[MANAGEMENT_PIPELINE // CAPABILITIES]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Our <span class="text-[#CCFF00]">Social Media Management</span> Services
               </h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                رویکرد جامع و حرفه‌ای برای مدیریت حضور برند شما در فضای دیجیتال
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                // A comprehensive, professional approach to managing your brand in the digital space
               </p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {features.map((feature, index) => (
-                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
                   <CardHeader class="pb-4">
                     <div class="flex items-center gap-3 mb-3">
-                      <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-200 transition-colors">
-                        <Icon name={feature.icon} class="h-6 w-6 text-pink-600" />
+                      <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                        <Icon name={feature.icon} class="h-6 w-6 text-[#CCFF00]" />
                       </div>
-                      <CardTitle class="text-lg font-semibold">{feature.title}</CardTitle>
+                      <CardTitle class="text-lg font-bold uppercase text-white">{feature.title}</CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
+                    <p class="text-slate-300 mb-4 leading-relaxed text-sm">
                       {feature.description}
                     </p>
-                    <div class="space-y-2">
+                    <div class="space-y-2 border-t border-white/10 pt-4">
                       {feature.benefits.map((benefit, benefitIndex) => (
-                        <div class="flex items-center gap-2 text-sm text-gray-500">
-                          <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
-                          {benefit}
+                        <div class="flex items-center gap-2 text-sm text-slate-300">
+                          <Icon name="check-circle" class="h-4 w-4 text-[#CCFF00] shrink-0" />
+                          <span>{benefit}</span>
                         </div>
                       ))}
                     </div>
@@ -350,64 +356,73 @@ const structuredData = {
         </section>
 
         <!-- Content Strategies -->
-        <section class="section-padding">
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
           <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                استراتژی‌های <span class="gradient-text">محتوای جذاب</span>
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[ENGAGEMENT_MECHANICS // VIRALITY_TACTICS]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Engaging <span class="text-[#CCFF00]">Content Strategies</span>
               </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                رویکردهای خلاقانه برای تولید محتوای ویروسی و تعاملی
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-2xl">
+                // Creative approaches to viral, interactive content
               </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-2 gap-4">
               {contentStrategies.map((strategy, index) => (
-                <div class="flex items-center gap-4 p-4 bg-linear-to-r from-pink-50 to-purple-50 rounded-xl border border-pink-100">
-                  <div class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center shrink-0">
-                    <Icon name="zap" class="h-4 w-4 text-pink-600" />
+                <div class="flex items-center gap-4 p-4 bg-[#0a0e17] border-2 border-white/15 hover:border-[#CCFF00] transition-colors rounded-none brutalist-card group">
+                  <div class="w-10 h-10 bg-black border border-white/20 flex items-center justify-center shrink-0 group-hover:border-[#CCFF00] transition-colors">
+                    <Icon name="zap" class="h-5 w-5 text-[#CCFF00]" />
                   </div>
-                  <span class="text-gray-900 font-medium">
-                    {strategy}
-                  </span>
+                  <div class="flex-1">
+                    <div class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mb-0.5">
+                      STRAT_{String(index + 1).padStart(2, '0')}
+                    </div>
+                    <span class="text-white font-medium text-sm block">
+                      {strategy}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
 
-            <!-- Internal links: this page is the nearest win in GSC (pos 11 for
-                 «خدمات سوشال مدیا») but was thin on outbound internal links.
-                 Both targets are genuine complements, not filler. -->
-            <p class="mt-8 text-center text-gray-700 leading-relaxed max-w-3xl mx-auto">
-              اجرای این استراتژی‌ها به تولید مستمر محتوا وابسته است؛ برای ساخت خروجی،
-              <a href="/services/content/social-media-content/" class="text-pink-700 font-semibold underline hover:no-underline">تولید محتوای شبکه‌های اجتماعی</a>
-              و برای نظم دادن به برنامه انتشار،
-              <a href="/services/content/content-calendar/" class="text-pink-700 font-semibold underline hover:no-underline">خدمات تقویم محتوایی</a>
-              را ببینید.
+            <p class="mt-8 text-center text-slate-400 font-mono text-xs leading-relaxed max-w-3xl mx-auto border-t border-white/10 pt-6">
+              Running these strategies depends on a steady content pipeline; for production output see our
+              <a href={localize('/services/content/social-media-content/')} class="text-[#CCFF00] font-semibold underline hover:no-underline">social media content creation</a>
+              services, and to keep your publishing schedule on track see our
+              <a href={localize('/services/content/content-calendar/')} class="text-[#CCFF00] font-semibold underline hover:no-underline">content calendar</a>
+              services.
             </p>
           </div>
         </section>
 
         <!-- Metrics Section -->
-        <section class="section-padding bg-slate-50">
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
           <div class="container-custom">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                شاخص‌های کلیدی <span class="gradient-text">اندازه‌گیری</span>
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[PERFORMANCE_AUDIT // KPI_TRACKING]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Key <span class="text-[#CCFF00]">Measurement</span> Metrics
               </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                معیارهای موفقیت در مدیریت شبکه‌های اجتماعی
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-2xl">
+                // The success metrics of social media management
               </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
               {metrics.map((metric, index) => (
-                <div class="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-                  <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center shrink-0">
-                    <Icon name="bar-chart3" class="h-5 w-5 text-purple-600" />
+                <div class="flex items-start gap-4 p-4 bg-[#0a0e17] border-2 border-white/15 hover:border-[#CCFF00] transition-colors rounded-none brutalist-card group">
+                  <div class="w-10 h-10 bg-black border border-white/20 flex items-center justify-center shrink-0 group-hover:border-[#CCFF00] transition-colors">
+                    <Icon name="bar-chart3" class="h-5 w-5 text-[#CCFF00]" />
                   </div>
-                  <span class="text-gray-900 font-medium leading-relaxed">
-                    {metric}
-                  </span>
+                  <div class="flex-1">
+                    <div class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mb-0.5">
+                      KPI_{String(index + 1).padStart(2, '0')}
+                    </div>
+                    <span class="text-white font-medium leading-relaxed text-sm block">
+                      {metric}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -419,10 +434,10 @@ const structuredData = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                فرآیند <span class="gradient-text">مدیریت شبکه‌های اجتماعی</span>
+                Our <span class="gradient-text">Social Media Management</span> Process
               </h2>
               <p class="text-xl text-gray-600">
-                رویکرد گام به گام برای موفقیت در فضای اجتماعی
+                A step-by-step approach to winning in the social space
               </p>
             </div>
 
@@ -447,23 +462,23 @@ const structuredData = {
         </section>
 
         <!-- FAQ Section -->
-        <ServiceFAQ
-          title="سوالات"
-          titleGradient="متداول"
-          subtitle="پاسخ به رایج‌ترین سوالات درباره مدیریت شبکه‌های اجتماعی"
+        <ServiceFAQ lang="en"
+          title="Frequently Asked Questions"
+          titleGradient="Asked Questions"
+          subtitle="Answers to the most common questions about social media management"
           faqs={faqs}
         />
 
         <!-- CTA Section -->
-        <ServiceCTA
-          title="برند خود را در شبکه‌های اجتماعی قدرتمند کنید!"
-          description="با مدیریت حرفه‌ای شبکه‌های اجتماعی، فالوورهای وفادار جذب کنید، نرخ تعامل را افزایش دهید و فروش خود را از طریق فضای اجتماعی بهبود بخشید. عصر سئو، راهنمای موفقیت شماست!"
-          primaryCta={{ text: "شروع مدیریت شبکه‌ها" }}
-          secondaryCta={{ text: "مشاوره استراتژی رایگان" }}
+        <ServiceCTA lang="en"
+          title="Make your brand powerful on social media!"
+          description="With professional social media management, attract loyal followers, grow engagement and improve sales through the social space. AsreSEO is your guide to success!"
+          primaryCta={{ text: "Start Managing My Networks" }}
+          secondaryCta={{ text: "Free Strategy Consultation" }}
           primaryClass="bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg shadow-pink-600/30"
         />
       </main>
 
-      <Footer />
+      <Footer lang="en" />
     </div>
 </BaseLayout>

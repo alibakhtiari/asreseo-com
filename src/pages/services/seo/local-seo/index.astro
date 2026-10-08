@@ -21,37 +21,36 @@ import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructure
 
 
 
-
 const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    'name': 'سئو محلی (Local SEO)',
-    'description': 'خدمات بهینه‌سازی برای جستجوهای محلی و گوگل مپ برای جذب مشتریان فیزیکی',
+    'name': 'Local SEO',
+    'description': 'Optimization services for local searches and Google Maps to attract walk-in customers',
     'serviceType': 'SEO Services',
     'provider': {
         '@type': 'Organization',
-        'name': 'عصر سئو',
+        'name': 'AsreSEO',
         'url': 'https://asreseo.com'
     },
-    'areaServed': 'Iran',
+    'inLanguage': 'en-US',
     'hasOfferCatalog': {
         '@type': 'OfferCatalog',
-        'name': 'خدمات سئو محلی',
+        'name': 'Local SEO Services',
         'itemListElement': [
             {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'ثبت و بهینه‌سازی گوگل مپ',
-                    'description': 'ایجاد و مدیریت پروفایل کسب‌وکار گوگل (Google Business Profile)'
+                    'name': 'Google Maps Setup & Optimization',
+                    'description': 'Creating and managing your Google Business Profile'
                 }
             },
             {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'مدیریت نظرات و شهرت',
-                    'description': 'استراتژی دریافت نظرات مثبت و پاسخگویی به مشتریان'
+                    'name': 'Review & Reputation Management',
+                    'description': 'A strategy for earning positive reviews and responding to customers'
                 }
             }
         ]
@@ -63,123 +62,123 @@ const structuredData = {
     const localServices = [
         {
             icon: "map-pin",
-            title: 'بهینه‌سازی پروفایل گوگل (GBP)',
-            description: 'ثبت، تایید و بهینه‌سازی کامل Google Business Profile با اطلاعات دقیق، تصاویر حرفه‌ای و دسته‌بندی صحیح.',
-            benefits: ['دیده شدن در نقشه', 'اطلاعات تماس دقیق', 'جذب مشتری حضوری']
+            title: 'Google Business Profile (GBP) Optimization',
+            description: 'Registering, verifying and fully optimizing your Google Business Profile with accurate info, professional photos and the right categories.',
+            benefits: ['Visible on the map', 'Accurate contact info', 'More walk-in customers']
         },
         {
             icon: "navigation",
-            title: 'مدیریت Citations (نقل‌قول‌ها)',
-            description: 'ثبت یکپارچه نام، آدرس و تلفن (NAP) شما در دایرکتوری‌های معتبر و سایت‌های مرجع محلی.',
-            benefits: ['اعتماد گوگل', 'ثبات اطلاعات', 'سیگنال‌های محلی قوی']
+            title: 'Citation Management',
+            description: 'Consistent listing of your name, address and phone (NAP) across trusted directories and local reference sites.',
+            benefits: ['Google\u2019s trust', 'Consistent information', 'Strong local signals']
         },
         {
             icon: "message-circle",
-            title: 'مدیریت شهرت و نظرات',
-            description: 'استراتژی دریافت نظرات ۵ ستاره، پاسخگویی حرفه‌ای به نقدها و مدیریت اعتبار آنلاین برند شما.',
-            benefits: ['نرخ تبدیل بالا', 'اعتمادسازی', 'رتبه بهتر در مپ']
+            title: 'Reputation & Review Management',
+            description: 'A strategy for earning 5-star reviews, professionally replying to criticism and managing your brand\u2019s online reputation.',
+            benefits: ['High conversion rate', 'Trust-building', 'Better map rankings']
         },
         {
             icon: "layout",
-            title: 'تولید محتوای محلی (Local Content)',
-            description: 'ایجاد صفحات فرود اختصاصی برای هر منطقه یا شهر و تولید مقالات مرتبط با دغدغه‌های بومی.',
-            benefits: ['رتبه در کلمات "نزدیک من"', 'ارتباط با جامعه محلی', 'پوشش مناطق مختلف']
+            title: 'Local Content Production',
+            description: 'Dedicated landing pages for each neighborhood or city, plus articles addressing local concerns.',
+            benefits: ['Ranking for \u201cnear me\u201d searches', 'Local community connection', 'Multi-area coverage']
         }
     ];
 
     const features = [
         {
-            title: 'حضور در Local Pack',
-            description: 'هدف ما قرار دادن شما در ۳ نتیجه اول گوگل مپ است که بیشترین کلیک را دریافت می‌کنند.',
+            title: 'Local Pack Presence',
+            description: 'Our goal is to place you in Google Maps\u2019 top 3 results \u2014 the ones that earn the most clicks.',
             icon: "star",
             color: 'text-yellow-500'
         },
         {
-            title: 'جستجوهای صوتی',
-            description: 'بهینه‌سازی برای عباراتی مثل "رستوران نزدیک من" که در جستجوهای موبایل و صوتی رایج هستند.',
+            title: 'Voice Search',
+            description: 'Optimized for phrases like \u201crestaurant near me\u201d that dominate mobile and voice searches.',
             icon: "phone",
             color: 'text-blue-500'
         },
         {
-            title: 'افزایش تماس و مسیریابی',
-            description: 'تبدیل جستجوگران به مشتریان واقعی که با شما تماس می‌گیرند یا به فروشگاه شما می‌آیند.',
+            title: 'More Calls & Directions',
+            description: 'Turning searchers into real customers who call you or walk into your store.',
             icon: "navigation",
             color: 'text-green-500'
         }
     ];
 
     const stats = [
-        { metric: 'جستجوی محلی', label: 'دیده شدن در نتایج گوگل', color: 'text-blue-600', icon: "search" },
-        { metric: 'مراجعه حضوری', label: 'جذب مشتریان اطراف شما', color: 'text-green-800', icon: "store" },
-        { metric: '۳x', label: 'افزایش تماس‌های تلفنی', color: 'text-purple-600', icon: "phone" },
-        { metric: 'مالکیت کامل', label: 'پروفایل مپ به نام شما', color: 'text-orange-600', icon: "map-pin" }
+        { metric: 'Local search', label: 'Visible in Google results', color: 'text-blue-600', icon: "search" },
+        { metric: 'Walk-in traffic', label: 'Customers from around you', color: 'text-green-800', icon: "store" },
+        { metric: '3x', label: 'More incoming phone calls', color: 'text-purple-600', icon: "phone" },
+        { metric: 'Full ownership', label: 'Map profile in your name', color: 'text-orange-600', icon: "map-pin" }
     ];
 
     const faqs = [
         {
-            question: 'آیا بدون وب‌سایت هم می‌توان سئو محلی انجام داد؟',
-            answer: 'بله، پروفایل گوگل مپ مستقل از سایت عمل می‌کند، اما داشتن وب‌سایت بهینه‌شده تأثیر بسیار زیادی در رتبه گرفتن پروفایل مپ شما دارد.'
+            question: 'Can I do local SEO without a website?',
+            answer: 'Yes \u2014 a Google Maps profile works independently of a website, but having an optimized site dramatically boosts your Maps profile\u2019s rankings.'
         },
         {
-            question: 'NAP چیست و چرا مهم است؟',
-            answer: 'NAP مخفف Name, Address, Phone است. یکسان بودن این اطلاعات در تمام سطح وب (سایت، اینستاگرام، دایرکتوری‌ها) مهمترین سیگنال اعتماد برای گوگل است.'
+            question: 'What is NAP and why does it matter?',
+            answer: 'NAP stands for Name, Address, Phone. Keeping this information identical across the web (your site, social profiles, directories) is Google\u2019s most important trust signal.'
         },
         {
-            question: 'چگونه نظرات منفی را مدیریت کنیم؟',
-            answer: 'نظرات منفی فرصتی برای نشان دادن حرفه‌ای بودن شماست. ما به شما یاد می‌دهیم چطور با پاسخگویی صحیح، حتی مشتری ناراضی را به وفادار تبدیل کنید.'
+            question: 'How do you handle negative reviews?',
+            answer: 'Negative reviews are a chance to show your professionalism. We teach you how the right response can turn even an unhappy customer into a loyal one.'
         },
         {
-            question: 'آیا سئو محلی برای فروشگاه‌های آنلاین هم مفید است؟',
-            answer: 'اگر انبار یا دفتر فیزیکی دارید بله، اما سئو محلی عمدتاً برای کسب‌وکارهایی است که با مشتریان در یک موقعیت جغرافیایی تعامل دارند.'
+            question: 'Is local SEO useful for online stores too?',
+            answer: 'If you have a physical warehouse or office, yes \u2014 but local SEO mainly serves businesses that interact with customers in a specific location.'
         }
     ];
 
 
 
 const breadcrumbs = [
-    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-    { position: 2, name: 'خدمات سئو', item: 'https://asreseo.com/services/seo/' },
-    { position: 3, name: 'سئو محلی و گوگل مپ', item: 'https://asreseo.com/services/seo/local-seo/' },
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'SEO Services', item: 'https://asreseo.com/services/seo/' },
+    { position: 3, name: 'Local SEO & Google Maps', item: 'https://asreseo.com/services/seo/local-seo/' },
   ];
 
 ---
-<BaseLayout title='سئو محلی | ثبت گوگل مپ و جذب مشتری | عصر سئو' description='خدمات تخصصی سئو محلی برای کسب‌وکارهای فیزیکی. ثبت و بهینه‌سازی گوگل مپ، مدیریت نظرات، و جذب مشتریان از محله و شهر شما.' keywords='سئو محلی, Local SEO, ثبت در گوگل مپ, Google Business Profile, افزایش مشتری محلی, لوکال سئو' canonical='https://asreseo.com/services/seo/local-seo/' ogType='website' ogUrl='https://asreseo.com/services/seo/local-seo/' ogImages={[{ url: "/og/local-seo-hero.jpg", width: 1200, height: 630, alt: "سئو محلی و گوگل مپ | عصر سئو" }]} twitterCard='summary_large_image'
-  ogTitle='سئو محلی (Local SEO) | جذب مشتریان اطراف شما | عصر سئو'
+<BaseLayout lang="en" title='Local SEO | Google Maps Listing & Customer Growth | AsreSEO' description='Specialized local SEO for brick-and-mortar businesses. Google Maps setup & optimization, review management, and winning customers from your own neighborhood and city.' keywords='local SEO, Google Maps listing, Google Business Profile, more local customers' canonical='/services/seo/local-seo/' ogType='website' ogUrl='https://asreseo.com/services/seo/local-seo/' ogImages={[{ url: "/og/local-seo-hero.jpg", width: 1200, height: 630, alt: "Local SEO & Google Maps | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Local SEO | Win Customers Around You | AsreSEO'
 
-  ogDescription='کسب‌وکار خود را به مشتریان نزدیکتان معرفی کنید. بهینه‌سازی نقشه گوگل و جستجوهای محلی.'
+  ogDescription='Introduce your business to nearby customers. Google Maps and local search optimization.'
 >
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
             <script id="structured-data" type="application/ld+json" is:inline
                 set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/seo/local-seo/', image: '/og/local-seo-hero.jpg' }))}
             />
 
-            <Header />
+            <Header lang="en" />
             <BreadcrumbStructuredData items={breadcrumbs} />
 
             <main>
-                <ServiceHero
-                    badge="سلطان محله خود باشید"
-                    title="سئو محلی (Local SEO)"
-                    titleHighlight="محلی (Local SEO)"
-                    description="مشتریان دقیقاً در لحظه‌ای که به شما نیاز دارند، شما را پیدا کنند. افزایش تماس، مسیریابی و فروش حضوری با تسخیر نتایج گوگل مپ."
-                    primaryCtaText="ثبت کسب‌وکارتان در گوگل"
-                    secondaryCtaText="مشاوره سئو محلی"
+                <ServiceHero lang="en"
+                    badge="Own Your Neighborhood"
+                    title="Local SEO That Wins Nearby Customers"
+                    titleHighlight="Local SEO"
+                    description="Get found by customers at the exact moment they need you. More calls, more directions and more walk-in sales by conquering Google Maps results."
+                    primaryCtaText="List My Business on Google"
+                    secondaryCtaText="Local SEO Consultation"
                     imageSrc="/images/local-seo-hero.webp"
-                    imageAlt="سئو محلی و گوگل مپ"
+                    imageAlt="Local SEO and Google Maps"
                     theme="green"
                 />
 
-                <ServiceStats stats={stats} theme="green" />
+                <ServiceStats lang="en" stats={stats} theme="green" />
 
                 <!-- Local Services Section -->
                 <section class="section-padding">
                     <div class="container-custom">
                         <div class="text-center mb-12">
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                                خدمات <span class="gradient-text">سئو محلی</span> ما
+                                Our <span class="gradient-text">Local SEO</span> Services
                             </h2>
                             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                                راهکارهای جامع برای اینکه انتخاب اول مشتریان هم‌شهری خود باشید
+                                Complete solutions to become your neighbors\u2019 first choice
                             </p>
                         </div>
 
@@ -218,10 +217,10 @@ const breadcrumbs = [
                     <div class="container-custom">
                         <div class="text-center mb-12">
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                                چرا <span class="gradient-text">سئو محلی</span> ضروری است؟
+                                Why Is <span class="gradient-text">Local SEO</span> Essential?
                             </h2>
                             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                                رفتار کاربران تغییر کرده است؛ آن‌ها به دنبال نزدیک‌ترین و بهترین گزینه هستند
+                                User behavior has changed \u2014 people want the nearest, best option
                             </p>
                         </div>
 
@@ -247,22 +246,22 @@ const breadcrumbs = [
                     </div>
                 </section>
 
-                <ServiceFAQ
-                    title="سوالات متداول"
-                    highlightWord="متداول"
-                    subtitle="پاسخ به سوالات شما درباره سئو محلی و گوگل مپ"
+                <ServiceFAQ lang="en"
+                    title="Frequently Asked Questions"
+                    highlightWord="Asked Questions"
+                    subtitle="Answers to your questions about local SEO & Google Maps"
                     faqs={faqs}
                 />
 
-                <ServiceCTA
-                    title="مشتریان اطراف خود را از دست ندهید!"
-                    description="همین حالا حضور خود را در گوگل مپ قدرتمند کنید و تماس‌های ورودی خود را چند برابر کنید. ما راه را بلدیم."
-                    primaryText="ثبت سفارش سئو محلی"
-                    secondaryText="مشاوره رایگان"
+                <ServiceCTA lang="en"
+                    title="Don\u2019t lose the customers next door!"
+                    description="Strengthen your Google Maps presence today and multiply your incoming calls. We know the way."
+                    primaryText="Order Local SEO"
+                    secondaryText="Free Consultation"
                     primaryClass="bg-green-700 hover:bg-green-800 text-white font-semibold shadow-lg shadow-green-700/30"
                 />
             </main>
 
-            <Footer />
+            <Footer lang="en" />
         </div>
 </BaseLayout>

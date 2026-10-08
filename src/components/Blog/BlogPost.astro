@@ -1,214 +1,218 @@
 ---
 import Card from '../ui/card/Card.astro';
 import CardContent from '../ui/card/CardContent.astro';
-import CardHeader from '../ui/card/CardHeader.astro';
 import Accordion from '../ui/Accordion.astro';
 import AccordionContent from '../ui/AccordionContent.astro';
 import AccordionItem from '../ui/AccordionItem.astro';
 import AccordionTrigger from '../ui/AccordionTrigger.astro';
-import Badge from '../ui/badge/Badge.astro';
 import Button from '../ui/button/Button.astro';
 import Icon from '../ui/Icon.astro';
 import Picture from '../ui/Picture.astro';
 import BlogCTA from './BlogCTA.astro';
 
-const { post, Content }: any = Astro.props;
+interface Props {
+  post: any;
+  Content: any;
+  lang?: string;
+}
 
-// P1.8: derived values for optional frontmatter fields.
-// Persian read-time label. All 9 posts supply values like "۱۴ دقیقه"; a bare
-// number (`readTime: 14`) is treated as minutes, ASCII digits are converted to
-// Persian, and "مطالعه" is appended so the line reads naturally next to the
-// clock icon ("۱۴ دقیقه مطالعه"). Missing/empty renders nothing at all.
-const toPersianDigits = (s: string) => s.replace(/[0-9]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[Number(d)]);
-const readTimeLabel = (value: unknown): string => {
-    if (value === undefined || value === null) return '';
-    const raw = String(value).trim();
-    if (!raw) return '';
-    if (/^[0-9]+$/.test(raw)) return `${toPersianDigits(raw)} دقیقه مطالعه`;
-    const s = toPersianDigits(raw);
-    if (s.includes('مطالعه')) return s;
-    if (s.includes('دقیقه')) return `${s} مطالعه`;
-    return s;
-};
-const readTime = readTimeLabel(post.readTime);
+const { post, Content, lang = 'en' } = Astro.props as Props;
+void lang;
+const dateLocale = 'en-US';
 
-// Tag chips: trimmed non-empty strings only. When the list is empty the whole
-// block below renders nothing — no empty container, no heading.
+const readTime = (() => {
+  const raw = String(post.readTime ?? '').trim();
+  if (!raw) return '';
+  if (/^[0-9]+$/.test(raw)) return `${raw} min read`;
+  return raw;
+})();
+
 const tags: string[] = (Array.isArray(post.tags) ? post.tags : [])
-    .map((tag: unknown) => String(tag ?? '').trim())
-    .filter(Boolean);
+  .map((tag: unknown) => String(tag ?? '').trim())
+  .filter(Boolean);
 
-// Only a real boolean `true` shows the ویژه badge; false/undefined/"false"
-// emit no markup (the schema normalises featured to a boolean anyway).
 const featured = post.featured === true;
 
 const jsonLdFAQ = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": post.faqs?.map((faq: any) => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    })) || []
-  };
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": post.faqs?.map((faq: any) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  })) || []
+};
 ---
+
 {post.faqs && post.faqs.length > 0 && (
   <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdFAQ)} />
 )}
+
 <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <header class="mb-8">
-          <div class="flex items-center gap-4 mb-6">
-            <Badge class="bg-primary/10 text-blue-700">
-              {post.category}
-            </Badge>
-            {featured && (
-              <Badge class="bg-green-100 text-green-800">
-                ویژه
-              </Badge>
-            )}
-          </div>
-          
-          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-            {post.title}
-          </h1>
-          
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 text-sm text-gray-500 gap-4">
-            <div class="flex flex-wrap items-center gap-4">
-              <div class="flex items-center gap-1">
-                <Icon name="user" class="h-4 w-4" />
-                {post.author}
-              </div>
-              {readTime && (
-                <div class="flex items-center gap-1">
-                  <Icon name="clock" class="h-4 w-4" />
-                  {readTime}
-                </div>
-              )}
-              <span>{new Date(post.date).toLocaleDateString('fa-IR')}</span>{post.updated && (
-                <span>به‌روزرسانی: {new Date(post.updated).toLocaleDateString('fa-IR')}</span>
-              )}
-            </div>
-            
-            <div class="flex gap-2">
-              <Button 
-                variant="outline" 
-                size="sm"
-                data-share-btn
-              >
-                <Icon name="share2" class="h-4 w-4 ml-2" />
-                اشتراک‌گذاری
-              </Button>
-            </div>
-          </div>
-          
-<Picture
-            src={post.image}
-            alt={post.title}
-            eager={true}
-            aspectRatio="16 / 9"
-            class="w-full h-64 md:h-96 object-cover rounded-lg mb-8"
-          />
-        </header>
-
-        <!-- Table of Contents Accordion -->
-        {post.tableOfContents && post.tableOfContents.length > 0 && (
-          <div class="mb-8">
-            <Accordion type="single" collapsible class="w-full">
-              <AccordionItem value="toc">
-                <AccordionTrigger class="text-lg font-semibold">
-                  <div class="flex items-center gap-2">
-                    <Icon name="list" class="h-5 w-5" />
-                    فهرست مطالب
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div class="grid md:grid-cols-2 gap-2 pt-4">
-                    {post.tableOfContents.map((item: any, index: number) => (
-                      <a
-                       
-                        href={`#${item.id}`}
-                        class={`block text-sm hover:text-primary transition-colors p-2 rounded hover:bg-primary/5 ${
-                          item.level === 2 ? 'font-medium' : 'mr-4 text-gray-600'
-                        }`}
-                      >
-                        <div class="flex items-center gap-2">
-                          <Icon name="chevron-right" class="h-3 w-3" />
-                          {item.title}
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        )}
-
-        <!-- Key Takeaways -->
-        {post.keyTakeaways && post.keyTakeaways.length > 0 && (
-          <aside class="speakable-summary mb-8 rounded-xl border border-gray-200 bg-gray-50/70 px-5 py-5 sm:px-6">
-            <!-- h2, not h3: this aside sits directly under the article h1, and the
-                 MDX body's top-level sections are h2. Marking it h3 skipped a
-                 level and broke the document outline (affects screen-reader
-                 navigation). text-base keeps the visual size unchanged. -->
-            <h2 class="font-bold text-base text-gray-900 mb-4 flex items-center gap-2">
-              <Icon name="check" class="h-5 w-5 text-green-800" />
-              نکات کلیدی
-            </h2>
-            <ul class="space-y-2.5">
-              {post.keyTakeaways.map((takeaway: any) => (
-                <li class="flex items-start gap-2.5 text-sm leading-relaxed text-gray-700">
-                  <Icon name="check" class="h-4 w-4 text-green-800 shrink-0 mt-0.5" />
-                  <span>{takeaway}</span>
-                </li>
-              ))}
-            </ul>
-          </aside>
-        )}
-
-        <div class="grid grid-cols-1 gap-8">
-
-          <!-- Article Content -->
-          <div class="prose prose-lg max-w-none mb-12 prose-headings:text-gray-900 prose-h2:text-2xl prose-h3:text-xl prose-p:text-gray-700 prose-p:leading-relaxed prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 blog-body">
-              <Content />
-          </div>
-
-          <!-- FAQs -->
-          {post.faqs && post.faqs.length > 0 && (
-            <section class="mb-12">
-              <h2 class="text-2xl font-bold mb-6">سوالات متداول</h2>
-              <Accordion type="single" collapsible>
-                {post.faqs.map((faq: any, index: number) => (
-                  <AccordionItem value={`faq-${index}`} defaultOpen={index === 0}>
-                    <AccordionTrigger class="text-right font-semibold text-gray-900">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <p class="leading-relaxed text-gray-600">{faq.answer}</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </section>
-          )}
-
-          {tags.length > 0 && (
-            <div class="flex flex-wrap gap-2 mb-8">
-              {tags.map((tag) => (
-                <Badge variant="outline">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          )}
-
-          <BlogCTA slug={post.slug} />
+  <!-- Article Header -->
+  <header class="mb-12">
+    <div class="flex flex-wrap items-center gap-3 mb-6 font-mono text-xs">
+      <span class="px-3 py-1 bg-black border border-white/20 text-[#CCFF00] font-bold uppercase">
+        [{post.category.toUpperCase()}]
+      </span>
+      {featured && (
+        <span class="px-3 py-1 bg-black border border-[#CCFF00] text-[#CCFF00] font-bold uppercase">
+          ★ FEATURED_DOSSIER
+        </span>
+      )}
+    </div>
+    
+    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black uppercase text-white mb-8 leading-[1.08] tracking-tight">
+      {post.title}
+    </h1>
+    
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 text-xs font-mono text-slate-400 gap-4 pb-6 border-b border-white/15">
+      <div class="flex flex-wrap items-center gap-4">
+        <div class="flex items-center gap-2">
+          <span class="text-[#CCFF00]">AUTHOR:</span>
+          <span class="text-white font-bold">{post.author}</span>
         </div>
-      </article>
+        {readTime && (
+          <div class="flex items-center gap-2">
+            <span class="text-[#CCFF00]">READ_TIME:</span>
+            <span class="text-white">{readTime}</span>
+          </div>
+        )}
+        <div class="flex items-center gap-2">
+          <span class="text-[#CCFF00]">PUBLISHED:</span>
+          <span>{new Date(post.date).toLocaleDateString(dateLocale)}</span>
+        </div>
+        {post.updated && (
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-400">UPDATED:</span>
+            <span>{new Date(post.updated).toLocaleDateString(dateLocale)}</span>
+          </div>
+        )}
+      </div>
+      
+      <div>
+        <Button 
+          variant="outline" 
+          size="sm"
+          class="border-2 border-white/20 bg-black text-white hover:border-[#CCFF00] hover:text-[#CCFF00] font-mono text-xs uppercase px-4 py-2 rounded-none"
+          data-share-btn
+        >
+          <Icon name="share2" class="h-3.5 w-3.5 mr-2 text-[#CCFF00]" />
+          SHARE_DOSSIER
+        </Button>
+      </div>
+    </div>
+    
+    <div class="border-2 border-white/20 bg-black brutalist-card brutalist-shadow-white overflow-hidden mb-12">
+      <Picture
+        src={post.image}
+        alt={post.title}
+        eager={true}
+        aspectRatio="16 / 9"
+        class="w-full h-72 sm:h-96 lg:h-112 object-cover opacity-95"
+      />
+    </div>
+  </header>
+
+  <!-- Table of Contents Accordion -->
+  {post.tableOfContents && post.tableOfContents.length > 0 && (
+    <div class="mb-10 p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card">
+      <Accordion type="single" collapsible class="w-full">
+        <AccordionItem value="toc">
+          <AccordionTrigger class="text-base sm:text-lg font-black uppercase tracking-wider text-white">
+            <div class="flex items-center gap-3 font-mono">
+              <span class="text-[#CCFF00]">[INDEX_DIRECTORY]</span>
+              <span>Table of Contents</span>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent>
+            <div class="grid md:grid-cols-2 gap-2 pt-4 font-mono text-xs">
+              {post.tableOfContents.map((item: any) => (
+                <a
+                  href={`#${item.id}`}
+                  class={`block hover:text-[#CCFF00] transition-colors p-2.5 bg-black/60 border border-white/10 hover:border-[#CCFF00] ${
+                    item.level === 2 ? 'font-bold text-white' : 'ml-4 text-slate-400'
+                  }`}
+                >
+                  <div class="flex items-center gap-2">
+                    <span class="text-[#CCFF00]">→</span>
+                    <span class="truncate">{item.title}</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
+  )}
+
+  <!-- Key Takeaways -->
+  {post.keyTakeaways && post.keyTakeaways.length > 0 && (
+    <aside class="speakable-summary mb-12 p-6 sm:p-8 bg-[#0a0e17] border-2 border-[#CCFF00] brutalist-shadow-yellow">
+      <div class="font-mono text-xs text-[#CCFF00] uppercase font-bold tracking-widest mb-3">
+        [KEY_EXECUTIVE_TAKEAWAYS]
+      </div>
+      <h2 class="font-black text-xl sm:text-2xl text-white uppercase mb-6 tracking-tight">
+        Core Architectural Principles
+      </h2>
+      <ul class="space-y-3 font-mono text-xs sm:text-sm">
+        {post.keyTakeaways.map((takeaway: any) => (
+          <li class="flex items-start gap-3 text-slate-300 leading-relaxed">
+            <span class="text-[#CCFF00] font-black shrink-0">[✓]</span>
+            <span>{takeaway}</span>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  )}
+
+  <!-- Article Content -->
+  <div class="prose prose-lg prose-invert max-w-none mb-14 prose-headings:text-white prose-headings:font-black prose-headings:uppercase prose-h2:text-2xl sm:prose-h2:text-3xl prose-h3:text-xl prose-p:text-slate-300 prose-p:leading-relaxed prose-strong:text-white prose-strong:font-black prose-ul:text-slate-300 prose-ol:text-slate-300 prose-li:text-slate-300 prose-code:text-[#CCFF00] prose-code:bg-black prose-code:p-1 prose-pre:border-2 prose-pre:border-white/20 prose-pre:bg-black blog-body font-sans">
+    <Content />
+  </div>
+
+  <!-- FAQs -->
+  {post.faqs && post.faqs.length > 0 && (
+    <section class="mb-14 p-6 sm:p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card">
+      <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[FREQUENT_QUERIES]</div>
+      <h2 class="text-2xl sm:text-3xl font-black uppercase text-white mb-6">Frequently Asked Questions</h2>
+      <Accordion type="single" collapsible>
+        {post.faqs.map((faq: any, index: number) => (
+          <AccordionItem value={`faq-${index}`} defaultOpen={index === 0}>
+            <AccordionTrigger class="text-left font-bold text-base text-white hover:text-[#CCFF00] uppercase py-4">
+              <span class="font-mono text-xs text-[#CCFF00] me-3">{String(index + 1).padStart(2, '0')} //</span>
+              {faq.question}
+            </AccordionTrigger>
+            <AccordionContent>
+              <div class="p-4 bg-black/60 border border-white/10 font-mono text-xs sm:text-sm text-slate-300 leading-relaxed">
+                {faq.answer}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </section>
+  )}
+
+  <!-- Tags -->
+  {tags.length > 0 && (
+    <div class="flex flex-wrap items-center gap-2 mb-12 pb-6 border-b border-white/15 font-mono text-xs">
+      <span class="text-slate-500 uppercase me-2">[TAXONOMY_TAGS]:</span>
+      {tags.map((tag) => (
+        <span class="px-2.5 py-1 bg-black border border-white/20 text-slate-300 hover:border-[#CCFF00] hover:text-[#CCFF00] uppercase">
+          #{tag}
+        </span>
+      ))}
+    </div>
+  )}
+
+  <!-- In-Post CTA Box -->
+  <BlogCTA slug={post.slug} lang="en" />
+</article>
 
 <script>
   document.querySelectorAll('[data-share-btn]').forEach((b) =>
@@ -232,23 +236,35 @@ const jsonLdFAQ = {
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.75rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
     font-size: 0.875rem;
+    background: #000000;
+    margin-bottom: 2rem;
   }
   .blog-body th,
   .blog-body td {
-    padding: 0.625rem 0.875rem;
-    border-bottom: 1px solid #f3f4f6;
-    text-align: right;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: start;
     vertical-align: top;
   }
   .blog-body thead th {
-    background: #f9fafb;
-    font-weight: 700;
-    white-space: nowrap;
+    background: #0a0e17;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #CCFF00;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   }
   .blog-body tbody tr:last-child td {
     border-bottom: 0;
+  }
+  .blog-body a {
+    color: #CCFF00 !important;
+    text-decoration: underline;
+    font-weight: 700;
+  }
+  .blog-body a:hover {
+    color: #FFFFFF !important;
   }
 </style>

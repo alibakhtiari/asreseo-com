@@ -19,45 +19,44 @@ import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructure
 
 
 
-
 const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    'name': 'افزایش اعتبار صفحه و دامنه و سئو محتوا',
-    'description': 'خدمات تخصصی افزایش اعتبار صفحه (Page Authority) و اعتبار دامنه با استراتژی تاپیکال آتوریتی و لینک‌سازی اصولی.',
+    'name': 'Page & Domain Authority Growth with Content SEO',
+    'description': 'Specialized services for growing Page Authority and domain authority with topical authority strategy and principled link building.',
     'serviceType': 'SEO Content & Page Authority Optimization',
     'provider': {
         '@type': 'Organization',
-        'name': 'عصر سئو',
+        'name': 'AsreSEO',
         'url': 'https://asreseo.com'
     },
-    'areaServed': 'Iran',
+    'inLanguage': 'en-US',
     'hasOfferCatalog': {
         '@type': 'OfferCatalog',
-        'name': 'خدمات سئو محتوا و اعتبار',
+        'name': 'Content SEO & Authority Services',
         'itemListElement': [
             {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'افزایش اعتبار صفحه (Page Authority)',
-                    'description': 'استراتژی ارتقای پیج آتوریتی با تولید محتوای ارزشمند و لینک‌سازی ساختارمند'
+                    'name': 'Page Authority Growth',
+                    'description': 'A strategy for lifting page authority with valuable content and structured link building'
                 }
             },
             {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'استراتژی تاپیکال آتوریتی (Topical Authority)',
-                    'description': 'پوشش کامل خوشه‌های موضوعی محتوا برای کسب برتری بر رقبا'
+                    'name': 'Topical Authority Strategy',
+                    'description': 'Full coverage of content topic clusters to outperform competitors'
                 }
             },
             {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'لینک‌سازی خارجی و رپورتاژ آگهی',
-                    'description': 'ایجاد بک‌لینک‌های باکیفیت کلاه سفید از رسانه‌های معتبر'
+                    'name': 'Outreach Link Building & Sponsored Content',
+                    'description': 'Earning quality white-hat backlinks from reputable publishers'
                 }
             }
         ]
@@ -69,83 +68,83 @@ const structuredData = {
     const contentServices = [
         {
             icon: "edit3",
-            title: 'تولید محتوای SEO محور',
-            description: 'تولید مقالات عمیق و کاربردی که هم نیاز کاربر را رفع می‌کند و هم برای گوگل بهینه شده است.',
-            benefits: ['جذب ترافیک ارگانیک', 'افزایش زمان حضور کاربر', 'پاسخ به نیاز کاربر']
+            title: 'SEO-Driven Content Production',
+            description: 'In-depth, practical articles that solve real user needs and are optimized for Google.',
+            benefits: ['Organic traffic growth', 'Longer user dwell time', 'Answering real user needs']
         },
         {
             icon: "trending-up",
-            title: 'استراتژی Topical Authority',
-            description: 'پوشش جامع تمام زیرمجموعه‌های موضوعی کسب‌وکار شما برای اثبات تخصص به گوگل.',
-            benefits: ['مرجعیت در بازار', 'رتبه‌بندی سریع‌تر', 'اعتماد گوگل']
+            title: 'Topical Authority Strategy',
+            description: 'Comprehensive coverage of every subtopic in your business to prove expertise to Google.',
+            benefits: ['Market leadership', 'Faster rankings', 'Google\u2019s trust']
         },
         {
             icon: "search",
-            title: 'تحقیق کلمات کلیدی معنایی',
-            description: 'فراتر از کلمات کلیدی ساده؛ تمرکز بر نیت کاربر (User Intent) و مفاهیم مرتبط.',
-            benefits: ['هدف‌گیری دقیق', 'نرخ تبدیل بالاتر', 'پوشش کامل موضوع']
+            title: 'Semantic Keyword Research',
+            description: 'Beyond plain keywords \u2014 focusing on user intent and related concepts.',
+            benefits: ['Precise targeting', 'Higher conversion rate', 'Full topic coverage']
         },
         {
             icon: "align-justify",
-            title: 'بهینه‌سازی محتوای موجود',
-            description: 'بروزرسانی و غنی‌سازی مقالات قدیمی برای بازگرداندن رتبه‌های از دست رفته.',
-            benefits: ['رشد سریع ترافیک', 'استفاده از دارایی موجود', 'بهبود تازگی محتوا']
+            title: 'Existing Content Optimization',
+            description: 'Updating and enriching older articles to win back lost rankings.',
+            benefits: ['Fast traffic growth', 'Leveraging existing assets', 'Improved content freshness']
         }
     ];
 
     const authorityServices = [
         {
             icon: "link",
-            title: 'لینک‌سازی خارجی (Link Building)',
-            description: 'کسب بک‌لینک‌های باکیفیت از سایت‌های معتبر و مرتبط با حوزه کاری شما.',
-            benefits: ['افزایش اعتبار دامنه', 'بهبود رتبه کلمات سخت', 'ترافیک ارجاعی']
+            title: 'External Link Building',
+            description: 'Earning quality backlinks from reputable sites relevant to your industry.',
+            benefits: ['Higher domain authority', 'Better hard-keyword rankings', 'Referral traffic']
         },
         {
             icon: "file-text",
-            title: 'رپورتاژ آگهی هدفمند',
-            description: 'انتشار اخبار و مقالات شما در رسانه‌های خبری بزرگ برای برندسازی و سئو.',
-            benefits: ['برندسازی قوی', 'لینک‌های دائمی', 'اعتماد مخاطب']
+            title: 'Targeted Sponsored Content',
+            description: 'Publishing your news and articles in major outlets for branding and SEO.',
+            benefits: ['Strong branding', 'Permanent links', 'Audience trust']
         },
         {
             icon: "shield",
-            title: 'مدیریت پروفایل لینک',
-            description: 'پایش مداوم بک‌لینک‌ها و حذف لینک‌های اسپم (Disavow) برای جلوگیری از جریمه.',
-            benefits: ['امنیت سایت', 'جلوگیری از پنالتی', 'حفظ سلامت دامنه']
+            title: 'Link Profile Management',
+            description: 'Continuous backlink monitoring and disavowing spammy links to prevent penalties.',
+            benefits: ['Site security', 'Penalty prevention', 'Healthy domain']
         },
         {
             icon: "target",
-            title: 'لینک‌سازی داخلی پیشرفته',
-            description: 'طراحی ساختار لینک‌های داخلی برای توزیع قدرت (Link Juice) در تمام صفحات سایت.',
-            benefits: ['اینکس بهتر', 'افزایش قدرت صفحات', 'ناوبری بهتر']
+            title: 'Advanced Internal Linking',
+            description: 'Designing your internal link structure to spread link equity across every page.',
+            benefits: ['Better indexing', 'Stronger pages', 'Better navigation']
         }
     ];
 
     const contentTypes = [
         {
-            title: 'مقاله تخصصی',
-            description: 'مقاله‌های عمیق و فنی برای جذب مشتریان حرفه‌ای',
-            features: ['بررسی جامع موضوع', 'نمودارها و آیتم‌پسند', 'فراخوان به اقدام قوی'],
+            title: 'In-Depth Expert Articles',
+            description: 'Deep, technical pieces that attract professional buyers',
+            features: ['Comprehensive topic coverage', 'Charts and reader-friendly visuals', 'Strong call to action'],
             icon: "file-text",
             color: 'blue'
         },
         {
-            title: 'راهنمای عملی',
-            description: 'آموزش گام به گام حل مشکلات کاربران',
-            features: ['توضیح مرحله به مرحله', 'نمونه‌های عملی', 'بهینه برای رتبه‌بندی'],
+            title: 'Practical How-To Guides',
+            description: 'Step-by-step tutorials that solve user problems',
+            features: ['Step-by-step walkthroughs', 'Real-world examples', 'Optimized to rank'],
             icon: "book-open",
             color: 'green'
         },
         {
-            title: 'مطالعات موردی',
-            description: 'نمایش نتایج واقعی پروژه‌های موفق',
-            features: ['تقارن با مشتریان', 'اعداد و آمار واقعی', 'اعتمادسازی بالا'],
+            title: 'Case Studies',
+            description: 'Showcasing real results from successful projects',
+            features: ['Client-aligned stories', 'Real numbers and stats', 'High trust-building'],
             icon: "target",
             color: 'purple'
         },
         {
-            title: 'پست‌های ترند',
-            description: 'پوشش اخبار روز و موضوعات داغ',
-            features: ['سرعت تغییرات بالا', 'بازاریابی ویروسی', 'ترافیک فوری'],
+            title: 'Trend Coverage',
+            description: 'Covering breaking news and hot topics',
+            features: ['Fast turnaround', 'Viral marketing potential', 'Instant traffic'],
             icon: "trending-up",
             color: 'orange'
         }
@@ -154,10 +153,10 @@ const structuredData = {
     // Qualitative process facts, not performance percentages — no invented
     // traffic/CVR figures (see src/lib/site-claims.ts authenticity policy).
     const stats = [
-        { metric: '۵ مرحله', label: 'فرآیند اجرایی مستند', color: 'text-amber-600', icon: "list-todo" },
-        { metric: '۳ لایه', label: 'محتوا، لینک داخلی، بک‌لینک', color: 'text-purple-600', icon: "layers" },
-        { metric: 'ماهانه', label: 'گزارش پیشرفت قابل راستی‌آزمایی', color: 'text-green-800', icon: "bar-chart3" },
-        { metric: 'کلاه سفید', label: 'روش لینک‌سازی و رپورتاژ', color: 'text-blue-600', icon: "check-circle" }
+        { metric: '5 steps', label: 'Documented delivery process', color: 'text-amber-600', icon: "list-todo" },
+        { metric: '3 layers', label: 'Content, internal links, backlinks', color: 'text-purple-600', icon: "layers" },
+        { metric: 'Monthly', label: 'Verifiable progress reports', color: 'text-green-800', icon: "bar-chart3" },
+        { metric: 'White-hat', label: 'Link building & sponsored content', color: 'text-blue-600', icon: "check-circle" }
     ];
 
     // Commercial half of the /services/seo/content-authority ↔ /blog/page-authority-guide
@@ -166,176 +165,177 @@ const structuredData = {
     // DA/PA figures or client numbers (see src/lib/site-claims.ts).
     const processSteps = [
         {
-            step: 'ممیزی صفحات هدف',
-            desc: 'تعیین اینکه کدام صفحات — لندینگ‌ها و مقالات کلیدی — باید اعتبار بگیرند و بررسی وضعیت فعلی لینک داخلی، محتوا و بک‌لینک هرکدام.'
+            step: 'Target-page audit',
+            desc: 'Deciding which pages \u2014 landing pages and key articles \u2014 should gain authority, and reviewing each one\u2019s current internal links, content and backlinks.'
         },
         {
-            step: 'معماری لینک داخلی',
-            desc: 'تعیین مسیر لینک از صفحات قوی سایت به صفحات هدف، اصلاح انکرها و افزودن بخش‌های مرتبطی که اکنون بدون لینک مانده‌اند.'
+            step: 'Internal link architecture',
+            desc: 'Mapping link paths from your strongest pages to target pages, fixing anchors and adding missing links to sections left unlinked.'
         },
         {
-            step: 'تقویت محتوای صفحه',
-            desc: 'بازنویسی و تکمیل صفحه بر اساس پرسش‌های واقعی جستجو: ساختار سرفصل‌ها، پوشش زیرموضوع‌ها و داده ساختاریافته.'
+            step: 'Target-page content upgrade',
+            desc: 'Rewriting and completing each page around real search queries: heading structure, subtopic coverage and structured data.'
         },
         {
-            step: 'لینک‌سازی خارجی هدفمند',
-            desc: 'رپورتاژ و همکاری محتوایی فقط با رسانه‌های مرتبط و معتبر حوزه شما، همراه با پایش لینک‌های ورودی و کنار گذاشتن موارد بی‌کیفیت.'
+            step: 'Targeted external link building',
+            desc: 'Sponsored content and content partnerships only with relevant, reputable outlets in your niche, plus monitoring inbound links and dropping low-quality ones.'
         },
         {
-            step: 'پایش و گزارش ماهانه',
-            desc: 'رصد جایگاه صفحات هدف، پرسش‌هایی که برای آن‌ها نمایش می‌گیرید و لینک‌های تازه ورودی، سپس ارائه گزارش و تعیین اولویت ماه بعد.'
+            step: 'Monthly tracking & reporting',
+            desc: 'Monitoring target-page positions, the queries they appear for and fresh inbound links, then reporting back and setting next month\u2019s priorities.'
         }
     ];
 
     const deliverables = [
         {
             icon: 'list-todo',
-            title: 'فهرست صفحات هدف با اولویت‌بندی',
-            description: 'مشخص می‌شود کدام صفحه، چرا و در چه ترتیبی کار می‌شود و هر صفحه اکنون چه وضعیتی دارد.'
+            title: 'Prioritized target-page list',
+            description: 'Exactly which page gets worked on, why, and in what order \u2014 plus each page\u2019s current state.'
         },
         {
             icon: 'link',
-            title: 'مستند معماری لینک داخلی',
-            description: 'فهرست لینک‌های مبدأ، مقصد و انکرهای پیشنهادی؛ چیزی که تیم شما می‌تواند خودش هم ادامه‌اش دهد.'
+            title: 'Internal link architecture document',
+            description: 'Source links, destination pages and suggested anchors \u2014 something your own team can keep running.'
         },
         {
             icon: 'file-text',
-            title: 'محتوای بازنویسی‌شده و منتشرشده',
-            description: 'نسخه نهایی هر صفحه هدف به‌همراه ساختار سرفصل‌ها و داده ساختاریافته، آماده انتشار روی سایت.'
+            title: 'Rewritten, publish-ready content',
+            description: 'The final version of each target page with heading structure and structured data, ready to publish.'
         },
         {
             icon: 'shield',
-            title: 'گزارش رپورتاژها و بک‌لینک‌های ورودی',
-            description: 'فهرست رسانه‌هایی که در آن‌ها منتشر شده و لینک‌های تازه‌ای که به صفحات هدف رسیده است.'
+            title: 'Sponsored content & inbound backlink report',
+            description: 'A list of the outlets you were published in and the fresh links pointing at your target pages.'
         },
         {
             icon: 'bar-chart3',
-            title: 'گزارش ماهانه پیشرفت',
-            description: 'وضعیت صفحات هدف در نتایج جستجو، پرسش‌های در حال رشد و کارهای انجام‌شده در ماه، همراه با اولویت ماه بعد.'
+            title: 'Monthly progress report',
+            description: 'Where your target pages stand in search results, fast-growing queries, the month\u2019s completed work and next month\u2019s priorities.'
         },
         {
             icon: 'file-text',
-            title: 'راهنمای اجرای داخلی تیم',
-            description: 'سندی که تیم شما با آن می‌تواند لینک‌سازی داخلی و به‌روزرسانی محتوا را بدون ما هم ادامه دهد.'
+            title: 'In-house execution playbook',
+            description: 'A guide your team can use to keep internal linking and content updates going without us.'
         }
     ];
 
     const reportSignals = [
-        'جایگاه صفحات هدف در نتایج جستجو و روند جابه‌جایی آن در سرچ کنسول گوگل',
-        'پرسش‌هایی که صفحه برای آن‌ها نمایش می‌گیرد و پرسش‌های تازه‌ای که اضافه شده‌اند',
-        'لینک‌های داخلی و بک‌لینک‌های ورودی جدید، و اینکه از کدام صفحه و کدام دامنه آمده‌اند',
-        'وضعیت فنی صفحه: ایندکس شدن، خطاهای خزنده و سرعت بارگذاری',
-        'پیشرفت پوشش خوشه موضوعی و زیرموضوع‌هایی که هنوز باید تکمیل شوند'
+        'Target-page positions in search results and how they move in Google Search Console',
+        'The queries each page appears for, plus newly added queries',
+        'New internal and inbound backlinks \u2014 and which page and domain they came from',
+        'Page health: indexation, crawler errors and load speed',
+        'Topic-cluster coverage progress and subtopics still to complete'
     ];
 
     const faqs = [
         {
-            question: 'چرا محتوا پادشاه است؟',
-            answer: 'چون گوگل به دنبال پاسخ دادن به سوالات کاربران است. محتوای باکیفیت تنها راهی است که می‌توانید به این نیاز پاسخ دهید و گوگل را راضی کنید.'
+            question: 'Why is content king?',
+            answer: 'Because Google exists to answer users\u2019 questions. Quality content is the only way to meet that need and keep Google happy.'
         },
         {
-            question: 'آیا خرید بک‌لینک توصیه می‌شود؟',
-            answer: 'خرید لینک‌های بی‌کیفیت و انبوه خطرناک است. ما بر روی "ساخت" لینک از طریق روابط عمومی، محتوای عالی و رپورتاژهای باکیفیت تمرکز داریم که کاملاً امن است.'
+            question: 'Is buying backlinks a good idea?',
+            answer: 'Buying bulk, low-quality links is dangerous. We focus on \u201cearning\u201d links through PR, great content and quality sponsored placements \u2014 which is completely safe.'
         },
         {
-            question: 'Topical Authority چقدر زمان می‌برد؟',
-            answer: 'بسته به رقابت حوزه شما، معمولاً با تولید ۲۰ تا ۵۰ مقاله مرتبط و لینک‌سازی داخلی صحیح، ظرف ۳ تا ۶ ماه می‌توانید به مرجعیت موضوعی برسید.'
+            question: 'How long does topical authority take?',
+            answer: 'Depending on your niche\u2019s competition, publishing 20\u201350 related articles with proper internal linking typically builds topical authority within 3\u20136 months.'
         },
         {
-            question: 'آیا محتوای شما کپی نیست؟',
-            answer: 'خیر، تمام محتواها توسط نویسندگان متخصص نوشته شده و از نظر یونیک بودن و کیفیت نگارش به دقت بررسی می‌شوند.'
+            question: 'Is your content original?',
+            answer: 'Yes \u2014 everything is written by specialist writers and carefully checked for uniqueness and writing quality.'
         },
         {
-            question: 'تأثیر رپورتاژ آگهی چقدر است؟',
-            answer: 'رپورتاژ آگهی اگر در رسانه درست و با متن مناسب منتشر شود، یکی از قوی‌ترین سیگنال‌های سئو است که هم اعتبار دامنه را بالا می‌برد و هم ترافیک مستقیم می‌آورد.'
+            question: 'How effective is sponsored content?',
+            answer: 'Published in the right outlet with the right copy, sponsored content is one of the strongest SEO signals: it lifts domain authority and brings direct traffic.'
         },
         {
-            question: 'پروژه افزایش اعتبار صفحه از کجا شروع می‌شود؟',
-            answer: 'با یک جلسه کوتاه و ممیزی صفحات هدف. فهرست صفحاتی که باید اعتبار بگیرند، اولویت هرکدام و وضعیت فعلی لینک و محتوایشان مشخص و با شما تأیید می‌شود؛ بعد از آن معماری لینک داخلی و تقویت محتوا آغاز می‌شود و لینک‌سازی خارجی در ادامه همان برنامه پیش می‌رود.'
+            question: 'Where does a page-authority project start?',
+            answer: 'With a short kickoff session and a target-page audit. The list of pages to strengthen, each one\u2019s priority and its current link and content state are defined and confirmed with you; then internal link architecture and content upgrades begin, with external link building following the same plan.'
         },
         {
-            question: 'کدام صفحات برای این پروژه اولویت دارند؟',
-            answer: 'معمولاً صفحاتی که به درآمد نزدیک‌ترند — صفحات خدمات و لندینگ — و مقالاتی که در سرچ کنسول نمایش دارند اما جایگاهشان پایین است و با تقویت محتوا و لینک داخلی قابل جابه‌جایی‌اند. انتخاب این فهرست با خود شماست و در ابتدای پروژه تأیید می‌شود.'
+            question: 'Which pages should come first?',
+            answer: 'Usually the pages closest to revenue \u2014 service pages and landing pages \u2014 plus articles that already get Search Console impressions but rank low and can move with content and internal-link upgrades. You approve the final list at kickoff.'
         }
     ];
 
 const breadcrumbs = [
-    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-    { position: 2, name: 'خدمات سئو', item: 'https://asreseo.com/services/seo/' },
-    { position: 3, name: 'اعتبار صفحه و سئو محتوا', item: 'https://asreseo.com/services/seo/content-authority/' }
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'SEO Services', item: 'https://asreseo.com/services/seo/' },
+    { position: 3, name: 'Page Authority & Content SEO', item: 'https://asreseo.com/services/seo/content-authority/' }
 ];
 ---
 <BaseLayout
-  title='افزایش اعتبار صفحه، دامنه و اتوریتی محتوا | عصر سئو'
-  description='خدمات افزایش اعتبار صفحه (Page Authority) با ممیزی صفحات هدف، معماری لینک داخلی و لینک‌سازی معتبر؛ فرآیند اجرایی و گزارش پیشرفت ماهانه عصر سئو.'
-  keywords='اعتبار صفحه, افزایش اعتبار صفحه, Page Authority, سئو محتوا, تاپیکال آتوریتی, لینک‌سازی, رپورتاژ آگهی'
-  canonical='https://asreseo.com/services/seo/content-authority/'
+  lang="en"
+  title='Page Authority, Domain & Content Authority Growth | AsreSEO'
+  description='Page Authority growth services with target-page audits, internal link architecture and reputable link building; AsreSEO\u2019s delivery process and monthly progress reporting.'
+  keywords='page authority, grow page authority, Page Authority, content SEO, topical authority, link building, sponsored content'
+  canonical='/services/seo/content-authority/'
   ogType='website'
   ogUrl='https://asreseo.com/services/seo/content-authority/'
-  ogImages={[{ url: "/og/content-authority-hero.jpg", width: 1200, height: 630, alt: "خدمات افزایش اعتبار صفحه و سئو محتوا عصر سئو" }]}
+  ogImages={[{ url: "/og/content-authority-hero.jpg", width: 1200, height: 630, alt: "Page authority growth & content SEO services by AsreSEO" }]}
   twitterCard='summary_large_image'
 >
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
             <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/seo/content-authority/', image: '/og/content-authority-hero.jpg' }))} />
             <BreadcrumbStructuredData items={breadcrumbs} />
 
-            <Header />
+            <Header lang="en" />
 
             <main>
                 <!-- Hero Section -->
-                <ServiceHero
-                    badge="قدرت محتوا + اعتبار لینک"
-                    title="افزایش اعتبار صفحه"
-                    titleGradient="و سئو محتوا"
-                    description="ترکیبی برنده برای تسخیر نتایج جستجو. محتوای ارزشمند که کاربران عاشق آن هستند و لینک‌های قدرتمند که گوگل به آن‌ها اعتماد دارد."
-                    primaryCta={{ text: "شروع استراتژی محتوایی", href: "/consultation/" }}
-                    secondaryCta={{ text: "مشاوره لینک‌سازی", href: "/consultation/" }}
+                <ServiceHero lang="en"
+                    badge="Content Power + Link Authority"
+                    title="Page Authority Growth & Content SEO"
+                    titleGradient="Content SEO"
+                    description="A winning formula for conquering search results. Valuable content users love, plus powerful links Google trusts."
+                    primaryCta={{ text: "Start My Content Strategy", href: "/consultation/" }}
+                    secondaryCta={{ text: "Link Building Consultation", href: "/consultation/" }}
                     imageSrc="/images/content-authority-hero.webp"
-                    imageAlt="افزایش اعتبار صفحه و سئو محتوا"
+                    imageAlt="Page authority growth and content SEO"
                     theme="amber"
                 />
 
-                <!-- Answer-first block for «اعتبار صفحه» (29 impr). Self-contained
+                <!-- Answer-first block for «page authority». Self-contained
                      and quotable, sitting directly under the H1; the intent split
                      with /blog/page-authority-guide/ is stated right below it. -->
                 <section class="py-8 md:py-10 bg-white border-b border-amber-100">
-                    <div class="container-custom max-w-4xl text-right">
+                    <div class="container-custom max-w-4xl text-left">
                         <span class="inline-block bg-amber-100 text-amber-800 text-xs md:text-sm font-medium px-3 py-1 rounded-full mb-4">
-                            اعتبار صفحه چیست و چگونه افزایش یابد؟
+                            What is page authority and how do you grow it?
                         </span>
                         <p class="text-base md:text-lg text-gray-700 leading-loose bg-amber-50/50 p-6 rounded-2xl border border-amber-100">
-                            <strong>اعتبار صفحه (Page Authority)</strong> توانایی یک صفحه مشخص سایت شما برای کسب رتبه در نتایج جستجو است؛ یعنی آن URL منفرد تا چه حد برای موتورهای جستجو معتبر و قابل اعتماد محسوب می‌شود. اعتبار صفحه از کیفیت و عمق محتوای همان صفحه، لینک‌های داخلی که به آن اشاره می‌کنند، بک‌لینک‌های معتبر ورودی و تجربه استفاده از صفحه شکل می‌گیرد و برخلاف اعتبار دامنه، به قدرت کل دامنه کاری ندارد. برای افزایش اعتبار صفحه سه لایه کار لازم است: تقویت محتوای صفحه هدف، معماری لینک داخلی که ارزش صفحات قوی‌تر را به آن منتقل کند، و کسب بک‌لینک مرتبط از رسانه‌های معتبر. در عصر سئو این سه لایه در قالب یک برنامه اجرایی ماهانه با گزارش پیشرفت انجام می‌شود؛ چون اعتبار صفحه با شتاب ساخته نمی‌شود و روند تقویت تدریجی و پیوسته آن باید برای شما قابل رصد باشد.
+                            <strong>Page Authority</strong> is a specific page\u2019s ability to rank in search results \u2014 how trustworthy and credible that single URL looks to search engines. It is shaped by the depth and quality of that page\u2019s content, the internal links pointing to it, reputable inbound backlinks and the on-page experience, and unlike domain authority it says nothing about the domain as a whole. Growing page authority takes three layers of work: strengthening the target page\u2019s content, an internal link architecture that passes value from stronger pages, and earning relevant backlinks from reputable publishers. At AsreSEO these three layers run as a monthly program with progress reports \u2014 because authority can\u2019t be built overnight, and its steady, gradual growth must stay visible to you.
                         </p>
-                        <div class="mt-5 border-r-4 border-amber-300 pr-4 text-sm md:text-base text-gray-600 leading-relaxed">
-                            این صفحه فرآیند اجرای پروژه را توضیح می‌دهد: مراحل کار، خروجی‌های قابل تحویل و شیوه گزارش پیشرفت. برای تعریف اعتبار صفحه، عوامل مؤثر بر آن و چک‌لیست کامل بررسی، راهنمای ما را بخوانید: <a href="/blog/page-authority-guide/" class="text-amber-700 font-semibold underline hover:no-underline">اعتبار صفحه چیست و چگونه افزایش می‌یابد؟ — راهنمای جامع عصر سئو</a>. این دو مطلب مکمل هم هستند؛ یکی تعریف و عوامل را پوشش می‌دهد و دیگری اجرای پروژه و گزارش‌دهی را.
+                        <div class="mt-5 border-l-4 border-amber-300 pl-4 text-sm md:text-base text-gray-600 leading-relaxed">
+                            This page explains how the engagement runs: the steps, the deliverables and how progress is reported. For the definition of page authority, what influences it and the full audit checklist, read our guide: <a href="/blog/page-authority-guide/" class="text-amber-700 font-semibold underline hover:no-underline">What is page authority and how do you grow it? \u2014 AsreSEO\u2019s complete guide</a>. The two pieces complement each other: one covers definition and factors, the other covers delivery and reporting.
                         </div>
                     </div>
                 </section>
 
                 <!-- AEO Direct Answer Section -->
                 <section class="py-10 bg-amber-50/60 border-y border-amber-100">
-                    <div class="container-custom max-w-4xl text-right">
+                    <div class="container-custom max-w-4xl text-left">
                         <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-                            اعتبار صفحه (Page Authority) چیست و چه تفاوتی با اعتبار دامنه دارد؟
+                            What is Page Authority (PA) and how is it different from Domain Authority?
                         </h2>
                         <p class="text-base md:text-lg text-gray-700 leading-relaxed bg-white p-6 rounded-2xl shadow-xs border border-amber-100">
-                            <strong>اعتبار صفحه (Page Authority یا PA)</strong> شاخصی عددی است که توانایی یک صفحه مشخص از وب‌سایت را برای کسب رتبه در نتایج موتور جستجو ارزیابی می‌کند. در حالی که اعتبار دامنه (Domain Authority) قدرت کل وب‌سایت را می‌سنجد، اعتبار صفحه بر کیفیت محتوای همان صفحه، لینک‌های داخلی هدایت‌شده به آن و بک‌لینک‌های معتبر خارجی ورودی به همان URL متمرکز است. در عصر سئو با پیاده‌سازی معماری تاپیکال آتوریتی و لینک‌سازی هدفمند، اعتبار صفحات کلیدی لندینگ و مقالات شما ارتقا یافته و جایگاه این صفحات در نتایج جستجو بهبود می‌یابد.
+                            <strong>Page Authority (PA)</strong> is a numeric score estimating a specific page\u2019s ability to rank in search results. While Domain Authority measures the strength of the whole website, Page Authority focuses on that page\u2019s content quality, the internal links directed at it and the reputable external backlinks pointing to that same URL. At AsreSEO, topical authority architecture and targeted link building lift the authority of your key landing pages and articles, improving their positions in search results.
                         </p>
                     </div>
                 </section>
 
                 <!-- Stats Section -->
-                <ServiceStats stats={stats} theme="amber" />
+                <ServiceStats lang="en" stats={stats} theme="amber" />
 
                 <!-- Content Services Section -->
                 <section class="section-padding">
                     <div class="container-custom">
                         <div class="text-center mb-12">
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                                خدمات <span class="gradient-text">سئو محتوا</span> (Content SEO)
+                                <span class="gradient-text">Content SEO</span> Services
                             </h2>
                             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                                تولید محتوایی که هم برای کاربر جذاب است و هم برای موتورهای جستجو بهینه شده است
+                                Content users find compelling and search engines find optimized
                             </p>
                         </div>
 
@@ -374,10 +374,10 @@ const breadcrumbs = [
                     <div class="container-custom">
                         <div class="text-center mb-12">
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                                خدمات <span class="gradient-text">لینک‌سازی و اعتبار</span> (Authority)
+                                <span class="gradient-text">Link Building & Authority</span> Services
                             </h2>
                             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                                افزایش اعتبار دامنه شما نزد گوگل با استراتژی‌های لینک‌سازی امن و مؤثر
+                                Raising your domain\u2019s standing with Google through safe, effective link strategies
                             </p>
                         </div>
 
@@ -416,10 +416,10 @@ const breadcrumbs = [
                     <div class="container-custom">
                         <div class="text-center mb-12">
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                                انواع <span class="gradient-text">محتوای استراتژیک</span>
+                                Strategic <span class="gradient-text">Content Formats</span>
                             </h2>
                             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                                ما برای هر مرحله از قیف فروش، محتوای مناسب تولید می‌کنیم
+                                The right content for every stage of your sales funnel
                             </p>
                         </div>
 
@@ -452,22 +452,22 @@ const breadcrumbs = [
                 </section>
 
                 <!-- Factor checklist. The audit asked for a page-authority factor
-                     image on this page (query «اعتبار صفحه», 18 impr / pos 63.7).
+                     image on this page (query «page authority», 18 impr / pos 63.7).
                      The asset already existed but was only used by the blog post,
                      so it is reused here. Native width/height set to avoid CLS. -->
                 <section class="section-padding bg-slate-50 border-t border-gray-200/60">
                     <div class="container-custom max-w-4xl">
                         <div class="text-center mb-8">
                             <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-                                چک‌لیست عوامل موثر بر اعتبار صفحه
+                                Page authority factor checklist
                             </h2>
                             <p class="text-gray-600">
-                                فهرست مواردی که در هر ممیزی اعتبار صفحه بررسی و امتیازدهی می‌شود
+                                Everything we score in a page-authority audit
                             </p>
                         </div>
                         <img
                             src="/images/content-authority-post-checklist.webp"
-                            alt="چک‌لیست عوامل موثر بر اعتبار صفحه شامل کیفیت محتوا، لینک‌سازی داخلی، سیگنال‌های تجربه کاربر و اعتبار منابع"
+                            alt="Checklist of page authority factors: content quality, internal linking, user-experience signals and source credibility"
                             width="1672"
                             height="941"
                             loading="lazy"
@@ -484,10 +484,10 @@ const breadcrumbs = [
                     <div class="container-custom max-w-5xl">
                         <div class="text-center mb-10">
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                                فرآیند <span class="gradient-text">افزایش اعتبار صفحه</span> در عصر سئو
+                                AsreSEO\u2019s <span class="gradient-text">Page Authority Growth</span> Process
                             </h2>
                             <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                                افزایش اعتبار صفحه کار یک‌باره نیست؛ برنامه‌ای ماهانه است که اول صفحات هدف را مشخص می‌کند، سپس سه لایه کار (محتوا، لینک داخلی، بک‌لینک) را روی همان صفحات اجرا می‌کند و در پایان ماه با شما مرور می‌شود. پنج مرحله دارد:
+                                Growing page authority isn\u2019t a one-off task \u2014 it\u2019s a monthly program that first pins down target pages, then runs three layers of work (content, internal links, backlinks) on those same pages, and reviews everything with you at month\u2019s end. Five steps:
                             </p>
                         </div>
 
@@ -515,10 +515,10 @@ const breadcrumbs = [
                     <div class="container-custom max-w-5xl">
                         <div class="text-center mb-10">
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                                خروجی‌های قابل تحویل <span class="gradient-text">پروژه اعتبار صفحه</span>
+                                <span class="gradient-text">Page Authority Project</span> Deliverables
                             </h2>
                             <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                                در پایان هر مرحله و هر ماه، چیز مشخصی به دست شما می‌رسد — سند، فهرست یا گزارشی که می‌توانید باز کنید و بررسی کنید، نه صرفاً گزارش «در حال انجام».
+                                At the end of every stage and every month you receive something concrete \u2014 a document, list or report you can open and inspect, not just an \u201cin progress\u201d status.
                             </p>
                         </div>
 
@@ -550,10 +550,10 @@ const breadcrumbs = [
                     <div class="container-custom max-w-4xl">
                         <div class="text-center mb-8">
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                                پیشرفت <span class="gradient-text">افزایش اعتبار صفحه</span> را چگونه گزارش می‌دهیم؟
+                                How do we report <span class="gradient-text">page authority</span> progress?
                             </h2>
                             <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                                پیشرفت را با ادعای درصدی نشان نمی‌دهیم؛ هر گزارش بر اساس داده‌هایی تنظیم می‌شود که خودتان هم می‌توانید در همان ابزارها ببینید. ماهانه پنج دسته اطلاعات روی میز است:
+                                We don\u2019t report progress with percentage claims \u2014 every report is built on data you can verify yourself in the same tools. Five groups of information land on the table each month:
                             </p>
                         </div>
 
@@ -569,29 +569,30 @@ const breadcrumbs = [
                         </div>
 
                         <p class="max-w-3xl mx-auto mt-7 text-center text-gray-600 leading-relaxed">
-                            گزارش ماهانه در جلسه کوتاهی مرور می‌شود و اولویت‌های ماه بعد در همان جلسه تعیین می‌گردد؛ هر عددی هم در گزارش باشد، منبع آن کنارش نوشته می‌شود تا خودتان بتوانید راستی‌آزمایی کنید.
+                            The monthly report is reviewed in a short session where next month\u2019s priorities are set together \u2014 and every number in the report cites its source so you can verify it yourself.
                         </p>
                     </div>
                 </section>
 
                 <!-- FAQ Section -->
-                <ServiceFAQ
+                <ServiceFAQ lang="en"
                     faqs={faqs}
-                    title="سوالات متداول"
-                    description="پاسخ به سوالات شما درباره محتوا و لینک‌سازی"
+                    title="Frequently Asked Questions"
+                    highlightWord="Asked Questions"
+                    description="Answers to your questions about content & link building"
                     theme="amber"
                 />
 
                 <!-- CTA Section -->
-                <ServiceCTA
-                    title="صدای برند خود را به گوش همه برسانید!"
-                    description="با محتوای قدرتمند و اعتبار دامنه بالا، جایگاه خود را در صدر نتایج گوگل تثبیت کنید. ما استراتژی، تولید و توزیع را برای شما انجام می‌دهیم."
-                    primaryCta={{ text: "شروع کمپین محتوایی", href: "/consultation/" }}
-                    secondaryCta={{ text: "مشاوره رایگان", href: "/consultation/" }}
+                <ServiceCTA lang="en"
+                    title="Make your brand\u2019s voice heard everywhere!"
+                    description="Cement your spot at the top of Google with powerful content and high domain authority. We handle strategy, production and distribution for you."
+                    primaryCta={{ text: "Start My Content Campaign", href: "/consultation/" }}
+                    secondaryCta={{ text: "Free Consultation", href: "/consultation/" }}
                     theme="amber"
                 />
             </main>
 
-            <Footer />
+            <Footer lang="en" />
         </div>
 </BaseLayout>

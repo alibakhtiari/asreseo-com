@@ -24,7 +24,7 @@ const RENAMES = {
   'image-icon': 'image',
 } as Record<string, string>;
 
-const BRANDS = new Set(['instagram', 'linkedin', 'twitter', 'youtube']);
+const BRANDS = new Set(['instagram', 'linkedin', 'twitter', 'youtube', 'whatsapp']);
 
 const file = BRANDS.has(name)
   ? join(process.cwd(), 'src', 'components', 'ui', 'brands', `${name}.svg`)

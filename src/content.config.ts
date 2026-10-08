@@ -11,7 +11,7 @@ const blog = defineCollection({
     // Optional short form for the <title> tag only. `post.title` is also the
     // on-page H1, the JSON-LD headline and the breadcrumb label, so lengthening
     // it is a content decision — but a title TAG past ~60 chars is truncated in
-    // the SERP. Persian renders wide, so 55-60 is the practical ceiling: when
+    // the SERP. 55-60 is the practical ceiling: when
     // `title` overshoots it, `seoTitle` carries the tag while the H1 keeps the
     // full headline. Absent a value the tag falls back to `title`.
     seoTitle: z.string().optional(),
@@ -31,11 +31,10 @@ const blog = defineCollection({
       .optional(),
     // --- P1.8: fields that existed in the MDX frontmatter but were missing
     // from this schema, so Zod silently stripped them at parse time and
-    // BlogPost.astro rendered `tags: []`, no ویژه badge, and empty read time.
+    // BlogPost.astro rendered `tags: []`, no featured badge, and empty read time.
     // All optional: posts that omit them still parse.
     // Tags are written as a YAML array; tolerate a comma-separated string too
-    // (`tags: سئو, تولید محتوا`) so a differently-shaped post can't fail the
-    // build or hand `.map()` a string.
+    // so a differently-shaped post can't fail the build or hand `.map()` a string.
     tags: z
       .union([z.array(z.string()), z.string()])
       .optional()
@@ -54,8 +53,7 @@ const blog = defineCollection({
         if (v === undefined) return undefined;
         return v === true || v === 'true';
       }),
-    // Rendered as a Persian read-time label; may be "۱۴ دقیقه" or a bare
-    // number of minutes (`readTime: 14`), so accept both and store a string.
+    // Rendered as read-time label; accepts minutes as number or string.
     readTime: z
       .union([z.string(), z.number()])
       .optional()

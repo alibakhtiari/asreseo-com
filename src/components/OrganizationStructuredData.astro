@@ -1,93 +1,51 @@
 ---
 import { withServiceMeta } from '../lib/service-schema';
-// Canonical entity for the whole site. This is the ONLY full declaration of
-// `#organization`; every other page links to it with a lightweight
-// `{"@type":"Organization","@id":"…/#organization"}` reference instead of
-// re-declaring the entity with its own copy of these properties.
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+
 const data = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': ['Organization', 'ProfessionalService'],
       '@id': 'https://asreseo.com/#organization',
-      name: 'عصر سئو',
-      alternateName: 'AsreSEO',
+      name: 'AsreSEO',
+      alternateName: 'Asre SEO',
       url: 'https://asreseo.com/',
       logo: {
         '@type': 'ImageObject',
         url: 'https://asreseo.com/Logo-spaced.png',
-        // Measured from the actual asset (public/Logo-spaced.png is 512×512).
         width: 512,
         height: 512,
       },
-      // E.164 — matches every tel: href and the llms.txt phone line.
-      telephone: '+989125811880',
-      // The about-page timeline starts at ۱۳۹۸ (Farvardin 1398 = March 2019).
       foundingDate: '2019',
-      description:
-        'ارائه‌دهنده خدمات حرفه‌ای سئو، تبلیغات گوگل، دیجیتال مارکتینگ و طراحی وب‌سایت در ایران',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'خیابان شریعتی',
-        addressLocality: 'تهران',
-        addressRegion: 'تهران',
-        addressCountry: 'IR',
-      },
+      description: 'Provider of enterprise autonomous SEO, neural AI search optimization, Google Ads, and full-stack web performance engineering.',
       contactPoint: [
         {
           '@type': 'ContactPoint',
-          telephone: '+989125811880',
           contactType: 'customer service',
-          areaServed: { '@type': 'Country', name: 'Iran' },
-          availableLanguage: ['Persian', 'English'],
-        },
-        {
-          '@type': 'ContactPoint',
-          telephone: '+989125811880',
-          contactType: 'customer support',
-          areaServed: { '@type': 'Country', name: 'Iran' },
-        },
-        {
-          '@type': 'ContactPoint',
-          telephone: '+989125811880',
-          contactType: 'emergency',
-          areaServed: { '@type': 'Country', name: 'Iran' },
-          hoursAvailable: {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: [
-              'Monday',
-              'Tuesday',
-              'Wednesday',
-              'Thursday',
-              'Friday',
-              'Saturday',
-              'Sunday',
-            ],
-            opens: '00:00',
-            closes: '23:59',
-          },
+          email: 'info@asreseo.com',
+          telephone: '+1-346-327-2878',
+          availableLanguage: ['English'],
         },
       ],
-      // Mirrors the visible "ساعات کاری" card on /contact/:
-      // شنبه تا چهارشنبه ۹:۰۰–۱۸:۰۰، پنج‌شنبه ۹:۰۰–۱۴:۰۰ (جمعه فقط مانیتورینگ).
       openingHoursSpecification: [
         {
           '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday'],
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
           opens: '09:00',
           closes: '18:00',
-        },
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Thursday'],
-          opens: '09:00',
-          closes: '14:00',
         },
       ],
       founder: {
         '@type': 'Person',
-        name: 'علی بختیاری',
-        jobTitle: 'مدیر ارشد استراتژی و بنیان‌گذار',
+        name: 'Alex Morgan',
+        jobTitle: 'Chief Strategy Officer & Founder',
       },
       sameAs: [
         'https://instagram.com/asreseo',
@@ -96,38 +54,38 @@ const data = {
       ],
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
-        name: 'خدمات دیجیتال مارکتینگ عصر سئو',
+        name: 'AsreSEO digital marketing and search infrastructure services',
         itemListElement: [
           {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'خدمات سئو',
-              description: 'بهینه‌سازی وب‌سایت برای موتورهای جستجو',
+              name: 'SEO services',
+              description: 'Website optimization for search engines and generative AI answers',
             },
           },
           {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'تبلیغات گوگل ادز',
-              description: 'مدیریت کمپین‌های تبلیغاتی در گوگل',
+              name: 'Google Ads',
+              description: 'High-ROI PPC and Google advertising campaign management',
             },
           },
           {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'طراحی وب‌سایت',
-              description: 'طراحی وب‌سایت‌های سئو محور و واکنش‌گرا',
+              name: 'Web design',
+              description: 'SEO-focused, ultra-fast responsive web engineering',
             },
           },
           {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'خدمات هوش مصنوعی',
-              description: 'پیاده‌سازی راهکارهای هوش مصنوعی برای بازاریابی',
+              name: 'AI services',
+              description: 'Autonomous AI pipelines and generative engine optimization',
             },
           },
         ],
@@ -137,7 +95,8 @@ const data = {
       '@type': 'WebSite',
       '@id': 'https://asreseo.com/#website',
       url: 'https://asreseo.com/',
-      name: 'عصر سئو',
+      name: 'AsreSEO',
+      inLanguage: 'en-US',
       publisher: {
         '@id': 'https://asreseo.com/#organization',
       },

@@ -8,20 +8,21 @@ import Icon from '../../components/ui/Icon.astro';
 import ServiceFAQ from '../../components/Services/ServiceFAQ.astro';
 
 const consultFaqs = [
-  { question: 'آیا جلسه مشاوره واقعاً رایگان است؟', answer: 'بله؛ جلسه اول مشاوره عصر سئو کاملاً رایگان است و هیچ تعهدی برای ادامه همکاری ایجاد نمی‌کند.' },
-  { question: 'جلسه مشاوره چقدر طول می‌کشد؟', answer: 'حدود نیم ساعت؛ در همین زمان وضعیت فعلی کسب‌وکار شما تحلیل و نقشه راه رشد ارائه می‌شود.' },
-  { question: 'در جلسه مشاوره چه چیزی دریافت می‌کنم؟', answer: 'تحلیل وضعیت سایت و کانال‌های بازاریابی شما به‌همراه اولویت‌بندی اقدامات بعدی برای رشد.' },
-  { question: 'چگونه جلسه را رزرو کنم؟', answer: 'فرم همین صفحه را تکمیل کنید تا برای هماهنگی زمان جلسه با شما تماس بگیریم.' },
+  { question: 'Is the consultation session completely free of obligation?', answer: 'Yes. Your technical session with AsreSEO is 100% free with zero contractual pressure. We evaluate technical feasibility and provide actionable architectural insights.' },
+  { question: 'What is the format and duration of the deep dive?', answer: 'A 30-minute high-signal video call (Google Meet or Zoom) with a senior search systems engineer, analyzing your live domain logs, crawl efficiency, and knowledge graphs.' },
+  { question: 'What technical deliverables do we receive?', answer: 'A prioritized technical audit summary, entity coverage diagnostic, and a deterministic step-by-step implementation roadmap.' },
+  { question: 'How quickly is the session confirmed?', answer: 'Upon submitting your reconnaissance parameters below, our lead dispatch will confirm your time slot within 2 business hours.' },
 ];
+
 const consultSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  serviceType: 'SEO & Marketing Consultation',
-  name: 'مشاوره رایگان سئو و دیجیتال مارکتینگ',
-  provider: { '@type': 'Organization', name: 'عصر سئو', url: 'https://asreseo.com/' },
-  areaServed: 'IR',
-  inLanguage: 'fa-IR',
+  serviceType: 'SEO & Marketing Technical Consultation',
+  name: 'Technical SEO & Architecture Consultation Deep Dive',
+  provider: { '@type': 'Organization', name: 'AsreSEO', url: 'https://asreseo.com/' },
+  inLanguage: 'en-US',
 };
+
 const consultFaqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -31,90 +32,191 @@ const consultFaqSchema = {
     acceptedAnswer: { '@type': 'Answer', text: f.answer },
   })),
 };
+
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-    { '@type': 'ListItem', position: 2, name: 'مشاوره رایگان', item: 'https://asreseo.com/consultation/' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Technical Consultation', item: 'https://asreseo.com/consultation/' },
   ],
 };
 ---
-<BaseLayout title='مشاوره رایگان سئو و دیجیتال مارکتینگ | عصر سئو' description='رزرو مشاوره رایگان سئو و دیجیتال مارکتینگ؛ تحلیل وضعیت سایت شما و ارائه نقشه راه رشد در یک جلسه تخصصی. همین حالا درخواست خود را ثبت کنید.' canonical='https://asreseo.com/consultation/' ogType='website' twitterCard='summary_large_image'>
-<div class="min-h-screen bg-white">
-            <Header />
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(consultSchema, { url: 'https://asreseo.com/consultation/', image: '/og-default.png' }))} />
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(consultFaqSchema)} />
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
-            <main class="section-padding pt-32">
-                <div class="container-custom">
-                    <div class="grid lg:grid-cols-2 gap-12 items-center">
-                        <div class="order-2 lg:order-1 bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
-                            <h2 class="text-2xl font-bold mb-8 text-right">درخواست جلسه مشاوره</h2>
-                            <form data-ajax-form action="/api/send-email" method="post" class="space-y-6" dir="rtl">
-                                <div class="grid md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label for="consult-name" class="block text-sm font-medium text-gray-700 mb-2">نام و نام خانوادگی</label>
-                                        <input id="consult-name" type="text" name="name" required maxlength="100" autocomplete="name" class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-hidden" />
-                                    </div>
-                                    <div>
-                                        <label for="consult-phone" class="block text-sm font-medium text-gray-700 mb-2">شماره تماس</label>
-                                        <input id="consult-phone" type="tel" name="phone" required inputmode="numeric" autocomplete="tel" pattern="09[0-9]{9}" title="شماره موبایل ۱۱ رقمی با 09 شروع شود" class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-hidden" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="consult-email" class="block text-sm font-medium text-gray-700 mb-2">ایمیل</label>
-                                    <input id="consult-email" type="email" name="email" required maxlength="120" dir="ltr" autocomplete="email" class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-hidden" />
-                                </div>
-                                <div>
-                                    <label for="consult-service" class="block text-sm font-medium text-gray-700 mb-2">زمینه مشاوره</label>
-                                    <select id="consult-service" name="service" class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-hidden">
-                                        <option>سئو و بهینه‌سازی</option>
-                                        <option>تبلیغات گوگل</option>
-                                        <option>طراحی وب‌سایت</option>
-                                        <option>هوش مصنوعی</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="consult-message" class="block text-sm font-medium text-gray-700 mb-2">توضیحات کوتاه</label>
-                                    <textarea id="consult-message" rows={4} name="message" required class="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-hidden"></textarea>
-                                </div>
-                                <Button type="submit" data-submit-btn class="w-full py-6 text-lg gradient-bg text-white shadow-lg shadow-blue-500/30">ثبت درخواست مشاوره</Button>
-                            </form>
-                        </div>
+<BaseLayout
+  lang="en"
+  title="Technical SEO & Systems Consultation | AsreSEO"
+  description="Schedule a 30-minute technical SEO deep dive with AsreSEO systems engineers. Crawl budget audit, knowledge graph evaluation, and deterministic growth roadmap."
+  canonical="/consultation/"
+  ogUrl="https://asreseo.com/consultation/"
+  ogType="website"
+  twitterCard="summary_large_image"
+>
+  <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+    <Header lang="en" />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(consultSchema, { url: 'https://asreseo.com/consultation/', image: '/og-default.png' }))} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(consultFaqSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
-                        <div class="order-1 lg:order-2 text-right">
-                            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">رزرو <span class="gradient-text">مشاوره تخصصی</span> رایگان</h1>
-                            <p class="text-xl text-gray-600 mb-12 leading-relaxed">برای نیم ساعت، کسب‌وکار شما را تحلیل می‌کنیم و نقشه راه رشدتان را ترسیم می‌کنیم. این جلسه کاملاً رایگان و بدون تعهد است.</p>
-
-                            <div class="space-y-6">
-                                <div class="flex items-center gap-4 justify-end">
-                                    <span class="text-gray-700 font-medium">۳۰ دقیقه تحلیل اختصاصی</span>
-                                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 shrink-0"><Icon name="clock" /></div>
-                                </div>
-                                <div class="flex items-center gap-4 justify-end">
-                                    <span class="text-gray-700 font-medium">بررسی رقبا و کلمات کلیدی</span>
-                                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-800 shrink-0"><Icon name="calendar" /></div>
-                                </div>
-                                <div class="flex items-center gap-4 justify-end">
-                                    <span class="text-gray-700 font-medium">حضوری یا آنلاین (Zoom/Meet)</span>
-                                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 shrink-0"><Icon name="map-pin" /></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-16">
-                        <ServiceFAQ
-                            title="سوالات متداول مشاوره"
-                            highlightWord="مشاوره"
-                            subtitle="پاسخ به سوالات پرتکرار درباره نحوه برگزاری و خروجی جلسات مشاوره رایگان"
-                            faqs={consultFaqs}
-                            includeSchema={false}
-                        />
-                    </div>
+    <main class="pt-28 pb-20">
+      <section class="py-16 md:py-24 border-b-2 border-white/10 relative">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+          <div class="grid lg:grid-cols-12 gap-12 items-start">
+            <!-- Form Box -->
+            <div class="lg:col-span-7 bg-[#0a0e17] border-2 border-white/20 p-8 sm:p-10 brutalist-card brutalist-shadow-white rounded-none">
+              <div class="flex items-center justify-between pb-4 mb-8 border-b border-white/10 font-mono text-xs">
+                <span class="text-[#CCFF00] font-bold">[DISPATCH_FORM // RECON_INPUT]</span>
+                <span class="text-emerald-400">STATUS: OPEN</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white mb-6">
+                Initialize Technical Deep Dive
+              </h2>
+              <form data-ajax-form action="/api/send-email" method="post" class="space-y-6" dir="ltr">
+                <div>
+                  <label for="consult-name" class="block font-mono text-xs uppercase tracking-wider text-slate-300 mb-2">
+                    Full Name // Primary Contact
+                  </label>
+                  <input
+                    id="consult-name"
+                    type="text"
+                    name="name"
+                    required
+                    maxlength="100"
+                    autocomplete="name"
+                    placeholder="e.g. Alex Mercer"
+                    class="w-full p-4 rounded-none bg-black border-2 border-white/20 text-white placeholder:text-slate-600 focus:border-[#CCFF00] font-mono text-sm outline-hidden transition-colors"
+                  />
                 </div>
-            </main>
-            <Footer />
+                <div>
+                  <label for="consult-email" class="block font-mono text-xs uppercase tracking-wider text-slate-300 mb-2">
+                    Work Email // Secure Destination
+                  </label>
+                  <input
+                    id="consult-email"
+                    type="email"
+                    name="email"
+                    required
+                    maxlength="120"
+                    dir="ltr"
+                    autocomplete="email"
+                    placeholder="alex@enterprise.com"
+                    class="w-full p-4 rounded-none bg-black border-2 border-white/20 text-white placeholder:text-slate-600 focus:border-[#CCFF00] font-mono text-sm outline-hidden transition-colors"
+                  />
+                </div>
+                <div>
+                  <label for="consult-service" class="block font-mono text-xs uppercase tracking-wider text-slate-300 mb-2">
+                    Primary Protocol Architecture
+                  </label>
+                  <select
+                    id="consult-service"
+                    name="service"
+                    class="w-full p-4 rounded-none bg-black border-2 border-white/20 text-white focus:border-[#CCFF00] font-mono text-sm outline-hidden transition-colors"
+                  >
+                    <option class="bg-black text-white">Autonomous Technical & On-Page SEO</option>
+                    <option class="bg-black text-white">Generative Engine Optimization (GEO & AI Citations)</option>
+                    <option class="bg-black text-white">Google Ads & High-ROAS Search Arbitrage</option>
+                    <option class="bg-black text-white">SEO-Engineered High-Velocity Web Architecture</option>
+                    <option class="bg-black text-white">Programmatic Content & Topical Authority Graphs</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="consult-message" class="block font-mono text-xs uppercase tracking-wider text-slate-300 mb-2">
+                    System Parameters // Domain & Goals
+                  </label>
+                  <textarea
+                    id="consult-message"
+                    rows={4}
+                    name="message"
+                    required
+                    placeholder="Please specify your target domain, current monthly crawl footprint, and key growth objectives..."
+                    class="w-full p-4 rounded-none bg-black border-2 border-white/20 text-white placeholder:text-slate-600 focus:border-[#CCFF00] font-mono text-sm outline-hidden transition-colors"
+                  ></textarea>
+                </div>
+                <Button
+                  type="submit"
+                  data-submit-btn
+                  variant="acid"
+                  size="lg"
+                  class="w-full py-4 text-center justify-center font-mono text-sm"
+                >
+                  Dispatch Consultation Request ↗
+                </Button>
+              </form>
+
+              <div class="mt-6 p-4 bg-black border border-white/15 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs">
+                <span class="text-slate-400">Prefer instant voice or chat?</span>
+                <div class="flex items-center gap-4">
+                  <a href="https://wa.me/13463272878" target="_blank" rel="noopener noreferrer" class="text-[#25D366] hover:underline font-bold flex items-center gap-1.5">
+                    <Icon name="whatsapp" class="w-3.5 h-3.5" />
+                    WhatsApp
+                  </a>
+                  <span class="text-slate-600">/</span>
+                  <a href="tel:+13463272878" class="text-[#CCFF00] hover:underline font-bold flex items-center gap-1.5">
+                    <Icon name="phone-call" class="w-3.5 h-3.5" />
+                    +1 (346) 327-2878
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recon Specs -->
+            <div class="lg:col-span-5 text-left space-y-8">
+              <div>
+                <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#0a0d14] border border-white/20 mb-6 font-mono text-xs tracking-wider uppercase">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+                  <span class="text-[#CCFF00] font-bold">[COMMISSION_INQUIRY // RECON_DISPATCH]</span>
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-black uppercase text-white mb-6 leading-tight tracking-tight">
+                  Book A Technical <span class="text-[#CCFF00]">Deep Dive</span>
+                </h1>
+                <p class="text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
+                  Meet directly with our search systems architects and distributed index engineers. We reverse-engineer your crawl logs, knowledge graph coverage, and algorithmic opportunities in 30 high-signal minutes.
+                </p>
+              </div>
+
+              <div class="space-y-4 font-mono text-xs">
+                <div class="p-5 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors flex items-start gap-4">
+                  <span class="text-[#CCFF00] font-bold text-lg">01 //</span>
+                  <div>
+                    <div class="text-white font-bold uppercase mb-1">30 Minutes Focused Engineering Audit</div>
+                    <div class="text-slate-400">Direct technical diagnostic with lead architects, zero junior agency pitches.</div>
+                  </div>
+                </div>
+                <div class="p-5 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors flex items-start gap-4">
+                  <span class="text-[#CCFF00] font-bold text-lg">02 //</span>
+                  <div>
+                    <div class="text-white font-bold uppercase mb-1">Knowledge Graph & Crawl Audit</div>
+                    <div class="text-slate-400">Empirical inspection of your schema, IndexNow pipeline, and entity footprint.</div>
+                  </div>
+                </div>
+                <div class="p-5 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors flex items-start gap-4">
+                  <span class="text-[#CCFF00] font-bold text-lg">03 //</span>
+                  <div>
+                    <div class="text-white font-bold uppercase mb-1">Zero-Cost Deterministic Roadmap</div>
+                    <div class="text-slate-400">Actionable implementation blueprints whether you decide to partner with us or not.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-5 bg-black border border-white/15 font-mono text-xs text-slate-400">
+                <span class="text-[#CCFF00] font-bold">SECURITY_NOTE:</span> All domain telemetry shared during reconnaissance is protected under mutual non-disclosure and read-only protocol access.
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <ServiceFAQ
+        lang="en"
+        title="Consultation FAQs"
+        highlightWord="Consultation"
+        subtitle="Deterministic answers regarding our technical reconnaissance sessions"
+        faqs={consultFaqs}
+        includeSchema={false}
+      />
+    </main>
+
+    <Footer lang="en" />
+  </div>
 </BaseLayout>
 <script src="/js/ajax-form.js" defer></script>

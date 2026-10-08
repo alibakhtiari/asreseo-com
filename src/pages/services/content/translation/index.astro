@@ -20,37 +20,38 @@ import ServiceBenefits from '../../../../components/Services/ServiceBenefits.ast
 
 
 
-
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  'name': 'ترجمه و بومی‌سازی محتوا',
-  'description': 'خدمات کامل ترجمه و بومی‌سازی محتوا برای بازارهای جهانی',
+  'name': 'Content Translation & Localization',
+  'description': 'Full content translation and localization services for global markets',
   'serviceType': 'Translation and Localization',
+  'inLanguage': 'en-US',
   'provider': {
     '@type': 'Organization',
-    'name': 'عصر سئو',
+    'name': 'AsreSEO',
     'url': 'https://asreseo.com'
   },
-  'areaServed': 'Worldwide',
   'hasOfferCatalog': {
     '@type': 'OfferCatalog',
-    'name': 'خدمات ترجمه',
+    'name': 'Translation services',
     'itemListElement': [
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
-          'name': 'ترجمه حرفه‌ای',
-          'description': 'ترجمه تخصصی توسط مترجمین حرفه‌ای'
+          'name': 'Professional translation',
+          'description': 'Expert translation by professional linguists',
+          'inLanguage': 'en-US'
         }
       },
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
-          'name': 'بومی‌سازی',
-          'description': 'انطباق فرهنگی و بازاری محتوا'
+          'name': 'Localization',
+          'description': 'Cultural and market adaptation of content',
+          'inLanguage': 'en-US'
         }
       }
     ]
@@ -61,33 +62,33 @@ const structuredData = {
 
   const languages = [
     {
-      name: 'انگلیسی',
+      name: 'English',
       flag: '🇺🇸',
-      description: 'ترجمه تجاری، فنی و وب‌سایت',
+      description: 'Business, technical and website translation',
       specialties: ['Business English', 'Technical Translation', 'Website Localization']
     },
     {
-      name: 'عربی',
+      name: 'Arabic',
       flag: '🇸🇦',
-      description: 'ترجمه رسمی عربی استاندارد',
+      description: 'Formal Modern Standard Arabic translation',
       specialties: ['Modern Standard Arabic', 'Business Correspondence', 'Legal Translation']
     },
     {
-      name: 'فرانسوی',
+      name: 'French',
       flag: '🇫🇷',
-      description: 'ترجمه ادبیات، فرهنگی و تجاری',
+      description: 'Literary, cultural and business translation',
       specialties: ['European French', 'Canadian French', 'Technical Translation']
     },
     {
-      name: 'ترکی',
+      name: 'Turkish',
       flag: '🇹🇷',
-      description: 'ترجمه برای بازار ترکیه',
+      description: 'Translation for the Turkish market',
       specialties: ['Business Turkish', 'E-commerce Content', 'Website Translation']
     },
     {
-      name: 'آلمانی',
+      name: 'German',
       flag: '🇩🇪',
-      description: 'ترجمه فنی و صنعتی پیشرفته',
+      description: 'Advanced technical and industrial translation',
       specialties: ['Technical German', 'Engineering Documents', 'Legal Translation']
     }
   ];
@@ -95,163 +96,164 @@ const structuredData = {
   const services = [
     {
       icon: "languages",
-      title: 'ترجمه حرفه‌ای و دقیق',
-      description: 'ترجمه تخصصی انواع محتوا توسط زبان‌دانان حوزه کسب‌وکار شما، با رعایت اصول نگارشی، فرهنگی و ساختار جملات بومی.',
-      benefits: ['دقت بالا', 'کدنویسی فرهنگی', 'تطابق با برند']
+      title: 'Professional, Accurate Translation',
+      description: 'Expert translation of all content types by linguists in your business domain, with native grammar, culture and sentence structure.',
+      benefits: ['High accuracy', 'Cultural fluency', 'Brand fit']
     },
     {
       icon: "globe",
-      title: 'بومی‌سازی خلاقانه',
-      description: 'انطباق کامل متن با فرهنگ، بازار هدف، ارزش‌های اجتماعی و نیازمندی‌های بازاریابی محلی هر زبان.',
-      benefits: ['بازدهی فرهنگی', 'ارتباط مؤثر', 'نرخ تبدیل بالاتر']
+      title: 'Creative Localization',
+      description: 'Full adaptation to the culture, target market, social values and local marketing needs of each language.',
+      benefits: ['Cultural resonance', 'Effective connection', 'Higher conversion']
     },
     {
       icon: "sparkles",
-      title: 'حفظ ساختار سئو در ترجمه',
-      description: 'بهینه‌سازی متون چندزبانه برای جستجوی گوگل و الگوریتم‌های محلی با حفظ رتبه کلمات کلیدی استراتژیک.',
-      benefits: ['رتبه جهانی', 'ترافیک بین‌المللی', 'بومی‌سازی فنی']
+      title: 'SEO Preserved in Translation',
+      description: 'Multilingual copy optimized for Google and local algorithms while keeping strategic keyword rankings.',
+      benefits: ['Global rankings', 'International traffic', 'Technical localization']
     },
     {
       icon: "shield",
-      title: 'تضمین کیفیت و کنترل دو مرحله‌ای',
-      description: 'مرور اولیه توسط مترجم تخصصی، سپس کنترل کیفیت توسط متخصص زبان‌شناسی برای اطمینان از کیفیت عالی.',
-      benefits: ['کیفیت تضمینی', 'دقت دوگانه', 'رضایت مشتری']
+      title: 'Two-Stage Quality Guarantee',
+      description: 'First pass by a specialist translator, then quality control by a linguistics expert for assured excellence.',
+      benefits: ['Guaranteed quality', 'Double-checked accuracy', 'Client satisfaction']
     }
   ];
 
   const benefits = [
-    'امکان ورود به بازارهای جدید ملی و بین‌المللی با مخاطبان میلیونی',
-    'حفظ انسجام کامل برند در تمام زبان‌ها و بازارها',
-    'افزایش رتبه سایت در نتایج جستجوی کشورهای هدف',
-    'ارتباط مؤثر و ایجاد اعتماد سریع‌تر با مشتریان بین‌المللی',
-    'کاهش هزینه‌های بازاریابی محلی با محتوای آماده‌سازی شده',
-    'مزیت رقابتی ماندگار نسبت به رقبای محلی'
+    'Enter new national and international markets with million-strong audiences',
+    'Keep your brand fully consistent across all languages and markets',
+    'Rank higher in the search results of target countries',
+    'Connect effectively and earn international customers’ trust faster',
+    'Cut local marketing costs with ready-prepared content',
+    'A lasting competitive edge over local rivals'
   ];
 
   const contentTypes = [
     {
-      type: 'وب‌سایت و اپلیکیشن',
-      description: 'ترجمه کامل صفحات، اپلیکیشن‌ها و رابط کاربری',
-      examples: ['صفحات وب‌سایت', 'اپلیکیشن موبایل', 'پنل مدیریت'],
+      type: 'Websites & Apps',
+      description: 'Full translation of pages, apps and user interfaces',
+      examples: ['Website pages', 'Mobile apps', 'Admin panels'],
     },
     {
-      type: 'محتوای بازاریابی',
-      description: 'ترجمه کتاب‌های راهنما، کاتالوگ و متون تبلیغاتی',
-      examples: ['بروشورها', 'کاتالوگ محصولات', 'کمپین‌های تبلیغاتی'],
+      type: 'Marketing Content',
+      description: 'Guidebooks, catalogs and promotional copy',
+      examples: ['Brochures', 'Product catalogs', 'Ad campaigns'],
     },
     {
-      type: 'مستندات فنی',
-      description: 'ترجمه اسناد، راهنماها و محتوای آموزشی',
-      examples: ['راهنمای کاربری', 'مطالعات موردی', 'اسناد فنی'],
+      type: 'Technical Documentation',
+      description: 'Manuals, guides and educational content',
+      examples: ['User guides', 'Case studies', 'Technical documents'],
     },
     {
-      type: 'محتوای حقوقی',
-      description: 'ترجمه قراردادها، شرایط استفاده و اسناد قانونی',
-      examples: ['شرایط خدمات', 'قراردادها', 'اسناد قانونی'],
+      type: 'Legal Content',
+      description: 'Contracts, terms of use and legal documents',
+      examples: ['Terms of service', 'Contracts', 'Legal documents'],
     }
   ];
 
   // Qualitative process facts, not performance percentages — quality and
   // satisfaction scores are unverifiable (see src/lib/site-claims.ts).
   const stats = [
-    { metric: 'دو مرحله', label: 'کنترل کیفیت و بازبینی', color: 'text-green-800', icon: "award" },
-    { metric: 'چندزبانه', label: 'زبان‌های اصلی دنیا', color: 'text-blue-600', icon: "globe" },
-    { metric: '۳-۷ روز', label: 'زمان تحویل', color: 'text-purple-600', icon: "clock" },
-    { metric: 'گارانتی', label: 'کیفیت هفت روز پس از تحویل', color: 'text-orange-600', icon: "shield" }
+    { metric: 'Two Stages', label: 'Quality control & review', color: 'text-green-800', icon: "award" },
+    { metric: 'Multilingual', label: 'The world’s major languages', color: 'text-blue-600', icon: "globe" },
+    { metric: '3–7 Days', label: 'Delivery time', color: 'text-purple-600', icon: "clock" },
+    { metric: 'Guaranteed', label: 'Seven-day post-delivery quality cover', color: 'text-orange-600', icon: "shield" }
   ];
 
   const workflowSteps = [
     {
-      step: 'ارزیابی و تحلیل',
-      desc: 'بررسی محتوای پایه، زبان هدف و نیازهای فرهنگی'
+      step: 'Assessment & Analysis',
+      desc: 'Reviewing source content, target language and cultural needs'
     },
     {
-      step: 'تخصیص مترجم تخصصی',
-      desc: 'انتخاب مترجم حرفه‌ای با تخصص در حوزه محتوای شما'
+      step: 'Specialist Translator Assignment',
+      desc: 'Choosing a professional translator specialized in your content field'
     },
     {
-      step: 'ترجمه اولیه و کنترل کیفیت',
-      desc: 'ترجمه توسط مترجم و بررسی کیفیت توسط متخصص زبان‌شناسی'
+      step: 'First Translation & Quality Control',
+      desc: 'Translation plus quality review by a linguistics expert'
     },
     {
-      step: 'بومی‌سازی و نهایی‌سازی',
-      desc: 'انطباق فرهنگی، کنترل نهایی و تحویل محصول'
+      step: 'Localization & Finalization',
+      desc: 'Cultural adaptation, final checks and delivery'
     }
   ];
 
   const faqs = [
     {
-      question: 'چه زبان‌هایی را پوشش می‌دهید؟',
-      answer: 'انگلیسی، عربی، فرانسوی، ترکی، آلمانی، ایتالیایی، روسی، کره‌ای، ژاپنی و سایر زبان‌های اصلی دنیا را پوشش می‌دهیم. اگر زبان خاصی نیاز دارید، در زمان مشاوره بررسی خواهیم کرد.'
+      question: 'Which languages do you cover?',
+      answer: 'English, Arabic, French, Turkish, German, Italian, Russian, Korean, Japanese and the world’s other major languages. Need something specific? We’ll review it in consultation.'
     },
     {
-      question: 'آیا محتوای تخصصی هم ترجمه می‌کنید؟',
-      answer: 'بله، این یکی از تخصص‌های اصلی ماست. مقالات علمی، متون فنی و تخصصی توسط مترجمین حوزه مربوطه (پزشکی، مهندسی، حقوق و غیره) ترجمه می‌شود.'
+      question: 'Do you translate specialist content?',
+      answer: 'Yes — it’s one of our core strengths. Scientific papers and technical texts are translated by field-specialist translators (medical, engineering, legal and more).'
     },
     {
-      question: 'زمان تحویل ترجمه به چه صورت است؟',
-      answer: 'بسته به حجم و زبان، معمولاً ۳ روز تا یک هفته. برای پروژه‌های اورژانسی، خدمات سریع‌العمل در دسترس است. زمان دقیق هنگام ثبت سفارش اعلام خواهد شد.'
+      question: 'How do translation delivery times work?',
+      answer: 'Usually 3 days to a week depending on volume and language. Express service is available for urgent projects; exact timing is confirmed at order.'
     },
     {
-      question: 'چطور کیفیت ترجمه را تضمین می‌کنید؟',
-      answer: 'تمام ترجمه‌ها از دو مرحله کنترل کیفیت عبور می‌کنند: ۱) کنترل توسط مترجم تخصصی، ۲) بازبینی توسط متخصص زبان‌شناسی. همچنین با هفت روز گارانتی کیفیت رسپانس هستیم.'
+      question: 'How do you guarantee translation quality?',
+      answer: 'Every translation passes two quality gates: 1) review by a specialist translator, 2) revision by a linguistics expert. Plus a seven-day quality guarantee.'
     },
     {
-      question: 'آیا سئو در ترجمه‌ها رعایت می‌شود؟',
-      answer: 'بله، متخصصین ما با دانش سئوی بین‌المللی کار می‌کنند. کلمات کلیدی استراتژیک حفظ شده، ساختار محتوا بهینه‌سازی می‌شود و برای موتورهای جستجوی محلی آماده می‌گردد.'
+      question: 'Is SEO respected in translations?',
+      answer: 'Yes — our specialists work with international SEO knowledge. Strategic keywords are preserved, content structure optimized and pages prepared for local search engines.'
     },
     {
-      question: 'هزینه ترجمه چگونه محاسبه می‌شود؟',
-      answer: 'بر اساس زبان، حوزه تخصصی، تعداد کلمات و زمان تحویل. پکیج‌های مختلفی داریم که از اقتصادی تا VIP. ریچمپ دقیق در زمان ارائه مشاوره اعلام خواهد شد.'
+      question: 'How are translation costs calculated?',
+      answer: 'By language, specialty, word count and turnaround. We offer packages from budget to VIP, with exact quotes given in consultation.'
     }
   ];
 
 ---
-<BaseLayout title='ترجمه و بومی‌سازی محتوا | Translation Services | عصر سئو' description='خدمات کامل ترجمه و بومی‌سازی محتوا برای بازارهای جهانی. حفظ سبک برند، بهینه‌سازی سئوی چندزبانه و ورود به بازارهای جدید با مترجمین متخصص.' keywords='ترجمه, بومی‌سازی محتوا, Translation, Localization, محتوای چندزبانه, ترجمه حرفه‌ای' canonical='https://asreseo.com/services/content/translation/' ogType='website' ogUrl='https://asreseo.com/services/content/translation/' ogImages={[{ url: "/og/translation-hero.jpg", width: 1200, height: 630, alt: "ترجمه و بومی‌سازی | عصر سئو" }]} twitterCard='summary_large_image'
-  ogTitle='ترجمه و بومی‌سازی محتوا | عصر سئو'
+<BaseLayout lang="en" title='Content Translation & Localization | Translation Services | AsreSEO' description='Full content translation and localization for global markets. Brand-voice consistency, multilingual SEO and new-market entry with specialist translators.' keywords='translation, content localization, multilingual content, professional translation' canonical='/services/content/translation/' ogType='website' ogUrl='https://asreseo.com/services/content/translation/' ogImages={[{ url: "/og/translation-hero.jpg", width: 1200, height: 630, alt: "Translation and localization | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Content Translation & Localization | AsreSEO'
 
-  ogDescription='ترجمه دقیق و بومی‌سازی محتوا برای گسترش کسب‌وکار جهانی.'
+  ogDescription='Accurate translation and content localization for global business growth.'
 >
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
       <script id="structured-data" type="application/ld+json" is:inline
         set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/content/translation/', image: '/og/translation-hero.jpg' }))}
       />
 
-      <Header />
+      <Header lang="en" />
       <BreadcrumbStructuredData
         items={[
-          { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-          { position: 2, name: 'خدمات محتوا', item: 'https://asreseo.com/services/content/' },
-          { position: 3, name: 'ترجمه و بومی‌سازی', item: 'https://asreseo.com/services/content/translation/' }
+          { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+          { position: 2, name: 'Content Services', item: 'https://asreseo.com/services/content/' },
+          { position: 3, name: 'Translation & Localization', item: 'https://asreseo.com/services/content/translation/' }
         ]}
       />
 
       <main>
         <!-- Hero Section -->
         <ServiceHero
-          badge="خدمات ترجمه تخصصی"
-          title="ترجمه و"
-          titleGradient="بومی‌سازی"
-          description="مترجمین تخصصی حوزه کسب‌وکار شما برای گسترش جهانی. از ترجمه دقیق تا بومی‌سازی کامل فرهنگی، عصر سئو در کنار شماست."
-          primaryCta={{ text: "شروع ترجمه حرفه‌ای" }}
-          secondaryCta={{ text: "تحلیل محتوای شما" }}
+          lang="en"
+          badge="Specialist Translation Services"
+          title="Translation &"
+          titleGradient="Localization"
+          description="Specialist translators in your business domain for global expansion. From precise translation to full cultural localization, AsreSEO stands with you."
+          primaryCta={{ text: "Start Professional Translation" }}
+          secondaryCta={{ text: "Analyze My Content" }}
           imageSrc="/images/translation-hero.webp"
-          imageAlt="ترجمه و بومی‌سازی"
+          imageAlt="Translation and localization"
           theme="teal"
         />
 
         <!-- Stats Section -->
-        <ServiceStats stats={stats} theme="teal" />
+        <ServiceStats lang="en" stats={stats} theme="teal" />
 
         <!-- Languages Section -->
         <section class="section-padding">
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                پوشش <span class="gradient-text">زبان‌های اصلی دنیا</span>
+                Coverage of the <span class="gradient-text">World’s Major Languages</span>
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                مترجمین تخصصی در تمام زبان‌های اصلی برای بازارهای جهانی شما
+                Specialist translators in every major language for your global markets
               </p>
             </div>
 
@@ -288,10 +290,10 @@ const structuredData = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                خدمات <span class="gradient-text">ترجمه کامل</span> عصر سئو
+                AsreSEO’s <span class="gradient-text">Complete Translation</span> Services
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                رویکردی جامع برای ترجمه و بومی‌سازی محتوای شما در سطح جهانی
+                A comprehensive approach to translating and localizing your content worldwide
               </p>
             </div>
 
@@ -330,10 +332,10 @@ const structuredData = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                انواع <span class="gradient-text">محتوای قابل ترجمه</span>
+                Types of <span class="gradient-text">Translatable Content</span>
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                پوشش کامل انواع محتوا از وب‌سایت تا مستندات قانونی
+                Full coverage from websites to legal documents
               </p>
             </div>
 
@@ -365,17 +367,17 @@ const structuredData = {
           </div>
         </section>
 
-              <ServiceBenefits title="مزایای ترجمه و" titleHighlight="بومی‌سازی حرفه‌ای" subtitle="گسترش جهانی کسب‌وکار با مترجمین متخصص حوزه شما" benefits={benefits} />
+              <ServiceBenefits lang="en" title="Why Professional" titleHighlight="Translation & Localization" subtitle="Take your business global with field-specialist translators" benefits={benefits} />
 
         <!-- Workflow Section -->
         <section class="section-padding bg-linear-to-br from-teal-50 to-green-50">
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                فرآیند <span class="gradient-text">ترجمه تخصصی</span> عصر سئو
+                AsreSEO’s Specialist <span class="gradient-text">Translation</span> Process
               </h2>
               <p class="text-xl text-gray-600">
-                رویکرد علمی ۴ مرحله‌ای برای ترجمه دقیق و با کیفیت
+                A scientific 4-step approach to precise, quality translation
               </p>
             </div>
 
@@ -401,22 +403,24 @@ const structuredData = {
 
         <!-- FAQ Section -->
         <ServiceFAQ
-          title="سوالات"
-          titleGradient="متداول"
-          subtitle="پاسخ به پرسش‌های رایج مشتریان درباره خدمات ترجمه"
+          lang="en"
+          title="Frequently"
+          titleGradient="Asked Questions"
+          subtitle="Answers to common client questions about translation services"
           faqs={faqs}
         />
 
         <!-- CTA Section -->
         <ServiceCTA
-          title="زبان مرز نمی‌شناسد، کسب‌وکار شما را جهانی کنید!"
-          description="با مترجمین تخصصی عصر سئو، محتوای شما به زبان‌های زنده دنیا ترجمه شود و به بازارهای میلیونی دسترسی پیدا کنید. از تحلیل فرهنگی تا بهینه‌سازی سئو چندزبانه، ما در کنار شما هستیم."
-          primaryCta={{ text: "شروع ترجمه حرفه‌ای" }}
-          secondaryCta={{ text: "مشاوره رایگان ترجمه" }}
+          lang="en"
+          title="Language Knows No Borders — Go Global!"
+          description="With AsreSEO's specialist translators, let your content speak the world's living languages and reach million-strong markets. From cultural analysis to multilingual SEO, we're beside you."
+          primaryCta={{ text: "Start Professional Translation" }}
+          secondaryCta={{ text: "Free Translation Consultation" }}
           primaryClass="bg-green-700 hover:bg-green-800 text-white font-semibold shadow-lg shadow-green-700/30"
         />
       </main>
 
-      <Footer />
+      <Footer lang="en" />
     </div>
 </BaseLayout>

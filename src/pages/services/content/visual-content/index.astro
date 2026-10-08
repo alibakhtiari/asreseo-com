@@ -20,37 +20,38 @@ import ServiceBenefits from '../../../../components/Services/ServiceBenefits.ast
 
 
 
-
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  'name': 'محتوای تصویری و ویدیویی',
-  'description': 'خدمات تولید محتوای بصری شامل طراحی گرافیک، ویدیو مارکتینگ و اینفوگرافیک',
+  'name': 'Visual & Video Content',
+  'description': 'Visual content services including graphic design, video marketing and infographics',
   'serviceType': 'Visual Content Production',
+  'inLanguage': 'en-US',
   'provider': {
     '@type': 'Organization',
-    'name': 'عصر سئو',
+    'name': 'AsreSEO',
     'url': 'https://asreseo.com'
   },
-  'areaServed': 'Iran',
   'hasOfferCatalog': {
     '@type': 'OfferCatalog',
-    'name': 'خدمات محتوای بصری',
+    'name': 'Visual content services',
     'itemListElement': [
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
-          'name': 'طراحی گرافیک',
-          'description': 'بنر، پوستر و گرافیک تبلیغاتی حرفه‌ای'
+          'name': 'Graphic design',
+          'description': 'Professional banners, posters and ad graphics',
+          'inLanguage': 'en-US'
         }
       },
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
-          'name': 'ویدیو مارکتینگ',
-          'description': 'تولید و تدوین ویدیوهای تبلیغاتی'
+          'name': 'Video marketing',
+          'description': 'Promotional video production and editing',
+          'inLanguage': 'en-US'
         }
       }
     ]
@@ -61,85 +62,85 @@ const structuredData = {
 
   const serviceCategories = [
     {
-      category: 'طراحی گرافیک',
+      category: 'Graphic Design',
       icon: "palette",
       services: [
         {
-          name: 'بنر و پوستر تبلیغاتی',
-          description: 'طراحی حرفه‌ای برای وب‌سایت، شبکه‌های اجتماعی و تبلیغات آنلاین',
+          name: 'Ad Banners & Posters',
+          description: 'Professional design for websites, social feeds and online ads',
           formats: ['JPG', 'PNG', 'PSD', 'AI']
         },
         {
-          name: 'اینفوگرافیک',
-          description: 'جمع‌بندی اطلاعاتی پیچیده در گرافیک‌های جذاب و آسان‌فهم',
+          name: 'Infographics',
+          description: 'Complex information distilled into engaging, easy-to-grasp graphics',
           formats: ['JPG', 'PNG', 'PDF', 'Animated GIF']
         },
         {
-          name: 'عکس نوشته (Photo Content)',
-          description: 'ترکیب متن تخصصی با تصاویر مرتبط و جذاب برای شبکه‌های اجتماعی',
+          name: 'Photo Posts (Photo Content)',
+          description: 'Expert copy combined with relevant, engaging images for social feeds',
           formats: ['JPG', 'PNG', 'Stories', 'Carousel']
         }
       ]
     },
     {
-      category: 'تولید ویدیو',
+      category: 'Video Production',
       icon: "video",
       services: [
         {
-          name: 'ویدیوهای تبلیغاتی محصول',
-          description: 'معرفی محصول یا خدمات با سبک‌های مختلف تبلیغاتی',
+          name: 'Product Promo Videos',
+          description: 'Product and service intros in varied advertising styles',
           formats: ['MP4', 'MOV', 'WebM']
         },
         {
-          name: 'موشن گرافیک و انیمیشن',
-          description: 'تبلیغات متحرک با سبک مدرم و جذاب برای توضیح توپیش‌ها',
+          name: 'Motion Graphics & Animation',
+          description: 'Modern animated ads that explain your offers',
           formats: ['MP4', 'GIF', 'Animated PNG']
         },
         {
-          name: 'ویدیوهای زنده و رویدادها',
-          description: 'پخش زنده محصولات، رویدادها و آموزش‌های زنده',
+          name: 'Live & Event Videos',
+          description: 'Live product streams, events and live tutorials',
           formats: ['Facebook Live', 'Instagram Live', 'YouTube']
         }
       ]
     },
     {
-      category: 'عکاسی حرفه‌ای',
+      category: 'Professional Photography',
       icon: "camera",
       services: [
         {
-          name: 'عکاسی محصول',
-          description: 'تصاویر جذاب و حرفه‌ای محصولات با نورپردازی و تنظیم حرفه‌ای',
+          name: 'Product Photography',
+          description: 'Striking professional product shots with pro lighting and setup',
           formats: ['JPG', 'TIFF', 'PSD']
         },
         {
-          name: 'عکاسی شرکتی و تیم',
-          description: 'عکس‌های حرفه‌ای کارکنان، محیط کار و فعالیت‌های شرکتی',
+          name: 'Corporate & Team Photography',
+          description: 'Professional portraits of staff, workspaces and company life',
           formats: ['JPG', 'Web-optimized']
         },
         {
-          name: 'عکاسی محتوایی',
-          description: 'تصاویر مرتبط با محتواهای تبلیغاتی و آموزشی',
+          name: 'Editorial Photography',
+          description: 'Images matched to promotional and educational content',
           formats: ['JPG', 'PNG', 'Animated']
         }
       ]
     },
     {
-      category: 'تدوین و پُست‌پراگنسی',
+      category: 'Editing & Post-Production',
       icon: "edit",
       services: [
         {
-          name: 'ویرایش و رنگ‌بندی پیشرفته',
-          description: 'تصحیح رنگ، نور و بهبود کیفیت تصاویر و ویدیوها',
+          name: 'Advanced Color Grading',
+          description: 'Color, light and quality correction for images and video',
           formats: ['All standard formats']
         },
         {
-          name: 'بهینه‌سازی برای سوشال مدیا',
-          description: 'تنظیم اندازه، کیفیت و فرمت برای حداکثر جذابیت',
+          name: 'Social Media Optimization',
+          description: 'Sizing, quality and format tuned for maximum appeal',
           formats: ['Instagram', 'Facebook', 'TikTok', 'LinkedIn']
         },
         {
-          name: 'افزودن جلوه‌های ویژه',
-          description: 'افکت‌های مدرن و جذاب برای افزایش تعامل محتوا',
+          name: 'Special Effects',
+          description: 'Modern, engaging effects that lift content interaction',
           formats: ['Video effects', 'Text overlays', 'Transitions']
         }
       ]
@@ -148,208 +149,209 @@ const structuredData = {
 
   const techniques = [
     {
-      name: 'ویسوال هیراکی',
-      description: 'مرتب‌سازی عناصر بصری برای راهنمایی چشم مخاطب',
-      impact: 'پایش نرخ پیگیری در گزارش'
+      name: 'Visual Hierarchy',
+      description: 'Arranging visual elements to guide the viewer’s eye',
+      impact: 'Follow-through tracked in reports'
     },
     {
-      name: 'رنگ درمانی (Color Psychology)',
-      description: 'استفاده از رنگ‌های هدفمند برای تأثیرگذاری عاطفی',
-      impact: 'سنجش احساس مثبت در گزارش'
+      name: 'Color Psychology',
+      description: 'Purposeful color choices for emotional impact',
+      impact: 'Positive sentiment measured in reports'
     },
     {
-      name: 'عناصر روانشناختی',
-      description: 'کاربرد تکنیک‌های F-Pattern و Z-Pattern برای تأثیرگزاری',
-      impact: 'پایش مسیر نگاه در داشبورد'
+      name: 'Psychological Cues',
+      description: 'F-pattern and Z-pattern techniques for impact',
+      impact: 'Gaze paths tracked in the dashboard'
     },
     {
-      name: 'استوری‌تلینگ بصری',
-      description: 'روایت داستان برند از طریق تصاویر مرتبط و پشت‌هم',
-      impact: 'اندازه‌گیری زمان ماندگاری ماهانه'
+      name: 'Visual Storytelling',
+      description: 'Telling your brand story through connected, relevant imagery',
+      impact: 'Monthly dwell-time measurement'
     }
   ];
 
   const contentTypes = [
     {
-      type: 'محتوای آموزشی بصری',
-      audience: 'دریافت‌آموزان',
-      goal: 'آموزش مهارت‌ها',
-      impact: 'نرخ یادگیری در داشبورد گزارش‌دهی'
+      type: 'Educational Visual Content',
+      audience: 'Learners',
+      goal: 'Teaching skills',
+      impact: 'Learning rates in the reporting dashboard'
     },
     {
-      type: 'محتوای سرگرم‌کننده',
-      audience: 'جوانان',
-      goal: 'تعامل و برندینگ',
-      impact: 'پایش دسترسی و بازنشر ماهانه'
+      type: 'Entertaining Content',
+      audience: 'Young audiences',
+      goal: 'Engagement & branding',
+      impact: 'Monthly reach and reshares tracked'
     },
     {
-      type: 'محتوای انگیزشی',
-      audience: 'کمیونیتی برند',
-      goal: 'وفاداری مشتری',
-      impact: 'تعامل اجتماعی در گزارش عملکرد'
+      type: 'Motivational Content',
+      audience: 'Brand community',
+      goal: 'Customer loyalty',
+      impact: 'Social engagement in performance reports'
     },
     {
-      type: 'محتوای تبلیغاتی مستقیم',
-      audience: 'مشتریان بالقوه',
-      goal: 'افزایش فروش',
-      impact: 'نرخ تبدیل در داشبورد گزارش‌دهی'
+      type: 'Direct Promotional Content',
+      audience: 'Potential customers',
+      goal: 'More sales',
+      impact: 'Conversion rates in the reporting dashboard'
     }
   ];
 
   const features = [
     {
       icon: "trending-up",
-      title: 'کاربرد تکنیک‌های روانشناسی رنگ',
-      description: 'بهینه‌سازی رنگ‌ها برای تأثیرگذاری عاطفی و تصمیم‌گیری مخاطبان بر اساس علم رنگ‌شناسی.',
-      benefits: ['افزایش احساس مثبت', 'ترغیب به اقدام', 'تقویت برند']
+      title: 'Applied Color Psychology',
+      description: 'Colors optimized for emotional impact and audience decisions, grounded in color science.',
+      benefits: ['Stronger positive feeling', 'Calls to action', 'Brand reinforcement']
     },
     {
       icon: "eye",
-      title: 'طراحی برای الگوریتم‌های بصری',
-      description: 'سازگار با تغییرات الگوریتم شبکه‌های اجتماعی و ترجیحات بصری کاربران مدرن.',
-      benefits: ['دسترسی بیشتر', 'تعامل بالاتر', 'رشد پایدار']
+      title: 'Designed for Visual Algorithms',
+      description: 'Aligned with social feed changes and modern visual preferences.',
+      benefits: ['Wider reach', 'Higher engagement', 'Sustainable growth']
     },
     {
       icon: "zap",
-      title: 'مالتی‌پلتفرم و رسپانسیو',
-      description: 'طراحی محتوا برای همه دستگاه‌ها و پلتفرم‌ها از موبایل تا تلویزیون.',
-      benefits: ['پوشش کامل', 'تجربه یکپارچه', 'بازدهی حداکثری']
+      title: 'Multi-Platform & Responsive',
+      description: 'Content designed for every device and platform, from mobile to TV.',
+      benefits: ['Full coverage', 'Unified experience', 'Maximum returns']
     },
     {
       icon: "target",
-      title: 'معیارگیری و تحلیل عملکرد',
-      description: 'پیگیری منظم آمار تعامل، دسترس‌پذیری و نرخ تبدیل با ابزارهای تحلیلی پیشرفته.',
-      benefits: ['بهینه‌سازی مداوم', 'گزارش شفاف', 'تصمیم‌گیری داده‌محور']
+      title: 'Performance Measurement & Analysis',
+      description: 'Regular tracking of engagement, reach and conversion with advanced analytics.',
+      benefits: ['Continuous optimization', 'Transparent reports', 'Data-driven decisions']
     },
     {
       icon: "sparkles",
-      title: 'توزیع هوشمند در کانال‌ها',
-      description: 'تخصیص محتوای مناسب به پلتفرم‌های مختلف بر اساس الگوریتم و مخاطب هر کدام.',
-      benefits: ['بازدهی بالاتر', 'تقویت برندسازمانی', 'مدیریت اولویت‌ها']
+      title: 'Smart Channel Distribution',
+      description: 'The right content for each platform, matched to its algorithm and audience.',
+      benefits: ['Higher returns', 'Stronger organization branding', 'Priority management']
     },
     {
       icon: "award",
-      title: 'کیفیت شبیه به برندهای جهانی',
-      description: 'استفاده از تجهیزات حرفه‌ای و تکنیک‌های روز جهانی در تولید محتوای بصری.',
-      benefits: ['اعتماد مشتریان', 'برندینگ حرفه‌ای', 'مزیت رقابتی']
+      title: 'World-Brand Quality',
+      description: 'Professional equipment and current global techniques in visual production.',
+      benefits: ['Customer trust', 'Professional branding', 'Competitive edge']
     }
   ];
 
   const benefits = [
-    'اندازه‌گیری نرخ تعامل و زمان ماندگاری مخاطب در داشبورد گزارش‌دهی',
-    'پایش ماهانه بازنشر پست‌ها در شبکه‌های اجتماعی و گزارش آن در جلسه ماهانه',
-    'ثبت نرخ کلیک و نرخ تبدیل هر طراحی با منبع داده کنارش برای راستی‌آزمایی',
-    'مقایسه هزینه بازاریابی با بازدهی محتوای بصری در گزارش عملکرد',
-    'روشی اثبات‌شده در پروژه‌های برندهای بزرگ دنیا'
+    'Audience engagement and dwell time measured in the reporting dashboard',
+    'Monthly tracking of post reshares across social feeds, reviewed in the monthly session',
+    'Click and conversion rates recorded per design, each with its data source for verification',
+    'Marketing spend compared against visual-content returns in performance reports',
+    'A proven approach from major global brand projects'
   ];
 
   const workflowSteps = [
     {
-      step: 'بررسی نیاز و استراتژی',
-      desc: 'فهم کسب‌وکار، هدف محتوا و استراتژی برند شما'
+      step: 'Needs & Strategy Review',
+      desc: 'Understanding your business, content goals and brand strategy'
     },
     {
-      step: 'ایده‌پردازی و سناریونویسی',
-      desc: 'توسعه مفهوم خلاقانه و نگارش سناریوی بصری جذاب'
+      step: 'Ideation & Scriptwriting',
+      desc: 'Developing creative concepts and compelling visual scripts'
     },
     {
-      step: 'طراحی و تولید اولیه',
-      desc: 'ساخت مدل‌های اولیه برای بازخورد و بهبود'
+      step: 'Design & First Drafts',
+      desc: 'Building early models for feedback and improvement'
     },
     {
-      step: 'تولید نهایی و تدوین',
-      desc: 'اجرای کامل طرح با تجهیزات حرفه‌ای و نهایی‌سازی'
+      step: 'Final Production & Editing',
+      desc: 'Full execution with professional equipment and final polish'
     },
     {
-      step: 'توزیع و مانیتورینگ',
-      desc: 'انتشار هوشمند و پیگیری عملکرد با تحلیل‌های دقیق'
+      step: 'Distribution & Monitoring',
+      desc: 'Smart publishing with precise performance tracking'
     },
     {
-      step: 'گزارش‌دهی و بهینه‌سازی',
-      desc: 'ارائه نتایج و پیشنهادات بهبود برای کمپین‌های بعدی'
+      step: 'Reporting & Optimization',
+      desc: 'Results and improvement ideas for the next campaigns'
     }
   ];
 
   // Qualitative process facts, not performance percentages — client-result
   // percentages are unverifiable (see src/lib/site-claims.ts authenticity policy).
   const stats = [
-    { metric: '۶ مرحله', label: 'فرآیند تولید مستند', color: 'text-blue-600', icon: "trending-up" },
-    { metric: 'ماهانه', label: 'گزارش عملکرد و بازبینی', color: 'text-green-800', icon: "sparkles" },
-    { metric: 'داشبورد', label: 'اندازه‌گیری نرخ تعامل', color: 'text-orange-600', icon: "eye" },
-    { metric: 'کلاه سفید', label: 'توزیع و انتشار ارگانیک', color: 'text-red-600', icon: "target" }
+    { metric: '6 Steps', label: 'Documented production process', color: 'text-blue-600', icon: "trending-up" },
+    { metric: 'Monthly', label: 'Performance reports & reviews', color: 'text-green-800', icon: "sparkles" },
+    { metric: 'Dashboard', label: 'Engagement-rate measurement', color: 'text-orange-600', icon: "eye" },
+    { metric: 'White-Hat', label: 'Organic distribution & publishing', color: 'text-red-600', icon: "target" }
   ];
 
   const faqs = [
     {
-      question: 'چقدر زمان برای تولید محتوای بصری نیاز است؟',
-      answer: 'بسته به پیچیدگی پروژه متفاوت است: گرافیک ساده ۲-۳ روز، اینفوگرافیک متحرک ۴-۶ روز، ویدیوهای کوتاه ۵-۷ روز و ویدیوهای حرفه‌ای ۱۰-۱۴ روز. زمان‌های تخمینی دقیق هنگام مشاوره رایگان اعلام می‌شود.'
+      question: 'How long does visual content production take?',
+      answer: 'It varies by complexity: simple graphics 2–3 days, animated infographics 4–6 days, short videos 5–7 days and professional videos 10–14 days. Exact estimates are given in the free consultation.'
     },
     {
-      question: 'فرمت فایل‌های تولیدی چیست و چگونه تحویل داده می‌شود؟',
-      answer: 'تمام فرمت‌های سوشال مدیا، وب و پرینت با بالاترین کیفیت. فایل‌های وردپرس با اندازه‌های آماده برای انتشار مستقیم. تحویل از طریق گوگل درایو با امکان دانلود نامحدود و پشتیبانی فنی پس از تحویل.'
+      question: 'What file formats do you deliver, and how?',
+      answer: 'All social, web and print formats at top quality, with platform-ready sizes for direct publishing. Delivered via Google Drive with unlimited downloads and post-delivery technical support.'
     },
     {
-      question: 'آیا سناریونویسی و ایده‌پردازی هم جزو خدمات شماست؟',
-      answer: 'بله! تیم متخصص عصر سئو در مرحله اول یک جلسه مشاوره مجانی برگزار می‌کند و سپس بر اساس استراتژی برند شما، ایده‌های خلاقانه و سناریوهای جلب‌کننده پیشنهاد می‌دهد. این مرحله مهمترین قسمت کار است.'
+      question: 'Do you also handle ideation and scriptwriting?',
+      answer: 'Yes! The AsreSEO team starts with a free consultation session, then proposes creative ideas and compelling scripts based on your brand strategy. This is the most important part of the work.'
     },
     {
-      question: 'چطور اطمینان حاصل کنیم از کیفیت بالای کار؟',
-      answer: 'تیم طراحی عصر سئو سال‌ها تجربه کار با برندهای بزرگ ایران دارد و نمونه کارها و رضایت مشتریان قبلی را می‌توانید بررسی کنید. همچنین قبل از تولید نهایی، مدل‌های اولیه را برای تأیید نهایی ارائه می‌دهیم.'
+      question: 'How can we be sure of high quality?',
+      answer: 'The AsreSEO design team has years of experience with major brands — you can review portfolios and past client satisfaction. We also present early models for final approval before full production.'
     },
     {
-      question: 'هزینه تولید محتوای بصری چقدر است؟',
-      answer: 'قیمت‌گذاری بر اساس حجم، پیچیدگی و کیفیت کار تعیین می‌شود. بسته‌ها از ۵۰۰ هزار تومان برای گرافیک ساده شروع می‌شود و بسته‌های VIP تا ۱۰ میلیون تومان برای پروژه‌های کمپینی بزرگ. هزینه بسیار منطقی نسبت به کیفیت و بازدهی final است.'
+      question: 'What does visual content production cost?',
+      answer: 'Pricing depends on volume, complexity and quality. Packages start affordably for simple graphics and scale to VIP tiers for large campaign projects — very reasonable for the quality and returns.'
     },
     {
-      question: 'آیا از تجهیزات و نرم‌افزارهای حرفه‌ای استفاده می‌کنید؟',
-      answer: 'بله! استفاده از تجهیزات عکاسی حرفه‌ای شامل دوربین Canon و Nikon، سیستم‌های نورپردازی پیشرفته، نرم‌افزارهای Adobe Creative Suite و DaVinci Resolve برای تدوین و After Effects برای موشن گرافیک.'
+      question: 'Do you use professional equipment and software?',
+      answer: 'Yes! Professional photography gear including Canon and Nikon cameras, advanced lighting systems, Adobe Creative Suite and DaVinci Resolve for editing, plus After Effects for motion graphics.'
     }
   ];
 
 ---
-<BaseLayout title='تولید محتوای تصویری، ویدیویی و اینفوگرافیک | عصر سئو' description='طراحی گرافیک و تولید محتوای بصری با ویدیو مارکتینگ، اینفوگرافیک انیمیشنی و عکاسی حرفه‌ای. نرخ تبدیل و تعامل در داشبورد گزارش‌دهی عصر سئو قابل پیگیری است.' keywords='محتوای تصویری, ویدیو مارکتینگ, طراحی گرافیک, اینفوگرافیک, موشن گرافیک, تولید محتوا' canonical='https://asreseo.com/services/content/visual-content/' ogType='website' ogUrl='https://asreseo.com/services/content/visual-content/' ogImages={[{ url: "/og/visual-content-hero.jpg", width: 1200, height: 630, alt: "محتوای تصویری و ویدیویی | عصر سئو" }]} twitterCard='summary_large_image'
-  ogTitle='محتوای تصویری و ویدیویی | عصر سئو'
+<BaseLayout lang="en" title='Visual, Video & Infographic Content | AsreSEO' description='Graphic design and visual content with video marketing, animated infographics and professional photography. Track conversion and engagement in the AsreSEO reporting dashboard.' keywords='visual content, video marketing, graphic design, infographics, motion graphics, content production' canonical='/services/content/visual-content/' ogType='website' ogUrl='https://asreseo.com/services/content/visual-content/' ogImages={[{ url: "/og/visual-content-hero.jpg", width: 1200, height: 630, alt: "Visual and video content | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Visual & Video Content | AsreSEO'
 
-  ogDescription='طراحی گرافیک و تولید ویدیو حرفه‌ای برای برند شما.'
+  ogDescription='Professional graphic design and video production for your brand.'
 >
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
       <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/content/visual-content/', image: '/og/visual-content-hero.jpg' }))} />
 
-      <Header />
+      <Header lang="en" />
       <BreadcrumbStructuredData
         items={[
-          { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-          { position: 2, name: 'خدمات محتوا', item: 'https://asreseo.com/services/content/' },
-          { position: 3, name: 'محتوای تصویری و ویدیویی', item: 'https://asreseo.com/services/content/visual-content/' }
+          { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+          { position: 2, name: 'Content Services', item: 'https://asreseo.com/services/content/' },
+          { position: 3, name: 'Visual & Video Content', item: 'https://asreseo.com/services/content/visual-content/' }
         ]}
       />
 
       <main>
         <!-- Hero Section -->
         <ServiceHero
-          badge="تولید محتوای بصری حرفه‌ای"
-          title="محتوای"
-          titleGradient="تصویری و ویدیویی"
-          description="قدرت دیداری برای برند شما! ویدیو مارکتینگ حرفه‌ای که نرخ تبدیل آن در داشبورد گزارش‌دهی پیگیری می‌شود، و محتوای گرافیکی که میلیون‌ها بار دیده می‌شود در عصر سئو."
-          primaryCta={{ text: "سفارش محتوای بصری" }}
-          secondaryCta={{ text: "مشاهده نمونه کارها" }}
+          lang="en"
+          badge="Professional Visual Content Production"
+          title="Visual"
+          titleGradient="& Video Content"
+          description="Visual power for your brand! Professional video marketing with conversions tracked in the reporting dashboard, and graphic content seen far and wide — at AsreSEO."
+          primaryCta={{ text: "Order Visual Content" }}
+          secondaryCta={{ text: "See Portfolio" }}
           imageSrc="/images/visual-content-hero.webp"
-          imageAlt="محتوای تصویری و ویدیویی"
+          imageAlt="Visual and video content"
           theme="purple"
         />
 
         <!-- Stats Section -->
-        <ServiceStats stats={stats} theme="purple" />
+        <ServiceStats lang="en" stats={stats} theme="purple" />
 
         <!-- Content Types Section -->
         <section class="section-padding">
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                استراتژی محتوا <span class="gradient-text">بر اساس هدف</span>
+                Content Strategy <span class="gradient-text">by Goal</span>
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                رویکردهای تخصصی برای اهداف بازاریابی متفاوت
+                Specialized approaches for different marketing goals
               </p>
             </div>
 
@@ -367,11 +369,11 @@ const structuredData = {
                   <CardContent>
                     <div class="space-y-3">
                       <div class="flex justify-between items-center">
-                        <span class="text-gray-600">مخاطب هدف:</span>
+                        <span class="text-gray-600">Target audience:</span>
                         <span class="text-indigo-600 font-medium">{content.audience}</span>
                       </div>
                       <div class="flex justify-between items-center">
-                        <span class="text-gray-600">هدف اصلی:</span>
+                        <span class="text-gray-600">Main goal:</span>
                         <span class="text-purple-600 font-medium">{content.goal}</span>
                       </div>
                       <Badge class="bg-green-100 text-green-800 w-fit">{content.impact}</Badge>
@@ -388,10 +390,10 @@ const structuredData = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                دسته‌بندی کامل <span class="gradient-text">خدمات بصری عصر سئو</span>
+                The Complete Range of <span class="gradient-text">AsreSEO Visual Services</span>
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                تمام نیازهای محتوای تصویری برند شما در یک پلتفرم
+                Every visual content need your brand has, on one platform
               </p>
             </div>
 
@@ -434,10 +436,10 @@ const structuredData = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                تکنیک‌های <span class="gradient-text">روانشناسی بصری پیشرفته</span>
+                Advanced <span class="gradient-text">Visual Psychology</span> Techniques
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                علوم اثبات‌شده برای تأثیرگذاری حداکثری بر مخاطب
+                Proven science for maximum audience impact
               </p>
             </div>
 
@@ -473,10 +475,10 @@ const structuredData = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                تکنولوژی‌های پیشرفته <span class="gradient-text">تولید محتوای بصری</span>
+                Advanced Technologies for <span class="gradient-text">Visual Content Production</span>
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                از روانشناسی رنگ تا الگوریتم‌های یادگیری ماشین
+                From color psychology to machine-learning algorithms
               </p>
             </div>
 
@@ -510,17 +512,17 @@ const structuredData = {
           </div>
         </section>
 
-              <ServiceBenefits title="مزایای استراتژیک" titleHighlight="محتوای بصری عصر سئو" subtitle="آنچه محتوای بصری حرفه‌ای برای برند شما ایجاد می‌کند و در گزارش عملکرد پایش می‌شود" benefits={benefits} />
+              <ServiceBenefits lang="en" title="Strategic Benefits of" titleHighlight="AsreSEO Visual Content" subtitle="What professional visual content builds for your brand — tracked in performance reports" benefits={benefits} />
 
         <!-- Workflow Section -->
         <section class="section-padding bg-linear-to-br from-indigo-50 to-pink-50">
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                فرآیند <span class="gradient-text">تولید محتوای بصری</span> عصر سئو
+                The AsreSEO <span class="gradient-text">Visual Content</span> Production Process
               </h2>
               <p class="text-xl text-gray-600">
-                رویکرد سیستماتیک علمی از ایده‌پردازی تا تحلیل نتایج
+                A systematic, scientific approach from ideation to results analysis
               </p>
             </div>
 
@@ -546,22 +548,24 @@ const structuredData = {
 
         <!-- FAQ Section -->
         <ServiceFAQ
-          title="سوالات"
-          titleGradient="متداول"
-          subtitle="پاسخ به پرسش‌های رایج مشتریان درباره محتوای بصری"
+          lang="en"
+          title="Frequently"
+          titleGradient="Asked Questions"
+          subtitle="Answers to common client questions about visual content"
           faqs={faqs}
         />
 
         <!-- CTA Section -->
         <ServiceCTA
-          title="محتوای بصری برند شما را حرفه‌ای و جذاب کنیم!"
-          description="عصر سئو با تجهیزات حرفه‌ای، تکنیک‌های روز دنیا و تیم تخصصی آماده ارائه خدمات گرافیک و تولید ویدیو به برند شماست. اولین پروژه خود را همین امروز شروع کنید و تفاوت را ببینید."
-          primaryCta={{ text: "سفارش محتوای بصری" }}
-          secondaryCta={{ text: "مشاوره رایگان طراحی" }}
+          lang="en"
+          title="Let's Make Your Brand's Visual Content Professional and Compelling!"
+          description="AsreSEO brings professional equipment, current global techniques and a specialist team to your graphic and video needs. Start your first project today and see the difference."
+          primaryCta={{ text: "Order Visual Content" }}
+          secondaryCta={{ text: "Free Design Consultation" }}
           primaryClass="bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg shadow-pink-600/30"
         />
       </main>
 
-      <Footer />
+      <Footer lang="en" />
     </div>
 </BaseLayout>

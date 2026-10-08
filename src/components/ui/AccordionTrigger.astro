@@ -12,12 +12,12 @@ const { class: className = '' }: any = Astro.props;
   type="button"
   data-acc-trigger
   aria-expanded="false"
-  class={`flex w-full items-center justify-between gap-4 text-right transition-colors cursor-pointer group select-none ${className}`}
+  class={`flex w-full items-center justify-between gap-4 text-left transition-colors cursor-pointer group select-none ${className}`}
 >
   <span class="flex-1 leading-relaxed">
     <slot />
   </span>
-  <span class="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-blue-50 flex items-center justify-center shrink-0 text-slate-500 group-hover:text-blue-600 transition-colors">
+  <span class="w-8 h-8 rounded-full bg-white/5 border border-white/10 group-hover:bg-cyan-500/20 group-hover:border-cyan-500/30 flex items-center justify-center shrink-0 text-slate-400 group-hover:text-cyan-400 transition-colors">
     <svg
       data-acc-icon
       class="w-4 h-4 transition-transform duration-300 transform"

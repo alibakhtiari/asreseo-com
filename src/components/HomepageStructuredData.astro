@@ -1,9 +1,17 @@
 ---
 import { withServiceMeta } from '../lib/service-schema';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+
 const data = {
   '@context': 'https://schema.org',
   '@type': 'OfferCatalog',
-  name: 'خدمات دیجیتال مارکتینگ',
+  name: 'Digital Marketing Services',
   provider: {
     '@id': 'https://asreseo.com/#organization',
   },
@@ -12,8 +20,8 @@ const data = {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: 'خدمات سئو حرفه‌ای',
-        description: 'بهینه‌سازی موتور جستجو و افزایش رتبه سایت',
+        name: 'Professional SEO Services',
+        description: 'Search engine optimization and ranking growth',
         provider: {
           '@id': 'https://asreseo.com/#organization',
         },
@@ -23,8 +31,8 @@ const data = {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: 'تبلیغات گوگل ادز',
-        description: 'مدیریت و بهینه‌سازی کمپین‌های تبلیغاتی',
+        name: 'Google Ads Management',
+        description: 'Ad campaign management and optimization',
         provider: {
           '@id': 'https://asreseo.com/#organization',
         },
@@ -34,8 +42,8 @@ const data = {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: 'خدمات هوش مصنوعی',
-        description: 'راهکارهای نوین AI برای رشد کسب‌وکار و اتوماسیون',
+        name: 'AI Services',
+        description: 'Modern AI solutions for business growth and automation',
         provider: {
           '@id': 'https://asreseo.com/#organization',
         },

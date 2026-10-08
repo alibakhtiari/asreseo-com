@@ -20,29 +20,28 @@ import ServiceBenefits from '../../../../components/Services/ServiceBenefits.ast
 
 
 
-
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  'name': 'طراحی صفحات فرود اختصاصی',
-  'description': 'خدمات طراحی و توسعه صفحات فرود ویژه با تمرکز بر نرخ تبدیل بالا',
+  'name': 'Custom Landing Page Design',
+  'description': 'Design and development of dedicated landing pages with a focus on high conversion rates',
   'serviceType': 'Landing Page Design & Development',
   'provider': {
     '@type': 'Organization',
-    'name': 'عصر سئو',
+    'name': 'AsreSEO',
     'url': 'https://asreseo.com'
   },
-  'areaServed': 'Iran',
+  'inLanguage': 'en-US',
   'hasOfferCatalog': {
     '@type': 'OfferCatalog',
-    'name': 'خدمات طراحی Landing Page',
+    'name': 'Landing Page Design Services',
     'itemListElement': [
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
           'name': 'High-Conversion Landing Page',
-          'description': 'صفحات فرود با نرخ تبدیل بهینه‌سازی شده'
+          'description': 'Landing pages with optimized conversion rates'
         }
       }
     ]
@@ -54,254 +53,254 @@ const structuredData = {
   const landingFeatures = [
     {
       icon: "mouse-pointer-click",
-      title: 'تمرکز بر نرخ تبدیل بالا',
-      description: 'طراحی با اصول CRO و هدایت موثر کاربر به اقدام مورد نظر با CTA بهینه',
-      benefits: ['افزایش تبدیل قابل اندازه‌گیری', 'فاکتورهای روان‌شناختی', 'فراخوان قوی عمل']
+      title: 'Built for High Conversion',
+      description: 'Designed with CRO principles to steer users toward action with optimized CTAs',
+      benefits: ['Measurable conversion lift', 'Psychology-driven factors', 'Strong call to action']
     },
     {
       icon: "scroll-text",
-      title: 'بهینه‌سازی برای تبلیغات و سئو',
-      description: 'لندینگ پیج قابل رقابت در تبلیغات پولی و افزایش رتبه کلمات کلیدی بلندخور',
-      benefits: ['رتبه بهتر کلمات کلیدی', 'بهبود ROI تبلیغات', 'سرعت شاخص‌گذاری']
+      title: 'Optimized for Ads & SEO',
+      description: 'Landing pages that compete in paid campaigns and rank for long-tail keywords',
+      benefits: ['Better keyword rankings', 'Improved ad ROI', 'Faster indexing']
     },
     {
       icon: "monitor-smartphone",
-      title: 'کاملاً واکنش‌گرا و سریع',
-      description: 'ظاهر بی‌نقص در تمام دستگاه‌ها و سرعت لود بالای صفحه بدون اسکرول انحرافی',
-      benefits: ['پشتیبانی کامل موبایل', 'سرعت بارگذاری بالا', 'تجربه یکپارچه']
+      title: 'Fully Responsive & Fast',
+      description: 'Pixel-perfect on every device with high load speed and zero distracting scroll',
+      benefits: ['Full mobile support', 'High load speed', 'Consistent experience']
     },
     {
       icon: "palette",
-      title: 'هویت بصری هماهنگ با برند',
-      description: 'انتخاب رنگ‌ها و طراحی گرافیکی مطابق استراتژی برند شما و کاربران هدف',
-      benefits: ['شناخت برند بالاتر', 'اعتماد مشتری بیشتر', 'تجاریهگری استراتژیک']
+      title: 'On-Brand Visual Identity',
+      description: 'Colors and graphic design matched to your brand strategy and target users',
+      benefits: ['Stronger brand recognition', 'Greater customer trust', 'Strategic merchandising']
     },
     {
       icon: "eye",
-      title: 'تحلیل و تست A/B پیشرفته',
-      description: 'پیگیری دقیق رفتار کاربر با heatmaps و تست‌های آماری برای حداکثر بهینه‌سازی',
-      benefits: ['بهبود مداوم مبتنی بر داده', 'داده‌خواست محوری', 'تصمیم‌گیری علمی']
+      title: 'Advanced Analytics & A/B Testing',
+      description: 'Precise user-behavior tracking with heatmaps and statistical tests for maximum optimization',
+      benefits: ['Continuous data-driven improvement', 'Data-centric decisions', 'Scientific decision-making']
     },
     {
       icon: "trending-up",
-      title: 'یکپارچگی با ابزارهای بازاریابی',
-      description: 'اتصال مستقیم به CRM، سیستم‌های emailing و ابزارهای اتوماسیون بازاریابی',
-      benefits: ['کارایی عملیاتی نهایی', 'صرفه‌جویی زمانی', 'نرخ عملیاتی بالا']
+      title: 'Marketing-Tool Integrations',
+      description: 'Direct connections to your CRM, email systems and marketing automation tools',
+      benefits: ['Peak operational efficiency', 'Time savings', 'High close rate']
     }
   ];
 
   const conversionElements = [
     {
-      element: 'Heading (هدر جذاب)',
-      importance: 'اولین چیزی که کاربر می‌بیند',
-      effect: 'اثر مستقیم روی نرخ کلیک'
+      element: 'Compelling Headline',
+      importance: 'The first thing visitors see',
+      effect: 'Direct impact on click-through rate'
     },
     {
       element: 'Strong CTA Buttons',
-      importance: 'فراخوان عمل چشمگیر',
-      effect: 'بهبود نرخ تبدیل'
+      importance: 'Eye-catching calls to action',
+      effect: 'Better conversion rate'
     },
     {
       element: 'Social Proof',
-      importance: 'جو اعتماد و اعتبار',
-      effect: 'تقویت اعتماد و تبدیل'
+      importance: 'An atmosphere of trust and credibility',
+      effect: 'Stronger trust and conversions'
     },
     {
       element: 'Urgency Elements',
-      importance: 'ایجاد احساس فوریت',
-      effect: 'تسریع تصمیم خرید'
+      importance: 'Creating a sense of urgency',
+      effect: 'Faster purchase decisions'
     },
     {
       element: 'Video Demo',
-      importance: 'نمایش عمل‌کرد محصول',
-      effect: 'افزایش ماندگاری کاربر'
+      importance: 'Showing the product in action',
+      effect: 'Longer visitor dwell time'
     },
     {
       element: 'Testimonials',
-      importance: 'گواهی رضایت مشتریان',
-      effect: 'افزایش نرخ اعتماد'
+      importance: 'Proof of customer satisfaction',
+      effect: 'Higher trust rate'
     }
   ];
 
   const caseStudies = [
     {
-      client: 'استارتاپ FinTech',
-      problem: 'نرخ تبدیل پایین و dwell time کم',
-      solution: 'طراحی Landing Page با video demo و pricing tables',
-      result: 'رشد پیوسته نرخ تبدیل و درآمد ماهانه، قابل رهگیری در داشبورد گزارش‌دهی'
+      client: 'FinTech Startup',
+      problem: 'Low conversion rate and short dwell time',
+      solution: 'Landing page design with video demo and pricing tables',
+      result: 'Steady conversion and monthly revenue growth, trackable in the reporting dashboard'
     },
     {
-      client: 'کلینیک پزشکی',
-      problem: 'کمبود بیمار، حضور آنلاین ضعیف',
-      solution: 'Landing Page با فرم مشاوره رایگان و social proof',
-      result: 'ورودی مستمر بیمار جدید از فرم رزرو آنلاین، با پایش نرخ رزرو در داشبورد گزارش‌دهی'
+      client: 'Medical Clinic',
+      problem: 'Too few patients, weak online presence',
+      solution: 'Landing page with free-consultation form and social proof',
+      result: 'A steady flow of new patients via the online booking form, with booking rates monitored in the reporting dashboard'
     },
     {
-      client: 'فروشگاه آنلاین',
-      problem: 'نرخ خرید پایین و رها کردن سبد بالا',
-      solution: 'حذف موارد اضافه انحراف، focus بر one goal',
-      result: 'رشد نرخ خرید و سود ماهانه، اندازه‌گیری‌شده در داشبورد گزارش‌دهی'
+      client: 'Online Store',
+      problem: 'Low purchase rate and high cart abandonment',
+      solution: 'Removing distractions, focusing on one goal',
+      result: 'Purchase-rate and monthly profit growth, measured in the reporting dashboard'
     },
     {
-      client: 'اپلیکیشن موبایل',
-      problem: 'کمبود نصب، توضیحات فنی پیچیده',
-      solution: 'Landing Page با توضیحات ساده و screenshots',
-      result: 'رشد نرخ نصب و بهبود رتبه اپ‌استور، اندازه‌گیری‌شده در داشبورد گزارش‌دهی'
+      client: 'Mobile App',
+      problem: 'Too few installs, overly technical descriptions',
+      solution: 'Landing page with plain explanations and screenshots',
+      result: 'Install-rate growth and better app-store ranking, measured in the reporting dashboard'
     }
   ];
 
   const toolsIntegration = [
     {
-      tool: 'Google Analytics ۴',
-      purpose: 'پیگیری رفتار کاربران و نرخ تبدیل',
-      benefit: 'داده‌های دقیق از عملکرد صفحه'
+      tool: 'Google Analytics 4',
+      purpose: 'Tracking user behavior and conversion rates',
+      benefit: 'Accurate page-performance data'
     },
     {
       tool: 'Google Optimize',
-      purpose: 'انجام تست‌های A/B به صورت خودکار',
-      benefit: 'بهینه‌سازی مداوم و علمی'
+      purpose: 'Running automated A/B tests',
+      benefit: 'Continuous, scientific optimization'
     },
     {
       tool: 'Hotjar',
-      purpose: 'نقشه حرارتی اسکرول و کلیک کاربران',
-      benefit: 'درک رفتار کاربر و نقاط بهبود'
+      purpose: 'Scroll and click heatmaps',
+      benefit: 'Understanding behavior and weak spots'
     },
     {
       tool: 'Mailchimp / CRM',
-      purpose: 'مدیریت لیدها و بازاریابی متوالی',
-      benefit: 'تبدیل بازدیدکنندگان به مشتریان'
+      purpose: 'Lead management and drip marketing',
+      benefit: 'Turning visitors into customers'
     },
     {
       tool: 'Facebook Pixel',
-      purpose: 'ردیابی تبلیغات و remarketing',
-      benefit: 'بهینه‌سازی هزینه تبلیغات'
+      purpose: 'Ad tracking and remarketing',
+      benefit: 'Optimized ad spend'
     },
     {
       tool: 'Typeform / Calendly',
-      purpose: 'جمع‌آوری اطلاعات کامل کاربر',
-      benefit: 'لید با کیفیت بالاتر'
+      purpose: 'Collecting complete user information',
+      benefit: 'Higher-quality leads'
     }
   ];
 
   const workflowSteps = [
     {
-      step: 'تحقیق و استراتژی',
-      desc: 'تحلیل مخاطب هدف، رقبا و اهداف کسب‌وکار، تعریف مسیر خرید کاربر',
-      duration: '۳-۵ روز',
+      step: 'Research & Strategy',
+      desc: 'Analyzing the target audience, competitors and business goals; mapping the buyer journey',
+      duration: '3\u20135 days',
       output: 'Strategy Document & User Journey Map'
     },
     {
-      step: 'طراحی و wireframing',
-      desc: 'ساخت ساختار صفحه، چیدمان عناصر و تعریف call-to-actionها',
-      duration: '۴-۷ روز',
+      step: 'Design & Wireframing',
+      desc: 'Building the page structure, element layout and call-to-action definitions',
+      duration: '4\u20137 days',
       output: 'Wireframes & Interactive Prototype'
     },
     {
-      step: 'توسعه و کدنویسی',
-      desc: 'پیاده‌سازی ریسپانسیو با سرعت بالا، اتصال فرم‌ها و ابزارهای لازم',
-      duration: '۵-۸ روز',
+      step: 'Development & Coding',
+      desc: 'Responsive implementation with high speed, connecting forms and required tools',
+      duration: '5\u20138 days',
       output: 'Live Landing Page & Integration Setup'
     },
     {
-      step: 'تست و بهینه‌سازی',
-      desc: 'A/B Testing، Usability Testing و تحلیل behavior کاربران',
-      duration: '۴-۶ روز',
+      step: 'Testing & Optimization',
+      desc: 'A/B testing, usability testing and user-behavior analysis',
+      duration: '4\u20136 days',
       output: 'Optimized Page & Performance Report'
     },
     {
-      step: 'مانتیورینگ و پشتیبانی',
-      desc: 'پیگیری عملکرد و پیشنهادات بهبود مستمر برای حداکثر نرخ تبدیل',
-      duration: 'ماهانه',
+      step: 'Monitoring & Support',
+      desc: 'Performance tracking and continuous improvement suggestions for maximum conversion',
+      duration: 'Monthly',
       output: 'Monthly Reports & Continuous Optimization'
     }
   ];
 
   const benefits = [
-    'افزایش قابل اندازه‌گیری نرخ تبدیل با طراحی علمی با اصول روان‌شناسی مصرف‌کننده',
-    'کاهش هزینه به‌ازای کسب مشتری (CPA) به دلیل هدفمندی بیشتر',
-    'بهبود نرخ تکمیل هدف به دلیل تجربه کاربری روان و جذاب',
-    'بازگشت سرمایه بالاتر به دلیل تمرکز بر یک هدف مشخص',
-    'بهبود اعتماد و اعتبار برند به دلیل social proof و testimonials'
+    'Measurably higher conversion rates with science-led design rooted in consumer psychology',
+    'Lower customer acquisition cost (CPA) through sharper targeting',
+    'Better goal-completion rates thanks to a smooth, engaging user experience',
+    'Higher return on investment through single-goal focus',
+    'Stronger brand trust and credibility via social proof and testimonials'
   ];
 
   const stats = [
-    { metric: 'رشد مداوم', label: 'نرخ تبدیل قابل اندازه‌گیری', icon: "target" },
-    { metric: '۱۲ روز', label: 'زمان توسعه متوسط', icon: "trending-up" },
-    { metric: 'بازخورد مستمر', label: 'رضایت مشتریان', icon: "users" },
-    { metric: 'نمونه‌کارها', label: 'لندینگ موفق طراحی شده', icon: "bar-chart3" }
+    { metric: 'Steady growth', label: 'Measurable conversion rate', icon: "target" },
+    { metric: '12 days', label: 'Average build time', icon: "trending-up" },
+    { metric: 'Ongoing feedback', label: 'Client satisfaction', icon: "users" },
+    { metric: 'Portfolio', label: 'Successful landing pages built', icon: "bar-chart3" }
   ];
 
   const faqs = [
     {
-      question: 'لندینگ پیج چقدر با صفحات معمولی سایتم متفاوت است؟',
-      answer: 'یک Landing Page تنها یک هدف دارد: تبدیل یک بازدیدکننده به customer. بدون menu پیچیده، بدون لینک‌های انحرافی، بدون بررسی‌های جانبی. تمام عناصر صفحه برای هدایت کاربر به یک اقدام خاص طراحی می‌شوند. اگر صفحه خانگی شما مثل بازارچه است، Landing Page مثل فروشگاه متخصص است.'
+      question: 'How is a landing page different from my site\u2019s regular pages?',
+      answer: 'A landing page has exactly one goal: turning a visitor into a customer. No complex menus, no distracting links, no side quests. Every element is designed to guide users toward one specific action. If your homepage is a bazaar, a landing page is a specialist boutique.'
     },
     {
-      question: 'چقدر طول می‌کشد یک Landing Page طراحی کنیم؟',
-      answer: 'زمان توسعه بسته به پیچیدگی دارد. یک Landing Page ساده ۴-۶ روز، متوسط ۷-۱۰ روز و پیچیده با انیمیشن‌های پیشرفته ۲-۳ هفته. مهم‌تر از سرعت، رسیدن به حداکثر نرخ تبدیل است. اگر سریع‌ترین راه نرخ تبدیل پایین دهد، بهتر است زمان بیشتری بگذریم.'
+      question: 'How long does it take to design a landing page?',
+      answer: 'Build time depends on complexity. A simple landing page takes 4\u20136 days, an average one 7\u201310 days, and a complex one with advanced animations 2\u20133 weeks. More important than speed is reaching the maximum conversion rate \u2014 if the fastest route delivers a weak rate, it\u2019s worth spending more time.'
     },
     {
-      question: 'آیا پس از تحویل هم Landing Page را بهبود می‌دهید؟',
-      answer: 'شاید مهمترین قسمت کار ما همین باشد! Landing Page هرگز کامل نمی‌شود، همیشه فرصت بهبود دارد. ما تا معادل هزینه پروژه به صورت رایگان مانیتورینگ می‌کنیم و بر اساس داده تحلیل‌های حرارتی، A/B Testing و سوابق کاربر، پیشنهادات بهبود روزانه ارائه می‌دهیم.'
+      question: 'Do you keep improving the landing page after delivery?',
+      answer: 'That may be the most important part of our work! A landing page is never finished \u2014 there\u2019s always room to improve. We monitor it free of charge up to the project\u2019s value, and deliver ongoing improvement suggestions based on heatmap data, A/B tests and user records.'
     },
     {
-      question: 'چقدر نرخ تبدیل Landing Page معمولاً افزایش می‌دهد؟',
-      answer: 'بسته به industry متفاوت است. صفحات مالی، محصولات B۲B نرم‌افزار، خدمات و محصولات مصرف‌کننده هر کدام بازه متفاوتی از نرخ تبدیل دارند. به جای اتکا به عددی ثابت، نرخ تبدیل پایه صفحه شما را اندازه می‌گیریم و با A/B Testing و بهینه‌سازی تدریجی بالا می‌بریم. مهمترین نکته این است که traffic را مستقیماً به customer تبدیل کنیم.'
+      question: 'How much does a landing page typically lift conversion rates?',
+      answer: 'It varies by industry. Finance pages, B2B software, services and consumer products each see different conversion ranges. Instead of relying on a fixed number, we measure your page\u2019s baseline rate and lift it gradually with A/B testing and optimization. What matters most is turning traffic directly into customers.'
     },
     {
-      question: 'آیا برای کمپین‌های تبلیغات بودجه محدودی دارید نیز موثر است؟',
-      answer: 'بله! Landing Page مخصوصاً برای بودجه‌های محدود عالی است. تبلیغات پولی گران هستند، Landing Page بد کار خود را چند برابر می‌کند. یک کمپین تبلیغاتی که ۱۰ میلیون تومان هزینه دارد، با Landing Page خوب نرخ تبدیلش بالاتر می‌رود؛ یعنی در اصل از همان بودجه مشتری بیشتری می‌گیریم بدون اینکه هزینه بیشتری پرداخت کنیم.'
+      question: 'Does it still work with a limited ad budget?',
+      answer: 'Yes! Landing pages are especially powerful on tight budgets. Paid ads are expensive, and a bad landing page multiplies that waste. An ad campaign spending a fixed budget converts at a higher rate with a good landing page \u2014 meaning more customers from the same budget, at no extra cost.'
     },
     {
-      question: 'چرا برخی Landing Page‌ها چندین call-to-action دارند؟',
-      answer: 'بله با استراتژی! اما این call-to-actionها باید سلسله مراتبی باشند. Primary CTA اصلی، Secondary CTAهای پشتیبان و Final CTA نهایی برای کسانی که هنوز آماده نیستند. اما یادتان باشد، هرچه CTA بیشتر شود، تمرکز کاربر کمتر می‌شود. هنر این است که با یکه primary CTA، دیگران را پشتیبانی کند.'
+      question: 'Why do some landing pages have multiple calls to action?',
+      answer: 'With strategy! But those CTAs must be hierarchical: one primary CTA, supporting secondary CTAs, and a final CTA for visitors who aren\u2019t ready yet. Remember, though: more CTAs mean less user focus. The art is making a single primary CTA supported by the rest.'
     }
   ];
 
 ---
-<BaseLayout title='طراحی صفحات فرود با نرخ تبدیل بالا | عصر سئو' description='طراحی صفحات فرود اختصاصی با نرخ تبدیل بالا، بهینه برای تبلیغات و کمپین‌های بازاریابی دیجیتال با فناوری‌های پیشرفته.' keywords='صفحه فرود, Landing Page, طراحی لندینگ, نرخ تبدیل, Conversion Rate Optimization' canonical='https://asreseo.com/services/web/landing-pages/' ogType='website' ogUrl='https://asreseo.com/services/web/landing-pages/' ogImages={[{ url: "/og/landing-page-hero.jpg", width: 1200, height: 630, alt: "طراحی صفحات فرود | عصر سئو" }]} twitterCard='summary_large_image'
-  ogTitle='طراحی صفحات فرود اختصاصی | عصر سئو'
+<BaseLayout lang="en" title='High-Converting Landing Page Design | AsreSEO' description='Custom landing page design with high conversion rates \u2014 optimized for ads and digital marketing campaigns with advanced technology.' keywords='landing page, landing page design, conversion rate, Conversion Rate Optimization' canonical='/services/web/landing-pages/' ogType='website' ogUrl='https://asreseo.com/services/web/landing-pages/' ogImages={[{ url: "/og/landing-page-hero.jpg", width: 1200, height: 630, alt: "Landing page design | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Custom Landing Page Design | AsreSEO'
 
-  ogDescription='طراحی Landing Page با نرخ تبدیل بالا برای تبلیغات و بازاریابی.'
+  ogDescription='High-converting landing pages for advertising and marketing.'
 >
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
       <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/web/landing-pages/', image: '/og/landing-page-hero.jpg' }))} />
 
-      <Header />
+      <Header lang="en" />
       <BreadcrumbStructuredData
         items={[
-          { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-          { position: 2, name: 'خدمات وب', item: 'https://asreseo.com/services/web/' },
-          { position: 3, name: 'طراحی صفحات فرود', item: 'https://asreseo.com/services/web/landing-pages/' }
+          { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+          { position: 2, name: 'Web Services', item: 'https://asreseo.com/services/web/' },
+          { position: 3, name: 'Landing Page Design', item: 'https://asreseo.com/services/web/landing-pages/' }
         ]}
       />
 
       <main>
         <!-- Hero Section -->
-        <ServiceHero
-          badge="طراحی صفحات فرود حرفه‌ای"
-          title="صفحات فرود"
-          titleGradient="پرتبدیل"
-          description="موتور رشد کمپین‌های دیجیتال و تبدیل بازدیدکنندگان به مشتریان وفادار با طراحی علمی Landing Page عصر سئو."
-          primaryCta={{ text: "شروع طراحی Landing Page" }}
-          secondaryCta={{ text: "نمونه کارهای موفق" }}
+        <ServiceHero lang="en"
+          badge="Professional Landing Page Design"
+          title="High-Converting Landing Pages"
+          titleGradient="High-Converting"
+          description="The growth engine of digital campaigns \u2014 turning visitors into loyal customers with AsreSEO\u2019s science-led landing page design."
+          primaryCta={{ text: "Start My Landing Page" }}
+          secondaryCta={{ text: "Successful Case Studies" }}
           imageSrc="/images/landing-page-hero.webp"
-          imageAlt="طراحی صفحات فرود اختصاصی"
+          imageAlt="Custom landing page design"
           theme="purple"
         />
 
         <!-- Stats Section -->
-        <ServiceStats stats={stats} theme="purple" />
+        <ServiceStats lang="en" stats={stats} theme="purple" />
 
         <!-- Landing Features Section -->
         <section class="section-padding">
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                تکنولوژی‌های پیشرفته <span class="gradient-text">طراحی Landing Page</span>
+                Advanced <span class="gradient-text">Landing Page Design</span> Technology
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                رویکرد علمی برای حداکثر نرخ تبدیل
+                A scientific approach to maximum conversion rates
               </p>
             </div>
 
@@ -340,10 +339,10 @@ const structuredData = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                عناصر <span class="gradient-text">افزایش تبدیل</span> Landing Page
+                <span class="gradient-text">Conversion-Boosting</span> Landing Page Elements
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                اجزاء علمی برای هدایت کاربر به خرید
+                Scientific components for guiding users to buy
               </p>
             </div>
 
@@ -379,10 +378,10 @@ const structuredData = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                نمونه کارها و <span class="gradient-text">موفقیت مشتریان</span>
+                Case Studies & <span class="gradient-text">Client Wins</span>
               </h2>
               <p class="text-xl text-gray-600">
-                گزارش واقعی از بهبود کسب‌وکارها با Landing Page عصر سئو
+                Real reports of business growth with AsreSEO landing pages
               </p>
             </div>
 
@@ -395,7 +394,7 @@ const structuredData = {
                         {study.client}
                       </Badge>
                       <h3 class="text-xl font-semibold text-gray-900">
-                        چالش: {study.problem}
+                        Challenge: {study.problem}
                       </h3>
                     </div>
 
@@ -403,14 +402,14 @@ const structuredData = {
                       <div class="flex items-start gap-3">
                         <div class="w-2 h-2 bg-green-500 rounded-full mt-2 shrink-0"></div>
                         <div>
-                          <span class="font-medium text-gray-900">راه حل: </span>
+                          <span class="font-medium text-gray-900">Solution: </span>
                           <span class="text-gray-600">{study.solution}</span>
                         </div>
                       </div>
                       <div class="flex items-start gap-3">
                         <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0"></div>
                         <div>
-                          <span class="font-medium text-gray-900">نتیجه: </span>
+                          <span class="font-medium text-gray-900">Result: </span>
                           <span class="text-gray-600">{study.result}</span>
                         </div>
                       </div>
@@ -427,10 +426,10 @@ const structuredData = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                ابزارهای <span class="gradient-text">تحلیل و بهینه‌سازی</span>
+                <span class="gradient-text">Analytics & Optimization</span> Tools
               </h2>
               <p class="text-xl text-gray-600">
-                اتصال مستقیم به بهترین ابزارهای بازاریاب دیجیتال
+                Direct connections to the best digital marketing tools
               </p>
             </div>
 
@@ -461,17 +460,17 @@ const structuredData = {
           </div>
         </section>
 
-              <ServiceBenefits title="مزایای Landing Page" titleHighlight="عصر سئو" subtitle="گزارش واقعی از بهبود مشتریان با طراحی Landing Page حرفه‌ای" benefits={benefits} />
+              <ServiceBenefits lang="en" title="AsreSEO Landing Page Benefits" titleHighlight="AsreSEO" subtitle="Real reports of client growth with professional landing page design" benefits={benefits} />
 
         <!-- Workflow Section -->
         <section class="section-padding bg-slate-50">
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                فرآیند طراحی <span class="gradient-text">Landing Page</span>
+                The <span class="gradient-text">Landing Page</span> Design Process
               </h2>
               <p class="text-xl text-gray-600">
-                رویکرد ۵ مرحله‌ای برای حداکثر نرخ تبدیل
+                A 5-step approach to maximum conversion rates
               </p>
             </div>
 
@@ -489,7 +488,7 @@ const structuredData = {
                       {step.desc}
                     </p>
                     <Badge variant="outline" class="text-sm mr-3">
-                      مدت زمان: {step.duration}
+                      Duration: {step.duration}
                     </Badge>
                     <Badge class="bg-green-100 text-green-800">
                       {step.output}
@@ -502,23 +501,23 @@ const structuredData = {
         </section>
 
         <!-- FAQ Section -->
-        <ServiceFAQ
-          title="سوالات"
-          titleGradient="متداول"
-          subtitle="پاسخ به پرسش‌های مشتریان درباره طراحی Landing Page"
+        <ServiceFAQ lang="en"
+          title="Frequently Asked Questions"
+          titleGradient="Asked Questions"
+          subtitle="Answers to client questions about landing page design"
           faqs={faqs}
         />
 
         <!-- CTA Section -->
-        <ServiceCTA
-          title="کمپین‌های شما را به درآمد بی‌پایان تبدیل کنیم!"
-          description="با طراحی Landing Page عصر سئو، هر بازدیدکننده تبدیل به مشتری می‌شود. نرخ تبدیل بالاتر و هزینه کمتر به‌ازای هر مشتری جدید، اندازه‌گیری‌شده در داشبورد گزارش‌دهی. همین امروز شمارش معکوس مشتریان جدید را شروع کنید!"
-          primaryCta={{ text: "مشاوره رایگان Landing Page" }}
-          secondaryCta={{ text: "نمونه Landing Page موفق" }}
+        <ServiceCTA lang="en"
+          title="Let\u2019s turn your campaigns into endless revenue!"
+          description="With AsreSEO landing page design, every visitor becomes a customer. Higher conversion rates and lower cost per new customer \u2014 measured in the reporting dashboard. Start the countdown to new customers today!"
+          primaryCta={{ text: "Free Landing Page Consultation" }}
+          secondaryCta={{ text: "Successful Landing Page Samples" }}
           primaryClass="bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-lg shadow-purple-600/30"
         />
       </main>
 
-      <Footer />
+      <Footer lang="en" />
     </div>
 </BaseLayout>

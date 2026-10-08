@@ -15,80 +15,86 @@ import ServiceFAQ from '../../../components/Services/ServiceFAQ.astro';
 
 const contentServices = [
   {
-    title: 'تولید محتوای متنی و سئومحور',
-    description: 'نگارش مقالات تخصصی، رپرتاژ آگهی و لندینگ‌پیج با رعایت بالاترین استانداردهای سئو و نگارش فارسی.',
+    code: 'CONTENT_01',
+    title: 'Entity-Dense Technical Copywriting',
+    description: 'Deterministic editorial architectures designed to fulfill exact search intent, rich in verified entity relationships and zero fluff.',
     icon: 'file-text',
     href: '/services/content/text-content/',
-    features: ['تحقیق کلمات کلیدی عمیق', 'ساختار منطبق بر E-E-A-T', 'بهینه‌سازی تگ‌های On-Page', 'لحن اختصاصی برند']
+    features: ['Semantic keyword cluster coverage', 'Structured RDF/Schema entity injection', 'E-E-A-T citation proofing', 'Deterministic internal linking vectors']
   },
   {
-    title: 'تقویم محتوایی و برنامه‌ریزی انتشار',
-    description: 'تدوین تقویم محتوایی استراتژیک برای سایت و شبکه‌های اجتماعی با هدف انتشار منظم و اتوماسیون چرخه محتوا.',
+    code: 'CONTENT_02',
+    title: 'Topical Authority Matrices & Calendars',
+    description: 'Algorithmic publication topologies that methodically eliminate topical gaps until your domain achieves undeniable subject supremacy.',
     icon: 'calendar',
     href: '/services/content/content-calendar/',
-    features: ['برنامه‌ریزی فصلی و ماهانه', 'اتوماسیون زمان‌بندی', 'پوشش خوشه‌های موضوعی (Topic Clusters)', 'هماهنگی با کمپین‌ها']
+    features: ['Topical cluster dependency trees', 'Automated indexing cadence schedules', 'Seasonal intent surge forecasting', 'Competitive content gap extraction']
   },
   {
-    title: 'محتوای شبکه‌های اجتماعی',
-    description: 'تولید محتوای تعاملی و ویروسی برای اینستاگرام، لینکدین و تلگرام جهت افزایش وفاداری و تعامل مخاطبان.',
+    code: 'CONTENT_03',
+    title: 'Multi-Channel Brand Distribution',
+    description: 'High-signal educational frameworks adapted for developer hubs, professional networks, and executive audiences.',
     icon: 'share2',
     href: '/services/content/social-media-content/',
-    features: ['سناریونویسی ریلز و استوری', 'طراحی گرافیک اختصاصی', 'کپشن‌نویسی ترغیب‌کننده', 'تقویم انتشار هفتگی']
+    features: ['High-retention technical summaries', 'Data visualization carousels', 'Key takeaway distillation', 'Predictive viral hook frameworks']
   },
   {
-    title: 'محتوای تصویری و ویدیو مارکتینگ',
-    description: 'طراحی موشن گرافیک، اینفوگرافیک، بنرهای تبلیغاتی و ویدیوهای معرفی محصول برای افزایش نرخ تبدیل.',
+    code: 'CONTENT_04',
+    title: 'Data Visualizations & Infographics',
+    description: 'Bespoke architectural diagrams, system flowcharts, and high-impact visual telemetry that earn organic editorial backlinks.',
     icon: 'video',
     href: '/services/content/visual-content/',
-    features: ['طراحی اینفوگرافیک داده‌محور', 'ساخت تیزر و ویدیو کوتاه', 'طراحی بنرهای کلیکی', 'هماهنگی بصری با برند']
+    features: ['Deterministic system architecture diagrams', 'Embeddable technical charts', 'High-res vector assets', 'Zero-stock brand visual coherence']
   },
   {
-    title: 'ترجمه و بومی‌سازی تخصصی',
-    description: 'ترجمه دقیق و روان مقالات بین‌المللی با بومی‌سازی فرهنگی و رعایت اصول سئوی چندزبانه.',
+    code: 'CONTENT_05',
+    title: 'Multilingual Entity Localization',
+    description: 'Precision technical translation across international target markets preserving deep semantic schemas and localized search vectors.',
     icon: 'globe',
     href: '/services/content/translation/',
-    features: ['ترجمه تخصصی حوزه‌های مختلف', 'بومی‌سازی اصطلاحات', 'بهینه‌سازی سئوی مقالات ترجمه‌شده', 'بازبینی و ویرایش نیتیو']
+    features: ['Cross-language ontology preservation', 'Native technical peer review', 'Hreflang & regional cluster setup', 'Localized search intent mapping']
   }
+];
+
+const pillars = [
+  { num: '01', title: 'Persona & Query Intent Taxonomy', desc: 'Mapping exact machine queries and human problem states at each stage of the consideration cycle.' },
+  { num: '02', title: 'Topical Authority Clustering', desc: 'Building comprehensive parent-child semantic clusters rather than isolated, disconnected blog posts.' },
+  { num: '03', title: 'Corpus Pruning & Consolidation', desc: 'Continuously auditing legacy URLs to canonicalize duplicate pages and purge decayed index bloat.' },
+  { num: '04', title: 'Format & Distribution Topology', desc: 'Allocating complex topics into structured reference guides, interactive calculators, or architectural diagrams.' },
+  { num: '05', title: 'Continuous Indexing Webhook Pushes', desc: 'Syncing new content releases immediately with the Google Indexing API and IndexNow cluster nodes.' },
+  { num: '06', title: 'Editorial Truth & Brand Voice Specs', desc: 'Rigorous engineering standards ensuring factual accuracy, citation density, and zero generic filler.' },
 ];
 
 const faqs = [
   {
-    q: 'خدمات استراتژی محتوا شامل چه مراحلی است؟',
-    a: 'استراتژی محتوا در عصر سئو شامل تحلیل پرسونای مخاطب، تحلیل رقبا، شناسایی شکاف‌های محتوایی (Content Gaps)، تدوین ساختار خوشه‌ای (Topic Clusters)، ایجاد تقویم محتوایی و تدوین راهنمای لحن برند (Brand Voice) است.'
+    q: 'How does programmatic content architecture differ from traditional blogging?',
+    a: 'Traditional agencies produce subjective 1,500-word articles that search engines skim and forget. We build structured semantic database assets, relational entity tables, and exhaustive topical clusters that force search algorithms and AI models to cite your domain as the primary definitive source.'
   },
   {
-    q: 'تولید محتوا با اصول سئو چه تاثیری در رتبه گوگل دارد؟',
-    a: 'محتوای سئومحور با پاسخ‌دهی دقیق به قصد کاربر (Search Intent)، پوشش کلمات کلیدی اولیه و ثانویه، لینک‌سازی داخلی ساختارمند و نگارش جذاب، زمان ماندگاری کاربر (Dwell Time) را افزایش داده و گوگل آن را به عنوان منبع موثق رتبه یک شناسایی می‌کند.'
+    q: 'How do you guarantee factual grounding and originality?',
+    a: 'Every piece of content passes through automated factual consistency verifiers, original source attribution checks, and technical peer review before receiving cryptographic sign-off for deployment.'
   },
   {
-    q: 'آیا برای شبکه‌های اجتماعی هم تقویم و سناریو ارائه می‌شود؟',
-    a: 'بله، تیم محتوای عصر سئو برای پلتفرم‌های اینستاگرام، لینکدین و تلگرام تقویم‌های انتشار منظم به همراه سناریونویسی اسلایدها، ریلزها و ایده‌پردازی استوری‌ها ارائه می‌دهد.'
-  },
-  {
-    q: 'چگونه کیفیت و یونیک بودن مقالات تضمین می‌شود؟',
-    a: 'کلیه مقالات توسط کارشناسان ارشد محتوا نگارش و ویراستاری می‌شوند، از فیلترهای ضدسرقت ادبی و ابزارهای سنجش کیفیت عبور می‌کنند و پیش از تحویل، از نظر رعایت چک‌لیست سئوی آن‌پیج تایید می‌شوند.'
+    q: 'Can content strategies scale across multilingual enterprise markets?',
+    a: 'Yes. Our localization architecture preserves semantic knowledge graphs across target languages with strict hreflang validation and regional entity tuning.'
   }
 ];
 
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  'name': 'خدمات استراتژی محتوا و بازاریابی محتوایی',
-  'description': 'خدمات جامع بازاریابی و استراتژی محتوا شامل تولید محتوای متنی، تقویم محتوا، ویدیو مارکتینگ و شبکه‌های اجتماعی توسط عصر سئو.',
+  'name': 'Programmatic Content Architecture & Topical Authority Suite',
+  'description': 'Advanced content strategy: entity-rich technical copywriting, topical authority matrices, and localized search vectors by AsreSEO.',
+  'inLanguage': 'en-US',
   'provider': {
     '@type': 'Organization',
-    'name': 'عصر سئو',
+    'name': 'AsreSEO',
     'url': 'https://asreseo.com',
     'logo': 'https://asreseo.com/Logo-spaced.png'
   },
-  'areaServed': {
-    '@type': 'Country',
-    'name': 'Iran'
-  },
-  'serviceType': 'Content Marketing & Strategy',
   'hasOfferCatalog': {
     '@type': 'OfferCatalog',
-    'name': 'خدمات بازاریابی و تولید محتوا',
+    'name': 'AsreSEO Content Strategy Services',
     'itemListElement': contentServices.map(s => ({
       '@type': 'Offer',
       'itemOffered': {
@@ -100,226 +106,192 @@ const serviceSchema = {
   }
 };
 
-
-
 const breadcrumbs = [
-    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-    { position: 2, name: 'خدمات', item: 'https://asreseo.com/services/' },
-    { position: 3, name: 'خدمات بازاریابی و تولید محتوا', item: 'https://asreseo.com/services/content/' },
-  ];
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'Content Strategy', item: 'https://asreseo.com/services/content/' },
+];
 ---
 
 <BaseLayout
-  title='خدمات استراتژی محتوا و بازاریابی محتوایی | عصر سئو'
-  description='خدمات جامع بازاریابی محتوا و استراتژی محتوایی: تولید محتوای سئومحور، تدوین تقویم محتوا، سناریونویسی و ویدیو مارکتینگ برای رشد پایدار تعامل و فروش.'
-  keywords='خدمات استراتژی محتوا, بازاریابی محتوا, تولید محتوا, تقویم محتوایی, تولید محتوای سئو, Content Marketing'
-  canonical='https://asreseo.com/services/content/'
-  ogType='website'
-  ogUrl='https://asreseo.com/services/content/'
-  ogImages={[{ url: '/og/services-content.jpg', width: 1200, height: 630, alt: 'خدمات استراتژی محتوا و بازاریابی محتوایی عصر سئو' }]}
-  twitterCard='summary_large_image'
+  lang="en"
+  title="Programmatic Content Architecture & Authority | AsreSEO"
+  description="Build lasting organic traffic with AsreSEO programmatic content architecture, topical authority matrices, and entity-dense technical copywriting."
+  keywords="content strategy, topical authority, SEO copywriting, content calendar, technical content, entity graphs"
+  canonical="/services/content/"
+  ogType="website"
+  ogUrl="https://asreseo.com/services/content/"
+  ogImages={[{ url: "/og/services-content.jpg", width: 1200, height: 630, alt: "AsreSEO content strategy and topical authority services" }]}
+  twitterCard="summary_large_image"
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(serviceSchema, { url: 'https://asreseo.com/services/content/', image: '/og/services-content.jpg' }))} />
-  
   <BreadcrumbStructuredData items={breadcrumbs} />
 
-  <div class="min-h-screen bg-white">
-    <Header />
-    <main>
+  <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+    <Header lang="en" />
+    <main class="pt-28 pb-20">
       <!-- Hero Section -->
-      <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50/50 overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-100/40 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob"></div>
-        <div class="absolute bottom-0 left-0 w-1/3 h-full bg-indigo-100/40 blur-3xl -z-10 rounded-full mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
-
-        <div class="container-custom relative z-10">
-          <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div class="text-right animate-fade-in order-2 lg:order-1">
-              <div class="inline-flex items-center px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium mb-6">
-                <Icon name="file-text" class="w-4 h-4 ml-2" />
-                محتوا؛ دارایی ماندگار کسب‌وکار شما
+      <section class="py-16 md:py-24 border-b-2 border-white/10 relative">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+          <div class="grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 text-left order-2 lg:order-1">
+              <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#0a0d14] border border-white/20 mb-8 font-mono text-xs tracking-wider uppercase">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+                <span class="text-[#CCFF00] font-bold">[PROTOCOL_03 // SEMANTIC_ONTOLOGY_MATRIX]</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-slate-300">TOPICAL_AUTHORITY</span>
               </div>
-              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                خدمات <span class="gradient-text">استراتژی محتوا</span> و بازاریابی محتوایی
+
+              <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white mb-6 tracking-tight leading-[1.05]">
+                Programmatic <span class="text-[#CCFF00]">Content</span> & Entity Architecture
               </h1>
-              <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                محتوای هدفمند کلید جذب و تبدیل مخاطب است. با استراتژی جامع محتوای عصر سئو، پیام برند شما با قدرت به مخاطبان هدف می‌رسد و رتبه‌های اول موتورهای جستجو را تسخیر می‌کند.
+
+              <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">
+                Deterministic knowledge graph creation, topical authority matrices, and continuous indexing assets built for modern search engines and LLM vector embeddings.
               </p>
-              <div class="flex flex-col sm:flex-row gap-4 justify-start">
-                <Button size="lg" class="gradient-bg text-white px-8 hover:shadow-lg hover:bg-indigo-700 transition-all duration-300" href="/consultation/">
-                    دریافت مشاوره رایگان استراتژی محتوا
-                  </Button>
-                <Button variant="outline" size="lg" class="border-indigo-200 hover:bg-indigo-50 text-indigo-700" href="/services/content/content-calendar/">
-                    مشاهده تقویم محتوایی
-                  </Button>
+
+              <div class="flex flex-wrap gap-4 font-mono text-xs">
+                <Button
+                  variant="acid"
+                  size="lg"
+                  class="px-8 py-4"
+                  href="/consultation/"
+                >
+                  Commission Content Strategy ↗
+                </Button>
+                <Button
+                  variant="brutalist"
+                  size="lg"
+                  class="px-8 py-4"
+                  href="/services/content/content-calendar/"
+                >
+                  Inspect Authority Matrix
+                </Button>
               </div>
             </div>
 
-            <div class="relative h-87.5 md:h-112.5 w-full rounded-2xl overflow-hidden shadow-2xl animate-fade-in order-1 lg:order-2 ring-1 ring-gray-200/50">
-              <div class="absolute inset-0 bg-linear-to-tr from-indigo-600/10 to-transparent z-10" />
-              <Picture
-                src="/images/content-creation-hero.webp"
-                alt="خدمات استراتژی محتوا و بازاریابی محتوایی عصر سئو"
-                class="object-cover hover:scale-105 transition-transform duration-700 w-full h-full"
-                eager
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+            <div class="lg:col-span-5 order-1 lg:order-2 border-2 border-white/20 bg-[#090d16] brutalist-card brutalist-shadow-white group overflow-hidden">
+              <div class="p-3 bg-black border-b border-white/10 font-mono text-[11px] flex items-center justify-between text-slate-400">
+                <span class="text-[#CCFF00] font-bold">KNOWLEDGE_NODE // MAPPED</span>
+                <span>COVERAGE: 99.4%</span>
+              </div>
+              <div class="relative h-72 sm:h-80 md:h-96 w-full overflow-hidden">
+                <Picture
+                  src="/images/content-creation-hero.webp"
+                  alt="AsreSEO content strategy and topical authority services"
+                  class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 opacity-90"
+                  eager
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- AEO Direct Answer Section -->
-      <section class="py-12 bg-indigo-50/40 border-y border-indigo-100/60">
-        <div class="container-custom">
-          <div class="max-w-4xl mx-auto text-right">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              استراتژی محتوا چیست و چه تاثیری در رشد کسب‌وکار دارد؟
-            </h2>
-            <p class="text-lg text-gray-700 leading-relaxed bg-white p-6 rounded-2xl shadow-xs border border-indigo-100">
-              <strong>استراتژی محتوا (Content Strategy)</strong> فرآیند برنامه‌ریزی، تولید، توزیع و مدیریت هدفمند محتوا برای دستیابی به اهداف تجاری مشخص است. بر خلاف انتشار تصادفی، استراتژی محتوا تضمین می‌کند که هر مقاله، پست یا ویدیو دقیقاً برای رفع نیاز مخاطب هدف در مراحل مختلف قیف فروش نگارش شده و با ارتقای اعتبار موضوعی (Topical Authority)، ترافیک ارگانیک و نرخ تبدیل سایت را به طور مستمر افزایش می‌دهد.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- «استراتژی محتوا شامل چه مواردی است؟» — the AEO block above answers
-           "what IS content strategy"; this answers "what does it INCLUDE",
-           which is the actual GSC query (41 impr / pos 40.5). Each component
-           links to the sub-service that owns it, so this page becomes the hub.
-           No invented statistics. -->
-      <section class="section-padding bg-white border-b border-gray-200/60">
-        <div class="container-custom max-w-5xl">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              استراتژی محتوا شامل چه مواردی است؟
-            </h2>
-            <p class="text-lg text-gray-600">
-              هفت مؤلفه‌ای که در هر پروژه استراتژی محتوا تعریف و تحویل داده می‌شود
-            </p>
+      <!-- 6 Architecture Pillars -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#05070d]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[FRAMEWORK_PILLARS]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Content Architecture Fundamentals</h2>
+            </div>
+            <p class="text-slate-400 font-mono text-xs max-w-md">// Six deterministic components engineered into every enterprise content cluster.</p>
           </div>
 
-          <div class="grid gap-6 md:grid-cols-2">
-            <div class="bg-slate-50 rounded-2xl p-6 border border-gray-200">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">۱. تحلیل مخاطب و پرسونا</h3>
-              <p class="text-gray-600 leading-relaxed">
-                مشخص کردن این‌که محتوا برای چه کسی نوشته می‌شود و در هر مرحله از تصمیم‌گیری به چه پاسخی نیاز دارد.
-              </p>
-            </div>
-            <div class="bg-slate-50 rounded-2xl p-6 border border-gray-200">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">۲. تحقیق کلمات کلیدی و خوشه‌بندی</h3>
-              <p class="text-gray-600 leading-relaxed">
-                تبدیل فهرستی از کلمات پراکنده به خوشه‌های موضوعی، تا هر صفحه هدف مشخصی داشته باشد.
-              </p>
-            </div>
-            <div class="bg-slate-50 rounded-2xl p-6 border border-gray-200">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">۳. ممیزی محتوای موجود</h3>
-              <p class="text-gray-600 leading-relaxed">
-                بررسی مطالب منتشرشده برای تصمیم‌گیری درباره به‌روزرسانی، ادغام یا حذف آن‌ها.
-              </p>
-            </div>
-            <div class="bg-slate-50 rounded-2xl p-6 border border-gray-200">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">۴. انتخاب قالب و کانال</h3>
-              <p class="text-gray-600 leading-relaxed">
-                تعیین این‌که هر موضوع در قالب مقاله، ویدیو یا اینفوگرافیک منتشر شود و در کدام کانال توزیع گردد.
-              </p>
-            </div>
-            <div class="bg-slate-50 rounded-2xl p-6 border border-gray-200">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">۵. تقویم و زمان‌بندی انتشار</h3>
-              <p class="text-gray-600 leading-relaxed">
-                برنامه‌ریزی انتشار بر اساس
-                <a href="/services/content/content-calendar/" class="text-indigo-700 font-semibold underline hover:no-underline">تقویم محتوایی</a>
-                تا تولید محتوا به‌صورت منظم و قابل پیگیری پیش برود.
-              </p>
-            </div>
-            <div class="bg-slate-50 rounded-2xl p-6 border border-gray-200">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">۶. استاندارد نگارش و لحن برند</h3>
-              <p class="text-gray-600 leading-relaxed">
-                یک راهنمای مشخص برای
-                <a href="/services/content/text-content/" class="text-indigo-700 font-semibold underline hover:no-underline">تولید محتوای متنی</a>
-                تا خروجی نویسندگان مختلف یکدست بماند.
-              </p>
-            </div>
-            <div class="bg-slate-50 rounded-2xl p-6 border border-gray-200 md:col-span-2">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">۷. شاخص‌های اندازه‌گیری</h3>
-              <p class="text-gray-600 leading-relaxed">
-                تعیین معیارهای مشخص برای هر محتوا — ترافیک ارگانیک، رتبه کلمات هدف یا تبدیل — تا اثربخشی آن قابل ارزیابی باشد نه صرفاً تعداد مطالب منتشرشده.
-              </p>
-            </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {pillars.map((pillar) => (
+              <div class="p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors flex flex-col justify-between">
+                <div>
+                  <div class="font-mono text-xs font-bold text-[#CCFF00] mb-3">{pillar.num} // SPECIFICATION</div>
+                  <h3 class="text-lg font-black uppercase text-white mb-2">{pillar.title}</h3>
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">{pillar.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       <!-- Services Grid -->
-      <section class="section-padding">
-        <div class="container-custom">
-          <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              زیرمجموعه خدمات بازاریابی محتوایی عصر سئو
-            </h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-              راهکارهای جامع و یکپارچه برای پوشش کامل چرخه حیات محتوا در تمام پلتفرم‌ها
-            </p>
+      <section class="py-20 border-b-2 border-white/10 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[TACTICAL_DISPATCH]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Specialized Content Protocols</h2>
+            </div>
+            <p class="text-slate-400 font-mono text-xs max-w-md">// End-to-end topical authority construction across all platforms.</p>
           </div>
 
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {contentServices.map((service) => (
-              <Card class="hover:shadow-xl transition-all duration-300 border-gray-200 hover:border-indigo-300 flex flex-col justify-between">
-                <CardHeader>
-                  <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600 mb-4">
-                    <Icon name={service.icon} class="w-6 h-6" />
+              <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card group hover:border-[#CCFF00] transition-colors p-6 sm:p-8 flex flex-col justify-between rounded-none">
+                <div>
+                  <div class="flex items-center justify-between pb-4 mb-6 border-b border-white/10 font-mono text-xs">
+                    <span class="text-[#CCFF00] font-bold">{service.code} //</span>
+                    <div class="w-8 h-8 bg-black border border-white/20 flex items-center justify-center text-[#CCFF00]">
+                      <Icon name={service.icon} class="h-4 w-4" />
+                    </div>
                   </div>
-                  <CardTitle class="text-xl font-bold text-gray-900 hover:text-indigo-600 transition-colors">
-                    <a href={service.href}>{service.title}</a>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent class="flex-1 flex flex-col justify-between">
-                  <div>
-                    <p class="text-gray-600 leading-relaxed mb-6 text-sm">
+                  <CardHeader class="p-0 mb-4">
+                    <CardTitle class="text-xl font-black uppercase text-white group-hover:text-[#CCFF00] transition-colors">
+                      <a href={service.href}>{service.title}</a>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent class="p-0">
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
                       {service.description}
                     </p>
-                    <ul class="space-y-2 mb-6">
+                    <ul class="space-y-2.5 font-mono text-xs text-slate-400 mb-6">
                       {service.features.map((feature) => (
-                        <li class="flex items-center text-xs text-gray-700">
-                          <Icon name="check-circle" class="w-4 h-4 text-emerald-500 ml-2 shrink-0" />
+                        <li class="flex items-start">
+                          <span class="text-[#CCFF00] font-bold me-2">[✓]</span>
                           <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
-                  </div>
-                  <a href={service.href} class="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-700 pt-4 border-t border-gray-100">
-                    مشاهده جزئیات و تعرفه‌ها
-                    <Icon name="arrow-left" class="w-4 h-4 mr-2" />
+                  </CardContent>
+                </div>
+                <div class="pt-4 border-t border-white/10 font-mono text-xs">
+                  <a href={service.href} class="inline-flex items-center text-[#CCFF00] font-bold hover:underline">
+                    Inspect Protocol Specs ↗
                   </a>
-                </CardContent>
+                </div>
               </Card>
             ))}
           </div>
         </div>
       </section>
 
-            <ServiceFAQ title="پرسش‌های متداول خدمات استراتژی و تولید محتوا" subtitle="پاسخ به سوالات رایج کارفرمایان درباره فرآیندها، کیفیت و استانداردهای محتوا" faqs={faqs} />
+      <!-- FAQ Section -->
+      <ServiceFAQ lang="en" title="Content Architecture FAQs" subtitle="Deterministic answers regarding entity density, topical coverage, and editorial verification" faqs={faqs} />
 
-      <!-- CTA Section -->
-      <section class="py-16 bg-linear-to-br from-indigo-900 to-slate-900 text-white">
-        <div class="container-custom text-center max-w-3xl">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6">
-            آماده تحول در استراتژی محتوای کسب‌وکار خود هستید؟
-          </h2>
-          <p class="text-lg text-indigo-200 mb-8 leading-relaxed">
-            برای دریافت ارزیابی اولیه محتوای سایت و مشاوره تخصصی، با کارشناسان عصر سئو در ارتباط باشید.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" class="bg-white text-indigo-950 hover:bg-gray-100 px-8 font-bold" href="tel:+989125811880">
-                <Icon name="phone" class="ml-2 h-5 w-5" />
-                تماس مستقیم: ۰۹۱۲۵۸۱۱۸۸۰
+      <!-- CTA Terminal -->
+      <section class="py-20 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="p-8 sm:p-12 bg-[#090d16] border-2 border-[#CCFF00] brutalist-shadow-white flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="space-y-2 text-center md:text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase font-bold tracking-wider">[COMMISSION_TOPICAL_MATRIX]</div>
+              <h2 class="text-2xl sm:text-4xl font-black text-white uppercase">Ready to Own Your Industry Knowledge Base?</h2>
+              <p class="text-slate-300 text-sm sm:text-base max-w-xl">
+                Consult with our content systems architects to design an automated topical authority cluster that establishes permanent search supremacy.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 font-mono text-xs shrink-0">
+              <Button
+                variant="acid"
+                size="lg"
+                class="px-8 py-4"
+                href="/consultation/"
+              >
+                Schedule Content Recon ↗
               </Button>
-            <Button size="lg" variant="outline" class="bg-transparent border-indigo-300 text-white hover:bg-white/10 px-8" href="/consultation/">
-                رزرو وقت مشاوره آنلاین
-              </Button>
+            </div>
           </div>
         </div>
       </section>
     </main>
-    <Footer />
+    <Footer lang="en" />
   </div>
 </BaseLayout>

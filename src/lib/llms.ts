@@ -31,15 +31,14 @@ export interface Link {
 }
 
 export interface ServiceItem extends Link {
-  /** Persian label shown in parentheses. */
-  fa: string;
+  /** Short label */
+  shortLabel?: string;
   /** Long description, used only by llms-full.txt. */
   blurb?: string;
 }
 
 export interface ServiceGroup {
   en: string;
-  fa: string;
   path: string;
   items: ServiceItem[];
 }
@@ -62,164 +61,164 @@ export const POLICY_PAGES: Link[] = [
   { label: 'Terms', path: '/terms/' },
 ];
 
+export const AUTOMATION_INFRASTRUCTURE = {
+  n8nInstance: {
+    label: 'n8n Workflow Automation Engine',
+    url: 'https://n8n.asreseo.com',
+    description:
+      'High-throughput self-hosted workflow automation cluster orchestrating SEO telemetry triggers, webhook ingestion, AI content pipelines, and automated Google indexing alerts.',
+  },
+  customNodes: [
+    {
+      name: 'n8n-nodes-avvalai',
+      author: 'Ali Bakhtiari',
+      url: 'https://github.com/alibakhtiari/n8n-nodes-avvalai',
+      description:
+        'Open-source custom n8n community node providing seamless enterprise integration between n8n workflows and AvvalAI intelligence services for multimodal LLM completion, embeddings, and chat flows.',
+    },
+    {
+      name: 'n8n-nodes-imagerouter',
+      author: 'Ali Bakhtiari',
+      url: 'https://github.com/alibakhtiari/n8n-nodes-imagerouter',
+      description:
+        'Open-source custom n8n node extension engineered for high-throughput conditional image routing, compression, and AI vision dispatching.',
+    },
+  ],
+};
+
 export const SERVICE_GROUPS: ServiceGroup[] = [
   {
     en: 'AI Services',
-    fa: 'خدمات هوش مصنوعی و سئو',
     path: '/services/ai/',
     items: [
       {
         label: 'AI Content Creation',
-        fa: 'تولید محتوای هوشمند',
         path: '/services/ai/content-creation/',
         blurb:
-          'تولید مقالات سئومحور، سناریونویسی و ویدیوهای تبلیغاتی با ترکیب هوش مصنوعی مولد و نظارت انسانی متخصص جهت جلوگیری از جریمه‌های الگوریتمی گوگل.',
+          'SEO-focused articles, scriptwriting and promo videos combining generative AI with expert human review to avoid Google algorithmic penalties.',
       },
       {
         label: 'AI Analysis & Strategy',
-        fa: 'تحلیل و استراتژی هوشمند',
         path: '/services/ai/analysis-strategy/',
         blurb:
-          'بهینه‌سازی رتبه گوگل با الگوریتم‌های هوش مصنوعی، آنالیز بلادرنگ رفتار رقبا، پایش کلمات کلیدی و بهینه‌سازی نرخ تبدیل (CRO).',
+          'Google ranking optimization with AI algorithms, real-time competitor behavior analysis, keyword monitoring and conversion rate optimization (CRO).',
       },
       {
         label: 'AI Marketing & Engagement',
-        fa: 'بازاریابی و چت‌بات هوشمند فارسی',
         path: '/services/ai/marketing-engagement/',
         blurb:
-          'طراحی و راه‌اندازی چت‌بات‌های هوشمند فارسی برای پشتیبانی ۲۴/۷، اتوماسیون ایمیل و پیامک و شخصی‌سازی تجربه کاربری برای مشتریان.',
+          'Smart chatbots for 24/7 support, email and SMS automation, and personalized customer experiences powered by self-hosted n8n workflows.',
       },
     ],
   },
   {
     en: 'Content Marketing & Strategy',
-    fa: 'خدمات استراتژی محتوا',
     path: '/services/content/',
     items: [
       {
         label: 'Content Calendar & Scheduling',
-        fa: 'تقویم محتوایی سایت و شبکه‌های اجتماعی',
         path: '/services/content/content-calendar/',
         blurb:
-          'طراحی برنامه‌ریزی ماهانه و فصلی انتشار محتوا برای وب‌سایت و شبکه‌های اجتماعی (اینستاگرام، لینکدین، تلگرام) به منظور ایجاد نظم، تعامل پایدار و اتوماسیون چرخه محتوا.',
+          'Monthly and seasonal publishing plans for websites and social channels for consistency, steady engagement and an automated content cycle.',
       },
       {
         label: 'Text Content',
-        fa: 'تولید محتوای متنی و سئومحور',
         path: '/services/content/text-content/',
         blurb:
-          'نگارش مقالات تخصصی و یونیک، رپرتاژهای خبری و متون صفحات فرود بر پایه تحقیق کلمات کلیدی عمیق و راهنماهای کیفی E-E-A-T گوگل.',
+          'Specialized original articles, press releases and landing-page copy based on deep keyword research and Google E-E-A-T quality guidelines.',
       },
       {
         label: 'Visual Content',
-        fa: 'محتوای تصویری و ویدیو مارکتینگ',
         path: '/services/content/visual-content/',
         blurb:
-          'طراحی اینفوگرافیک‌های داده‌محور، موشن گرافیک و تیزرهای ویدیویی اختصاصی.',
+          'Data-driven infographics, motion graphics and custom video teasers.',
       },
       {
         label: 'Social Media Content',
-        fa: 'محتوای شبکه‌های اجتماعی',
         path: '/services/content/social-media-content/',
       },
       {
         label: 'Translation & Localization',
-        fa: 'ترجمه و بومی‌سازی تخصصی',
         path: '/services/content/translation/',
       },
     ],
   },
   {
     en: 'SEO',
-    fa: 'خدمات سئو حرفه‌ای',
     path: '/services/seo/',
     items: [
       {
         label: 'Content & Page Authority',
-        fa: 'سئو محتوا و افزایش اعتبار صفحه',
         path: '/services/seo/content-authority/',
         blurb:
-          'استراتژی Topic Clusters، نگارش Pillar Pages و ایجاد پیوندهای خارجی باکیفیت و رپرتاژ آگهی‌های هدفمند جهت ارتقای Authority.',
+          'Topic-cluster strategy, pillar-page writing, quality backlinks and targeted advertorials to grow authority.',
       },
       {
         label: 'Technical & On-Page SEO',
-        fa: 'سئو تکنیکال و داخلی',
         path: '/services/seo/technical-onpage/',
         blurb:
-          'بهینه‌سازی سرعت سایت و Core Web Vitals، رفع خطاهای Crawlability & Indexability، ساختاردهی اسکیما (JSON-LD) و معماری استاندارد اطلاعات.',
+          'Site speed and Core Web Vitals optimization, crawlability and indexability fixes, schema (JSON-LD) structuring and standard information architecture.',
       },
       {
         label: 'Local SEO',
-        fa: 'سئو محلی و گوگل مپ',
         path: '/services/seo/local-seo/',
         blurb:
-          'ثبت و بهینه‌سازی در گوگل مپ (Google Maps)، جذب مشتریان منطقه‌ای و افزایش تماس‌های محلی.',
+          'Google Maps listing and optimization, winning regional customers and more local calls.',
       },
     ],
   },
   {
     en: 'Marketing & Google Ads',
-    fa: 'بازاریابی دیجیتال',
     path: '/services/marketing/',
     items: [
       {
         label: 'Google Ads',
-        fa: 'تبلیغات گوگل ادز حرفه‌ای PPC',
         path: '/services/marketing/google-ads/',
         blurb:
-          'مدیریت و بهینه‌سازی تخصصی کمپین‌های Search، Display و Remarketing گوگل ادز با کمترین هزینه به ازای هر کلیک (CPC) و بالاترین نرخ تبدیل.',
+          'Expert management of Google Ads Search, Display and Remarketing campaigns with low cost per click (CPC) and high conversion rates.',
       },
       {
         label: 'Social Media Marketing',
-        fa: 'مدیریت شبکه‌های اجتماعی',
         path: '/services/marketing/social-media/',
       },
       {
         label: 'Email Marketing',
-        fa: 'بازاریابی ایمیلی و اتوماسیون',
         path: '/services/marketing/email-marketing/',
       },
       {
         label: 'Sales Funnel Management',
-        fa: 'مدیریت قیف فروش',
         path: '/services/marketing/sales-funnel-management/',
         blurb:
-          'طراحی و پیاده‌سازی قیف‌های فروش چندمرحله‌ای (Sales Funnel Optimization).',
+          'Design and implementation of multi-stage sales funnels (sales funnel optimization).',
       },
       {
         label: 'Integrated Campaigns',
-        fa: 'کمپین‌های تبلیغاتی یکپارچه',
         path: '/services/marketing/integrated-campaigns/',
         blurb:
-          'بازاریابی شبکه‌ای و مدیریت کمپین‌های تبلیغاتی یکپارچه (Omnichannel Campaigns).',
+          'Integrated omnichannel advertising campaign management.',
       },
     ],
   },
   {
     en: 'Web Design & Development',
-    fa: 'طراحی سایت سئومحور',
     path: '/services/web/',
     items: [
       {
         label: 'SEO Web Design',
-        fa: 'طراحی سایت سئو محور',
         path: '/services/web/seo-web-design/',
         blurb:
-          'طراحی وب‌سایت‌های مدرن، پرسرعت و ریسپانسیو با رعایت ۱۰۰٪ اصول سئو تکنیکال، معماری تجربه کاربری (UX) و لندینگ پیج‌های با نرخ تبدیل بالا.',
+          'Modern, fast, responsive websites built on technical SEO principles, UX architecture and high-converting landing pages.',
       },
       {
         label: 'Landing Pages',
-        fa: 'طراحی صفحات فرود با نرخ تبدیل بالا',
         path: '/services/web/landing-pages/',
       },
       {
         label: 'UX Architecture',
-        fa: 'معماری اطلاعات و طراحی تجربه کاربری',
         path: '/services/web/ux-architecture/',
       },
       {
         label: 'Website Speed',
-        fa: 'بهینه‌سازی سرعت سایت و Core Web Vitals',
         path: '/services/web/website-speed/',
       },
     ],
@@ -229,20 +228,20 @@ export const SERVICE_GROUPS: ServiceGroup[] = [
 /** Company-level Q&As used by llms-full.txt (direct answers for AI citation). */
 export const COMPANY_FAQS: { q: string; a: string }[] = [
   {
-    q: 'مدت زمان بهینه‌سازی سئو چقدر است؟',
-    a: 'معمولاً بین ۳ تا ۶ ماه زمان لازم است تا استراتژی‌های سئو نتایج پایدار و رشد چشمگیر در رتبه‌بندی‌های صفحه اول گوگل را نشان دهند.',
+    q: 'How long does SEO take to work?',
+    a: 'SEO strategies typically take 3 to 6 months to show stable results and strong growth in Google first-page rankings.',
   },
   {
-    q: 'هوش مصنوعی در سئو چه کاربردی دارد؟',
-    a: 'هوش مصنوعی در عصر سئو برای تحلیل حجم عظیم داده‌های سرچ کنسول، شناسایی الگوهای جستجوی کاربران، سرعت‌بخشی به فرآیند تولید محتوای اولیه و پیش‌بینی روندهای آتی بازار استفاده می‌شود؛ در عین حال تمامی خروجی‌ها تحت نظارت کارشناسان سئو بازبینی می‌شوند.',
+    q: 'How is AI used in SEO?',
+    a: 'At AsreSEO, AI analyzes large Search Console datasets, identifies user search patterns, accelerates first-draft content production and forecasts market trends — with all output reviewed by SEO specialists.',
   },
   {
-    q: 'تقویم محتوایی چه مزیتی برای کسب‌وکار دارد؟',
-    a: 'تقویم محتوا با ایجاد نظم در انتشار، سازماندهی تیم، پوشش تمام کلمات کلیدی خوشه موضوعی و تطابق با رویدادهای فصلی فروش، نرخ تعامل کاربران را افزایش می‌دهد.',
+    q: 'What are the benefits of a content calendar for business?',
+    a: 'A content calendar boosts user engagement through publishing discipline, team organization, full topic-cluster keyword coverage and alignment with seasonal sales events.',
   },
   {
-    q: 'هزینه سئو چگونه محاسبه می‌شود؟',
-    a: 'هزینه بر اساس وضعیت فعلی وب‌سایت، میزان رقابت در کلمات کلیدی، نیاز به سئو تکنیکال و حجم تولید محتوا و لینک‌سازی در قالب پکیج‌های ماهانه و سفارشی تعیین می‌گردد. مشاوره اولیه در عصر سئو رایگان است.',
+    q: 'How is SEO pricing calculated?',
+    a: 'Pricing depends on the current state of the website, keyword competition, technical SEO needs and content/link-building volume, in monthly or custom packages. The initial consultation at AsreSEO is free.',
   },
 ];
 
@@ -250,15 +249,14 @@ export const COMPANY_FAQS: { q: string; a: string }[] = [
 export const PORTFOLIO = {
   path: '/portfolio/',
   en: 'Portfolio — Real AI & Automation Case Studies',
-  fa: 'نمونه‌کارهای واقعی',
   cases: [
-    'Persian RAG chatbot over Iranian statutes (qavanin/dotic/ara sources)',
+    'Legal RAG chatbot over statutory sources',
     'AI call-center with VoIP transcription + smart forwarding',
     'Automated SEO monitoring with alerts',
-    'Content pipeline automation',
+    'Content pipeline automation with n8n and custom nodes',
     'Ads reporting automation',
   ],
-  note: 'هر نمونه‌کار شامل چالش‌ها، اقدامات، فناوری‌ها و نتایج به‌همراه لینک خدمات مرتبط و اسکیمای ItemList.',
+  note: 'Each case covers challenges, actions, technologies and results, with related service links and ItemList schema.',
 };
 
 /**

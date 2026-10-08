@@ -20,29 +20,28 @@ import ServiceBenefits from '../../../../components/Services/ServiceBenefits.ast
 
 
 
-
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  'name': 'بهینه‌سازی سرعت وب‌سایت',
-  'description': 'خدمات تخصصی بهینه‌سازی سرعت و عملکرد وب‌سایت برای تجربه کاربری بهتر',
+  'name': 'Website Speed Optimization',
+  'description': 'Specialized website speed and performance optimization for a better user experience',
   'serviceType': 'Website Speed Optimization',
   'provider': {
     '@type': 'Organization',
-    'name': 'عصر سئو',
+    'name': 'AsreSEO',
     'url': 'https://asreseo.com'
   },
-  'areaServed': 'Iran',
+  'inLanguage': 'en-US',
   'hasOfferCatalog': {
     '@type': 'OfferCatalog',
-    'name': 'خدمات بهینه‌سازی سرعت',
+    'name': 'Speed Optimization Services',
     'itemListElement': [
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
           'name': 'Core Web Vitals Optimization',
-          'description': 'بهبود معیارهای حیاتی گوگل برای سرعت'
+          'description': 'Improving Google\u2019s essential speed metrics'
         }
       }
     ]
@@ -54,59 +53,59 @@ const structuredData = {
   const speedFeatures = [
     {
       icon: "zap",
-      title: 'افزایش سرعت بارگذاری',
-      description: 'هدف‌گیری زمان لود زیر ۲ ثانیه برای رضایت گوگل و کاربر، با فشرده‌سازی پیشرفته.',
-      benefits: ['رضایت کاربر بالاتر', 'رتبه‌بندی بهتر', 'نرخ تبدیل بیشتر']
+      title: 'Faster Load Times',
+      description: 'Targeting sub-2-second loads to satisfy Google and users alike, with advanced compression.',
+      benefits: ['Happier users', 'Better rankings', 'Higher conversion rate']
     },
     {
       icon: "cpu",
-      title: 'بهینه‌سازی منابع مرورگر',
-      description: 'مدیریت هوشمند منابع، کشینگ پیشرفته و توزیع محتوا از نزدیک‌ترین CDN.',
-      benefits: ['کارایی حداکثری', 'تجزیه بارگذاری', 'سرعت جهانی']
+      title: 'Browser Resource Optimization',
+      description: 'Smart resource management, advanced caching and content delivery from the nearest CDN.',
+      benefits: ['Maximum efficiency', 'Staggered loading', 'Global speed']
     },
     {
       icon: "bar-chart3",
-      title: 'بهبود Core Web Vitals',
-      description: 'رفع کامل مشکلات Largest Contentful Paint، Cumulative Layout Shift و Interaction to Next Paint.',
-      benefits: ['امتیاز کامل گوگل', 'تجربه عالی', 'رتبه بالاتر']
+      title: 'Core Web Vitals Improvement',
+      description: 'Fully resolving Largest Contentful Paint, Cumulative Layout Shift and Interaction to Next Paint issues.',
+      benefits: ['Full Google score', 'Superb experience', 'Higher rankings']
     },
     {
       icon: "smartphone",
-      title: 'بهینه‌سازی موبایل',
-      description: 'طراحی Mobile-First با تصاویر ریسپانسیو و تاچ بهینه‌سازی برای سرعت حداکثر.',
-      benefits: ['رضایت موبایل', 'دسترسی‌پذیری بهتر', 'مزیت رقابتی']
+      title: 'Mobile Optimization',
+      description: 'Mobile-first design with responsive images and touch optimization for maximum speed.',
+      benefits: ['Mobile satisfaction', 'Better accessibility', 'Competitive edge']
     },
     {
       icon: "gauge",
-      title: 'نظارت مداوم عملکرد',
-      description: 'پیگیری منظم سرعت سایت و هشداردهی برای حافظه مصرفی بالا یا کندی عملکرد.',
-      benefits: ['شناسایی سریع مشکلات', 'نگهداری پایدار', 'کارایی بلندمدت']
+      title: 'Continuous Performance Monitoring',
+      description: 'Regular speed tracking with alerts for high memory use or slowdowns.',
+      benefits: ['Fast issue detection', 'Stable upkeep', 'Long-term efficiency']
     },
     {
       icon: "trending-up",
-      title: 'تجزیه تحلیل رقابتی',
-      description: 'مقایسه سرعت سایت با رقبا و یافت فرصت‌های بهبود عملکرد منحصربه‌فرد.',
-      benefits: ['برتری رقابتی', 'بینش استراتژیک', 'بهبود مستمر']
+      title: 'Competitive Analysis',
+      description: 'Benchmarking your speed against competitors and finding unique improvement opportunities.',
+      benefits: ['Competitive edge', 'Strategic insight', 'Continuous improvement']
     }
   ];
 
   const coreWebVitals = [
     {
       metric: 'Largest Contentful Paint (LCP)',
-      description: 'زمان بارگذاری بزرگترین عنصر صفحه - باید زیر ۲.۵ ثانیه باشد',
-      importance: 'اولین چیزی که کاربر می‌بیند',
+      description: 'Time to load the page\u2019s largest element \u2014 must stay under 2.5 seconds',
+      importance: 'The first thing users see',
       target: '< 2.5s'
     },
     {
       metric: 'Interaction to Next Paint (INP)',
-      description: 'زمان پاسخگویی تعاملی صفحه به تمام کلیک‌ها و لمس‌ها - باید زیر ۲۰۰ میلی‌ثانیه باشد',
-      importance: 'استاندارد نوین گوگل برای سنجش پاسخگویی تعاملی کاربر',
+      description: 'How responsively the page answers every tap and click \u2014 must stay under 200 milliseconds',
+      importance: 'Google\u2019s modern standard for interactive responsiveness',
       target: '< 200ms'
     },
     {
       metric: 'Cumulative Layout Shift (CLS)',
-      description: 'میزان جابجایی غیرمنتظره عناصر - باید زیر ۰.۱ باشد',
-      importance: 'ثبات بصری صفحه',
+      description: 'How much elements jump around unexpectedly \u2014 must stay under 0.1',
+      importance: 'Visual page stability',
       target: '< 0.1'
     }
   ];
@@ -115,19 +114,19 @@ const structuredData = {
     {
       category: 'Server-side Optimizations',
       optimizations: [
-        'پیکربندی وب سرور (Nginx/Apache)',
-        'ذخیره‌سازی سمت سرور و کشینگ',
-        'فشرده‌سازی GZIP/Brotli پیشرفته',
+        'Web server tuning (Nginx/Apache)',
+        'Server-side storage and caching',
+        'Advanced GZIP/Brotli compression',
         'Database query optimization',
-        'CDN جهانی و Edge computing'
+        'Global CDN and edge computing'
       ]
     },
     {
       category: 'Client-side Optimizations',
       optimizations: [
-        'Code splitting و lazy loading',
-        'Minification کردن کدهای JS/CSS',
-        'Optimize کردن تصاویر با WebP',
+        'Code splitting and lazy loading',
+        'Minifying JS/CSS code',
+        'Optimizing images with WebP',
         'Critical CSS inlining',
         'Font loading optimization'
       ]
@@ -135,163 +134,158 @@ const structuredData = {
     {
       category: 'Content Optimizations',
       optimizations: [
-        'Lazy load تصاویر و ویدیوها',
-        'Prefetch و preload استراتژیک',
-        'Remove unused CSS/JS',
-        'Optimize third-party scripts',
-        'Resource hints و priority hints'
+        'Lazy-loading images and videos',
+        'Strategic prefetch and preload',
+        'Removing unused CSS/JS',
+        'Optimizing third-party scripts',
+        'Resource hints and priority hints'
       ]
     }
   ];
 
   const impactMetrics = [
-    { before: 'کند و پرنوسان', after: 'سریع و پایدار', metric: 'زمان بارگذاری', improvement: 'سنجش با PageSpeed Insights' },
-    { before: 'خروج زودهنگام کاربر', after: 'ماندگاری بیشتر', metric: 'نرخ خروج (Bounce Rate)', improvement: 'گزارش در Google Analytics' },
-    { before: 'بازدید بی‌نتیجه', after: 'بازدید هدفمند', metric: 'نرخ تبدیل', improvement: 'گزارش ماهانه تبدیل' },
-    { before: 'محدوده قرمز و نارنجی', after: 'محدوده سبز گوگل', metric: 'امتیاز Core Web Vitals', improvement: 'طبق آستانه web.dev' }
+    { before: 'Slow and unstable', after: 'Fast and stable', metric: 'Load time', improvement: 'Measured with PageSpeed Insights' },
+    { before: 'Users leaving early', after: 'Users staying longer', metric: 'Bounce rate', improvement: 'Reported in Google Analytics' },
+    { before: 'Aimless visits', after: 'Goal-driven visits', metric: 'Conversion rate', improvement: 'Monthly conversion report' },
+    { before: 'Google\u2019s red and orange zones', after: 'Google\u2019s green zone', metric: 'Core Web Vitals score', improvement: 'Per official web.dev thresholds' }
   ];
 
   const toolsUsed = [
     {
       tool: 'Google PageSpeed Insights',
-      purpose: 'اندازه‌گیری عملکرد و امتیازدهی',
-      frequency: 'پیش از شروع و پس از پایان'
+      purpose: 'Measuring performance and scoring',
+      frequency: 'Before kickoff and after completion'
     },
     {
       tool: 'Lighthouse',
-      purpose: 'تجزیه تحلیل حداکثر جزئیات عملکرد',
-      frequency: 'پس از هر بهینه‌سازی بزرگ'
+      purpose: 'Maximum-detail performance analysis',
+      frequency: 'After every major optimization'
     },
     {
       tool: 'WebPageTest',
-      purpose: 'تست سرعت از مکان‌های مختلف جهان',
-      frequency: 'بررسی CDN و عملکرد جهانی'
+      purpose: 'Speed testing from locations worldwide',
+      frequency: 'Checking CDN and global performance'
     },
     {
       tool: 'GTmetrix',
-      purpose: 'تجزیه عملیاتی Waterfall و مسیر بحرانی',
-      frequency: 'شناسایی bottleneckها'
+      purpose: 'Waterfall and critical-path analysis',
+      frequency: 'Finding bottlenecks'
     }
   ];
 
   const benefits = [
-    'کاهش زمان بارگذاری صفحه با فشرده‌سازی و بهینه‌سازی حرفه‌ای منابع',
-    'کاهش نرخ خروج وب‌سایت به دلیل تجربه سریع‌تر کاربر',
-    'افزایش نرخ تبدیل به دلیل بهبود احساس تجربه کاربر',
-    'بهبود امتیاز Core Web Vitals و رتبه‌بندی بهتر در گوگل',
-    'کاهش هزینه‌های سرور به دلیل استفاده بهینه از منابع'
+    'Shorter page load times with professional resource compression and optimization',
+    'Lower website bounce rates thanks to a faster user experience',
+    'Higher conversion rates through a better perceived experience',
+    'Improved Core Web Vitals scores and better Google rankings',
+    'Lower server costs through efficient resource use'
   ];
 
   const stats = [
-    { metric: '۲ ثانیه', label: 'زمان هدف بارگذاری', icon: "zap" },
-    { metric: 'گزارش ماهانه', label: 'پایش مستمر سرعت', icon: "trending-up" },
-    { metric: 'هدف ۹۵', label: 'امتیاز PageSpeed', icon: "gauge" },
-    { metric: 'موبایل‌فرست', label: 'سازگاری موبایل', icon: "smartphone" }
+    { metric: '2 seconds', label: 'Target load time', icon: "zap" },
+    { metric: 'Monthly report', label: 'Continuous speed monitoring', icon: "trending-up" },
+    { metric: 'Target 95', label: 'PageSpeed score', icon: "gauge" },
+    { metric: 'Mobile-first', label: 'Mobile compatibility', icon: "smartphone" }
   ];
 
   const workflowSteps = [
     {
-      step: 'تحلیل اولیه عملکرد',
-      desc: 'سنجش سرعت فعلی با ابزارهای مختلف و شناسایی مشکلات اصلی',
-      duration: '۲-۳ روز'
+      step: 'Initial Performance Analysis',
+      desc: 'Measuring current speed with multiple tools and identifying the core issues',
+      duration: '2\u20133 days'
     },
     {
-      step: 'بررسی سرور و هاستینگ',
-      desc: 'بهبود پیکربندی سرور، انتخاب CDN مناسب و بهینه‌سازی منابع',
-      duration: '۳-۵ روز'
+      step: 'Server & Hosting Review',
+      desc: 'Improving server configuration, choosing the right CDN and optimizing resources',
+      duration: '3\u20135 days'
     },
     {
-      step: 'بهینه‌سازی سمت کلاینت',
-      desc: 'فشرده‌سازی کد، بهینه‌سازی تصاویر و حذف منابع مسدودکننده',
-      duration: '۴-۷ روز'
+      step: 'Client-Side Optimization',
+      desc: 'Compressing code, optimizing images and removing render-blocking resources',
+      duration: '4\u20137 days'
     },
     {
-      step: 'بهبود Core Web Vitals',
-      desc: 'حل مشکلات LCP، INP و CLS با تکنیک‌های تخصصی',
-      duration: '۳-۵ روز'
+      step: 'Core Web Vitals Fixes',
+      desc: 'Resolving LCP, INP and CLS issues with specialist techniques',
+      duration: '3\u20135 days'
     },
     {
-      step: 'تست نهایی و مانیتورینگ',
-      desc: 'تست عملکرد از دستگاه‌های مختلف و تنظیم مانیتورینگ مستمر',
-      duration: '۲-۳ روز'
+      step: 'Final Testing & Monitoring',
+      desc: 'Performance testing across devices and setting up continuous monitoring',
+      duration: '2\u20133 days'
     }
   ];
 
   const faqs = [
     {
-      question: 'چرا سرعت وب‌سایت مهم است و چه ارتباطی با گوگل دارد؟',
-      answer: 'سرعت وب‌سایت یکی از ۳ عامل حیاتی رتبه‌بندی گوگل (Core Web Vitals) است. گوگل معتقد است کاربران زمان انتظار ندارند و اولویت رتبه‌بندی را به سایت‌های سریع می‌دهد. علاوه بر این، سرعت بالا نرخ خروج را کاهش داده و نرخ تبدیل را افزایش می‌دهد.'
+      question: 'Why does website speed matter, and what does Google have to do with it?',
+      answer: 'Site speed is one of Google\u2019s 3 vital ranking inputs (Core Web Vitals). Google believes users won\u2019t wait, so it ranks fast sites first. On top of that, high speed lowers bounce rates and lifts conversion rates.'
     },
     {
-      question: 'چه مدت طول می‌کشد تا سرعت وب‌سایت بهبود یابد؟',
-      answer: 'بسته به اندازه و پیچیدگی وب‌سایت، معمولاً بین ۱ تا ۲ هفته زمان نیاز است. پروژه‌های ساده شاید ۳ روز کامل شوند، اما وب‌سایت‌های سنگین‌تر با تصاویر زیاد ممکن است ۲-۳ هفته نیاز داشته باشند. مهمترین نکته این است که نتایج فوری و ملموس خواهد بود.'
+      question: 'How long does it take to speed up a website?',
+      answer: 'Depending on size and complexity, usually 1\u20132 weeks. Simple projects may finish in 3 days, while heavier image-laden sites can need 2\u20133 weeks. The key point: results are immediate and tangible.'
     },
     {
-      question: 'آیا بهبود سرعت باعث کاهش هزینه‌های سرور می‌شود؟',
-      answer: 'بله! با فشرده‌سازی منابع و استفاده بهینه از کشینگ، مصرف منابع سرور شما به‌شکل محسوسی کاهش می‌یابد. این یعنی هم هزینه کمتر و هم سرعت بالاتر. علاوه بر این، گوگل سایت‌های سریع‌تر را ترجیح می‌دهد.'
+      question: 'Does faster speed lower server costs?',
+      answer: 'Yes! Compressing resources and using caching efficiently cuts your server resource consumption noticeably \u2014 meaning lower costs and higher speed. Plus, Google prefers faster sites.'
     },
     {
-      question: 'پس از بهبود سرعت، آیا نیاز به نگهداری داریم؟',
-      answer: 'سرعت وب‌سایت نیاز به مراقبت مستمر دارد. با اضافه شدن محتوا جدید، سرعت ممکن است کاهش یابد. ما علاوه بر ابزارهای مانیتورینگ، گزارش‌های ماهانه ارائه می‌کنیم و تا ۶ ماه پشتیبانی رایگان شامل نگهداری سرعت می‌دهیم.'
+      question: 'Does speed need maintenance after the fix?',
+      answer: 'Website speed needs ongoing care. New content can slow things down again. Beyond monitoring tools, we deliver monthly reports and include up to 6 months of free support covering speed upkeep.'
     },
     {
-      question: 'آیا بهینه‌سازی سرعت برای موبایل هم ضروری است؟',
-      answer: 'صد در صد! بخش بزرگی از کاربران اینترنت از موبایل استفاده می‌کنند. Core Web Vitals مخصوصاً برای موبایل اهمیت دارد و گوگل اولویت را به سایت‌های همراه با موبایل داده. ما رویکرد Mobile-First را در همه بهینه‌سازی‌ها رعایت می‌کنیم.'
+      question: 'Is speed optimization necessary for mobile too?',
+      answer: 'Absolutely! A huge share of web users are on mobile. Core Web Vitals matter especially on mobile, and Google prioritizes mobile-friendly sites. We follow a mobile-first approach in every optimization.'
     },
     {
-      question: 'چه عوارضی سرعت پایین برای کسب‌وکار دارد؟',
-      answer: '۱) رتبه پایین‌تر در گوگل و کمتر دیده شدن، ۲) نرخ خروج بالاتر، ۳) نرخ تبدیل پایین‌تر، ۴) تجربه کاربری ضعیف و از دست دادن مشتریان، ۵) هزینه بالاتر سرور بدون بازگشت موثر.'
+      question: 'What does slow speed cost a business?',
+      answer: '1) Lower Google rankings and less visibility, 2) higher bounce rates, 3) lower conversion rates, 4) poor user experience and lost customers, 5) higher server costs with no effective return.'
     }
   ];
 
-  
+
 const breadcrumbs = [
-    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-    { position: 2, name: 'خدمات وب', item: 'https://asreseo.com/services/web/' },
-    { position: 3, name: 'بهینه‌سازی سرعت سایت', item: 'https://asreseo.com/services/web/website-speed/' },
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'Web Services', item: 'https://asreseo.com/services/web/' },
+    { position: 3, name: 'Website Speed Optimization', item: 'https://asreseo.com/services/web/website-speed/' },
   ];
 
 ---
-<BaseLayout title='بهینه‌سازی سرعت وب‌سایت و Core Web Vitals | عصر سئو' description='بهینه‌سازی تخصصی سرعت وب‌سایت با زمان بارگذاری کمتر از ۲ ثانیه، بهبود Core Web Vitals و افزایش نرخ تبدیل Google PageSpeed Insights.' keywords='بهینه‌سازی سرعت سایت, افزایش سرعت وب‌سایت, Core Web Vitals, Page Speed, Lighthouse' canonical='https://asreseo.com/services/web/website-speed/' ogType='website' ogUrl='https://asreseo.com/services/web/website-speed/' ogImages={[{ url: "/og/website-speed-hero.jpg", width: 1200, height: 630, alt: "بهینه‌سازی سرعت سایت | عصر سئو" }]} twitterCard='summary_large_image'
-  ogTitle='بهینه‌سازی سرعت وب‌سایت و Core Web Vitals | عصر سئو'
+<BaseLayout lang="en" title='Website Speed Optimization & Core Web Vitals | AsreSEO' description='Specialist website speed optimization with sub-2-second load times, Core Web Vitals improvement and higher conversion rates via Google PageSpeed Insights.' keywords='website speed optimization, faster website, Core Web Vitals, Page Speed, Lighthouse' canonical='/services/web/website-speed/' ogType='website' ogUrl='https://asreseo.com/services/web/website-speed/' ogImages={[{ url: "/og/website-speed-hero.jpg", width: 1200, height: 630, alt: "Website speed optimization | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Website Speed Optimization & Core Web Vitals | AsreSEO'
 
-  ogDescription='افزایش سرعت بارگذاری وب‌سایت با استانداردهای گوگل.'
+  ogDescription='Faster page loads built to Google\u2019s standards.'
 >
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
       <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/web/website-speed/', image: '/og/website-speed-hero.jpg' }))} />
 
-      <Header />
+      <Header lang="en" />
       <BreadcrumbStructuredData items={breadcrumbs} />
 
       <main>
-        <ServiceHero
-          badge="بهینه‌سازی سرعت حرفه‌ای"
-          title="بهینه‌سازی سرعت وب‌سایت"
-          titleHighlight="سرعت وب‌سایت"
-          description="سرعت بارگذاری کمتر از ۲ ثانیه با استانداردها گوگل PageSpeed Insights. بهبود Core Web Vitals و افزایش نرخ تبدیل بازدیدکنندگان در عصر سئو!"
-          primaryCtaText="تحلیل سریع سرعت سایت"
-          secondaryCtaText="ابزار تست سرعت رایگان"
+        <ServiceHero lang="en"
+          badge="Professional Speed Optimization"
+          title="Website Speed Optimization"
+          titleHighlight="Speed Optimization"
+          description="Sub-2-second load times meeting Google PageSpeed Insights standards. Better Core Web Vitals and more conversions from your visitors at AsreSEO!"
+          primaryCtaText="Analyze My Site Speed"
+          secondaryCtaText="Free Speed Test Tool"
           imageSrc="/images/website-speed-hero.webp"
-          imageAlt="بهینه‌سازی سرعت وب‌سایت"
+          imageAlt="Website speed optimization"
           theme="green"
         />
 
-        <ServiceStats
-          stats={stats}
-          gradientClass="bg-linear-to-r from-emerald-50 to-green-50"
-          metricColorClass="text-emerald-700"
-          iconColorClass="text-green-800"
-        />
+        <ServiceStats lang="en" stats={stats} />
 
         <!-- Speed Features Section -->
         <section class="section-padding">
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                تکنولوژی‌های پیشرفته <span class="gradient-text">بهینه‌سازی سرعت</span>
+                Advanced <span class="gradient-text">Speed Optimization</span> Technology
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                رویکرد جامع برای حداکثر سرعت بارگذاری
+                A comprehensive approach to maximum load speed
               </p>
             </div>
 
@@ -330,10 +324,10 @@ const breadcrumbs = [
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                بهبود <span class="gradient-text">Core Web Vitals</span> گوگل
+                Improving Google\u2019s <span class="gradient-text">Core Web Vitals</span>
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                استانداردهای حیاتی سرعت گوگل که باید بهینه شوند
+                The vital Google speed standards that must be optimized
               </p>
             </div>
 
@@ -354,11 +348,11 @@ const breadcrumbs = [
                         </p>
                         <div class="space-y-2">
                           <div class="flex justify-between items-center text-sm">
-                            <span class="text-gray-500">اهمیت:</span>
+                            <span class="text-gray-500">Why it matters:</span>
                             <span class="text-gray-700 font-medium">{vital.importance}</span>
                           </div>
                           <div class="flex justify-between items-center text-sm">
-                            <span class="text-gray-500">هدف:</span>
+                            <span class="text-gray-500">Target:</span>
                             <Badge class="bg-green-100 text-green-800">{vital.target}</Badge>
                           </div>
                         </div>
@@ -376,10 +370,10 @@ const breadcrumbs = [
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                استراتژی‌های جامع <span class="gradient-text">بهینه‌سازی</span>
+                Comprehensive <span class="gradient-text">Optimization</span> Strategies
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                پوشش تمام لایه‌های پیشرفت برای حداکثر سرعت
+                Covering every layer of improvement for maximum speed
               </p>
             </div>
 
@@ -410,10 +404,10 @@ const breadcrumbs = [
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                نتایج <span class="gradient-text">قابل اندازه‌گیری</span> بهینه‌سازی
+                <span class="gradient-text">Measurable</span> Optimization Results
               </h2>
               <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                آنچه را پیش و پس از پروژه می‌سنجیم و گزارش می‌کنیم؛ محدوده «سبز» Core Web Vitals طبق آستانه‌های رسمی گوگل: https://web.dev/articles/vitals
+                What we measure and report before and after the project; the Core Web Vitals \u201cgreen\u201d zone follows Google\u2019s official thresholds: https://web.dev/articles/vitals
               </p>
             </div>
 
@@ -426,10 +420,10 @@ const breadcrumbs = [
                     </h3>
                     <div class="flex justify-between items-center mb-3">
                       <div class="text-center">
-                        <div class="text-red-600 font-bold">قبل: {metric.before}</div>
+                        <div class="text-red-600 font-bold">Before: {metric.before}</div>
                       </div>
                       <div class="text-center">
-                        <div class="text-green-800 font-bold">بعد: {metric.after}</div>
+                        <div class="text-green-800 font-bold">After: {metric.after}</div>
                       </div>
                     </div>
                     <Badge class="bg-green-100 text-green-800 w-fit mx-auto">
@@ -442,17 +436,17 @@ const breadcrumbs = [
           </div>
         </section>
 
-              <ServiceBenefits title="مزایای سرعت عصر سئو" titleHighlight="بالا وب‌سایت" subtitle="آنچه در پروژه‌های بهینه‌سازی سرعت بهبود می‌یابد" benefits={benefits} />
+              <ServiceBenefits lang="en" title="Benefits of AsreSEO Speed" titleHighlight="AsreSEO Speed" subtitle="What improves in speed-optimization projects" benefits={benefits} />
 
         <!-- Tools Section -->
         <section class="section-padding bg-linear-to-br from-green-50 to-emerald-50">
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                ابزارهای حرفه‌ای <span class="gradient-text">اندازه‌گیری سرعت</span>
+                Professional <span class="gradient-text">Speed Measurement</span> Tools
               </h2>
               <p class="text-xl text-gray-600">
-                استفاده از بهترین ابزارهای بین‌المللی برای نتایج دقیق
+                Using the best international tools for precise results
               </p>
             </div>
 
@@ -477,10 +471,10 @@ const breadcrumbs = [
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                فرآیند <span class="gradient-text">بهینه‌سازی سرعت</span> عصر سئو
+                AsreSEO\u2019s <span class="gradient-text">Speed Optimization</span> Process
               </h2>
               <p class="text-xl text-gray-600">
-                رویکرد سیستماتیک ۵ مرحله‌ای برای سرعت حداکثری
+                A systematic 5-step approach to maximum speed
               </p>
             </div>
 
@@ -498,7 +492,7 @@ const breadcrumbs = [
                       {step.desc}
                     </p>
                     <Badge variant="outline" class="text-sm">
-                      مدت زمان: {step.duration}
+                      Duration: {step.duration}
                     </Badge>
                   </div>
                 </div>
@@ -507,22 +501,22 @@ const breadcrumbs = [
           </div>
         </section>
 
-        <ServiceFAQ
-          title="سوالات متداول"
-          highlightWord="متداول"
-          subtitle="پاسخ به پرسش‌های مشتریان درباره بهینه‌سازی سرعت"
+        <ServiceFAQ lang="en"
+          title="Frequently Asked Questions"
+          highlightWord="Asked Questions"
+          subtitle="Answers to client questions about speed optimization"
           faqs={faqs}
         />
 
-        <ServiceCTA
-          title="سرعت سایت شما را همین الان بالا ببریم!"
-          description="با بهینه‌سازی سرعت عصر سئو، مشتریان شما دیگر صبر نمی‌کنند. امتیاز ۱۰۰ PageSpeed، رتبه گوگل بالاتر و نرخ تبدیل بیشتر را همین امروز شروع کنید. مشاوره رایگان سرعت سایت دریافت کنید!"
-          primaryText="تحلیل رایگان سرعت"
-          secondaryText="شروع بهینه‌سازی سرعت"
+        <ServiceCTA lang="en"
+          title="Let\u2019s speed up your site right now!"
+          description="With AsreSEO speed optimization, your customers never wait. A 100 PageSpeed score, higher Google rankings and more conversions \u2014 start today with a free site-speed consultation!"
+          primaryText="Free Speed Audit"
+          secondaryText="Start Speed Optimization"
           primaryClass="bg-green-700 hover:bg-green-800 text-white font-semibold shadow-lg shadow-green-700/30"
         />
       </main>
 
-      <Footer />
+      <Footer lang="en" />
     </div>
 </BaseLayout>

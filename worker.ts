@@ -116,6 +116,19 @@ export default {
       return Response.redirect(redirectUrl.toString(), 301);
     }
 
+    // 2b. Legacy path redirects: Any /fa/* request 301s to its equivalent
+    // so legacy bookmarks and inbound links keep working instead of 404ing.
+    if (url.pathname === '/fa' || url.pathname.startsWith('/fa/')) {
+      const stripped =
+        url.pathname === '/fa' ? '/' : url.pathname.replace(/^\/fa(?=\/)/, '');
+      const destination = stripped === '' ? '/' : stripped;
+      const redirectUrl = new URL(destination, request.url);
+      if (url.search) {
+        redirectUrl.search = url.search;
+      }
+      return Response.redirect(redirectUrl.toString(), 301);
+    }
+
     // 3. Dynamic blog post redirects (/blog/post/:slug -> /blog/:slug/)
     if (url.pathname.startsWith('/blog/post/')) {
       const slug = url.pathname.slice('/blog/post/'.length).replace(/\/+$/, '');

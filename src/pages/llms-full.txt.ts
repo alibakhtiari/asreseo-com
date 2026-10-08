@@ -5,6 +5,7 @@ import {
   SERVICE_GROUPS,
   COMPANY_FAQS,
   PORTFOLIO,
+  AUTOMATION_INFRASTRUCTURE,
   collectRoutes,
   assertPathsExist,
 } from '../lib/llms';
@@ -23,25 +24,28 @@ export const GET: APIRoute = async () => {
     (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
       String(b.data.date ?? '').localeCompare(String(a.data.date ?? '')),
   );
+  // All posts are English at `/blog/<slug>/`.
+  const postUrl = (post: CollectionEntry<'blog'>): string => {
+    const slug = post.id.replace(/\.mdx?$/, '');
+    return `${SITE}/blog/${slug}/`;
+  };
 
   const L: string[] = [];
-  L.push('# Asre SEO (عصر سئو) — Comprehensive Entity & Knowledge Base');
+  L.push('# AsreSEO — Comprehensive Entity & Knowledge Base');
   L.push('');
-  L.push('> Organization: عصر سئو (Asre SEO Agency)');
+  L.push('> Organization: AsreSEO Agency');
   L.push('> Website: https://asreseo.com');
-  L.push('> Primary Market: Iran (Persian language, RTL)');
+  L.push('> English-language site.');
   L.push(
-    '> Core Competencies: Enterprise SEO, AI Solutions & Persian Chatbots, Google Ads PPC Management, Content Strategy & Calendars, SEO Web Design, Conversion Rate Optimization (CRO).',
+    '> Core Competencies: Enterprise SEO, AI Solutions & Conversational Chatbots, Google Ads PPC Management, Content Strategy & Calendars, SEO Web Design, Conversion Rate Optimization (CRO).',
   );
-  L.push('> Official Contact Phone: +989125811880');
   L.push('> Official Email: info@asreseo.com');
-  L.push('> Location: Tehran, Iran');
   L.push('');
   L.push('---');
   L.push('');
   L.push('## 1. Company Overview');
   L.push(
-    'عصر سئو (Asre SEO) آژانس تخصصی دیجیتال مارکتینگ و هوش مصنوعی در ایران است که در زمینه ارتقای رتبه وب‌سایت‌ها در گوگل، پیاده‌سازی ابزارهای اتوماسیون بازاریابی مبتنی بر AI، مدیریت کمپین‌های تبلیغاتی گوگل ادز و طراحی وب‌سایت‌های سئومحور فعالیت می‌کند.',
+    'AsreSEO is a specialized digital marketing and AI agency working on Google rankings, AI-powered marketing automation, Google Ads campaign management and SEO-focused web design.',
   );
   L.push('');
   L.push('---');
@@ -49,11 +53,11 @@ export const GET: APIRoute = async () => {
   L.push('## 2. Core Service Offerings');
   L.push('');
   SERVICE_GROUPS.forEach((g, gi) => {
-    L.push(`### 2.${gi + 1}. [${g.en} (${g.fa})](${SITE}${g.path})`);
+    L.push(`### 2.${gi + 1}. [${g.en}](${SITE}${g.path})`);
     for (const i of g.items) {
       // Always emit the canonical URL — AI consumers cite the link, and the
       // description alone gave them nothing to point at.
-      L.push(`- **[${i.fa} (${i.label})](${SITE}${i.path})**`);
+      L.push(`- **[${i.label}](${SITE}${i.path})**`);
       if (i.blurb) L.push(`  ${i.blurb}`);
     }
     L.push('');
@@ -84,10 +88,9 @@ export const GET: APIRoute = async () => {
   L.push('## 4. Key Cornerstone Educational Guides');
   L.push('');
   posts.forEach((post, i) => {
-    const slug: string = post.id.replace(/\.mdx?$/, '');
-    const title: string = post.data.title ?? slug;
+    const title: string = post.data.title ?? post.id;
     const summary: string = post.data.description ?? post.data.excerpt ?? '';
-    L.push(`### 4.${i + 1}. [${title}](${SITE}/blog/${slug}/)`);
+    L.push(`### 4.${i + 1}. [${title}](${postUrl(post)})`);
     if (summary) L.push(`${summary.replace(/\s+/g, ' ').trim()}`);
     if (post.data.updated) L.push(`Last updated: ${post.data.updated}`);
     const takeaways: string[] = post.data.keyTakeaways ?? [];
@@ -101,11 +104,27 @@ export const GET: APIRoute = async () => {
   });
   L.push('---');
   L.push('');
-  L.push(`## 5. ${PORTFOLIO.en} (${PORTFOLIO.fa})`);
+  L.push(`## 5. ${PORTFOLIO.en}`);
   L.push('');
   L.push(`- **URL**: ${SITE}${PORTFOLIO.path}`);
   L.push(`- **Cases**: ${PORTFOLIO.cases.join('; ')}.`);
   L.push(`- **Key Concepts**: ${PORTFOLIO.note}`);
+  L.push('');
+  L.push('---');
+  L.push('');
+  L.push('## 6. Automation Infrastructure & Custom n8n Ecosystem');
+  L.push('');
+  L.push(
+    `AsreSEO maintains an autonomous workflow automation cluster operating round the clock for client reporting, webhook routing, SEO rank monitoring, and AI multi-model workflows.`,
+  );
+  L.push('');
+  L.push(`- **Live Execution Engine**: [${AUTOMATION_INFRASTRUCTURE.n8nInstance.label}](${AUTOMATION_INFRASTRUCTURE.n8nInstance.url})`);
+  L.push(`  ${AUTOMATION_INFRASTRUCTURE.n8nInstance.description}`);
+  L.push('- **Custom Community Node Extensions** (Authored by Principal Automation Engineer Ali Bakhtiari):');
+  for (const node of AUTOMATION_INFRASTRUCTURE.customNodes) {
+    L.push(`  - **[${node.name}](${node.url})** (Author: ${node.author})`);
+    L.push(`    ${node.description}`);
+  }
   L.push('');
 
   return new Response(L.join('\n'), {

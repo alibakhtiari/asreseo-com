@@ -1,169 +1,168 @@
 ---
-title: "طراحی سایت و سئو؛ ۹ تصمیم فنی که باید قبل از شروع پروژه گرفته شود"
-seoTitle: "طراحی سایت سئو محور؛ ۹ تصمیم فنی کلیدی پیش از شروع"
-description: "طراحی سایت و سئو دو پروژه جدا نیستند: معماری URL، رندر سمت سرور، Core Web Vitals و موبایل‌اول را همزمان با طراحی تصمیم بگیرید تا سایت از ابتدا ایندکس شود."
-excerpt: "راهنمای تصمیم‌های فنی طراحی سایت و سئو: معماری URL، سرور در برابر کلاینت، Core Web Vitals، ریسپانسیو موبایل، اسکیما و برنامه مهاجرت بدون از دست رفتن رتبه."
-category: "سئو فنی"
-author: "مهندس علی بختیاری"
+title: "Web Design and SEO: 9 Technical Decisions to Make Before Starting the Project"
+seoTitle: "SEO-Friendly Web Design: 9 Key Technical Decisions Up Front"
+description: "Web design and SEO are not two separate projects: decide URL architecture, server-side rendering, Core Web Vitals, and mobile-first together with the design so the site is indexable from day one."
+excerpt: "A guide to the technical decisions of web design and SEO: URL architecture, server vs. client, Core Web Vitals, mobile responsiveness, schema, and a migration plan that preserves rankings."
+category: "Technical SEO"
+author: "AsreSEO Editorial Team"
 date: "2026-09-18"
 updated: "2026-09-18"
-readTime: "۱۲ دقیقه"
+readTime: "12 min"
 image: "/images/seo-web-design-hero.webp"
 featured: false
-tags: ["طراحی سایت و سئو", "سئو فنی", "تجربه کاربری", "Core Web Vitals", "معماری سایت"]
-slug: "seo-friendly-web-design"
-keywords: "طراحی سایت و سئو, طراحی سایت سئو محور, سئو فرندلی, بهینه سازی سایت هنگام طراحی, معماری URL, رندر سمت سرور"
+tags: ["Web Design and SEO", "Technical SEO", "User Experience", "Core Web Vitals", "Site Architecture"]
+keywords: "web design and SEO, SEO-friendly web design, SEO friendly, optimizing a site during design, URL architecture, server-side rendering"
 keyTakeaways:
-  - "طراحی سایت و سئو باید همزمان تصمیم‌گیری شوند: معماری URL، ساختار هدینگ و برنامه مهاجرت اگر در هفته اول پروژه قفل نشوند، بعداً فقط با هزینه بازنویسی قابل اصلاح‌اند."
-  - "انتخاب فریمورک یک تصمیم سئو است، نه فقط تصمیم توسعه: رندر سمت سرور یا پیش‌رندر شده برای صفحات محتوایی لازم است تا خزنده بدون اجرای جاوااسکریپت به متن اصلی دسترسی داشته باشد."
-  - "معماری URL باید از روز اول ثابت باشد: تغییر ساختار آدرس‌ها بدون ریدایرکت ۳۰۱ دقیق، معادل از دست دادن همه اعتبار انباشته‌شده صفحات است."
-  - "موبایل‌اول یک تصمیم معماری است، نه یک استایل: ترتیب محتوا، اندازه لمس و وزن منابع باید نسخه موبایل را مبنا قرار دهد، نسخه دسکتاپ را."
-  - "قبل از تحویل، سایت باید با یک چک‌لیست فنی سنجیده شود: ایندکس‌پذیری بدون جاوااسکریپت، نقشه سitemap، اسکیما، بندهای canonical و ریدایرکت‌ها همگی پیش از انتشار عمومی."
-  - "مهاجرت سایت قدیمی به جدید تنها زمانی بی‌خطر است که نقشه ریدایرکت ۳۰۱ آدرس به آدرس از قبل نوشته شده باشد؛ ریدایرکت گروهی به صفحه اصلی اعتبار صفحات داخلی را می‌سوزاند."
+  - "Web design and SEO must be decided together: URL architecture, heading structure, and the migration plan must be locked in the project's first week, or they can only be fixed later through costly rewrites."
+  - "Framework choice is an SEO decision, not just a development one: server-side or pre-rendered rendering is required for content pages so crawlers reach the core text without executing JavaScript."
+  - "URL architecture must be fixed from day one: changing address structures without precise 301 redirects equals losing all the accumulated equity of your pages."
+  - "Mobile-first is an architecture decision, not a style: content order, touch sizing, and resource weight must take the mobile version as the baseline, not the desktop one."
+  - "Before handover, the site must be measured against a technical checklist: indexability without JavaScript, sitemap, schema, canonical tags, and redirects — all before public launch."
+  - "Migrating an old site to a new one is only safe when a URL-to-URL 301 redirect map is written in advance; bulk redirects to the homepage burn the equity of inner pages."
 faqs:
-  - question: "طراحی سایت و سئو چه تفاوتی با هم دارند؟"
-    answer: "طراحی سایت به ساختار بصری، چیدمان و تجربه کاربری می‌پردازد و سئو به اینکه موتور جستجو چگونه آن ساختار را می‌فهمد و رتبه‌بندی می‌کند. در عمل این دو یک تصمیم واحدند: هر انتخاب طراحی — از آدرس صفحه تا نحوه رندر محتوا — مستقیماً تعیین می‌کند سایت اصلاً ایندکس می‌شود یا نه."
-  - question: "چرا سایت تازه طراحی‌شده در گوگل دیده نمی‌شود؟"
-    answer: "شایع‌ترین دلیل این است که محتوا در مرورگر رندر می‌شود نه در سرور، بنابراین خزنده به متن دسترسی ندارد. دلایل دیگر شامل ربات‌های مسدودکننده در فایل robots.txt، نبود نقشه سایت، آدرس‌های تکراری بدون تگ canonical و خطای سرور هنگام خزیدن است."
-  - question: "آیا طراحی مجدد سایت باعث افت رتبه می‌شود؟"
-    answer: "طراحی مضر نیست؛ این مهاجرت بدون برنامه مضر است. اگر آدرس صفحات تغییر کند و ریدایرکت ۳۰۱ آدرس به آدرس اجرا نشود، اعتبار و رتبه انباشته‌شده هر صفحه از بین می‌رود. با نقشه ریدایرکت کامل و حفظ ساختار هدینگ، مهاجرت می‌تواند رتبه‌ها را بدون افت نگه دارد."
-  - question: "کدام فریمورک برای سئو بهتر است؟"
-    answer: "آن فریمورکی که بتواند HTML کامل و معنادار را هنگام درخواست اول ارسال کند. برای صفحات محتوایی، رندر سمت سرور یا تولید ایستا در زمان بیلد ارجح است؛ اپلیکیشن‌های تک‌صفحه‌ای کلاینت‌محور برای محتوای عمومی مناسب نیستند مگر آنکه پیش‌رندر شده باشند."
-  - question: "چه مقدار سرعت برای سئو کافی است؟"
-    answer: "معیار، عدد مطلق نیست بلکه قرار گرفتن در محدوده قابل قبول معیارهای تجربه کاربری گوگل است: پاسخگویی تعامل، پایداری چیدمان و زمان بارگذاری محتوا اصلی. فراتر از آن، سرعت تجربه کاربر را می‌سازد و کاربری که صفحه را نمی‌بندد، سیگنال مثبتی برای موتور جستجوست."
-  - question: "سئو باید در کدام مرحله پروژه انجام شود؟"
-    answer: "در مرحله تعریف معماری اطلاعات، قبل از شروع طراحی بصری. نقشه سایت، ساختار آدرس‌ها و سلسله‌مراتب هدینگ‌ها همگی در همین مرحله بسته می‌شوند؛ اصلاح آنها پس از انتشار مستلزم بازنویسی صفحات و ریدایرکت گسترده است."
-  - question: "آیا طراحی زیبا با سئو در تضاد است؟"
-    answer: "خیر، به شرطی که تصاویر بهینه، متن واقعی به جای تصویر و ساختار هدینگ معنادار رعایت شود. تضاد زمانی پیش می‌آید که متن در تصاویر تایپ شود، محتوای اصلی پشت افکت‌های انیمیشنی بماند یا پیمایش بی‌نهایت بدون آدرس مجزا استفاده شود."
-  - question: "برای سایت شرکتی چند صفحه لازم است؟"
-    answer: "تعداد صفحه معیار نیست؛ پوشش دقیق پرسش‌های مخاطب معیار است. یک سایت شرکتی معمولاً به صفحه اصلی، معرفی خدمات، صفحه هر خدمت، نمونه کار، پرسش‌های متداول، درباره ما و تماس نیاز دارد و باید از صفحاتی که محتوای تکراری یا ناقص دارند پرهیز کند."
+  - question: "What is the difference between web design and SEO?"
+    answer: "Web design deals with visual structure, layout, and user experience, while SEO deals with how search engines understand and rank that structure. In practice they are one decision: every design choice — from page URLs to how content renders — directly determines whether the site gets indexed at all."
+  - question: "Why is a newly designed site invisible on Google?"
+    answer: "The most common reason is that content renders in the browser rather than on the server, so crawlers cannot reach the text. Other causes include blocking robots in robots.txt, a missing sitemap, duplicate URLs without canonical tags, and server errors during crawling."
+  - question: "Does redesigning a site hurt rankings?"
+    answer: "Redesign is not harmful; unplanned migration is. If page URLs change and URL-to-URL 301 redirects are not implemented, each page's accumulated equity and rankings are lost. With a complete redirect map and an intact heading structure, migration can preserve rankings with no drop."
+  - question: "Which framework is best for SEO?"
+    answer: "The one that can send complete, meaningful HTML on the first request. For content pages, server-side rendering or static generation at build time is preferred; client-side single-page apps are unsuitable for public content unless they are pre-rendered."
+  - question: "How much speed is enough for SEO?"
+    answer: "The benchmark is not an absolute number but staying within Google's user-experience thresholds: interaction responsiveness, layout stability, and main-content load time. Beyond that, speed builds user experience — and a user who does not bounce sends a positive signal to search engines."
+  - question: "At which project stage should SEO happen?"
+    answer: "At the information-architecture stage, before visual design begins. The sitemap, URL structure, and heading hierarchy are all locked in at this stage; fixing them after launch requires page rewrites and mass redirects."
+  - question: "Does beautiful design conflict with SEO?"
+    answer: "No — provided images are optimized, real text replaces image text, and a meaningful heading structure is kept. Conflict arises when copy is typed into images, core content hides behind animation effects, or infinite scroll is used without separate URLs."
+  - question: "How many pages does a corporate site need?"
+    answer: "Page count is not the metric; precisely covering the audience's questions is. A corporate site usually needs a homepage, services overview, one page per service, portfolio, FAQ, about, and contact — and must avoid pages with duplicate or thin content."
 ---
 
-طراحی سایت و سئو یعنی ساختن سایتی که هم برای انسان قابل استفاده باشد و هم برای موتور جستجو قابل فهم؛ یعنی معماری URL، ساختار هدینگ، نحوه رندر محتوا و برنامه مهاجرت باید در همان هفته اول پروژه — نه بعد از انتشار — تصمیم‌گیری شوند. وقتی طراحی و سئو به‌صورت دو پروژه جدا پیش بروند، سایت نهایی معمولاً ظاهری مرتب دارد اما ایندکس نمی‌شود: متن اصلی پس از اجرای جاوااسکریپت ظاهر می‌شود، آدرس صفحات بدون ساختار منطقی تولید می‌شوند و تصاویر سنگین بار صفحه را از کنترل خارج می‌کنند. نتیجه این است که ماه‌ها بعد باید همان تصمیم‌ها دوباره گرفته شوند، این بار با هزینه بازنویسی. این راهنما ۹ تصمیم فنی را که باید قبل از شروع طراحی قفل شوند مرور می‌کند و در پایان چک‌لیستی برای سنجش پیش از انتشار ارائه می‌دهد.
+Web design and SEO mean building a site that is both usable for humans and understandable for search engines: URL architecture, heading structure, how content renders, and the migration plan must all be decided in the project's very first week — not after launch. When design and SEO run as two separate projects, the final site usually looks tidy but never gets indexed: the core text only appears after JavaScript executes, page URLs are generated with no logical structure, and heavy images push page weight out of control. The result is that months later the same decisions must be made again, this time at rewrite cost. This guide reviews the 9 technical decisions that must be locked before design starts and ends with a pre-launch measurement checklist.
 
-## چرا طراحی سایت و سئو باید همزمان تصمیم‌گیری شود؟
+## Why web design and SEO must be decided together
 
-بسیاری از پروژه‌ها با این ترتیب پیش می‌روند که اول طراحی و تأیید نهایی ظاهر انجام شود، بعد تیم توسعه سایت را بسازد و در انتها یک مشاور سئو بخواهد سایت را «بهینه کند». مشکل این ترتیب آن است که مهم‌ترین اهرم‌های سئو در همان مراحل اولیه مصرف می‌شوند:
+Many projects run in this order: first the look is designed and approved, then the development team builds the site, and finally an SEO consultant is asked to "optimize" it. The problem with this order is that SEO's most important levers are consumed in those early stages:
 
-- **نقشه سایت و آدرس‌ها** در جلسه اول طراحی شکل می‌گیرند و تغییرشان بعداً مستلزم ریدایرکت انبوه است.
-- **سلسله‌مراتب هدینگ‌ها** در همان وایرفریم تعیین می‌شود؛ اگر H1 صفحه در طراحی نهایی حذف یا به متن تزئینی تبدیل شود، سیگنال اصلی صفحه از بین رفته است.
-- **انتخاب فریمورک و نحوه رندر** تصمیمی است که توسعه‌دهنده در روز اول می‌گیرد و اگر اشتباه باشد، اصلاحش نیازمند بازنویسی لایه نمایش است.
-- **وزن منابع** (تصاویر، فونت‌ها، اسکریپت‌ها) در طراحی بصری بسته می‌شود و بعداً فقط با حذف امکانات قابل کاهش است.
+- **The sitemap and URLs** take shape in the first design meeting, and changing them later requires mass redirects.
+- **The heading hierarchy** is set in the wireframe; if a page's H1 is removed in the final design or turned into decorative text, the page's core signal is gone.
+- **Framework and rendering choice** is a decision the developer makes on day one, and fixing a wrong one requires rewriting the presentation layer.
+- **Resource weight** (images, fonts, scripts) is locked in by the visual design and can later only be reduced by removing features.
 
-نتیجه این است که سئو اگر به‌عنوان مرحله آخر اضافه شود، فقط می‌تواند روی محتوا و لینک‌سازی کار کند و نمی‌تواند اشکالات معماری را برطرف کند. برای همین است که در پروژه‌های [طراحی سایت و سئو](/services/web/seo-web-design/) عصر سئو، تعریف معماری اطلاعات و ساختار آدرس‌ها نقطه شروع کار است، نه آخر آن.
+The result is that SEO added as a final stage can only work on content and link building and cannot fix architectural flaws. That is why in Asr SEO's [web design and SEO](/services/web/seo-web-design/) projects, defining the information architecture and URL structure is the starting point, not the end.
 
-## ۱. معماری URL را قبل از طراحی قفل کنید
+## 1. Lock the URL architecture before designing
 
-آدرس صفحه، قدیمی‌ترین و بااهمیت‌ترین دارایی یک صفحه است. موتور جستجو اعتبار، تاریخچه خزیدن و بک‌لینک‌های ورودی را همگی به آدرس گره می‌زند؛ تغییر آدرس بدون ریدایرکت دقیق یعنی شروع از صفر.
+A page's URL is its oldest and most valuable asset. Search engines tie authority, crawl history, and inbound backlinks to the URL; changing a URL without a precise redirect means starting from zero.
 
-قواعدی که باید در جلسه اول تصویب شوند:
+Rules to approve in the first meeting:
 
-- **ساختار سلسله‌مراتبی و کوتاه:** `/services/web/design/` بهتر از `/p?id=84&cat=3` است. آدرس باید ساختار سایت را منعکس کند تا هم کاربر و هم خزنده بتوانند جای صفحه را حدس بزنند.
-- **حروف لاتین، بدون پارامترهای اضافه:** آدرس فارسی در نمایش باید به صورت slug لاتین رمزگذاری شود و پارامترهای ردیابی با ریدایرکت یا تگ canonical مدیریت شوند تا نسخه‌های تکراری از یک صفحه ایجاد نشود.
-- **پایان با اسلش:** در پیکربندی فعلی سایت، `trailingSlash: 'always'` فعال است و همه آدرس‌ها با اسلش تمام می‌شوند. نقض این قاعده در لینک‌های داخلی، نسخه‌های تکراری می‌سازد.
-- **تگ canonical برای همه صفحات لیستی:** صفحات دسته‌بندی، فیلتر و صفحه‌بندی بدون canonical، نسخه‌های رقیب یکدیگر می‌شوند.
+- **Short, hierarchical structure:** `/services/web/design/` beats `/p?id=84&cat=3`. The URL should mirror the site's structure so both users and crawlers can guess where a page sits.
+- **Latin characters, no extra parameters:** URLs must be encoded as clean Latin slugs, and tracking parameters managed with redirects or canonical tags so duplicate versions of one page are not created.
+- **Trailing slash:** in this site's current configuration, `trailingSlash: 'always'` is enabled and all URLs end with a slash. Violating this rule in internal links creates duplicate versions.
+- **Canonical tags for all listing pages:** category, filter, and pagination pages without canonicals become competing versions of each other.
 
-اگر قرار است سایت قدیمی جایگزین شود، **قبل از طراحی** نقشه ریدایرکت را بنویسید: آدرس قدیمی → آدرس جدید، آدرس به آدرس. ریدایرکت گروهی همه آدرس‌ها به صفحه اصلی، رایج‌ترین و پرهزینه‌ترین اشتباه مهاجرت است.
+If an old site is being replaced, write the redirect map **before designing**: old URL → new URL, URL to URL. Bulk-redirecting every URL to the homepage is the most common and most expensive migration mistake.
 
-## ۲. نحوه رندر محتوا را به‌عنوان یک تصمیم سئو انتخاب کنید
+## 2. Choose how content renders as an SEO decision
 
-اینکه محتوا در سرور تولید شود یا در مرورگر کاربر، تعیین می‌کند خزنده اصلاً چه چیزی می‌بیند. صفحه‌ای که متن اصلی‌اش فقط پس از اجرای جاوااسکریپت ظاهر می‌شود، برای خزیدن اولیه خالی است و باید در صف رندر قرار گیرد — فرآیندی که تأخیر دارد و قطعیت ندارد.
+Whether content is generated on the server or in the user's browser determines what the crawler sees at all. A page whose core text only appears after JavaScript executes is empty to the initial crawl and must join the render queue — a process that is delayed and uncertain.
 
-راه‌های پیش رو:
+The options ahead:
 
-| رویکرد | مناسب برای | ملاحظه سئو |
+| Approach | Good for | SEO consideration |
 |---|---|---|
-| تولید ایستا در زمان بیلد | وبلاگ، صفحات خدمات، صفحات ثابت | سریع‌ترین و مطمئن‌ترین گزینه؛ HTML کامل در اولین پاسخ |
-| رندر سمت سرور | محتوای پویا که به درخواست کاربر بستگی دارد | HTML کامل تحویل داده می‌شود؛ زمان پاسخ سرور مهم است |
-| پیش‌رندر اپلیکیشن کلاینت‌محور | پنل‌ها و ابزارهای داخلی | برای محتوای عمومی فقط در صورت پیش‌رندر قابل قبول است |
-| رندر کامل در مرورگر | تقریباً هرگز برای محتوای عمومی | خزیدن اولیه متنی برای صفحه ندارد |
+| Static generation at build time | Blogs, service pages, static pages | Fastest and safest option; complete HTML in the first response |
+| Server-side rendering | Dynamic content depending on the user request | Complete HTML is delivered; server response time matters |
+| Pre-rendered client-side app | Dashboards and internal tools | Acceptable for public content only if pre-rendered |
+| Full in-browser rendering | Almost never for public content | The initial crawl finds no text on the page |
 
-تصمیم باید بر اساس نوع محتوا گرفته شود، نه علاقه تیم توسعه: صفحه مقاله و صفحه خدمت باید HTML کامل تحویل دهند، در حالی که پنل کاربری که پشت ورود محافظت می‌شود اهمیتی برای سئو ندارد.
+The decision must follow content type, not the development team's preference: article and service pages must deliver complete HTML, while a user dashboard behind login has no SEO relevance.
 
-## ۳. Core Web Vitals را در طراحی بصری ببینید، نه بعد از آن
+## 3. See Core Web Vitals in the visual design, not after it
 
-سه معیار تجربه کاربری گوگل — پاسخگویی تعامل، پایداری چیدمان و بارگذاری محتوای اصلی — مستقیماً از تصمیم‌های طراحی بیرون می‌آیند:
+Google's three user-experience metrics — interaction responsiveness, layout stability, and main-content loading — come straight out of design decisions:
 
-- **پایداری چیدمان** با تصاویر بدون ابعاد مشخص، فونت‌هایی که با تأخیر بارگذاری می‌شوند و بنرهایی که بعد از لود ظاهر می‌شوند از بین می‌رود. راه‌حل طراحی است: همه تصاویر `width` و `height` داشته باشند، فونت‌ها از قبل بارگذاری شوند و فضای بنر از ابتدا رزرو شود.
-- **بارگذاری محتوای اصلی** بیش از همه به وزن تصویر و ترتیب منابع وابسته است. تصویر شاخص باید در قالب بهینه و با ابعاد مناسب تحویل داده شود و تصاویر پایین‌تر صفحه با بارگذاری تنبل لود شوند.
-- **پاسخگویی تعامل** با اسکریپت‌های سنگین در ابتدای صفحه کند می‌شود. اسکریپت‌های غیرضروری باید به تعویق بیفتند و افکت‌های سنگین پیمایش باید محدود شوند.
+- **Layout stability** is destroyed by images without set dimensions, late-loading fonts, and banners that appear after load. The fix is design: every image gets `width` and `height`, fonts are preloaded, and banner space is reserved up front.
+- **Main-content loading** depends most on image weight and resource order. The hero image must be served in an optimized format at proper dimensions, and below-the-fold images must lazy-load.
+- **Interaction responsiveness** slows down with heavy scripts early in the page. Non-essential scripts must be deferred and heavy scroll effects limited.
 
-نکته مهم این است که این سه معیار با ابزارهای توسعه قابل اندازه‌گیری‌اند و باید در همان حین طراحی سنجیده شوند، نه اینکه پس از انتشار منتظر گزارش میدانی ماند. سایتی که در آزمون مبدا این معیارها را رد می‌کند، در اندازه‌گیری میدانی هم عملکرد ضعیفی خواهد داشت.
+Importantly, these three metrics are measurable with developer tools and should be measured during design — not by waiting for field reports after launch. A site that fails these metrics in lab tests will perform poorly in field measurement too.
 
-## ۴. موبایل‌اول یعنی معماری موبایل، نه استایل موبایل
+## 4. Mobile-first means mobile architecture, not mobile styling
 
-نسخه موبایل، نسخه مرجع خزیدن است. این جمله به این معنا نیست که استایل موبایل مهم‌تر است؛ به این معناست که **ترتیب محتوا، سلسله‌مراتب اطلاعات و وزن منابع** باید بر اساس موبایل تعیین شود و نسخه دسکتاپ از آن مشتق شود.
+The mobile version is the crawl reference. That does not mean mobile styling matters more; it means **content order, information hierarchy, and resource weight** must be set from mobile, with the desktop version derived from it.
 
-تصمیم‌های معماری که باید مبنا را موبایل قرار دهند:
+Architecture decisions that must take mobile as the baseline:
 
-- **ترتیب محتوا:** آیا در موبایل مهم‌ترین اطلاعات اول دیده می‌شود؟ اگر CTA اصلی در موبایل پایین‌تر از صفحه باشد، ساختار اطلاعات اشتباه است.
-- **اندازه لمس:** دکمه‌ها و لینک‌ها باید بدون بزرگ‌نمایی قابل فشردن باشند؛ لینک‌های کوچک کنار هم هم خطای کاربر می‌سازند و هم خزیدن را دشوار می‌کنند.
-- **وزن منابع:** اتصال موبایل معمولاً کندتر است، پس بودجه منابع باید برای موبایل بسته شود، نه برای شبکه داخلی دفتر.
-- **منو و پیمایش:** منوی موبایل باید ساختار سایت را کامل منعکس کند تا خزنده از طریق آن به صفحات داخلی برسد.
+- **Content order:** does the most important information appear first on mobile? If the primary CTA sits below the fold on mobile, the information structure is wrong.
+- **Touch sizing:** buttons and links must be tappable without zooming; small adjacent links create both user errors and crawling difficulty.
+- **Resource weight:** mobile connections are usually slower, so the resource budget must be set for mobile, not the office network.
+- **Menus and navigation:** the mobile menu must mirror the full site structure so crawlers reach inner pages through it.
 
-## ۵. ساختار هدینگ و نقطه کانونی را در وایرفریم تعریف کنید
+## 5. Define heading structure and the focal point in the wireframe
 
-هر صفحه باید یک H1 داشته باشد که موضوع صفحه را بیان کند و H2ها مسیر منطقی محتوا را بسازند. این چیزی نیست که بتوان بعداً به متن اضافه کرد، چون در طراحی بصری معمولاً تیترها به‌صورت عناصر گرافیکی طراحی می‌شوند و اگر در همان زمان به هدینگ معنادار تبدیل نشوند، ساختار از دست می‌رود.
+Every page needs one H1 stating the page's topic, with H2s building the content's logical path. This cannot be added to copy later, because in visual design headlines are usually drawn as graphic elements — and if they are not turned into meaningful headings at that moment, the structure is lost.
 
-سه قاعده ساده:
+Three simple rules:
 
-- **یک H1 منحصربه‌فرد** برای هر صفحه، نه چند H1 و نه H1 خالی.
-- **بدون پرش سطح:** از H2 به H4 نروید؛ ترتیب سطوح باید پیوسته باشد.
-- **متن واقعی در هدینگ:** تیتر باید خودش پرسش یا موضوع را بیان کند، نه اینکه فقط «بخش اول» بنویسد.
+- **One unique H1** per page — no multiple H1s, no empty H1.
+- **No skipped levels:** don't jump from H2 to H4; level order must be continuous.
+- **Real text in headings:** a headline must state the question or topic itself, not just read "Section One".
 
-کنار آن، هر صفحه به یک بلوک پاسخ کوتاه در ابتدای محتوا نیاز دارد: چند جمله‌ای که پرسش اصلی را بدون نیاز به خواندن بقیه صفحه پاسخ دهد. این بلوک همان بخشی است که موتورهای جستجو و موتورهای پاسخ‌گر نقل‌قول می‌کنند.
+Alongside that, every page needs a short answer block at the start of its content: a few sentences answering the core question without requiring the rest of the page. This block is what search engines and answer engines quote.
 
-## ۶. اسکیما و داده‌های ساخت‌یافته را بخشی از قالب بدانید
+## 6. Treat schema and structured data as part of the template
 
-داده‌های ساخت‌یافته باید در جزئیات قالب تعریف شوند، نه اینکه بعداً با افزونه‌ای اضافه شوند. برای هر نوع صفحه باید از ابتدا مشخص باشد کدام اسکیما تولید می‌شود:
+Structured data must be defined in the template details, not bolted on later with a plugin. For each page type it must be clear from the start which schema is generated:
 
-- صفحه مقاله → `Article` یا `BlogPosting` به هراه `author`، `datePublished` و `dateModified`
-- صفحه خدمات → `Service` و `BreadcrumbList`
-- پرسش‌های متداول → `FAQPage` هم‌راستا با محتوای قابل مشاهده صفحه
-- صفحه درباره و تماس → `Organization` با `sameAs` و اطلاعات تماس یکسان
+- Article page → `Article` or `BlogPosting` with `author`, `datePublished`, and `dateModified`
+- Service page → `Service` and `BreadcrumbList`
+- FAQs → `FAQPage` aligned with the page's visible content
+- About and contact pages → `Organization` with `sameAs` and consistent contact info
 
-نکته حیاتی این است که اسکیما باید با محتوای قابل مشاهده صفحه یکی باشد. اگر در داده ساخت‌یافته پرسشی باشد که در صفحه دیده نمی‌شود، با نقض دستورالعمل گوگل روبرو می‌شوید و امتیاز اعتماد صفحه کم می‌شود.
+The vital point is that schema must match the page's visible content. If the structured data contains a question not shown on the page, you violate Google's guidelines and the page's trust score drops.
 
-## ۷. برنامه مهاجرت از سایت قدیمی را قبل از طراحی بنویسید
+## 7. Write the old-site migration plan before designing
 
-اگر سایتی از قبل داردید، مهاجرت پرریسک‌ترین بخش پروژه است. نقشه ریدایرکت باید **قبل از طراحی نهایی** آماده باشد، چون هر آدرسی که در طراحی جدید حذف شود باید مقصد مشخصی داشته باشد:
+If you already have a site, migration is the project's riskiest part. The redirect map must be ready **before the final design**, because every URL removed in the new design needs a defined destination:
 
-1. فهرست همه آدرس‌های ایندکس‌شده فعلی را از نقشه سایت و گزارش خزیدن استخراج کنید.
-2. برای هر آدرس، آدرس جدید معادل را تعیین کنید؛ اگر صفحه‌ای حذف شده، مقصد نزدیک‌ترین صفحه مرتبط است یا در نهایت صفحه دسته والد.
-3. ریدایرکت‌ها را آدرس به آدرس با کد ۳۰۱ بنویسید، نه ریدایرکت گروهی.
-4. پس از انتشار، نمونه‌ای از آدرس‌ها را سنجش کنید تا مطمئن شوید در یک پرش به مقصد درست می‌رسند.
-5. نقشه سایت جدید را به ابزار مدیریت سایت ارسال کنید و خطاهای خزیدن را روزانه پایش کنید.
+1. Extract the list of all currently indexed URLs from the sitemap and crawl reports.
+2. Assign each URL its equivalent new URL; if a page is removed, the destination is the nearest related page or ultimately the parent category page.
+3. Write URL-to-URL 301 redirects, not bulk redirects.
+4. After launch, sample URLs to confirm they reach the right destination in one hop.
+5. Submit the new sitemap to the site-management tool and monitor crawl errors daily.
 
-اگر آدرس‌ها تغییر نمی‌کنند، باز هم باید مطمئن شوید تگ‌های canonical، ریدایرکت‌های اسلش و نسخه‌های www و بدون www به یک نسخه استاندارد ختم می‌شوند.
+If URLs are not changing, you must still confirm that canonical tags, slash redirects, and www vs. non-www versions all resolve to one standard version.
 
-## ۸. لینک‌سازی داخلی را در ساختار قالب ببینید
+## 8. Put internal linking into the template structure
 
-لینک‌های داخلی نباید بعداً به‌صورت دستی اضافه شوند؛ باید بخشی از قالب باشند. ساختار پیشنهادی برای هر صفحه:
+Internal links should not be added manually later; they must be part of the template. The recommended structure for every page:
 
-- **نان‌ریز (Breadcrumbs)** در بالای صفحه که سلسله‌مراتب سایت را نمایش دهد و با اسکیما `BreadcrumbList` همراه باشد.
-- **لینک‌های مرتبط** در انتهای محتوا که به صفحات خواهر و صفحه والد اشاره کنند.
-- **متن جایگزین واقعی** برای همه تصاویر؛ `alt` خالی یا تکراری ارزش از دست می‌دهد.
-- **لینک‌های متنی در بدنه محتوا** با انکرتکست توصیفی؛ لینک فقط در دکمه‌های گرافیکی کافی نیست.
+- **Breadcrumbs** at the top of the page showing the site hierarchy, paired with `BreadcrumbList` schema.
+- **Related links** at the end of content pointing to sibling pages and the parent page.
+- **Real alternative text** for all images; empty or duplicated `alt` wastes value.
+- **In-body text links** with descriptive anchor text; links in graphic buttons alone are not enough.
 
-یک قالب خوب این ساختارها را به‌صورت خودکار تولید می‌کند، بنابراین هر صفحه جدید بدون تلاش دستی به شبکه داخلی سایت متصل می‌شود.
+A good template generates these structures automatically, so every new page joins the site's internal network with no manual effort.
 
-## ۹. چک‌لیست فنی پیش از انتشار
+## 9. Pre-launch technical checklist
 
-قبل از اینکه سایت در دسترس عموم قرار بگیرد، این موارد باید سنجیده شوند:
+Before the site goes public, the following must be measured:
 
-- [ ] صفحات محتوایی بدون اجرای جاوااسکریپت هم متن کامل دارند.
-- [ ] `robots.txt` مسیرهای لازم را باز می‌کند و مسیرهای داخلی را مسدود نکرده است.
-- [ ] نقشه سایت تولید و در ابزار مدیریت سایت ثبت شده است.
-- [ ] هر صفحه یک H1 و ساختار هدینگ پیوسته دارد.
-- [ ] تگ canonical روی همه صفحات تنظیم شده است.
-- [ ] اسکیماها با محتوای قابل مشاهده مطابقت دارند.
-- [ ] همه تصاویر `alt` واقعی و ابعاد مشخص دارند.
-- [ ] نسخه‌های www و بدون www و با و بدون اسلش به یک آدرس استاندارد ختم می‌شوند.
-- [ ] نقشه ریدایرکت ۳۰۱ برای آدرس‌های قدیمی آماده و آزمایش شده است.
-- [ ] صفحه ۴۰۴ سفارشی و مفید طراحی شده است.
+- [ ] Content pages show full text even without JavaScript execution.
+- [ ] `robots.txt` opens the required paths and has not blocked internal routes.
+- [ ] The sitemap is generated and registered in the site-management tool.
+- [ ] Every page has one H1 and a continuous heading structure.
+- [ ] Canonical tags are set on all pages.
+- [ ] Schemas match the visible content.
+- [ ] All images have real `alt` text and set dimensions.
+- [ ] www and non-www, with- and without-slash versions all resolve to one standard URL.
+- [ ] The 301 redirect map for old URLs is ready and tested.
+- [ ] A custom, helpful 404 page is designed.
 
-اجرای این چک‌لیست در هفته آخر پروژه، به‌جای ماه اول پس از انتشار، تفاوت میان یک مهاجرت بی‌خطر و یک افت رتبه چندماهه است.
+Running this checklist in the project's final week — instead of the first month after launch — is the difference between a safe migration and a months-long ranking drop.
 
-## نتیجه‌گیری
+## Conclusion
 
-طراحی سایت و سئو وقتی با هم تصمیم‌گیری شوند، نتیجه یک سایت است که از روز اول ایندکس می‌شود، ساختار داخلی سالم دارد و هر صفحه‌اش مقصد مشخصی برای یک پرسش است. وقتی جدا پیش بروند، نتیجه سایتی است که باید دوباره ساخته شود. اگر در آستانه پروژه جدید یا مهاجرت سایت هستید، [خدمات طراحی سایت و سئو](/services/web/seo-web-design/) عصر سئو هر دو بعد را از مرحله تعریف معماری تا انتشار و پایش پیش می‌برد. برای شروع، صفحه [پرسش‌های متداول سئو](/faq/) پاسخ رایج‌ترین تردیدها را در اختیار شما می‌گذارد.
+When web design and SEO are decided together, the result is a site that gets indexed from day one, has a healthy internal structure, and gives every page a defined destination for one question. When they run separately, the result is a site that must be rebuilt. If you are about to start a new project or a site migration, Asr SEO's [web design and SEO services](/services/web/seo-web-design/) carry both dimensions from architecture definition through launch and monitoring. To start, the [SEO FAQ](/faq/) page answers the most common doubts.

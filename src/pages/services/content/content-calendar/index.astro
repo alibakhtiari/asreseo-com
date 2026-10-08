@@ -20,37 +20,38 @@ import ServiceBenefits from '../../../../components/Services/ServiceBenefits.ast
 
 
 
-
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  'name': 'طراحی تقویم محتوایی و برنامه‌ریزی انتشار',
-  'description': 'خدمات تخصصی تدوین تقویم محتوایی سایت و شبکه‌های اجتماعی با برنامه‌ریزی استراتژیک و اتوماسیون انتشار منظم محتوا.',
+  'name': 'Content Calendar Design & Publishing Planning',
+  'description': 'Expert editorial calendar services for websites and social feeds with strategic planning and automated, regular content publishing.',
   'serviceType': 'Content Calendar & Editorial Planning',
+  'inLanguage': 'en-US',
   'provider': {
     '@type': 'Organization',
-    'name': 'عصر سئو',
+    'name': 'AsreSEO',
     'url': 'https://asreseo.com'
   },
-  'areaServed': 'Iran',
   'hasOfferCatalog': {
     '@type': 'OfferCatalog',
-    'name': 'خدمات تقویم محتوایی',
+    'name': 'Content calendar services',
     'itemListElement': [
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
-          'name': 'برنامه‌ریزی هوشمند انتشار محتوا',
-          'description': 'زمان‌بندی استراتژیک انتشار محتوا برای وب‌سایت و سوشال مدیا'
+          'name': 'Smart publishing schedules',
+          'description': 'Strategic timing for website and social content',
+          'inLanguage': 'en-US'
         }
       },
       {
         '@type': 'Offer',
         'itemOffered': {
           '@type': 'Service',
-          'name': 'اتوماسیون چرخه محتوا',
-          'description': 'یکپارچگی با ابزارهای زمان‌بندی و انتشار خودکار محتوا'
+          'name': 'Content cycle automation',
+          'description': 'Integration with scheduling tools and automatic publishing',
+          'inLanguage': 'en-US'
         }
       }
     ]
@@ -61,307 +62,306 @@ const structuredData = {
 
   const strategies = [
     {
-      type: 'استراتژی Seasonal',
-      description: 'محتوای مرتبط با فصل‌ها، تعطیلات و رویدادهای سالانه',
-      examples: ['محتوای نوروزی', 'کمپین‌های تابستانی', 'آماده‌سازی پاییزی'],
-      impact: 'برنامه یک‌فصل جلوتر'
+      type: 'Seasonal Strategy',
+      description: 'Content tied to seasons, holidays and annual events',
+      examples: ['New Year content', 'Summer campaigns', 'Autumn prep'],
+      impact: 'One season ahead'
     },
     {
-      type: 'استراتژی Pillar',
-      description: 'محتوای استراتژیک و پایه‌ای که ماه‌ها قابل استفاده است',
-      examples: ['راهنمای کامل محصولات', 'آموزش‌های تخصصی', 'تحقیقات عمیق'],
-      impact: 'بازدهی بلندمدت'
+      type: 'Pillar Strategy',
+      description: 'Strategic cornerstone content usable for months',
+      examples: ['Complete product guides', 'Expert tutorials', 'In-depth research'],
+      impact: 'Long-term returns'
     },
     {
-      type: 'استراتژی Cluster',
-      description: 'شبکه محتوایی مرتبط با یک موضوع هسته‌ای',
-      examples: ['محتوای اطراف یک محصول', 'سری آموزشی جامع', 'مجموعه مقالات مرتبط'],
-      impact: 'پوشش یکپارچه خوشه'
+      type: 'Cluster Strategy',
+      description: 'A content network around one core topic',
+      examples: ['Content around one product', 'Full tutorial series', 'Related article sets'],
+      impact: 'Unified cluster coverage'
     }
   ];
 
   const pillars = [
     {
       pillar: 'Audience-Centric Planning',
-      description: 'برنامه‌ریزی بر اساس نیازها و رفتار مخاطبان هدف',
-      benefits: ['ارتباط بهتر', 'تعامل بالاتر', 'تبدیل بیشتر']
+      description: 'Planning around the needs and behavior of your target audience',
+      benefits: ['Better connection', 'Higher engagement', 'More conversions']
     },
     {
       pillar: 'Data-Driven Scheduling',
-      description: 'زمان‌بندی بر اساس تحلیل دیتای عملکردی گذشته',
-      benefits: ['بازدهی بالاتر', 'بهینه‌سازی زمان', 'پیش‌بینی عملکرد']
+      description: 'Timing based on past performance data analysis',
+      benefits: ['Higher returns', 'Optimized timing', 'Performance forecasting']
     },
     {
       pillar: 'Brand Consistency',
-      description: 'حفظ هماهنگی پیام برند در تمام محتوای منتشر شده',
-      benefits: ['شناسایی برند', 'اعتماد مشتری', 'تمایز رقابتی']
+      description: 'Keeping the brand message aligned across all published content',
+      benefits: ['Brand recognition', 'Customer trust', 'Competitive distinction']
     },
     {
       pillar: 'Campaign Integration',
-      description: 'هماهنگی محتوا با کمپین‌های بازاریابی و فروش',
-      benefits: ['تقویت فروش', 'هماهنگی تیم‌ها', 'مدیریت یکپارچه']
+      description: 'Aligning content with marketing and sales campaigns',
+      benefits: ['Stronger sales', 'Team alignment', 'Unified management']
     }
   ];
 
   const features = [
     {
       icon: "calendar",
-      title: 'برنامه‌ریزی هوشمند انتشار محتوا',
-      description: 'زمان‌بندی دقیق و استراتژیک برای انواع محتوا در پلتفرم‌های مختلف با توجه به الگوریتم‌های هر شبکه.',
-      benefits: ['انتشار منظم', 'بیشینه‌سازی دسترسی', 'روند رشد پایدار']
+      title: 'Smart Publishing Schedules',
+      description: 'Precise, strategic timing for every content type across platforms, tuned to each network’s algorithms.',
+      benefits: ['Regular publishing', 'Maximum reach', 'Steady growth']
     },
     {
       icon: "list-todo",
-      title: 'هماهنگی محتوایی با کمپین‌ها',
-      description: 'ترکیب کامل استراتژی محتوا با رویدادهای بازاریابی، تخفیف‌ها، فصلی‌ها و کمپین‌های مختلف برند.',
-      benefits: ['تقویت کمپین‌ها', 'تطابق زمانی', 'بازدهی ترکیبی']
+      title: 'Campaign-Aligned Content',
+      description: 'Full content-strategy alignment with marketing events, discounts, seasonal pushes and brand campaigns.',
+      benefits: ['Stronger campaigns', 'Right timing', 'Combined returns']
     },
     {
       icon: "sparkles",
-      title: 'افزایش نظم و انسجام برند',
-      description: 'ساختارمندسازی تولید محتوا با تعریف نقش‌ها، مسئولیت‌ها و گردش کار برای تیم‌های محتوایی.',
-      benefits: ['کارایی تیم', 'کیفیت محتوا', 'تحویل به موقع']
+      title: 'Stronger Brand Order & Cohesion',
+      description: 'Structured production with defined roles, responsibilities and workflows for content teams.',
+      benefits: ['Team efficiency', 'Content quality', 'On-time delivery']
     },
     {
       icon: "bar-chart3",
-      title: 'گزارش‌دهی پیشرفته و تحلیل عملکرد',
-      description: 'داشبورد جامع با شاخص‌های کلیدی عملکرد، تحلیل روندها و پیشنهادهای بهبود مستمر.',
-      benefits: ['شفافیت کامل', 'تصمیم‌گیری آگاهانه', 'بهبود پیوسته']
+      title: 'Advanced Reporting & Analysis',
+      description: 'A full dashboard with KPIs, trend analysis and continuous improvement ideas.',
+      benefits: ['Full transparency', 'Informed decisions', 'Steady improvement']
     },
     {
       icon: "target",
-      title: 'پیگیری استراتژیک اهداف محتوایی',
-      description: 'نمایش چگونگی دستیابی به اهداف بازاریابی، فروش و برندینگ از طریق محتوا.',
-      benefits: ['همخوانی استراتژیک', 'سنجش ROI', 'مدیریت انتظارات']
+      title: 'Strategic Goal Tracking',
+      description: 'Showing how content delivers on marketing, sales and branding goals.',
+      benefits: ['Strategic alignment', 'ROI measurement', 'Expectation management']
     },
     {
       icon: "trending-up",
-      title: 'بهینه‌سازی مداوم انتشارات',
-      description: 'A/B Testing در زمان‌بندی، فرمت محتوا، پلتفرم‌ها و تجزیه تحلیل برای حداکثر کارایی.',
-      benefits: ['بازدهی بالاتر', 'تجربه به دست آمده', 'بهبود مستمر']
+      title: 'Continuous Publishing Optimization',
+      description: 'A/B testing on timing, formats and platforms, analyzed for peak efficiency.',
+      benefits: ['Higher returns', 'Lessons learned', 'Ongoing improvement']
     }
   ];
 
   const benefits = [
-    'انتشار منظم و قابل پیش‌بینی محتوای باکیفیت و استراتژیک',
-    'تعامل بالاتر مخاطبان با برنامه‌ریزی محتوای هدفمند',
-    'کاهش دوباره‌کاری و اتلاف وقت تیم',
-    'هماهنگی محتوا با اهداف بازاریابی و فروش',
-    'بازدهی بالاتر بازاریابی محتوایی با انتشار هوشمند'
+    'Regular, predictable publishing of quality strategic content',
+    'Higher audience engagement through targeted content planning',
+    'Less rework and wasted team time',
+    'Content aligned with marketing and sales goals',
+    'Higher content-marketing returns through smart publishing'
   ];
 
   const tools = [
     {
       name: 'Google Calendar Integration',
-      description: 'ادغام کامل با تقویم گوگل برای قابلیت همکاری تیمی',
-      features: ['هماهنگی تیمی', 'یادآوری‌های هوشمند', 'دسترسی چندسکویی']
+      description: 'Full Google Calendar sync for team collaboration',
+      features: ['Team coordination', 'Smart reminders', 'Multi-device access']
     },
     {
       name: 'Asana Integration',
-      description: 'ارتباط با ابزار مدیریت پروژه برای پیگیری وظایف',
-      features: ['مدیریت وظایف', 'زمان‌بندی اجرایی', 'گزارش پیشرفت']
+      description: 'Project-management links for task tracking',
+      features: ['Task management', 'Execution scheduling', 'Progress reports']
     },
     {
       name: 'Buffer/SocialPilot Integration',
-      description: 'اتوماسیون انتشار در شبکه‌های اجتماعی',
-      features: ['انتشار خودکار', 'مدیریت چند اکانت', 'گزارش‌های تحلیلی']
+      description: 'Automated social publishing',
+      features: ['Auto publishing', 'Multi-account management', 'Analytics reports']
     }
   ];
 
   // Answer-first sections for the queries that already send impressions to this
-  // page but had no matching heading: «اتوماسیون انتشار محتوا» (42 impr) and
-  // «اتوماسیون چرخه محتوا» (35 impr).
+  // page but had no matching heading.
   const automationItems = [
     {
       icon: 'clock',
-      title: 'زمان‌بندی و انتشار خودکار',
-      description: 'محتوایی که در تقویم به وضعیت «تأیید نهایی» رسیده، در بازه تعیین‌شده روی سایت، اینستاگرام، لینکدین یا خبرنامه قرار می‌گیرد.'
+      title: 'Automatic Scheduling & Publishing',
+      description: 'Content marked “final approved” in the calendar goes live on your site, Instagram, LinkedIn or newsletter in its defined window.'
     },
     {
       icon: 'bell',
-      title: 'یادآوری زنجیره‌ای به تیم',
-      description: 'نویسنده، طراح و مدیر کانال هر کدام پیش از موعد یادآوری می‌گیرند تا محتوای ناقص یا تأییدنشده وارد زمان انتشار نشود.'
+      title: 'Chain Reminders for the Team',
+      description: 'Writer, designer and channel manager each get reminded ahead of time, so incomplete or unapproved content never reaches a publishing slot.'
     },
     {
       icon: 'refresh-cw',
-      title: 'همگام‌سازی ابزارها',
-      description: 'ردیف تقویم با تقویم گوگل و ابزار مدیریت پروژه تیم به‌روز می‌ماند تا وضعیت هر مطلب را همه از یک جا ببینند.'
+      title: 'Tool Sync',
+      description: 'Each calendar row stays current with your Google Calendar and project tools, so everyone sees every item’s status in one place.'
     },
     {
       icon: 'send',
-      title: 'توزیع چندکاناله',
-      description: 'از یک مقاله تأییدشده، نسخه شبکه اجتماعی، خلاصه خبرنامه و پیشنهاد لینک داخلی ساخته می‌شود؛ بدون نوشتن دوباره از صفر.'
+      title: 'Multi-Channel Distribution',
+      description: 'One approved article becomes a social version, a newsletter digest and internal-link suggestions — without rewriting from scratch.'
     },
     {
       icon: 'link',
-      title: 'درج پارامترهای ردیابی',
-      description: 'لینک‌های خروجی با پارامترهای ردیابی ثبت می‌شوند تا مشخص شود هر مطلب از کدام کانال چه بازدیدی آورده است.'
+      title: 'Tracking Parameters',
+      description: 'Outbound links carry tracking parameters so you can see which channel brought each visit.'
     },
     {
       icon: 'shield',
-      title: 'توقف در صورت عدم تأیید',
-      description: 'اگر مطلبی از مسیر بازبینی عبور نکند، انتشارش متوقف می‌ماند؛ اتوماسیون جای تصمیم انسانی را نمی‌گیرد.'
+      title: 'Halt Without Approval',
+      description: 'Anything that hasn’t passed review stays unpublished; automation never replaces human judgment.'
     }
   ];
 
   const cycleSteps = [
     {
-      step: 'ثبت ایده و درخواست',
-      desc: 'هر موضوع از پرسش‌های سرچ کنسول، پیشنهاد تیم فروش یا پرسش‌های مشتریان، با عنوان و کلمه کلیدی هدف وارد تقویم می‌شود.'
+      step: 'Request & Idea Logging',
+      desc: 'Every topic — from Search Console questions, sales-team suggestions or customer queries — enters the calendar with a title and target keyword.'
     },
     {
-      step: 'تدوین و سئو',
-      desc: 'نویسنده بر اساس بریف محتوا می‌نویسد: پرسش هدف، ساختار سرفصل‌ها و مطالب مرتبطی که مقاله باید به آن‌ها لینک شود.'
+      step: 'Writing & SEO',
+      desc: 'The writer works from a content brief: the target question, heading structure and related pieces the article must link to.'
     },
     {
-      step: 'بازبینی و تأیید',
-      desc: 'متن از مسیر ویرایش فنی و نگارشی می‌گذرد و وضعیتش در همان ردیف تقویم از پیش‌نویس به تأیید نهایی می‌رود.'
+      step: 'Review & Approval',
+      desc: 'Copy passes technical and editorial editing, and its calendar row moves from draft to final approval.'
     },
     {
-      step: 'زمان‌بندی انتشار',
-      desc: 'بازه انتشار بر اساس ظرفیت کانال‌ها و تقویم مناسبت‌ها تعیین می‌شود تا هفته‌ها خالی یا بیش از حد شلوغ نشوند.'
+      step: 'Publishing Schedule',
+      desc: 'Windows are set by channel capacity and the occasions calendar so no week runs empty or overloaded.'
     },
     {
-      step: 'انتشار و توزیع',
-      desc: 'مطلب روی سایت و شبکه‌های اجتماعی منتشر می‌شود، لینک ردیابی می‌گیرد و خلاصه‌اش برای خبرنامه آماده می‌شود.'
+      step: 'Publishing & Distribution',
+      desc: 'The piece goes live on site and socials, gets its tracking link, and its digest is prepared for the newsletter.'
     },
     {
-      step: 'سنجش و بازتغذیه',
-      desc: 'عملکرد هر مطلب در همان ردیف ثبت می‌شود؛ آنچه جواب داده به‌روزرسانی می‌شود و ایده‌اش به مرحله اول برمی‌گردد.'
+      step: 'Measurement & Feedback',
+      desc: 'Each item’s performance is logged in its row; what worked gets refreshed and its idea loops back to step one.'
     }
   ];
 
-  // Query «بهترین ابزار تقویم محتوایی سایت» — a selection guide, kept separate
-  // from `tools` above, which lists what we integrate with.
+  // A selection guide, kept separate from `tools` above, which lists what we
+  // integrate with.
   const toolChoices = [
     {
-      name: 'صفحه گسترده (Google Sheets یا اکسل)',
-      best: 'تیم‌های تازه‌کار و کم‌حجم',
-      why: 'کمترین هزینه راه‌اندازی، قالب آماده و دسترسی ساده برای همه اعضا'
+      name: 'Spreadsheets (Google Sheets or Excel)',
+      best: 'New, low-volume teams',
+      why: 'Cheapest setup, ready templates, easy access for everyone'
     },
     {
-      name: 'تقویم گوگل',
-      best: 'تیم‌های پراکنده و دورکار',
-      why: 'نمایش در تقویم شخصی هر نفر با یادآوری، روی موبایل و دسکتاپ'
+      name: 'Google Calendar',
+      best: 'Distributed and remote teams',
+      why: 'Shows in everyone’s personal calendar with reminders, on mobile and desktop'
     },
     {
-      name: 'Trello یا Asana',
-      best: 'تیم‌هایی با چند مرحله تأیید',
-      why: 'وضعیت هر مطلب از پیش‌نویس تا انتشار در یک نگاه دیده می‌شود'
+      name: 'Trello or Asana',
+      best: 'Teams with multi-step approvals',
+      why: 'Every item’s status from draft to published visible at a glance'
     },
     {
       name: 'Notion',
-      best: 'تیم‌هایی که محتوا و مستندات را یکجا می‌خواهند',
-      why: 'تقویم، آرشیو مقالات و بریف محتوا در یک پایگاه واحد'
+      best: 'Teams wanting content and docs in one place',
+      why: 'Calendar, article archive and briefs in a single hub'
     },
     {
-      name: 'Buffer یا SocialPilot',
-      best: 'برندهای چندکاناله',
-      why: 'زمان‌بندی و انتشار خودکار چند اکانت با گزارش عملکرد'
+      name: 'Buffer or SocialPilot',
+      best: 'Multi-channel brands',
+      why: 'Automated scheduling and publishing across accounts with performance reports'
     },
     {
-      name: 'زمان‌بند داخلی وردپرس',
-      best: 'سایت‌های مقاله‌محور',
-      why: 'انتشار مقاله بدون ابزار جانبی؛ برای تقویم چندکاناله کافی نیست'
+      name: 'Built-in WordPress Scheduler',
+      best: 'Article-heavy sites',
+      why: 'Publishes articles with no extra tools; not enough for multi-channel calendars'
     }
   ];
 
   // Filled-in four-week example. This is the page's information-gain block:
   // a calendar a reader can copy, not a description of one.
   const calendarExample = [
-    { week: 'هفته ۱', channel: 'سایت (وبلاگ)', type: 'مقاله راهنمای جامع', topic: 'راهنمای انتخاب پکیج سئو برای سایت نوپا', goal: 'آگاهی — جذب جستجوی آموزشی' },
-    { week: 'هفته ۱', channel: 'اینستاگرام', type: 'کاروسل آموزشی', topic: 'خلاصه هفت نکته همان مقاله، اسلاید به اسلاید', goal: 'آگاهی — بازنشر مقاله در قالب تصویر' },
-    { week: 'هفته ۱', channel: 'خبرنامه ایمیلی', type: 'ایمیل خوش‌آمد', topic: 'چکیده راهنما و دکمه خواندن مقاله', goal: 'پرورش — بازگشت مخاطب جدید به سایت' },
-    { week: 'هفته ۲', channel: 'سایت (وبلاگ)', type: 'مقاله مقایسه‌ای', topic: 'مقایسه تبلیغات کلیکی و سئو برای بودجه کم', goal: 'بررسی — پاسخ به جستجوی مقایسه‌ای' },
-    { week: 'هفته ۲', channel: 'لینکدین', type: 'پست تجربه واقعی', topic: 'یک چالش واقعی پروژه اخیر و راه‌حل آن', goal: 'بررسی — نمایش تخصص به تصمیم‌گیرندگان' },
-    { week: 'هفته ۲', channel: 'اینستاگرام', type: 'ریلز پشت‌صحنه', topic: 'مراحل انجام یک سفارش در تیم ما', goal: 'آگاهی — آشنایی مخاطب با تیم' },
-    { week: 'هفته ۳', channel: 'سایت (وبلاگ)', type: 'مقاله پرسش‌محور', topic: 'پاسخ به پرتکرارترین پرسش مشتریان درباره قیمت', goal: 'بررسی — رتبه برای پرسش‌های نزدیک خرید' },
-    { week: 'هفته ۳', channel: 'اینستاگرام', type: 'استوری نظرسنجی', topic: 'سؤال هفته و اعلام نتایج برای انتخاب موضوع هفته چهارم', goal: 'تعامل — تأمین ایده محتوای هفته بعد' },
-    { week: 'هفته ۳', channel: 'آپارات', type: 'ویدیوی کوتاه', topic: 'سه نکته کلیدی همان مقاله در چند دقیقه', goal: 'آگاهی — پوشش جستجوی ویدیو' },
-    { week: 'هفته ۴', channel: 'سایت (وبلاگ)', type: 'به‌روزرسانی مقاله قدیمی', topic: 'پرترافیک‌ترین مطلب فصل گذشته', goal: 'حفظ — تازه‌سازی و تثبیت رتبه موجود' },
-    { week: 'هفته ۴', channel: 'خبرنامه ایمیلی', type: 'خلاصه ماه', topic: 'چهار مطلب برتر ماه به‌همراه پیشنهاد ویژه', goal: 'خرید — هدایت مخاطب به صفحه خدمات' },
-    { week: 'هفته ۴', channel: 'اینستاگرام و لینکدین', type: 'جمع‌بندی ماه', topic: 'کاروسل نکات برتر و اعلام برنامه ماه بعد', goal: 'تعامل — بستن چرخه و شروع دوباره' }
+    { week: 'Week 1', channel: 'Site (Blog)', type: 'Comprehensive guide', topic: 'How to choose an SEO package for a new site', goal: 'Awareness — capturing educational searches' },
+    { week: 'Week 1', channel: 'Instagram', type: 'Educational carousel', topic: 'Seven takeaways from the guide, slide by slide', goal: 'Awareness — restating the article visually' },
+    { week: 'Week 1', channel: 'Email newsletter', type: 'Welcome email', topic: 'Guide digest with a read-the-article button', goal: 'Nurture — bringing new readers back to the site' },
+    { week: 'Week 2', channel: 'Site (Blog)', type: 'Comparison article', topic: 'Paid ads vs. SEO on a small budget', goal: 'Consideration — answering comparison searches' },
+    { week: 'Week 2', channel: 'LinkedIn', type: 'Real-experience post', topic: 'One real challenge from a recent project and its fix', goal: 'Consideration — showing expertise to decision-makers' },
+    { week: 'Week 2', channel: 'Instagram', type: 'Behind-the-scenes reel', topic: 'How an order moves through our team', goal: 'Awareness — introducing the team' },
+    { week: 'Week 3', channel: 'Site (Blog)', type: 'Question-led article', topic: 'Answering customers’ most-asked pricing question', goal: 'Consideration — ranking for near-purchase questions' },
+    { week: 'Week 3', channel: 'Instagram', type: 'Poll story', topic: 'Question of the week; results pick week four’s topic', goal: 'Engagement — sourcing next week’s idea' },
+    { week: 'Week 3', channel: 'Video channel', type: 'Short video', topic: 'Three key points from the article in minutes', goal: 'Awareness — covering video search' },
+    { week: 'Week 4', channel: 'Site (Blog)', type: 'Refreshing an old article', topic: 'Last season’s highest-traffic post', goal: 'Retention — freshening and holding an existing ranking' },
+    { week: 'Week 4', channel: 'Email newsletter', type: 'Month digest', topic: 'The month’s four best pieces plus a special offer', goal: 'Purchase — guiding readers to service pages' },
+    { week: 'Week 4', channel: 'Instagram & LinkedIn', type: 'Month roundup', topic: 'Top-tips carousel and next month’s plan', goal: 'Engagement — closing the loop, restarting it' }
   ];
 
   const stats = [
     // Qualitative process facts, not performance percentages — every numeric
     // marketing claim here would be unverifiable (see src/lib/site-claims.ts).
-    { metric: '۴ هفته', label: 'افق ثابت برنامه‌ریزی', color: 'text-blue-600', icon: "calendar" },
-    { metric: '۶ مرحله', label: 'فرآیند اجرایی مستند', color: 'text-green-800', icon: "list-todo" },
-    { metric: 'چندکاناله', label: 'وب، خبرنامه و شبکه اجتماعی', color: 'text-purple-600', icon: "users" },
-    { metric: 'ماهانه', label: 'گزارش عملکرد و بازبینی', color: 'text-orange-600', icon: "target" }
+    { metric: '4 Weeks', label: 'Fixed planning horizon', color: 'text-blue-600', icon: "calendar" },
+    { metric: '6 Steps', label: 'Documented execution process', color: 'text-green-800', icon: "list-todo" },
+    { metric: 'Multi-Channel', label: 'Web, newsletter & social', color: 'text-purple-600', icon: "users" },
+    { metric: 'Monthly', label: 'Performance reports & reviews', color: 'text-orange-600', icon: "target" }
   ];
 
   const workflowSteps = [
     {
-      step: 'تحلیل استراتژی',
-      desc: 'بررسی رقبا، مخاطبان و اهداف محتوایی کسب‌وکار شما'
+      step: 'Strategy Analysis',
+      desc: 'Reviewing competitors, audiences and your business content goals'
     },
     {
-      step: 'طراحی استراتژی محتوا',
-      desc: 'تعریف ستون‌های محتوایی، توزیع پلتفرم‌ها و استراتژی زمانی'
+      step: 'Content Strategy Design',
+      desc: 'Defining content pillars, platform mix and timing strategy'
     },
     {
-      step: 'زمان‌بندی تقویم',
-      desc: 'پردازش ماهانه، هفتگی و روزانه با تعیین مسئولین هر محتوا'
+      step: 'Calendar Scheduling',
+      desc: 'Monthly, weekly and daily planning with owners for every piece'
     },
     {
-      step: 'ابزارسازی اجرایی',
-      desc: 'ارتباط با ابزارهای اتوماسیون و برنامه‌ریزی انتشار'
+      step: 'Execution Tooling',
+      desc: 'Connecting automation and publishing-schedule tools'
     },
     {
-      step: 'مانیتورینگ و اصلاح',
-      desc: 'پیگیری عملکرد و اعمال بهبودهای استراتژیک'
+      step: 'Monitoring & Correction',
+      desc: 'Tracking performance and applying strategic fixes'
     },
     {
-      step: 'گزارش‌دهی و بهبود',
-      desc: 'ارائه گزارش ماهانه و پیشنهاد استراتژی‌های بهتر'
+      step: 'Reporting & Improvement',
+      desc: 'Monthly reports with better-strategy proposals'
     }
   ];
 
   const faqs = [
     {
-      question: 'آیا طراحی تقویم محتوا منحصراً برای شبکه اجتماعی است؟',
-      answer: 'خیر، تقویم محتوای عصر سئو برای تمام پلتفرم‌ها طراحی می‌شود: وب‌سایت، وبلاگ، شبکه‌های اجتماعی (اینستاگرام، لینکدین، توییتر، تیک‌تاک)، ایمیل مارکتینگ، یوتیوب و حتی دیگران. یک پلن جامع و یکپارچه برای تمام حضور دیجیتال برند شما.'
+      question: 'Is a content calendar only for social media?',
+      answer: 'No — the AsreSEO calendar covers every platform: website, blog, social feeds (Instagram, LinkedIn, X, TikTok), email marketing, video channels and more. One comprehensive, unified plan for your brand’s entire digital presence.'
     },
     {
-      question: 'چطور می‌توان تغییرات را در تقویم اعمال کرد؟',
-      answer: 'تقویم را به صورت آنلاین (Google Sheet یا Trello) طراحی می‌کنیم که هم تیم شما و هم تیم ما به راحتی بتوانیم تغییرات را اعمال کنیم. همچنین اپلیکیشن‌های موبایل برای دسترسی سریع در دسترس هستند.'
+      question: 'How do we apply changes to the calendar?',
+      answer: 'We build the calendar online (Google Sheets or Trello) so your team and ours can edit easily. Mobile apps keep it accessible on the go.'
     },
     {
-      question: 'اطلاع‌رسانی درباره موعد انتشار محتوا به چه صورت است؟',
-      answer: 'سیستم یادآوری پیشرفته با نوتیفیکیشن ایمیلی، پیامکی و در اپلیکیشن‌ها. برای پست‌های حساس، تماس تلفنی نیز انجام می‌شود. هیچ محتوایی را فراموش نخواهید کرد.'
+      question: 'How are publishing deadlines communicated?',
+      answer: 'An advanced reminder system with email, SMS and in-app notifications. Sensitive posts also get a phone call. Nothing gets forgotten.'
     },
     {
-      question: 'آیا شامل تولید محتوا هم می‌شود یا فقط برنامه‌ریزی؟',
-      answer: 'بسته به پکیج انتخابی شما، می‌تواند فقط برنامه‌ریزی استراتژیک باشد یا شامل تولید محتوا، گرافیک، کپشن‌نویسی و حتی انتشار هم بشود. پکیج کامل ما پوشش کاملی از استراتژی تا اجرا دارد.'
+      question: 'Does it include content production or just planning?',
+      answer: 'Depending on your package: strategic planning only, or production, graphics, caption writing and even publishing too. Our full package covers strategy through execution.'
     },
     {
-      question: 'حجم کار ماهانه تقویم چقدر است؟',
-      answer: 'بر اساس اهداف شما متفاوت است. برای برندهای کوچک معمولاً ۲۴ پست در ماه کافی است، برای برندهای متوسط ۶۰-۸۰ پست و برای برندهای بزرگ حجم بیشتری برنامه‌ریزی می‌کنیم.'
+      question: 'What is the monthly calendar volume?',
+      answer: 'It varies with your goals. Small brands usually need 24 posts a month; mid-size brands 60–80; larger brands plan bigger volumes.'
     },
     {
-      question: 'چطور ROI تقویم محتوایی را اندازه‌گیری می‌کنم؟',
-      answer: 'با شاخص‌هایی مانند نرخ رشد فالوور، تعامل، ترافیک وب‌سایت، نرخ تبدیل، فروش و حتی ارزش برند. ما گزارش ماهانه کاملی با نمودارها و تحلیل‌ها ارائه می‌دهیم.'
+      question: 'How do I measure the calendar’s ROI?',
+      answer: 'With metrics like follower growth, engagement, website traffic, conversion rates, sales and even brand value. We deliver a full monthly report with charts and analysis.'
     },
     {
-      question: 'تقویم محتوا را باید چند هفته جلوتر نوشت؟',
-      answer: 'یک چرخه چهار هفته‌ای به‌صورت ثابت برنامه‌ریزی می‌شود و مناسبت‌ها و کمپین‌های فصلی تا یک فصل جلوتر در تقویم قفل می‌شوند. در عین حال هر هفته بر اساس عملکرد واقعی محتواهای منتشرشده، ردیف‌های هفته‌های بعد اصلاح می‌شوند؛ تقویم سند زنده است، نه برنامه‌ای که یک‌بار نوشته می‌شود.'
+      question: 'How many weeks ahead should the calendar be written?',
+      answer: 'A rolling four-week cycle stays fixed, with seasonal events and campaigns locked up to a season ahead. Each week, upcoming rows are revised against real performance — the calendar is a living document, not a write-once plan.'
     },
     {
-      question: 'اتوماسیون انتشار محتوا جای تیم محتوا را می‌گیرد؟',
-      answer: 'خیر. اتوماسیون بخش مکانیکی کار — زمان‌بندی، یادآوری، انتشار و ثبت وضعیت — را انجام می‌دهد. انتخاب موضوع، کیفیت متن، بازبینی نهایی و پاسخ به تعامل مخاطب همچنان بر عهده تیم انسانی می‌ماند و ابزار فقط بدون تأخیر اجرا می‌کند.'
+      question: 'Does publishing automation replace the content team?',
+      answer: 'No. Automation handles the mechanical part — scheduling, reminders, publishing and status logging. Topic choice, copy quality, final review and audience interaction stay human; the tooling just executes without delay.'
     },
     {
-      question: 'برای شروع طراحی تقویم به چه اطلاعاتی نیاز دارید؟',
-      answer: 'موضوعات و خدمات اصلی، کانال‌هایی که فعال هستند، ظرفیت واقعی تیم در تولید محتوا و اهداف فصلی کسب‌وکار. اگر به سرچ کنسول گوگل دسترسی دارید، تحلیل پرسش‌هایی که همین حالا برای سایت شما نمایش داده می‌شوند سریع‌ترین نقطه شروع است.'
+      question: 'What do you need from us to start designing the calendar?',
+      answer: 'Core topics and services, active channels, your team’s real production capacity and seasonal business goals. If you can share Google Search Console access, analyzing the queries your site already shows for is the fastest starting point.'
     }
   ];
 
 const breadcrumbs = [
-  { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-  { position: 2, name: 'خدمات محتوا', item: 'https://asreseo.com/services/content/' },
-  { position: 3, name: 'تقویم محتوایی', item: 'https://asreseo.com/services/content/content-calendar/' }
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'Content Services', item: 'https://asreseo.com/services/content/' },
+  { position: 3, name: 'Content Calendar', item: 'https://asreseo.com/services/content/content-calendar/' }
 ];
 
 // HowTo is generated from the SAME `workflowSteps` array that renders the
@@ -370,10 +370,10 @@ const breadcrumbs = [
 const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
-  name: 'فرآیند طراحی و اجرای تقویم محتوایی',
+  name: 'How to design and run a content calendar',
   description:
-    'رویکرد ۶ مرحله‌ای عصر سئو برای تدوین، اجرا و بهینه‌سازی تقویم محتوایی سایت و شبکه‌های اجتماعی',
-  inLanguage: 'fa-IR',
+    'AsreSEO’s 6-step approach to building, executing and optimizing website and social content calendars',
+  inLanguage: 'en-US',
   totalTime: 'P30D',
   step: workflowSteps.map((s, i) => ({
     '@type': 'HowToStep',
@@ -385,74 +385,76 @@ const howToSchema = {
 };
 ---
 <BaseLayout
-  title='تقویم محتوا، تقویم محتوایی سایت و اتوماسیون انتشار | عصر سئو'
-  description='طراحی تقویم محتوا و تقویم محتوایی سایت با اتوماسیون انتشار محتوا؛ زمان‌بندی وبلاگ و شبکه‌های اجتماعی، نمونه تقویم آماده و گزارش عملکرد ماهانه عصر سئو.'
-  keywords='تقویم محتوا, تقویم محتوایی سایت, تقویم محتوایی, اتوماسیون انتشار محتوا, برنامه‌ریزی محتوا, Content Calendar'
-  canonical='https://asreseo.com/services/content/content-calendar/'
+  lang="en"
+  title='Content Calendar, Site Planning & Publishing Automation | AsreSEO'
+  description='Content calendar design and site editorial planning with publishing automation; blog and social scheduling, a ready sample calendar and monthly AsreSEO performance reports.'
+  keywords='content calendar, site content calendar, publishing automation, content planning, content calendar'
+  canonical='/services/content/content-calendar/'
   ogType='website'
   ogUrl='https://asreseo.com/services/content/content-calendar/'
-  ogImages={[{ url: "/og/content-calendar-hero.jpg", width: 1200, height: 630, alt: "طراحی تقویم محتوایی سایت و شبکه‌های اجتماعی عصر سئو" }]}
+  ogImages={[{ url: "/og/content-calendar-hero.jpg", width: 1200, height: 630, alt: "Website and social content calendar planning by AsreSEO" }]}
   twitterCard='summary_large_image'
 >
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
       <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/content/content-calendar/', image: '/og/content-calendar-hero.jpg' }))} />
       <BreadcrumbStructuredData items={breadcrumbs} />
       <script id="howto-structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(howToSchema)} />
 
-      <Header />
+      <Header lang="en" />
 
       <main>
         <!-- Hero Section -->
         <ServiceHero
-          badge="سازماندهی استراتژیک محتوا"
-          title="تقویم محتوایی سایت"
-          titleGradient="و اتوماسیون انتشار"
-          description="برنامه‌ریزی علمی انتشار محتوا برای رشد پایدار تعامل مخاطبان. سازماندهی هوشمند تیم محتوایی با ابزارهای پیشرفته عصر سئو و استراتژی‌های اثبات‌شده."
-          primaryCta={{ text: "طراحی تقویم محتوایی", href: "/consultation/" }}
-          secondaryCta={{ text: "نمونه تقویم‌ها را ببینید", href: "/portfolio/" }}
+          lang="en"
+          badge="Strategic Content Organization"
+          title="Website Content Calendars"
+          titleGradient="& Publishing Automation"
+          description="Science-based publishing plans for lasting audience engagement. Smart content-team organization with advanced AsreSEO tooling and proven strategies."
+          primaryCta={{ text: "Design My Content Calendar", href: "/consultation/" }}
+          secondaryCta={{ text: "See Sample Calendars", href: "/portfolio/" }}
           imageSrc="/images/content-calendar-hero.webp"
-          imageAlt="تقویم محتوایی سایت و اتوماسیون انتشار"
+          imageAlt="Website content calendar planning with publishing automation"
           theme="blue"
         />
 
-        <!-- Answer-first block for the head query «تقویم محتوا چیست؟» (47 impr).
-             A standalone, quotable definition sitting directly under the H1 —
-             no heading, so the answer itself is the first thing Google reads. -->
+        <!-- Answer-first block for the head query. A standalone, quotable
+             definition sitting directly under the H1 — no heading, so the
+             answer itself is the first thing Google reads. -->
         <section class="py-8 md:py-10 bg-white border-b border-blue-100">
-          <div class="container-custom max-w-4xl text-right">
+          <div class="container-custom max-w-4xl text-left">
             <span class="inline-block bg-blue-100 text-blue-700 text-xs md:text-sm font-medium px-3 py-1 rounded-full mb-4">
-              تقویم محتوا چیست؟
+              What is a content calendar?
             </span>
             <p class="text-base md:text-lg text-gray-700 leading-loose bg-blue-50/50 p-6 rounded-2xl border border-blue-100">
-              <strong>تقویم محتوا</strong> سند زمان‌بندی‌شده‌ای است که مشخص می‌کند چه محتوایی، در چه تاریخی، روی چه کانالی و با چه هدفی منتشر شود. این سند برای وب‌سایت، وبلاگ، خبرنامه ایمیلی و شبکه‌های اجتماعی یک برنامه واحد می‌سازد و در هر ردیف آن عنوان مطلب، کلمه کلیدی هدف، قالب (مقاله، ویدیو، کاروسل)، مسئول تولید، وضعیت ویرایش و تاریخ انتشار ثبت می‌شود. تقویم محتوا تصمیم‌گیری‌های روزمره و اضطراری درباره انتشار را حذف می‌کند، به تیم اجازه می‌دهد محتوای فصلی و کمپین‌ها را از پیش ببیند و جاافتادن خوشه‌های موضوعی مهم را کنترل کند. معمولاً چهار هفته جلوتر نوشته می‌شود و هر هفته بر اساس عملکرد واقعی صفحات و پست‌ها به‌روزرسانی می‌گردد. خروجی عملی آن برنامه‌ای است که همه اعضا بر اساس آن کار می‌کنند و هیچ محتوایی بدون تعیین زمان و مسئول منتشر نمی‌شود.
+              <strong>A content calendar</strong> is a scheduled document specifying what content publishes when, on which channel and toward which goal. It unites website, blog, email newsletter and social feeds in a single plan, logging each row’s title, target keyword, format (article, video, carousel), owner, edit status and publish date. A content calendar removes day-to-day, last-minute publishing decisions, lets the team foresee seasonal content and campaigns, and keeps important topic clusters from slipping. It is usually written four weeks ahead and refreshed weekly against real page and post performance. Its practical output is a plan everyone works from — nothing ships without a date and an owner.
             </p>
           </div>
         </section>
 
         <!-- AEO Direct Answer Section -->
         <section class="py-10 bg-blue-50/60 border-y border-blue-100">
-          <div class="container-custom max-w-4xl text-right">
+          <div class="container-custom max-w-4xl text-left">
             <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-              تقویم محتوایی سایت چیست و چگونه انتشار محتوا را منظم می‌کند؟
+              What is a site content calendar, and how does it keep publishing consistent?
             </h2>
             <p class="text-base md:text-lg text-gray-700 leading-relaxed bg-white p-6 rounded-2xl shadow-xs border border-blue-100">
-              <strong>تقویم محتوایی سایت (Content Calendar)</strong> یک نقشه راه زمان‌بندی‌شده است که مشخص می‌کند چه موضوعاتی، در چه تاریخی، توسط چه نویسنده‌ای و با چه هدف سئو یا تبلیغاتی در وب‌سایت و شبکه‌های اجتماعی منتشر شوند. تدوین تقویم محتوا با ایجاد نظم انتشار و اتصال به ابزارهای اتوماسیون، از خطای انسانی و اتلاف وقت در فرآیند انتشار می‌کاهد و تضمین می‌کند تمام کلمات کلیدی خوشه‌های موضوعی سرچ کنسول گوگل به طور سیستماتیک پوشش داده شوند.
+              <strong>A site content calendar</strong> is a scheduled roadmap stating which topics publish when, by which writer and toward which SEO or promotional goal across website and social feeds. Building it with publishing discipline and automation tooling cuts human error and wasted time, and guarantees every keyword in your Google Search Console topic clusters gets covered systematically.
             </p>
           </div>
         </section>
 
         <!-- Stats Section -->
-        <ServiceStats stats={stats} theme="blue" />
+        <ServiceStats lang="en" stats={stats} theme="blue" />
 
         <!-- Pillars Section -->
         <section class="section-padding">
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                چهار <span class="gradient-text">ستون اصلی</span> تقویم محتوایی موفق
+                The Four <span class="gradient-text">Core Pillars</span> of a Winning Content Calendar
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                رویکردی علمی و کامل برای سازماندهی محتوای برند شما
+                A scientific, complete approach to organizing your brand’s content
               </p>
             </div>
 
@@ -489,10 +491,10 @@ const howToSchema = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                استراتژی‌های پیشرفته <span class="gradient-text">انتشار محتوا</span>
+                Advanced <span class="gradient-text">Publishing</span> Strategies
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                روش‌های اثبات‌شده برای حداکثر تأثیر و بازدهی محتوای شما
+                Proven methods for maximum content impact and returns
               </p>
             </div>
 
@@ -530,10 +532,10 @@ const howToSchema = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                خدمات کامل <span class="gradient-text">مدیریت تقویم محتوایی</span>
+                Complete <span class="gradient-text">Content Calendar Management</span> Services
               </h2>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                پوشش کامل از استراتژی تا اجرا و اندازه‌گیری عملکرد
+                Full coverage from strategy to execution and measurement
               </p>
             </div>
 
@@ -572,10 +574,10 @@ const howToSchema = {
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                ادغام با <span class="gradient-text">ابزارهای حرفه‌ای</span>
+                Integrated With <span class="gradient-text">Professional Tools</span>
               </h2>
               <p class="text-xl text-gray-600">
-                اتصال یکپارچه با بهترین ابزارهای مدیریت محتوا و اتوماسیون
+                Seamless connections to top content-management and automation tools
               </p>
             </div>
 
@@ -608,16 +610,16 @@ const howToSchema = {
           </div>
         </section>
 
-        <!-- «اتوماسیون انتشار محتوا» — one H2 per zero-click query, each with a
+        <!-- Publishing automation — one H2 per zero-click query, each with a
              full answer rather than a stub. -->
         <section class="section-padding bg-white border-t border-gray-200/60">
           <div class="container-custom max-w-5xl">
             <div class="text-center mb-10">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                اتوماسیون <span class="gradient-text">انتشار محتوا</span> چیست؟
+                What Is <span class="gradient-text">Publishing Automation</span>?
               </h2>
               <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                یعنی بخش مکانیکیِ فرآیند انتشار — زمان، مقصد و ثبت وضعیت — به سامانه سپرده شود تا تیم محتوا وقت آزادش را صرف موضوع و متن کند، نه یادآوری و جابه‌جایی پست.
+                The mechanical side of publishing — timing, destination and status logging — handed to systems so your content team spends its hours on topics and copy, not reminders and moving posts around.
               </p>
             </div>
 
@@ -645,21 +647,21 @@ const howToSchema = {
 
             <div class="max-w-3xl mx-auto mt-8 text-center text-gray-600 leading-relaxed">
               <p>
-                خلاصه آنکه زمان‌بندی، اجرا و ثبت نتیجه را اتوماسیون برمی‌دارد و انتخاب موضوع، کیفیت متن و تعامل با مخاطب پیش تیم انسانی می‌ماند. اگر هنوز محتوای آماده انتشار ندارید، <a href="/services/content/" class="text-blue-700 font-semibold underline hover:no-underline">خدمات تولید محتوا</a> عصر سئو این بخش از زنجیره را هم پوشش می‌دهد.
+                In short, automation takes scheduling, execution and result-logging, while topic choice, copy quality and audience interaction stay human. If you don’t have ready-to-publish content yet, AsreSEO <a href="/services/content/" class="text-blue-700 font-semibold underline hover:no-underline">content services</a> cover that link of the chain too.
               </p>
             </div>
           </div>
         </section>
 
-        <!-- «اتوماسیون چرخه محتوا چگونه کار می‌کند؟» -->
+        <!-- How the content cycle automation works -->
         <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
           <div class="container-custom max-w-5xl">
             <div class="text-center mb-10">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                اتوماسیون <span class="gradient-text">چرخه محتوا</span> چگونه کار می‌کند؟
+                How Does <span class="gradient-text">Content Cycle</span> Automation Work?
               </h2>
               <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                چرخه محتوا یک حلقه شش‌مرحله‌ای است که در هر مرحله وضعیت مطلب در همان ردیف تقویم به‌روز می‌شود؛ مرحله پایانی، ورودی مرحله اول هفته بعد را می‌سازد.
+                The content cycle is a six-stage loop with each item’s status refreshed in its calendar row; the final stage feeds the input of next week’s first.
               </p>
             </div>
 
@@ -682,38 +684,38 @@ const howToSchema = {
             </div>
 
             <p class="max-w-3xl mx-auto mt-8 text-center text-gray-600 leading-relaxed">
-              همین بسته بودن حلقه است که اتوماسیون چرخه محتوا را از یک جدول زمان‌بندی ساده متمایز می‌کند: نتیجه هر مطلب بدون دخالت دستی دوباره به برنامه هفته بعد برمی‌گردد و تقویم با هر چرخه دقیق‌تر می‌شود.
+              That closed loop is what separates content-cycle automation from a simple schedule: each piece’s outcome flows back into next week’s plan automatically, and the calendar gets sharper every cycle.
             </p>
           </div>
         </section>
 
-        <!-- «بهترین ابزار تقویم محتوایی سایت» -->
+        <!-- Best site content calendar tool -->
         <section class="section-padding bg-white border-t border-gray-200/60">
           <div class="container-custom max-w-5xl">
             <div class="text-center mb-10">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                بهترین ابزار <span class="gradient-text">تقویم محتوایی سایت</span>
+                The Best <span class="gradient-text">Site Content Calendar</span> Tool
               </h2>
               <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                بهترین ابزار، گران‌ترین ابزار نیست؛ ابزاری است که تیم واقعاً هر روز بازش می‌کند. معیار ما سه چیز است: درست کار کردن با فارسی و چیدمان راست‌به‌چپ، داشتن وضعیت‌های گردش کار از پیش‌نویس تا انتشار، و اتصال به ابزاری که تیم شما همین حالا با آن کار می‌کند.
+                The best tool isn’t the priciest one — it’s the one your team actually opens daily. Our three criteria: solid multilingual support, workflow statuses from draft to published, and integration with tools your team already uses.
               </p>
             </div>
 
-            <div class="overflow-x-auto bg-white rounded-2xl shadow-xs border border-gray-200">
-              <table class="w-full text-right border-collapse text-sm">
+            <div class="overflow-x-auto bg-[#0a0e17] rounded-none border-2 border-white/15">
+              <table class="w-full text-left border-collapse text-sm">
                 <thead>
-                  <tr class="bg-blue-900 text-white">
-                    <th class="p-4 font-bold">ابزار</th>
-                    <th class="p-4 font-bold">مناسب چه تیمی</th>
-                    <th class="p-4 font-bold">چرا جواب می‌دهد</th>
+                  <tr class="bg-black border-b-2 border-white/20 font-mono text-xs uppercase tracking-wider text-[#CCFF00]">
+                    <th class="p-4 font-bold">Tool</th>
+                    <th class="p-4 font-bold">Best For</th>
+                    <th class="p-4 font-bold">Why It Works</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100">
+                <tbody class="divide-y divide-white/10">
                   {toolChoices.map((tool) => (
-                    <tr class="hover:bg-slate-50">
-                      <td class="p-4 font-semibold text-gray-900">{tool.name}</td>
-                      <td class="p-4 text-gray-600">{tool.best}</td>
-                      <td class="p-4 text-gray-600">{tool.why}</td>
+                    <tr class="hover:bg-white/5 transition-colors">
+                      <td class="p-4 font-semibold text-white">{tool.name}</td>
+                      <td class="p-4 text-slate-300">{tool.best}</td>
+                      <td class="p-4 text-slate-400">{tool.why}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -721,22 +723,22 @@ const howToSchema = {
             </div>
 
             <p class="max-w-3xl mx-auto mt-6 text-center text-gray-600 leading-relaxed">
-              انتخاب ابزار نیمی از کار است؛ نیمی دیگر قالب و قواعد آن است: ستون‌های ثابت جدول، وضعیت‌های مشخص برای هر مطلب و کسی که مسئول به‌روزرسانی هفتگی است. در پروژه‌های عصر سئو تقویم روی ابزار خودتان ساخته می‌شود یا اگر ابزاری ندارید، سبک‌ترین گزینه‌ای که همین کار را راه می‌اندازد پیشنهاد می‌شود.
+              Tool choice is half the job; the other half is its template and rules: fixed table columns, defined statuses per item, and someone owning the weekly update. In AsreSEO projects the calendar is built on your own tooling — or if you have none, we suggest the lightest option that gets the job done.
             </p>
           </div>
         </section>
 
-              <ServiceBenefits title="مزایای تقویم" titleHighlight="محتوایی حرفه‌ای" subtitle="برگردان محتوا به سرمایه استراتژیک کسب‌وکار شما" benefits={benefits} />
+              <ServiceBenefits lang="en" title="Why a Professional" titleHighlight="Content Calendar" subtitle="Turning content into your business’s strategic asset" benefits={benefits} />
 
         <!-- Workflow Section -->
         <section class="section-padding bg-linear-to-br from-indigo-50 to-blue-50">
           <div class="container-custom">
             <div class="text-center mb-12">
               <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                فرآیند <span class="gradient-text">طراحی و اجرای</span> تقویم محتوایی
+                The <span class="gradient-text">Design & Execution</span> Process for Content Calendars
               </h2>
               <p class="text-xl text-gray-600">
-                رویکرد علمی ۶ مرحله‌ای برای تقویم محتوایی کاملاً کارآمد
+                A scientific 6-step approach to a fully effective content calendar
               </p>
             </div>
 
@@ -760,23 +762,21 @@ const howToSchema = {
           </div>
         </section>
 
-        <!-- Template preview. The audit asked for a template-table image on this
-             page (query «تقویم محتوایی سایت»). The asset already existed — it was
-             only used by the blog post — so it is reused here rather than
+        <!-- Template preview. Image asset reused from the blog post rather than
              generating a near-duplicate. Native width/height set to avoid CLS. -->
         <section class="section-padding bg-white border-t border-gray-200/60">
           <div class="container-custom max-w-4xl">
             <div class="text-center mb-8">
               <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-                نمونه جدول تقویم محتوایی که تحویل می‌دهیم
+                A Sample Content Calendar Table We Deliver
               </h2>
               <p class="text-gray-600">
-                ساختار استانداردی که برای هر خوشه موضوعی پر می‌شود: عنوان، هدف، کلمه کلیدی، قالب و تاریخ انتشار
+                The standard structure filled per topic cluster: title, goal, keyword, format and publish date
               </p>
             </div>
             <img
               src="/images/content-calendar-post-template.webp"
-              alt="نمونه جدول تقویم محتوایی با ستون‌های عنوان، هدف، کلمه کلیدی، قالب محتوا و تاریخ انتشار"
+              alt="Sample content calendar table with columns for title, goal, keyword, content format and publish date"
               width="1672"
               height="941"
               loading="lazy"
@@ -786,42 +786,41 @@ const howToSchema = {
           </div>
         </section>
 
-        <!-- Copyable four-week example calendar. Competitors ranking top-10 for
-             «تقویم محتوا» all ship a concrete filled-in example; this page did
-             not. Deliberately contains no performance statistics. -->
+        <!-- Copyable four-week example calendar. Deliberately contains no
+             performance statistics. -->
         <section class="section-padding bg-slate-50 border-t border-gray-200/60">
           <div class="container-custom max-w-5xl">
             <div class="text-center mb-10">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                نمونه <span class="gradient-text">تقویم محتوایی</span> چهار هفته‌ای
+                A Four-Week <span class="gradient-text">Sample Content Calendar</span>
               </h2>
               <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                ترکیب واقعی کانال‌ها و قالب‌ها برای یک کسب‌وکار ایرانی: موضوع‌ها را با حوزه خودتان عوض کنید، اما ترتیب کانال‌ها و هدف هر ردیف را نگه دارید.
+                A real channel-and-format mix for a growing business: swap topics for your niche, but keep the channel order and each row’s goal.
               </p>
               <p class="text-sm text-gray-500 max-w-3xl mx-auto mt-3 leading-relaxed">
-                ساختار کامل‌تر و قالب خام آن در <a href="/blog/content-calendar-guide/" class="text-blue-700 font-semibold underline hover:no-underline">راهنمای جامع تقویم محتوا و قالب آماده</a> آمده است؛ در اینجا همان ساختار را با یک مثال چهارهفته‌ای پر می‌کنیم.
+                The fuller structure and blank template live in our <a href="/blog/content-calendar-guide/" class="text-blue-700 font-semibold underline hover:no-underline">comprehensive content calendar guide</a>; here we fill that structure with a four-week example.
               </p>
             </div>
 
-            <div class="overflow-x-auto bg-white rounded-2xl shadow-xs border border-gray-200">
-              <table class="w-full text-right border-collapse text-sm">
+            <div class="overflow-x-auto bg-[#0a0e17] rounded-none border-2 border-white/15">
+              <table class="w-full text-left border-collapse text-sm">
                 <thead>
-                  <tr class="bg-blue-900 text-white">
-                    <th class="p-4 font-bold">هفته</th>
-                    <th class="p-4 font-bold">کانال</th>
-                    <th class="p-4 font-bold">نوع محتوا</th>
-                    <th class="p-4 font-bold">موضوع نمونه</th>
-                    <th class="p-4 font-bold">هدف در قیف فروش</th>
+                  <tr class="bg-black border-b-2 border-white/20 font-mono text-xs uppercase tracking-wider text-[#CCFF00]">
+                    <th class="p-4 font-bold">Week</th>
+                    <th class="p-4 font-bold">Channel</th>
+                    <th class="p-4 font-bold">Content Type</th>
+                    <th class="p-4 font-bold">Sample Topic</th>
+                    <th class="p-4 font-bold">Funnel Goal</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100">
+                <tbody class="divide-y divide-white/10">
                   {calendarExample.map((row) => (
-                    <tr class="hover:bg-slate-50">
-                      <td class="p-4 font-semibold text-gray-900 whitespace-nowrap">{row.week}</td>
-                      <td class="p-4 font-medium text-blue-800 whitespace-nowrap">{row.channel}</td>
-                      <td class="p-4 text-gray-600">{row.type}</td>
-                      <td class="p-4 text-gray-900">{row.topic}</td>
-                      <td class="p-4 text-gray-600">{row.goal}</td>
+                    <tr class="hover:bg-white/5 transition-colors">
+                      <td class="p-4 font-mono font-bold text-[#CCFF00] whitespace-nowrap">{row.week}</td>
+                      <td class="p-4 font-mono text-xs text-white whitespace-nowrap uppercase">{row.channel}</td>
+                      <td class="p-4 text-slate-300">{row.type}</td>
+                      <td class="p-4 text-white font-medium">{row.topic}</td>
+                      <td class="p-4 text-slate-400 font-mono text-xs">{row.goal}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -829,29 +828,31 @@ const howToSchema = {
             </div>
 
             <p class="max-w-3xl mx-auto mt-6 text-center text-gray-600 leading-relaxed">
-              این نمونه عمداً سه نوع محتوا را کنار هم دارد: مقاله پایدار برای جستجو، محتوای تعاملی برای شبکه اجتماعی و ایمیل برای بازگرداندن مخاطب به سایت. مناسبت‌ها و کمپین‌های فصلی در همان هفته جای می‌گیرند و اگر کمپینی پیش بیاید، یک ردیف تبلیغاتی به هفته مربوطه اضافه می‌شود؛ بقیه برنامه دست‌نخورده می‌ماند.
+              This sample deliberately mixes three content kinds: evergreen search articles, interactive social content and emails that bring readers back. Seasonal events and campaigns slot into their week, and if a campaign lands, one promo row joins that week — the rest stays untouched.
             </p>
           </div>
         </section>
 
         <!-- FAQ Section -->
         <ServiceFAQ
+          lang="en"
           faqs={faqs}
-          title="سوالات متداول"
-          description="پاسخ به پرسش‌های رایج مشتریان درباره تقویم محتوایی"
+          title="Frequently Asked Questions"
+          description="Answers to common client questions about content calendars"
           theme="blue"
         />
 
         <!-- CTA Section -->
         <ServiceCTA
-          title="تقویم محتوایی شما را همین امروز ساختارمند کنیم!"
-          description="با تقویم محتوایی عصر سئو، پایان دهید به انتشارهای بی‌نظم و شتابزده. استراتژی علمی، ابزارهای پیشرفته و تیم متخصص در کنار شما برای تبدیل محتوا به دارایی استراتژیک کسب‌وکارتان."
-          primaryCta={{ text: "شروع طراحی تقویم محتوایی", href: "/consultation/" }}
-          secondaryCta={{ text: "مشاوره رایگان استراتژی محتوا", href: "/consultation/" }}
+          lang="en"
+          title="Let's Give Your Content Calendar Structure — Starting Today!"
+          description="End chaotic, rushed publishing with the AsreSEO content calendar. Scientific strategy, advanced tooling and a specialist team turn content into your business's strategic asset."
+          primaryCta={{ text: "Start Designing My Calendar", href: "/consultation/" }}
+          secondaryCta={{ text: "Free Content-Strategy Consultation", href: "/consultation/" }}
           theme="blue"
         />
       </main>
 
-      <Footer />
+      <Footer lang="en" />
     </div>
 </BaseLayout>

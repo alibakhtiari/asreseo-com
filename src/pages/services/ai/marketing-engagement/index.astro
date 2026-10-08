@@ -19,41 +19,44 @@ import ServiceBenefits from '../../../../components/Services/ServiceBenefits.ast
 const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    'name': 'بازاریابی هوشمند، اتوماسیون و چت‌بات فارسی',
-    'description': 'خدمات جامع بازاریابی هوشمند شامل اتوماسیون، چت‌بات هوشمند فارسی و شخصی‌سازی محتوا توسط عصر سئو.',
+    'name': 'Smart Marketing, Automation & Chatbots',
+    'description': 'End-to-end smart marketing services including automation, smart chatbots and content personalization by AsreSEO.',
     'serviceType': 'AI Marketing & Chatbot Solutions',
+    'inLanguage': 'en-US',
     'provider': {
         '@type': 'Organization',
-        'name': 'عصر سئو',
+        'name': 'AsreSEO',
         'url': 'https://asreseo.com'
     },
-    'areaServed': 'Iran',
     'hasOfferCatalog': {
         '@type': 'OfferCatalog',
-        'name': 'خدمات بازاریابی هوش مصنوعی',
+        'name': 'AI marketing services',
         'itemListElement': [
             {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'چت‌بات هوشمند فارسی',
-                    'description': 'پاسخگویی ۲۴ ساعته با هوش مصنوعی و جذب لید'
+                    'name': 'Smart chatbot',
+                    'description': '24/7 AI assistance and lead capture',
+                    'inLanguage': 'en-US'
                 }
             },
             {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'اتوماسیون بازاریابی',
-                    'description': 'خودکارسازی کمپین‌های ایمیل و پیامک با هوش مصنوعی'
+                    'name': 'Marketing automation',
+                    'description': 'Automated email and SMS campaigns with AI',
+                    'inLanguage': 'en-US'
                 }
             },
             {
                 '@type': 'Offer',
                 'itemOffered': {
                     '@type': 'Service',
-                    'name': 'شخصی‌سازی تجربه مشتری (CX)',
-                    'description': 'نمایش پیشنهادهای اختصاصی بر اساس رفتار کاربر'
+                    'name': 'Customer experience personalization (CX)',
+                    'description': 'Tailored offers based on user behavior',
+                    'inLanguage': 'en-US'
                 }
             }
         ]
@@ -62,27 +65,27 @@ const structuredData = {
 
 const faqs = [
     {
-        q: 'چت‌بات هوشمند فارسی عصر سئو چگونه به وب‌سایت متصل می‌شود؟',
-        a: 'تنها با قرار دادن یک اسکریپت ساده یا افزونه اختصاصی، چت‌بات روی وب‌سایت شما فعال شده و به پایگاه دانش محصولات و خدمات شما متصل می‌گردد.'
+        q: 'How does the AsreSEO smart chatbot connect to a website?',
+        a: 'A simple script or dedicated plugin activates the chatbot on your site and connects it to your product and service knowledge base.'
     },
     {
-        q: 'آیا چت‌بات زبان فارسی و اصطلاحات محاوره‌ای را می‌فهمد؟',
-        a: 'بله. مدل‌های زبانی استفاده‌شده به طور کامل برای زبان و ادبیات محاوره‌ای فارسی بهینه‌سازی شده‌اند و لحن صمیمی یا رسمی متناسب با برند شما را به کار می‌گیرند.'
+        q: 'Does the chatbot understand natural, conversational language?',
+        a: 'Yes. The language models are tuned for conversational phrasing and adopt a friendly or formal tone to match your brand.'
     },
     {
-        q: 'چگونه اتوماسیون بازاریابی باعث افزایش نرخ تبدیل می‌شود؟',
-        a: 'با پیگیری خودکار سبدهای خرید رهاشده، ارسال پیام‌های به موقع در مناسبت‌ها و ارسال محتوای مرتبط بر اساس صفحات بازدیدشده توسط هر کاربر، نرخ تبدیل رشد می‌کند.'
+        q: 'How does marketing automation lift conversion rates?',
+        a: 'By automatically following up on abandoned carts, sending timely messages for occasions, and delivering relevant content based on each visitor’s viewed pages.'
     },
     {
-        q: 'آیا امکان یکپارچه‌سازی با نرم‌افزارهای CRM وجود دارد؟',
-        a: 'بله. چت‌بات و سیستم اتوماسیون عصر سئو به نرم‌افزارهای CRM متداول، وب‌هوک‌ها و سامانه‌های پیامکی به سادگی متصل می‌شوند.'
+        q: 'Can it integrate with our CRM software?',
+        a: 'Yes. The chatbot and automation system connect easily to common CRMs, webhooks and SMS gateways.'
     }
 ];
 
 const breadcrumbs = [
-    { position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-    { position: 2, name: 'خدمات هوش مصنوعی', item: 'https://asreseo.com/services/ai/' },
-    { position: 3, name: 'بازاریابی و تعامل هوشمند', item: 'https://asreseo.com/services/ai/marketing-engagement/' }
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'AI Services', item: 'https://asreseo.com/services/ai/' },
+    { position: 3, name: 'Smart Marketing & Engagement', item: 'https://asreseo.com/services/ai/marketing-engagement/' }
 ];
 
 
@@ -90,127 +93,129 @@ const breadcrumbs = [
     const automationFeatures = [
         {
             icon: "mail",
-            title: 'ایمیل مارکتینگ هوشمند',
-            description: 'ارسال خودکار ایمیل‌های شخصی‌سازی شده بر اساس رفتار کاربران.',
-            benefits: ['شخصی‌سازی محتوا', 'زمان‌بندی هوشمند', 'بازخورد خودکار']
+            title: 'Smart Email Marketing',
+            description: 'Automatic personalized emails driven by user behavior.',
+            benefits: ['Content personalization', 'Smart scheduling', 'Automatic feedback']
         },
         {
             icon: "users",
-            title: 'پرورش سرنخ‌ها',
-            description: 'تبدیل خودکار بازدیدکنندگان به مشتریان از طریق کمپین‌های هدفمند.',
-            benefits: ['نرخ تبدیل بالاتر', 'آموزش سیستماتیک', 'پیگیری هوشمند']
+            title: 'Lead Nurturing',
+            description: 'Turn visitors into customers automatically with targeted campaigns.',
+            benefits: ['Higher conversion', 'Systematic education', 'Smart follow-up']
         },
         {
             icon: "target",
-            title: 'تارگتینگ پیشرفته',
-            description: 'شناسایی و هدف‌گیری دقیق مخاطبان بر اساس داده‌های رفتاری.',
-            benefits: ['هدف‌گیری دقیق‌تر', 'بازده بالاتر', 'بهبود ROI']
+            title: 'Advanced Targeting',
+            description: 'Precise audience targeting from behavioral data.',
+            benefits: ['Sharper targeting', 'Higher returns', 'Better ROI']
         }
     ];
 
     const chatbotFeatures = [
         {
             icon: "bot",
-            title: 'چت‌بات RAG پیشرفته',
-            description: 'پاسخگویی دقیق با یادگیری از پایگاه دانش و اسناد سازمانی شما.',
-            benefits: ['دقت بالاتر', 'یادگیری از داده‌ها', 'پاسخ‌های مرتبط']
+            title: 'Advanced RAG Chatbot',
+            description: 'Accurate answers learned from your organizational knowledge base and documents.',
+            benefits: ['Higher accuracy', 'Learns from your data', 'Relevant answers']
         },
         {
             icon: "database",
-            title: 'ادغام با پایگاه دانش',
-            description: 'اتصال مستقیم به اطلاعات محصولات و خدمات برای پاسخ‌های جامع.',
-            benefits: ['دسترسی کامل', 'پاسخ‌های یکپارچه', 'به‌روزرسانی خودکار']
+            title: 'Knowledge-Base Integration',
+            description: 'Direct connection to product and service info for comprehensive answers.',
+            benefits: ['Full access', 'Unified answers', 'Auto updates']
         },
         {
             icon: "message-square",
-            title: 'گفتگوی طبیعی فارسی',
-            description: 'درک عمیق زبان فارسی و قابلیت گفتگوی طبیعی و روان.',
-            benefits: ['درک بالا', 'پاسخ‌های طبیعی', 'پشتیبانی ۲۴/۷']
+            title: 'Natural Conversation',
+            description: 'Deep language understanding with fluent, natural dialogue.',
+            benefits: ['High comprehension', 'Natural replies', '24/7 support']
         }
     ];
 
     const personalizationFeatures = [
         {
             icon: "user",
-            title: 'تجربه کاربری اختصاصی',
-            description: 'نمایش محتوای منحصربه‌فرد برای هر کاربر بر اساس علایق.',
-            benefits: ['تجربه خاص', 'تعامل بیشتر', 'رضایت بالاتر']
+            title: 'A Personal User Experience',
+            description: 'Unique content for every user based on their interests.',
+            benefits: ['A special touch', 'More engagement', 'Higher satisfaction']
         },
         {
             icon: "sparkles",
-            title: 'پیشنهاد محصول هوشمند',
-            description: 'پیشنهاد محصولات مرتبط بر اساس سوابق بازدید و خرید.',
-            benefits: ['افزایش فروش', 'سبد خرید بزرگتر', 'کشف محصولات']
+            title: 'Smart Product Suggestions',
+            description: 'Relevant product recommendations from browsing and purchase history.',
+            benefits: ['More sales', 'Bigger baskets', 'Product discovery']
         },
         {
             icon: "heart-handshake",
-            title: 'وفادارسازی مشتری',
-            description: 'ایجاد حس ارزشمندی و افزایش وفاداری با محتوای شخصی.',
-            benefits: ['وفاداری بیشتر', 'بازگشت مکرر', 'ارزش طول عمر']
+            title: 'Customer Loyalty',
+            description: 'Build belonging and loyalty with personal content.',
+            benefits: ['Stronger loyalty', 'Repeat visits', 'Lifetime value']
         }
     ];
 
     const stats = [
-        { metric: 'شخصی‌سازی', label: 'افزایش نرخ تبدیل', color: 'text-green-800' },
-        { metric: 'اتوماسیون', label: 'کاهش هزینه‌ها', color: 'text-blue-600' },
-        { metric: '۲۴/۷', label: 'پاسخگویی مداوم', color: 'text-purple-600' },
-        { metric: '۴x', label: 'بازگشت سرمایه', color: 'text-orange-600' }
+        { metric: 'Personalized', label: 'Higher conversion rates', color: 'text-green-800' },
+        { metric: 'Automated', label: 'Lower costs', color: 'text-blue-600' },
+        { metric: '24/7', label: 'Always-on assistance', color: 'text-purple-600' },
+        { metric: '4x', label: 'Return on investment', color: 'text-orange-600' }
     ];
 
     const benefits = [
-        'یکپارچگی کامل تمام کانال‌های ارتباطی با مشتری',
-        'پاسخگویی ۲۴ ساعته بدون نیاز به نیروی انسانی اضافه',
-        'افزایش چشمگیر نرخ تبدیل با پیام‌های شخصی‌سازی شده',
-        'کاهش خطای انسانی و هزینه‌های عملیاتی',
-        'جمع‌آوری و تحلیل داده‌های ارزشمند مشتریان',
-        'بهبود تجربه مشتری و افزایش وفاداری به برند'
+        'Every customer communication channel fully unified',
+        'Round-the-clock responses with no extra headcount',
+        'Markedly higher conversion from personalized messaging',
+        'Less human error and lower operating costs',
+        'Valuable customer data collected and analyzed',
+        'Better customer experience and stronger brand loyalty'
     ];
 
     
 ---
 <BaseLayout
-  title='بازاریابی هوشمند، اتوماسیون و چت‌بات فارسی | عصر سئو'
-  description='خدمات اتوماسیون بازاریابی، طراحی چت‌بات هوشمند فارسی و شخصی‌سازی تجربه مشتری با هوش مصنوعی در عصر سئو. افزایش نرخ تعامل و تبدیل بازدیدکننده به خریدار.'
-  keywords='چت‌بات هوشمند فارسی, اتوماسیون بازاریابی, چت‌بات سایت, هوش مصنوعی در بازاریابی, شخصی‌سازی محتوا, AI Marketing'
-  canonical='https://asreseo.com/services/ai/marketing-engagement/'
+  lang="en"
+  title='Smart Marketing, Automation & Chatbots | AsreSEO'
+  description='Marketing automation, smart chatbot design and AI-driven customer personalization at AsreSEO. Higher engagement and more visitors converted into buyers.'
+  keywords='smart chatbot, marketing automation, website chatbot, AI in marketing, content personalization, AI marketing'
+  canonical='/services/ai/marketing-engagement/'
   ogType='website'
   ogUrl='https://asreseo.com/services/ai/marketing-engagement/'
-  ogImages={[{ url: "/og/marketing-engagement-hero.jpg", width: 1200, height: 630, alt: "چت‌بات هوشمند فارسی و اتوماسیون بازاریابی عصر سئو" }]}
+  ogImages={[{ url: "/og/marketing-engagement-hero.jpg", width: 1200, height: 630, alt: "Smart chatbots and marketing automation by AsreSEO" }]}
   twitterCard='summary_large_image'
 >
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
             <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/ai/marketing-engagement/', image: '/og/marketing-engagement-hero.jpg' }))} />
             <BreadcrumbStructuredData items={breadcrumbs} />
 
-            <Header />
+            <Header lang="en" />
 
             <main>
                 <!-- Hero Section -->
                 <ServiceHero
-                    badge="پلتفرم جامع تعامل با مشتری"
-                    title="بازاریابی و تعامل"
-                    titleGradient="هوشمند"
-                    description="ترکیب قدرت اتوماسیون، چت‌بات‌های هوشمند و شخصی‌سازی محتوا برای خلق تجربه‌ای بی‌نظیر برای مشتریان و افزایش فروش."
-                    primaryCta={{ text: "شروع هوشمندسازی", href: "/consultation/" }}
-                    secondaryCta={{ text: "دریافت مشاوره", href: "/consultation/" }}
+                    lang="en"
+                    badge="End-to-End Customer Engagement Platform"
+                    title="Smart Marketing"
+                    titleGradient="& Engagement"
+                    description="Automation, smart chatbots and content personalization combined for an unmatched customer experience — and more sales."
+                    primaryCta={{ text: "Start Going Smart", href: "/consultation/" }}
+                    secondaryCta={{ text: "Get a Consultation", href: "/consultation/" }}
                     imageSrc="/images/marketing-engagement-hero.webp"
-                    imageAlt="بازاریابی و تعامل هوشمند با هوش مصنوعی"
+                    imageAlt="Smart marketing and engagement with AI"
                     theme="orange"
                 />
 
                 <!-- Stats Section -->
-                <ServiceStats stats={stats} theme="orange" />
+                <ServiceStats lang="en" stats={stats} theme="orange" />
 
                 <!-- Automation Section -->
                 <section class="section-padding">
                     <div class="container-custom">
                         <div class="text-center mb-12">
-                            <Badge class="bg-orange-100 text-orange-700 mb-4">اتوماسیون بازاریابی</Badge>
+                            <Badge class="bg-orange-100 text-orange-700 mb-4">Marketing automation</Badge>
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                                خودکارسازی <span class="gradient-text">فرایندهای بازاریابی</span>
+                                Automating <span class="gradient-text">Marketing Workflows</span>
                             </h2>
                             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                                اجرای کمپین‌های هوشمند و پرورش سرنخ‌ها بدون دخالت دست
+                                Run smart campaigns and nurture leads hands-free
                             </p>
                         </div>
 
@@ -244,16 +249,96 @@ const breadcrumbs = [
                     </div>
                 </section>
 
+                <!-- Dedicated n8n Workflow Automation Engine Section -->
+                <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+                    <div class="container-custom">
+                        <div class="mb-14 text-left">
+                            <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[ORCHESTRATION_CLUSTER // N8N_ENGINE]</div>
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                                Autonomous <span class="text-[#CCFF00]">n8n Workflow</span> Infrastructure
+                            </h2>
+                            <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                                // Self-hosted high-throughput orchestration cluster running proprietary community nodes
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10 font-mono text-xs">
+                                        <span class="text-[#CCFF00] font-bold">N8N_CLUSTER</span>
+                                        <span class="text-emerald-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>ACTIVE</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold uppercase text-white mb-2">n8n.asreseo.com</h3>
+                                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                                        Our self-hosted n8n enterprise cluster powers round-the-clock webhook handling, CRM data syncing, indexing API alerts, and automated multi-channel campaigns.
+                                    </p>
+                                </div>
+                                <a
+                                    href="https://n8n.asreseo.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 font-mono text-xs font-bold text-black bg-[#CCFF00] px-4 py-2.5 uppercase hover:bg-white transition-colors"
+                                >
+                                    Access Live Engine ↗
+                                </a>
+                            </div>
+
+                            <div class="p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10 font-mono text-xs">
+                                        <span class="text-[#CCFF00] font-bold">CUSTOM_NODE_01</span>
+                                        <span class="text-slate-400">OPEN SOURCE</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold uppercase text-white mb-2">n8n-nodes-avvalai</h3>
+                                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                                        Custom n8n node extension authored by Ali Bakhtiari providing native integration between n8n automated pipelines and AvvalAI intelligence APIs.
+                                    </p>
+                                </div>
+                                <a
+                                    href="https://github.com/alibakhtiari/n8n-nodes-avvalai"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 font-mono text-xs font-bold text-white bg-black border border-white/20 px-4 py-2.5 uppercase hover:border-[#CCFF00] hover:text-[#CCFF00] transition-colors"
+                                >
+                                    GitHub Repository ↗
+                                </a>
+                            </div>
+
+                            <div class="p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10 font-mono text-xs">
+                                        <span class="text-[#CCFF00] font-bold">CUSTOM_NODE_02</span>
+                                        <span class="text-slate-400">OPEN SOURCE</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold uppercase text-white mb-2">n8n-nodes-imagerouter</h3>
+                                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                                        Custom n8n node extension authored by Ali Bakhtiari engineered for high-throughput conditional image routing, compression, and AI vision dispatching.
+                                    </p>
+                                </div>
+                                <a
+                                    href="https://github.com/alibakhtiari/n8n-nodes-imagerouter"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 font-mono text-xs font-bold text-white bg-black border border-white/20 px-4 py-2.5 uppercase hover:border-[#CCFF00] hover:text-[#CCFF00] transition-colors"
+                                >
+                                    GitHub Repository ↗
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- Chatbot Section -->
                 <section class="section-padding bg-slate-50">
                     <div class="container-custom">
                         <div class="text-center mb-12">
-                            <Badge class="bg-indigo-100 text-indigo-700 mb-4">چت‌بات هوشمند</Badge>
+                            <Badge class="bg-indigo-100 text-indigo-700 mb-4">Smart chatbot</Badge>
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                                پاسخگویی <span class="gradient-text">۲۴ ساعته و هوشمند</span>
+                                Smart <span class="gradient-text">24/7 Responses</span>
                             </h2>
                             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                                چت‌بات‌های پیشرفته با قابلیت یادگیری از مستندات شما (RAG)
+                                Advanced chatbots that learn from your documents (RAG)
                             </p>
                         </div>
 
@@ -291,12 +376,12 @@ const breadcrumbs = [
                 <section class="section-padding">
                     <div class="container-custom">
                         <div class="text-center mb-12">
-                            <Badge class="bg-purple-100 text-purple-700 mb-4">شخصی‌سازی محتوا</Badge>
+                            <Badge class="bg-purple-100 text-purple-700 mb-4">Content personalization</Badge>
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                                تجربه <span class="gradient-text">منحصربه‌فرد</span> برای هر کاربر
+                                A <span class="gradient-text">Unique</span> Experience for Every User
                             </h2>
                             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                                نمایش محتوا و پیشنهادات متناسب با سلیقه و رفتار هر بازدیدکننده
+                                Content and offers matched to each visitor's taste and behavior
                             </p>
                         </div>
 
@@ -330,26 +415,28 @@ const breadcrumbs = [
                     </div>
                 </section>
 
-                      <ServiceBenefits title="مزایای یکپارچه‌سازی" titleHighlight="بازاریابی هوشمند" subtitle="چرا باید تمام ابزارهای بازاریابی خود را هوشمند و یکپارچه کنید؟" benefits={benefits} />
+                      <ServiceBenefits lang="en" title="Why Unify Around" titleHighlight="Smart Marketing" subtitle="Why connect all your marketing tools into one smart system?" benefits={benefits} />
 
                 <!-- FAQ Section -->
                 <ServiceFAQ
+                    lang="en"
                     faqs={faqs}
-                    title="سوالات متداول بازاریابی هوشمند و چت‌بات فارسی"
-                    description="پاسخ به سوالات رایج درباره راه‌اندازی چت‌بات، نرخ پاسخگویی و امنیت مشتریان"
+                    title="Smart Marketing & Chatbot FAQs"
+                    description="Common questions about chatbot setup, response rates and customer data security"
                     theme="orange"
                 />
 
                 <!-- CTA Section -->
                 <ServiceCTA
-                    title="بازاریابی خود را متحول کنید!"
-                    description="با پلتفرم جامع ما، مشتریان خود را بهتر بشناسید، با آن‌ها تعامل موثرتری داشته باشید و فروش خود را افزایش دهید."
-                    primaryCta={{ text: "شروع رایگان", href: "/consultation/" }}
-                    secondaryCta={{ text: "دریافت دمو", href: "/consultation/" }}
+                    lang="en"
+                    title="Transform Your Marketing!"
+                    description="Know your customers better, engage them more effectively and grow sales with our end-to-end platform."
+                    primaryCta={{ text: "Start Free", href: "/consultation/" }}
+                    secondaryCta={{ text: "Get a Demo", href: "/consultation/" }}
                     theme="orange"
                 />
             </main>
 
-            <Footer />
+            <Footer lang="en" />
         </div>
 </BaseLayout>
