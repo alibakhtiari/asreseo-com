@@ -1,47 +1,69 @@
 ---
 import Icon from './ui/Icon.astro';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
 ---
-<!-- Back to Top Button -->
+<!-- Back to Top Button (Floating Bottom-Left) -->
 <div data-backtotop hidden>
   <div class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 animate-fade-in">
     <button
       data-scrolltop
-      class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-900/85 hover:bg-gray-900 text-white backdrop-blur-sm shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 ring-2 ring-white/80 cursor-pointer group relative"
-      aria-label="بازگشت به بالا"
+      class="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 bg-black border-2 border-white/20 hover:border-[#CCFF00] text-white hover:text-[#CCFF00] shadow-[3px_3px_0px_#FFFFFF] hover:shadow-[3px_3px_0px_#CCFF00] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group relative"
+      aria-label="Back to top"
     >
-      <Icon name="arrow-up" class="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-      <span class="absolute left-full ml-3 px-2.5 py-1 rounded-md bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-md hidden sm:block">
-        بازگشت به بالا
+      <Icon name="arrow-up" class="w-5 h-5 text-current" />
+      <span class="absolute left-full ml-3 px-2.5 py-1 bg-black border border-white/20 text-[#CCFF00] font-mono text-[10px] uppercase font-bold tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[2px_2px_0px_#FFFFFF] hidden sm:block">
+        [BACK_TO_TOP]
       </span>
     </button>
   </div>
 </div>
 
-<!-- Contact Actions (Floating Bottom-Right) -->
-<div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col gap-2.5 sm:gap-3" dir="ltr">
-  <!-- WhatsApp Button -->
+<!-- Communication Actions (Floating Bottom-Right) -->
+<div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col gap-3" dir="ltr">
+  <!-- WhatsApp Direct Button -->
   <a
-    href="https://wa.me/989125811880?text=سلام، برای مشاوره رایگان تماس گرفتم"
+    href="https://wa.me/13463272878"
     target="_blank"
-    rel="noopener"
-    class="flex items-center justify-center w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 ring-2 ring-white/80 group relative cursor-pointer"
-    aria-label="گفتگو در واتساپ"
+    rel="noopener noreferrer"
+    class="flex items-center justify-center w-12 h-12 sm:w-13 sm:h-13 bg-[#25D366] hover:bg-[#20ba5a] text-black border-2 border-black shadow-[4px_4px_0px_#FFFFFF] hover:shadow-[4px_4px_0px_#25D366] hover:-translate-y-1 transition-all duration-200 group relative cursor-pointer"
+    aria-label="Chat with AsreSEO on WhatsApp (+1 346 327 2878)"
   >
-    <Icon name="message-circle" class="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-    <span class="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-md hidden sm:block" dir="rtl">
-      مشاوره در واتساپ
+    <span class="absolute -top-1 -right-1 flex h-3 w-3">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#CCFF00] opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-3 w-3 bg-[#CCFF00] border-2 border-black"></span>
+    </span>
+    <Icon name="whatsapp" class="w-6 h-6 text-black" />
+    <span class="absolute right-full mr-3 px-3 py-1.5 bg-black border border-white/20 text-white font-mono text-xs uppercase font-bold tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[3px_3px_0px_#25D366] hidden sm:block">
+      <span class="text-[#25D366]">[WHATSAPP]</span> +1 (346) 327-2878
     </span>
   </a>
 
-  <!-- Call Button -->
+  <!-- Phone Call Direct Button -->
   <a
-    href="tel:+989125811880"
-    class="flex items-center justify-center w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 ring-2 ring-white/80 group relative cursor-pointer"
-    aria-label="تماس تلفنی با عصر سئو"
+    href="tel:+13463272878"
+    class="flex items-center justify-center w-12 h-12 sm:w-13 sm:h-13 bg-[#CCFF00] hover:bg-[#b8e600] text-black border-2 border-black shadow-[4px_4px_0px_#FFFFFF] hover:shadow-[4px_4px_0px_#CCFF00] hover:-translate-y-1 transition-all duration-200 group relative cursor-pointer"
+    aria-label="Call AsreSEO (+1 346 327 2878)"
   >
-    <Icon name="phone" class="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-    <span class="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-md hidden sm:block" dir="rtl">
-      تماس تلفنی مستقیم
+    <Icon name="phone-call" class="w-5 h-5 sm:w-6 sm:h-6 text-black" />
+    <span class="absolute right-full mr-3 px-3 py-1.5 bg-black border border-white/20 text-white font-mono text-xs uppercase font-bold tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[3px_3px_0px_#CCFF00] hidden sm:block">
+      <span class="text-[#CCFF00]">[CALL_NOW]</span> +1 (346) 327-2878
+    </span>
+  </a>
+
+  <!-- Email Button -->
+  <a
+    href="mailto:info@asreseo.com"
+    class="flex items-center justify-center w-12 h-12 sm:w-13 sm:h-13 bg-black hover:bg-zinc-900 text-white hover:text-[#CCFF00] border-2 border-white/20 hover:border-[#CCFF00] shadow-[4px_4px_0px_#FFFFFF] hover:shadow-[4px_4px_0px_#CCFF00] hover:-translate-y-1 transition-all duration-200 group relative cursor-pointer"
+    aria-label="Email AsreSEO (info@asreseo.com)"
+  >
+    <Icon name="mail" class="w-5 h-5 sm:w-6 sm:h-6 text-current" />
+    <span class="absolute right-full mr-3 px-3 py-1.5 bg-black border border-white/20 text-white font-mono text-xs uppercase font-bold tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[3px_3px_0px_#FFFFFF] hidden sm:block">
+      <span class="text-slate-400">[EMAIL]</span> info@asreseo.com
     </span>
   </a>
 </div>

@@ -77,17 +77,17 @@ export const onRequestPost = async (context: { request: Request; env: EmailEnv }
 
     // Server-side validation — the client checks these too, but never trust it.
     if (!name || !email || !message) {
-      return json({ error: 'نام، ایمیل و پیام الزامی هستند.' }, 400);
+      return json({ error: 'Name, email, and message are required.' }, 400);
     }
     if (!EMAIL_RE.test(email)) {
-      return json({ error: 'فرمت ایمیل معتبر نیست.' }, 400);
+      return json({ error: 'Invalid email address format.' }, 400);
     }
-    // Iranian mobile shape, matching the pattern enforced in the browser.
-    if (phone && !/^09\d{9}$/.test(phone.replace(/[\s-]/g, ''))) {
-      return json({ error: 'شماره موبایل معتبر نیست (مثال: 09123456789).' }, 400);
+    // Phone validation (optional field, allows standard international formats).
+    if (phone && !/^\+?[\d\s\-().]{7,25}$/.test(phone.trim())) {
+      return json({ error: 'Please enter a valid phone number.' }, 400);
     }
     if (message.length < 10) {
-      return json({ error: 'لطفاً توضیح کوتاهی (حداقل ۱۰ حرف) بنویسید.' }, 400);
+      return json({ error: 'Please provide a brief explanation (at least 10 characters).' }, 400);
     }
 
     const emailBinding = env?.asreseo || env?.EMAIL;
@@ -95,7 +95,7 @@ export const onRequestPost = async (context: { request: Request; env: EmailEnv }
     if (!emailBinding) {
       // Binding is missing — see the setup comment at the top of this file.
       console.error('[send-email] Neither "asreseo" nor "EMAIL" binding is attached to this Pages project.');
-      return json({ error: 'سرویس ایمیل پیکربندی نشده است.' }, 503);
+      return json({ error: 'Email service is not configured.' }, 503);
     }
 
     const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
@@ -104,7 +104,7 @@ export const onRequestPost = async (context: { request: Request; env: EmailEnv }
     await emailBinding.send({
       from: FROM,
       to: INBOX,
-      subject: `درخواست جدید از ${name} (${service || 'بدون موضوع'})`,
+      subject: `New inquiry from ${name} (${service || 'General Inquiry'})`,
       replyTo: email,
       text: [
         `Name: ${name}`,
@@ -117,16 +117,16 @@ export const onRequestPost = async (context: { request: Request; env: EmailEnv }
         message,
       ].join('\n'),
       html: [
-        '<div dir="rtl" style="font-family:system-ui,Segoe UI,Tahoma,sans-serif">',
-        '<h2 style="margin:0 0 16px">درخواست جدید از فرم سایت</h2>',
-        `<p><strong>نام:</strong> ${esc(name)}</p>`,
-        `<p><strong>ایمیل:</strong> ${esc(email)}</p>`,
-        `<p><strong>تلفن:</strong> ${esc(phone || '-')}</p>`,
-        `<p><strong>موضوع:</strong> ${esc(service || '-')}</p>`,
+        '<div style="font-family:system-ui,Segoe UI,Helvetica,Arial,sans-serif;color:#111">',
+        '<h2 style="margin:0 0 16px">New Website Inquiry</h2>',
+        `<p><strong>Name:</strong> ${esc(name)}</p>`,
+        `<p><strong>Email:</strong> ${esc(email)}</p>`,
+        `<p><strong>Phone:</strong> ${esc(phone || '-')}</p>`,
+        `<p><strong>Service:</strong> ${esc(service || '-')}</p>`,
         `<p><strong>IP:</strong> ${esc(ip)}</p>`,
-        '<p><strong>پیام:</strong></p>',
-        `<p style="white-space:pre-wrap">${esc(message)}</p>`,
-        `<hr><p style="font-size:12px;color:#666">UA: ${esc(ua.slice(0, 200))}</p>`,
+        '<p><strong>Message:</strong></p>',
+        `<p style="white-space:pre-wrap;background:#f5f5f5;padding:12px;border-radius:4px">${esc(message)}</p>`,
+        `<hr style="border:none;border-top:1px solid #ddd;margin:20px 0"><p style="font-size:12px;color:#888">User-Agent: ${esc(ua.slice(0, 200))}</p>`,
         '</div>',
       ].join(''),
     });
@@ -135,6 +135,6 @@ export const onRequestPost = async (context: { request: Request; env: EmailEnv }
   } catch (error) {
     // Log the real cause, but never echo it back to the browser.
     console.error('[send-email] failed:', error);
-    return json({ error: 'خطا در ارسال پیام. لطفاً دوباره تلاش کنید.' }, 500);
+    return json({ error: 'Failed to send message. Please try again later.' }, 500);
   }
 };

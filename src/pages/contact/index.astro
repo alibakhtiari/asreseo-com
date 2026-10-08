@@ -2,609 +2,386 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
-import Accordion from '../../components/ui/Accordion.astro';
-import AccordionItem from '../../components/ui/AccordionItem.astro';
-import AccordionTrigger from '../../components/ui/AccordionTrigger.astro';
-import AccordionContent from '../../components/ui/AccordionContent.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+import Button from '../../components/ui/button/Button.astro';
+import Icon from '../../components/ui/Icon.astro';
 
-// The canonical Organization (#organization) is declared once in
-// OrganizationStructuredData.astro (rendered on the homepage). The contact
-// points, postal address and opening hours that used to live here were merged
-// into that node — this page only references the entity.
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  '@id': 'https://asreseo.com/#organization'
-};
+const lang = 'en' as const;
+const localize = (p: string) => p;
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'خانه', item: 'https://asreseo.com/' },
-    { '@type': 'ListItem', position: 2, name: 'تماس با ما', item: 'https://asreseo.com/contact/' },
-  ],
-};
-
-const contactFaqs = [
-  {
-    q: 'آیا مشاوره تلفنی اولیه و آنالیز مقدماتی سایت رایگان است؟',
-    a: 'بله، مکالمه تلفنی اولیه و بررسی اجمالی وضعیت وب‌سایت شما (شامل ایندکس صفحات، خطاهای بارز فنی و پتانسیل کلمات کلیدی) توسط کارشناسان ارشد عصر سئو کاملاً رایگان است.'
-  },
-  {
-    q: 'پس از ثبت فرم، چقدر زمان می‌برد تا با من تماس گرفته شود؟',
-    a: 'کارشناسان ما حداکثر ظرف ۲ ساعت کاری پس از دریافت اطلاعات فرم، با شما تماس گرفته و زمان جلسه مشاوره تحلیلی را هماهنگ می‌نمایند.'
-  },
-  {
-    q: 'آیا امکان برگزاری جلسه حضوری در دفتر تهران وجود دارد؟',
-    a: 'بله، برای پروژه‌های جامع سئو و قراردادهای سازمانی، امکان هماهنگی جلسه حضوری در دفتر مرکزی تهران یا جلسه آنلاین تصویری (Google Meet / Zoom) فراهم است.'
-  },
-  {
-    q: 'برای آنالیز اولیه به چه اطلاعات یا دسترسی‌هایی نیاز است؟',
-    a: 'برای بررسی اولیه صرفاً آدرس وب‌سایت (دامنه) و حوزه فعالیت کافی است. پس از جلسه اول و در صورت تمایل به آنالیز عمیق‌تر، دسترسی Read-Only سرچ کنسول درخواست می‌شود.'
-  }
+const breadcrumbs = [
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'Contact & Dispatch Terminal', item: 'https://asreseo.com/contact/' },
 ];
 
-const contactFaqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  'mainEntity': contactFaqs.map(item => ({
-    '@type': 'Question',
-    'name': item.q,
-    'acceptedAnswer': {
-      '@type': 'Answer',
-      'text': item.a
-    }
-  }))
-};
+const faqs = [
+  {
+    q: 'How quickly do automated crawl nodes begin ingestion?',
+    a: 'Upon transmission of your domain coordinates and confirmation of ownership or authorization, our headless edge bots begin non-invasive crawling within 60 minutes.',
+  },
+  {
+    q: 'Do you require code repository or CMS access?',
+    a: 'No. Our primary recon audit operates externally via serverless headless bots. For active client deployments, we interface with your existing edge CDN (Cloudflare Workers, Fastly) or automated sitemap pipelines.',
+  },
+  {
+    q: 'How do you guarantee zero Google search penalties?',
+    a: 'We operate 100% within deterministic machine-to-machine guidelines: valid schema JSON-LD graphs, factual Wikidata co-occurrences, and natural semantic internal topologies without synthetic doorway pages.',
+  },
+  {
+    q: 'What is the typical deployment timeline for a 50,000 URL cluster?',
+    a: 'Following the initial Day 1 recon, our vector pipeline constructs and deploys the entire programmatic entity topology within 7 business days.',
+  },
+];
 ---
 <BaseLayout
-  title='تماس با ما | مشاوره رایگان دیجیتال مارکتینگ و سئو | عصر سئو'
-  description='ارتباط با تیم متخصص عصر سئو. برای مشاوره رایگان سئو، تبلیغات گوگل و طراحی سایت با شماره ۰۹۱۲۵۸۱۱۸۸۰ تماس بگیرید.'
-  keywords='تماس با عصر سئو, مشاوره سئو, مشاوره دیجیتال مارکتینگ, شماره تماس سئو'
-  canonical='https://asreseo.com/contact/'
+  lang="en"
+  title='Contact Us & Command Dispatch Terminal | AsreSEO'
+  description='Connect directly with ASRESEO principal engineers. Zero marketing fluff. Instant telemetry dispatch and domain recon within 60 minutes.'
+  keywords='contact AsreSEO, SEO dispatch, enterprise SEO recon, technical SEO consultation, AI search engineers'
+  canonical='/contact/'
+  ogType='website'
   ogUrl='https://asreseo.com/contact/'
-  ogTitle='تماس با ما | عصر سئو'
-  ogDescription='ارتباط با تیم متخصص عصر سئو برای دریافت مشاوره رایگان دیجیتال مارکتینگ.'
-  ogImages={[{ url: '/og/contact-hero.jpg', width: 1200, height: 630, alt: 'تماس با ما - عصر سئو' }]}
+  ogImages={[{ url: '/og-default.png', width: 1200, height: 630, alt: 'AsreSEO Dispatch Terminal' }]}
   twitterCard='summary_large_image'
 >
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(contactFaqSchema)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
 
-  <div class="min-h-screen bg-slate-50/50">
-    <Header />
+  <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+    <Header lang="en" />
     <main class="pt-28 pb-20">
-      <!-- Ambient Hero Section -->
-      <section class="relative py-16 bg-linear-to-b from-blue-50/70 via-indigo-50/30 to-transparent border-b border-slate-200/60 overflow-hidden">
-        <!-- Decorative Ambient Glows -->
-        <div class="absolute -top-24 right-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 left-1/4 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl pointer-events-none"></div>
+      <!-- 1. Hero Section -->
+      <section class="py-16 md:py-20 border-b-2 border-white/10 relative">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+          <div class="max-w-5xl">
+            <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#0a0d14] border border-white/20 mb-8 font-mono text-xs tracking-wider uppercase">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+              <span class="text-[#CCFF00] font-bold">[SECURE_DISPATCH // INITIATE_COMMUNICATION]</span>
+              <span class="text-slate-500">|</span>
+              <span class="text-slate-300">SLA: 60_MIN_DISPATCH</span>
+            </div>
 
-        <div class="container-custom max-w-5xl text-center relative z-10">
-          <div class="inline-flex flex-wrap items-center justify-center gap-3 mb-6">
-            <span class="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md text-blue-800 border border-blue-200/80 px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold shadow-xs">
-              <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
-              پاسخگویی مستقیم در کمتر از ۲ ساعت کاری
-            </span>
-            <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 border border-emerald-200/80 px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold shadow-xs">
-              <svg class="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              مشاوره تلفنی اولیه کاملاً رایگان
-            </span>
-            <span class="inline-flex items-center gap-1.5 bg-purple-50 text-purple-800 border border-purple-200/80 px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold shadow-xs">
-              <svg class="w-4 h-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-              تضمین محرمانگی اطلاعات
-            </span>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white mb-6 tracking-tight leading-[1.05]">
+              Deploy Enterprise Recon or <span class="text-[#CCFF00]">Initiate Retainer</span>.
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl">
+              Connect directly with ASRESEO principal engineers. Zero marketing friction, zero junior account managers. Instant telemetry dispatch within 60 minutes.
+            </p>
           </div>
-
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-tight tracking-tight">
-            تماس با متخصصان و مشاوران <span class="gradient-text">عصر سئو</span>
-          </h1>
-          <p class="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            برای ممیزی رایگان سایت، استعلام دقیق تعرفه‌ها و شروع همکاری هدفمند، از طریق فرم زیر پروژه خود را ثبت فرمایید یا از کانال‌های مستقیم با ما در ارتباط باشید.
-          </p>
         </div>
       </section>
 
-      <div class="container-custom max-w-6xl mt-10">
-        <!-- Quick Connect Matrix (4 Luxury Tiles) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          <!-- Direct Phone Tile -->
-          <div class="group bg-white p-5 rounded-2xl border border-slate-200/90 hover:border-blue-500 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-3">
-              <div class="w-12 h-12 rounded-xl bg-blue-50 group-hover:bg-blue-600 text-blue-600 group-hover:text-white flex items-center justify-center transition-colors">
-                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
-              <span class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                خط آزاد
-              </span>
-            </div>
-            <div>
-              <div class="text-xs text-slate-500 font-medium mb-1">تماس تلفنی مستقیم</div>
-              <div class="text-lg font-black text-slate-900 group-hover:text-blue-600 transition-colors font-mono" dir="ltr">0912-581-1880</div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-              <a href="tel:+989125811880" class="text-blue-600 hover:text-blue-800 font-bold flex items-center gap-1">
-                برقراری تماس
-                <svg class="w-3.5 h-3.5 transform -rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </a>
-              <button
-                type="button"
-                data-copy-phone="09125811880"
-                class="text-slate-400 hover:text-slate-700 cursor-pointer transition-colors p-1"
-                title="کپی شماره"
-              >
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- WhatsApp Tile -->
-          <a
-            href="https://wa.me/989125811880?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%AC%D9%87%D8%AA%20%D8%A7%D8%B3%D8%AA%D8%B9%D9%84%D8%A7%D9%85%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%B3%D8%A6%D9%88%20%D9%88%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%A7%D8%B2%20%D9%88%D8%A8%E2%80%8C%D8%B3%D8%A7%DB%8C%D8%AA%20%D8%B9%D8%B5%D8%B1%20%D8%B3%D8%A6%D9%88%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group bg-white p-5 rounded-2xl border border-slate-200/90 hover:border-emerald-500 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
-          >
-            <div class="flex items-center justify-between mb-3">
-              <div class="w-12 h-12 rounded-xl bg-emerald-50 group-hover:bg-emerald-600 text-emerald-600 group-hover:text-white flex items-center justify-center transition-colors">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.301-.15-1.782-.879-2.057-.978-.276-.1-.476-.15-.676.15s-.777.978-.952 1.178c-.176.2-.351.226-.652.075-1.579-.79-2.614-1.41-3.66-3.21-.276-.475.276-.441.788-1.468.087-.176.044-.326-.022-.476-.065-.15-.676-1.63-1.002-2.23-.318-.58-.642-.5-.877-.512-.227-.012-.489-.015-.751-.015-.262 0-.689.098-1.05.49-.362.392-1.38 1.35-1.38 3.292 0 1.942 1.416 3.82 1.614 4.083.198.263 2.787 4.257 6.753 5.971 2.503 1.082 3.49.948 4.733.83 1.341-.128 2.92-1.194 3.33-2.35.41-1.156.41-2.146.287-2.35-.122-.204-.322-.326-.623-.476zM12.04 21.78a9.72 9.72 0 01-4.96-1.36l-.356-.21-3.69 1.19 1.206-3.597-.233-.37a9.71 9.71 0 01-1.492-5.183c0-5.38 4.38-9.755 9.77-9.755 2.607 0 5.057 1.015 6.9 2.858 1.843 1.843 2.857 4.293 2.857 6.9 0 5.38-4.38 9.527-10 9.527z" />
-                </svg>
-              </div>
-              <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">ارسال فوری</span>
-            </div>
-            <div>
-              <div class="text-xs text-slate-500 font-medium mb-1">گفتگوی واتساپ</div>
-              <div class="text-base font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">شروع گفتگو و ارسال فایل</div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-emerald-600 font-bold flex items-center justify-between">
-              <span>ارسال پیام با متن آماده</span>
-              <svg class="w-4 h-4 transform -rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </div>
-          </a>
-
-          <!-- Telegram Tile -->
-          <a
-            href="https://t.me/asreseo"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group bg-white p-5 rounded-2xl border border-slate-200/90 hover:border-sky-500 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
-          >
-            <div class="flex items-center justify-between mb-3">
-              <div class="w-12 h-12 rounded-xl bg-sky-50 group-hover:bg-sky-500 text-sky-600 group-hover:text-white flex items-center justify-center transition-colors">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z" />
-                </svg>
-              </div>
-              <span class="text-[11px] font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-full">پشتیبانی آنلاین</span>
-            </div>
-            <div>
-              <div class="text-xs text-slate-500 font-medium mb-1">پشتیبانی تلگرام</div>
-              <div class="text-base font-bold text-slate-900 group-hover:text-sky-600 transition-colors font-mono">@asreseo</div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-sky-600 font-bold flex items-center justify-between">
-              <span>ارتباط در تلگرام</span>
-              <svg class="w-4 h-4 transform -rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </div>
-          </a>
-
-          <!-- Free Consultation 30-min Tile -->
-          <a
-            href="/consultation/"
-            class="group bg-linear-to-br from-blue-600 via-indigo-600 to-indigo-800 p-5 rounded-2xl text-white shadow-xs hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 flex flex-col justify-between"
-          >
-            <div class="flex items-center justify-between mb-3">
-              <div class="w-12 h-12 rounded-xl bg-white/15 group-hover:bg-white/25 flex items-center justify-center transition-colors">
-                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <span class="text-[11px] font-black text-amber-300 bg-amber-400/20 px-2 py-0.5 rounded-full border border-amber-300/30">
-                کاملاً رایگان
-              </span>
-            </div>
-            <div>
-              <div class="text-xs text-blue-100 font-medium mb-1">جلسه آنالیز اختصاصی</div>
-              <div class="text-base font-bold text-white">رزرو مشاوره ۳۰ دقیقه‌ای</div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-white/15 text-xs text-white font-bold flex items-center justify-between">
-              <span>بررسی سرچ کنسول و رقبا</span>
-              <svg class="w-4 h-4 transform -rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </div>
-          </a>
-        </div>
-
-        <!-- Main Form & Information Section -->
-        <div class="grid lg:grid-cols-12 gap-8 items-start">
-          <!-- Form Container (7 Cols) -->
-          <div class="lg:col-span-7">
-            <div class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm relative">
-              <div class="mb-8 pb-6 border-b border-slate-100">
-                <div class="inline-flex items-center gap-2 text-blue-700 bg-blue-50 px-3 py-1 rounded-full text-xs font-bold mb-2">
-                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                  </svg>
-                  ثبت استعلام و شروع همکاری
+      <!-- 2. Two-Column Dispatch Interface -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#05070d]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="grid lg:grid-cols-12 gap-12">
+            <!-- Left Column: Direct Telemetry & Coordinates -->
+            <div class="lg:col-span-5 space-y-8 font-mono text-xs">
+              <div class="p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+                <div class="text-[#CCFF00] uppercase font-bold text-sm pb-3 border-b border-white/10 flex justify-between items-center">
+                  <span>TELEMETRY_NODE_STATUS</span>
+                  <span class="text-emerald-400 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    ALL 48 ONLINE
+                  </span>
                 </div>
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">فرم ارسال پروژه و درخواست مشاوره</h2>
-                <p class="text-sm md:text-base text-slate-600 leading-relaxed">
-                  اطلاعات وب‌سایت خود را وارد فرمایید تا مشاوران ارشد ما پیش از تماس، بررسی اولیه را روی وضعیت سئو و کلمات کلیدی شما انجام دهند.
+
+                <div class="space-y-3 text-slate-300">
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">Average Cluster Ping:</span>
+                    <span class="text-white font-bold">14ms</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">Active Crawl Rate:</span>
+                    <span class="text-white font-bold">482 req/sec</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">PGP Key Fingerprint:</span>
+                    <span class="text-[#CCFF00]">4A8F:1402:D8E2:99FC</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Direct Coordinates -->
+              <div class="p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
+                <div class="text-white uppercase font-bold text-sm pb-3 border-b border-white/10">
+                  GLOBAL_DISPATCH_COORDINATES
+                </div>
+
+                <div class="space-y-4 text-slate-300">
+                  <div>
+                    <div class="text-slate-500 uppercase text-[10px]">Direct Executive Inquiries</div>
+                    <a href="mailto:info@asreseo.com" class="text-base text-white hover:text-[#CCFF00] transition-colors font-bold font-sans">
+                      info@asreseo.com
+                    </a>
+                  </div>
+                  <div class="grid sm:grid-cols-2 gap-3 pt-1 border-t border-white/10">
+                    <div>
+                      <div class="text-slate-500 uppercase text-[10px]">Direct Voice Line (US / Global)</div>
+                      <a href="tel:+13463272878" class="text-sm text-[#CCFF00] hover:underline transition-colors font-bold font-mono flex items-center gap-1.5 mt-0.5">
+                        <Icon name="phone-call" class="w-3.5 h-3.5" />
+                        +1 (346) 327-2878
+                      </a>
+                    </div>
+                    <div>
+                      <div class="text-slate-500 uppercase text-[10px]">Instant WhatsApp Chat</div>
+                      <a href="https://wa.me/13463272878" target="_blank" rel="noopener noreferrer" class="text-sm text-[#25D366] hover:underline transition-colors font-bold font-mono flex items-center gap-1.5 mt-0.5">
+                        <Icon name="whatsapp" class="w-3.5 h-3.5" />
+                        +1 (346) 327-2878
+                      </a>
+                    </div>
+                  </div>
+                  <div class="pt-1 border-t border-white/10">
+                    <div class="text-slate-500 uppercase text-[10px]">Headquarters Node</div>
+                    <div class="text-white">580 Howard St, San Francisco, CA // Global Edge</div>
+                  </div>
+                  <div>
+                    <div class="text-slate-500 uppercase text-[10px]">European Operations Cluster</div>
+                    <div class="text-white">Berlin-Mitte // Frankfurt Edge</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Immediate Direct Channels -->
+              <div class="p-6 bg-[#0a0e17] border-2 border-[#CCFF00] brutalist-card space-y-4">
+                <div class="text-[#CCFF00] uppercase font-bold text-sm pb-2 border-b border-white/10 flex justify-between items-center">
+                  <span>FAST_DIRECT_CHANNELS</span>
+                  <span class="text-emerald-400 flex items-center gap-1 text-[10px]">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    READY
+                  </span>
+                </div>
+                <p class="text-slate-300 text-xs">
+                  Prefer direct instant messaging or voice dispatch instead of filling forms? Connect with us immediately:
                 </p>
-              </div>
-
-              <!-- Success Alert Banner -->
-              <div id="form-success-banner" class="hidden mb-6 p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-950 animate-fade-in">
-                <div class="flex items-start gap-4">
-                  <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
-                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-bold text-lg mb-1">درخواست شما با موفقیت ثبت شد!</h3>
-                    <p class="text-sm text-emerald-800 leading-relaxed mb-3">
-                      اطلاعات شما در سیستم ممیزی عصر سئو ثبت گردید. کارشناسان ارشد ما وب‌سایت شما را بررسی کرده و ظرف ۲ ساعت کاری آینده برای ارائه مشاوره رایگان با شما تماس خواهند گرفت.
-                    </p>
-                    <div class="inline-flex items-center gap-2 bg-emerald-100/70 text-emerald-900 px-3 py-1 rounded-lg text-xs font-mono font-bold">
-                      <span>شناسه پیگیری:</span>
-                      <span id="success-tracking-id">ASRE-9284</span>
-                    </div>
-                  </div>
+                <div class="grid sm:grid-cols-2 gap-3 pt-1 font-mono text-xs">
+                  <a
+                    href="https://wa.me/13463272878"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center justify-center gap-2 px-4 py-3 bg-[#25D366] hover:bg-[#20ba5a] text-black font-bold uppercase border-2 border-black shadow-[3px_3px_0px_#FFFFFF] hover:shadow-[3px_3px_0px_#25D366] hover:-translate-y-0.5 transition-all text-center"
+                  >
+                    <Icon name="whatsapp" class="w-4 h-4 text-black shrink-0" />
+                    <span>WhatsApp ↗</span>
+                  </a>
+                  <a
+                    href="tel:+13463272878"
+                    class="flex items-center justify-center gap-2 px-4 py-3 bg-[#CCFF00] hover:bg-[#b8e600] text-black font-bold uppercase border-2 border-black shadow-[3px_3px_0px_#FFFFFF] hover:shadow-[3px_3px_0px_#CCFF00] hover:-translate-y-0.5 transition-all text-center"
+                  >
+                    <Icon name="phone-call" class="w-4 h-4 text-black shrink-0" />
+                    <span>Call Now ↗</span>
+                  </a>
                 </div>
               </div>
 
-              <!-- Error Alert Banner -->
-              <div id="form-error-banner" class="hidden mb-6 p-5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-950 animate-fade-in">
-                <div class="flex items-start gap-3">
-                  <div class="w-8 h-8 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 mt-0.5">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 class="font-bold text-base mb-1" id="error-banner-title">خطایی رخ داد</h3>
-                    <p class="text-sm text-rose-800 leading-relaxed" id="error-banner-text">
-                      ارسال پیام با مشکل مواجه شد. لطفاً دوباره تلاش کنید یا مستقیماً با شماره <a href="tel:+989125811880" class="underline font-bold">۰۹۱۲۵۸۱۱۸۸۰</a> تماس حاصل فرمایید.
-                    </p>
-                  </div>
-                </div>
+              <!-- Simulated Terminal Heartbeat Log -->
+              <div class="p-5 bg-black border border-white/20 font-mono text-[11px] text-slate-400 space-y-1.5">
+                <div class="text-emerald-400 font-bold mb-2">// REAL-TIME DISPATCH LOG:</div>
+                <div>[09:14:02 UTC] Ping us-east cluster ... 9ms [OK]</div>
+                <div>[09:14:05 UTC] IndexNow daemon status: LISTENING</div>
+                <div>[09:14:12 UTC] Google AI Overview telemetry: READY</div>
+                <div class="text-[#CCFF00]">[09:14:18 UTC] Awaiting incoming enterprise dispatch payload...</div>
               </div>
+            </div>
 
-              <form data-contact-form class="space-y-6" novalidate>
-                <!-- Row 1: Name & Phone -->
-                <div class="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label for="contact-name" class="block text-sm font-semibold text-slate-800 mb-2">
-                      نام و نام خانوادگی <span class="text-rose-500">*</span>
-                    </label>
-                    <div class="relative">
-                      <input
-                        type="text"
-                        id="contact-name"
-                        name="name"
-                        required
-                        placeholder="مثال: علی محمدی"
-                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/60 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all text-sm"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label for="contact-phone" class="block text-sm font-semibold text-slate-800 mb-2 flex items-center justify-between">
-                      <span>شماره همراه <span class="text-rose-500">*</span></span>
-                      <span id="phone-valid-badge" class="hidden text-xs text-emerald-600 font-medium items-center gap-1">
-                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                        معتبر
-                      </span>
-                    </label>
-                    <div class="relative">
-                      <input
-                        type="tel"
-                        id="contact-phone"
-                        name="phone"
-                        required
-                        dir="ltr"
-                        placeholder="09123456789"
-                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/60 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all text-sm font-mono text-right"
-                      />
-                    </div>
-                    <p class="text-xs text-slate-500 mt-1.5">
-                      ارقام فارسی و انگلیسی هر دو به صورت خودکار پشتیبانی می‌شوند.
-                    </p>
-                  </div>
+            <!-- Right Column: The Dispatch Terminal Form -->
+            <div class="lg:col-span-7">
+              <div class="p-8 sm:p-10 bg-[#0a0e17] border-2 border-white/20 brutalist-shadow-white relative">
+                <div class="pb-6 mb-8 border-b border-white/10 flex items-center justify-between font-mono text-xs">
+                  <span class="text-lg sm:text-xl font-black uppercase text-white font-sans">DISPATCH TERMINAL INTERFACE</span>
+                  <span class="text-[#CCFF00] font-bold">[FORM_V3.8]</span>
                 </div>
 
-                <!-- Row 2: Email & Website -->
-                <div class="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label for="contact-email" class="block text-sm font-semibold text-slate-800 mb-2">
-                      آدرس ایمیل کاری <span class="text-rose-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      id="contact-email"
-                      name="email"
-                      required
-                      dir="ltr"
-                      placeholder="you@company.com"
-                      class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/60 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all text-sm font-mono text-left"
-                    />
+                <!-- Success Banner -->
+                <div id="form-success-banner" class="hidden mb-8 p-6 bg-emerald-950/80 border-2 border-emerald-400 text-white font-mono text-xs space-y-2">
+                  <div class="text-base font-bold text-[#CCFF00] flex items-center gap-2">
+                    <span>✓</span>
+                    <span>DISPATCH_CONFIRMED: TELEMETRY TRANSMITTED</span>
                   </div>
+                  <p class="text-slate-300">
+                    Your request has been routed to our systems architecture lead. Reference Tracking Code: <span id="success-tracking-id" class="text-white font-bold">ASRE-9921</span>. We will initiate recon and respond within 60 minutes.
+                  </p>
+                </div>
 
+                <!-- Error Banner -->
+                <div id="form-error-banner" class="hidden mb-8 p-4 bg-rose-950/80 border-2 border-rose-400 text-white font-mono text-xs">
+                  <div id="error-banner-title" class="font-bold text-rose-300 mb-1">TRANSMISSION_ERROR</div>
+                  <div id="error-banner-text" class="text-slate-300">Verify inputs and retry transmission.</div>
+                </div>
+
+                <form id="contact-form" class="space-y-6 font-mono text-xs" novalidate>
                   <div>
-                    <label for="contact-website" class="block text-sm font-semibold text-slate-800 mb-2 flex items-center justify-between">
-                      <span>آدرس وب‌سایت شما</span>
-                      <span class="text-xs text-slate-400 font-normal">جهت پیش‌ممیزی سئو (اختیاری)</span>
+                    <label for="contact-website" class="text-slate-300 uppercase font-bold mb-2 flex items-center justify-between">
+                      <span>[INPUT_01] TARGET ENTERPRISE DOMAIN *</span>
+                      <span class="text-slate-500 font-normal">e.g. acmecorp.com</span>
                     </label>
                     <input
                       type="text"
                       id="contact-website"
                       name="website"
-                      dir="ltr"
-                      placeholder="example.com"
-                      class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/60 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all text-sm font-mono text-left"
+                      placeholder="acmecorp.com"
+                      class="w-full px-4 py-3.5 bg-black border border-white/20 text-white placeholder:text-slate-600 focus:border-[#CCFF00] focus:outline-none transition-colors text-sm font-mono"
+                      required
                     />
                   </div>
-                </div>
 
-                <!-- Row 3: Service & Project Scale -->
-                <div class="grid md:grid-cols-2 gap-6">
+                  <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
+                      <label for="contact-email" class="block text-slate-300 uppercase font-bold mb-2">
+                        [INPUT_02] EXECUTIVE WORK EMAIL *
+                      </label>
+                      <input
+                        type="email"
+                        id="contact-email"
+                        name="email"
+                        placeholder="vp-growth@acmecorp.com"
+                        class="w-full px-4 py-3.5 bg-black border border-white/20 text-white placeholder:text-slate-600 focus:border-[#CCFF00] focus:outline-none transition-colors text-sm font-mono"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label for="contact-name" class="block text-slate-300 uppercase font-bold mb-2">
+                        [INPUT_03] EXECUTIVE NAME *
+                      </label>
+                      <input
+                        type="text"
+                        id="contact-name"
+                        name="name"
+                        placeholder="Alex Morgan"
+                        class="w-full px-4 py-3.5 bg-black border border-white/20 text-white placeholder:text-slate-600 focus:border-[#CCFF00] focus:outline-none transition-colors text-sm font-mono"
+                        required
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label for="contact-service" class="block text-sm font-semibold text-slate-800 mb-2">
-                      سرویس مورد نظر
+                    <label for="contact-service" class="block text-slate-300 uppercase font-bold mb-2">
+                      [INPUT_04] PRIMARY ALGORITHMIC BOTTLENECK *
                     </label>
                     <select
                       id="contact-service"
                       name="service"
-                      class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/60 text-slate-900 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all text-sm cursor-pointer"
+                      class="w-full px-4 py-3.5 bg-black border border-white/20 text-white focus:border-[#CCFF00] focus:outline-none transition-colors text-sm font-mono"
                     >
-                      <option value="سئو و رتبه‌بندی در گوگل">سئو ارگانیک و رتبه‌بندی گوگل</option>
-                      <option value="سئو تکنیکال و بهینه‌سازی سرعت">سئو تکنیکال و بهینه‌سازی سرعت (CWV)</option>
-                      <option value="خدمات هوش مصنوعی و اتوماسیون">خدمات هوش مصنوعی و اتوماسیون مارکتینگ</option>
-                      <option value="تبلیغات گوگل (Google Ads)">تبلیغات کلیکی گوگل ادز (PPC)</option>
-                      <option value="استراتژی و تولید محتوا">استراتژی و تولید محتوای سئومحور</option>
-                      <option value="طراحی سایت سئومحور">طراحی وب‌سایت سئومحور</option>
-                      <option value="مشاوره جامع دیجیتال مارکتینگ">مشاوره جامع دیجیتال مارکتینگ</option>
-                      <option value="سایر موارد">سایر موارد</option>
+                      <option value="Generative Search Optimization (GEO)">Generative Search Optimization (GEO) & LLM Citations</option>
+                      <option value="Programmatic Keyword Topology">Programmatic Keyword Topology (10,000+ Nodes)</option>
+                      <option value="Entity-Based Authority Accelerator">Entity-Based Authority & Knowledge Graph Injection</option>
+                      <option value="Autonomous Re-Indexation Pipeline">Autonomous Re-Indexation & Core Web Vitals Rescue</option>
+                      <option value="Multilingual Syntactic Expansion">Multilingual Syntactic Expansion (28 Languages)</option>
+                      <option value="Full Tactical Retainer">Comprehensive Enterprise Full-Stack Retainer</option>
                     </select>
                   </div>
 
                   <div>
-                    <label for="contact-scale" class="block text-sm font-semibold text-slate-800 mb-2">
-                      مقیاس و نوع پروژه
-                    </label>
-                    <select
-                      id="contact-scale"
-                      name="scale"
-                      class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/60 text-slate-900 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all text-sm cursor-pointer"
-                    >
-                      <option value="کسب‌وکار نوپا / استارتاپ">کسب‌وکار نوپا / استارتاپ</option>
-                      <option value="فروشگاه اینترنتی در حال رشد">فروشگاه اینترنتی در حال رشد</option>
-                      <option value="شرکت متوسط و خدماتی">شرکت متوسط و خدماتی</option>
-                      <option value="برند بزرگ سازمانی و هلدینگ">برند بزرگ سازمانی و هلدینگ</option>
-                    </select>
+                    <div class="flex justify-between items-center mb-2">
+                      <label for="contact-message" class="text-slate-300 uppercase font-bold">
+                        [INPUT_05] SYSTEM OBJECTIVE / SPECIFICATIONS *
+                      </label>
+                      <span id="char-counter" class="text-slate-500 text-[10px]">0 chars</span>
+                    </div>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      rows="4"
+                      placeholder="Outline target search scale, current organic bottlenecks, and desired deployment horizon..."
+                      class="w-full px-4 py-3.5 bg-black border border-white/20 text-white placeholder:text-slate-600 focus:border-[#CCFF00] focus:outline-none transition-colors text-sm font-mono leading-relaxed"
+                      required
+                    ></textarea>
                   </div>
-                </div>
 
-                <!-- Message -->
-                <div>
-                  <div class="flex items-center justify-between mb-2">
-                    <label for="contact-message" class="block text-sm font-semibold text-slate-800">
-                      شرح نیاز یا اهداف کسب‌وکار شما <span class="text-rose-500">*</span>
+                  <div class="flex items-start gap-3 p-3.5 bg-black border border-white/10">
+                    <input
+                      type="checkbox"
+                      id="crawl-optin"
+                      name="crawl_optin"
+                      checked
+                      class="mt-1 accent-[#CCFF00]"
+                    />
+                    <label for="crawl-optin" class="text-slate-400 text-[11px] leading-relaxed cursor-pointer">
+                      Execute zero-strain read-only headless crawl on submit to deliver baseline telemetry within 60 minutes.
                     </label>
-                    <span id="char-counter" class="text-xs text-slate-400 font-mono">۰ حرف</span>
                   </div>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    required
-                    rows="5"
-                    placeholder="توضیح مختصری از اهداف مد نظر، کلمات کلیدی هدف یا چالش‌های فعلی وب‌سایت خود بنویسید..."
-                    class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/60 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all text-sm leading-relaxed"
-                  ></textarea>
-                </div>
-
-                <!-- Privacy & Submit Action -->
-                <div class="pt-2">
-                  <p class="text-xs text-slate-500 mb-5 leading-relaxed flex items-center gap-2">
-                    <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    اطلاعات شما نزد عصر سئو کاملاً محرمانه بوده و صرفاً برای تحلیل فنی و ارائه مشاوره استفاده خواهد شد.
-                  </p>
 
                   <button
                     type="submit"
                     data-submit-btn
-                    class="w-full py-4 px-6 rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-base shadow-md hover:shadow-xl shadow-blue-600/20 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                    class="btn-acid-yellow w-full py-4.5 px-8 text-black font-black uppercase text-sm tracking-wider flex items-center justify-center gap-3 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <span data-submit-idle class="flex items-center gap-2">
-                      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
-                      ارسال درخواست و استعلام مشاوره سئو
+                      <span>TRANSMIT RECON AUDIT REQUEST ↗</span>
                     </span>
-                    <span data-submit-busy class="hidden flex items-center gap-2">
-                      <svg class="w-5 h-5 animate-spin text-white" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      در حال ثبت و ارسال اطلاعات...
+                    <span data-submit-busy class="items-center gap-2" style="display: none;">
+                      <span>TRANSMITTING PAYLOAD...</span>
                     </span>
                   </button>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <!-- Sidebar Containers (5 Cols) -->
-          <div class="lg:col-span-5 space-y-6">
-            <!-- Working Hours & Live Status Card -->
-            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-xs">
-              <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
-                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
-                  ساعات کاری و پاسخگویی
-                </h3>
-                <span id="office-status-badge" class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  پاسخگویی آنلاین فعال
-                </span>
+                </form>
               </div>
-
-              <div class="space-y-4">
-                <div class="flex items-start justify-between text-sm py-2 border-b border-slate-100/70">
-                  <span class="text-slate-600 font-medium">شنبه تا چهارشنبه:</span>
-                  <span class="font-bold text-slate-900 font-mono">۹:۰۰ الی ۱۸:۰۰</span>
-                </div>
-                <div class="flex items-start justify-between text-sm py-2 border-b border-slate-100/70">
-                  <span class="text-slate-600 font-medium">پنج‌شنبه‌ها:</span>
-                  <span class="font-bold text-slate-900 font-mono">۹:۰۰ الی ۱۴:۰۰</span>
-                </div>
-                <div class="flex items-start justify-between text-sm py-2">
-                  <span class="text-slate-600 font-medium">جمعه‌ها و تعطیلات:</span>
-                  <span class="text-xs text-purple-700 bg-purple-50 font-bold px-2 py-0.5 rounded-md">پشتیبانی مانیتورینگ آنلاین</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Central Office Information -->
-            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-xs">
-              <h3 class="text-lg font-bold text-slate-900 mb-6 pb-4 border-b border-slate-100 flex items-center gap-2">
-                <svg class="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-                دفتر مرکزی و راه‌های ارتباطی
-              </h3>
-
-              <div class="space-y-5">
-                <div class="flex items-start gap-4">
-                  <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div class="min-w-0">
-                    <div class="text-xs text-slate-500 mb-0.5">تلفن مستقیم</div>
-                    <div class="font-bold text-slate-900 font-mono text-base" dir="ltr">
-                      <a href="tel:+989125811880" class="hover:text-blue-600 transition-colors">0912-581-1880</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="flex items-start gap-4">
-                  <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div class="min-w-0">
-                    <div class="text-xs text-slate-500 mb-0.5">ایمیل‌های رسمی</div>
-                    <div class="text-sm font-medium space-y-0.5 text-slate-800" dir="ltr">
-                      <div><a href="mailto:info@asreseo.com" class="hover:text-blue-600 transition-colors">info@asreseo.com</a></div>
-                      <div><a href="mailto:support@asreseo.com" class="hover:text-blue-600 transition-colors">support@asreseo.com</a></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="flex items-start gap-4">
-                  <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div class="min-w-0">
-                    <div class="text-xs text-slate-500 mb-0.5">نشانی مرکزی</div>
-                    <div class="text-sm font-medium text-slate-800 leading-relaxed">
-                      تهران، خیابان شریعتی (امکان برگزاری جلسات حضوری یا آنلاین)
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 24/7 Dark Mode Emergency Hotline -->
-            <div class="bg-linear-to-br from-slate-900 via-slate-950 to-indigo-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800">
-              <div class="flex items-center justify-between mb-4">
-                <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1 text-xs font-bold">
-                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                  خط اضطراری شبانه‌روزی
-                </span>
-                <span class="text-xs text-slate-400 font-mono">۲۴/۷</span>
-              </div>
-              <h3 class="text-lg font-bold text-white mb-2">پشتیبانی فوری مانیتورینگ سایت</h3>
-              <p class="text-slate-300 text-xs md:text-sm leading-relaxed mb-6">
-                برای شرایط بحرانی نظیر افت ناگهانی ترافیک، اخطارهای امنیتی سرچ کنسول یا قطعی فنی وب‌سایت در هر ساعت از شبانه‌روز.
-              </p>
-              <a
-                href="tel:+989125811880"
-                class="w-full py-3.5 px-4 rounded-xl bg-white text-slate-950 hover:bg-slate-100 font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-md"
-              >
-                <svg class="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                تماس فوری: ۰۹۱۲۵۸۱۱۸۸۰
-              </a>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Contact Micro-FAQ Section -->
-        <section class="mt-20 pt-12 border-t border-slate-200/80">
-          <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-10">
-              <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">راهنمای مراجعین</span>
-              <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-3 mb-2">پرسش‌های پرتکرار پیش از تماس</h2>
-              <p class="text-sm text-slate-600">پاسخ به سوالات رایج کارفرمایان درباره فرآیند مشاوره و شروع همکاری</p>
+      <!-- 3. Trust & Protocol Certifications Strip -->
+      <section class="py-12 border-b-2 border-white/10 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 font-mono text-xs text-center">
+            <div class="p-4 border border-white/15 bg-[#0a0e17]">
+              <div class="text-[#CCFF00] font-bold mb-1">SOC2 TYPE II</div>
+              <div class="text-slate-400">Certified Compliance</div>
             </div>
-
-            <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200/90 shadow-xs">
-              <Accordion type="single" collapsible class="w-full" dir="rtl">
-                {contactFaqs.map((faq, index) => (
-                  <AccordionItem value={`contact-faq-${index}`} class="border-b border-slate-100 last:border-none py-2">
-                    <AccordionTrigger class="text-right text-base font-semibold text-slate-900 hover:text-blue-600 py-3">
-                      {faq.q}
-                    </AccordionTrigger>
-                    <AccordionContent class="text-right text-slate-600 text-sm leading-relaxed pt-1 pb-4">
-                      {faq.a}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+            <div class="p-4 border border-white/15 bg-[#0a0e17]">
+              <div class="text-[#CCFF00] font-bold mb-1">READ-ONLY SAFE</div>
+              <div class="text-slate-400">Zero Server Strain Crawl</div>
+            </div>
+            <div class="p-4 border border-white/15 bg-[#0a0e17]">
+              <div class="text-[#CCFF00] font-bold mb-1">STRICT NDA</div>
+              <div class="text-slate-400">Enterprise Non-Disclosure</div>
+            </div>
+            <div class="p-4 border border-white/15 bg-[#0a0e17]">
+              <div class="text-[#CCFF00] font-bold mb-1">60-MIN SLA</div>
+              <div class="text-slate-400">Guaranteed Rapid Response</div>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <!-- 4. FAQ Terminal Accordion -->
+      <section class="py-20 bg-[#05070d]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[PROTOCOL_FAQS]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Dispatch Telemetry FAQs</h2>
+            </div>
+            <p class="text-slate-400 text-sm max-w-md">Key architectural inquiries regarding ingestion timelines and system access.</p>
+          </div>
+
+          <div class="space-y-4 max-w-4xl">
+            {faqs.map((faq, i) => (
+              <details class="group bg-[#0a0e17] border-2 border-white/15 open:border-[#CCFF00] p-6 transition-all">
+                <summary class="flex justify-between items-center cursor-pointer list-none font-bold uppercase text-white font-sans text-base sm:text-lg">
+                  <span class="flex items-center gap-3">
+                    <span class="font-mono text-xs text-[#CCFF00]">0{i + 1} //</span>
+                    <span>{faq.q}</span>
+                  </span>
+                  <span class="text-[#CCFF00] text-xl font-mono group-open:rotate-45 transition-transform">+</span>
+                </summary>
+                <div class="mt-4 pt-4 border-t border-white/10 text-slate-300 text-sm leading-relaxed font-sans">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
-    <Footer />
+    <Footer lang="en" />
   </div>
 </BaseLayout>
 
 <script>
   function setupContactForm() {
-    const form = document.querySelector('[data-contact-form]') as HTMLFormElement | null;
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
     if (!form || form.dataset.bound === 'true') return;
     form.dataset.bound = 'true';
 
@@ -616,153 +393,42 @@ const contactFaqSchema = {
     const errorTitle = document.getElementById('error-banner-title');
     const errorText = document.getElementById('error-banner-text');
     const trackingIdSpan = document.getElementById('success-tracking-id');
-
-    const phoneInput = form.querySelector('#contact-phone') as HTMLInputElement | null;
-    const phoneValidBadge = document.getElementById('phone-valid-badge');
     const messageInput = form.querySelector('#contact-message') as HTMLTextAreaElement | null;
     const charCounter = document.getElementById('char-counter');
 
-    // Copy Phone Number Functionality
-    document.querySelectorAll('[data-copy-phone]').forEach((btnEl) => {
-      btnEl.addEventListener('click', async () => {
-        const num = btnEl.getAttribute('data-copy-phone') || '09125811880';
-        try {
-          await navigator.clipboard.writeText(num);
-          const originalTitle = btnEl.getAttribute('title') || 'کپی شماره';
-          btnEl.setAttribute('title', 'کپی شد!');
-          btnEl.classList.add('text-emerald-600');
-          setTimeout(() => {
-            btnEl.setAttribute('title', originalTitle);
-            btnEl.classList.remove('text-emerald-600');
-          }, 2000);
-        } catch {
-          // fallback if clipboard api fails
-        }
-      });
-    });
-
-    // Normalize Persian/Arabic digits to ASCII 0-9
-    const normalizeDigits = (str: string): string => {
-      return str
-        .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
-        .replace(/[٠-٩]/g, (d) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)));
-    };
-
-    // Live phone formatting and checkmark
-    if (phoneInput) {
-      phoneInput.addEventListener('input', () => {
-        const raw = phoneInput.value;
-        const normalized = normalizeDigits(raw).replace(/[^\d+]/g, '');
-        if (raw !== normalized) {
-          phoneInput.value = normalized;
-        }
-
-        let cleanPhone = normalized.replace(/[\s-]/g, '');
-        if (cleanPhone.startsWith('+98')) cleanPhone = '0' + cleanPhone.slice(3);
-        else if (cleanPhone.startsWith('0098')) cleanPhone = '0' + cleanPhone.slice(4);
-        else if (cleanPhone.startsWith('98')) cleanPhone = '0' + cleanPhone.slice(2);
-        else if (cleanPhone.startsWith('9') && cleanPhone.length === 10) cleanPhone = '0' + cleanPhone;
-
-        if (/^09\d{9}$/.test(cleanPhone)) {
-          phoneValidBadge?.classList.remove('hidden');
-          phoneValidBadge?.classList.add('inline-flex');
-        } else {
-          phoneValidBadge?.classList.add('hidden');
-          phoneValidBadge?.classList.remove('inline-flex');
-        }
-      });
-    }
-
-    // Live character counter for message
     if (messageInput && charCounter) {
       messageInput.addEventListener('input', () => {
         const len = messageInput.value.length;
-        charCounter.textContent = `${len} حرف`;
-        if (len >= 10) {
-          charCounter.classList.add('text-emerald-600');
-          charCounter.classList.remove('text-rose-500');
-        } else if (len > 0) {
-          charCounter.classList.add('text-rose-500');
-          charCounter.classList.remove('text-emerald-600');
-        } else {
-          charCounter.classList.remove('text-emerald-600', 'text-rose-500');
-        }
+        charCounter.textContent = `${len} chars`;
       });
     }
 
-    // Form Submission
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-
-      if (successBanner) successBanner.classList.add('hidden');
       if (errorBanner) errorBanner.classList.add('hidden');
+      if (successBanner) successBanner.classList.add('hidden');
 
-      const nameInput = form.querySelector('#contact-name') as HTMLInputElement | null;
-      const emailInput = form.querySelector('#contact-email') as HTMLInputElement | null;
-      const websiteInput = form.querySelector('#contact-website') as HTMLInputElement | null;
-      const serviceSelect = form.querySelector('#contact-service') as HTMLSelectElement | null;
-      const scaleSelect = form.querySelector('#contact-scale') as HTMLSelectElement | null;
+      const website = ((form.querySelector('#contact-website') as HTMLInputElement)?.value || '').trim();
+      const email = ((form.querySelector('#contact-email') as HTMLInputElement)?.value || '').trim();
+      const name = ((form.querySelector('#contact-name') as HTMLInputElement)?.value || '').trim();
+      const service = ((form.querySelector('#contact-service') as HTMLSelectElement)?.value || '').trim();
+      const message = ((form.querySelector('#contact-message') as HTMLTextAreaElement)?.value || '').trim();
 
-      const name = nameInput?.value.trim() || '';
-      const email = emailInput?.value.trim() || '';
-      let phone = phoneInput?.value.trim() || '';
-      const website = websiteInput?.value.trim() || '';
-      const service = serviceSelect?.value || 'سئو و رتبه‌بندی در گوگل';
-      const scale = scaleSelect?.value || '';
-      let message = messageInput?.value.trim() || '';
-
-      if (phone) {
-        phone = normalizeDigits(phone).replace(/[\s-]/g, '');
-        if (phone.startsWith('+98')) phone = '0' + phone.slice(3);
-        else if (phone.startsWith('0098')) phone = '0' + phone.slice(4);
-        else if (phone.startsWith('98')) phone = '0' + phone.slice(2);
-        else if (phone.startsWith('9') && phone.length === 10) phone = '0' + phone;
-        if (phoneInput) phoneInput.value = phone;
-      }
-
-      // Validations
-      if (!name) {
-        showError('نام الزامی است', 'لطفاً نام و نام خانوادگی خود را وارد نمایید.');
-        nameInput?.focus();
-        return;
-      }
-      if (!phone || !/^09\d{9}$/.test(phone)) {
-        showError('شماره همراه نامعتبر است', 'شماره همراه باید ۱۱ رقم و با ۰۹ شروع شود (مثال: ۰۹۱۲۳۴۵۶۷۸۹).');
-        phoneInput?.focus();
-        return;
-      }
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-        showError('ایمیل نامعتبر است', 'لطفاً یک آدرس ایمیل معتبر وارد کنید (مثال: info@company.com).');
-        emailInput?.focus();
-        return;
-      }
-      if (!message || message.length < 10) {
-        showError('پیام بسیار کوتاه است', 'لطفاً شرح مختصری از اهداف یا نیاز پروژه خود (حداقل ۱۰ حرف) بنویسید.');
-        messageInput?.focus();
+      if (!website || !email || !name || !message) {
+        showError('VALIDATION_ERROR', 'All required fields marked with * must be populated.');
         return;
       }
 
-      // Append website & scale to message for full context on backend
-      let fullMessage = message;
-      const extraNotes: string[] = [];
-      if (website) extraNotes.push(`وب‌سایت: ${website}`);
-      if (scale) extraNotes.push(`مقیاس پروژه: ${scale}`);
-      if (extraNotes.length > 0) {
-        fullMessage = `[${extraNotes.join(' | ')}]\n\n${message}`;
-      }
-
-      // Set busy state
       btn?.setAttribute('disabled', 'true');
       idle?.classList.add('hidden');
-      busy?.classList.remove('hidden');
+      if (busy) busy.style.display = 'flex';
 
       try {
         const formData = new FormData();
         formData.set('name', name);
-        formData.set('phone', phone);
         formData.set('email', email);
         formData.set('service', service);
-        formData.set('message', fullMessage);
+        formData.set('message', `[Target Domain: ${website}]\n\n${message}`);
 
         const response = await fetch('/api/send-email', {
           method: 'POST',
@@ -772,7 +438,7 @@ const contactFaqSchema = {
         const result = await response.json();
 
         if (!response.ok || result.error) {
-          showError('خطا در ارسال اطلاعات', result.error || 'ارسال پیام با مشکل مواجه شد. لطفاً دوباره تلاش فرمایید.');
+          showError('SUBMISSION_FAILED', result.error || 'Transmission failed. Direct email: info@asreseo.com');
         } else {
           if (successBanner) {
             if (trackingIdSpan) {
@@ -783,15 +449,14 @@ const contactFaqSchema = {
             successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
           form.reset();
-          if (charCounter) charCounter.textContent = '۰ حرف';
-          if (phoneValidBadge) phoneValidBadge.classList.add('hidden');
+          if (charCounter) charCounter.textContent = '0 chars';
         }
       } catch {
-        showError('خطای ارتباط با سرور', 'اتصال اینترنت را بررسی کرده و مجدداً تلاش کنید، یا مستقیماً با ۰۹۱۲۵۸۱۱۸۸۰ تماس بگیرید.');
+        showError('NETWORK_ERROR', 'Network connection interrupted. Direct inquiries: info@asreseo.com');
       } finally {
         btn?.removeAttribute('disabled');
         idle?.classList.remove('hidden');
-        busy?.classList.add('hidden');
+        if (busy) busy.style.display = 'none';
       }
     });
 
@@ -808,4 +473,3 @@ const contactFaqSchema = {
   setupContactForm();
   document.addEventListener('astro:page-load', setupContactForm);
 </script>
-
