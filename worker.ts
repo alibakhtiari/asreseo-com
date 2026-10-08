@@ -95,6 +95,141 @@ const REDIRECT_MAP: Record<string, string> = {
   '/consultation/': '/contact/',
 };
 
+/** A2A Agent Card manifest per A2A Protocol Specification */
+const AGENT_CARD = {
+  $schema: 'https://a2a-protocol.org/schemas/v1.0/agent-card.json',
+  protocolVersion: '0.3.0',
+  name: 'AsreSEO',
+  version: '1.0.1',
+  description:
+    'Public agent interface and discovery card for AsreSEO — leading digital marketing and enterprise AI agency specializing in professional SEO, AI services, automated workflows, and MCP edge tools.',
+  url: 'https://asreseo.com',
+  preferredTransport: 'HTTP+JSON',
+  provider: {
+    organization: 'AsreSEO',
+    url: 'https://asreseo.com/',
+  },
+  documentationUrl: 'https://asreseo.com/llms.txt',
+  iconUrl: 'https://asreseo.com/Logo.svg',
+  supportedInterfaces: [
+    {
+      url: 'https://asreseo.com',
+      transport: 'HTTP+JSON',
+      protocolBinding: 'HTTP+JSON',
+      protocolVersion: '1.0',
+    },
+  ],
+  additionalInterfaces: [
+    {
+      url: 'https://asreseo.com',
+      transport: 'HTTP+JSON',
+    },
+  ],
+  capabilities: {
+    streaming: false,
+    pushNotifications: false,
+    stateTransitionHistory: false,
+  },
+  defaultInputModes: ['application/json', 'text/plain'],
+  defaultOutputModes: ['application/json', 'text/plain'],
+  skills: [
+    {
+      id: 'services-catalog',
+      name: 'Service Catalog',
+      description:
+        'Discover AsreSEO core offerings across SEO (Technical & On-Page, Content & Page Authority, Local SEO), AI Services (Content Creation, Analysis & Strategy, Marketing & Engagement), Marketing & Google Ads, and SEO Web Design.',
+      tags: ['services', 'seo', 'ai-services', 'digital-marketing', 'web-development'],
+      examples: [
+        'What services does AsreSEO offer?',
+        'Tell me about AsreSEO technical SEO services',
+        'How does AsreSEO implement AI content creation?',
+      ],
+    },
+    {
+      id: 'consultation-and-contact',
+      name: 'Consultation & Contact Dispatch',
+      description:
+        'Submit inquiries for free website SEO audits, AI workflow assessments, custom digital marketing packages, and direct dispatch to AsreSEO specialists.',
+      tags: ['consultation', 'audit', 'contact', 'quote'],
+      examples: [
+        'How can I book a free SEO consultation?',
+        'What is the contact email for AsreSEO?',
+        'Submit an inquiry for technical SEO audit',
+      ],
+    },
+    {
+      id: 'mcp-and-automation',
+      name: 'MCP Gateway & Automation Infrastructure',
+      description:
+        'Query information about AsreSEO Command Center edge MCP gateway (32 tools for Claude/Cursor/Antigravity), self-hosted n8n automation cluster, and open-source community nodes.',
+      tags: ['mcp', 'automation', 'n8n', 'ai-agents', 'telemetry'],
+      examples: [
+        'What MCP tools does AsreSEO support?',
+        'Describe the AsreSEO n8n workflow cluster',
+        'Where are open-source n8n nodes by Ali Bakhtiari?',
+      ],
+    },
+    {
+      id: 'portfolio-and-proof-of-work',
+      name: 'Portfolio & Case Studies Archive',
+      description:
+        'Explore verified case studies and telemetry yields including programmatic SEO, sub-90ms edge TTFB optimization, and autonomous orphan URL recovery via IndexNow.',
+      tags: ['portfolio', 'case-studies', 'results', 'proof-of-work'],
+      examples: [
+        'What results has AsreSEO achieved in SEO case studies?',
+        'Tell me about the FinTech scaleup case study',
+      ],
+    },
+  ],
+};
+
+/** RFC 9727 and RFC 9264 API Catalog Linkset */
+const API_CATALOG = {
+  linkset: [
+    {
+      anchor: 'https://asreseo.com/',
+      'service-desc': [
+        {
+          href: 'https://asreseo.com/openapi.json',
+          type: 'application/json',
+          title: 'OpenAPI Specification',
+        },
+        {
+          href: 'https://asreseo.com/api/send-email',
+          type: 'application/json',
+          title: 'Contact and Consultation Dispatch Endpoint',
+        },
+      ],
+      'service-doc': [
+        {
+          href: 'https://asreseo.com/llms.txt',
+          type: 'text/plain',
+          title: 'LLM Context and Service Summary',
+        },
+        {
+          href: 'https://asreseo.com/llms-full.txt',
+          type: 'text/plain',
+          title: 'Full LLM Documentation',
+        },
+      ],
+      'service-meta': [
+        {
+          href: 'https://asreseo.com/.well-known/agent-card.json',
+          type: 'application/json',
+          title: 'A2A Agent Card',
+        },
+      ],
+      describedby: [
+        {
+          href: 'https://asreseo.com/llms.txt',
+          type: 'text/plain',
+          title: 'Site and Agent Context',
+        },
+      ],
+    },
+  ],
+};
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
@@ -108,6 +243,57 @@ export default {
         status: 405,
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
       });
+    }
+
+    // 1b. A2A Agent Card endpoint (/.well-known/agent-card.json)
+    if (url.pathname === '/.well-known/agent-card.json') {
+      if (request.method !== 'GET' && request.method !== 'HEAD') {
+        return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
+          status: 405,
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        });
+      }
+      const headers = new Headers({
+        'Content-Type': 'application/json; charset=utf-8',
+        'Cache-Control': 'public, max-age=86400',
+        'X-Content-Type-Options': 'nosniff',
+        Link:
+          '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", ' +
+          '</openapi.json>; rel="service-desc"; type="application/json", ' +
+          '</llms.txt>; rel="service-doc"; type="text/plain"',
+      });
+      return new Response(
+        request.method === 'HEAD' ? null : JSON.stringify(AGENT_CARD, null, 2),
+        {
+          status: 200,
+          headers,
+        },
+      );
+    }
+
+    // 1c. RFC 9727 API Catalog endpoint (/.well-known/api-catalog and .json)
+    if (
+      url.pathname === '/.well-known/api-catalog' ||
+      url.pathname === '/.well-known/api-catalog.json'
+    ) {
+      if (request.method !== 'GET' && request.method !== 'HEAD') {
+        return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
+          status: 405,
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        });
+      }
+      const headers = new Headers({
+        'Content-Type': 'application/linkset+json; charset=utf-8',
+        'Cache-Control': 'public, max-age=86400',
+        'X-Content-Type-Options': 'nosniff',
+      });
+      return new Response(
+        request.method === 'HEAD' ? null : JSON.stringify(API_CATALOG, null, 2),
+        {
+          status: 200,
+          headers,
+        },
+      );
     }
 
     // 2. Static redirect matching
@@ -184,8 +370,32 @@ export default {
       pathname.endsWith('.xml')
     ) {
       headers.set('Cache-Control', 'public, max-age=86400');
+    } else if (
+      pathname === '/.well-known/agent-card.json' ||
+      pathname === '/.well-known/api-catalog' ||
+      pathname === '/.well-known/api-catalog.json' ||
+      pathname === '/openapi.json'
+    ) {
+      headers.set('Cache-Control', 'public, max-age=86400');
     } else {
       headers.set('Cache-Control', 'public, max-age=3600');
+    }
+
+    // 6. Agent discovery Link response headers (RFC 8288, RFC 9727 Section 3)
+    if (pathname === '/' || pathname === '/index.html') {
+      headers.set(
+        'Link',
+        '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", ' +
+          '</openapi.json>; rel="service-desc"; type="application/json", ' +
+          '</llms.txt>; rel="service-doc"; type="text/plain", ' +
+          '</llms-full.txt>; rel="service-doc"; type="text/plain", ' +
+          '</.well-known/agent-card.json>; rel="service-meta"; type="application/json", ' +
+          '</llms.txt>; rel="describedby"; type="text/plain", ' +
+          '</sitemap-index.xml>; rel="sitemap"; type="application/xml", ' +
+          '</robots.txt>; rel="robots"; type="text/plain"',
+      );
+    } else if (pathname === '/openapi.json') {
+      headers.set('Content-Type', 'application/json; charset=utf-8');
     }
 
     const body =

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://a2a-protocol.org/schemas/v1.0/agent-card.json",
+  "protocolVersion": "0.3.0",
+  "name": "AsreSEO",
+  "version": "1.0.1",
+  "description": "Public agent interface and discovery card for AsreSEO — leading digital marketing and enterprise AI agency specializing in professional SEO, AI services, automated workflows, and MCP edge tools.",
+  "url": "https://asreseo.com",
+  "preferredTransport": "HTTP+JSON",
+  "provider": {
+    "organization": "AsreSEO",
+    "url": "https://asreseo.com/"
+  },
+  "documentationUrl": "https://asreseo.com/llms.txt",
+  "iconUrl": "https://asreseo.com/Logo.svg",
+  "supportedInterfaces": [
+    {
+      "url": "https://asreseo.com",
+      "transport": "HTTP+JSON",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "additionalInterfaces": [
+    {
+      "url": "https://asreseo.com",
+      "transport": "HTTP+JSON"
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "defaultInputModes": [
+    "application/json",
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "application/json",
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "services-catalog",
+      "name": "Service Catalog",
+      "description": "Discover AsreSEO core offerings across SEO (Technical & On-Page, Content & Page Authority, Local SEO), AI Services (Content Creation, Analysis & Strategy, Marketing & Engagement), Marketing & Google Ads, and SEO Web Design.",
+      "tags": [
+        "services",
+        "seo",
+        "ai-services",
+        "digital-marketing",
+        "web-development"
+      ],
+      "examples": [
+        "What services does AsreSEO offer?",
+        "Tell me about AsreSEO technical SEO services",
+        "How does AsreSEO implement AI content creation?"
+      ]
+    },
+    {
+      "id": "consultation-and-contact",
+      "name": "Consultation & Contact Dispatch",
+      "description": "Submit inquiries for free website SEO audits, AI workflow assessments, custom digital marketing packages, and direct dispatch to AsreSEO specialists.",
+      "tags": [
+        "consultation",
+        "audit",
+        "contact",
+        "quote"
+      ],
+      "examples": [
+        "How can I book a free SEO consultation?",
+        "What is the contact email for AsreSEO?",
+        "Submit an inquiry for technical SEO audit"
+      ]
+    },
+    {
+      "id": "mcp-and-automation",
+      "name": "MCP Gateway & Automation Infrastructure",
+      "description": "Query information about AsreSEO Command Center edge MCP gateway (32 tools for Claude/Cursor/Antigravity), self-hosted n8n automation cluster, and open-source community nodes.",
+      "tags": [
+        "mcp",
+        "automation",
+        "n8n",
+        "ai-agents",
+        "telemetry"
+      ],
+      "examples": [
+        "What MCP tools does AsreSEO support?",
+        "Describe the AsreSEO n8n workflow cluster",
+        "Where are open-source n8n nodes by Ali Bakhtiari?"
+      ]
+    },
+    {
+      "id": "portfolio-and-proof-of-work",
+      "name": "Portfolio & Case Studies Archive",
+      "description": "Explore verified case studies and telemetry yields including programmatic SEO, sub-90ms edge TTFB optimization, and autonomous orphan URL recovery via IndexNow.",
+      "tags": [
+        "portfolio",
+        "case-studies",
+        "results",
+        "proof-of-work"
+      ],
+      "examples": [
+        "What results has AsreSEO achieved in SEO case studies?",
+        "Tell me about the FinTech scaleup case study"
+      ]
+    }
+  ]
+}

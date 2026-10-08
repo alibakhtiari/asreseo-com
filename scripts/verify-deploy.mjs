@@ -76,7 +76,7 @@ for (const p of ['/sitemap-index.xml', '/sitemap-0.xml']) {
   }
 }
 
-// ------------------------------------------------------------------ llms.txt
+// ------------------------------------------------------------------ llms.txt & Agent Discovery
 console.log('\nAI discovery');
 for (const p of ['/llms.txt', '/llms-full.txt']) {
   try {
@@ -92,6 +92,43 @@ for (const p of ['/llms.txt', '/llms-full.txt']) {
   } catch (e) {
     bad(`${p} fetch`, e.message);
   }
+}
+
+// ---------------------------------------------------- A2A & RFC 9727 Discovery
+console.log('\nA2A & Agent Discovery Manifests');
+try {
+  const { res, body } = await get('/.well-known/agent-card.json');
+  check(res.status === 200, '/.well-known/agent-card.json serves 200', `status ${res.status}`);
+  const card = JSON.parse(body || '{}');
+  check(card.name === 'AsreSEO', 'Agent Card has correct name', card.name);
+  check(Boolean(card.version && card.description), 'Agent Card has version & description');
+  check(Array.isArray(card.supportedInterfaces) && card.supportedInterfaces.length > 0, 'Agent Card declares supportedInterfaces');
+  check(Boolean(card.capabilities && typeof card.capabilities === 'object'), 'Agent Card declares capabilities');
+  check(Array.isArray(card.skills) && card.skills.length > 0, 'Agent Card declares skills');
+  check(
+    card.skills.every((s) => s.id && s.name && s.description),
+    'Agent Card skills have id, name, and description',
+  );
+} catch (e) {
+  bad('/.well-known/agent-card.json fetch', e.message);
+}
+
+try {
+  const { res, body } = await get('/.well-known/api-catalog');
+  check(res.status === 200, '/.well-known/api-catalog serves 200', `status ${res.status}`);
+  const catalog = JSON.parse(body || '{}');
+  check(Array.isArray(catalog.linkset), 'API Catalog has valid RFC 9264 linkset');
+} catch (e) {
+  bad('/.well-known/api-catalog fetch', e.message);
+}
+
+try {
+  const { res, body } = await get('/openapi.json');
+  check(res.status === 200, '/openapi.json serves 200', `status ${res.status}`);
+  const oas = JSON.parse(body || '{}');
+  check(Boolean(oas.openapi && oas.paths), 'openapi.json has valid OpenAPI structure');
+} catch (e) {
+  bad('/openapi.json fetch', e.message);
 }
 
 // ------------------------------------------------------------ cache headers
@@ -125,6 +162,15 @@ try {
     csp.includes("default-src 'self'") && csp.includes("frame-ancestors 'none'"),
     'CSP present with baseline directives',
     csp ? 'applied' : '(missing)',
+  );
+  const linkHeader = res.headers.get('link') || '';
+  check(
+    linkHeader.includes('rel="api-catalog"') &&
+      linkHeader.includes('rel="service-desc"') &&
+      linkHeader.includes('rel="service-doc"') &&
+      linkHeader.includes('rel="describedby"'),
+    'Link response headers present on homepage (RFC 8288, RFC 9727 Section 3)',
+    linkHeader ? 'relations declared' : '(missing)',
   );
   // Asset rules in public/_headers detach + re-set Cache-Control ("! Cache-Control").
   // A joined value here means the detach stopped working and TTLs truncate again.

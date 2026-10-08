@@ -101,3 +101,30 @@
 /robots.txt
   ! Cache-Control
   Cache-Control: public, max-age=86400
+
+# Agent discovery Link header on homepage (RFC 8288, RFC 9727 Section 3)
+/
+  Link: </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </openapi.json>; rel="service-desc"; type="application/json", </llms.txt>; rel="service-doc"; type="text/plain", </llms-full.txt>; rel="service-doc"; type="text/plain", </.well-known/agent-card.json>; rel="service-meta"; type="application/json", </llms.txt>; rel="describedby"; type="text/plain", </sitemap-index.xml>; rel="sitemap"; type="application/xml", </robots.txt>; rel="robots"; type="text/plain"
+
+# A2A Agent Card, API catalog, and OpenAPI discovery endpoints
+/.well-known/agent-card.json
+  ! Cache-Control
+  Cache-Control: public, max-age=86400
+  Content-Type: application/json; charset=utf-8
+  Link: </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </openapi.json>; rel="service-desc"; type="application/json", </llms.txt>; rel="service-doc"; type="text/plain"
+
+/.well-known/api-catalog
+  ! Cache-Control
+  Cache-Control: public, max-age=86400
+  Content-Type: application/linkset+json; charset=utf-8
+
+/.well-known/api-catalog.json
+  ! Cache-Control
+  Cache-Control: public, max-age=86400
+  Content-Type: application/linkset+json; charset=utf-8
+
+/openapi.json
+  ! Cache-Control
+  Cache-Control: public, max-age=86400
+  Content-Type: application/json; charset=utf-8
+
