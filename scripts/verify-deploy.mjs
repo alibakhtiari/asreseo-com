@@ -332,7 +332,7 @@ const jsonLdProbe = [
   '/', // two components emit Services here — the @id collision case
   '/services/seo/',
   '/services/ai/', // money page
-  '/consultation/', // this page's areaServed was the string 'IR'
+  '/contact/', // unified consultation and dispatch terminal
   '/services/content/translation/', // the only 'Worldwide' node
   '/blog/geo-ai-citations/',
 ];

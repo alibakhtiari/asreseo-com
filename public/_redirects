@@ -77,3 +77,7 @@
 /services/seo/link-building /services/seo/content-authority/ 301
 /services/seo/analysis /services/seo/technical-onpage/ 301
 /services/seo/training /services/seo/ 301
+
+# Consultation -> Contact Terminal (Merged Pages)
+/consultation /contact/ 301
+/consultation/ /contact/ 301

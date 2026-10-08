@@ -50,8 +50,7 @@ export const MAIN_PAGES: Link[] = [
   { label: 'Blog', path: '/blog/' },
   { label: 'Portfolio', path: '/portfolio/' },
   { label: 'FAQ', path: '/faq/' },
-  { label: 'Free Consultation', path: '/consultation/' },
-  { label: 'Contact', path: '/contact/' },
+  { label: 'Free Consultation & Dispatch', path: '/contact/' },
   { label: 'Support', path: '/support/' },
   { label: 'HTML Sitemap', path: '/sitemap/' },
 ];

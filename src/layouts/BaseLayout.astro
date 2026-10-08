@@ -136,13 +136,8 @@ import '../styles/globals.css';
     <meta name="twitter:image" content={primaryTwitterImage} />
     <meta name="twitter:site" content="@asreseo" />
     <meta name="twitter:creator" content="@asreseo" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@400..700&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@400..700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@400..700&display=swap" rel="stylesheet" />
-    </noscript>
+    <!-- Preload Self-Hosted Critical Variable Font for Zero-CLS Initial Paint -->
+    <link rel="preload" href="/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
     <slot name="head" />
   </head>
   <body class="font-sans antialiased bg-[#000000] text-slate-100 selection:bg-[#CCFF00] selection:text-black">

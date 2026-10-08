@@ -1,4 +1,5 @@
 ---
+import { withServiceMeta } from '../../lib/service-schema';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Layout/Header.astro';
 import Footer from '../../components/Layout/Footer.astro';
@@ -7,17 +8,32 @@ import Button from '../../components/ui/button/Button.astro';
 import Icon from '../../components/ui/Icon.astro';
 
 const lang = 'en' as const;
-const localize = (p: string) => p;
 
 const breadcrumbs = [
   { position: 1, name: 'Home', item: 'https://asreseo.com/' },
-  { position: 2, name: 'Contact & Dispatch Terminal', item: 'https://asreseo.com/contact/' },
+  { position: 2, name: 'Contact & Consultation Terminal', item: 'https://asreseo.com/contact/' },
 ];
 
 const faqs = [
   {
+    q: 'Is the 30-minute technical deep dive completely free of obligation?',
+    a: 'Yes. Your technical session with AsreSEO principal engineers is 100% free with zero contractual pressure. We evaluate crawl budget feasibility, knowledge graph coverage, and provide actionable architectural insights.',
+  },
+  {
+    q: 'What is the format and duration of the consultation session?',
+    a: 'A 30-minute high-signal video call (Google Meet or Zoom) with a senior search systems engineer, analyzing your live domain logs, indexing latency, and LLM citation presence.',
+  },
+  {
+    q: 'What technical deliverables do we receive following the call?',
+    a: 'A prioritized technical audit summary, entity coverage diagnostic, and a deterministic step-by-step implementation roadmap for your engineering and growth teams.',
+  },
+  {
+    q: 'How quickly is our reconnaissance or session confirmed?',
+    a: 'Upon transmitting your parameters below, our lead dispatch will confirm your time slot or deliver baseline reconnaissance telemetry within 60 to 120 minutes.',
+  },
+  {
     q: 'How quickly do automated crawl nodes begin ingestion?',
-    a: 'Upon transmission of your domain coordinates and confirmation of ownership or authorization, our headless edge bots begin non-invasive crawling within 60 minutes.',
+    a: 'Upon transmission of your domain coordinates and confirmation of authorization, our headless edge bots begin non-invasive crawling within 60 minutes.',
   },
   {
     q: 'Do you require code repository or CMS access?',
@@ -32,19 +48,42 @@ const faqs = [
     a: 'Following the initial Day 1 recon, our vector pipeline constructs and deploys the entire programmatic entity topology within 7 business days.',
   },
 ];
+
+const contactServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Technical SEO, Systems Consultation & Recon Dispatch',
+  name: 'Technical SEO & Architecture Consultation Deep Dive',
+  provider: { '@type': 'Organization', name: 'AsreSEO', url: 'https://asreseo.com/' },
+  inLanguage: 'en-US',
+  areaServed: { '@type': 'Country', name: 'Global' },
+  description: 'Schedule a 30-minute technical SEO deep dive or dispatch reconnaissance payloads directly to AsreSEO systems engineers.',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 <BaseLayout
   lang="en"
-  title='Contact Us & Command Dispatch Terminal | AsreSEO'
-  description='Connect directly with ASRESEO principal engineers. Zero marketing fluff. Instant telemetry dispatch and domain recon within 60 minutes.'
-  keywords='contact AsreSEO, SEO dispatch, enterprise SEO recon, technical SEO consultation, AI search engineers'
-  canonical='/contact/'
-  ogType='website'
-  ogUrl='https://asreseo.com/contact/'
-  ogImages={[{ url: '/og/contact-hero.png', width: 1200, height: 630, alt: 'AsreSEO Dispatch Terminal' }]}
-  twitterCard='summary_large_image'
+  title="Contact & Technical Consultation Terminal | AsreSEO"
+  description="Connect directly with ASRESEO principal engineers. Schedule a 30-minute architecture deep dive or dispatch domain reconnaissance payloads within 60 minutes."
+  keywords="contact AsreSEO, SEO consultation, technical SEO deep dive, enterprise SEO recon, AI search engineers, crawl budget audit"
+  canonical="/contact/"
+  ogType="website"
+  ogUrl="https://asreseo.com/contact/"
+  ogImages={[{ url: '/og/contact-hero.png', width: 1200, height: 630, alt: 'AsreSEO Dispatch & Consultation Terminal' }]}
+  twitterCard="summary_large_image"
 >
   <BreadcrumbStructuredData items={breadcrumbs} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(contactServiceSchema, { url: 'https://asreseo.com/contact/', image: '/og-default.png' }))} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
 
   <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
     <Header lang="en" />
@@ -55,17 +94,19 @@ const faqs = [
           <div class="max-w-5xl">
             <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#0a0d14] border border-white/20 mb-8 font-mono text-xs tracking-wider uppercase">
               <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
-              <span class="text-[#CCFF00] font-bold">[SECURE_DISPATCH // INITIATE_COMMUNICATION]</span>
+              <span class="text-[#CCFF00] font-bold">[SECURE_DISPATCH // ARCHITECTURE_CONSULTATION]</span>
               <span class="text-slate-500">|</span>
               <span class="text-slate-300">SLA: 60_MIN_DISPATCH</span>
+              <span class="text-slate-500 hidden sm:inline">|</span>
+              <span class="text-emerald-400 font-bold hidden sm:inline">ZERO SALES PRESSURE</span>
             </div>
 
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white mb-6 tracking-tight leading-[1.05]">
-              Deploy Enterprise Recon or <span class="text-[#CCFF00]">Initiate Retainer</span>.
+              Deploy Enterprise Recon or <span class="text-[#CCFF00]">Book Consultation</span>.
             </h1>
 
             <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl">
-              Connect directly with ASRESEO principal engineers. Zero marketing friction, zero junior account managers. Instant telemetry dispatch within 60 minutes.
+              Connect directly with ASRESEO principal engineers. Zero marketing friction, zero junior sales reps. Schedule a 30-minute technical architecture deep dive or dispatch reconnaissance payloads within 60 minutes.
             </p>
           </div>
         </div>
@@ -77,6 +118,7 @@ const faqs = [
           <div class="grid lg:grid-cols-12 gap-12">
             <!-- Left Column: Direct Telemetry & Coordinates -->
             <div class="lg:col-span-5 space-y-8 font-mono text-xs">
+              <!-- Telemetry Status Card -->
               <div class="p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card space-y-4">
                 <div class="text-[#CCFF00] uppercase font-bold text-sm pb-3 border-b border-white/10 flex justify-between items-center">
                   <span>TELEMETRY_NODE_STATUS</span>
@@ -94,6 +136,10 @@ const faqs = [
                   <div class="flex justify-between">
                     <span class="text-slate-500">Active Crawl Rate:</span>
                     <span class="text-white font-bold">482 req/sec</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-500">Consultation Format:</span>
+                    <span class="text-white font-bold">30-Min Video Call</span>
                   </div>
                   <div class="flex justify-between">
                     <span class="text-slate-500">PGP Key Fingerprint:</span>
@@ -152,7 +198,7 @@ const faqs = [
                   </span>
                 </div>
                 <p class="text-slate-300 text-xs">
-                  Prefer direct instant messaging or voice dispatch instead of filling forms? Connect with us immediately:
+                  Prefer direct instant messaging or voice dispatch instead of form transmission? Connect with our engineers immediately:
                 </p>
                 <div class="grid sm:grid-cols-2 gap-3 pt-1 font-mono text-xs">
                   <a
@@ -174,7 +220,7 @@ const faqs = [
                 </div>
               </div>
 
-              <!-- Simulated Terminal Heartbeat Log -->
+              <!-- Real-Time Heartbeat Log -->
               <div class="p-5 bg-black border border-white/20 font-mono text-[11px] text-slate-400 space-y-1.5">
                 <div class="text-emerald-400 font-bold mb-2">// REAL-TIME DISPATCH LOG:</div>
                 <div>[09:14:02 UTC] Ping us-east cluster ... 9ms [OK]</div>
@@ -184,12 +230,43 @@ const faqs = [
               </div>
             </div>
 
-            <!-- Right Column: The Dispatch Terminal Form -->
+            <!-- Right Column: Unified Form Interface -->
             <div class="lg:col-span-7">
               <div class="p-8 sm:p-10 bg-[#0a0e17] border-2 border-white/20 brutalist-shadow-white relative">
-                <div class="pb-6 mb-8 border-b border-white/10 flex items-center justify-between font-mono text-xs">
-                  <span class="text-lg sm:text-xl font-black uppercase text-white font-sans">DISPATCH TERMINAL INTERFACE</span>
-                  <span class="text-[#CCFF00] font-bold">[FORM_V3.8]</span>
+                <!-- Intent Switcher Tabs -->
+                <div class="grid grid-cols-2 gap-2 mb-8" role="tablist">
+                  <button
+                    type="button"
+                    id="intent-consultation"
+                    data-intent-val="consultation"
+                    class="intent-btn p-3.5 font-mono text-xs font-bold uppercase border-2 text-center transition-all cursor-pointer bg-[#CCFF00] text-black border-[#CCFF00]"
+                  >
+                    <span>[30-MIN_DEEP_DIVE]</span>
+                    <span class="block text-[11px] font-sans font-normal opacity-90 mt-0.5">Free Technical Consultation</span>
+                  </button>
+                  <button
+                    type="button"
+                    id="intent-dispatch"
+                    data-intent-val="dispatch"
+                    class="intent-btn p-3.5 font-mono text-xs font-bold uppercase border border-white/20 text-slate-300 hover:border-[#CCFF00] hover:text-[#CCFF00] text-center transition-all cursor-pointer bg-black"
+                  >
+                    <span>[DIRECT_DISPATCH]</span>
+                    <span class="block text-[11px] font-sans font-normal opacity-70 mt-0.5">General Inquiries & RFPs</span>
+                  </button>
+                </div>
+
+                <!-- Consultation Deliverables Callout Box -->
+                <div id="consultation-callout" class="mb-8 p-4 bg-black border border-[#CCFF00]/40 font-mono text-xs text-slate-300 space-y-2">
+                  <div class="text-[#CCFF00] font-bold flex items-center justify-between">
+                    <span>// INCLUDED IN TECHNICAL DEEP DIVE:</span>
+                    <span class="text-emerald-400 font-normal">100% FREE</span>
+                  </div>
+                  <ul class="space-y-1 text-[11px] text-slate-400 list-disc list-inside">
+                    <li>30-minute private video call with a senior search systems architect</li>
+                    <li>Live inspection of crawl efficiency, log anomalies, and indexing blockers</li>
+                    <li>Google AI Overview citation opportunity analysis and entity audit</li>
+                    <li>Custom architectural roadmap for internal developers and marketing leads</li>
+                  </ul>
                 </div>
 
                 <!-- Success Banner -->
@@ -199,7 +276,7 @@ const faqs = [
                     <span>DISPATCH_CONFIRMED: TELEMETRY TRANSMITTED</span>
                   </div>
                   <p class="text-slate-300">
-                    Your request has been routed to our systems architecture lead. Reference Tracking Code: <span id="success-tracking-id" class="text-white font-bold">ASRE-9921</span>. We will initiate recon and respond within 60 minutes.
+                    Your request has been routed directly to our systems architecture lead. Reference Code: <span id="success-tracking-id" class="text-white font-bold">ASRE-9921</span>. We will confirm your session or deliver baseline recon within 60 minutes.
                   </p>
                 </div>
 
@@ -210,6 +287,8 @@ const faqs = [
                 </div>
 
                 <form id="contact-form" class="space-y-6 font-mono text-xs" novalidate>
+                  <input type="hidden" id="form-intent-type" name="intent_type" value="consultation" />
+
                   <div>
                     <label for="contact-website" class="text-slate-300 uppercase font-bold mb-2 flex items-center justify-between">
                       <span>[INPUT_01] TARGET ENTERPRISE DOMAIN *</span>
@@ -241,7 +320,7 @@ const faqs = [
                     </div>
                     <div>
                       <label for="contact-name" class="block text-slate-300 uppercase font-bold mb-2">
-                        [INPUT_03] EXECUTIVE NAME *
+                        [INPUT_03] FULL NAME *
                       </label>
                       <input
                         type="text"
@@ -254,28 +333,42 @@ const faqs = [
                     </div>
                   </div>
 
-                  <div>
-                    <label for="contact-service" class="block text-slate-300 uppercase font-bold mb-2">
-                      [INPUT_04] PRIMARY ALGORITHMIC BOTTLENECK *
-                    </label>
-                    <select
-                      id="contact-service"
-                      name="service"
-                      class="w-full px-4 py-3.5 bg-black border border-white/20 text-white focus:border-[#CCFF00] focus:outline-none transition-colors text-sm font-mono"
-                    >
-                      <option value="Generative Search Optimization (GEO)">Generative Search Optimization (GEO) & LLM Citations</option>
-                      <option value="Programmatic Keyword Topology">Programmatic Keyword Topology (10,000+ Nodes)</option>
-                      <option value="Entity-Based Authority Accelerator">Entity-Based Authority & Knowledge Graph Injection</option>
-                      <option value="Autonomous Re-Indexation Pipeline">Autonomous Re-Indexation & Core Web Vitals Rescue</option>
-                      <option value="Multilingual Syntactic Expansion">Multilingual Syntactic Expansion (28 Languages)</option>
-                      <option value="Full Tactical Retainer">Comprehensive Enterprise Full-Stack Retainer</option>
-                    </select>
+                  <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
+                      <label for="contact-phone" class="block text-slate-300 uppercase font-bold mb-2">
+                        [INPUT_04] PHONE / WHATSAPP <span class="text-slate-500 font-normal">(OPTIONAL)</span>
+                      </label>
+                      <input
+                        type="tel"
+                        id="contact-phone"
+                        name="phone"
+                        placeholder="+1 (555) 000-0000"
+                        class="w-full px-4 py-3.5 bg-black border border-white/20 text-white placeholder:text-slate-600 focus:border-[#CCFF00] focus:outline-none transition-colors text-sm font-mono"
+                      />
+                    </div>
+                    <div>
+                      <label for="contact-service" class="block text-slate-300 uppercase font-bold mb-2">
+                        [INPUT_05] PRIMARY OBJECTIVE *
+                      </label>
+                      <select
+                        id="contact-service"
+                        name="service"
+                        class="w-full px-4 py-3.5 bg-black border border-white/20 text-white focus:border-[#CCFF00] focus:outline-none transition-colors text-sm font-mono"
+                      >
+                        <option value="Generative Search Optimization (GEO)">Generative Search (GEO) & AI Overview Citations</option>
+                        <option value="Architecture Consultation Deep Dive" selected>30-Min Technical Architecture Deep Dive</option>
+                        <option value="Programmatic Keyword Topology">Programmatic Topology (10,000+ URLs)</option>
+                        <option value="Entity-Based Authority Accelerator">Entity-Based Authority & Knowledge Graph Injection</option>
+                        <option value="Autonomous Re-Indexation Pipeline">Autonomous Re-Indexation & Core Web Vitals Rescue</option>
+                        <option value="Full Tactical Retainer">Full-Stack Enterprise Retainer</option>
+                      </select>
+                    </div>
                   </div>
 
                   <div>
                     <div class="flex justify-between items-center mb-2">
                       <label for="contact-message" class="text-slate-300 uppercase font-bold">
-                        [INPUT_05] SYSTEM OBJECTIVE / SPECIFICATIONS *
+                        <span id="message-label">[INPUT_06] CURRENT BOTTLENECK / CHALLENGES *</span>
                       </label>
                       <span id="char-counter" class="text-slate-500 text-[10px]">0 chars</span>
                     </div>
@@ -283,7 +376,7 @@ const faqs = [
                       id="contact-message"
                       name="message"
                       rows="4"
-                      placeholder="Outline target search scale, current organic bottlenecks, and desired deployment horizon..."
+                      placeholder="Outline target search scale, current organic bottlenecks, and preferred discussion topics..."
                       class="w-full px-4 py-3.5 bg-black border border-white/20 text-white placeholder:text-slate-600 focus:border-[#CCFF00] focus:outline-none transition-colors text-sm font-mono leading-relaxed"
                       required
                     ></textarea>
@@ -304,11 +397,12 @@ const faqs = [
 
                   <button
                     type="submit"
+                    id="submit-btn"
                     data-submit-btn
                     class="btn-acid-yellow w-full py-4.5 px-8 text-black font-black uppercase text-sm tracking-wider flex items-center justify-center gap-3 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <span data-submit-idle class="flex items-center gap-2">
-                      <span>TRANSMIT RECON AUDIT REQUEST ↗</span>
+                      <span id="submit-btn-text">SCHEDULE 30-MIN TECHNICAL DEEP DIVE ↗</span>
                     </span>
                     <span data-submit-busy class="items-center gap-2" style="display: none;">
                       <span>TRANSMITTING PAYLOAD...</span>
@@ -345,15 +439,15 @@ const faqs = [
         </div>
       </section>
 
-      <!-- 4. FAQ Terminal Accordion -->
+      <!-- 4. FAQ Terminal Accordion (Unified 8 FAQs) -->
       <section class="py-20 bg-[#05070d]">
         <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
             <div>
               <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[PROTOCOL_FAQS]</div>
-              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Dispatch Telemetry FAQs</h2>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Consultation & Dispatch FAQs</h2>
             </div>
-            <p class="text-slate-400 text-sm max-w-md">Key architectural inquiries regarding ingestion timelines and system access.</p>
+            <p class="text-slate-400 text-sm max-w-md">Key architectural inquiries regarding session formats, deliverables, ingestion, and security.</p>
           </div>
 
           <div class="space-y-4 max-w-4xl">
@@ -395,6 +489,47 @@ const faqs = [
     const trackingIdSpan = document.getElementById('success-tracking-id');
     const messageInput = form.querySelector('#contact-message') as HTMLTextAreaElement | null;
     const charCounter = document.getElementById('char-counter');
+    const submitBtnText = document.getElementById('submit-btn-text');
+    const intentConsultationBtn = document.getElementById('intent-consultation');
+    const intentDispatchBtn = document.getElementById('intent-dispatch');
+    const consultationCallout = document.getElementById('consultation-callout');
+    const intentInput = document.getElementById('form-intent-type') as HTMLInputElement | null;
+    const serviceSelect = document.getElementById('contact-service') as HTMLSelectElement | null;
+    const messageLabel = document.getElementById('message-label');
+
+    // Intent Switcher Logic
+    function setIntent(mode: 'consultation' | 'dispatch') {
+      if (intentInput) intentInput.value = mode;
+
+      if (mode === 'consultation') {
+        intentConsultationBtn?.classList.remove('bg-black', 'text-slate-300', 'border-white/20');
+        intentConsultationBtn?.classList.add('bg-[#CCFF00]', 'text-black', 'border-[#CCFF00]', 'border-2');
+
+        intentDispatchBtn?.classList.remove('bg-[#CCFF00]', 'text-black', 'border-[#CCFF00]', 'border-2');
+        intentDispatchBtn?.classList.add('bg-black', 'text-slate-300', 'border-white/20', 'border');
+
+        consultationCallout?.classList.remove('hidden');
+        if (submitBtnText) submitBtnText.textContent = 'SCHEDULE 30-MIN TECHNICAL DEEP DIVE ↗';
+        if (messageLabel) messageLabel.textContent = '[INPUT_06] CURRENT BOTTLENECK / CHALLENGES *';
+        if (serviceSelect) serviceSelect.value = 'Architecture Consultation Deep Dive';
+      } else {
+        intentDispatchBtn?.classList.remove('bg-black', 'text-slate-300', 'border-white/20');
+        intentDispatchBtn?.classList.add('bg-[#CCFF00]', 'text-black', 'border-[#CCFF00]', 'border-2');
+
+        intentConsultationBtn?.classList.remove('bg-[#CCFF00]', 'text-black', 'border-[#CCFF00]', 'border-2');
+        intentConsultationBtn?.classList.add('bg-black', 'text-slate-300', 'border-white/20', 'border');
+
+        consultationCallout?.classList.add('hidden');
+        if (submitBtnText) submitBtnText.textContent = 'TRANSMIT ENTERPRISE RECON PAYLOAD ↗';
+        if (messageLabel) messageLabel.textContent = '[INPUT_06] SYSTEM OBJECTIVE / SPECIFICATIONS *';
+        if (serviceSelect && serviceSelect.value === 'Architecture Consultation Deep Dive') {
+          serviceSelect.value = 'Generative Search Optimization (GEO)';
+        }
+      }
+    }
+
+    intentConsultationBtn?.addEventListener('click', () => setIntent('consultation'));
+    intentDispatchBtn?.addEventListener('click', () => setIntent('dispatch'));
 
     if (messageInput && charCounter) {
       messageInput.addEventListener('input', () => {
@@ -411,8 +546,10 @@ const faqs = [
       const website = ((form.querySelector('#contact-website') as HTMLInputElement)?.value || '').trim();
       const email = ((form.querySelector('#contact-email') as HTMLInputElement)?.value || '').trim();
       const name = ((form.querySelector('#contact-name') as HTMLInputElement)?.value || '').trim();
+      const phone = ((form.querySelector('#contact-phone') as HTMLInputElement)?.value || '').trim();
       const service = ((form.querySelector('#contact-service') as HTMLSelectElement)?.value || '').trim();
       const message = ((form.querySelector('#contact-message') as HTMLTextAreaElement)?.value || '').trim();
+      const intent = intentInput?.value || 'consultation';
 
       if (!website || !email || !name || !message) {
         showError('VALIDATION_ERROR', 'All required fields marked with * must be populated.');
@@ -427,8 +564,11 @@ const faqs = [
         const formData = new FormData();
         formData.set('name', name);
         formData.set('email', email);
-        formData.set('service', service);
-        formData.set('message', `[Target Domain: ${website}]\n\n${message}`);
+        formData.set('service', `[${intent.toUpperCase()}] ${service}`);
+        formData.set(
+          'message',
+          `[INTENT: ${intent.toUpperCase()}]\n[Target Domain: ${website}]\n[Phone/WhatsApp: ${phone || 'Not provided'}]\n\n${message}`
+        );
 
         const response = await fetch('/api/send-email', {
           method: 'POST',
@@ -449,6 +589,7 @@ const faqs = [
             successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
           form.reset();
+          setIntent('consultation');
           if (charCounter) charCounter.textContent = '0 chars';
         }
       } catch {

@@ -89,6 +89,10 @@ const REDIRECT_MAP: Record<string, string> = {
   '/services/seo/analysis/': '/services/seo/technical-onpage/',
   '/services/seo/training': '/services/seo/',
   '/services/seo/training/': '/services/seo/',
+
+  // Merged Consultation -> Contact Terminal
+  '/consultation': '/contact/',
+  '/consultation/': '/contact/',
 };
 
 export default {
