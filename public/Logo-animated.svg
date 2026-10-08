@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" class="asreseo-logo-animated">
+  <style>
+    .cursor-blink {
+      animation: cursor-flash 1.2s infinite steps(1);
+    }
+    @keyframes cursor-flash {
+      0%, 45% { opacity: 1; }
+      50%, 95% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .status-ping {
+      transform-origin: 84px 18px;
+      animation: beacon-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    @keyframes beacon-ping {
+      0% { r: 3.5px; opacity: 0.8; }
+      75%, 100% { r: 8.5px; opacity: 0; }
+    }
+
+    .reticle-pulse {
+      transform-origin: 50px 42px;
+      animation: reticle-glow 3s ease-in-out infinite;
+    }
+    @keyframes reticle-glow {
+      0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0px #CCFF00);
+      }
+      50% {
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 4px rgba(204, 255, 0, 0.8));
+      }
+    }
+
+    .bracket-shimmer {
+      animation: bracket-breathe 4s ease-in-out infinite;
+    }
+    @keyframes bracket-breathe {
+      0%, 100% { opacity: 0.95; }
+      50% { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cursor-blink,
+      .status-ping,
+      .reticle-pulse,
+      .bracket-shimmer {
+        animation: none !important;
+      }
+    }
+  </style>
+
+  <!-- Left Brutalist Bracket [ -->
+  <path class="bracket-shimmer" d="M28 18 H16 V82 H28" stroke="currentColor" stroke-width="4.5" stroke-linecap="square" />
+
+  <!-- Right Brutalist Bracket ] -->
+  <path class="bracket-shimmer" d="M72 18 H84 V82 H72" stroke="currentColor" stroke-width="4.5" stroke-linecap="square" />
+
+  <!-- Ascending Monolith A -->
+  <path d="M50 18 L68 64 H56 L50 48 L44 64 H32 L50 18 Z" fill="currentColor" />
+
+  <!-- Search Aperture Reticle / Diamond in Acid Yellow -->
+  <polygon class="reticle-pulse" points="50,30 57,42 50,54 43,42" fill="#CCFF00" />
+
+  <!-- Terminal Prompt Cursor _ -->
+  <rect class="cursor-blink" x="36" y="74" width="28" height="5.5" fill="#CCFF00" />
+
+  <!-- Beacon Ping Halo -->
+  <circle class="status-ping" cx="84" cy="18" r="3.5" stroke="#CCFF00" stroke-width="1.5" fill="none" />
+
+  <!-- Live Status Dot -->
+  <circle cx="84" cy="18" r="3.5" fill="#CCFF00" />
+</svg>

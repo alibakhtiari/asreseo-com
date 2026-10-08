@@ -9,6 +9,7 @@
     "type-check": "astro check",
     "lint": "eslint .",
     "copy:images": "node scripts/copy-images.mjs",
+    "og:generate": "node scripts/generate-all-og.mjs",
     "prebuild": "npm run copy:images",
     "verify:deploy": "node scripts/verify-deploy.mjs"
   },

@@ -1,63 +1,92 @@
 ---
-import Icon from '../ui/Icon.astro';
-import Logo from '../Logo.astro';
+import Icon from "../ui/Icon.astro";
+import Logo from "../Logo.astro";
 
 interface Props {
   lang?: string;
 }
 
-const { lang = 'en' } = Astro.props as Props;
+const { lang = "en" } = Astro.props as Props;
 void lang;
 
 const currentYear = new Date().getFullYear();
 
 const footerLinks = {
   services: [
-    { title: 'Master Services Suite ↗', href: '/services/' },
-    { title: 'SEO Infrastructure', href: '/services/seo/' },
-    { title: 'Web Engineering & Speed', href: '/services/web/' },
-    { title: 'Digital Marketing & Ads', href: '/services/marketing/' },
-    { title: 'Content & Entity Systems', href: '/services/content/' },
-    { title: 'Neural AI & GEO Suite', href: '/services/ai/' },
+    { title: "Master Services Suite ↗", href: "/services/" },
+    { title: "SEO Infrastructure", href: "/services/seo/" },
+    { title: "Web Engineering & Speed", href: "/services/web/" },
+    { title: "Digital Marketing & Ads", href: "/services/marketing/" },
+    { title: "Content & Entity Systems", href: "/services/content/" },
+    { title: "Neural AI & GEO Suite", href: "/services/ai/" },
   ],
   company: [
-    { title: 'About Us', href: '/about/' },
-    { title: 'Portfolio Archive', href: '/portfolio/' },
-    { title: 'Command Center (mcp.asreseo.com) ↗', href: 'https://mcp.asreseo.com' },
-    { title: 'Command Center Repo (GitHub) ↗', href: 'https://github.com/alibakhtiari/asreseo-command-center' },
-    { title: 'WebABC SEO Suite (emdash-seo) ↗', href: 'https://github.com/alibakhtiari/emdash-seo' },
-    { title: 'Blog', href: '/blog/' },
-    { title: 'Contact Terminal', href: '/contact/' },
+    { title: "About Us", href: "/about/" },
+    { title: "Portfolio Archive", href: "/portfolio/" },
+    {
+      title: "Command Center (mcp.asreseo.com) ↗",
+      href: "https://mcp.asreseo.com",
+    },
+    {
+      title: "Command Center Repo (GitHub) ↗",
+      href: "https://github.com/alibakhtiari/asreseo-command-center",
+    },
+    {
+      title: "WebABC SEO Suite (emdash-seo) ↗",
+      href: "https://github.com/alibakhtiari/emdash-seo",
+    },
+    { title: "Blog", href: "/blog/" },
+    { title: "Contact Terminal", href: "/contact/" },
   ],
   support: [
-    { title: 'FAQ', href: '/faq/' },
-    { title: 'Support SLA', href: '/support/' },
-    { title: 'Free Consultation', href: '/consultation/' },
-    { title: 'n8n Automation Engine ↗', href: 'https://n8n.asreseo.com' },
-    { title: 'n8n AvvalAI Node ↗', href: 'https://github.com/alibakhtiari/n8n-nodes-avvalai' },
-    { title: 'n8n ImageRouter Node ↗', href: 'https://github.com/alibakhtiari/n8n-nodes-imagerouter' },
-    { title: 'LLM Manifest (llms.txt) ↗', href: '/llms.txt' },
+    { title: "FAQ", href: "/faq/" },
+    { title: "Support SLA", href: "/support/" },
+    { title: "Free Consultation", href: "/consultation/" },
+    { title: "n8n Automation Engine ↗", href: "https://n8n.asreseo.com" },
+    {
+      title: "n8n AvvalAI Node ↗",
+      href: "https://github.com/alibakhtiari/n8n-nodes-avvalai",
+    },
+    {
+      title: "n8n ImageRouter Node ↗",
+      href: "https://github.com/alibakhtiari/n8n-nodes-imagerouter",
+    },
+    { title: "LLM Manifest (llms.txt) ↗", href: "/llms.txt" },
   ],
 };
 ---
-<footer class="bg-[#000000] border-t-2 border-white/20 text-slate-300 wireframe-grid relative">
-  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+
+<footer
+  class="bg-[#000000] border-t-2 border-white/20 text-slate-300 wireframe-grid relative"
+>
+  <div class="w-full px-6 mx-auto max-w-7xl sm:px-8 lg:px-12">
     <!-- Main Footer -->
-    <div class="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div class="grid grid-cols-1 gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
       <!-- Brand & Telemetry -->
       <div class="space-y-4">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-black border-2 border-white/20 flex items-center justify-center shrink-0">
+          <div
+            class="flex items-center justify-center w-10 h-10 bg-black border-2 border-white/20 shrink-0"
+          >
             <Logo class="w-6 h-6 text-white" />
           </div>
           <div>
-            <h2 class="text-xl font-black uppercase text-white tracking-tight font-sans">AsreSEO</h2>
-            <p class="text-[10px] font-mono text-[#CCFF00] uppercase tracking-widest">[AUTONOMOUS_SEARCH_SYSTEMS]</p>
+            <h2
+              class="font-sans text-xl font-black tracking-tight text-white uppercase"
+            >
+              AsreSEO
+            </h2>
+            <p
+              class="text-[10px] font-mono text-[#CCFF00] uppercase tracking-widest"
+            >
+              [AUTONOMOUS_SEARCH_SYSTEMS]
+            </p>
           </div>
         </div>
 
-        <p class="text-slate-400 leading-relaxed text-xs sm:text-sm font-sans">
-          Autonomous search infrastructure, deterministic knowledge graphs, and LLM citation dominance engineered for enterprise scale.
+        <p class="font-sans text-xs leading-relaxed text-slate-400 sm:text-sm">
+          Autonomous search infrastructure, deterministic knowledge graphs, and
+          LLM citation dominance engineered for enterprise scale.
         </p>
 
         <div class="pt-2 font-mono text-xs flex flex-col gap-2.5">
@@ -65,23 +94,32 @@ const footerLinks = {
             href="https://wa.me/13463272878"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2.5 text-slate-300 hover:text-black hover:bg-[#25D366] hover:border-black transition-all bg-black border border-white/20 px-4 py-2.5 min-h-[44px] uppercase font-bold"
+            class="inline-flex items-center gap-2.5 text-slate-300 hover:text-black hover:bg-[#25D366] hover:border-black transition-all bg-black border border-white/20 px-4 py-2.5 min-h-11 uppercase font-bold"
           >
-            <Icon name="whatsapp" class="h-4 w-4 text-[#25D366] group-hover:text-black shrink-0" />
+            <Icon
+              name="whatsapp"
+              class="h-4 w-4 text-[#25D366] group-hover:text-black shrink-0"
+            />
             <span>WhatsApp: +1 (346) 327-2878 ↗</span>
           </a>
           <a
             href="tel:+13463272878"
-            class="inline-flex items-center gap-2.5 text-slate-300 hover:text-black hover:bg-[#CCFF00] hover:border-black transition-all bg-black border border-white/20 px-4 py-2.5 min-h-[44px] uppercase font-bold"
+            class="inline-flex items-center gap-2.5 text-slate-300 hover:text-black hover:bg-[#CCFF00] hover:border-black transition-all bg-black border border-white/20 px-4 py-2.5 min-h-11 uppercase font-bold"
           >
-            <Icon name="phone-call" class="h-4 w-4 text-[#CCFF00] group-hover:text-black shrink-0" />
+            <Icon
+              name="phone-call"
+              class="h-4 w-4 text-[#CCFF00] group-hover:text-black shrink-0"
+            />
             <span>Call: +1 (346) 327-2878</span>
           </a>
           <a
             href="mailto:info@asreseo.com"
-            class="inline-flex items-center gap-2.5 text-slate-300 hover:text-black hover:bg-[#CCFF00] hover:border-black transition-all bg-black border border-white/20 px-4 py-2.5 min-h-[44px] uppercase font-bold"
+            class="inline-flex items-center gap-2.5 text-slate-300 hover:text-black hover:bg-[#CCFF00] hover:border-black transition-all bg-black border border-white/20 px-4 py-2.5 min-h-11 uppercase font-bold"
           >
-            <Icon name="mail" class="h-4 w-4 text-[#CCFF00] group-hover:text-black shrink-0" />
+            <Icon
+              name="mail"
+              class="h-4 w-4 text-[#CCFF00] group-hover:text-black shrink-0"
+            />
             <span>info@asreseo.com</span>
           </a>
         </div>
@@ -89,90 +127,123 @@ const footerLinks = {
 
       <!-- Services / Tactical Protocols -->
       <div class="font-mono text-xs">
-        <div class="text-[#CCFF00] font-black uppercase tracking-wider mb-4 pb-2 border-b border-white/10">
+        <div
+          class="text-[#CCFF00] font-black uppercase tracking-wider mb-4 pb-2 border-b border-white/10"
+        >
           [Tactical Protocols]
         </div>
         <ul class="space-y-1">
-          {footerLinks.services.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                class={`inline-flex items-center min-h-[38px] py-1.5 transition-colors uppercase ${
-                  link.href === '/services/'
-                    ? 'text-[#CCFF00] font-bold hover:underline'
-                    : 'text-slate-400 hover:text-white'
-                }`}
-              >
-                {link.title}
-              </a>
-            </li>
-          ))}
+          {
+            footerLinks.services.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class={`inline-flex items-center min-h-9.5 py-1.5 transition-colors uppercase ${
+                    link.href === "/services/"
+                      ? "text-[#CCFF00] font-bold hover:underline"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  {link.title}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <!-- Company / Systems Division -->
       <div class="font-mono text-xs">
-        <div class="text-[#CCFF00] font-black uppercase tracking-wider mb-4 pb-2 border-b border-white/10">
+        <div
+          class="text-[#CCFF00] font-black uppercase tracking-wider mb-4 pb-2 border-b border-white/10"
+        >
           [Systems Division]
         </div>
         <ul class="space-y-1">
-          {footerLinks.company.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                target={link.href.startsWith('http') ? '_blank' : undefined}
-                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                class="inline-flex items-center min-h-[38px] py-1.5 text-slate-400 hover:text-white transition-colors uppercase"
-              >
-                {link.title}
-              </a>
-            </li>
-          ))}
+          {
+            footerLinks.company.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    link.href.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                  class="inline-flex items-center min-h-9.5 py-1.5 text-slate-400 hover:text-white transition-colors uppercase"
+                >
+                  {link.title}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <!-- Support & Automation Telemetry -->
       <div class="font-mono text-xs">
-        <div class="text-[#CCFF00] font-black uppercase tracking-wider mb-4 pb-2 border-b border-white/10">
+        <div
+          class="text-[#CCFF00] font-black uppercase tracking-wider mb-4 pb-2 border-b border-white/10"
+        >
           [Telemetry & Automation]
         </div>
         <ul class="space-y-1">
-          {footerLinks.support.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                target={link.href.startsWith('http') ? '_blank' : undefined}
-                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                class={`inline-flex items-center min-h-[38px] py-1.5 transition-colors uppercase ${
-                  link.href.includes('n8n')
-                    ? 'text-slate-300 hover:text-[#CCFF00] font-bold'
-                    : 'text-slate-400 hover:text-white'
-                }`}
-              >
-                {link.title}
-              </a>
-            </li>
-          ))}
+          {
+            footerLinks.support.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    link.href.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                  class={`inline-flex items-center min-h-9.5 py-1.5 transition-colors uppercase ${
+                    link.href.includes("n8n")
+                      ? "text-slate-300 hover:text-[#CCFF00] font-bold"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  {link.title}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
 
     <!-- Bottom Footer -->
-    <div class="border-t-2 border-white/15 py-6 font-mono text-xs">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500">
+    <div class="py-6 font-mono text-xs border-t-2 border-white/15">
+      <div
+        class="flex flex-col items-center justify-between gap-4 md:flex-row text-slate-500"
+      >
         <p class="uppercase">
           © {currentYear} AsreSEO. All rights reserved.
         </p>
-        <div class="flex items-center gap-x-2 sm:gap-x-3 uppercase flex-wrap justify-center">
-          <a href="/privacy/" class="inline-flex items-center justify-center min-h-[44px] px-3 py-2 hover:text-[#CCFF00] transition-colors">
+        <div
+          class="flex flex-wrap items-center justify-center uppercase gap-x-2 sm:gap-x-3"
+        >
+          <a
+            href="/privacy/"
+            class="inline-flex items-center justify-center min-h-11 px-3 py-2 hover:text-[#CCFF00] transition-colors"
+          >
             Privacy
           </a>
           <span class="text-slate-600">/</span>
-          <a href="/terms/" class="inline-flex items-center justify-center min-h-[44px] px-3 py-2 hover:text-[#CCFF00] transition-colors">
+          <a
+            href="/terms/"
+            class="inline-flex items-center justify-center min-h-11 px-3 py-2 hover:text-[#CCFF00] transition-colors"
+          >
             Terms
           </a>
           <span class="text-slate-600">/</span>
-          <a href="/sitemap/" class="inline-flex items-center justify-center min-h-[44px] px-3 py-2 hover:text-[#CCFF00] transition-colors">
+          <a
+            href="/sitemap/"
+            class="inline-flex items-center justify-center min-h-11 px-3 py-2 hover:text-[#CCFF00] transition-colors"
+          >
             Sitemap
           </a>
         </div>

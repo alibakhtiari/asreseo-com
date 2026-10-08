@@ -6,6 +6,7 @@ import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.
 import Button from '../../components/ui/button/Button.astro';
 import Icon from '../../components/ui/Icon.astro';
 import CommandCenterShowcase from '../../components/portfolio/CommandCenterShowcase.astro';
+import Picture from '../../components/ui/Picture.astro';
 import { PORTFOLIO_PROJECTS, type PortfolioProject } from '../../lib/portfolio-data';
 
 export async function getStaticPaths() {
@@ -64,7 +65,14 @@ const pageSchema = {
   canonical={`/portfolio/${project.slug}/`}
   ogType="article"
   ogUrl={`https://asreseo.com/portfolio/${project.slug}/`}
-  ogImages={[{ url: '/og-default.png', width: 1200, height: 630, alt: project.title }]}
+  ogImages={[
+    {
+      url: project.image ? project.image.replace('/images/', '/og/').replace(/\.webp$/, '.jpg') : '/og-default.png',
+      width: 1200,
+      height: 630,
+      alt: project.title,
+    },
+  ]}
   twitterCard="summary_large_image"
 >
   <BreadcrumbStructuredData items={breadcrumbs} />
@@ -194,6 +202,25 @@ const pageSchema = {
       <!-- Deep Dive Dossier Body -->
       <section class="py-20 border-b-2 border-white/10">
         <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <!-- Architectural Schematic Blueprint Hero -->
+          <div class="mb-16 border-2 border-white/20 bg-black brutalist-card brutalist-shadow-white overflow-hidden relative group">
+            <div class="p-3 bg-[#0a0e17] border-b border-white/10 font-mono text-[11px] flex items-center justify-between text-slate-400">
+              <span class="text-[#CCFF00] font-bold">ARCHITECTURAL_SCHEMATIC // {project.tag}</span>
+              <span class="text-slate-500">VERIFIED_PRODUCTION // CLOUDFLARE_EDGE</span>
+            </div>
+            <div class="p-4 sm:p-6 lg:p-8 flex items-center justify-center bg-[#000000]">
+              <Picture
+                src={project.image}
+                alt={project.imageAlt}
+                aspectRatio="16 / 9"
+                widths={[480, 768, 1024, 1400]}
+                sizes="(max-width: 1024px) 100vw, 1200px"
+                eager={true}
+                class="w-full max-w-5xl h-auto object-contain border border-white/10"
+              />
+            </div>
+          </div>
+
           {project.slug === 'asreseo-command-center' && (
             <CommandCenterShowcase />
           )}
