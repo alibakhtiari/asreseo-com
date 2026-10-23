@@ -3,37 +3,35 @@
   "private": true,
   "version": "1.0.1",
   "scripts": {
-    "dev": "npm run copy:images && astro dev",
+    "dev": "pnpm run copy:images && astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "type-check": "astro check",
-    "lint": "eslint .",
+    "lint": "oxlint",
     "copy:images": "node scripts/copy-images.mjs",
     "og:generate": "node scripts/generate-all-og.mjs",
     "favicons:generate": "node scripts/generate-favicons.mjs",
-    "prebuild": "npm run copy:images",
+    "prebuild": "pnpm run copy:images",
     "verify:deploy": "node scripts/verify-deploy.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.0",
     "@astrojs/sitemap": "^3.7.4",
+    "@lucide/astro": "^1.61.0",
     "astro": "^7.3.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-static": "^1.43.0",
+    "lucide-astro": "npm:@lucide/astro",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.5.0",
-    "eslint": "^10.10.0",
-    "globals": "^17.12.0",
+    "oxlint": "^1.89.0",
     "sharp": "^0.35.4",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.70.0"
+    "typescript": "^5.9.3"
   },
   "type": "module"
 }

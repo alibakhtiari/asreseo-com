@@ -53,7 +53,8 @@ Authored and maintained by **Ali Bakhtiari**:
 | **Content Engine** | Astro Content Collections + MDX |
 | **Automation Engine** | [n8n](https://n8n.asreseo.com) (Self-Hosted Workflow Cluster) |
 | **Custom n8n Nodes** | [`n8n-nodes-avvalai`](https://github.com/alibakhtiari/n8n-nodes-avvalai), [`n8n-nodes-imagerouter`](https://github.com/alibakhtiari/n8n-nodes-imagerouter) |
-| **Icons** | [Lucide Static](https://lucide.dev/) |
+| **Icons** | [Lucide Astro](https://lucide.dev/) |
+| **Linter** | [Oxlint](https://oxc.rs/docs/guide/usage/linter) |
 | **Edge Functions** | Cloudflare Pages Functions (`functions/api/send-email.ts`) |
 | **Hosting & Edge CDN** | [Cloudflare Pages & Workers](https://pages.cloudflare.com/) |
 
@@ -98,24 +99,24 @@ asreseo-com/
 
 ### 1. Install Dependencies
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. Start Local Development Server
 ```bash
-npm run dev
+pnpm dev
 ```
 Available at `http://localhost:4321`.
 
 ### 3. Type Checking & Code Quality
 ```bash
-npm run type-check    # Validates TypeScript and Astro components
-npm run lint          # Runs ESLint checks
+pnpm type-check    # Validates TypeScript and Astro components
+pnpm lint          # Runs Oxlint checks
 ```
 
 ### 4. Production Build
 ```bash
-npm run build
+pnpm build
 ```
 Generates production static artifacts in `dist/` and runs route validation on `llms.txt`.
 
@@ -124,7 +125,7 @@ Generates production static artifacts in `dist/` and runs route validation on `l
 ## 🌐 Production Deployment
 
 Deployed via Cloudflare Pages and Workers:
-- **Build Command**: `npm run build`
+- **Build Command**: `pnpm build`
 - **Output Directory**: `dist`
 - **Worker Name**: `asreseocom`
 - **Email Binding**: `send_email` bound to `asreseo` or `EMAIL` in Cloudflare dashboard settings.
