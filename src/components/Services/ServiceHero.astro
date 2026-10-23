@@ -1,0 +1,140 @@
+---
+import Button from '../ui/button/Button.astro';
+import Picture from '../ui/Picture.astro';
+
+export type ThemeColor = 'indigo' | 'purple' | 'pink' | 'blue' | 'green' | 'cyan' | 'amber' | 'emerald' | 'orange' | 'teal';
+
+export interface Props {
+  lang?: string;
+  badge?: string;
+  badgeClass?: string;
+  title: string;
+  titleHighlight?: string;
+  titleGradient?: string;
+  description: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  primaryCtaClass?: string;
+  primaryCta?: { text?: string; href?: string; class?: string };
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  secondaryCtaClass?: string;
+  secondaryCta?: { text?: string; href?: string; class?: string };
+  imageSrc: string;
+  imageAlt: string;
+  theme?: ThemeColor;
+}
+
+const {
+  lang = 'en',
+  badge,
+  title,
+  titleHighlight,
+  titleGradient,
+  description,
+  primaryCtaText,
+  primaryCtaHref,
+  primaryCta,
+  secondaryCtaText,
+  secondaryCtaHref,
+  secondaryCta,
+  imageSrc,
+  imageAlt,
+} = Astro.props;
+
+void lang;
+const localize = (p: string) => p;
+
+const effPrimaryText = primaryCta?.text || primaryCtaText || 'Deploy Autonomous Recon ↗';
+const effPrimaryHref = localize(primaryCta?.href || primaryCtaHref || '/contact/');
+
+const effSecondaryText = secondaryCta?.text || secondaryCtaText || 'Explore Case Studies';
+const effSecondaryHref = localize(secondaryCta?.href || secondaryCtaHref || '/portfolio/');
+
+const highlight = titleGradient || titleHighlight;
+let beforeHighlight = title;
+let afterHighlight = '';
+let hasHighlight = false;
+
+if (highlight) {
+  if (title.includes(highlight)) {
+    const parts = title.split(highlight);
+    beforeHighlight = parts[0];
+    afterHighlight = parts.slice(1).join(highlight);
+    hasHighlight = true;
+  } else {
+    beforeHighlight = `${title} `;
+    afterHighlight = '';
+    hasHighlight = true;
+  }
+}
+---
+
+<section class="py-20 md:py-28 bg-[#000000] text-white border-b-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 text-left animate-fade-in order-1">
+        {badge ? (
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#0a0d14] border border-white/20 mb-6 font-mono text-xs text-[#CCFF00] tracking-wider uppercase">
+            <span class="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse"></span>
+            <span>[{badge}]</span>
+          </div>
+        ) : (
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#0a0d14] border border-white/20 mb-6 font-mono text-xs text-[#CCFF00] tracking-wider uppercase">
+            <span class="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse"></span>
+            <span>[PROTOCOL_ACTIVE // 2025]</span>
+          </div>
+        )}
+
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black uppercase text-white mb-6 leading-[1.08] tracking-tight">
+          {hasHighlight ? (
+            <>
+              {beforeHighlight}<span class="text-[#CCFF00]">{highlight}</span>{afterHighlight}
+            </>
+          ) : (
+            title
+          )}
+        </h1>
+
+        <p class="text-base sm:text-lg lg:text-xl text-slate-300 mb-8 leading-relaxed font-normal max-w-2xl">
+          {description}
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-start font-mono text-xs">
+          <Button
+            variant="acid"
+            size="lg"
+            class="px-8 py-4"
+            href={effPrimaryHref}
+          >
+            {effPrimaryText}
+          </Button>
+          <Button
+            variant="brutalist"
+            size="lg"
+            class="px-8 py-4"
+            href={effSecondaryHref}
+          >
+            {effSecondaryText}
+          </Button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 relative w-full rounded-none overflow-hidden animate-fade-in order-2 border-2 border-white/20 bg-[#090d16] brutalist-card brutalist-shadow-white group">
+        <div class="p-3 bg-black border-b border-white/10 font-mono text-[11px] flex items-center justify-between text-slate-400">
+          <span class="text-[#CCFF00] font-bold">NODE_STREAM // ACTIVE</span>
+          <span>LATENCY: 14ms</span>
+        </div>
+        <div class="relative h-72 sm:h-80 md:h-96 w-full overflow-hidden">
+          <Picture
+            src={imageSrc}
+            alt={imageAlt}
+            class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 opacity-90"
+            eager
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

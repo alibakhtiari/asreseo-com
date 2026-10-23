@@ -1,0 +1,434 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+import Button from '../../components/ui/button/Button.astro';
+import Icon from '../../components/ui/Icon.astro';
+
+const lang = 'en' as const;
+const localize = (p: string) => p;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://asreseo.com/#organization"
+};
+
+const breadcrumbs = [
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'Services', item: 'https://asreseo.com/services/' },
+];
+
+const protocols = [
+  {
+    code: '01',
+    name: 'Generative Search Optimization (GEO)',
+    badge: 'PROTOCOL_GEO',
+    target: 'Continuous LLM Citations across Gemini, Perplexity Pro & SearchGPT',
+    desc: 'Reverse-engineering semantic embedding layers and citation extractors. We format, structure, and syndicate brand data directly into models’ preferred synthesis formats.',
+    deliverables: ['Vector prompt audits', 'Knowledge graph syndication', 'Synthetic prompt benchmarking', 'AI Overview priority anchoring'],
+    href: '/services/ai/',
+  },
+  {
+    code: '02',
+    name: 'Programmatic Keyword Topology',
+    badge: 'PROTOCOL_TOPOLOGY',
+    target: 'Algorithmic 10,000+ Semantic Node Matrix',
+    desc: 'Automated synthesis of high-intent, hyper-granular commercial landing nodes matching long-tail search queries with mathematical internal graph hierarchy. Zero cannibalization guarantee.',
+    deliverables: ['Dynamic entity vector trees', 'Zero-fluff programmatic templates', 'Automated internal graph mesh', 'Cannibalization neutralization'],
+    href: '/services/seo/',
+  },
+  {
+    code: '03',
+    name: 'Entity-Based Authority Accelerator',
+    badge: 'PROTOCOL_ENTITY',
+    target: 'Institutional Knowledge Graph Embedding',
+    desc: 'Permanent registration and schema-linking into Wikidata, Google Knowledge Graph, DBpedia, and academic corpora to anchor your enterprise as an irrefutable industry authority.',
+    deliverables: ['Wikidata item creation & validation', 'JSON-LD graph interconnection', 'Co-occurrence entity boosting', 'Institutional press entity loops'],
+    href: '/services/seo/content-authority/',
+  },
+  {
+    code: '04',
+    name: 'Autonomous Audit & Re-Indexation Pipeline',
+    badge: 'PROTOCOL_INDEXING',
+    target: 'Sub-Second Google & IndexNow Ingestion Loops',
+    desc: '24/7 headless bot crawlers scanning client URLs, monitoring dropped SERP positions, and triggering instant indexing API pings within milliseconds of content changes.',
+    deliverables: ['Sub-20ms edge push mechanisms', 'Headless real-time SERP monitors', 'Crawl budget optimization', 'Orphan URL instant recovery'],
+    href: '/services/web/website-speed/',
+  },
+  {
+    code: '05',
+    name: 'Multilingual Syntactic Expansion',
+    badge: 'PROTOCOL_SYNTACTIC',
+    target: '28-Country Zero-Click Global Capture',
+    desc: 'Algorithmic semantic reproduction across 28 global languages using neural phoneme mapping to capture regional search intents without human translation latency.',
+    deliverables: ['Edge-computed hreflang logic', 'Localized buyer query adaptation', 'Sub-40ms global CDN distribution', 'Regional entity alignment'],
+    href: '/services/content/translation/',
+  },
+  {
+    code: '06',
+    name: 'Conversational Reputation Defense',
+    badge: 'PROTOCOL_DEFENSE',
+    target: 'Hallucination Mitigation & Consensus Seeding',
+    desc: 'Active monitoring of LLM outputs to detect negative or false citations, followed by automated consensus seeding to correct erroneous information across generative engines.',
+    deliverables: ['Generative hallucination patch loops', 'Brand sentiment anchoring', 'Real-time citation telemetry', 'Multi-model consensus verification'],
+    href: '/services/marketing/',
+  },
+];
+
+const sectors = [
+  {
+    name: 'SEO Infrastructure',
+    code: 'SECTOR_01',
+    badge: 'PROTOCOL_SEO',
+    desc: 'Deterministic crawl budget optimization, technical error fixes, and institutional knowledge graph authority.',
+    href: '/services/seo/',
+    subroutes: [
+      { name: 'Technical & On-Page SEO', href: '/services/seo/technical-onpage/' },
+      { name: 'Content & Authority Architecture', href: '/services/seo/content-authority/' },
+      { name: 'Local SEO Topology', href: '/services/seo/local-seo/' },
+    ],
+  },
+  {
+    name: 'Web Engineering & Performance',
+    code: 'SECTOR_02',
+    badge: 'PROTOCOL_WEB',
+    desc: 'Sub-20ms edge-rendered applications, headless architectures, and 100/100 Core Web Vitals.',
+    href: '/services/web/',
+    subroutes: [
+      { name: 'SEO-Driven Web Architecture', href: '/services/web/seo-web-design/' },
+      { name: 'Sub-20ms Speed Optimization', href: '/services/web/website-speed/' },
+      { name: 'High-Converting Landing Nodes', href: '/services/web/landing-pages/' },
+      { name: 'UX & Information Topology', href: '/services/web/ux-architecture/' },
+    ],
+  },
+  {
+    name: 'Digital Marketing & Acquisition',
+    code: 'SECTOR_03',
+    badge: 'PROTOCOL_MKTG',
+    desc: 'Programmatic Google Ads arbitrage, high-velocity email funnels, and conversion optimization.',
+    href: '/services/marketing/',
+    subroutes: [
+      { name: 'Google Ads PPC', href: '/services/marketing/google-ads/' },
+      { name: 'Email Funnels', href: '/services/marketing/email-marketing/' },
+      { name: 'Social Distribution', href: '/services/marketing/social-media/' },
+      { name: 'Sales Funnel Systems', href: '/services/marketing/sales-funnel-management/' },
+      { name: '360° Campaigns', href: '/services/marketing/integrated-campaigns/' },
+    ],
+  },
+  {
+    name: 'Content & Entity Systems',
+    code: 'SECTOR_04',
+    badge: 'PROTOCOL_CONTENT',
+    desc: 'Topical authority matrices, programmatic publishing calendars, and 28-territory multilingual translation.',
+    href: '/services/content/',
+    subroutes: [
+      { name: 'Technical Copywriting', href: '/services/content/text-content/' },
+      { name: 'Social Media Feeds', href: '/services/content/social-media-content/' },
+      { name: 'Visual Infographics', href: '/services/content/visual-content/' },
+      { name: 'Content Calendars', href: '/services/content/content-calendar/' },
+      { name: 'Syntactic Translation', href: '/services/content/translation/' },
+    ],
+  },
+  {
+    name: 'Neural AI & GEO Suite',
+    code: 'SECTOR_05',
+    badge: 'PROTOCOL_AI',
+    desc: 'Generative Engine Optimization (GEO), AI citation capture across Perplexity/SearchGPT, and automated agents.',
+    href: '/services/ai/',
+    subroutes: [
+      { name: 'Generative Engine Optimization', href: '/services/ai/content-creation/' },
+      { name: 'AI Marketing Agents', href: '/services/ai/marketing-engagement/' },
+      { name: 'Predictive SERP Telemetry', href: '/services/ai/analysis-strategy/' },
+    ],
+  },
+];
+
+const comparisons = [
+  { feature: 'Methodology', legacy: 'Manual monthly blog posts & keyword stuffing', asreseo: 'Deterministic semantic database & vector topology' },
+  { feature: 'Indexation Speed', legacy: 'Weekly/Monthly passive Search Console checks', asreseo: 'Sub-second real-time API push (IndexNow & Google API)' },
+  { feature: 'AI Engine Visibility', legacy: '0% — Unaware of Gemini/Perplexity citation logic', asreseo: '100% targeted GEO & Knowledge Graph syndication' },
+  { feature: 'Delivery Scale', legacy: '4–8 articles per month produced by freelancers', asreseo: '10,000+ programmatic entity nodes deployed instantly' },
+  { feature: 'SLA & Monitoring', legacy: 'Vague promises with zero telemetry logs', asreseo: '24/7 autonomous bot uptime & live audit telemetry' },
+  { feature: 'Human Latency', legacy: 'Junior account managers & slow communication', asreseo: 'Direct access to Principal Systems Architects' },
+];
+
+const processSteps = [
+  { day: 'DAY 01', title: 'Algorithmic Crawl & Entity Recon', desc: 'Complete domain vector scan, crawl budget audit, and knowledge graph footprint analysis.' },
+  { day: 'DAY 03', title: 'Vector Taxonomy Ingestion', desc: 'Structuring semantic schemas, entity injection trees, and competitive gap vector maps.' },
+  { day: 'DAY 07', title: 'Programmatic Node Deployment', desc: 'Launching automated landing nodes, edge caching configurations, and automated hreflang routing.' },
+  { day: 'CONTINUOUS', title: 'Autonomous Telemetry & 24/7 Re-Indexing', desc: 'Sub-second indexing loops, hallucination monitoring, and automated performance reporting.' },
+];
+---
+<BaseLayout
+  lang="en"
+  title='Services & Tactical Suite — Autonomous Search & GEO | AsreSEO'
+  description='Full-stack autonomous search and LLM citation services. Replace legacy agency retainers with programmatic vector topologies and 24/7 indexing pipelines.'
+  keywords='autonomous SEO services, generative search optimization, GEO, programmatic SEO, entity authority, AI citations'
+  canonical='/services/'
+  ogType='website'
+  ogUrl='https://asreseo.com/services/'
+  ogImages={[{ url: "/og/services-hero.jpg", width: 1200, height: 630, alt: "AsreSEO Tactical Suite" }]}
+  twitterCard='summary_large_image'
+>
+  <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
+
+  <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+    <Header lang="en" />
+    <main class="pt-28 pb-20">
+      <!-- 1. Hero Section -->
+      <section class="py-16 md:py-24 border-b-2 border-white/10 relative">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+          <div class="max-w-5xl">
+            <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#0a0d14] border border-white/20 mb-8 font-mono text-xs tracking-wider uppercase">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+              <span class="text-[#CCFF00] font-bold">[CATALOGUE_2025 // TACTICAL_SUITE]</span>
+              <span class="text-slate-500">|</span>
+              <span class="text-slate-300">ENTERPRISE_GRADE</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white mb-6 tracking-tight leading-[1.05]">
+              Full-Stack Autonomous Search & <span class="text-[#CCFF00]">LLM Citation</span> Services.
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl mb-10">
+              Engineered for enterprises replacing legacy manual SEO retainers with programmatic vector topologies, automated AI Overviews capture, and institutional entity authority injection.
+            </p>
+
+            <!-- Status Strip -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 bg-[#0a0e17] border border-white/20 font-mono text-xs mb-10">
+              <div>
+                <div class="text-[#CCFF00] font-bold">06 ACTIVE</div>
+                <div class="text-slate-400">Core Protocols</div>
+              </div>
+              <div>
+                <div class="text-[#CCFF00] font-bold">99.8%</div>
+                <div class="text-slate-400">Indexation Rate</div>
+              </div>
+              <div>
+                <div class="text-[#CCFF00] font-bold">48 NODES</div>
+                <div class="text-slate-400">Global Crawl Bot Edge</div>
+              </div>
+              <div>
+                <div class="text-[#CCFF00] font-bold">ZERO LAG</div>
+                <div class="text-slate-400">Manual Overhead</div>
+              </div>
+            </div>
+
+            <Button
+              href={localize('/contact/')}
+              variant="acid"
+              size="lg"
+              class="text-sm sm:text-base px-8 py-4.5"
+            >
+              Dispatch Service Ingestion ↗
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Five Core Engineering Sectors -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[MASTER_SECTORS // 05_DIVISIONS]</div>
+              <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white">Five Core Engineering Sectors</h2>
+            </div>
+            <p class="text-slate-400 text-sm max-w-md font-sans">Direct access to specialized discipline suites and individual protocol specifications.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sectors.map((s) => (
+              <div class="p-7 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] flex flex-col justify-between group">
+                <div>
+                  <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10 font-mono text-xs">
+                    <span class="text-[#CCFF00] font-black">{s.code} //</span>
+                    <span class="text-slate-400 uppercase tracking-wider">{s.badge}</span>
+                  </div>
+                  <a href={localize(s.href)}>
+                    <h3 class="text-xl font-black uppercase text-white group-hover:text-[#CCFF00] transition-colors mb-3 leading-snug">
+                      {s.name}
+                    </h3>
+                  </a>
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6 font-sans">
+                    {s.desc}
+                  </p>
+                  <div class="font-mono text-xs mb-6">
+                    <div class="text-slate-500 uppercase font-bold text-[10px] tracking-wider mb-2">// Included Protocols:</div>
+                    <ul class="space-y-1.5">
+                      {s.subroutes.map((sub) => (
+                        <li>
+                          <a href={localize(sub.href)} class="text-slate-300 hover:text-[#CCFF00] flex items-center gap-2 transition-colors">
+                            <span class="text-[#CCFF00]">→</span>
+                            <span class="truncate">{sub.name}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                <div class="pt-4 border-t border-white/10 font-mono text-xs">
+                  <a
+                    href={localize(s.href)}
+                    class="w-full py-3 px-4 font-bold uppercase text-center block bg-black border border-white/20 text-white group-hover:bg-[#CCFF00] group-hover:text-black group-hover:border-black transition-all"
+                  >
+                    Inspect Sector Suite ↗
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Detailed 6 Service Modules -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#05070d]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[DEEP_SPECIFICATIONS]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">The Six Tactical Protocols</h2>
+            </div>
+            <p class="text-slate-400 text-sm max-w-md">Comprehensive architectural breakdowns with deterministic delivery milestones.</p>
+          </div>
+
+          <div class="space-y-8">
+            {protocols.map((p) => (
+              <div class="p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card group hover:border-[#CCFF00]">
+                <div class="grid lg:grid-cols-12 gap-8 items-start">
+                  <div class="lg:col-span-4">
+                    <div class="flex items-center gap-3 font-mono text-xs mb-3">
+                      <span class="text-3xl font-black text-[#CCFF00]">{p.code} //</span>
+                      <span class="text-slate-400 uppercase tracking-wider">{p.badge}</span>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase text-white mb-3 group-hover:text-[#CCFF00] transition-colors">{p.name}</h3>
+                    <div class="text-xs font-mono text-[#CCFF00] bg-black p-2.5 border border-white/10 uppercase mb-4">
+                      TARGET: {p.target}
+                    </div>
+                  </div>
+
+                  <div class="lg:col-span-5 space-y-4">
+                    <p class="text-slate-300 leading-relaxed text-sm">{p.desc}</p>
+                    <div class="font-mono text-xs text-slate-400">
+                      <div class="text-white font-bold uppercase mb-2">Technical Deliverables:</div>
+                      <ul class="space-y-1.5">
+                        {p.deliverables.map((item) => (
+                          <li class="flex items-center gap-2">
+                            <span class="text-[#CCFF00]">✓</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="lg:col-span-3 flex lg:flex-col justify-end lg:justify-between h-full gap-4 pt-4 lg:pt-0">
+                    <a
+                      href={localize(p.href)}
+                      class="inline-flex items-center justify-center w-full py-3.5 px-4 bg-white/5 border border-white/20 text-xs font-mono font-bold uppercase text-white hover:bg-[#CCFF00] hover:text-black hover:border-[#CCFF00] transition-all"
+                    >
+                      Inspect Module Sub-Specs ↗
+                    </a>
+                    <a
+                      href={localize('/contact/')}
+                      class="inline-flex items-center justify-center w-full py-3.5 px-4 bg-black border border-[#CCFF00] text-xs font-mono font-bold uppercase text-[#CCFF00] hover:bg-[#CCFF00] hover:text-black transition-all"
+                    >
+                      Commission Protocol ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Comparison Table: Legacy vs ASRESEO Autonomous Engine -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[SYSTEMIC_ADVANTAGE]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Legacy Agency vs ASRESEO Engine</h2>
+            </div>
+            <p class="text-slate-400 text-sm max-w-md">Comparing traditional manual consulting against computational, programmatic search infrastructure.</p>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse font-mono text-xs text-left">
+              <thead>
+                <tr class="border-b-2 border-white/20 bg-[#0a0e17]">
+                  <th class="p-4 text-white uppercase font-bold">Evaluation Vector</th>
+                  <th class="p-4 text-slate-400 uppercase font-bold">Legacy Agency Model</th>
+                  <th class="p-4 text-[#CCFF00] uppercase font-bold bg-[#0d1424] border-x border-[#CCFF00]/40">ASRESEO Autonomous Engine</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/10">
+                {comparisons.map((c) => (
+                  <tr class="hover:bg-white/5 transition-colors">
+                    <td class="p-4 font-bold text-white uppercase">{c.feature}</td>
+                    <td class="p-4 text-slate-400">{c.legacy}</td>
+                    <td class="p-4 text-slate-200 font-bold bg-[#0d1424]/40 border-x border-[#CCFF00]/20 flex-1">
+                      <span class="text-[#CCFF00] mr-2">✓</span>
+                      {c.asreseo}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. SLA & Delivery Process Terminal -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#05070d]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[DEPLOYMENT_VELOCITY]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Engineering Ingestion Timeline</h2>
+            </div>
+            <p class="text-slate-400 text-sm max-w-md">Deterministic milestones from initial crawl scan to continuous 24/7 autonomous monitoring.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {processSteps.map((step) => (
+              <div class="p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card font-mono text-xs">
+                <div class="text-[#CCFF00] font-black text-sm mb-2">{step.day} //</div>
+                <h3 class="text-lg font-black uppercase text-white font-sans mb-3">{step.title}</h3>
+                <p class="text-slate-400 font-sans text-xs leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Actionable CTA Box -->
+      <section class="py-20 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="p-8 sm:p-12 bg-[#090d16] border-2 border-[#CCFF00] brutalist-shadow-white flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="space-y-2 text-center md:text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase font-bold tracking-wider">[COMMISSION_ARCHITECTURE]</div>
+              <h2 class="text-2xl sm:text-4xl font-black text-white uppercase">Commission Dedicated Service Architecture</h2>
+              <p class="text-slate-300 text-sm sm:text-base max-w-xl">
+                Replace your existing agency retainer with automated crawl pipelines, entity graphs, and AI citations.
+              </p>
+            </div>
+            <Button
+              href={localize('/contact/')}
+              variant="acid"
+              size="lg"
+              class="px-8 py-5 shrink-0"
+            >
+              Dispatch Service Ingestion ↗
+            </Button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer lang="en" />
+  </div>
+</BaseLayout>

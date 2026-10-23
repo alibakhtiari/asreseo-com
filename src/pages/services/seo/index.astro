@@ -1,0 +1,247 @@
+---
+import { withServiceMeta } from '../../../lib/service-schema';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Layout/Header.astro';
+import Footer from '../../../components/Layout/Footer.astro';
+import Card from '../../../components/ui/card/Card.astro';
+import CardContent from '../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../components/ui/card/CardTitle.astro';
+import Button from '../../../components/ui/button/Button.astro';
+import Picture from '../../../components/ui/Picture.astro';
+import Icon from '../../../components/ui/Icon.astro';
+import BreadcrumbStructuredData from '../../../components/BreadcrumbStructuredData.astro';
+import ServiceFAQ from '../../../components/Services/ServiceFAQ.astro';
+
+const seoServices = [
+  {
+    code: 'SEO_01',
+    title: 'Technical & Programmatic SEO',
+    description: 'Autonomous crawl efficiency, sub-20ms Core Web Vitals, serverless edge rendering, and advanced JSON-LD ontology graph injection.',
+    icon: "zap",
+    href: '/services/seo/technical-onpage/',
+    features: ['Real-time IndexNow & Google API pipelines', 'Edge CDN rendering & sub-20ms TTFB', 'Automated canonical & pagination hygiene', 'Full schema RDF/JSON-LD knowledge graphs']
+  },
+  {
+    code: 'SEO_02',
+    title: 'Topical Authority & Entity Graph Seeding',
+    description: 'Deterministic semantic cluster architectures and entity citations that force Google and AI engines to establish your domain as the primary source.',
+    icon: "file-text",
+    href: '/services/seo/content-authority/',
+    features: ['High-dimensional entity vector mapping', 'Topical authority coverage matrices', 'High-authority contextual link topologies', 'Algorithmic competitor gap extraction']
+  },
+  {
+    code: 'SEO_03',
+    title: 'Hyperlocal SEO & Geo-Targeted Citations',
+    description: 'Algorithmic map pack ranking dominance and geo-coordinate entity verification for high-intent local customer acquisition.',
+    icon: "globe",
+    href: '/services/seo/local-seo/',
+    features: ['Automated Google Business Profile sync', 'Geo-tagged schema & multi-location hubs', 'Local entity citation network validation', 'Review sentiment analysis & automated alerts']
+  }
+];
+
+const faqs = [
+  {
+    q: 'How does your autonomous SEO architecture differ from legacy manual agencies?',
+    a: 'Legacy agencies write manual reports and deploy monthly changes. We build programmatic edge pipelines that ping search engine APIs within milliseconds of content mutation, continuously audit log files, and seed semantic entity graphs directly into search index trees.'
+  },
+  {
+    q: 'What is the indexation speed for newly deployed programmatic content?',
+    a: 'Through our dedicated IndexNow integration and Google Indexing API webhook cluster, new pages are typically discovered and crawled by headless search engine spiders in under 4 minutes.'
+  },
+  {
+    q: 'How do you prevent search engine crawl budget waste on large domains?',
+    a: 'We implement automated edge firewalls that drop abusive scrapers, eliminate infinite faceted navigation loops, and compress crawl paths so bot resources focus 100% on high-intent revenue URLs.'
+  }
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Autonomous Website SEO Infrastructure & Ranking Engine',
+  'description': 'Comprehensive search engine optimization services including technical SEO, topical authority, and entity graph seeding by AsreSEO.',
+  'inLanguage': 'en-US',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com',
+    'logo': 'https://asreseo.com/Logo.svg'
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'AsreSEO SEO Services',
+    'itemListElement': seoServices.map(s => ({
+      '@type': 'Offer',
+      'itemOffered': {
+        '@type': 'Service',
+        'name': s.title,
+        'description': s.description
+      }
+    }))
+  }
+};
+
+const breadcrumbs = [
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'SEO Services', item: 'https://asreseo.com/services/seo/' },
+];
+---
+
+<BaseLayout
+  lang="en"
+  title="Professional Website SEO Services | AsreSEO"
+  description="AsreSEO full-service SEO: Technical SEO, topical authority, and entity graph seeding to dominate organic rankings."
+  keywords="SEO, technical SEO, topical authority, local SEO, website optimization, search engine optimization"
+  canonical="/services/seo/"
+  ogType="website"
+  ogUrl="https://asreseo.com/services/seo/"
+  ogImages={[{ url: "/og/seo-service-hero.jpg", width: 1200, height: 630, alt: "AsreSEO professional SEO services and ranking growth" }]}
+  twitterCard="summary_large_image"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(serviceSchema, { url: 'https://asreseo.com/services/seo/', image: '/og/seo-service-hero.jpg' }))} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
+
+  <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+    <Header lang="en" />
+    <main class="pt-28 pb-20">
+      <!-- Hero Section -->
+      <section class="py-16 md:py-24 border-b-2 border-white/10 relative">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+          <div class="grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 text-left order-2 lg:order-1">
+              <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#0a0d14] border border-white/20 mb-8 font-mono text-xs tracking-wider uppercase">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+                <span class="text-[#CCFF00] font-bold">[PROTOCOL_01 // CORE_SEARCH_SYSTEMS]</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-slate-300">SUB-20MS INDEXING</span>
+              </div>
+
+              <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white mb-6 tracking-tight leading-[1.05]">
+                Autonomous <span class="text-[#CCFF00]">SEO Infrastructure</span> & Ranking Engine
+              </h1>
+
+              <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">
+                Deterministic search engine dominance through sub-20ms edge indexing, structured ontology vector graphs, and algorithmic crawl budget optimization.
+              </p>
+
+              <div class="flex flex-wrap gap-4 font-mono text-xs">
+                <Button
+                  variant="acid"
+                  size="lg"
+                  class="px-8 py-4"
+                  href="/consultation/"
+                >
+                  Deploy Technical SEO Audit ↗
+                </Button>
+                <Button
+                  variant="brutalist"
+                  size="lg"
+                  class="px-8 py-4"
+                  href="/services/seo/technical-onpage/"
+                >
+                  Inspect Technical Protocol
+                </Button>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 order-1 lg:order-2 border-2 border-white/20 bg-[#090d16] brutalist-card brutalist-shadow-white group overflow-hidden">
+              <div class="p-3 bg-black border-b border-white/10 font-mono text-[11px] flex items-center justify-between text-slate-400">
+                <span class="text-[#CCFF00] font-bold">CRAWL_CLUSTER // US-EAST</span>
+                <span>INDEX_LATENCY: 12ms</span>
+              </div>
+              <div class="relative h-72 sm:h-80 md:h-96 w-full overflow-hidden">
+                <Picture
+                  src="/images/seo-service-hero.webp"
+                  alt="AsreSEO professional SEO services and ranking growth"
+                  class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 opacity-90"
+                  eager
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Grid -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#05070d]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[TACTICAL_DISPATCH]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Core Search Capabilities</h2>
+            </div>
+            <p class="text-slate-400 font-mono text-xs max-w-md">// Full-stack algorithmic ranking defense and semantic knowledge engineering.</p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            {seoServices.map((service) => (
+              <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card group hover:border-[#CCFF00] transition-colors p-6 sm:p-8 flex flex-col justify-between rounded-none">
+                <div>
+                  <div class="flex items-center justify-between pb-4 mb-6 border-b border-white/10 font-mono text-xs">
+                    <span class="text-[#CCFF00] font-bold">{service.code} //</span>
+                    <div class="w-8 h-8 bg-black border border-white/20 flex items-center justify-center text-[#CCFF00]">
+                      <Icon name={service.icon} class="h-4 w-4" />
+                    </div>
+                  </div>
+                  <CardHeader class="p-0 mb-4">
+                    <CardTitle class="text-xl font-black uppercase text-white group-hover:text-[#CCFF00] transition-colors">
+                      <a href={service.href}>{service.title}</a>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent class="p-0">
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
+                      {service.description}
+                    </p>
+                    <ul class="space-y-2.5 font-mono text-xs text-slate-400 mb-6">
+                      {service.features.map((feature) => (
+                        <li class="flex items-start">
+                          <span class="text-[#CCFF00] font-bold me-2">[✓]</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </div>
+                <div class="pt-4 border-t border-white/10 font-mono text-xs">
+                  <a href={service.href} class="inline-flex items-center text-[#CCFF00] font-bold hover:underline">
+                    Inspect Protocol Specs ↗
+                  </a>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <ServiceFAQ lang="en" title="Search Protocol FAQs" subtitle="Deterministic answers regarding indexing latency, bot budget management and rank velocity" faqs={faqs} />
+
+      <!-- CTA Terminal -->
+      <section class="py-20 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="p-8 sm:p-12 bg-[#090d16] border-2 border-[#CCFF00] brutalist-shadow-white flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="space-y-2 text-center md:text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase font-bold tracking-wider">[COMMISSION_RECON]</div>
+              <h2 class="text-2xl sm:text-4xl font-black text-white uppercase">Ready to Dominate Search Engine Results?</h2>
+              <p class="text-slate-300 text-sm sm:text-base max-w-xl">
+                Consult with our systems architects to evaluate your domain indexation footprint, crawl errors, and organic revenue potential.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 font-mono text-xs shrink-0">
+              <Button
+                variant="acid"
+                size="lg"
+                class="px-8 py-4"
+                href="/consultation/"
+              >
+                Schedule Technical Audit ↗
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer lang="en" />
+  </div>
+</BaseLayout>

@@ -1,0 +1,362 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': 'Smart Analysis, Strategy & AI SEO',
+    'description': 'End-to-end data analysis, smart SEO and conversion rate optimization (CRO) with AI algorithms by AsreSEO.',
+    'serviceType': 'AI Business Intelligence & SEO Analysis',
+    'inLanguage': 'en-US',
+    'provider': {
+        '@type': 'Organization',
+        'name': 'AsreSEO',
+        'url': 'https://asreseo.com'
+    },
+    'hasOfferCatalog': {
+        '@type': 'OfferCatalog',
+        'name': 'AI analysis & strategy services',
+        'itemListElement': [
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'AI-powered SEO',
+                    'description': 'Deep search-engine optimization with AI algorithms',
+                    'inLanguage': 'en-US'
+                }
+            },
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'Conversion rate optimization (CRO)',
+                    'description': 'More sales via user-behavior analysis and heatmaps',
+                    'inLanguage': 'en-US'
+                }
+            },
+            {
+                '@type': 'Offer',
+                'itemOffered': {
+                    '@type': 'Service',
+                    'name': 'Competitor monitoring & analysis',
+                    'description': 'Smart market surveillance tracking rival moves',
+                    'inLanguage': 'en-US'
+                }
+            }
+        ]
+    }
+};
+
+const faqs = [
+    {
+        q: 'What exactly does AI SEO cover?',
+        a: 'Smart analysis of high-volume Search Console queries, spotting keywords with fast-growth potential, optimizing internal linking structure and forecasting search trends ahead of competitors.'
+    },
+    {
+        q: 'How does AI improve conversion rates (CRO)?',
+        a: 'By analyzing user behavior patterns, heatmaps and drop-off points on landing pages, AI shortens the buying path and optimizes the elements that persuade buyers.'
+    },
+    {
+        q: 'How does AI competitor monitoring work?',
+        a: 'Smart systems track ranking changes, new backlinks, content strategies and rival ad campaigns in real time, with analytical alerts.'
+    },
+    {
+        q: 'Do we need to change our site platform for an AI strategy?',
+        a: 'No. AsreSEO analytical tools and models deploy on WordPress, custom and e-commerce sites with no platform change required.'
+    }
+];
+
+const breadcrumbs = [
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'AI Services', item: 'https://asreseo.com/services/ai/' },
+    { position: 3, name: 'Smart Analysis & Strategy', item: 'https://asreseo.com/services/ai/analysis-strategy/' }
+];
+
+
+
+    const seoCroFeatures = [
+        {
+            icon: "search",
+            title: 'Smart SEO',
+            description: 'Keyword analysis and content optimization with advanced search algorithms.',
+            benefits: ['Higher rankings', 'Organic traffic', 'Competitor analysis']
+        },
+        {
+            icon: "target",
+            title: 'Conversion Rate Optimization (CRO)',
+            description: 'Smart A/B testing and funnel analysis that turn visitors into customers.',
+            benefits: ['More sales', 'Lower acquisition costs', 'Better UX']
+        },
+        {
+            icon: "trending-up",
+            title: 'Content Strategy',
+            description: 'Content calendars and keyword strategy built on real data.',
+            benefits: ['Targeted content', 'The right audience', 'High ROI']
+        }
+    ];
+
+    const behaviorFeatures = [
+        {
+            icon: "eye",
+            title: 'Heatmaps & User Behavior',
+            description: 'Precise analysis of clicks, scrolls and on-site behavior.',
+            benefits: ['Find hot spots', 'Fix UX issues', 'Optimize layouts']
+        },
+        {
+            icon: "users",
+            title: 'Customer Journey Analysis',
+            description: 'Trace the path from landing to purchase and find drop-offs.',
+            benefits: ['Understand behavior', 'Improve buying path', 'Grow loyalty']
+        },
+        {
+            icon: "brain",
+            title: 'Behavior Prediction',
+            description: 'Machine learning that anticipates user needs and future behavior.',
+            benefits: ['Smart suggestions', 'Personalization', 'Sales forecasting']
+        }
+    ];
+
+    const brandConsultingFeatures = [
+        {
+            icon: "shield",
+            title: 'Brand Monitoring',
+            description: '24/7 watch over your brand name across social and web.',
+            benefits: ['Reputation management', 'Crisis detection', 'Sentiment analysis']
+        },
+        {
+            icon: "lightbulb",
+            title: 'Strategic AI Consulting',
+            description: 'Expert guidance for implementing AI across business processes.',
+            benefits: ['AI roadmap', 'Process automation', 'Digital transformation']
+        },
+        {
+            icon: "line-chart",
+            title: 'Competitor Analysis',
+            description: 'Continuous rival tracking with tactics to pull ahead.',
+            benefits: ['Market insight', 'Competitive edge', 'Better decisions']
+        }
+    ];
+
+    const stats = [
+        { metric: 'Search Console', label: 'Organic traffic monitoring', color: 'text-green-800' },
+        { metric: '3x', label: 'Higher conversion rates', color: 'text-blue-600' },
+        { metric: 'Heatmaps', label: 'User-experience optimization', color: 'text-purple-600' },
+        { metric: '24/7', label: 'Smart monitoring', color: 'text-orange-600' }
+    ];
+
+    const benefits = [
+        'Decisions based on real data, not guesswork',
+        'Fast detection of growth opportunities and market threats',
+        'Optimized marketing budgets and higher returns',
+        'Deep understanding of customer needs and behavior',
+        'Outpace rivals with smarter strategies',
+        'Lower business risk with accurate forecasting'
+    ];
+
+    
+---
+<BaseLayout
+  lang="en"
+  title='Smart Business Analysis & Strategy | AsreSEO'
+  description='End-to-end AI analysis, strategy and SEO services at AsreSEO. Data-driven user behavior analysis, conversion rate optimization (CRO) and competitor monitoring to own page one.'
+  keywords='AI SEO, AI SEO services, smart SEO, user behavior analysis, CRO, AI strategy, conversion rate optimization'
+  canonical='/services/ai/analysis-strategy/'
+  ogType='website'
+  ogUrl='https://asreseo.com/services/ai/analysis-strategy/'
+  ogImages={[{ url: "/og/analysis-strategy-hero.jpg", width: 1200, height: 630, alt: "AI-powered SEO analysis and strategy by AsreSEO" }]}
+  twitterCard='summary_large_image'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+            <script id="structured-data" type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/ai/analysis-strategy/', image: '/og/analysis-strategy-hero.jpg' }))} />
+            <BreadcrumbStructuredData items={breadcrumbs} />
+
+            <Header lang="en" />
+
+            <main>
+                <!-- Hero Section -->
+                <ServiceHero
+                    lang="en"
+                    badge="Business Intelligence & Data-Driven Strategy"
+                    title="Smart Analysis"
+                    titleGradient="& Strategy"
+                    description="Pave your growth path with data and AI — from SEO and conversion optimization to behavior analysis and brand monitoring."
+                    primaryCta={{ text: "Get a Free Analysis", href: "/consultation/" }}
+                    secondaryCta={{ text: "Strategic Consultation", href: "/consultation/" }}
+                    imageSrc="/images/analysis-strategy-hero.webp"
+                    imageAlt="Smart analysis and strategy"
+                    theme="indigo"
+                />
+
+                <!-- Stats Section -->
+                <ServiceStats lang="en" stats={stats} theme="indigo" />
+
+                <!-- SEO & CRO Section -->
+                <section class="section-padding">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <Badge class="bg-blue-100 text-blue-700 mb-4">Growth & optimization</Badge>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                SEO & <span class="gradient-text">Conversion Optimization</span>
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                Attract targeted traffic and turn visitors into loyal customers
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8">
+                            {seoCroFeatures.map((feature, index) => (
+                                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                                                <Icon name={feature.icon} class="h-6 w-6 text-blue-600" />
+                                            </div>
+                                            <CardTitle class="text-lg font-semibold">{feature.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">
+                                            {feature.description}
+                                        </p>
+                                        <div class="space-y-2">
+                                            {feature.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                                                    {benefit}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Behavior Analysis Section -->
+                <section class="section-padding bg-slate-50">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <Badge class="bg-purple-100 text-purple-700 mb-4">User behavior analysis</Badge>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                Deep Insight Into <span class="gradient-text">Customer Behavior</span>
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                Know exactly what users need for the best possible experience
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8">
+                            {behaviorFeatures.map((feature, index) => (
+                                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                                                <Icon name={feature.icon} class="h-6 w-6 text-purple-600" />
+                                            </div>
+                                            <CardTitle class="text-lg font-semibold">{feature.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">
+                                            {feature.description}
+                                        </p>
+                                        <div class="space-y-2">
+                                            {feature.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                                                    {benefit}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Brand & Consulting Section -->
+                <section class="section-padding">
+                    <div class="container-custom">
+                        <div class="text-center mb-12">
+                            <Badge class="bg-orange-100 text-orange-700 mb-4">Strategy & branding</Badge>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                Brand Management & <span class="gradient-text">Strategic Consulting</span>
+                            </h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                Protect brand reputation and chart a smart roadmap for what's next
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8">
+                            {brandConsultingFeatures.map((feature, index) => (
+                                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                                    <CardHeader class="pb-4">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
+                                                <Icon name={feature.icon} class="h-6 w-6 text-orange-600" />
+                                            </div>
+                                            <CardTitle class="text-lg font-semibold">{feature.title}</CardTitle>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">
+                                            {feature.description}
+                                        </p>
+                                        <div class="space-y-2">
+                                            {feature.benefits.map((benefit, benefitIndex) => (
+                                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                                    <Icon name="check-circle" class="h-4 w-4 text-green-500 shrink-0" />
+                                                    {benefit}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                      <ServiceBenefits lang="en" title="Why Do You Need Smart" titleHighlight="Analysis & Strategy" subtitle="The payoff of data-driven decisions for lasting growth" benefits={benefits} />
+
+                <!-- FAQ Section -->
+                <ServiceFAQ
+                    lang="en"
+                    faqs={faqs}
+                    title="Analysis, Strategy & Smart SEO FAQs"
+                    description="Common questions about AI SEO tools, competitor analysis and campaign returns"
+                    theme="indigo"
+                />
+
+                <!-- CTA Section -->
+                <ServiceCTA
+                    lang="en"
+                    title="Build Your Future on Data!"
+                    description="Cut risk and capture growth opportunities with precise analysis and smart strategy — we'll be with you all the way."
+                    primaryCta={{ text: "Start Smart Analysis", href: "/consultation/" }}
+                    secondaryCta={{ text: "Get Advice", href: "/consultation/" }}
+                    theme="indigo"
+                />
+            </main>
+
+            <Footer lang="en" />
+        </div>
+</BaseLayout>

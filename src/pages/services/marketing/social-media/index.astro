@@ -1,0 +1,484 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+
+const lang = 'en' as const;
+const localize = (p: string) => p;
+
+// Tailwind only sees class names that literally appear in source, so a runtime
+// `bg-${color}-100` is invisible to it. Map them explicitly instead. Icons use
+// -700 rather than -600 so they clear the 3:1 WCAG 1.4.11 floor on a -100 tile.
+const platformTile: Record<string, string> = {
+  pink: 'bg-pink-100', blue: 'bg-blue-100', cyan: 'bg-cyan-100',
+  red: 'bg-red-100', purple: 'bg-purple-100',
+};
+const platformTileHover: Record<string, string> = {
+  pink: 'group-hover:bg-pink-200', blue: 'group-hover:bg-blue-200',
+  cyan: 'group-hover:bg-cyan-200', red: 'group-hover:bg-red-200',
+  purple: 'group-hover:bg-purple-200',
+};
+const platformIcon: Record<string, string> = {
+  pink: 'text-pink-700', blue: 'text-blue-700', cyan: 'text-cyan-700',
+  red: 'text-red-700', purple: 'text-purple-700',
+};
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Social Media Management',
+  'description': 'Professional social media management including content creation, audience engagement and performance analytics',
+  'serviceType': 'Social Media Marketing',
+  'inLanguage': 'en-US',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com'
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Social media management services',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Instagram management',
+          'description': 'Professional Instagram management with an engaging content strategy',
+          'inLanguage': 'en-US'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'LinkedIn management',
+          'description': 'Professional presence for B2B networks',
+          'inLanguage': 'en-US'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const socialPlatforms = [
+    {
+      name: 'Instagram',
+      description: 'Page and story management for maximum engagement',
+      icon: "instagram",
+      features: ['Promotional posts', 'Interactive stories', 'Advanced analytics'],
+      color: 'pink'
+    },
+    {
+      name: 'LinkedIn',
+      description: 'Professional presence for B2B networks',
+      icon: "linkedin",
+      features: ['Expert articles', 'Professional posts', 'B2B networking'],
+      color: 'blue'
+    },
+    {
+      name: 'X (Twitter)',
+      description: 'Twitter management for real-time engagement',
+      icon: "twitter",
+      features: ['Viral tweets', 'Fast responses', 'Real-time trends'],
+      color: 'cyan'
+    },
+    {
+      name: 'Telegram',
+      description: 'Dedicated channel and group management',
+      icon: "message-circle",
+      features: ['Automation bots', 'Educational channel', 'Customer support'],
+      color: 'blue'
+    },
+    {
+      name: 'YouTube',
+      description: 'Professional video production and publishing',
+      icon: "youtube",
+      features: ['Tutorial videos', 'Viral campaigns', 'Advanced analytics'],
+      color: 'red'
+    },
+    {
+      name: 'TikTok',
+      description: 'Viral content and creative short videos',
+      icon: "heart",
+      features: ['Short videos', 'Hot trends', 'High engagement'],
+      color: 'purple'
+    }
+  ];
+
+  const contentStrategies = [
+    'Valuable educational and informative content',
+    'Interactive posts and exciting contests',
+    'Live, in-the-moment stories',
+    'Short viral videos',
+    'Motivational and inspiring posts'
+  ];
+
+  const results = [
+    { metric: 'Ongoing tracking', label: 'Higher engagement rate', icon: "message-circle" },
+    { metric: 'Organic growth', label: 'Follower growth', icon: "users" },
+    { metric: 'Precise measurement', label: 'Higher click-through rate', icon: "trending-up" },
+    { metric: '24/7', label: 'Always-on responses', icon: "clock" }
+  ];
+
+  const features = [
+    {
+      icon: "users",
+      title: 'Targeted follower engagement',
+      description: 'Replying to comments and DMs and building a warm relationship with your social audience.',
+      benefits: ['Fast responses', 'Warm communication', 'Happier customers']
+    },
+    {
+      icon: "scroll-text",
+      title: 'Dedicated content planning & production',
+      description: 'Creating engaging content (visual, video, text) matched to your brand to lift page interaction.',
+      benefits: ['Unique content', 'On-brand voice', 'More reach']
+    },
+    {
+      icon: "trending-up",
+      title: 'Performance analysis & growth',
+      description: 'Analytical reports on post feedback and growth rate, with ongoing content-plan optimization.',
+      benefits: ['Accurate reports', 'Continuous improvement', 'Measurable results']
+    },
+    {
+      icon: "clock",
+      title: '24/7 coverage & fast responses',
+      description: 'Complete management of your social presence with round-the-clock responses.',
+      benefits: ['Instant replies', 'Always-on presence', 'Customer appreciation']
+    }
+  ];
+
+  const metrics = [
+    'Follower and subscriber growth',
+    'Engagement volume (likes, comments, shares)',
+    'Post views and impressions',
+    'Traffic-to-sales conversion health',
+    'Trend monitoring and user feedback'
+  ];
+
+  const workflowSteps = [
+    {
+      step: '1',
+      title: 'Audit & Strategy',
+      desc: 'Analyzing your goals, target audience and competitors to design the strategy'
+    },
+    {
+      step: '2',
+      title: 'Profile Review & Polish',
+      desc: 'Optimizing your bio, profile picture and starter content'
+    },
+    {
+      step: '3',
+      title: 'Content Calendar Design',
+      desc: 'Planning content and scheduling post publication'
+    },
+    {
+      step: '4',
+      title: 'Content Production & Publishing',
+      desc: 'Creating engaging content and publishing it optimally across networks'
+    },
+    {
+      step: '5',
+      title: 'Engagement & Management',
+      desc: 'Replying to comments and staying continuously engaged with users'
+    },
+    {
+      step: '6',
+      title: 'Analysis & Optimization',
+      desc: 'Reviewing performance stats and improving the content strategy'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'Which networks do you manage?',
+      answer: 'We cover Instagram, Telegram, LinkedIn, X (Twitter), YouTube, TikTok and other popular networks. We pick the right platforms for your business needs.'
+    },
+    {
+      question: 'Do you provide a content calendar?',
+      answer: 'Yes. Every month you receive a publishing calendar with creative ideas and an engagement strategy tailored to your brand goals, delivered at the start of the month.'
+    },
+    {
+      question: 'How do you grow page engagement?',
+      answer: 'Interactive campaigns, Instagram contests, live stories, viral content, influencer collaborations and targeted ads are among our specialist tactics for growing engagement.'
+    },
+    {
+      question: 'How many posts go out per week?',
+      answer: 'Depending on the platform and your marketing strategy: typically 5–7 posts per week on Instagram, 3–4 on LinkedIn, and other networks matched to their audiences.'
+    },
+    {
+      question: 'Do different businesses get different strategies?',
+      answer: 'Yes — the strategy is fully customized for every business. We design a unique plan based on your industry, target audience, competitors and marketing goals.'
+    },
+    {
+      question: 'How do you guarantee content quality?',
+      answer: 'All content is reviewed by content specialists, engagement stats from previous posts are analyzed, and new content keeps improving based on user feedback.'
+    }
+  ];
+
+---
+<BaseLayout lang="en" title='Social Media Management Services | AsreSEO' description='Professional social media management including content creation, audience engagement and performance analytics. Grow engagement and conversion rates with AsreSEO specialists.' keywords='social media management, social media, Instagram, Telegram, X, LinkedIn, social marketing, AsreSEO' canonical='/services/marketing/social-media/' ogType='website' ogUrl='https://asreseo.com/services/marketing/social-media/' ogImages={[{ url: "/og/social-media-hero.jpg", width: 1200, height: 630, alt: "Social media management | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Social Media Management | AsreSEO'
+
+  ogDescription='Complete, professional management of your brand presence across social networks.'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/marketing/social-media/', image: '/og/social-media-hero.jpg' }))}
+      />
+
+      <Header lang="en" />
+      <BreadcrumbStructuredData
+        items={[
+          { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+          { position: 2, name: 'Marketing Services', item: 'https://asreseo.com/services/marketing/' },
+          { position: 3, name: 'Social Media Management', item: 'https://asreseo.com/services/marketing/social-media/' }
+        ]}
+      />
+
+      <main>
+        <!-- Hero Section -->
+        <ServiceHero lang="en"
+          badge="Professional social media management"
+          title="Social Media Management"
+          titleGradient="Social Media"
+          description="Complete, professional management of your brand presence across social networks. Steady engagement growth, organic follower gains and social-to-sales conversion with advanced AsreSEO strategies."
+          primaryCta={{ text: "Grow My Social Presence" }}
+          secondaryCta={{ text: "Free Page Audit" }}
+          imageSrc="/images/social-media-hero.webp"
+          imageAlt="Social media management"
+          theme="pink"
+        />
+
+        <!-- Results Section -->
+        <ServiceStats lang="en" stats={results} theme="pink" />
+
+        <!-- Social Platforms Section -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[CHANNEL_DISTRIBUTION // SOCIAL_MATRIX]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Social Networks <span class="text-[#CCFF00]">We Cover</span>
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                // Professional management of every popular social platform with dedicated strategies
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {socialPlatforms.map((platform, index) => (
+                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                        <Icon name={platform.icon} class="h-6 w-6 text-[#CCFF00]" />
+                      </div>
+                      <CardTitle class="text-xl font-bold uppercase text-white">{platform.name}</CardTitle>
+                    </div>
+                    <p class="text-slate-300 mb-2 text-sm">{platform.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-2 border-t border-white/10 pt-4">
+                      {platform.features.map((feature, featureIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-slate-300">
+                          <Icon name="check-circle" class="h-4 w-4 text-[#CCFF00] shrink-0" />
+                          <span>{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[MANAGEMENT_PIPELINE // CAPABILITIES]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Our <span class="text-[#CCFF00]">Social Media Management</span> Services
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                // A comprehensive, professional approach to managing your brand in the digital space
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((feature, index) => (
+                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                        <Icon name={feature.icon} class="h-6 w-6 text-[#CCFF00]" />
+                      </div>
+                      <CardTitle class="text-lg font-bold uppercase text-white">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-slate-300 mb-4 leading-relaxed text-sm">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2 border-t border-white/10 pt-4">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-slate-300">
+                          <Icon name="check-circle" class="h-4 w-4 text-[#CCFF00] shrink-0" />
+                          <span>{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Content Strategies -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[ENGAGEMENT_MECHANICS // VIRALITY_TACTICS]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Engaging <span class="text-[#CCFF00]">Content Strategies</span>
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-2xl">
+                // Creative approaches to viral, interactive content
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              {contentStrategies.map((strategy, index) => (
+                <div class="flex items-center gap-4 p-4 bg-[#0a0e17] border-2 border-white/15 hover:border-[#CCFF00] transition-colors rounded-none brutalist-card group">
+                  <div class="w-10 h-10 bg-black border border-white/20 flex items-center justify-center shrink-0 group-hover:border-[#CCFF00] transition-colors">
+                    <Icon name="zap" class="h-5 w-5 text-[#CCFF00]" />
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mb-0.5">
+                      STRAT_{String(index + 1).padStart(2, '0')}
+                    </div>
+                    <span class="text-white font-medium text-sm block">
+                      {strategy}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p class="mt-8 text-center text-slate-400 font-mono text-xs leading-relaxed max-w-3xl mx-auto border-t border-white/10 pt-6">
+              Running these strategies depends on a steady content pipeline; for production output see our
+              <a href={localize('/services/content/social-media-content/')} class="text-[#CCFF00] font-semibold underline hover:no-underline">social media content creation</a>
+              services, and to keep your publishing schedule on track see our
+              <a href={localize('/services/content/content-calendar/')} class="text-[#CCFF00] font-semibold underline hover:no-underline">content calendar</a>
+              services.
+            </p>
+          </div>
+        </section>
+
+        <!-- Metrics Section -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[PERFORMANCE_AUDIT // KPI_TRACKING]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Key <span class="text-[#CCFF00]">Measurement</span> Metrics
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-2xl">
+                // The success metrics of social media management
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+              {metrics.map((metric, index) => (
+                <div class="flex items-start gap-4 p-4 bg-[#0a0e17] border-2 border-white/15 hover:border-[#CCFF00] transition-colors rounded-none brutalist-card group">
+                  <div class="w-10 h-10 bg-black border border-white/20 flex items-center justify-center shrink-0 group-hover:border-[#CCFF00] transition-colors">
+                    <Icon name="bar-chart3" class="h-5 w-5 text-[#CCFF00]" />
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mb-0.5">
+                      KPI_{String(index + 1).padStart(2, '0')}
+                    </div>
+                    <span class="text-white font-medium leading-relaxed text-sm block">
+                      {metric}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Workflow Section -->
+        <section class="section-padding bg-linear-to-br from-pink-50 to-purple-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                Our <span class="gradient-text">Social Media Management</span> Process
+              </h2>
+              <p class="text-xl text-gray-600">
+                A step-by-step approach to winning in the social space
+              </p>
+            </div>
+
+            <div class="space-y-6">
+              {workflowSteps.map((step, index) => (
+                <div class="flex items-center gap-6 p-6 bg-white/80 rounded-xl shadow-xs">
+                  <div class="w-14 h-14 bg-pink-100 rounded-full flex items-center justify-center text-2xl font-bold text-pink-700 shrink-0">
+                    {step.step}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      {step.title}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <ServiceFAQ lang="en"
+          title="Frequently Asked Questions"
+          titleGradient="Asked Questions"
+          subtitle="Answers to the most common questions about social media management"
+          faqs={faqs}
+        />
+
+        <!-- CTA Section -->
+        <ServiceCTA lang="en"
+          title="Make your brand powerful on social media!"
+          description="With professional social media management, attract loyal followers, grow engagement and improve sales through the social space. AsreSEO is your guide to success!"
+          primaryCta={{ text: "Start Managing My Networks" }}
+          secondaryCta={{ text: "Free Strategy Consultation" }}
+          primaryClass="bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg shadow-pink-600/30"
+        />
+      </main>
+
+      <Footer lang="en" />
+    </div>
+</BaseLayout>

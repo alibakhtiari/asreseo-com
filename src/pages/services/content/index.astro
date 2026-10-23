@@ -1,0 +1,297 @@
+---
+import { withServiceMeta } from '../../../lib/service-schema';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Layout/Header.astro';
+import Footer from '../../../components/Layout/Footer.astro';
+import Card from '../../../components/ui/card/Card.astro';
+import CardContent from '../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../components/ui/card/CardTitle.astro';
+import Button from '../../../components/ui/button/Button.astro';
+import Picture from '../../../components/ui/Picture.astro';
+import Icon from '../../../components/ui/Icon.astro';
+import BreadcrumbStructuredData from '../../../components/BreadcrumbStructuredData.astro';
+import ServiceFAQ from '../../../components/Services/ServiceFAQ.astro';
+
+const contentServices = [
+  {
+    code: 'CONTENT_01',
+    title: 'Entity-Dense Technical Copywriting',
+    description: 'Deterministic editorial architectures designed to fulfill exact search intent, rich in verified entity relationships and zero fluff.',
+    icon: 'file-text',
+    href: '/services/content/text-content/',
+    features: ['Semantic keyword cluster coverage', 'Structured RDF/Schema entity injection', 'E-E-A-T citation proofing', 'Deterministic internal linking vectors']
+  },
+  {
+    code: 'CONTENT_02',
+    title: 'Topical Authority Matrices & Calendars',
+    description: 'Algorithmic publication topologies that methodically eliminate topical gaps until your domain achieves undeniable subject supremacy.',
+    icon: 'calendar',
+    href: '/services/content/content-calendar/',
+    features: ['Topical cluster dependency trees', 'Automated indexing cadence schedules', 'Seasonal intent surge forecasting', 'Competitive content gap extraction']
+  },
+  {
+    code: 'CONTENT_03',
+    title: 'Multi-Channel Brand Distribution',
+    description: 'High-signal educational frameworks adapted for developer hubs, professional networks, and executive audiences.',
+    icon: 'share2',
+    href: '/services/content/social-media-content/',
+    features: ['High-retention technical summaries', 'Data visualization carousels', 'Key takeaway distillation', 'Predictive viral hook frameworks']
+  },
+  {
+    code: 'CONTENT_04',
+    title: 'Data Visualizations & Infographics',
+    description: 'Bespoke architectural diagrams, system flowcharts, and high-impact visual telemetry that earn organic editorial backlinks.',
+    icon: 'video',
+    href: '/services/content/visual-content/',
+    features: ['Deterministic system architecture diagrams', 'Embeddable technical charts', 'High-res vector assets', 'Zero-stock brand visual coherence']
+  },
+  {
+    code: 'CONTENT_05',
+    title: 'Multilingual Entity Localization',
+    description: 'Precision technical translation across international target markets preserving deep semantic schemas and localized search vectors.',
+    icon: 'globe',
+    href: '/services/content/translation/',
+    features: ['Cross-language ontology preservation', 'Native technical peer review', 'Hreflang & regional cluster setup', 'Localized search intent mapping']
+  }
+];
+
+const pillars = [
+  { num: '01', title: 'Persona & Query Intent Taxonomy', desc: 'Mapping exact machine queries and human problem states at each stage of the consideration cycle.' },
+  { num: '02', title: 'Topical Authority Clustering', desc: 'Building comprehensive parent-child semantic clusters rather than isolated, disconnected blog posts.' },
+  { num: '03', title: 'Corpus Pruning & Consolidation', desc: 'Continuously auditing legacy URLs to canonicalize duplicate pages and purge decayed index bloat.' },
+  { num: '04', title: 'Format & Distribution Topology', desc: 'Allocating complex topics into structured reference guides, interactive calculators, or architectural diagrams.' },
+  { num: '05', title: 'Continuous Indexing Webhook Pushes', desc: 'Syncing new content releases immediately with the Google Indexing API and IndexNow cluster nodes.' },
+  { num: '06', title: 'Editorial Truth & Brand Voice Specs', desc: 'Rigorous engineering standards ensuring factual accuracy, citation density, and zero generic filler.' },
+];
+
+const faqs = [
+  {
+    q: 'How does programmatic content architecture differ from traditional blogging?',
+    a: 'Traditional agencies produce subjective 1,500-word articles that search engines skim and forget. We build structured semantic database assets, relational entity tables, and exhaustive topical clusters that force search algorithms and AI models to cite your domain as the primary definitive source.'
+  },
+  {
+    q: 'How do you guarantee factual grounding and originality?',
+    a: 'Every piece of content passes through automated factual consistency verifiers, original source attribution checks, and technical peer review before receiving cryptographic sign-off for deployment.'
+  },
+  {
+    q: 'Can content strategies scale across multilingual enterprise markets?',
+    a: 'Yes. Our localization architecture preserves semantic knowledge graphs across target languages with strict hreflang validation and regional entity tuning.'
+  }
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Programmatic Content Architecture & Topical Authority Suite',
+  'description': 'Advanced content strategy: entity-rich technical copywriting, topical authority matrices, and localized search vectors by AsreSEO.',
+  'inLanguage': 'en-US',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com',
+    'logo': 'https://asreseo.com/Logo.svg'
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'AsreSEO Content Strategy Services',
+    'itemListElement': contentServices.map(s => ({
+      '@type': 'Offer',
+      'itemOffered': {
+        '@type': 'Service',
+        'name': s.title,
+        'description': s.description
+      }
+    }))
+  }
+};
+
+const breadcrumbs = [
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'Content Strategy', item: 'https://asreseo.com/services/content/' },
+];
+---
+
+<BaseLayout
+  lang="en"
+  title="Programmatic Content Architecture & Authority | AsreSEO"
+  description="Build lasting organic traffic with AsreSEO programmatic content architecture, topical authority matrices, and entity-dense technical copywriting."
+  keywords="content strategy, topical authority, SEO copywriting, content calendar, technical content, entity graphs"
+  canonical="/services/content/"
+  ogType="website"
+  ogUrl="https://asreseo.com/services/content/"
+  ogImages={[{ url: "/og/services-content.jpg", width: 1200, height: 630, alt: "AsreSEO content strategy and topical authority services" }]}
+  twitterCard="summary_large_image"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(withServiceMeta(serviceSchema, { url: 'https://asreseo.com/services/content/', image: '/og/services-content.jpg' }))} />
+  <BreadcrumbStructuredData items={breadcrumbs} />
+
+  <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+    <Header lang="en" />
+    <main class="pt-28 pb-20">
+      <!-- Hero Section -->
+      <section class="py-16 md:py-24 border-b-2 border-white/10 relative">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+          <div class="grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 text-left order-2 lg:order-1">
+              <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#0a0d14] border border-white/20 mb-8 font-mono text-xs tracking-wider uppercase">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+                <span class="text-[#CCFF00] font-bold">[PROTOCOL_03 // SEMANTIC_ONTOLOGY_MATRIX]</span>
+                <span class="text-slate-500">|</span>
+                <span class="text-slate-300">TOPICAL_AUTHORITY</span>
+              </div>
+
+              <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white mb-6 tracking-tight leading-[1.05]">
+                Programmatic <span class="text-[#CCFF00]">Content</span> & Entity Architecture
+              </h1>
+
+              <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">
+                Deterministic knowledge graph creation, topical authority matrices, and continuous indexing assets built for modern search engines and LLM vector embeddings.
+              </p>
+
+              <div class="flex flex-wrap gap-4 font-mono text-xs">
+                <Button
+                  variant="acid"
+                  size="lg"
+                  class="px-8 py-4"
+                  href="/consultation/"
+                >
+                  Commission Content Strategy ↗
+                </Button>
+                <Button
+                  variant="brutalist"
+                  size="lg"
+                  class="px-8 py-4"
+                  href="/services/content/content-calendar/"
+                >
+                  Inspect Authority Matrix
+                </Button>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 order-1 lg:order-2 border-2 border-white/20 bg-[#090d16] brutalist-card brutalist-shadow-white group overflow-hidden">
+              <div class="p-3 bg-black border-b border-white/10 font-mono text-[11px] flex items-center justify-between text-slate-400">
+                <span class="text-[#CCFF00] font-bold">KNOWLEDGE_NODE // MAPPED</span>
+                <span>COVERAGE: 99.4%</span>
+              </div>
+              <div class="relative h-72 sm:h-80 md:h-96 w-full overflow-hidden">
+                <Picture
+                  src="/images/services-content.webp"
+                  alt="AsreSEO content strategy and topical authority services"
+                  class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 opacity-90"
+                  eager
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 Architecture Pillars -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#05070d]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[FRAMEWORK_PILLARS]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Content Architecture Fundamentals</h2>
+            </div>
+            <p class="text-slate-400 font-mono text-xs max-w-md">// Six deterministic components engineered into every enterprise content cluster.</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {pillars.map((pillar) => (
+              <div class="p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors flex flex-col justify-between">
+                <div>
+                  <div class="font-mono text-xs font-bold text-[#CCFF00] mb-3">{pillar.num} // SPECIFICATION</div>
+                  <h3 class="text-lg font-black uppercase text-white mb-2">{pillar.title}</h3>
+                  <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">{pillar.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Grid -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[TACTICAL_DISPATCH]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Specialized Content Protocols</h2>
+            </div>
+            <p class="text-slate-400 font-mono text-xs max-w-md">// End-to-end topical authority construction across all platforms.</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {contentServices.map((service) => (
+              <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card group hover:border-[#CCFF00] transition-colors p-6 sm:p-8 flex flex-col justify-between rounded-none">
+                <div>
+                  <div class="flex items-center justify-between pb-4 mb-6 border-b border-white/10 font-mono text-xs">
+                    <span class="text-[#CCFF00] font-bold">{service.code} //</span>
+                    <div class="w-8 h-8 bg-black border border-white/20 flex items-center justify-center text-[#CCFF00]">
+                      <Icon name={service.icon} class="h-4 w-4" />
+                    </div>
+                  </div>
+                  <CardHeader class="p-0 mb-4">
+                    <CardTitle class="text-xl font-black uppercase text-white group-hover:text-[#CCFF00] transition-colors">
+                      <a href={service.href}>{service.title}</a>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent class="p-0">
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
+                      {service.description}
+                    </p>
+                    <ul class="space-y-2.5 font-mono text-xs text-slate-400 mb-6">
+                      {service.features.map((feature) => (
+                        <li class="flex items-start">
+                          <span class="text-[#CCFF00] font-bold me-2">[✓]</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </div>
+                <div class="pt-4 border-t border-white/10 font-mono text-xs">
+                  <a href={service.href} class="inline-flex items-center text-[#CCFF00] font-bold hover:underline">
+                    Inspect Protocol Specs ↗
+                  </a>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <ServiceFAQ lang="en" title="Content Architecture FAQs" subtitle="Deterministic answers regarding entity density, topical coverage, and editorial verification" faqs={faqs} />
+
+      <!-- CTA Terminal -->
+      <section class="py-20 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="p-8 sm:p-12 bg-[#090d16] border-2 border-[#CCFF00] brutalist-shadow-white flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="space-y-2 text-center md:text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase font-bold tracking-wider">[COMMISSION_TOPICAL_MATRIX]</div>
+              <h2 class="text-2xl sm:text-4xl font-black text-white uppercase">Ready to Own Your Industry Knowledge Base?</h2>
+              <p class="text-slate-300 text-sm sm:text-base max-w-xl">
+                Consult with our content systems architects to design an automated topical authority cluster that establishes permanent search supremacy.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 font-mono text-xs shrink-0">
+              <Button
+                variant="acid"
+                size="lg"
+                class="px-8 py-4"
+                href="/consultation/"
+              >
+                Schedule Content Recon ↗
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer lang="en" />
+  </div>
+</BaseLayout>

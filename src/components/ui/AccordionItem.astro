@@ -1,0 +1,11 @@
+---
+export interface Props {
+  value?: string;
+  class?: string;
+  defaultOpen?: boolean;
+}
+const { value, class: className, defaultOpen = false }: any = Astro.props;
+---
+<div data-acc-item data-open={defaultOpen ? 'true' : 'false'} data-value={value} class={className}>
+  <slot />
+</div>

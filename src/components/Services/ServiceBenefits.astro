@@ -1,0 +1,75 @@
+---
+import Icon from '../ui/Icon.astro';
+
+export interface Props {
+  lang?: string;
+  title?: string;
+  titleHighlight?: string;
+  subtitle?: string;
+  benefits: string[];
+  icon?: string;
+  iconColorClass?: string;
+  iconBgClass?: string;
+}
+
+const {
+  lang = 'en',
+  title: rawTitle,
+  titleHighlight,
+  subtitle,
+  benefits = [],
+  icon = 'award',
+} = Astro.props;
+
+void lang;
+const title = rawTitle ?? 'Core Engineering Advantages';
+
+let beforeHighlight = title;
+let afterHighlight = '';
+let hasHighlight = false;
+
+if (titleHighlight && title.includes(titleHighlight)) {
+  const parts = title.split(titleHighlight);
+  beforeHighlight = parts[0];
+  afterHighlight = parts.slice(1).join(titleHighlight);
+  hasHighlight = true;
+}
+---
+
+<section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-6xl mx-auto px-6 sm:px-8">
+    <div class="mb-14 text-left">
+      <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[CORE_ADVANTAGES // PROTOCOL_BENEFITS]</div>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+        {hasHighlight ? (
+          <>
+            {beforeHighlight}<span class="text-[#CCFF00]">{titleHighlight}</span>{afterHighlight}
+          </>
+        ) : (
+          title
+        )}
+      </h2>
+      {subtitle && (
+        <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+          // {subtitle}
+        </p>
+      )}
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {benefits.map((benefit, idx) => (
+        <div class="flex items-start gap-4 p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors">
+          <div class="w-9 h-9 bg-black border border-[#CCFF00] text-[#CCFF00] font-mono text-xs font-black flex items-center justify-center shrink-0">
+            {String(idx + 1).padStart(2, '0')}
+          </div>
+          <div class="flex-1 text-left">
+            <span class="font-bold text-slate-200 text-sm sm:text-base leading-relaxed">
+              {benefit}
+            </span>
+          </div>
+          <Icon name={icon} class="h-4 w-4 text-[#CCFF00] shrink-0 opacity-60" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

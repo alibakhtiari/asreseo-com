@@ -1,0 +1,289 @@
+---
+import Button from '../ui/button/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+
+const categories = [
+  {
+    code: 'SECTOR_01',
+    title: 'SEO Infrastructure',
+    icon: 'search',
+    href: '/services/seo/',
+    description: 'Algorithmic search dominance, edge crawl efficiency, and deterministic semantic keyword networks built for page-one indexation.',
+    badge: 'CORE_ENGINE',
+    items: [
+      {
+        title: 'Technical & On-Page SEO',
+        href: '/services/seo/technical-onpage/',
+        desc: 'Edge rendering, IndexNow pipelines, Core Web Vitals, and crawl mitigation.',
+        badge: 'POPULAR',
+      },
+      {
+        title: 'Content & Authority Architecture',
+        href: '/services/seo/content-authority/',
+        desc: 'Deterministic entity trees, knowledge graph syndication, and Wikidata loops.',
+      },
+      {
+        title: 'Local SEO Topology',
+        href: '/services/seo/local-seo/',
+        desc: 'Multi-node geo-targeted schemas and localized map-pack prominence.',
+      },
+    ],
+  },
+  {
+    code: 'SECTOR_02',
+    title: 'AI Solutions & GEO / AEO',
+    icon: 'zap',
+    href: '/services/ai/',
+    description: 'Generative search engineering (GEO) and direct answer extraction across Perplexity Pro, ChatGPT Search, Gemini, and Google AI Overviews.',
+    badge: 'AUTONOMOUS',
+    items: [
+      {
+        title: 'AI Analysis & Strategy',
+        href: '/services/ai/analysis-strategy/',
+        desc: 'LLM citation audits, embedding alignment, and synthetic prompt benchmarking.',
+        badge: 'NEW',
+      },
+      {
+        title: 'AI Content Creation & Modeling',
+        href: '/services/ai/content-creation/',
+        desc: 'Multi-model content synthesis, tone embeddings, and factual citation grounding.',
+      },
+      {
+        title: 'AI Marketing & Reputation Defense',
+        href: '/services/ai/marketing-engagement/',
+        desc: 'Autonomous brand defense, hallucination patches, and conversational seeding.',
+      },
+    ],
+  },
+  {
+    code: 'SECTOR_03',
+    title: 'Content Authority & Media',
+    icon: 'file-text',
+    href: '/services/content/',
+    description: 'Enterprise editorial pipelines, syntactic multi-language reproduction, and automated multi-channel distribution.',
+    badge: 'SYNDICATION',
+    items: [
+      {
+        title: 'Editorial Content Strategy',
+        href: '/services/content/text-content/',
+        desc: 'Topic cluster topology, high-density guides, and E-E-A-T citation anchoring.',
+      },
+      {
+        title: 'Content Calendar & Scheduling',
+        href: '/services/content/content-calendar/',
+        desc: 'Programmatic publishing rhythms and seasonal demand forecasting.',
+      },
+      {
+        title: 'Visual & Brand Media',
+        href: '/services/content/visual-content/',
+        desc: 'Data infographics, editorial charts, and custom vector illustration systems.',
+      },
+      {
+        title: 'Social Media Content',
+        href: '/services/content/social-media-content/',
+        desc: 'Cross-platform distribution architectures and audience engagement loops.',
+      },
+      {
+        title: 'Neural Multilingual Translation',
+        href: '/services/content/translation/',
+        desc: 'Localized semantic reproduction across 28 global languages.',
+      },
+    ],
+  },
+  {
+    code: 'SECTOR_04',
+    title: 'Digital Marketing & Growth',
+    icon: 'trending-up',
+    href: '/services/marketing/',
+    description: 'High-precision Google Ads management, automated sales funnel architecture, and full-funnel customer acquisition.',
+    badge: 'PERFORMANCE',
+    items: [
+      {
+        title: 'Google Ads Management',
+        href: '/services/marketing/google-ads/',
+        desc: 'Algorithmic bidding scripts, high-intent negative keyword meshes, and conversion tracking.',
+        badge: 'PROVEN',
+      },
+      {
+        title: 'Integrated Marketing Campaigns',
+        href: '/services/marketing/integrated-campaigns/',
+        desc: 'Multi-channel orchestration combining search, paid media, and outbound.',
+      },
+      {
+        title: 'Sales Funnel Optimization',
+        href: '/services/marketing/sales-funnel-management/',
+        desc: 'Automated lead qualification funnels and checkout velocity enhancement.',
+      },
+      {
+        title: 'Social Media Advertising',
+        href: '/services/marketing/social-media/',
+        desc: 'B2B LinkedIn account-based marketing and Meta precision targeting.',
+      },
+      {
+        title: 'Email Marketing Automation',
+        href: '/services/marketing/email-marketing/',
+        desc: 'Behavioral trigger drip sequences, churn prevention, and high deliverability.',
+      },
+    ],
+  },
+  {
+    code: 'SECTOR_05',
+    title: 'Web Engineering & Speed',
+    icon: 'globe',
+    href: '/services/web/',
+    description: 'Headless Astro architecture, sub-20ms Core Web Vitals optimization, and high-converting conversion rate optimization (CRO).',
+    badge: 'EDGE_NATIVE',
+    items: [
+      {
+        title: 'SEO-Driven Web Architecture',
+        href: '/services/web/seo-web-design/',
+        desc: 'Blazing headless websites and semantic Astro frontend systems built for indexing.',
+        badge: 'FEATURED',
+      },
+      {
+        title: 'Sub-20ms Speed Optimization',
+        href: '/services/web/website-speed/',
+        desc: 'Edge caching, asset minification, and zero-layout-shift Core Web Vitals (100/100).',
+      },
+      {
+        title: 'UX Architecture & Wireframing',
+        href: '/services/web/ux-architecture/',
+        desc: 'Neuromarketing layout hierarchy, friction elimination, and clear conversion paths.',
+      },
+      {
+        title: 'High-Conversion Landing Pages',
+        href: '/services/web/landing-pages/',
+        desc: 'Programmatic landing pages engineered for high quality scores and conversion velocity.',
+      },
+    ],
+  },
+];
+---
+<section class="py-24 bg-[#000000] text-white border-b-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+      <div>
+        <div class="inline-block font-mono text-xs text-[#CCFF00] bg-black px-3 py-1 border border-[#CCFF00]/40 uppercase tracking-widest mb-3">
+          [SERVICES_DIRECTORY // 5_CORE_SECTORS]
+        </div>
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white font-sans">
+          Engineering Sectors & <span class="text-[#CCFF00]">Capabilities</span>
+        </h2>
+      </div>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <p class="text-slate-400 text-sm max-w-md font-sans">
+          Deterministic search infrastructure, edge-rendered plugins, and generative AI optimization organized across 5 core divisions.
+        </p>
+        <Button
+          href="/services/"
+          variant="acid"
+          size="sm"
+          class="shrink-0 px-5 py-3 font-mono text-xs uppercase"
+        >
+          Master Services Hub ↗
+        </Button>
+      </div>
+    </div>
+
+    <!-- Category Cards Grid (No Filters, One Card Per Category) -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {categories.map((cat, idx) => (
+        <div class={`p-6 sm:p-8 bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors flex flex-col justify-between ${idx === 4 ? 'lg:col-span-2' : ''}`}>
+          <div>
+            <!-- Card Top Bar -->
+            <div class="flex items-center justify-between pb-4 mb-5 border-b border-white/10 font-mono text-xs">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-[#CCFF00] animate-pulse"></span>
+                <span class="text-[#CCFF00] font-bold tracking-wider">{cat.code}</span>
+                <span class="text-slate-600">/</span>
+                <span class="text-slate-300 font-bold uppercase">{cat.items.length} PROTOCOLS</span>
+              </div>
+              <span class="text-[10px] font-mono text-slate-400 bg-black px-2.5 py-0.5 border border-white/15 uppercase">
+                {cat.badge}
+              </span>
+            </div>
+
+            <!-- Category Title & Link -->
+            <div class="flex items-baseline justify-between gap-4 mb-3">
+              <h3 class="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight font-sans">
+                <a href={cat.href} class="hover:text-[#CCFF00] transition-colors">
+                  {cat.title}
+                </a>
+              </h3>
+              <a
+                href={cat.href}
+                class="font-mono text-xs text-[#CCFF00] hover:underline uppercase shrink-0 font-bold hidden sm:inline-flex items-center gap-1"
+              >
+                <span>Sector Suite</span>
+                <span>↗</span>
+              </a>
+            </div>
+
+            <!-- Category Description -->
+            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6 font-sans">
+              {cat.description}
+            </p>
+
+            <!-- Items List Inside Category Card -->
+            <div class="border-t border-white/10 pt-4 mb-6">
+              <div class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mb-3">
+                [INCLUDED_PROTOCOLS]
+              </div>
+              <ul class="space-y-2.5">
+                {cat.items.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      class="p-2.5 bg-black/60 border border-white/10 hover:border-[#CCFF00] hover:bg-black transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2 group"
+                    >
+                      <div class="min-w-0">
+                        <div class="flex items-center gap-2">
+                          <span class="text-[#CCFF00] font-mono text-xs group-hover:translate-x-0.5 transition-transform">▸</span>
+                          <span class="font-sans font-bold text-xs sm:text-sm text-white group-hover:text-[#CCFF00] transition-colors">
+                            {item.title}
+                          </span>
+                          {item.badge && (
+                            <span class="text-[9px] font-mono font-bold bg-[#CCFF00]/10 text-[#CCFF00] border border-[#CCFF00]/30 px-1.5 py-0.2 uppercase">
+                              {item.badge}
+                            </span>
+                          )}
+                        </div>
+                        <p class="text-[11px] text-slate-400 font-sans mt-0.5 pl-4 line-clamp-1">
+                          {item.desc}
+                        </p>
+                      </div>
+                      <span class="font-mono text-xs text-slate-500 group-hover:text-[#CCFF00] shrink-0 self-end sm:self-center">
+                        ↗
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card Bottom Action -->
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="font-mono text-[11px] text-slate-500 uppercase">
+              100% Deterministic & SLA Backed
+            </span>
+            <a
+              href={cat.href}
+              class="font-mono text-xs font-bold text-black bg-[#CCFF00] hover:bg-white transition-colors px-3 py-1.5 uppercase border border-black shadow-[2px_2px_0px_#FFFFFF]"
+            >
+              Explore {cat.title} ↗
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

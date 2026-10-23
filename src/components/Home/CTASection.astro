@@ -1,0 +1,80 @@
+---
+import Button from '../ui/button/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+const localize = (p: string) => p;
+---
+<section class="py-24 bg-[#000000] text-white border-t-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <!-- Main Brutalist Commission Box -->
+    <div class="max-w-5xl mx-auto p-8 sm:p-14 bg-[#090d16] border-2 border-[#CCFF00] brutalist-shadow-white rounded-none">
+      <div class="text-center max-w-3xl mx-auto space-y-6">
+        <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-black border border-white/20 font-mono text-xs tracking-wider uppercase">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+          <span class="text-[#CCFF00] font-bold">[COMMISSION_DEPLOYMENT // PROTOCOL_READY]</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white font-sans leading-[1.05]">
+          Initialize Autonomous <span class="text-[#CCFF00]">Search Infrastructure</span>.
+        </h2>
+
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed font-sans max-w-2xl mx-auto">
+          Talk directly with our principal systems architects to evaluate your domain indexation footprint, crawl budget leaks, and LLM citation potential.
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center font-mono text-xs flex-wrap">
+          <Button
+            href={localize('/consultation/')}
+            variant="acid"
+            size="lg"
+            class="px-8 py-4.5 justify-center"
+          >
+            Schedule Technical Deep Dive ↗
+          </Button>
+          <a
+            href="https://wa.me/13463272878"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-4.5 inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-black font-bold uppercase border-2 border-black shadow-[3px_3px_0px_#FFFFFF] hover:shadow-[3px_3px_0px_#25D366] transition-all"
+          >
+            <Icon name="whatsapp" class="h-4 w-4 text-black" />
+            WhatsApp Chat ↗
+          </a>
+          <a
+            href="tel:+13463272878"
+            class="px-6 py-4.5 inline-flex items-center justify-center gap-2 bg-black hover:bg-zinc-900 text-white hover:text-[#CCFF00] font-bold uppercase border-2 border-white/20 hover:border-[#CCFF00] shadow-[3px_3px_0px_#FFFFFF] hover:shadow-[3px_3px_0px_#CCFF00] transition-all"
+          >
+            <Icon name="phone-call" class="h-4 w-4 text-[#CCFF00]" />
+            Call: +1 (346) 327-2878
+          </a>
+        </div>
+
+        <!-- System Guarantees Strip -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-10 mt-10 border-t border-white/15 font-mono text-xs text-left">
+          <div class="p-4 bg-black border border-white/10">
+            <div class="text-[#CCFF00] font-bold mb-1">[01 // REALTIME_PUSH]</div>
+            <div class="text-white font-bold uppercase mb-1">Sub-Second IndexNow</div>
+            <p class="text-slate-400 text-[11px] leading-relaxed">Instant URL dispatching to Google & Bing APIs upon mutation.</p>
+          </div>
+          <div class="p-4 bg-black border border-white/10">
+            <div class="text-[#CCFF00] font-bold mb-1">[02 // ENTITY_PROVEN]</div>
+            <div class="text-white font-bold uppercase mb-1">Wikidata Verification</div>
+            <p class="text-slate-400 text-[11px] leading-relaxed">Permanent institutional schema-linking across global knowledge bases.</p>
+          </div>
+          <div class="p-4 bg-black border border-white/10">
+            <div class="text-[#CCFF00] font-bold mb-1">[03 // ZERO_LOCKIN]</div>
+            <div class="text-white font-bold uppercase mb-1">Performance SLA</div>
+            <p class="text-slate-400 text-[11px] leading-relaxed">Verifiable telemetry dashboards and empirical reporting at every milestone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

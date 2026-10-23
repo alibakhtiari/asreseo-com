@@ -1,0 +1,45 @@
+---
+import Icon from '../ui/Icon.astro';
+import Input from '../ui/input/Input.astro';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+---
+<section class="py-16 md:py-24 bg-[#000000] border-b-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#0a0d14] border border-white/20 mb-8 font-mono text-xs tracking-wider uppercase">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+        <span class="text-[#CCFF00] font-bold">[DISPATCH_ARCHIVE // KNOWLEDGE_BASE]</span>
+        <span class="text-slate-500">|</span>
+        <span class="text-slate-300">OPEN PROTOCOLS</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white mb-6 tracking-tight leading-[1.05]">
+        Technical <span class="text-[#CCFF00]">Search & AI</span> Research Archives
+      </h1>
+
+      <p class="text-lg sm:text-xl text-slate-300 leading-relaxed mb-10 max-w-2xl mx-auto font-sans">
+        Deterministic engineering guides, algorithmic reverse-engineering breakdowns, and actionable search infrastructure documentation.
+      </p>
+
+      <div class="max-w-xl mx-auto">
+        <div class="relative">
+          <Input
+            type="text"
+            id="blog-search"
+            role="searchbox"
+            aria-label="Search research archives"
+            placeholder="Search research logs, protocols, entity docs..."
+            class="ps-12 pe-4 py-4 text-sm sm:text-base rounded-none border-2 border-white/20 bg-[#090d16] text-white placeholder:text-slate-500 focus:border-[#CCFF00] font-mono transition-colors"
+          />
+          <Icon name="search" class="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[#CCFF00]" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

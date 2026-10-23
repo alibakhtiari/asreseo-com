@@ -1,0 +1,374 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+import ServiceWorkflow from '../../../../components/Services/ServiceWorkflow.astro';
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Text Content Production',
+  'description': 'Expert SEO-driven text content including blog articles, product descriptions and website copy',
+  'serviceType': 'Content Creation & SEO',
+  'inLanguage': 'en-US',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com'
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Text content production services',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Expert articles',
+          'description': 'Professional, fully optimized blog articles',
+          'inLanguage': 'en-US'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Product descriptions',
+          'description': 'Engaging, persuasive copy for products',
+          'inLanguage': 'en-US'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const features = [
+    {
+      icon: "scroll-text",
+      title: 'Expert SEO Articles',
+      description: 'Targeted articles fully optimized for search engines in your niche.',
+      benefits: ['Advanced SEO', 'Expert content', 'Better rankings']
+    },
+    {
+      icon: "book-open",
+      title: 'Product Description Writing',
+      description: 'Engaging, persuasive copy that presents your store products at their best.',
+      benefits: ['More sales', 'Customer appeal', 'Better buying experience']
+    },
+    {
+      icon: "sparkles",
+      title: 'Flexible Writing Styles',
+      description: 'Matched to your business persona — formal or casual, friendly or educational.',
+      benefits: ['Brand fit', 'Content variety', 'Real connection']
+    },
+    {
+      icon: "star",
+      title: 'Editing & Quality Guarantee',
+      description: 'Every piece is edited and checked for originality and quality before delivery.',
+      benefits: ['Guaranteed quality', 'Final review', 'Client satisfaction']
+    }
+  ];
+
+  const contentTypes = [
+    {
+      title: 'Website Content',
+      description: 'Homepages, about pages, services, product benefits',
+      icon: "file-text",
+      features: 'SEO optimized, highly readable, brand-matched'
+    },
+    {
+      title: 'Blog Articles',
+      description: 'Educational articles and news in your field',
+      icon: "scroll-text",
+      features: 'Technical SEO, article structure, internal bridges'
+    },
+    {
+      title: 'Product Descriptions',
+      description: 'Ad copy, features, product benefits',
+      icon: "book-open",
+      features: 'Persuasive copy, benefit-led, clear call-to-action'
+    },
+    {
+      title: 'Organic Stories',
+      description: 'Motivational pieces, company news, success stories',
+      icon: "lightbulb",
+      features: 'Compelling narrative, sales-focused, brand building'
+    }
+  ];
+
+  const benefits = [
+    'Higher SEO rankings with a steady presence in Google results',
+    'Stronger trust and deeper customer relationships',
+    'Save your time with a professional content team',
+    'Higher conversion rates and audience loyalty',
+    'Better user experience and visitor engagement',
+    'Effective, sustainable content marketing'
+  ];
+
+  const process = [
+    {
+      step: '1',
+      title: 'Needs & Strategy Review',
+      desc: 'Keyword analysis, target audience and content goals'
+    },
+    {
+      step: '2',
+      title: 'Content Planning',
+      desc: 'Structure and content map for every page'
+    },
+    {
+      step: '3',
+      title: 'Research & Writing',
+      desc: 'Gathering information and producing the first draft'
+    },
+    {
+      step: '4',
+      title: 'Optimization & Editing',
+      desc: 'SEO optimization, editing and quality control'
+    },
+    {
+      step: '5',
+      title: 'Delivery & Support',
+      desc: 'Final files plus post-delivery support'
+    }
+  ];
+
+  // Qualitative process facts, not performance percentages — traffic/ranking
+  // lift figures are unverifiable (see src/lib/site-claims.ts).
+  const stats = [
+    { metric: 'Monthly', label: 'Organic traffic monitoring', color: 'text-blue-600' },
+    { metric: 'Search Console', label: 'Target-keyword tracking', color: 'text-green-800' },
+    { metric: '185', label: 'SEO-optimized keywords', color: 'text-purple-600' },
+    { metric: 'Edited', label: 'Quality control before delivery', color: 'text-orange-600' }
+  ];
+
+  const qualityGuarantees = [
+    'Originality checks on every piece',
+    'Advanced SEO principles applied',
+    'Matched to your brand voice',
+    'High grammatical and literary quality',
+    'Full review by content specialists',
+    'Free revisions until you are fully satisfied'
+  ];
+
+  const faqs = [
+    {
+      question: 'Is the content original?',
+      answer: 'Yes — every piece is written fresh for your order with a uniqueness guarantee, verified with advanced plagiarism-detection tools.'
+    },
+    {
+      question: 'What content types do you cover?',
+      answer: 'From blog posts, website copy, product descriptions and service pages to FAQs, news content — any written content you need.'
+    },
+    {
+      question: 'How do delivery times work?',
+      answer: 'Depending on volume, typically 2 days to a week; complex pieces can take up to two weeks. The exact timeline is confirmed when you order.'
+    },
+    {
+      question: 'Can you match our tone of voice?',
+      answer: 'Yes — we write in your brand persona, whether formal, friendly, educational or corporate.'
+    },
+    {
+      question: 'Who writes your content?',
+      answer: 'Our team combines content specialists, SEO experts and professional writers with years of experience, each writing in their own field of expertise.'
+    },
+    {
+      question: 'What support comes after delivery?',
+      answer: 'Free revisions for one week after delivery, plus monthly content-strategy consulting.'
+    }
+  ];
+
+---
+<BaseLayout lang="en" title='Text Content Production | SEO Content That Ranks | AsreSEO' description='Professional SEO-focused text content production. Blog articles, product descriptions and website copy written to SEO principles and content standards.' keywords='content production, text content, article writing, SEO content, unique copy, expert articles' canonical='/services/content/text-content/' ogType='website' ogUrl='https://asreseo.com/services/content/text-content/' ogImages={[{ url: "/og/content-creation-hero.jpg", width: 1200, height: 630, alt: "Text content production | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Text Content Production | SEO Content With AsreSEO'
+
+  ogDescription='Expert, engaging, fully search-optimized text content.'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/content/text-content/', image: '/og/content-creation-hero.jpg' }))}
+      />
+
+      <Header lang="en" />
+      <BreadcrumbStructuredData
+        items={[
+          { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+          { position: 2, name: 'Content Services', item: 'https://asreseo.com/services/content/' },
+          { position: 3, name: 'Text Content Production', item: 'https://asreseo.com/services/content/text-content/' }
+        ]}
+      />
+
+      <main>
+        <!-- Hero Section -->
+        <ServiceHero
+          lang="en"
+          badge="Text Content Specialists"
+          title="Text"
+          titleGradient="Content Production"
+          description="Engaging, SEO-driven, one-of-a-kind content from professional specialists. Blog articles, product descriptions and website copy at excellent quality."
+          primaryCta={{ text: "Order Content Production" }}
+          secondaryCta={{ text: "Portfolio" }}
+          imageSrc="/images/content-creation-hero.webp"
+          imageAlt="Text content production"
+          theme="green"
+        />
+
+        <!-- Stats Section -->
+        <ServiceStats lang="en" stats={stats} />
+
+        <!-- Content Types Section -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[EDITORIAL_TAXONOMY // PRODUCTION_SUITE]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Content Types <span class="text-[#CCFF00]">We Produce</span>
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                // Every content need your website has, from blog to products
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {contentTypes.map((contentType, index) => (
+                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                        <Icon name={contentType.icon} class="h-6 w-6 text-[#CCFF00]" />
+                      </div>
+                      <CardTitle class="text-xl font-bold uppercase text-white">{contentType.title}</CardTitle>
+                    </div>
+                    <p class="text-slate-300 mb-2 text-sm">{contentType.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-xs font-mono text-slate-400 border-t border-white/10 pt-4">{contentType.features}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[EDITORIAL_EXCELLENCE // DIFFERENTIATION]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                What Makes Our <span class="text-[#CCFF00]">Content Different</span>
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                // Why AsreSEO content quality beats the competition
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((feature, index) => (
+                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                        <Icon name={feature.icon} class="h-6 w-6 text-[#CCFF00]" />
+                      </div>
+                      <CardTitle class="text-lg font-bold uppercase text-white">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-slate-300 mb-4 leading-relaxed text-sm">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2 border-t border-white/10 pt-4">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-slate-300">
+                          <Icon name="check-circle" class="h-4 w-4 text-[#CCFF00] shrink-0" />
+                          <span>{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Quality Guarantees -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[VERIFICATION_PROTOCOLS // QUALITY_PLEDGE]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Our <span class="text-[#CCFF00]">Quality</span> Guarantees
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-2xl">
+                // The standards and commitments that set us apart
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              {qualityGuarantees.map((guarantee, index) => (
+                <div class="flex items-center gap-4 p-4 bg-[#0a0e17] border-2 border-white/15 hover:border-[#CCFF00] transition-colors rounded-none brutalist-card group">
+                  <div class="w-10 h-10 bg-black border border-white/20 flex items-center justify-center shrink-0 group-hover:border-[#CCFF00] transition-colors">
+                    <Icon name="award" class="h-5 w-5 text-[#CCFF00]" />
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mb-0.5">
+                      PLEDGE_{String(index + 1).padStart(2, '0')}
+                    </div>
+                    <span class="text-white font-medium text-sm block">
+                      {guarantee}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <ServiceBenefits lang="en" title="Content Production With" titleHighlight="AsreSEO" subtitle="Tangible results of professional content for your business growth" benefits={benefits} />
+
+              <ServiceWorkflow lang="en" title="Content" titleHighlight="Production Process" subtitle="A step-by-step approach to professional, results-driven content" steps={process} bgGradient="section-padding bg-linear-to-br from-emerald-50 to-green-50" />
+
+        <!-- FAQ Section -->
+        <ServiceFAQ
+          lang="en"
+          title="Frequently"
+          titleGradient="Asked Questions"
+          subtitle="Answers to the most common questions about text content production"
+          faqs={faqs}
+        />
+
+        <!-- CTA Section -->
+        <ServiceCTA
+          lang="en"
+          title="Make Your Content Professional!"
+          description="With professional, optimized text content, lift your Google rankings and earn more organic traffic. Great content is the foundation of all successful marketing."
+          primaryCta={{ text: "Start Producing Content" }}
+          secondaryCta={{ text: "Free Consultation" }}
+          primaryClass="bg-green-700 hover:bg-green-800 text-white font-semibold shadow-lg shadow-green-700/30"
+        />
+      </main>
+
+      <Footer lang="en" />
+    </div>
+</BaseLayout>

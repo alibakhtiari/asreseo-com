@@ -1,0 +1,168 @@
+---
+title: "Web Design and SEO: 9 Technical Decisions to Make Before Starting the Project"
+seoTitle: "SEO-Friendly Web Design: 9 Key Technical Decisions Up Front"
+description: "Web design and SEO are not two separate projects: decide URL architecture, server-side rendering, Core Web Vitals, and mobile-first together with the design so the site is indexable from day one."
+excerpt: "A guide to the technical decisions of web design and SEO: URL architecture, server vs. client, Core Web Vitals, mobile responsiveness, schema, and a migration plan that preserves rankings."
+category: "Technical SEO"
+author: "AsreSEO Editorial Team"
+date: "2026-09-18"
+updated: "2026-09-18"
+readTime: "12 min"
+image: "/images/blog-seo-friendly-web-design.webp"
+featured: false
+tags: ["Web Design and SEO", "Technical SEO", "User Experience", "Core Web Vitals", "Site Architecture"]
+keywords: "web design and SEO, SEO-friendly web design, SEO friendly, optimizing a site during design, URL architecture, server-side rendering"
+keyTakeaways:
+  - "Web design and SEO must be decided together: URL architecture, heading structure, and the migration plan must be locked in the project's first week, or they can only be fixed later through costly rewrites."
+  - "Framework choice is an SEO decision, not just a development one: server-side or pre-rendered rendering is required for content pages so crawlers reach the core text without executing JavaScript."
+  - "URL architecture must be fixed from day one: changing address structures without precise 301 redirects equals losing all the accumulated equity of your pages."
+  - "Mobile-first is an architecture decision, not a style: content order, touch sizing, and resource weight must take the mobile version as the baseline, not the desktop one."
+  - "Before handover, the site must be measured against a technical checklist: indexability without JavaScript, sitemap, schema, canonical tags, and redirects — all before public launch."
+  - "Migrating an old site to a new one is only safe when a URL-to-URL 301 redirect map is written in advance; bulk redirects to the homepage burn the equity of inner pages."
+faqs:
+  - question: "What is the difference between web design and SEO?"
+    answer: "Web design deals with visual structure, layout, and user experience, while SEO deals with how search engines understand and rank that structure. In practice they are one decision: every design choice — from page URLs to how content renders — directly determines whether the site gets indexed at all."
+  - question: "Why is a newly designed site invisible on Google?"
+    answer: "The most common reason is that content renders in the browser rather than on the server, so crawlers cannot reach the text. Other causes include blocking robots in robots.txt, a missing sitemap, duplicate URLs without canonical tags, and server errors during crawling."
+  - question: "Does redesigning a site hurt rankings?"
+    answer: "Redesign is not harmful; unplanned migration is. If page URLs change and URL-to-URL 301 redirects are not implemented, each page's accumulated equity and rankings are lost. With a complete redirect map and an intact heading structure, migration can preserve rankings with no drop."
+  - question: "Which framework is best for SEO?"
+    answer: "The one that can send complete, meaningful HTML on the first request. For content pages, server-side rendering or static generation at build time is preferred; client-side single-page apps are unsuitable for public content unless they are pre-rendered."
+  - question: "How much speed is enough for SEO?"
+    answer: "The benchmark is not an absolute number but staying within Google's user-experience thresholds: interaction responsiveness, layout stability, and main-content load time. Beyond that, speed builds user experience — and a user who does not bounce sends a positive signal to search engines."
+  - question: "At which project stage should SEO happen?"
+    answer: "At the information-architecture stage, before visual design begins. The sitemap, URL structure, and heading hierarchy are all locked in at this stage; fixing them after launch requires page rewrites and mass redirects."
+  - question: "Does beautiful design conflict with SEO?"
+    answer: "No — provided images are optimized, real text replaces image text, and a meaningful heading structure is kept. Conflict arises when copy is typed into images, core content hides behind animation effects, or infinite scroll is used without separate URLs."
+  - question: "How many pages does a corporate site need?"
+    answer: "Page count is not the metric; precisely covering the audience's questions is. A corporate site usually needs a homepage, services overview, one page per service, portfolio, FAQ, about, and contact — and must avoid pages with duplicate or thin content."
+---
+
+Web design and SEO mean building a site that is both usable for humans and understandable for search engines: URL architecture, heading structure, how content renders, and the migration plan must all be decided in the project's very first week — not after launch. When design and SEO run as two separate projects, the final site usually looks tidy but never gets indexed: the core text only appears after JavaScript executes, page URLs are generated with no logical structure, and heavy images push page weight out of control. The result is that months later the same decisions must be made again, this time at rewrite cost. This guide reviews the 9 technical decisions that must be locked before design starts and ends with a pre-launch measurement checklist.
+
+## Why web design and SEO must be decided together
+
+Many projects run in this order: first the look is designed and approved, then the development team builds the site, and finally an SEO consultant is asked to "optimize" it. The problem with this order is that SEO's most important levers are consumed in those early stages:
+
+- **The sitemap and URLs** take shape in the first design meeting, and changing them later requires mass redirects.
+- **The heading hierarchy** is set in the wireframe; if a page's H1 is removed in the final design or turned into decorative text, the page's core signal is gone.
+- **Framework and rendering choice** is a decision the developer makes on day one, and fixing a wrong one requires rewriting the presentation layer.
+- **Resource weight** (images, fonts, scripts) is locked in by the visual design and can later only be reduced by removing features.
+
+The result is that SEO added as a final stage can only work on content and link building and cannot fix architectural flaws. That is why in Asr SEO's [web design and SEO](/services/web/seo-web-design/) projects, defining the information architecture and URL structure is the starting point, not the end.
+
+## 1. Lock the URL architecture before designing
+
+A page's URL is its oldest and most valuable asset. Search engines tie authority, crawl history, and inbound backlinks to the URL; changing a URL without a precise redirect means starting from zero.
+
+Rules to approve in the first meeting:
+
+- **Short, hierarchical structure:** `/services/web/design/` beats `/p?id=84&cat=3`. The URL should mirror the site's structure so both users and crawlers can guess where a page sits.
+- **Latin characters, no extra parameters:** URLs must be encoded as clean Latin slugs, and tracking parameters managed with redirects or canonical tags so duplicate versions of one page are not created.
+- **Trailing slash:** in this site's current configuration, `trailingSlash: 'always'` is enabled and all URLs end with a slash. Violating this rule in internal links creates duplicate versions.
+- **Canonical tags for all listing pages:** category, filter, and pagination pages without canonicals become competing versions of each other.
+
+If an old site is being replaced, write the redirect map **before designing**: old URL → new URL, URL to URL. Bulk-redirecting every URL to the homepage is the most common and most expensive migration mistake.
+
+## 2. Choose how content renders as an SEO decision
+
+Whether content is generated on the server or in the user's browser determines what the crawler sees at all. A page whose core text only appears after JavaScript executes is empty to the initial crawl and must join the render queue — a process that is delayed and uncertain.
+
+The options ahead:
+
+| Approach | Good for | SEO consideration |
+|---|---|---|
+| Static generation at build time | Blogs, service pages, static pages | Fastest and safest option; complete HTML in the first response |
+| Server-side rendering | Dynamic content depending on the user request | Complete HTML is delivered; server response time matters |
+| Pre-rendered client-side app | Dashboards and internal tools | Acceptable for public content only if pre-rendered |
+| Full in-browser rendering | Almost never for public content | The initial crawl finds no text on the page |
+
+The decision must follow content type, not the development team's preference: article and service pages must deliver complete HTML, while a user dashboard behind login has no SEO relevance.
+
+## 3. See Core Web Vitals in the visual design, not after it
+
+Google's three user-experience metrics — interaction responsiveness, layout stability, and main-content loading — come straight out of design decisions:
+
+- **Layout stability** is destroyed by images without set dimensions, late-loading fonts, and banners that appear after load. The fix is design: every image gets `width` and `height`, fonts are preloaded, and banner space is reserved up front.
+- **Main-content loading** depends most on image weight and resource order. The hero image must be served in an optimized format at proper dimensions, and below-the-fold images must lazy-load.
+- **Interaction responsiveness** slows down with heavy scripts early in the page. Non-essential scripts must be deferred and heavy scroll effects limited.
+
+Importantly, these three metrics are measurable with developer tools and should be measured during design — not by waiting for field reports after launch. A site that fails these metrics in lab tests will perform poorly in field measurement too.
+
+## 4. Mobile-first means mobile architecture, not mobile styling
+
+The mobile version is the crawl reference. That does not mean mobile styling matters more; it means **content order, information hierarchy, and resource weight** must be set from mobile, with the desktop version derived from it.
+
+Architecture decisions that must take mobile as the baseline:
+
+- **Content order:** does the most important information appear first on mobile? If the primary CTA sits below the fold on mobile, the information structure is wrong.
+- **Touch sizing:** buttons and links must be tappable without zooming; small adjacent links create both user errors and crawling difficulty.
+- **Resource weight:** mobile connections are usually slower, so the resource budget must be set for mobile, not the office network.
+- **Menus and navigation:** the mobile menu must mirror the full site structure so crawlers reach inner pages through it.
+
+## 5. Define heading structure and the focal point in the wireframe
+
+Every page needs one H1 stating the page's topic, with H2s building the content's logical path. This cannot be added to copy later, because in visual design headlines are usually drawn as graphic elements — and if they are not turned into meaningful headings at that moment, the structure is lost.
+
+Three simple rules:
+
+- **One unique H1** per page — no multiple H1s, no empty H1.
+- **No skipped levels:** don't jump from H2 to H4; level order must be continuous.
+- **Real text in headings:** a headline must state the question or topic itself, not just read "Section One".
+
+Alongside that, every page needs a short answer block at the start of its content: a few sentences answering the core question without requiring the rest of the page. This block is what search engines and answer engines quote.
+
+## 6. Treat schema and structured data as part of the template
+
+Structured data must be defined in the template details, not bolted on later with a plugin. For each page type it must be clear from the start which schema is generated:
+
+- Article page → `Article` or `BlogPosting` with `author`, `datePublished`, and `dateModified`
+- Service page → `Service` and `BreadcrumbList`
+- FAQs → `FAQPage` aligned with the page's visible content
+- About and contact pages → `Organization` with `sameAs` and consistent contact info
+
+The vital point is that schema must match the page's visible content. If the structured data contains a question not shown on the page, you violate Google's guidelines and the page's trust score drops.
+
+## 7. Write the old-site migration plan before designing
+
+If you already have a site, migration is the project's riskiest part. The redirect map must be ready **before the final design**, because every URL removed in the new design needs a defined destination:
+
+1. Extract the list of all currently indexed URLs from the sitemap and crawl reports.
+2. Assign each URL its equivalent new URL; if a page is removed, the destination is the nearest related page or ultimately the parent category page.
+3. Write URL-to-URL 301 redirects, not bulk redirects.
+4. After launch, sample URLs to confirm they reach the right destination in one hop.
+5. Submit the new sitemap to the site-management tool and monitor crawl errors daily.
+
+If URLs are not changing, you must still confirm that canonical tags, slash redirects, and www vs. non-www versions all resolve to one standard version.
+
+## 8. Put internal linking into the template structure
+
+Internal links should not be added manually later; they must be part of the template. The recommended structure for every page:
+
+- **Breadcrumbs** at the top of the page showing the site hierarchy, paired with `BreadcrumbList` schema.
+- **Related links** at the end of content pointing to sibling pages and the parent page.
+- **Real alternative text** for all images; empty or duplicated `alt` wastes value.
+- **In-body text links** with descriptive anchor text; links in graphic buttons alone are not enough.
+
+A good template generates these structures automatically, so every new page joins the site's internal network with no manual effort.
+
+## 9. Pre-launch technical checklist
+
+Before the site goes public, the following must be measured:
+
+- [ ] Content pages show full text even without JavaScript execution.
+- [ ] `robots.txt` opens the required paths and has not blocked internal routes.
+- [ ] The sitemap is generated and registered in the site-management tool.
+- [ ] Every page has one H1 and a continuous heading structure.
+- [ ] Canonical tags are set on all pages.
+- [ ] Schemas match the visible content.
+- [ ] All images have real `alt` text and set dimensions.
+- [ ] www and non-www, with- and without-slash versions all resolve to one standard URL.
+- [ ] The 301 redirect map for old URLs is ready and tested.
+- [ ] A custom, helpful 404 page is designed.
+
+Running this checklist in the project's final week — instead of the first month after launch — is the difference between a safe migration and a months-long ranking drop.
+
+## Conclusion
+
+When web design and SEO are decided together, the result is a site that gets indexed from day one, has a healthy internal structure, and gives every page a defined destination for one question. When they run separately, the result is a site that must be rebuilt. If you are about to start a new project or a site migration, Asr SEO's [web design and SEO services](/services/web/seo-web-design/) carry both dimensions from architecture definition through launch and monitoring. To start, the [SEO FAQ](/faq/) page answers the most common doubts.

@@ -1,0 +1,95 @@
+---
+import Button from '../ui/button/Button.astro';
+
+export interface Props {
+  slug?: string;
+  lang?: string;
+}
+
+interface Cta {
+  title: string;
+  desc: string;
+  primary: { text: string; href: string };
+  secondary?: { text: string; href: string };
+}
+
+const CTAS: Cta[] = [
+  {
+    title: 'Commission an Autonomous SEO Reconnaissance',
+    desc: 'Our senior systems architects will evaluate your site crawl budget, entity ontology, and algorithmic bottlenecks with an empirical 30-minute deep dive.',
+    primary: { text: 'Schedule Technical Audit ↗', href: '/contact/' },
+    secondary: { text: 'Explore Tactical Suite', href: '/services/' },
+  },
+  {
+    title: 'Deploy Generative Engine Optimization (GEO)',
+    desc: 'Capture citations in Google AI Overviews, Perplexity Pro, and SearchGPT with structured knowledge graph injection.',
+    primary: { text: 'Inspect AI Suite ↗', href: '/services/ai/' },
+    secondary: { text: 'Schedule Technical Audit', href: '/contact/' },
+  },
+  {
+    title: 'Establish Topical Authority Architecture',
+    desc: 'Construct deterministic parent-child entity cluster matrices that force search engines to cite your domain as the primary source.',
+    primary: { text: 'Explore Content Strategy ↗', href: '/services/content/' },
+    secondary: { text: 'Schedule Technical Audit', href: '/contact/' },
+  },
+  {
+    title: 'Audit Your Google Ads Arbitrage & Spend',
+    desc: 'Algorithmic bid balancing, negative matching, and server-side attribution to scale ROAS and lower CPC.',
+    primary: { text: 'Inspect Ad Protocol ↗', href: '/services/marketing/google-ads/' },
+    secondary: { text: 'Schedule Technical Audit', href: '/contact/' },
+  },
+  {
+    title: 'Patch Critical Technical SEO & Crawl Errors',
+    desc: 'Full-stack audit of edge rendering, IndexNow pipelines, canonical hygiene, and Core Web Vitals with prioritized patch files.',
+    primary: { text: 'Inspect Technical SEO ↗', href: '/services/seo/technical-onpage/' },
+    secondary: { text: 'Schedule Technical Audit', href: '/contact/' },
+  },
+  {
+    title: 'Deploy Sub-20ms SEO-First Web Architecture',
+    desc: 'Modern headless frontend development built for instant indexing and flawless 100/100 Core Web Vitals scores.',
+    primary: { text: 'Inspect Web Suite ↗', href: '/services/web/' },
+    secondary: { text: 'Schedule Technical Audit', href: '/contact/' },
+  },
+];
+
+const { slug = '', lang = 'en' }: Props = Astro.props;
+void lang;
+const localize = (p: string) => p;
+
+let hash = 0;
+for (const ch of slug) hash = (hash * 31 + ch.charCodeAt(0)) % 1013;
+const cta = CTAS[hash % CTAS.length];
+---
+<aside class="mb-14 p-8 sm:p-10 bg-[#090d16] border-2 border-[#CCFF00] brutalist-shadow-white rounded-none">
+  <div class="space-y-4 text-center max-w-2xl mx-auto">
+    <div class="font-mono text-xs text-[#CCFF00] uppercase font-bold tracking-widest">
+      [COMMISSION_PROTOCOL // TACTICAL_DISPATCH]
+    </div>
+    <h3 class="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight leading-tight">
+      {cta.title}
+    </h3>
+    <p class="text-slate-300 leading-relaxed text-sm sm:text-base font-sans">
+      {cta.desc}
+    </p>
+    <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center font-mono text-xs">
+      <Button
+        variant="acid"
+        size="lg"
+        href={localize(cta.primary.href)}
+        class="px-8 py-4"
+      >
+        {cta.primary.text}
+      </Button>
+      {cta.secondary && (
+        <Button
+          variant="brutalist"
+          size="lg"
+          href={localize(cta.secondary.href)}
+          class="px-8 py-4"
+        >
+          {cta.secondary.text}
+        </Button>
+      )}
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,45 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://asreseo.com/",
+      "service-desc": [
+        {
+          "href": "https://asreseo.com/openapi.json",
+          "type": "application/json",
+          "title": "OpenAPI Specification"
+        },
+        {
+          "href": "https://asreseo.com/api/send-email",
+          "type": "application/json",
+          "title": "Contact and Consultation Dispatch Endpoint"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://asreseo.com/llms.txt",
+          "type": "text/plain",
+          "title": "LLM Context and Service Summary"
+        },
+        {
+          "href": "https://asreseo.com/llms-full.txt",
+          "type": "text/plain",
+          "title": "Full LLM Documentation"
+        }
+      ],
+      "service-meta": [
+        {
+          "href": "https://asreseo.com/.well-known/agent-card.json",
+          "type": "application/json",
+          "title": "A2A Agent Card"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://asreseo.com/llms.txt",
+          "type": "text/plain",
+          "title": "Site and Agent Context"
+        }
+      ]
+    }
+  ]
+}

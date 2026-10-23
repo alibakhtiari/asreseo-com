@@ -1,0 +1,118 @@
+---
+import Icon from '../ui/Icon.astro';
+import MenuCategory from './MegaMenu/MenuCategory.astro';
+import { getMenuCategories } from './MegaMenu/menuData';
+
+interface Props {
+  lang?: string;
+  label?: string;
+}
+
+const { lang = 'en', label = 'Services' } = Astro.props as Props;
+void lang;
+const menuCategories = getMenuCategories();
+---
+<div class="relative group" data-megamenu>
+  <button
+    class="flex items-center text-slate-300 hover:text-[#CCFF00] hover:bg-white/5 transition-all py-2 px-3 rounded-none cursor-pointer font-mono text-xs uppercase font-bold tracking-wider"
+    data-mm-btn
+    data-mm-enter
+    data-mm-leave
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    <span>{label}</span>
+    <Icon name="chevron-down" class="ms-1.5 h-3.5 w-3.5 text-[#CCFF00] group-hover:text-white transition-transform duration-200" data-mm-chevron />
+  </button>
+
+  <div data-mm-panel hidden>
+    <div
+      class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-262.5 max-w-[95vw] bg-black border-2 border-white/20 rounded-none shadow-[8px_8px_0px_#FFFFFF] z-50 overflow-hidden animate-fade-in text-white p-6 sm:p-7"
+      data-mm-enter
+      data-mm-leave
+    >
+      <!-- Top Mega Menu Master Services Banner -->
+      <div class="flex flex-col sm:flex-row items-center justify-between pb-5 mb-6 border-b-2 border-white/15 gap-4 font-mono text-xs">
+        <div class="flex items-center gap-3">
+          <span class="w-2.5 h-2.5 bg-[#CCFF00] animate-pulse"></span>
+          <span class="text-[#CCFF00] font-bold uppercase tracking-wider">[CATALOGUE // 20_PROTOCOLS]</span>
+          <span class="text-slate-400 hidden md:inline">// Full-Stack Autonomous Search & AI Infrastructure</span>
+        </div>
+        <a
+          href="/services/"
+          class="font-black text-black bg-[#CCFF00] px-4 py-2 uppercase hover:bg-white transition-colors border-2 border-black shadow-[2px_2px_0px_#FFFFFF] flex items-center gap-1.5 shrink-0"
+          data-mm-close
+        >
+          MASTER SERVICES CATALOGUE ↗
+        </a>
+      </div>
+
+      <!-- Menu Grid - 5 Columns -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6" dir="ltr">
+        {menuCategories.map((category) => (
+          <MenuCategory
+            category={category}
+            lang={lang}
+          />
+        ))}
+      </div>
+
+      <!-- Bottom Status Strip -->
+      <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-slate-500">
+        <span>SLA: 99.8% REALTIME INDEXATION</span>
+        <span class="text-[#CCFF00]">24/7 AUTONOMOUS CRAWLER TELEMETRY ACTIVE</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let t: ReturnType<typeof setTimeout> | undefined;
+  const root = document.querySelector('[data-megamenu]');
+  const panel = root?.querySelector('[data-mm-panel]');
+  const chevron = root?.querySelector('[data-mm-chevron]');
+  const btn = root?.querySelector('[data-mm-btn]');
+
+  const open = () => {
+    clearTimeout(t);
+    panel?.removeAttribute('hidden');
+    chevron?.classList.add('rotate-180');
+    btn?.setAttribute('aria-expanded', 'true');
+  };
+  const close = () => {
+    t = setTimeout(() => {
+      closeImmediate();
+    }, 150);
+  };
+  const closeImmediate = () => {
+    clearTimeout(t);
+    panel?.setAttribute('hidden', '');
+    chevron?.classList.remove('rotate-180');
+    btn?.setAttribute('aria-expanded', 'false');
+  };
+
+  btn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (panel?.hasAttribute('hidden')) {
+      open();
+    } else {
+      closeImmediate();
+    }
+  });
+
+  root?.querySelectorAll('[data-mm-enter]').forEach((el) => el.addEventListener('mouseenter', open));
+  root?.querySelectorAll('[data-mm-leave]').forEach((el) => el.addEventListener('mouseleave', close));
+  root?.querySelectorAll('[data-mm-close]').forEach((el) => el.addEventListener('click', closeImmediate));
+
+  document.addEventListener('click', (e) => {
+    if (!root?.contains(e.target as Node)) {
+      closeImmediate();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeImmediate();
+    }
+  });
+</script>

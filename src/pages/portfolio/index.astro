@@ -1,0 +1,375 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Layout/Header.astro';
+import Footer from '../../components/Layout/Footer.astro';
+import BreadcrumbStructuredData from '../../components/BreadcrumbStructuredData.astro';
+import Button from '../../components/ui/button/Button.astro';
+import Icon from '../../components/ui/Icon.astro';
+import Picture from '../../components/ui/Picture.astro';
+import { PORTFOLIO_PROJECTS } from '../../lib/portfolio-data';
+
+const breadcrumbs = [
+  { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+  { position: 2, name: 'Portfolio Archive', item: 'https://asreseo.com/portfolio/' },
+];
+
+const benchmarks = [
+  { metric: '18M+', label: 'Synthesized Landing Nodes', desc: 'Active programmatic semantic URLs engineered and indexed globally.' },
+  { metric: '+412%', label: 'Average Citation Surge', desc: 'Lift in brand mentions extracted by LLMs and Google AI Overviews.' },
+  { metric: '32 Tools', label: 'Unified MCP Agent Tools', desc: 'Agentic Model Context Protocol tools serving Claude, Cursor & Antigravity.' },
+  { metric: '0', label: 'Algorithmic Penalties', desc: '100% mathematical, deterministic white-hat compliance track record.' },
+];
+
+const testLogs = [
+  {
+    role: 'VP of Growth',
+    company: 'Series C FinTech ($45M Raised)',
+    quote: 'ASRESEO replaced our 6-figure agency retainer with deterministic vector topology. We became the #1 cited source on Perplexity within 6 weeks.',
+    hash: '0x4f92...a17b',
+  },
+  {
+    role: 'Head of Organic',
+    company: 'Public SaaS ($1.2B ARR)',
+    quote: 'Their serverless edge-computed hreflang architecture completely eliminated our crawl budget drag across half a million URLs.',
+    hash: '0x98b1...e42c',
+  },
+  {
+    role: 'Chief Marketing Technologist',
+    company: 'Global Retail Conglomerate',
+    quote: 'When our catalog of 42k URLs was dropped post-update, ASRESEO’s headless bot pipeline restored full Google indexation in 14 days.',
+    hash: '0x33e8...60df',
+  },
+];
+---
+<BaseLayout
+  lang="en"
+  title="Portfolio Archive & Verified Engineering Dossiers | AsreSEO"
+  description="Explore the AsreSEO project archive: edge MCP gateways, open-source Astro CMS plugins, programmatic SEO architectures, and verifiable enterprise client dossiers."
+  keywords="AsreSEO portfolio, MCP gateway, EmDash SEO plugin, programmatic SEO case studies, enterprise SEO archive"
+  canonical="/portfolio/"
+  ogType="website"
+  ogUrl="https://asreseo.com/portfolio/"
+  ogImages={[{ url: '/og/portfolio-hero.jpg', width: 1200, height: 630, alt: 'AsreSEO Portfolio Archive' }]}
+  twitterCard="summary_large_image"
+>
+  <BreadcrumbStructuredData items={breadcrumbs} />
+
+  <div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+    <Header lang="en" />
+    <main class="pt-28 pb-20">
+      <!-- 1. Hero Section -->
+      <section class="py-16 md:py-24 border-b-2 border-white/10 relative">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+          <div class="max-w-5xl">
+            <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#0a0d14] border border-white/20 mb-8 font-mono text-xs tracking-wider uppercase">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#CCFF00] animate-pulse"></span>
+              <span class="text-[#CCFF00] font-bold">[VERIFIED_ARCHIVE // SYSTEMS_CATALOGUE]</span>
+              <span class="text-slate-500">|</span>
+              <span class="text-slate-300">{PORTFOLIO_PROJECTS.length}_ACTIVE_DOSSIERS</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white mb-6 tracking-tight leading-[1.05]">
+              Proven Systems, Edge Platforms & <span class="text-[#CCFF00]">Case Dossiers</span>.
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl mb-10">
+              Explore our live internal platforms, open-source edge plugins, and verifiable enterprise balance sheet transformations engineered for high-growth tech firms, fintech conglomerates, and marketplaces.
+            </p>
+
+            <!-- Ticker Banner -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 p-5 bg-[#0a0e17] border-2 border-white/15 font-mono text-xs">
+              <div class="min-w-0">
+                <div class="text-[#CCFF00] font-black text-xl sm:text-2xl wrap-break-word">32 MCP</div>
+                <div class="text-slate-400 truncate">Agentic AI Tools</div>
+              </div>
+              <div class="min-w-0">
+                <div class="text-[#CCFF00] font-black text-xl sm:text-2xl wrap-break-word">+412%</div>
+                <div class="text-slate-400 truncate">LLM Citation Surge</div>
+              </div>
+              <div class="min-w-0">
+                <div class="text-[#CCFF00] font-black text-xl sm:text-2xl wrap-break-word">+$34.2M</div>
+                <div class="text-slate-400 truncate">Incremental Pipeline</div>
+              </div>
+              <div class="min-w-0">
+                <div class="text-emerald-400 font-black text-xl sm:text-2xl wrap-break-word">0</div>
+                <div class="text-slate-400 truncate">Algorithmic Penalties</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Portfolio Archive Project Cards -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#05070d]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[PROJECT_ARCHIVE // DIRECTORY]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">All Production Systems & Dossiers</h2>
+            </div>
+            <p class="text-slate-400 text-sm max-w-md font-mono">// Click any dossier to examine full architecture, technical challenges, and telemetry metrics.</p>
+          </div>
+
+          <div class="space-y-16">
+            {PORTFOLIO_PROJECTS.map((project, idx) => (
+              <div class="p-6 sm:p-8 lg:p-10 bg-[#0a0e17] border-2 border-white/20 brutalist-card hover:border-[#CCFF00] transition-colors relative">
+                <!-- Top Card Bar -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-white/15 gap-4 font-mono text-xs">
+                  <div class="flex items-center gap-3 flex-wrap">
+                    <span class="w-2.5 h-2.5 bg-[#CCFF00] animate-pulse"></span>
+                    <span class="text-[#CCFF00] font-bold uppercase">{project.tag}</span>
+                    <span class="text-slate-500">|</span>
+                    <span class="text-slate-300 font-bold bg-black px-2.5 py-0.5 border border-white/20">{project.badge}</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="text-slate-400 font-mono">{project.category}</span>
+                  </div>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  <!-- Left Info -->
+                  <div class="lg:col-span-7">
+                    <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-white mb-3 tracking-tight font-sans">
+                      <a href={`/portfolio/${project.slug}/`} class="hover:text-[#CCFF00] transition-colors">
+                        {project.title}
+                      </a>
+                    </h3>
+
+                    <div class="font-mono text-xs text-slate-400 mb-6">
+                      <span class="text-[#CCFF00] uppercase">[CLIENT/ENVIRONMENT]:</span> {project.client}
+                    </div>
+
+                    <!-- Schematic Blueprint Image -->
+                    <a
+                      href={`/portfolio/${project.slug}/`}
+                      class="block mb-6 overflow-hidden border-2 border-white/20 hover:border-[#CCFF00] transition-colors group relative bg-black shadow-[4px_4px_0px_rgba(255,255,255,0.08)]"
+                      aria-label={`View dossier for ${project.title}`}
+                    >
+                      <div class="absolute top-2 left-2 z-10 font-mono text-[10px] bg-black/85 text-[#CCFF00] px-2 py-0.5 border border-[#CCFF00]/40 uppercase tracking-wider">
+                        ARCHITECTURAL_SCHEMATIC // SYS_0{idx + 1}
+                      </div>
+                      <Picture
+                        src={project.image}
+                        alt={project.imageAlt}
+                        aspectRatio="16 / 9"
+                        widths={[400, 640, 768, 1024]}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 640px"
+                        loading={idx === 0 ? 'eager' : 'lazy'}
+                        class="w-full h-56 sm:h-72 object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-102 transition-all duration-300"
+                      />
+                    </a>
+
+                    <div class="space-y-4 mb-8 text-sm text-slate-300 font-sans">
+                      <p>
+                        <strong class="font-mono text-xs text-white uppercase">[CHALLENGE]:</strong> {project.challenge}
+                      </p>
+                      <p>
+                        <strong class="font-mono text-xs text-white uppercase">[SOLUTION]:</strong> {project.solution}
+                      </p>
+                    </div>
+
+                    <!-- Tech Badges -->
+                    <div class="flex flex-wrap gap-2 mb-8 font-mono text-xs">
+                      {project.techStack.slice(0, 6).map((tech) => (
+                        <span class="px-2.5 py-1 bg-black border border-white/15 text-slate-300">
+                          {tech}
+                        </span>
+                      ))}
+                      {project.techStack.length > 6 && (
+                        <span class="px-2.5 py-1 bg-black border border-white/15 text-slate-500">
+                          +{project.techStack.length - 6} more
+                        </span>
+                      )}
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex flex-wrap items-center gap-4">
+                      <a
+                        href={`/portfolio/${project.slug}/`}
+                        aria-label={`Examine full dossier and telemetry for ${project.title}`}
+                        class="inline-flex items-center gap-2 bg-[#CCFF00] text-black border-2 border-black px-5 py-3 font-mono text-xs font-black uppercase shadow-[3px_3px_0px_#FFFFFF] hover:bg-white transition-all"
+                      >
+                        <span>Examine Full Dossier & Telemetry ↗</span>
+                      </a>
+
+                      {project.showcaseUrl && (
+                        <a
+                          href={project.showcaseUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-[#CCFF00] uppercase hover:underline transition-colors px-3 py-2 border border-[#CCFF00]/40 bg-black"
+                        >
+                          <Icon name="external-link" class="w-3.5 h-3.5 text-[#CCFF00]" />
+                          <span>Try Live Showcase ↗</span>
+                        </a>
+                      )}
+
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-white uppercase hover:text-[#CCFF00] transition-colors px-3 py-2 border border-white/20 bg-black"
+                        >
+                          <Icon name="external-link" class="w-3.5 h-3.5" />
+                          <span>Live System ↗</span>
+                        </a>
+                      )}
+
+                      {project.repoUrl && (
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-white uppercase hover:text-[#CCFF00] transition-colors px-3 py-2 border border-white/20 bg-black"
+                        >
+                          <Icon name="github" class="w-3.5 h-3.5" />
+                          <span>{project.isPrivateRepo ? 'Repo (Private) ↗' : 'GitHub (Public) ↗'}</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  <!-- Right Metrics Box -->
+                  <div class="lg:col-span-5 bg-black border-2 border-white/20 p-6 font-mono text-xs flex flex-col justify-between">
+                    <div>
+                      <div class="text-[#CCFF00] font-bold uppercase tracking-widest mb-4 pb-2 border-b border-white/10 flex items-center justify-between">
+                        <span>[VERIFIED_TELEMETRY]</span>
+                        <span class="text-slate-500">SYS_AUDIT #{idx + 1}</span>
+                      </div>
+
+                      <div class="grid grid-cols-2 gap-4 mb-6">
+                        {project.metrics.map((m) => (
+                          <div class="p-3 bg-[#0a0e17] border border-white/10 min-w-0">
+                            <div class="text-xl sm:text-2xl font-black text-[#CCFF00] wrap-break-word">{m.value}</div>
+                            <div class="text-[10px] text-slate-400 uppercase tracking-tight truncate mt-1">{m.label}</div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div class="space-y-2 border-t border-white/10 pt-4 text-[11px] text-slate-300">
+                        {project.results.slice(0, 3).map((r) => (
+                          <div class="flex items-start gap-2">
+                            <span class="text-emerald-400 font-bold">✔</span>
+                            <span class="leading-snug">{r}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-white/10 text-right">
+                      <a
+                        href={`/portfolio/${project.slug}/`}
+                        class="text-[#CCFF00] hover:underline uppercase font-bold inline-flex items-center gap-1"
+                      >
+                        <span>View complete architectural audit</span>
+                        <span>→</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Benchmarks Strip -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#000000]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[BENCHMARKS // ALL_ACCOUNTS]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Aggregated Platform Yield</h2>
+            </div>
+            <p class="text-slate-400 text-sm max-w-md font-mono">// Real-time aggregate data measured across all active enterprise clusters and platforms.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benchmarks.map((b) => (
+              <div class="p-6 bg-[#0a0e17] border-2 border-white/15 brutalist-card font-mono text-xs min-w-0 overflow-hidden flex flex-col justify-between">
+                <div>
+                  <div class="text-2xl sm:text-3xl lg:text-4xl font-black text-[#CCFF00] mb-2 wrap-break-word">{b.metric}</div>
+                  <div class="text-sm font-bold text-white uppercase mb-2 wrap-break-word">{b.label}</div>
+                </div>
+                <p class="text-slate-400 text-xs leading-relaxed font-sans">{b.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Client Testimonials in Raw Code Format -->
+      <section class="py-20 border-b-2 border-white/10 bg-[#05070d]">
+        <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+            <div>
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[SIGNATURE_LOGS // EXECUTIVES]</div>
+              <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Audited Client Verifications</h2>
+            </div>
+            <p class="text-slate-400 text-sm max-w-md font-mono">// Cryptographically hashed execution logs from verifiable technical stakeholders.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testLogs.map((log) => (
+              <div class="p-6 bg-[#0a0e17] border-2 border-white/15 font-mono text-xs flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10 text-slate-500 text-[10px]">
+                    <span>STATUS: VERIFIED</span>
+                    <span>HASH: {log.hash}</span>
+                  </div>
+                  <p class="text-slate-300 leading-relaxed mb-6 font-sans italic text-sm">
+                    "{log.quote}"
+                  </p>
+                </div>
+                <div class="pt-4 border-t border-white/10">
+                  <div class="font-bold text-white uppercase">{log.role}</div>
+                  <div class="text-slate-400 text-[11px]">{log.company}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. CTA Dispatch Section -->
+      <section class="py-24 text-center bg-black relative">
+        <div class="w-full max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#0a0d14] border border-[#CCFF00]/40 text-[#CCFF00] font-mono text-xs uppercase tracking-widest mb-6">
+            <span class="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse"></span>
+            <span>[COMMENCE_ASSESSMENT // TELEMETRY]</span>
+          </div>
+
+          <h2 class="text-4xl sm:text-6xl font-black uppercase text-white mb-6 tracking-tight">
+            Ready for Algorithmic Domination?
+          </h2>
+
+          <p class="text-slate-400 text-base max-w-2xl mx-auto mb-10 leading-relaxed">
+            Stop losing ground to generative search engines and slow indexing loops. Review your stack with our principal engineers.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              href="/contact/"
+              variant="acid"
+              size="lg"
+              class="font-mono text-xs uppercase px-8 py-4"
+            >
+              Initialize Tactical Audit ↗
+            </Button>
+            <Button
+              href="mailto:info@asreseo.com"
+              variant="outline"
+              size="lg"
+              class="font-mono text-xs uppercase px-8 py-4"
+            >
+              Direct Email Dispatch ↗
+            </Button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer lang="en" />
+  </div>
+</BaseLayout>

@@ -1,0 +1,166 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AsreSEO API & Agent Services",
+    "version": "1.0.1",
+    "description": "Public machine-readable API and agent discovery specifications for AsreSEO — digital marketing and AI agency.",
+    "contact": {
+      "name": "AsreSEO Support",
+      "email": "info@asreseo.com",
+      "url": "https://asreseo.com/contact/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://asreseo.com",
+      "description": "Production edge server"
+    }
+  ],
+  "paths": {
+    "/api/send-email": {
+      "post": {
+        "summary": "Send consultation inquiry or contact message",
+        "description": "Dispatches website audit requests, enterprise AI inquiries, and consultation forms directly to agency specialists.",
+        "operationId": "sendConsultationEmail",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Full name of the contact person"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Contact email address"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Contact phone number"
+                  },
+                  "service": {
+                    "type": "string",
+                    "description": "Selected service or interest area"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Inquiry details or project summary"
+                  }
+                },
+                "required": ["name", "email", "message"]
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "service": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                },
+                "required": ["name", "email", "message"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Message successfully dispatched",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error or invalid input parameters"
+          },
+          "503": {
+            "description": "Email dispatch service temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/llms.txt": {
+      "get": {
+        "summary": "Agent context summary",
+        "description": "Returns markdown summary of agency services, blog guides, and architecture per llms.txt standard.",
+        "responses": {
+          "200": {
+            "description": "llms.txt plain text response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/llms-full.txt": {
+      "get": {
+        "summary": "Comprehensive agent knowledge base",
+        "description": "Returns comprehensive markdown entity dossier, FAQs, and service descriptions for LLM consumption.",
+        "responses": {
+          "200": {
+            "description": "llms-full.txt plain text response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/.well-known/agent-card.json": {
+      "get": {
+        "summary": "A2A Agent Card",
+        "description": "Returns Agent-to-Agent protocol discovery manifest declaring agency capabilities, interfaces, and skills.",
+        "responses": {
+          "200": {
+            "description": "A2A Agent Card JSON document",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

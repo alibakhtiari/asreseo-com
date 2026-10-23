@@ -1,0 +1,378 @@
+{
+  "screenshot": {
+    "name": "projects/5045794808600054952/files/3952871224086901370",
+    "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1UQTDTZd3up2G85cQOf_D9ziraROBMkgar2Zry2MJii4553Ei7WOuAg-g8ZjUAhHt-URbXAdJqokhvsJAhIoXoubpJpRgTzj8GBjAmkIEEsDVu2GBSgxwYFVoqDhpmRXfqdN0NZsIEqqBn8wn5PKGa_En-JS3RBWAPmqpHEuFR1cO8ipXm7NKCsWofPgkzPj8GwPUY90ncpwtBqxreglgwXdnlLYT-kudw510PzAWbx"
+  },
+  "htmlCode": {
+    "name": "projects/5045794808600054952/files/1318005106034662419",
+    "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJxEgxzdGl0Y2hfZmlsZXMaYQosc3RpdGNoX2h0bWxfMDAwNjVkNGRjNzZjMzEzODA3M2FmYjNiYTIyYjczOTYSCxIHEP_vzY-7HxgBkgEjCgpwcm9qZWN0X2lkEhVCEzUwNDU3OTQ4MDg2MDAwNTQ5NTI&filename=&opi=89354086",
+    "mimeType": "text/html"
+  },
+  "id": "e58e4860b41346349840ab8a16e66ade",
+  "generatedBy": "figaro_agent",
+  "width": "2560",
+  "height": "6026",
+  "title": "ASRESEO \u2014 Contact Us & Dispatch Terminal",
+  "prompt": "Generate the comprehensive 'Contact Us' (Command Dispatch & Telemetry Audit Request) page for ASRESEO in the Neo-Brutalist & Acid Yellow aesthetic matching {{DATA:SCREEN:SCREEN_2}}.\nStrict constraints: Pure black background (#000000), ZERO gradients, crisp 2px solid borders (#333, #ffffff, #ccff00), isometric diagonal wireframe pattern accents, acid yellow (#CCFF00) high-contrast solid buttons and tags, stark polar white headers, monospace system labels.\n\nPage Content:\n1. Hero Section:\n   - Tag: [SECURE_DISPATCH // INITIATE_COMMUNICATION]\n   - Giant Headline: 'DEPLOY ENTERPRISE RECON OR INITIATE RETAINER.'\n   - Subtitle: 'Connect directly with ASRESEO principal engineers. Zero marketing friction, zero junior account managers. Instant telemetry dispatch within 60 minutes.'\n\n2. Two-Column Dispatch Interface:\n   - Left Column: Direct Telemetry & Global Node Coordinates\n     - Operational Node Status: All 48 Clusters Green / Active (Ping: 14ms)\n     - Executive Inquiries: `dispatch@asreseo.internal`\n     - Security & Encrypted Channel: PGP Key Fingerprint `4A8F:1402:D8E2:99FC`\n     - Global Headquarters: 580 Howard St, San Francisco, CA // European Ops: Berlin-Mitte\n     - Emergency Escalation: Dedicated SLA Hotline for Enterprise Unicorns.\n     - Live Terminal Log simulating real-time telemetry heartbeat ping.\n   - Right Column: The Comprehensive Dispatch Terminal Form\n     - [INPUT_01] TARGET ENTERPRISE DOMAIN (e.g. acmecorp.com)\n     - [INPUT_02] EXECUTIVE WORK EMAIL (e.g. vp-growth@acme.com)\n     - [INPUT_03] MONTHLY SEARCH SCALE (Select: < 50k URLs, 50k - 250k URLs, 250k - 1M+ URLs)\n     - [INPUT_04] PRIMARY ALGORITHMIC BOTTLENECK (Select: Google AI Overviews Visibility, LLM Citation Absence, Indexation Crawl Budget Drag, Competitor Keyword Cannibalization)\n     - [INPUT_05] SYSTEM OBJECTIVE / BESPOKE SPECIFICATIONS (Textarea with monospace font and line number markers)\n     - Checkbox: 'Execute zero-strain read-only headless crawl on submit' (Checked by default)\n     - Button: 'TRANSMIT RECON AUDIT REQUEST \u2197' in full-width electric acid yellow (#CCFF00) solid block with bold black text.\n\n3. Trust & Protocol Certifications Strip:\n   - SOC2 Type II Certified | Read-Only Safe Crawl | Strict Non-Disclosure Protocol | 60-Minute Rapid Response Guarantee.\n\n4. FAQ Terminal Accordion:\n   - Q1: How quickly do automated crawl nodes begin ingestion?\n   - Q2: Do you require code repository or CMS access?\n   - Q3: How do you guarantee zero Google search penalties?\n   - Q4: What is the typical deployment timeline for a 50,000 URL cluster?",
+  "name": "projects/5045794808600054952/screens/e58e4860b41346349840ab8a16e66ade",
+  "theme": {
+    "colorMode": "DARK",
+    "font": "SYNE",
+    "customColor": "#ccff00",
+    "headlineFont": "SYNE",
+    "bodyFont": "JETBRAINS_MONO",
+    "labelFont": "SPACE_GROTESK",
+    "namedColors": {
+      "inverse_surface": "#e2e2e2",
+      "on_secondary": "#2f3131",
+      "borderline": "#262626",
+      "outline": "#8e9379",
+      "on_secondary_container": "#b4b5b5",
+      "on_secondary_fixed": "#1a1c1c",
+      "on_tertiary": "#21323e",
+      "error_container": "#93000a",
+      "tertiary_fixed_dim": "#b6c9d8",
+      "borderstrong": "#FFFFFF",
+      "on_primary_fixed": "#161e00",
+      "background": "#131313",
+      "surface_tint": "#abd600",
+      "acid": "#CCFF00",
+      "panel": "#0D0D0D",
+      "primary_fixed_dim": "#abd600",
+      "muted": "#888888",
+      "on_surface": "#e2e2e2",
+      "on_primary": "#283500",
+      "inverse_on_surface": "#303030",
+      "surface_container_lowest": "#0e0e0e",
+      "primary_container": "#c3f400",
+      "on_surface_variant": "#c4c9ac",
+      "dark": "#080808",
+      "surface": "#131313",
+      "surface_dim": "#131313",
+      "primary": "#ffffff",
+      "surface_container_high": "#2a2a2a",
+      "on_error_container": "#ffdad6",
+      "error": "#ffb4ab",
+      "on_tertiary_fixed": "#0b1d29",
+      "inverse_primary": "#506600",
+      "on_background": "#e2e2e2",
+      "outline_variant": "#444933",
+      "surface_container_highest": "#353535",
+      "surface_variant": "#353535",
+      "primary_fixed": "#c3f400",
+      "on_secondary_fixed_variant": "#454747",
+      "secondary": "#c6c6c7",
+      "on_error": "#690005",
+      "surface_container": "#1f1f1f",
+      "tertiary": "#ffffff",
+      "on_primary_container": "#556d00",
+      "surface_bright": "#393939",
+      "on_primary_fixed_variant": "#3c4d00",
+      "secondary_container": "#454747",
+      "secondary_fixed_dim": "#c6c6c7",
+      "acid-hover": "#B8E600",
+      "on_tertiary_container": "#556774",
+      "subtle": "#171717",
+      "tertiary_fixed": "#d2e5f5",
+      "on_tertiary_fixed_variant": "#374956",
+      "secondary_fixed": "#e2e2e2",
+      "surface_container_low": "#1b1b1b",
+      "tertiary_container": "#d2e5f5"
+    },
+    "colorVariant": "FIDELITY",
+    "overridePrimaryColor": "#ccff00",
+    "overrideSecondaryColor": "#ffffff",
+    "overrideNeutralColor": "#000000",
+    "spacingScale": 2,
+    "typography": {
+      "display-hero": {
+        "fontFamily": "Syne",
+        "fontSize": "5rem",
+        "fontWeight": "900",
+        "lineHeight": "0.95",
+        "letterSpacing": "-0.05em"
+      },
+      "headline-xl": {
+        "fontFamily": "Syne",
+        "fontSize": "3.75rem",
+        "fontWeight": "800",
+        "lineHeight": "1.0",
+        "letterSpacing": "-0.03em"
+      },
+      "label-caps": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "0.75rem",
+        "fontWeight": "700",
+        "lineHeight": "1.2",
+        "letterSpacing": "0.08em"
+      },
+      "label-micro": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "0.625rem",
+        "fontWeight": "700",
+        "lineHeight": "1.0",
+        "letterSpacing": "0.1em"
+      },
+      "display-hero-mobile": {
+        "fontFamily": "Syne",
+        "fontSize": "2.5rem",
+        "fontWeight": "900",
+        "lineHeight": "1.0",
+        "letterSpacing": "-0.03em"
+      },
+      "headline-md": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "1.5rem",
+        "fontWeight": "700",
+        "lineHeight": "1.25",
+        "letterSpacing": "-0.01em"
+      },
+      "body-md": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "0.875rem",
+        "fontWeight": "400",
+        "lineHeight": "1.5",
+        "letterSpacing": "0"
+      },
+      "body-lg": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "1.125rem",
+        "fontWeight": "400",
+        "lineHeight": "1.6",
+        "letterSpacing": "0"
+      },
+      "headline-lg": {
+        "fontFamily": "Syne",
+        "fontSize": "1.875rem",
+        "fontWeight": "800",
+        "lineHeight": "1.2",
+        "letterSpacing": "-0.02em"
+      },
+      "code-terminal": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "0.6875rem",
+        "fontWeight": "500",
+        "lineHeight": "1.4",
+        "letterSpacing": "0.04em"
+      },
+      "body-sm": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "0.75rem",
+        "fontWeight": "400",
+        "lineHeight": "1.4",
+        "letterSpacing": "0.02em"
+      },
+      "headline-xl-mobile": {
+        "fontFamily": "Syne",
+        "fontSize": "2rem",
+        "fontWeight": "800",
+        "lineHeight": "1.1",
+        "letterSpacing": "-0.02em"
+      }
+    },
+    "spacing": {
+      "space-md": "1rem",
+      "margin-mobile": "1rem",
+      "gutter": "1.5rem",
+      "space-xs": "0.25rem",
+      "space-lg": "1.5rem",
+      "space-xl": "2rem",
+      "space-2xl": "3rem",
+      "gutter-mobile": "1rem",
+      "space-3xl": "5rem",
+      "margin": "2rem",
+      "space-sm": "0.5rem"
+    },
+    "headlineFontFamily": "Syne",
+    "bodyFontFamily": "JetBrains Mono",
+    "labelFontFamily": "Space Grotesk"
+  },
+  "deviceType": "DESKTOP",
+  "screenType": "DESIGN",
+  "screenMetadata": {
+    "agentType": "PRO_AGENT",
+    "status": "COMPLETE",
+    "displayMode": "HTML"
+  },
+  "designSystem": {
+    "name": "assets/ea8025fffe3a40f9ae307c0eb0ac3d5a",
+    "designSystem": {
+      "displayName": "Nexus Cognitive",
+      "styleGuidelines": "## Brand & Style\nThe system embodies an uncompromising cyber-brutalist and high-velocity infrastructure persona. It conveys extreme technical rigor, algorithmic speed, and enterprise authority within autonomous search and AI optimization. \n\nKey attributes:\n- **Style Archetype:** Neo-Brutalism intersected with developer-centric Command Line Interface (CLI) telemetry.\n- **Visual Stance:** Stark matte-black surfaces, razor-sharp hard edges, zero blur gradients, hard-offset box shadows (isometric projection look), and high-visibility acid neon accents.\n- **Emotional Response:** Inspires absolute confidence in computational precision, transparency, speed, and institutional dominance.\n\n## Layout & Spacing\n- **Grid Layout:** Standard 12-column grid container capped at `80rem` (1280px) max width, structured with strict 2px to 4px outer wireframe boundaries.\n- **Vertical Rhythm:** Macro section gaps span `5rem` (`space-3xl`) with hard horizontal 2px borders (`#262626` or `#FFFFFF`).\n- **Responsive Handling:** Multi-column telemetry grids (3-column cards, 4-column counters) stack into single-column or 2-column configurations below `768px` (tablet) and `640px` (mobile). Outer margins reduce from `2rem` to `1rem`.\n\n## Elevation & Depth\nElevation is achieved purely through structural **Hard-Offset Brutalist Shadows** and deliberate 2D vector borders\u2014soft gradients and diffuse ambient blurs are strictly prohibited.\n\n- **Shadow Offset Technique:** Solid, sharp box-shadows positioned at `3px 3px 0px` or `6px 6px 0px` with 0px blur radius.\n- **Shadow Color Roles:**\n  - `brutal-white`: `3px 3px 0px #FFFFFF` for primary cards and secondary buttons.\n  - `brutal-acid`: `3px 3px 0px #CCFF00` for featured cards and secondary accent containers.\n  - `brutal-white-lg`: `6px 6px 0px #FFFFFF` for prominent terminal modules and hero blocks.\n  - `brutal-acid-lg`: `6px 6px 0px #CCFF00` for primary hero focus blocks and active tiers.\n- **Background Grid Texture:** Flat diagonal geometric wireframe cross-hatching (45-degree repeating lines) without vignettes.\n\n## Components\n\n### Buttons & Interactive Links\n- **Primary Button:** `#CCFF00` fill with `#000000` text, 2px `#FFFFFF` or `#000000` border, `3px 3px 0px #FFFFFF` hard shadow. Font: `JetBrains Mono` bold uppercase.\n- **Secondary Button:** `#000000` fill with `#FFFFFF` text, 2px `#FFFFFF` border, hover state shifts to `#FFFFFF` background with `#000000` text.\n- **Interaction Feedback:** Zero transition delays (`transition-none`). Active state translates down-right (`translate-x-0.5 translate-y-0.5`) to simulate physical punch-down switches.\n\n### Cards & Panels\n- **Container Structure:** Background `#0D0D0D` (panel) or `#000000` (black) framed with 2px solid borders (`#FFFFFF` or `#262626`).\n- **Header Accents:** Numbered indexing tags (`01 //`, `FIG. 00`) positioned top-left/top-right with monospaced metadata badges.\n\n### Badges & Chips\n- Monospaced utility markers with solid backgrounds (`#000000` with white text or `#CCFF00` with black text) encased in 1px or 2px borders.\n- Monospaced ticker strip along system headers with live status pings.\n\n### Form Inputs\n- **Field Base:** `#0D0D0D` fill, 2px `#FFFFFF` border, `#FFFFFF` monospaced uppercase text, 0px radius.\n- **Focus State:** Immediate highlight to `#CCFF00` border without outer glowing halos.\n\n### Terminal & Telemetry Displays\n- Fixed monospace log consoles featuring simulated UTC timestamps, split pane views, colored prompt tags, and accent status indicator bars.",
+      "theme": {
+        "colorMode": "DARK",
+        "font": "SYNE",
+        "customColor": "#ccff00",
+        "headlineFont": "SYNE",
+        "bodyFont": "JETBRAINS_MONO",
+        "labelFont": "SPACE_GROTESK",
+        "namedColors": {
+          "surface_container_high": "#2a2a2a",
+          "tertiary_fixed_dim": "#b6c9d8",
+          "surface_container_low": "#1b1b1b",
+          "on_secondary_fixed": "#1a1c1c",
+          "on_primary": "#283500",
+          "secondary": "#c6c6c7",
+          "muted": "#888888",
+          "subtle": "#171717",
+          "inverse_primary": "#506600",
+          "on_primary_fixed_variant": "#3c4d00",
+          "on_tertiary_container": "#556774",
+          "surface_container_highest": "#353535",
+          "panel": "#0D0D0D",
+          "on_background": "#e2e2e2",
+          "outline_variant": "#444933",
+          "inverse_surface": "#e2e2e2",
+          "secondary_fixed_dim": "#c6c6c7",
+          "surface_tint": "#abd600",
+          "on_primary_fixed": "#161e00",
+          "background": "#131313",
+          "borderstrong": "#FFFFFF",
+          "secondary_container": "#454747",
+          "error_container": "#93000a",
+          "on_surface_variant": "#c4c9ac",
+          "borderline": "#262626",
+          "on_secondary_container": "#b4b5b5",
+          "on_secondary": "#2f3131",
+          "inverse_on_surface": "#303030",
+          "on_tertiary_fixed_variant": "#374956",
+          "on_surface": "#e2e2e2",
+          "surface_container": "#1f1f1f",
+          "on_error_container": "#ffdad6",
+          "error": "#ffb4ab",
+          "on_tertiary_fixed": "#0b1d29",
+          "on_primary_container": "#556d00",
+          "tertiary_fixed": "#d2e5f5",
+          "surface_dim": "#131313",
+          "acid-hover": "#B8E600",
+          "surface": "#131313",
+          "primary_container": "#c3f400",
+          "secondary_fixed": "#e2e2e2",
+          "dark": "#080808",
+          "primary": "#ffffff",
+          "surface_variant": "#353535",
+          "on_tertiary": "#21323e",
+          "tertiary": "#ffffff",
+          "primary_fixed": "#c3f400",
+          "on_secondary_fixed_variant": "#454747",
+          "surface_container_lowest": "#0e0e0e",
+          "primary_fixed_dim": "#abd600",
+          "tertiary_container": "#d2e5f5",
+          "on_error": "#690005",
+          "outline": "#8e9379",
+          "surface_bright": "#393939",
+          "acid": "#CCFF00"
+        },
+        "designMd": "---\nname: Cyber-Brutalist Telemetry\ncolors:\n  surface: '#131313'\n  surface-dim: '#131313'\n  surface-bright: '#393939'\n  surface-container-lowest: '#0e0e0e'\n  surface-container-low: '#1b1b1b'\n  surface-container: '#1f1f1f'\n  surface-container-high: '#2a2a2a'\n  surface-container-highest: '#353535'\n  on-surface: '#e2e2e2'\n  on-surface-variant: '#c4c9ac'\n  inverse-surface: '#e2e2e2'\n  inverse-on-surface: '#303030'\n  outline: '#8e9379'\n  outline-variant: '#444933'\n  surface-tint: '#abd600'\n  primary: '#ffffff'\n  on-primary: '#283500'\n  primary-container: '#c3f400'\n  on-primary-container: '#556d00'\n  inverse-primary: '#506600'\n  secondary: '#c6c6c7'\n  on-secondary: '#2f3131'\n  secondary-container: '#454747'\n  on-secondary-container: '#b4b5b5'\n  tertiary: '#ffffff'\n  on-tertiary: '#21323e'\n  tertiary-container: '#d2e5f5'\n  on-tertiary-container: '#556774'\n  error: '#ffb4ab'\n  on-error: '#690005'\n  error-container: '#93000a'\n  on-error-container: '#ffdad6'\n  primary-fixed: '#c3f400'\n  primary-fixed-dim: '#abd600'\n  on-primary-fixed: '#161e00'\n  on-primary-fixed-variant: '#3c4d00'\n  secondary-fixed: '#e2e2e2'\n  secondary-fixed-dim: '#c6c6c7'\n  on-secondary-fixed: '#1a1c1c'\n  on-secondary-fixed-variant: '#454747'\n  tertiary-fixed: '#d2e5f5'\n  tertiary-fixed-dim: '#b6c9d8'\n  on-tertiary-fixed: '#0b1d29'\n  on-tertiary-fixed-variant: '#374956'\n  background: '#131313'\n  on-background: '#e2e2e2'\n  surface-variant: '#353535'\n  acid: '#CCFF00'\n  acid-hover: '#B8E600'\n  dark: '#080808'\n  panel: '#0D0D0D'\n  subtle: '#171717'\n  borderline: '#262626'\n  borderstrong: '#FFFFFF'\n  muted: '#888888'\ntypography:\n  display-hero:\n    fontFamily: Syne\n    fontSize: 5rem\n    fontWeight: '900'\n    lineHeight: '0.95'\n    letterSpacing: -0.05em\n  display-hero-mobile:\n    fontFamily: Syne\n    fontSize: 2.5rem\n    fontWeight: '900'\n    lineHeight: '1.0'\n    letterSpacing: -0.03em\n  headline-xl:\n    fontFamily: Syne\n    fontSize: 3.75rem\n    fontWeight: '800'\n    lineHeight: '1.0'\n    letterSpacing: -0.03em\n  headline-xl-mobile:\n    fontFamily: Syne\n    fontSize: 2rem\n    fontWeight: '800'\n    lineHeight: '1.1'\n    letterSpacing: -0.02em\n  headline-lg:\n    fontFamily: Syne\n    fontSize: 1.875rem\n    fontWeight: '800'\n    lineHeight: '1.2'\n    letterSpacing: -0.02em\n  headline-md:\n    fontFamily: Space Grotesk\n    fontSize: 1.5rem\n    fontWeight: '700'\n    lineHeight: '1.25'\n    letterSpacing: -0.01em\n  body-lg:\n    fontFamily: JetBrains Mono\n    fontSize: 1.125rem\n    fontWeight: '400'\n    lineHeight: '1.6'\n    letterSpacing: '0'\n  body-md:\n    fontFamily: JetBrains Mono\n    fontSize: 0.875rem\n    fontWeight: '400'\n    lineHeight: '1.5'\n    letterSpacing: '0'\n  body-sm:\n    fontFamily: JetBrains Mono\n    fontSize: 0.75rem\n    fontWeight: '400'\n    lineHeight: '1.4'\n    letterSpacing: 0.02em\n  code-terminal:\n    fontFamily: JetBrains Mono\n    fontSize: 0.6875rem\n    fontWeight: '500'\n    lineHeight: '1.4'\n    letterSpacing: 0.04em\n  label-caps:\n    fontFamily: Space Grotesk\n    fontSize: 0.75rem\n    fontWeight: '700'\n    lineHeight: '1.2'\n    letterSpacing: 0.08em\n  label-micro:\n    fontFamily: JetBrains Mono\n    fontSize: 0.625rem\n    fontWeight: '700'\n    lineHeight: '1.0'\n    letterSpacing: 0.1em\nspacing:\n  gutter: 1.5rem\n  gutter-mobile: 1rem\n  margin: 2rem\n  margin-mobile: 1rem\n  space-xs: 0.25rem\n  space-sm: 0.5rem\n  space-md: 1rem\n  space-lg: 1.5rem\n  space-xl: 2rem\n  space-2xl: 3rem\n  space-3xl: 5rem\n---\n\n## Brand & Style\nThe system embodies an uncompromising cyber-brutalist and high-velocity infrastructure persona. It conveys extreme technical rigor, algorithmic speed, and enterprise authority within autonomous search and AI optimization. \n\nKey attributes:\n- **Style Archetype:** Neo-Brutalism intersected with developer-centric Command Line Interface (CLI) telemetry.\n- **Visual Stance:** Stark matte-black surfaces, razor-sharp hard edges, zero blur gradients, hard-offset box shadows (isometric projection look), and high-visibility acid neon accents.\n- **Emotional Response:** Inspires absolute confidence in computational precision, transparency, speed, and institutional dominance.\n\n## Colors\nThe color scheme relies on hyper-contrast stark polarity:\n- **Primary (`#CCFF00` - Acid Lime):** Serves as the primary operational trigger, live status indicator, and critical focal highlight.\n- **Secondary (`#FFFFFF` - Pure White):** Used for structural contrast, primary display typography, and secondary keylines.\n- **Neutral (`#000000` - Absolute Black):** The primary canvas ground, supplemented by tonal dark shades (`#080808`, `#0D0D0D`, `#171717`) for terminal panels and wireframe modules.\n- **Accents & Delimiters:** Borders strictly leverage `#262626` for subtle divisions and `#FFFFFF` or `#CCFF00` for active focal containment.\n\n## Typography\nTypography is architectural and strictly uppercase across headings, telemetry callouts, and interactive badges.\n\n- **Syne:** Reserved for monumental impact headings (`display-hero`, `headline-xl`, `headline-lg`), set in heavy weights (800/900) with ultra-tight tracking and compressed line heights.\n- **Space Grotesk:** Bridges brutalism and legibility for structured section subheads, navigation identifiers, and technical cards.\n- **JetBrains Mono:** Handles all telemetry streams, analytical copy, input fields, badges, and body descriptions, reinforcing an uncompromising dev-ops terminal atmosphere.\n\n## Layout & Spacing\n- **Grid Layout:** Standard 12-column grid container capped at `80rem` (1280px) max width, structured with strict 2px to 4px outer wireframe boundaries.\n- **Vertical Rhythm:** Macro section gaps span `5rem` (`space-3xl`) with hard horizontal 2px borders (`#262626` or `#FFFFFF`).\n- **Responsive Handling:** Multi-column telemetry grids (3-column cards, 4-column counters) stack into single-column or 2-column configurations below `768px` (tablet) and `640px` (mobile). Outer margins reduce from `2rem` to `1rem`.\n\n## Elevation & Depth\nElevation is achieved purely through structural **Hard-Offset Brutalist Shadows** and deliberate 2D vector borders\u2014soft gradients and diffuse ambient blurs are strictly prohibited.\n\n- **Shadow Offset Technique:** Solid, sharp box-shadows positioned at `3px 3px 0px` or `6px 6px 0px` with 0px blur radius.\n- **Shadow Color Roles:**\n  - `brutal-white`: `3px 3px 0px #FFFFFF` for primary cards and secondary buttons.\n  - `brutal-acid`: `3px 3px 0px #CCFF00` for featured cards and secondary accent containers.\n  - `brutal-white-lg`: `6px 6px 0px #FFFFFF` for prominent terminal modules and hero blocks.\n  - `brutal-acid-lg`: `6px 6px 0px #CCFF00` for primary hero focus blocks and active tiers.\n- **Background Grid Texture:** Flat diagonal geometric wireframe cross-hatching (45-degree repeating lines) without vignettes.\n\n## Shapes\nShapes are strictly orthogonal:\n- **Corner Radius:** 0px across all elements (buttons, inputs, cards, tooltips, tags, and badges).\n- **Line Weights:** 2px solid standard for UI borders and internal dividers; 4px solid borders for hero containers and featured callout modules.\n\n## Components\n\n### Buttons & Interactive Links\n- **Primary Button:** `#CCFF00` fill with `#000000` text, 2px `#FFFFFF` or `#000000` border, `3px 3px 0px #FFFFFF` hard shadow. Font: `JetBrains Mono` bold uppercase.\n- **Secondary Button:** `#000000` fill with `#FFFFFF` text, 2px `#FFFFFF` border, hover state shifts to `#FFFFFF` background with `#000000` text.\n- **Interaction Feedback:** Zero transition delays (`transition-none`). Active state translates down-right (`translate-x-0.5 translate-y-0.5`) to simulate physical punch-down switches.\n\n### Cards & Panels\n- **Container Structure:** Background `#0D0D0D` (panel) or `#000000` (black) framed with 2px solid borders (`#FFFFFF` or `#262626`).\n- **Header Accents:** Numbered indexing tags (`01 //`, `FIG. 00`) positioned top-left/top-right with monospaced metadata badges.\n\n### Badges & Chips\n- Monospaced utility markers with solid backgrounds (`#000000` with white text or `#CCFF00` with black text) encased in 1px or 2px borders.\n- Monospaced ticker strip along system headers with live status pings.\n\n### Form Inputs\n- **Field Base:** `#0D0D0D` fill, 2px `#FFFFFF` border, `#FFFFFF` monospaced uppercase text, 0px radius.\n- **Focus State:** Immediate highlight to `#CCFF00` border without outer glowing halos.\n\n### Terminal & Telemetry Displays\n- Fixed monospace log consoles featuring simulated UTC timestamps, split pane views, colored prompt tags, and accent status indicator bars.",
+        "colorVariant": "FIDELITY",
+        "overridePrimaryColor": "#ccff00",
+        "overrideSecondaryColor": "#ffffff",
+        "overrideNeutralColor": "#000000",
+        "spacingScale": 2,
+        "typography": {
+          "label-micro": {
+            "fontFamily": "JetBrains Mono",
+            "fontSize": "0.625rem",
+            "fontWeight": "700",
+            "lineHeight": "1.0",
+            "letterSpacing": "0.1em"
+          },
+          "headline-md": {
+            "fontFamily": "Space Grotesk",
+            "fontSize": "1.5rem",
+            "fontWeight": "700",
+            "lineHeight": "1.25",
+            "letterSpacing": "-0.01em"
+          },
+          "display-hero-mobile": {
+            "fontFamily": "Syne",
+            "fontSize": "2.5rem",
+            "fontWeight": "900",
+            "lineHeight": "1.0",
+            "letterSpacing": "-0.03em"
+          },
+          "display-hero": {
+            "fontFamily": "Syne",
+            "fontSize": "5rem",
+            "fontWeight": "900",
+            "lineHeight": "0.95",
+            "letterSpacing": "-0.05em"
+          },
+          "headline-xl": {
+            "fontFamily": "Syne",
+            "fontSize": "3.75rem",
+            "fontWeight": "800",
+            "lineHeight": "1.0",
+            "letterSpacing": "-0.03em"
+          },
+          "body-sm": {
+            "fontFamily": "JetBrains Mono",
+            "fontSize": "0.75rem",
+            "fontWeight": "400",
+            "lineHeight": "1.4",
+            "letterSpacing": "0.02em"
+          },
+          "body-md": {
+            "fontFamily": "JetBrains Mono",
+            "fontSize": "0.875rem",
+            "fontWeight": "400",
+            "lineHeight": "1.5",
+            "letterSpacing": "0"
+          },
+          "code-terminal": {
+            "fontFamily": "JetBrains Mono",
+            "fontSize": "0.6875rem",
+            "fontWeight": "500",
+            "lineHeight": "1.4",
+            "letterSpacing": "0.04em"
+          },
+          "body-lg": {
+            "fontFamily": "JetBrains Mono",
+            "fontSize": "1.125rem",
+            "fontWeight": "400",
+            "lineHeight": "1.6",
+            "letterSpacing": "0"
+          },
+          "headline-lg": {
+            "fontFamily": "Syne",
+            "fontSize": "1.875rem",
+            "fontWeight": "800",
+            "lineHeight": "1.2",
+            "letterSpacing": "-0.02em"
+          },
+          "headline-xl-mobile": {
+            "fontFamily": "Syne",
+            "fontSize": "2rem",
+            "fontWeight": "800",
+            "lineHeight": "1.1",
+            "letterSpacing": "-0.02em"
+          },
+          "label-caps": {
+            "fontFamily": "Space Grotesk",
+            "fontSize": "0.75rem",
+            "fontWeight": "700",
+            "lineHeight": "1.2",
+            "letterSpacing": "0.08em"
+          }
+        },
+        "spacing": {
+          "space-2xl": "3rem",
+          "gutter": "1.5rem",
+          "margin-mobile": "1rem",
+          "space-sm": "0.5rem",
+          "space-3xl": "5rem",
+          "gutter-mobile": "1rem",
+          "space-md": "1rem",
+          "margin": "2rem",
+          "space-xl": "2rem",
+          "space-lg": "1.5rem",
+          "space-xs": "0.25rem"
+        },
+        "headlineFontFamily": "Syne",
+        "bodyFontFamily": "JetBrains Mono",
+        "labelFontFamily": "Space Grotesk"
+      }
+    },
+    "version": "2"
+  }
+}

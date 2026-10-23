@@ -1,0 +1,147 @@
+---
+import Card from '../ui/card/Card.astro';
+import CardContent from '../ui/card/CardContent.astro';
+import CardDescription from '../ui/card/CardDescription.astro';
+import CardHeader from '../ui/card/CardHeader.astro';
+import CardTitle from '../ui/card/CardTitle.astro';
+import Button from '../ui/button/Button.astro';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+void lang;
+const localize = (p: string) => p;
+
+const plans = [
+  {
+    code: 'TIER_01 // FOUNDATION',
+    name: 'Foundation Protocol',
+    description: 'Designed for high-growth tech ventures needing deterministic baseline SEO & entity verification.',
+    price: 'Custom SLA',
+    features: [
+      'Core Schema & RDF Entity Construction',
+      'Continuous Edge IndexNow Ping Pipeline',
+      'Technical Crawl Budget Optimization',
+      'Real-Time Telemetry Dashboard Access',
+      'Monthly Algorithmic Audit & Strategy',
+    ],
+    isPopular: false,
+    buttonText: 'Commission Baseline Protocol',
+  },
+  {
+    code: 'TIER_02 // ENTERPRISE',
+    name: 'Autonomous Scale',
+    description: 'Our most deployed configuration. Comprehensive AI citation optimization and high-velocity indexing.',
+    price: 'Custom SLA',
+    features: [
+      'Everything in Foundation Protocol',
+      'Perplexity Pro & SearchGPT Citation Seeding',
+      'Programmatic Schema & Dynamic Edge Injection',
+      'Google Indexing API Real-Time Webhooks',
+      'Automated Competitor Entity Monitoring',
+      'Dedicated Principal Systems Engineer',
+      'Weekly Algorithmic Review & Patching',
+    ],
+    isPopular: true,
+    buttonText: 'Deploy Enterprise Suite',
+  },
+  {
+    code: 'TIER_03 // SOVEREIGN',
+    name: 'Global Sovereign Infrastructure',
+    description: 'Bespoke multi-market entity dominance for multinational brands and high-volume platforms.',
+    price: 'Custom SLA',
+    features: [
+      'Everything in Autonomous Scale',
+      'Full Multi-Region International Topologies',
+      'Private Dedicated Headless Crawl Cluster',
+      'Sub-20ms Edge Caching & Bot Firewall',
+      'Guaranteed 99.99% SERP Telemetry SLA',
+      'Direct Slack/Matrix Channel with Systems Architects',
+      'Zero-Latency Custom Feature Engineering',
+    ],
+    isPopular: false,
+    buttonText: 'Commission Sovereign Node',
+  },
+];
+---
+
+<section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-6 border-b border-white/15">
+      <div>
+        <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[SLA_TIERS // DEPLOYMENT_MODELS]</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white">Investment & Deployment Plans</h2>
+      </div>
+      <p class="text-slate-400 font-mono text-xs max-w-md">// Deterministic performance-based SLA agreements tailored to your domain footprint.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 items-stretch">
+      {plans.map((plan) => (
+        <Card class={`relative rounded-none p-6 sm:p-8 flex flex-col justify-between transition-all ${
+          plan.isPopular 
+            ? 'bg-[#0a0e17] border-2 border-[#CCFF00] brutalist-shadow-yellow z-10' 
+            : 'bg-[#090d16] border-2 border-white/15 brutalist-card hover:border-[#CCFF00]'
+        }`}>
+          {plan.isPopular && (
+            <div class="absolute -top-3.5 left-6 bg-[#CCFF00] text-black font-mono text-xs font-black uppercase tracking-wider px-3 py-0.5 border border-black">
+              ★ PRIMARY_CONFIGURATION
+            </div>
+          )}
+
+          <div>
+            <CardHeader class="p-0 mb-6">
+              <div class="font-mono text-[11px] text-slate-400 mb-2 uppercase tracking-wider">{plan.code}</div>
+              <CardTitle class="text-2xl font-black uppercase text-white mb-2">
+                {plan.name}
+              </CardTitle>
+              <CardDescription class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
+                {plan.description}
+              </CardDescription>
+
+              <div class="p-4 bg-black border border-white/15 font-mono">
+                <span class="text-2xl sm:text-3xl font-black text-[#CCFF00] tracking-tight">{plan.price}</span>
+                <span class="text-slate-500 text-xs block mt-1">// Tailored to domain index footprint</span>
+              </div>
+            </CardHeader>
+
+            <CardContent class="p-0 mb-8">
+              <div class="font-mono text-xs uppercase tracking-wider text-slate-400 mb-4 pb-2 border-b border-white/10">
+                Included Protocols:
+              </div>
+              <ul class="space-y-3 font-mono text-xs sm:text-sm">
+                {plan.features.map((feature) => (
+                  <li class="flex items-start text-slate-300">
+                    <span class="text-[#CCFF00] font-black me-3 select-none">[✓]</span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </div>
+
+          <div class="pt-4 border-t border-white/10 font-mono text-xs">
+            <Button
+              href={localize('/contact/')}
+              variant={plan.isPopular ? 'acid' : 'brutalist'}
+              size="lg"
+              class="w-full py-4 text-center justify-center"
+            >
+              {plan.buttonText} ↗
+            </Button>
+          </div>
+        </Card>
+      ))}
+    </div>
+
+    <div class="mt-16 p-6 bg-[#090d16] border border-white/15 flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-xs">
+      <div class="text-slate-400">
+        <span class="text-[#CCFF00] font-bold">[CUSTOM_TOPOLOGY]</span> Require dedicated on-premise crawl infrastructure or custom compliance NDAs?
+      </div>
+      <Button href={localize('/contact/')} variant="brutalist" size="sm" class="px-6 py-2.5 shrink-0">
+        Request Custom Engineering Proposal
+      </Button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,78 @@
+---
+import Button from '../ui/button/Button.astro';
+
+export interface Props {
+  lang?: string;
+  title: string;
+  description: string;
+  primaryText?: string;
+  primaryHref?: string;
+  primaryClass?: string;
+  primaryCta?: { text?: string; href?: string; class?: string };
+  secondaryText?: string;
+  secondaryHref?: string;
+  secondaryClass?: string;
+  secondaryCta?: { text?: string; href?: string; class?: string };
+  bgClass?: string;
+  theme?: string;
+}
+
+const {
+  lang = 'en',
+  title,
+  description,
+  primaryText,
+  primaryHref,
+  primaryCta,
+  secondaryText,
+  secondaryHref,
+  secondaryCta,
+} = Astro.props;
+
+void lang;
+const localize = (p: string) => p;
+const effPrimaryText = primaryCta?.text || primaryText || 'Initialize Technical Audit ↗';
+const effPrimaryHref = localize(primaryCta?.href || primaryHref || '/contact/');
+
+const effSecondaryText = secondaryCta?.text || secondaryText || 'Explore Tactical Suite';
+const effSecondaryHref = localize(secondaryCta?.href || secondaryHref || '/services/');
+---
+
+<section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="p-8 sm:p-12 bg-[#090d16] border-2 border-[#CCFF00] brutalist-shadow-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+      <div class="space-y-3 text-left max-w-2xl">
+        <div class="font-mono text-xs text-[#CCFF00] uppercase font-bold tracking-wider">
+          [COMMISSION_DEPLOYMENT // PROTOCOL_READY]
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-white uppercase tracking-tight leading-tight">
+          {title}
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
+          {description}
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto shrink-0 font-mono text-xs">
+        <Button
+          variant="acid"
+          size="lg"
+          class="px-8 py-4 w-full sm:w-auto text-center"
+          href={effPrimaryHref}
+        >
+          {effPrimaryText}
+        </Button>
+        {effSecondaryText && (
+          <Button
+            variant="brutalist"
+            size="lg"
+            class="px-8 py-4 w-full sm:w-auto text-center"
+            href={effSecondaryHref}
+          >
+            {effSecondaryText}
+          </Button>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

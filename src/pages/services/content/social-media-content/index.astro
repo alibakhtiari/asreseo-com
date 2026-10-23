@@ -1,0 +1,424 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Button from '../../../../components/ui/button/Button.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Picture from '../../../../components/ui/Picture.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceWorkflow from '../../../../components/Services/ServiceWorkflow.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Social Media Content',
+  'description': 'Social content services including ideation, captions, graphics and publishing strategy',
+  'serviceType': 'Social Media Content',
+  'inLanguage': 'en-US',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com'
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Social media content services',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Creative ideation',
+          'description': 'Fresh, engaging ideas for social feeds',
+          'inLanguage': 'en-US'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Professional captions',
+          'description': 'Compelling captions with strategic hashtags',
+          'inLanguage': 'en-US'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const platforms = [
+    {
+      name: 'Instagram',
+      description: 'Visual posts, stories, reels and targeted ads',
+      followers: 'Monthly tracking',
+      engagement: 'Weekly reports',
+      icon: "image-icon",
+      color: 'pink'
+    },
+    {
+      name: 'LinkedIn',
+      description: 'Professional content, expert articles and B2B networking',
+      followers: 'Monthly tracking',
+      engagement: 'Weekly reports',
+      icon: "users",
+      color: 'blue'
+    },
+    {
+      name: 'Telegram',
+      description: 'Instant messaging, news and direct audience contact',
+      followers: 'Monthly tracking',
+      engagement: 'Weekly reports',
+      icon: "message-square",
+      color: 'blue'
+    },
+    {
+      name: 'X (Twitter)',
+      description: 'Media buzz, fast news and trend-setting',
+      followers: 'Monthly tracking',
+      engagement: 'Weekly reports',
+      icon: "sparkles",
+      color: 'gray'
+    },
+    {
+      name: 'TikTok',
+      description: 'Short viral videos to reach younger audiences',
+      followers: 'Monthly tracking',
+      engagement: 'Weekly reports',
+      icon: "trending-up",
+      color: 'black'
+    }
+  ];
+
+  const features = [
+    {
+      icon: "share2",
+      title: 'Creative Ideation',
+      description: 'Original, goal-driven ideas matched to your brand identity on every platform',
+      benefits: ['Boundless creativity', 'Competitive edge', 'High appeal']
+    },
+    {
+      icon: "message-square",
+      title: 'Professional Captions',
+      description: 'Impactful copy with strategic hashtags and powerful calls to action',
+      benefits: ['Higher returns', 'Brand voice', 'Effective messaging']
+    },
+    {
+      icon: "sparkles",
+      title: 'Engagement Growth',
+      description: 'Strategies that lift comments, likes and shares',
+      benefits: ['Organic growth', 'Real followers', 'Loyal community']
+    },
+    {
+      icon: "calendar",
+      title: 'Smart Publishing Calendar',
+      description: 'Posting schedules timed from analysis of your audience’s best hours',
+      benefits: ['More reach per post', 'Steady engagement', 'Lasting page growth']
+    }
+  ];
+
+  const contentStrategies = [
+    {
+      type: 'Trends & News',
+      description: 'Covering the day’s news and hot topics to hold attention',
+      examples: ['Industry news', 'Anniversaries', 'Global events']
+    },
+    {
+      type: 'Educational Content',
+      description: 'Know-how from your field that adds real value',
+      examples: ['Guides', 'Practical tips', 'Bite-size tutorials']
+    },
+    {
+      type: 'Entertaining Content',
+      description: 'Fun, engaging posts that boost interaction',
+      examples: ['Memes', 'Challenges', 'User-driven content']
+    },
+    {
+      type: 'Behind-the-Scenes Campaigns',
+      description: 'Customer success stories and business behind the scenes',
+      examples: ['Interviews', 'Winning projects', 'How we work']
+    }
+  ];
+
+  const benefits = [
+    'Track page growth in monthly performance reports with the right strategy',
+    'Real engagement and valuable, targeted followers',
+    'Cost-efficient compared with standalone ad teams',
+    'One unified brand message across every platform',
+    'Stronger brand credibility and new potential customers'
+  ];
+
+  // Qualitative process facts, not performance percentages — client-result
+  // percentages are unverifiable (see src/lib/site-claims.ts authenticity policy).
+  const stats = [
+    { metric: 'Monthly', label: 'Follower reports', color: 'text-pink-600', icon: "users" },
+    { metric: 'Weekly', label: 'Audience engagement reports', color: 'text-green-800', icon: "heart" },
+    { metric: 'Periodic', label: 'Performance reports', color: 'text-blue-600', icon: "trending-up" },
+    { metric: '24/7', label: 'Fast support', color: 'text-purple-600', icon: "message-square" }
+  ];
+
+  const workflowSteps = [
+    {
+      step: '1',
+      title: 'Brand & Audience Review',
+      desc: 'Analyzing brand personality, target audience and the competitive space on each platform'
+    },
+    {
+      step: '2',
+      title: 'Content Strategy',
+      desc: 'Defining content pillars, publishing calendar and key goals'
+    },
+    {
+      step: '3',
+      title: 'Content Production',
+      desc: 'Ideation, caption writing and branded content for every post'
+    },
+    {
+      step: '4',
+      title: 'Response & Measurement',
+      desc: 'Tracking engagement, replying to comments and relentless optimization'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'Which social networks do you cover?',
+      answer: 'Instagram, Telegram, LinkedIn, X (Twitter), TikTok and Aparat. We design a dedicated strategy per platform based on your business goals.'
+    },
+    {
+      question: 'Do packages include graphic design?',
+      answer: 'Yes, depending on your order. Eye-catching post graphics, Instagram borders and even short videos to strengthen your social presence.'
+    },
+    {
+      question: 'How do you handle comment replies?',
+      answer: 'Our team replies fast, removes spam comments and reports client interactions weekly — keeping your social space positive and active.'
+    },
+    {
+      question: 'Does content include advertising?',
+      answer: 'When needed, we also run social advertising — from boosting top posts to targeted ads that feed your sales directly.'
+    },
+    {
+      question: 'How many posts come in each package?',
+      answer: 'It depends on your needs. To start we usually suggest 8–12 posts per month per platform for steady, sustainable growth.'
+    },
+    {
+      question: 'Can I use my own content too?',
+      answer: 'Of course — hand us your ready content and we’ll handle captions and optimization. But we recommend our professional ideation too, for better results.'
+    }
+  ];
+
+  
+const breadcrumbs = [
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'Content Services', item: 'https://asreseo.com/services/content/' },
+    { position: 3, name: 'Social Media Content', item: 'https://asreseo.com/services/content/social-media-content/' },
+  ];
+
+---
+<BaseLayout lang="en" title='Social Media Content Production | AsreSEO' description='Full-service social content: creative ideation, engaging captions, beautiful graphics, publishing calendars and engagement strategy across 5 major platforms.' keywords='social media content, social content, Instagram, Telegram, LinkedIn, X, creative ideation' canonical='/services/content/social-media-content/' ogType='website' ogUrl='https://asreseo.com/services/content/social-media-content/' ogImages={[{ url: "/og/social-media-content-hero.jpg", width: 1200, height: 630, alt: "Social media content | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Social Media Content | Professional Production | AsreSEO'
+
+  ogDescription='Ideation, production and management of social content to grow your brand.'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/content/social-media-content/', image: '/og/social-media-content-hero.jpg' }))}
+      />
+
+      <Header lang="en" />
+      <BreadcrumbStructuredData items={breadcrumbs} />
+
+      <main>
+        <ServiceHero
+          lang="en"
+          badge="Professional Social Media Content"
+          title="Social Media Content"
+          titleHighlight="Social Media"
+          description="Creative ideation, compelling captions and engagement strategy for lasting page growth — from Instagram to LinkedIn, build a powerful presence."
+          primaryCtaText="Start Your Content Strategy"
+          secondaryCtaText="Free Social Media Consultation"
+          imageSrc="/images/social-media-content-hero.webp"
+          imageAlt="Professional social media content"
+          theme="pink"
+        />
+
+        <ServiceStats lang="en" stats={stats} />
+
+        <!-- Platforms Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Coverage Across <span class="gradient-text">5 Major Platforms</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                A dedicated strategy per platform for the best returns and ROI
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {platforms.map((platform, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group animate-fade-in border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                        <Icon name={platform.icon} class="h-6 w-6 text-purple-600" />
+                      </div>
+                      <div>
+                        <CardTitle class="text-xl font-semibold">{platform.name}</CardTitle>
+                        <div class="flex gap-4 mt-2 text-sm">
+                          <span class="text-green-800 font-medium">{platform.followers} followers</span>
+                          <span class="text-blue-600 font-medium">{platform.engagement} engagement</span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 leading-relaxed">
+                      {platform.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Content Strategies Section -->
+        <section class="section-padding bg-linear-to-br from-slate-50 to-indigo-50">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Effective <span class="gradient-text">Content Strategies</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                A mix of modern strategies for maximum engagement and page growth
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {contentStrategies.map((strategy, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg bg-white">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
+                        <Icon name="target" class="h-6 w-6 text-indigo-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{strategy.type}</CardTitle>
+                    </div>
+                    <p class="text-gray-600 mb-4">{strategy.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-1">
+                      {strategy.examples.map((example, exampleIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="badge-check" class="h-4 w-4 text-green-500 shrink-0" />
+                          {example}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section-padding">
+          <div class="container-custom">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Creative <span class="gradient-text">Social Media Services</span>
+              </h2>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                From ideation to publishing — full coverage of social content
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {features.map((feature, index) => (
+                <Card class="hover:shadow-xl transition-all duration-300 group border-0 shadow-lg">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-200 transition-colors">
+                        <Icon name={feature.icon} class="h-6 w-6 text-pink-600" />
+                      </div>
+                      <CardTitle class="text-xl font-semibold">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                          <Icon name="badge-check" class="h-4 w-4 text-green-500 shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <ServiceBenefits
+          lang="en"
+          title="Benefits of Professional"
+          titleHighlight="Social Content"
+          subtitle="Strong social media is the key to modern digital marketing success"
+          benefits={benefits}
+          iconColorClass="text-pink-600"
+          iconBgClass="bg-pink-100"
+        />
+
+        <ServiceWorkflow
+          lang="en"
+          title="The AsreSEO Social Media"
+          titleHighlight="Process"
+          subtitle="A scientific 4-step approach to content that truly delivers"
+          steps={workflowSteps}
+          themeColor="pink"
+        />
+
+        <ServiceFAQ
+          lang="en"
+          title="Frequently Asked Questions"
+          highlightWord="Questions"
+          subtitle="Answers to common client questions about social content"
+          faqs={faqs}
+        />
+
+        <ServiceCTA
+          lang="en"
+          title="Fill Your Feed With Creative Ideas — Starting Today!"
+          description="From creative ideation to smart publishing strategy, AsreSEO social content services will turn your page into a social media star."
+          primaryText="Start Social Content"
+          secondaryText="See Our Content Samples"
+          primaryClass="bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg shadow-pink-600/30"
+        />
+      </main>
+
+      <Footer lang="en" />
+    </div>
+</BaseLayout>

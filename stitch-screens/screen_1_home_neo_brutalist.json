@@ -1,0 +1,380 @@
+{
+  "screenshot": {
+    "name": "projects/5045794808600054952/files/6361408991432394295",
+    "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1XEC4GheTA2bhXq7UxAOf3_v_bJTORWP4DF2mZSzGsKNit_wkfBPOfxFxgrW7jGsGTUB_pKOh_XIVYIDpAO_YLz42z-fqfkkVOsppj3TzwnOQE2tkfb688tsm6b-3Mr-s-Z3bxYlz6sFhaZn0Sqke_3JAKzhEFYkA7X_2BsgFT-T4TNVMovWY4vv64BBp3AgbwoQpkja_ZCnKfv-8Oa7qBQTAworp5bBL3-UMLsnggu"
+  },
+  "htmlCode": {
+    "name": "projects/5045794808600054952/files/11753706364879346213",
+    "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJxEgxzdGl0Y2hfZmlsZXMaYQosc3RpdGNoX2h0bWxfMDAwNjVkNGRjNzM3NWQ3YzA3NzlhMDgwN2IzYTgzM2YSCxIHEP_vzY-7HxgBkgEjCgpwcm9qZWN0X2lkEhVCEzUwNDU3OTQ4MDg2MDAwNTQ5NTI&filename=&opi=89354086",
+    "mimeType": "text/html"
+  },
+  "id": "acbd44551247435e85864282a72b9e3f",
+  "generatedBy": "HatterAgent",
+  "width": "2560",
+  "height": "12550",
+  "title": "ASRESEO \u2014 Neo-Brutalist Edition (Editorial Wireframe & Acid Yellow)",
+  "prompt": "Create Variant 3 of ASRESEO services landing page:\nBrand: ASRESEO\nTheme: Neo-Brutalist Minimalist Wireframe & High-Contrast Editorial Mono\nBackground: Absolute Pure Matte Black (#000000) with a modern isometric wireframe / subtle perspective diagonal grid pattern (clean crisp 1px solid white/gray diagonal lines, strictly vector geometric pattern, NO gradients).\nPalette: Pure 100% Black (#000000), Pure White (#FFFFFF), and one stark, uncompromising Minimal Bold Accent: Electric Acid Yellow / Hazard Lime (#FACC15 or #EAB308 or #CCFF00) solid block accents and badges.\nAesthetic: Brutalist structural precision, heavy solid borders (2px solid #222 or #333 or #FFFFFF), pill-shaped and sharp square badges, large scale editorial grotesque typography with tracking, bold solid buttons with zero drop-shadow gradients (or harsh 3px solid hard offset shadow: 3px 3px 0px #FFFFFF or #CCFF00).\nContent & Services:\n- Hero: \"DOMINATE AI SEARCH & CONVERSATIONAL ENGINES.\" - \"Autonomous agent infrastructure built to capture citations, Google AI Overviews, and programmatic SERP dominance.\"\n- Services Breakdown in stark editorial modular blocks:\n  01 // GENERATIVE SEARCH OPTIMIZATION (GEO)\n  02 // PROGRAMMATIC KEYWORD TOPOLOGY\n  03 // ENTITY-BASED AUTHORITY ACCELERATOR\n  04 // AUTONOMOUS AUDIT & RE-INDEXATION PIPELINE\n  05 // MULTILINGUAL SYNTACTIC EXPANSION\n  06 // CONVERSATIONAL REPUTATION DEFENSE\n- Interactive Audit & Telemetry module: stark brutalist command dashboard with raw monospace metrics, live crawl logs, and live ROI / domain authority calculator.\n- Transparent Services Retainers / Deployment Plans with stark contrast cards and acid yellow call-to-action blocks.\n- Footer with crisp ASCII-style metadata, domain index stats, and legal links.\nStrict negative constraints: Absolutely NO gradients, NO soft blurry glow, pure solid bold colors, sharp borders, and tactile minimal punch.",
+  "name": "projects/5045794808600054952/screens/acbd44551247435e85864282a72b9e3f",
+  "theme": {
+    "colorMode": "DARK",
+    "font": "PLUS_JAKARTA_SANS",
+    "roundness": "ROUND_EIGHT",
+    "customColor": "#6366f1",
+    "headlineFont": "PLUS_JAKARTA_SANS",
+    "bodyFont": "INTER",
+    "labelFont": "SPACE_GROTESK",
+    "namedColors": {
+      "surface_bright": "#383941",
+      "tertiary": "#4cd7f6",
+      "error_container": "#93000a",
+      "secondary_fixed_dim": "#d0bcff",
+      "outline_variant": "#464554",
+      "on_background": "#e3e1ec",
+      "surface": "#12131a",
+      "outline": "#908fa0",
+      "inverse_primary": "#494bd6",
+      "surface_container_low": "#1a1b22",
+      "on_tertiary_fixed": "#001f26",
+      "on_error": "#690005",
+      "on_secondary_container": "#c4abff",
+      "surface_container_lowest": "#0d0e15",
+      "primary_fixed_dim": "#c0c1ff",
+      "surface_variant": "#34343c",
+      "on_secondary": "#3c0091",
+      "primary_fixed": "#e1e0ff",
+      "secondary_container": "#571bc1",
+      "surface_container_high": "#292931",
+      "background": "#12131a",
+      "surface_container": "#1e1f27",
+      "secondary_fixed": "#e9ddff",
+      "primary": "#c0c1ff",
+      "tertiary_fixed": "#acedff",
+      "tertiary_container": "#009eb9",
+      "inverse_on_surface": "#2f3038",
+      "on_secondary_fixed": "#23005c",
+      "secondary": "#d0bcff",
+      "on_surface_variant": "#c7c4d7",
+      "on_tertiary_container": "#002f38",
+      "on_tertiary_fixed_variant": "#004e5c",
+      "surface_tint": "#c0c1ff",
+      "on_primary": "#1000a9",
+      "on_tertiary": "#003640",
+      "on_primary_fixed_variant": "#2f2ebe",
+      "tertiary_fixed_dim": "#4cd7f6",
+      "primary_container": "#8083ff",
+      "on_primary_container": "#0d0096",
+      "on_error_container": "#ffdad6",
+      "on_secondary_fixed_variant": "#5516be",
+      "inverse_surface": "#e3e1ec",
+      "error": "#ffb4ab",
+      "surface_dim": "#12131a",
+      "on_primary_fixed": "#07006c",
+      "on_surface": "#e3e1ec",
+      "surface_container_highest": "#34343c"
+    },
+    "colorVariant": "FIDELITY",
+    "overridePrimaryColor": "#6366f1",
+    "overrideSecondaryColor": "#8b5cf6",
+    "overrideTertiaryColor": "#06b6d4",
+    "overrideNeutralColor": "#0d0e15",
+    "spacingScale": 2,
+    "typography": {
+      "body-lg": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": "400",
+        "lineHeight": "28px",
+        "letterSpacing": "-0.005em"
+      },
+      "headline-md": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "28px",
+        "fontWeight": "600",
+        "lineHeight": "36px",
+        "letterSpacing": "-0.02em"
+      },
+      "label-md": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "12px",
+        "fontWeight": "500",
+        "lineHeight": "16px",
+        "letterSpacing": "0.08em"
+      },
+      "label-sm": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "10px",
+        "fontWeight": "500",
+        "lineHeight": "14px",
+        "letterSpacing": "0.1em"
+      },
+      "body-md": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "0em"
+      },
+      "headline-lg": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "44px",
+        "fontWeight": "600",
+        "lineHeight": "52px",
+        "letterSpacing": "-0.025em"
+      },
+      "display-xl-mobile": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "40px",
+        "fontWeight": "700",
+        "lineHeight": "48px",
+        "letterSpacing": "-0.02em"
+      },
+      "body-sm": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": "400",
+        "lineHeight": "20px",
+        "letterSpacing": "0.005em"
+      },
+      "label-lg": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "14px",
+        "fontWeight": "600",
+        "lineHeight": "18px",
+        "letterSpacing": "0.06em"
+      },
+      "title-md": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": "600",
+        "lineHeight": "26px",
+        "letterSpacing": "-0.01em"
+      },
+      "headline-sm": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "22px",
+        "fontWeight": "500",
+        "lineHeight": "30px",
+        "letterSpacing": "-0.015em"
+      },
+      "headline-lg-mobile": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "32px",
+        "fontWeight": "600",
+        "lineHeight": "40px",
+        "letterSpacing": "-0.02em"
+      },
+      "display-xl": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "64px",
+        "fontWeight": "700",
+        "lineHeight": "72px",
+        "letterSpacing": "-0.03em"
+      }
+    },
+    "spacing": {
+      "space-xl": "2.5rem",
+      "space-xs": "0.25rem",
+      "gutter": "1.5rem",
+      "space-sm": "0.5rem",
+      "gutter-sm": "1rem",
+      "space-md": "1rem",
+      "gutter-lg": "2rem",
+      "margin-mobile": "1rem",
+      "space-lg": "1.5rem",
+      "margin-desktop": "3rem",
+      "margin": "2rem"
+    },
+    "headlineFontFamily": "Plus Jakarta Sans",
+    "bodyFontFamily": "Inter",
+    "labelFontFamily": "Space Grotesk"
+  },
+  "deviceType": "DESKTOP",
+  "screenType": "DESIGN",
+  "screenMetadata": {
+    "agentType": "PRO_AGENT",
+    "status": "COMPLETE",
+    "displayMode": "HTML"
+  },
+  "designSystem": {
+    "name": "assets/ea8025fffe3a40f9ae307c0eb0ac3d5a",
+    "designSystem": {
+      "displayName": "Nexus Cognitive",
+      "styleGuidelines": "## Brand & Style\n\nThis design system embodies high-end algorithmic intelligence, technological supremacy, and forward-looking strategic execution. Created for an enterprise-tier AI marketing and growth agency, the visual language balances surgical precision with ethereal digital luminance. \n\nThe aesthetic marries **Futuristic Glassmorphism** with **Technical Minimalism**:\n- **Atmosphere:** Deep midnight voids paired with atmospheric back-projected bioluminescence. The environment feels calm, premium, and computational rather than chaotic or game-like.\n- **Visual Tenets:** Razor-sharp typography contrasts against layered, translucent obsidian panes; micro-glows pinpoint actionable nodes; disciplined structure prevents visual noise.\n- **Emotional Response:** Inspires absolute competence, computational mastery, exclusivity, and inevitable performance velocity.\n\n## Layout & Spacing\n\nThe system runs on a base-8 rhythmic system paired with an adaptive 12-column grid.\n\n### Grid & Composition Rules\n- **Desktop (1280px+):** 12-column grid, `margin-desktop` (48px), `gutter-lg` (32px). Maximum content containment width is 1360px.\n- **Tablet (768px - 1279px):** 8-column grid, `margin` (32px), `gutter` (24px).\n- **Mobile (320px - 767px):** 4-column grid, `margin-mobile` (16px), `gutter-sm` (16px).\n\nWhitespace is treated as an active architectural element. Vertical rhythms between distinct narrative clusters range between 80px and 120px to ensure each algorithmic module commands total visual isolation. Component internal paddings strictly follow the `space-*` scale.\n\n## Elevation & Depth\n\nVisual hierarchy does not use simulated physical drop shadows; it relies on translucent dark planes, glass blur matrices, and directional radial glows:\n\n- **Level 0 (Base Void):** Flat `#090A0F`.\n- **Level 1 (Sub-surface / Structural Card):** `#0D0E15` with `1px` stroke of `rgba(255, 255, 255, 0.05)`.\n- **Level 2 (Active Glass Panel):** Background `rgba(13, 14, 21, 0.65)`, backdrop blur `16px`, bordered by a subtle linear gradient stroke ranging from `rgba(99, 102, 241, 0.3)` at the top edge to `rgba(255, 255, 255, 0.03)` at the bottom edge.\n- **Level 3 (Interactive Hover / Modal):** Background `rgba(15, 17, 28, 0.85)`, backdrop blur `24px`, ambient outer glow: `0 0 40px -10px rgba(99, 102, 241, 0.25)`.\n- **Luminous Edge Reflection:** Interactive components feature a 1px top highlight (`inset 0 1px 0 0 rgba(255, 255, 255, 0.12)`) simulating overhead neon illumination.\n\n## Components\n\n### Buttons\n- **Primary Action:** Solid gradient (`#6366F1` to `#8B5CF6`), text in `#FFFFFF`, subtle inner highlight, pill or rounded radius (8px). On hover: ambient neon glow expansion (`box-shadow: 0 0 24px rgba(99, 102, 241, 0.45)`).\n- **Secondary (Glass):** Background `rgba(255, 255, 255, 0.03)`, border `1px solid rgba(255, 255, 255, 0.1)`. Hover shifts border to `rgba(99, 102, 241, 0.5)` and adds faint text color gradient.\n\n### Glowing Pill Badges\n- Encapsulated pills featuring an active pulsing beacon dot (4px circle in `#06B6D4` with `box-shadow: 0 0 8px #06B6D4`).\n- Label typography set in `label-sm` Space Grotesk, uppercase, with high letter spacing. Bordered in `rgba(6, 182, 212, 0.25)` over a dark translucent backdrop.\n\n### Cards & Panels\n- Constructed with frosted glassmorphism: `backdrop-filter: blur(12px)`.\n- Features an ultra-thin 1px border. On mouse position (or hover), the border reflects a soft gradient sheen revealing the primary indigo hue.\n\n### Input Fields\n- Deep obsidian backdrop (`rgba(9, 10, 15, 0.8)`), inset 1px border `rgba(255, 255, 255, 0.08)`.\n- Active focus state: border shifts to `#6366F1`, backed by an electric cyan corner focus flare (`box-shadow: 0 0 0 1px #6366F1, 0 0 16px rgba(99, 102, 241, 0.2)`).\n\n### Selection Controls (Checkboxes & Radios)\n- Base state: 1px border `rgba(255, 255, 255, 0.2)` over transparent background.\n- Selected state: Filled with `#6366F1`, sporting a high-contrast white check or center pip, illuminated by a miniature drop-glow.\n\n### AI Metric Visualizers & Data Nodes\n- Growth and performance metrics pair large `display-xl` numerals with compact `label-sm` cyan trajectory flags (`+240.4% ARR`).\n- Sparklines and node connectors use `#06B6D4` with linear gradient fades toward transparent bases.",
+      "theme": {
+        "colorMode": "DARK",
+        "font": "PLUS_JAKARTA_SANS",
+        "roundness": "ROUND_EIGHT",
+        "customColor": "#6366f1",
+        "headlineFont": "PLUS_JAKARTA_SANS",
+        "bodyFont": "INTER",
+        "labelFont": "SPACE_GROTESK",
+        "namedColors": {
+          "on_tertiary_fixed_variant": "#004e5c",
+          "outline": "#908fa0",
+          "inverse_surface": "#e3e1ec",
+          "surface": "#12131a",
+          "surface_container": "#1e1f27",
+          "tertiary": "#4cd7f6",
+          "surface_container_highest": "#34343c",
+          "surface_tint": "#c0c1ff",
+          "on_secondary_fixed_variant": "#5516be",
+          "on_primary_fixed": "#07006c",
+          "on_error": "#690005",
+          "surface_bright": "#383941",
+          "on_tertiary_container": "#002f38",
+          "background": "#12131a",
+          "primary_container": "#8083ff",
+          "secondary_fixed": "#e9ddff",
+          "on_primary_fixed_variant": "#2f2ebe",
+          "on_secondary_container": "#c4abff",
+          "on_surface_variant": "#c7c4d7",
+          "on_background": "#e3e1ec",
+          "surface_variant": "#34343c",
+          "inverse_on_surface": "#2f3038",
+          "on_secondary_fixed": "#23005c",
+          "error": "#ffb4ab",
+          "tertiary_container": "#009eb9",
+          "surface_dim": "#12131a",
+          "primary": "#c0c1ff",
+          "surface_container_high": "#292931",
+          "secondary": "#d0bcff",
+          "on_tertiary": "#003640",
+          "secondary_container": "#571bc1",
+          "on_primary_container": "#0d0096",
+          "primary_fixed_dim": "#c0c1ff",
+          "surface_container_lowest": "#0d0e15",
+          "tertiary_fixed": "#acedff",
+          "on_primary": "#1000a9",
+          "inverse_primary": "#494bd6",
+          "secondary_fixed_dim": "#d0bcff",
+          "primary_fixed": "#e1e0ff",
+          "on_error_container": "#ffdad6",
+          "error_container": "#93000a",
+          "on_tertiary_fixed": "#001f26",
+          "surface_container_low": "#1a1b22",
+          "tertiary_fixed_dim": "#4cd7f6",
+          "outline_variant": "#464554",
+          "on_secondary": "#3c0091",
+          "on_surface": "#e3e1ec"
+        },
+        "designMd": "---\nname: Nexus Cognitive\ncolors:\n  surface: '#12131a'\n  surface-dim: '#12131a'\n  surface-bright: '#383941'\n  surface-container-lowest: '#0d0e15'\n  surface-container-low: '#1a1b22'\n  surface-container: '#1e1f27'\n  surface-container-high: '#292931'\n  surface-container-highest: '#34343c'\n  on-surface: '#e3e1ec'\n  on-surface-variant: '#c7c4d7'\n  inverse-surface: '#e3e1ec'\n  inverse-on-surface: '#2f3038'\n  outline: '#908fa0'\n  outline-variant: '#464554'\n  surface-tint: '#c0c1ff'\n  primary: '#c0c1ff'\n  on-primary: '#1000a9'\n  primary-container: '#8083ff'\n  on-primary-container: '#0d0096'\n  inverse-primary: '#494bd6'\n  secondary: '#d0bcff'\n  on-secondary: '#3c0091'\n  secondary-container: '#571bc1'\n  on-secondary-container: '#c4abff'\n  tertiary: '#4cd7f6'\n  on-tertiary: '#003640'\n  tertiary-container: '#009eb9'\n  on-tertiary-container: '#002f38'\n  error: '#ffb4ab'\n  on-error: '#690005'\n  error-container: '#93000a'\n  on-error-container: '#ffdad6'\n  primary-fixed: '#e1e0ff'\n  primary-fixed-dim: '#c0c1ff'\n  on-primary-fixed: '#07006c'\n  on-primary-fixed-variant: '#2f2ebe'\n  secondary-fixed: '#e9ddff'\n  secondary-fixed-dim: '#d0bcff'\n  on-secondary-fixed: '#23005c'\n  on-secondary-fixed-variant: '#5516be'\n  tertiary-fixed: '#acedff'\n  tertiary-fixed-dim: '#4cd7f6'\n  on-tertiary-fixed: '#001f26'\n  on-tertiary-fixed-variant: '#004e5c'\n  background: '#12131a'\n  on-background: '#e3e1ec'\n  surface-variant: '#34343c'\ntypography:\n  display-xl:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 64px\n    fontWeight: '700'\n    lineHeight: 72px\n    letterSpacing: -0.03em\n  display-xl-mobile:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 40px\n    fontWeight: '700'\n    lineHeight: 48px\n    letterSpacing: -0.02em\n  headline-lg:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 44px\n    fontWeight: '600'\n    lineHeight: 52px\n    letterSpacing: -0.025em\n  headline-lg-mobile:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 32px\n    fontWeight: '600'\n    lineHeight: 40px\n    letterSpacing: -0.02em\n  headline-md:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 28px\n    fontWeight: '600'\n    lineHeight: 36px\n    letterSpacing: -0.02em\n  headline-sm:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 22px\n    fontWeight: '500'\n    lineHeight: 30px\n    letterSpacing: -0.015em\n  title-md:\n    fontFamily: Inter\n    fontSize: 18px\n    fontWeight: '600'\n    lineHeight: 26px\n    letterSpacing: -0.01em\n  body-lg:\n    fontFamily: Inter\n    fontSize: 18px\n    fontWeight: '400'\n    lineHeight: 28px\n    letterSpacing: -0.005em\n  body-md:\n    fontFamily: Inter\n    fontSize: 15px\n    fontWeight: '400'\n    lineHeight: 24px\n    letterSpacing: 0em\n  body-sm:\n    fontFamily: Inter\n    fontSize: 13px\n    fontWeight: '400'\n    lineHeight: 20px\n    letterSpacing: 0.005em\n  label-lg:\n    fontFamily: Space Grotesk\n    fontSize: 14px\n    fontWeight: '600'\n    lineHeight: 18px\n    letterSpacing: 0.06em\n  label-md:\n    fontFamily: Space Grotesk\n    fontSize: 12px\n    fontWeight: '500'\n    lineHeight: 16px\n    letterSpacing: 0.08em\n  label-sm:\n    fontFamily: Space Grotesk\n    fontSize: 10px\n    fontWeight: '500'\n    lineHeight: 14px\n    letterSpacing: 0.1em\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  gutter: 1.5rem\n  gutter-sm: 1rem\n  gutter-lg: 2rem\n  margin: 2rem\n  margin-mobile: 1rem\n  margin-desktop: 3rem\n  space-xs: 0.25rem\n  space-sm: 0.5rem\n  space-md: 1rem\n  space-lg: 1.5rem\n  space-xl: 2.5rem\n---\n\n## Brand & Style\n\nThis design system embodies high-end algorithmic intelligence, technological supremacy, and forward-looking strategic execution. Created for an enterprise-tier AI marketing and growth agency, the visual language balances surgical precision with ethereal digital luminance. \n\nThe aesthetic marries **Futuristic Glassmorphism** with **Technical Minimalism**:\n- **Atmosphere:** Deep midnight voids paired with atmospheric back-projected bioluminescence. The environment feels calm, premium, and computational rather than chaotic or game-like.\n- **Visual Tenets:** Razor-sharp typography contrasts against layered, translucent obsidian panes; micro-glows pinpoint actionable nodes; disciplined structure prevents visual noise.\n- **Emotional Response:** Inspires absolute competence, computational mastery, exclusivity, and inevitable performance velocity.\n\n## Colors\n\nThe palette leverages an obsidian tonal foundation contrasted by concentrated electric hues and pure spectral highlights.\n\n### Color Hierarchy & Roles\n- **Base Canvas (`#090A0F`):** Deep obsidian void used for primary page backgrounds.\n- **Elevated Canvas (`#0D0E15`):** Midnight surface used for baseline structural sections and canvas segmentation.\n- **Electric Indigo (`#6366F1` - Primary):** Anchor point for key interactions, focal conversions, and primary brand indicators.\n- **Luminous Violet (`#8B5CF6` - Secondary):** Used in gradient pairings with the primary color, active states, and AI agent indicators.\n- **Cyan Neon (`#06B6D4` - Tertiary):** High-precision telemetry metric indicators, success pulses, and accent nodes.\n- **Translucent Overlays:** Surfaces rely on white and indigo alpha values (`rgba(255, 255, 255, 0.03)` through `0.08`) against base layers.\n- **Typographic Scale:** Text defaults to crisp pure white (`#FFFFFF`) for primary headers, shifting to cold silver (`#94A3B8`) for secondary copy, and muted slate (`#475569`) for metadata.\n\n## Typography\n\nThe typographic hierarchy implements three distinct typefaces to convey role and mood:\n- **Plus Jakarta Sans:** Expressive display headers, delivering geometry and modern authority with tight tracking.\n- **Inter:** Highly neutral, readable body copy optimized for dense strategic and analytic dashboards.\n- **Space Grotesk:** Dedicated technical font used exclusively for micro-labels, metrics, badges, system telemetry, and tracked uppercase counters.\n\nAll headings leverage negative letter spacing to yield an editorial, compact digital lockup, while labels employ wide tracking for deliberate instrument-grade legibility.\n\n## Layout & Spacing\n\nThe system runs on a base-8 rhythmic system paired with an adaptive 12-column grid.\n\n### Grid & Composition Rules\n- **Desktop (1280px+):** 12-column grid, `margin-desktop` (48px), `gutter-lg` (32px). Maximum content containment width is 1360px.\n- **Tablet (768px - 1279px):** 8-column grid, `margin` (32px), `gutter` (24px).\n- **Mobile (320px - 767px):** 4-column grid, `margin-mobile` (16px), `gutter-sm` (16px).\n\nWhitespace is treated as an active architectural element. Vertical rhythms between distinct narrative clusters range between 80px and 120px to ensure each algorithmic module commands total visual isolation. Component internal paddings strictly follow the `space-*` scale.\n\n## Elevation & Depth\n\nVisual hierarchy does not use simulated physical drop shadows; it relies on translucent dark planes, glass blur matrices, and directional radial glows:\n\n- **Level 0 (Base Void):** Flat `#090A0F`.\n- **Level 1 (Sub-surface / Structural Card):** `#0D0E15` with `1px` stroke of `rgba(255, 255, 255, 0.05)`.\n- **Level 2 (Active Glass Panel):** Background `rgba(13, 14, 21, 0.65)`, backdrop blur `16px`, bordered by a subtle linear gradient stroke ranging from `rgba(99, 102, 241, 0.3)` at the top edge to `rgba(255, 255, 255, 0.03)` at the bottom edge.\n- **Level 3 (Interactive Hover / Modal):** Background `rgba(15, 17, 28, 0.85)`, backdrop blur `24px`, ambient outer glow: `0 0 40px -10px rgba(99, 102, 241, 0.25)`.\n- **Luminous Edge Reflection:** Interactive components feature a 1px top highlight (`inset 0 1px 0 0 rgba(255, 255, 255, 0.12)`) simulating overhead neon illumination.\n\n## Shapes\n\nThe design uses balanced, modern curvature (`0.5rem` / 8px baseline radius) with select pill-shaped nodes to convey high-tech fluidity:\n\n- **Containers & Glass Panels:** Follow the roundedness factor 2 baseline (`8px` to `16px` for cards, `24px` for macro modal containers).\n- **Interactive Badges, Metric Pills, and Action Tags:** Rendered as full capsules (`9999px`) to create distinction between navigational surfaces and structural content framing.\n- **Geometry Rules:** Crisp 90-degree internal alignment within data visualizers and raw charts, framed cleanly inside rounded exterior glass envelopes.\n\n## Components\n\n### Buttons\n- **Primary Action:** Solid gradient (`#6366F1` to `#8B5CF6`), text in `#FFFFFF`, subtle inner highlight, pill or rounded radius (8px). On hover: ambient neon glow expansion (`box-shadow: 0 0 24px rgba(99, 102, 241, 0.45)`).\n- **Secondary (Glass):** Background `rgba(255, 255, 255, 0.03)`, border `1px solid rgba(255, 255, 255, 0.1)`. Hover shifts border to `rgba(99, 102, 241, 0.5)` and adds faint text color gradient.\n\n### Glowing Pill Badges\n- Encapsulated pills featuring an active pulsing beacon dot (4px circle in `#06B6D4` with `box-shadow: 0 0 8px #06B6D4`).\n- Label typography set in `label-sm` Space Grotesk, uppercase, with high letter spacing. Bordered in `rgba(6, 182, 212, 0.25)` over a dark translucent backdrop.\n\n### Cards & Panels\n- Constructed with frosted glassmorphism: `backdrop-filter: blur(12px)`.\n- Features an ultra-thin 1px border. On mouse position (or hover), the border reflects a soft gradient sheen revealing the primary indigo hue.\n\n### Input Fields\n- Deep obsidian backdrop (`rgba(9, 10, 15, 0.8)`), inset 1px border `rgba(255, 255, 255, 0.08)`.\n- Active focus state: border shifts to `#6366F1`, backed by an electric cyan corner focus flare (`box-shadow: 0 0 0 1px #6366F1, 0 0 16px rgba(99, 102, 241, 0.2)`).\n\n### Selection Controls (Checkboxes & Radios)\n- Base state: 1px border `rgba(255, 255, 255, 0.2)` over transparent background.\n- Selected state: Filled with `#6366F1`, sporting a high-contrast white check or center pip, illuminated by a miniature drop-glow.\n\n### AI Metric Visualizers & Data Nodes\n- Growth and performance metrics pair large `display-xl` numerals with compact `label-sm` cyan trajectory flags (`+240.4% ARR`).\n- Sparklines and node connectors use `#06B6D4` with linear gradient fades toward transparent bases.",
+        "colorVariant": "FIDELITY",
+        "overridePrimaryColor": "#6366f1",
+        "overrideSecondaryColor": "#8b5cf6",
+        "overrideTertiaryColor": "#06b6d4",
+        "overrideNeutralColor": "#0d0e15",
+        "spacingScale": 2,
+        "typography": {
+          "title-md": {
+            "fontFamily": "Inter",
+            "fontSize": "18px",
+            "fontWeight": "600",
+            "lineHeight": "26px",
+            "letterSpacing": "-0.01em"
+          },
+          "body-lg": {
+            "fontFamily": "Inter",
+            "fontSize": "18px",
+            "fontWeight": "400",
+            "lineHeight": "28px",
+            "letterSpacing": "-0.005em"
+          },
+          "label-lg": {
+            "fontFamily": "Space Grotesk",
+            "fontSize": "14px",
+            "fontWeight": "600",
+            "lineHeight": "18px",
+            "letterSpacing": "0.06em"
+          },
+          "headline-lg-mobile": {
+            "fontFamily": "Plus Jakarta Sans",
+            "fontSize": "32px",
+            "fontWeight": "600",
+            "lineHeight": "40px",
+            "letterSpacing": "-0.02em"
+          },
+          "display-xl-mobile": {
+            "fontFamily": "Plus Jakarta Sans",
+            "fontSize": "40px",
+            "fontWeight": "700",
+            "lineHeight": "48px",
+            "letterSpacing": "-0.02em"
+          },
+          "display-xl": {
+            "fontFamily": "Plus Jakarta Sans",
+            "fontSize": "64px",
+            "fontWeight": "700",
+            "lineHeight": "72px",
+            "letterSpacing": "-0.03em"
+          },
+          "headline-md": {
+            "fontFamily": "Plus Jakarta Sans",
+            "fontSize": "28px",
+            "fontWeight": "600",
+            "lineHeight": "36px",
+            "letterSpacing": "-0.02em"
+          },
+          "body-md": {
+            "fontFamily": "Inter",
+            "fontSize": "15px",
+            "fontWeight": "400",
+            "lineHeight": "24px",
+            "letterSpacing": "0em"
+          },
+          "label-md": {
+            "fontFamily": "Space Grotesk",
+            "fontSize": "12px",
+            "fontWeight": "500",
+            "lineHeight": "16px",
+            "letterSpacing": "0.08em"
+          },
+          "label-sm": {
+            "fontFamily": "Space Grotesk",
+            "fontSize": "10px",
+            "fontWeight": "500",
+            "lineHeight": "14px",
+            "letterSpacing": "0.1em"
+          },
+          "headline-sm": {
+            "fontFamily": "Plus Jakarta Sans",
+            "fontSize": "22px",
+            "fontWeight": "500",
+            "lineHeight": "30px",
+            "letterSpacing": "-0.015em"
+          },
+          "body-sm": {
+            "fontFamily": "Inter",
+            "fontSize": "13px",
+            "fontWeight": "400",
+            "lineHeight": "20px",
+            "letterSpacing": "0.005em"
+          },
+          "headline-lg": {
+            "fontFamily": "Plus Jakarta Sans",
+            "fontSize": "44px",
+            "fontWeight": "600",
+            "lineHeight": "52px",
+            "letterSpacing": "-0.025em"
+          }
+        },
+        "spacing": {
+          "gutter-lg": "2rem",
+          "margin-mobile": "1rem",
+          "margin-desktop": "3rem",
+          "margin": "2rem",
+          "space-lg": "1.5rem",
+          "space-xs": "0.25rem",
+          "space-xl": "2.5rem",
+          "gutter": "1.5rem",
+          "space-md": "1rem",
+          "space-sm": "0.5rem",
+          "gutter-sm": "1rem"
+        },
+        "headlineFontFamily": "Plus Jakarta Sans",
+        "bodyFontFamily": "Inter",
+        "labelFontFamily": "Space Grotesk"
+      }
+    },
+    "version": "1"
+  }
+}

@@ -1,0 +1,68 @@
+---
+import * as LucideIcons from 'lucide-astro';
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+
+// Build-time inline SVG icon (using lucide-astro; zero client JS).
+// Usage: <Icon name="menu" class="h-6 w-6" />  (kebab-case lucide names)
+export interface Props {
+  name: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const { name, class: className = 'h-5 w-5', ...rest } = Astro.props;
+
+// Renames after lucide deprecated old names (brand icons vendored locally).
+const RENAMES: Record<string, string> = {
+  'bar-chart3': 'chart-column',
+  'check-circle2': 'circle-check-big',
+  'code2': 'code-xml',
+  edit3: 'pen-line',
+  link2: 'link-2',
+  share2: 'share-2',
+  wand2: 'wand-sparkles',
+  'headphones-icon': 'headphones',
+  'image-icon': 'image',
+};
+
+const BRANDS = new Set(['instagram', 'linkedin', 'twitter', 'youtube', 'whatsapp', 'github']);
+const isBrand = BRANDS.has(name);
+
+function toPascalCase(str: string): string {
+  return str.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('');
+}
+
+let BrandSvg = '';
+let LucideComponent: any = null;
+
+if (isBrand) {
+  const file = join(process.cwd(), 'src', 'components', 'ui', 'brands', `${name}.svg`);
+  try {
+    BrandSvg = existsSync(file) ? readFileSync(file, 'utf8') : '';
+  } catch {
+    BrandSvg = '';
+  }
+  if (BrandSvg) {
+    BrandSvg = BrandSvg.replace(/<svg\b[^>]*>/, (tag) => {
+      let t = tag
+        .replace(/\s+class="([^"]*)"/, (_m, existing) => ` class="${className} ${existing}"`)
+        .replace(/\s+aria-hidden="[^"]*"/, '')
+        .replace(/\s+width="[^"]*"/, '')
+        .replace(/\s+height="[^"]*"/, '');
+      if (!/\sclass="/.test(t)) t = t.replace('<svg', `<svg class="${className}"`);
+      return t.replace('<svg', '<svg aria-hidden="true"');
+    });
+  }
+} else {
+  const resolvedName = RENAMES[name] ?? name;
+  const pascalName = toPascalCase(resolvedName);
+  LucideComponent = (LucideIcons as any)[pascalName] ?? (LucideIcons as any)[toPascalCase(name)];
+}
+---
+{isBrand ? (
+  <Fragment set:html={BrandSvg} />
+) : LucideComponent ? (
+  <LucideComponent class={className} {...rest} />
+) : null}
+

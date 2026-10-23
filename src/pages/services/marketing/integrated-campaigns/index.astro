@@ -1,0 +1,457 @@
+---
+import { withServiceMeta } from '../../../../lib/service-schema';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Layout/Header.astro';
+import Footer from '../../../../components/Layout/Footer.astro';
+import Button from '../../../../components/ui/button/Button.astro';
+import Card from '../../../../components/ui/card/Card.astro';
+import CardContent from '../../../../components/ui/card/CardContent.astro';
+import CardHeader from '../../../../components/ui/card/CardHeader.astro';
+import CardTitle from '../../../../components/ui/card/CardTitle.astro';
+import Badge from '../../../../components/ui/badge/Badge.astro';
+import Picture from '../../../../components/ui/Picture.astro';
+import Icon from '../../../../components/ui/Icon.astro';
+import ServiceHero from '../../../../components/Services/ServiceHero.astro';
+import ServiceStats from '../../../../components/Services/ServiceStats.astro';
+import ServiceWorkflow from '../../../../components/Services/ServiceWorkflow.astro';
+import ServiceBenefits from '../../../../components/Services/ServiceBenefits.astro';
+
+// Tailwind only sees class names that literally appear in source, so a runtime
+// `bg-${color}-100` is invisible to it. Map them explicitly instead.
+const channelTile: Record<string, string> = {
+  blue: 'bg-blue-100', green: 'bg-green-100', purple: 'bg-purple-100', cyan: 'bg-cyan-100',
+};
+const channelTileHover: Record<string, string> = {
+  blue: 'group-hover:bg-blue-200', green: 'group-hover:bg-green-200',
+  purple: 'group-hover:bg-purple-200', cyan: 'group-hover:bg-cyan-200',
+};
+import ServiceFAQ from '../../../../components/Services/ServiceFAQ.astro';
+import ServiceCTA from '../../../../components/Services/ServiceCTA.astro';
+import BreadcrumbStructuredData from '../../../../components/BreadcrumbStructuredData.astro';
+
+
+
+
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': 'Integrated Advertising Campaigns',
+  'description': 'Design and execution of integrated multi-channel advertising campaigns',
+  'serviceType': 'Integrated Marketing Campaigns',
+  'inLanguage': 'en-US',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'AsreSEO',
+    'url': 'https://asreseo.com'
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Integrated campaign services',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Multi-channel campaigns',
+          'description': 'Coordinated advertising campaigns across multiple platforms',
+          'inLanguage': 'en-US'
+        }
+      }
+    ]
+  }
+};
+
+
+
+  const marketingChannels = [
+    {
+      name: 'Social Media',
+      description: 'Presence management on Instagram, LinkedIn, X and YouTube',
+      platforms: ['Instagram', 'LinkedIn', 'Twitter', 'YouTube'],
+      icon: "globe",
+      color: 'blue'
+    },
+    {
+      name: 'Google Ads',
+      description: 'Google search, display and shopping campaigns',
+      platforms: ['Search Ads', 'Display Ads', 'Shopping Ads'],
+      icon: "target",
+      color: 'green'
+    },
+    {
+      name: 'Email Marketing',
+      description: 'Personalized email campaigns and automation',
+      platforms: ['Welcome Emails', 'Promotions', 'Nurturing'],
+      icon: "megaphone",
+      color: 'purple'
+    },
+    {
+      name: 'Website',
+      description: 'Optimizing user experience and turning visitors into customers',
+      platforms: ['Landing Pages', 'CTAs', 'SEO'],
+      icon: "globe",
+      color: 'cyan'
+    }
+  ];
+
+  const campaignObjectives = [
+    'Growing brand and product awareness',
+    'Driving targeted traffic to your website',
+    'Increasing sales and customer numbers',
+    'Building a community of loyal, active customers',
+    'Growing your subscriber and newsletter list',
+    'Promoting a new product or service'
+  ];
+
+  const benefits = [
+    'Effective brand awareness across the market',
+    'Optimized ad spend with controlled budgets',
+    'Stronger message synergy and brand consistency',
+    'Accurate measurement of each channel impact',
+    'Better returns through coordinated channels',
+    'A unified customer experience at every touchpoint'
+  ];
+
+  const stats = [
+    { metric: 'Brand growth', label: 'Higher brand awareness', color: 'text-green-800', icon: "target" },
+    { metric: 'Budget control', label: 'Lower marketing costs', color: 'text-blue-600', icon: "dollar-sign" },
+    { metric: 'Wide coverage', label: 'Advertising channels', color: 'text-purple-600', icon: "layers" },
+    { metric: 'Online dashboard', label: 'Accurate performance reports', color: 'text-orange-600', icon: "bar-chart3" }
+  ];
+
+  const features = [
+    {
+      icon: "megaphone",
+      title: 'Multi-Channel Coverage',
+      description: 'Coordinated campaign execution across social media, Google Ads, email and 10+ advertising platforms.',
+      benefits: ['Complete coverage control', 'Maximum audience reach', 'Greater impact']
+    },
+    {
+      icon: "bar-chart3",
+      title: 'Unified Reporting & Analytics',
+      description: 'Performance analysis across all channels with a single overview for better decisions.',
+      benefits: ['Holistic performance view', 'Data-driven decisions', 'Continuous optimization']
+    },
+    {
+      icon: "users",
+      title: 'Behavior-Based Targeting',
+      description: 'Using customer data and segmentation for the highest possible returns.',
+      benefits: ['Precise segmentation', 'Higher returns', 'Personalized experience']
+    },
+    {
+      icon: "link2",
+      title: 'Consistent Brand Messaging',
+      description: 'Every message and ad across channels speaks with one voice, aligned with brand goals.',
+      benefits: ['Unified brand experience', 'Stronger brand recognition', 'Greater customer trust']
+    }
+  ];
+
+  const processSteps = [
+    {
+      step: '1',
+      title: 'Research & Strategy',
+      desc: 'Market, audience and competitor research to define the integrated campaign strategy'
+    },
+    {
+      step: '2',
+      title: 'Goals & KPIs',
+      desc: 'Defining measurable objectives and key campaign performance indicators'
+    },
+    {
+      step: '3',
+      title: 'Campaign Design',
+      desc: 'Designing a unified content strategy for all advertising channels'
+    },
+    {
+      step: '4',
+      title: 'Simultaneous Rollout',
+      desc: 'Launching the campaign across all selected channels at once'
+    },
+    {
+      step: '5',
+      title: 'Monitoring & Testing',
+      desc: 'Continuous performance tracking and A/B testing to optimize the campaign'
+    },
+    {
+      step: '6',
+      title: 'Reporting & Optimization',
+      desc: 'Comprehensive reporting with optimization strategies for future campaigns'
+    }
+  ];
+
+  const campaignTypes = [
+    {
+      title: 'Brand Expansion Campaigns',
+      description: 'Growing brand awareness and recognition in the target market',
+      examples: ['Product launch campaigns', 'Brand credibility campaigns', 'Educational campaigns']
+    },
+    {
+      title: 'Direct Sales Campaigns',
+      description: 'Immediately motivating customers to buy your product or service',
+      examples: ['Discount campaigns', 'Seasonal campaigns', 'Flash-sale campaigns']
+    },
+    {
+      title: 'Customer Acquisition Campaigns',
+      description: 'Growing new customer numbers and your database',
+      examples: ['Sign-up campaigns', 'Free-trial campaigns', 'Lead-generation campaigns']
+    },
+    {
+      title: 'Customer Engagement Campaigns',
+      description: 'Strengthening ties with current customers and growing loyalty',
+      examples: ['Holiday campaigns', 'Appreciation campaigns', 'Announcement campaigns']
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'What is an integrated campaign?',
+      answer: 'Planning and running ads across multiple platforms simultaneously, in a coordinated way, for maximum return and impact. All messages work together in harmony.'
+    },
+    {
+      question: 'Will my campaign run according to my goals?',
+      answer: 'Yes. Every campaign stage is implemented around your specific goals and KPIs. Each campaign has clear, measurable objectives.'
+    },
+    {
+      question: 'How are performance reports delivered?',
+      answer: 'You receive comprehensive reports on each channel returns plus the overall total — including practical charts and strategic analysis for better decisions.'
+    },
+    {
+      question: 'How many advertising channels are covered?',
+      answer: 'Depending on your strategy, anywhere from 3 to 12 different channels. We pick the best channel mix based on your budget and goals.'
+    },
+    {
+      question: 'How long does campaign execution take?',
+      answer: 'Depending on campaign size, usually between 2 weeks and 3 months. Smaller campaigns launch faster.'
+    },
+    {
+      question: 'Can the strategy change mid-campaign?',
+      answer: 'Yes. We monitor the campaign continuously and adjust the strategy based on data. Flexibility is a hallmark of integrated campaigns.'
+    }
+  ];
+
+
+const breadcrumbs = [
+    { position: 1, name: 'Home', item: 'https://asreseo.com/' },
+    { position: 2, name: 'Marketing Services', item: 'https://asreseo.com/services/marketing/' },
+    { position: 3, name: 'Integrated Campaigns', item: 'https://asreseo.com/services/marketing/integrated-campaigns/' },
+  ];
+
+---
+<BaseLayout lang="en" title='Integrated Multi-Channel Ad Campaigns | AsreSEO' description='Integrated multi-channel advertising campaigns. Grow brand awareness with a coordinated multi-channel strategy across social media, Google Ads and email marketing.' keywords='integrated campaigns, integrated advertising, Integrated Marketing, multi-channel marketing, AsreSEO' canonical='/services/marketing/integrated-campaigns/' ogType='website' ogUrl='https://asreseo.com/services/marketing/integrated-campaigns/' ogImages={[{ url: "/og/integrated-campaigns-hero.jpg", width: 1200, height: 630, alt: "Integrated campaigns | AsreSEO" }]} twitterCard='summary_large_image'
+  ogTitle='Integrated Advertising Campaigns | AsreSEO'
+
+  ogDescription='Unified multi-channel advertising strategies for maximum impact and high ROI.'
+>
+<div class="min-h-screen bg-[#000000] text-slate-100 wireframe-grid">
+      <script id="structured-data" type="application/ld+json" is:inline
+        set:html={JSON.stringify(withServiceMeta(structuredData, { url: 'https://asreseo.com/services/marketing/integrated-campaigns/', image: '/og/integrated-campaigns-hero.jpg' }))}
+      />
+
+      <Header lang="en" />
+      <BreadcrumbStructuredData items={breadcrumbs} />
+
+      <main>
+        <ServiceHero lang="en"
+          badge="Integrated multi-channel marketing"
+          title="Integrated Advertising Campaigns"
+          titleHighlight="Integrated"
+          description="Unified advertising strategies across multiple channels for maximum impact. Grow brand awareness with coordinated social media, Google Ads and email marketing campaigns."
+          primaryCtaText="Start Your Integrated Campaign"
+          secondaryCtaText="Strategic Consultation"
+          imageSrc="/images/integrated-campaigns-hero.webp"
+          imageAlt="Integrated advertising campaigns"
+          theme="indigo"
+        />
+
+        <ServiceStats lang="en" stats={stats} />
+
+        <!-- Marketing Channels Section -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[OMNICHANNEL_GRID // CHANNEL_MATRIX]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                Marketing Channels <span class="text-[#CCFF00]">We Cover</span>
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                // Complete digital coverage with strategic coordination across every channel
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {marketingChannels.map((channel, index) => (
+                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                        <Icon name={channel.icon} class="h-6 w-6 text-[#CCFF00]" />
+                      </div>
+                      <CardTitle class="text-xl font-bold uppercase text-white">{channel.name}</CardTitle>
+                    </div>
+                    <p class="text-slate-300 mb-2 text-sm">{channel.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="flex flex-wrap gap-2 border-t border-white/10 pt-4">
+                      {channel.platforms.map((platform, platformIndex) => (
+                        <span class="text-xs font-mono uppercase bg-black px-2.5 py-1 border border-white/20 text-slate-300">
+                          {platform}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[STRATEGIC_SUPERIORITY // ADVANTAGES]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                What Makes <span class="text-[#CCFF00]">Integrated</span> Campaigns Better
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-3xl">
+                // Why do AsreSEO integrated campaigns beat single-channel campaigns?
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((feature, index) => (
+                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
+                  <CardHeader class="pb-4">
+                    <div class="flex items-center gap-3 mb-3">
+                      <div class="w-12 h-12 bg-black border border-white/20 text-[#CCFF00] flex items-center justify-center shrink-0">
+                        <Icon name={feature.icon} class="h-6 w-6 text-[#CCFF00]" />
+                      </div>
+                      <CardTitle class="text-lg font-bold uppercase text-white">{feature.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p class="text-slate-300 mb-4 leading-relaxed text-sm">
+                      {feature.description}
+                    </p>
+                    <div class="space-y-2 border-t border-white/10 pt-4">
+                      {feature.benefits.map((benefit, benefitIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-slate-300">
+                          <Icon name="check-circle" class="h-4 w-4 text-[#CCFF00] shrink-0" />
+                          <span>{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Campaign Objectives -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[CAMPAIGN_TARGETING // CORE_OBJECTIVES]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                <span class="text-[#CCFF00]">Integrated</span> Campaign Objectives
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-2xl">
+                // Campaigns shaped around your business to hit your marketing goals
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              {campaignObjectives.map((objective, index) => (
+                <div class="flex items-center gap-4 p-4 bg-[#0a0e17] border-2 border-white/15 hover:border-[#CCFF00] transition-colors rounded-none brutalist-card group">
+                  <div class="w-10 h-10 bg-black border border-white/20 flex items-center justify-center shrink-0 group-hover:border-[#CCFF00] transition-colors">
+                    <Icon name="target" class="h-5 w-5 text-[#CCFF00]" />
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-mono text-[10px] text-slate-500 uppercase tracking-widest mb-0.5">
+                      OBJ_{String(index + 1).padStart(2, '0')}
+                    </div>
+                    <span class="text-white font-medium text-sm block">
+                      {objective}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- Campaign Types -->
+        <section class="py-20 bg-[#000000] border-t-2 border-white/10 wireframe-grid relative">
+          <div class="container-custom">
+            <div class="mb-14 text-left">
+              <div class="font-mono text-xs text-[#CCFF00] uppercase tracking-widest mb-2">[STRATEGY_BLUEPRINTS // CAMPAIGN_MODELS]</div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-white tracking-tight leading-tight">
+                <span class="text-[#CCFF00]">Integrated</span> Campaign Types
+              </h2>
+              <p class="text-sm sm:text-base text-slate-400 font-mono mt-3 max-w-2xl">
+                // Campaign strategies matched to your marketing goals
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              {campaignTypes.map((campaign, index) => (
+                <Card class="bg-[#0a0e17] border-2 border-white/15 brutalist-card hover:border-[#CCFF00] transition-colors rounded-none">
+                  <CardHeader>
+                    <CardTitle class="text-xl font-bold uppercase text-white">{campaign.title}</CardTitle>
+                    <p class="text-slate-300 text-sm mt-1">{campaign.description}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div class="space-y-2 border-t border-white/10 pt-4">
+                      <h4 class="font-mono text-xs uppercase tracking-wider text-[#CCFF00] mb-2">Example campaigns:</h4>
+                      {campaign.examples.map((example, exampleIndex) => (
+                        <div class="flex items-center gap-2 text-sm text-slate-300">
+                          <Icon name="check-circle" class="h-3 w-3 text-[#CCFF00] shrink-0" />
+                          <span>{example}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <ServiceBenefits lang="en"
+          title="Integrated Advertising Campaigns"
+          titleHighlight="Integrated"
+          subtitle="Tangible multi-channel marketing results that grow your brand everywhere"
+          benefits={benefits}
+          iconColorClass="text-indigo-600"
+          iconBgClass="bg-indigo-100"
+        />
+
+        <ServiceWorkflow lang="en"
+          title="How We Run Integrated Campaigns"
+          titleHighlight="Integrated"
+          subtitle="A proven 6-step approach to multi-channel campaign success"
+          steps={processSteps}
+          themeColor="indigo"
+          bgGradient="bg-linear-to-br from-purple-50 to-indigo-50"
+        />
+
+        <ServiceFAQ lang="en"
+          title="Frequently Asked Questions"
+          highlightWord="Asked Questions"
+          subtitle="Answers to the most common questions about integrated advertising campaigns"
+          faqs={faqs}
+        />
+
+        <ServiceCTA lang="en"
+          title="Make your brand powerful across the entire digital space!"
+          description="With integrated advertising campaigns, reach all of your target customers. A multi-channel marketing strategy for maximum impact and high ROI."
+          primaryText="Start Your Integrated Campaign"
+          secondaryText="Free Marketing Strategy"
+        />
+      </main>
+
+      <Footer lang="en" />
+    </div>
+</BaseLayout>
