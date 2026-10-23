@@ -9,6 +9,9 @@ send_email = [
   { name = "EMAIL" }
 ]
 
+[build]
+command = "pnpm run build"
+
 [assets]
 directory = "./dist"
 binding = "ASSETS"
